@@ -13,7 +13,7 @@ const startTime = performance.now();
 const AVAILABLE_THEMES = [
     {
         id: 'etica',
-        title: '🧭 Ética y Moral',
+        title: 'Ética y Moral',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',
         icon: '🧭',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -26,7 +26,7 @@ const AVAILABLE_THEMES = [
     },
     {
         id: 'aristoteles',
-        title: '🏛️ Aristóteles: Lo Bueno es la Felicidad',
+        title: 'Aristóteles: Lo Bueno es la Felicidad',
         description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
         icon: '🏛️',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
@@ -39,7 +39,7 @@ const AVAILABLE_THEMES = [
     },
     {
     id: 'hedonismo',
-    title: '🌸 Hedonismo: El Placer como Fin de la Vida',
+    title: 'Hedonismo: El Placer como Fin de la Vida',
     description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
     icon: '🌸',
     gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
@@ -52,7 +52,7 @@ const AVAILABLE_THEMES = [
     },
     {
         id: 'utilitarismo',
-        title: '🎯 Utilitarismo: La Mayor Felicidad para el Mayor Número',
+        title: 'Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas',
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
         icon: '🎯',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -65,7 +65,7 @@ const AVAILABLE_THEMES = [
     },
     {
         id: 'pragmatismo',
-        title: '🛠️ Pragmatismo: Lo Verdadero es lo Práctico',
+        title: 'Pragmatismo: Lo Verdadero es lo Práctico',
         description: 'Explora la filosofía americana que evalúa las ideas por su utilidad práctica: Peirce, James, Dewey y la verdad como herramienta de acción.',
         icon: '🛠️',
         gradient: 'linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)',
@@ -78,7 +78,7 @@ const AVAILABLE_THEMES = [
     },
     {
         id: 'epistemologia',
-        title: '🔍 Conocimiento y Verdad',
+        title: 'Conocimiento y Verdad',
         description: 'Analiza qué es el conocimiento, cómo lo adquirimos y los límites de lo que podemos saber.',
         icon: '🔍',
         gradient: 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)',
