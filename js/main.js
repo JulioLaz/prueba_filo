@@ -85,7 +85,7 @@ const AVAILABLE_THEMES = [
         "difficulty": "avanzado",
         "questions": 10,
         "timeEstimate": 15,
-        "prerequisites": ["utilitarismo"],
+        "prerequisites": [],
         "color": "#1d4ed8",
         "contentFile": "content/etica_kant.html"
     },
