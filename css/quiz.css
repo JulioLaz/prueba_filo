@@ -225,7 +225,8 @@ body::before {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: var(--space-md);
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    /* margin-bottom: var(--space-lg); */
     box-shadow: var(--shadow-sm);
 }
 
