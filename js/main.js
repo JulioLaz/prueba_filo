@@ -30,12 +30,25 @@ const AVAILABLE_THEMES = [
         description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
         icon: '🏛️',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
-        difficulty: 'intermedio',
+        difficulty: 'basico',
         questions: 12,
         timeEstimate: 10,
         prerequisites: ['etica'],
         color: '#d4af37',
         contentFile: 'content/aristoteles.html'
+    },
+    {
+    id: 'hedonismo',
+    title: '🌸 Hedonismo: El Placer como Fin de la Vida',
+    description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
+    icon: '🌸',
+    gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
+    difficulty: 'basico',
+    questions: 14,
+    timeEstimate: 12,
+    prerequisites: [],
+    color: '#ff6b6b',
+    contentFile: 'content/hedonismo.html'
     },
     {
         id: 'epistemologia',
