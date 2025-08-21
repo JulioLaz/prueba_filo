@@ -16,7 +16,7 @@ const ETICA_THEME = {
     icon: '🧭',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     difficulty: 'basico',
-    timeLimit: 30,
+    timeLimit: 60,
     contentFile: 'content/etica.html',
     
     // Metadata del tema

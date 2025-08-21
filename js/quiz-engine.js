@@ -85,6 +85,7 @@ let startTime = null;
 let userAnswers = [];
 let isAnswered = false;
 
+const ANSWER_DISPLAY_TIME = 2500; // Tiempo en ms para mostrar respuesta correcta
 const TIMER_WARNING_THRESHOLD = 10;
 const TIMER_DANGER_THRESHOLD = 5;
 
@@ -437,7 +438,7 @@ function selectAnswer(selectedButton, answer) {
     // Continuar después de mostrar resultado
     setTimeout(() => {
         nextQuestion();
-    }, 2500);
+    }, ANSWER_DISPLAY_TIME);
 }
 
 /**
