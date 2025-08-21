@@ -56,7 +56,7 @@ const AVAILABLE_THEMES = [
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
         icon: '🎯',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        difficulty: 'intermedio',
+        difficulty: 'basico',
         questions: 12,
         timeEstimate: 10,
         prerequisites: [],
