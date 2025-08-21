@@ -82,7 +82,7 @@ const AVAILABLE_THEMES = [
         "description": "Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.",
         "icon": "⚖️",
         "gradient": "linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)",
-        "difficulty": "avanzado",
+        "difficulty": "basico",
         "questions": 10,
         "timeEstimate": 15,
         "prerequisites": [],

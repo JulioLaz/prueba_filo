@@ -14,8 +14,8 @@ const KANT_THEME = {
     title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
     description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
     icon: '⚖️',
-    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
-    difficulty: 'avanzado',
+    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #733d7aff 100%)',
+    difficulty: 'basico',
     timeLimit: 45,
     contentFile: 'content/etica_kant.html',
     
