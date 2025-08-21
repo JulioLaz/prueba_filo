@@ -9,12 +9,12 @@ const themeLoadStart = performance.now();
 /**
  * Configuración del tema de Ética Kantiana
  */
-const KANT_THEME = {
+const ETICA_KANT_THEME = {
     id: 'etica_kant',
     title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
     description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
     icon: '⚖️',
-    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #733d7aff 100%)',
+    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
     difficulty: 'basico',
     timeLimit: 30,
     contentFile: 'content/etica_kant.html',
@@ -423,7 +423,7 @@ function validateTheme() {
     console.log('🔍 Validando estructura del tema de Kant...');
     
     const requiredFields = ['id', 'title', 'questions'];
-    const missingFields = requiredFields.filter(field => !KANT_THEME[field]);
+    const missingFields = requiredFields.filter(field => !ETICA_KANT_THEME[field]);
     
     if (missingFields.length > 0) {
         console.error(`❌ Faltan campos requeridos: ${missingFields.join(', ')}`);
@@ -431,7 +431,7 @@ function validateTheme() {
     }
     
     // Validar preguntas
-    const invalidQuestions = KANT_THEME.questions.filter((q, index) => {
+    const invalidQuestions = ETICA_KANT_THEME.questions.filter((q, index) => {
         if (!q.id || !q.question || !q.answers || !q.hint) {
             console.error(`❌ Pregunta ${index + 1} inválida: faltan campos requeridos`);
             return true;
@@ -466,7 +466,7 @@ function validateTheme() {
  */
 function getThemeStats() {
     return {
-        ...KANT_THEME.stats,
+        ...ETICA_KANT_THEME.stats,
         validationPassed: validateTheme(),
         loadTime: performance.now() - themeLoadStart
     };
@@ -484,10 +484,10 @@ if (!validateTheme()) {
 
 const themeLoadEnd = performance.now();
 console.log(`✅ Tema de Ética Kantiana cargado exitosamente en ${(themeLoadEnd - themeLoadStart).toFixed(2)}ms`);
-console.log(`📊 Estadísticas: ${KANT_THEME.questions.length} preguntas, ${KANT_THEME.stats.estimatedTime} min estimados`);
+console.log(`📊 Estadísticas: ${ETICA_KANT_THEME.questions.length} preguntas, ${ETICA_KANT_THEME.stats.estimatedTime} min estimados`);
 
 // Exportar tema para uso global
 if (typeof window !== 'undefined') {
-    window.KANT_THEME = KANT_THEME;
+    window.ETICA_KANT_THEME = ETICA_KANT_THEME;
     console.log('🌐 Tema de Ética Kantiana disponible globalmente');
 }
