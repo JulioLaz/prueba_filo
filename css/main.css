@@ -178,7 +178,7 @@ body::before {
 }
 
 .filter-btn {
-    padding: 10px 12px;
+    padding: 10px 10px;
     border: 2px solid var(--border-color);
     background: transparent;
     color: var(--text-secondary);
@@ -196,6 +196,7 @@ body::before {
     color: white;
     box-shadow: var(--shadow-light);
     transform: translateY(-2px);
+    padding: 10px 10px;
 }
 
 /* ========================================
@@ -532,7 +533,7 @@ body::before {
     }
     
     .filter-btn {
-        padding: 10px 12px;
+        padding: 10px 10px;
         font-size: 0.9em;
     }
     
