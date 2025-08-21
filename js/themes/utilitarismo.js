@@ -11,7 +11,7 @@ const themeLoadStart = performance.now();
  */
 const UTILITARISMO_THEME = {
     id: 'utilitarismo',
-    title: '🎯 Utilitarismo: La Mayor Felicidad para el Mayor Número',
+    title: 'Utilitarismo: La mayor felicidad para el mayor Número de personas',
     description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
     icon: '🎯',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

@@ -11,7 +11,7 @@ const themeLoadStart = performance.now();
  */
 const HEDONISMO_THEME = {
     id: 'hedonismo',
-    title: '🌸 Hedonismo: El Placer como Fin de la Vida',
+    title: 'Hedonismo: El Placer como Fin de la Vida',
     description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
     icon: '🌸',
     gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
