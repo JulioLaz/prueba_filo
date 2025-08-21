@@ -16,7 +16,7 @@ const KANT_THEME = {
     icon: '⚖️',
     gradient: 'linear-gradient(135deg, #1d4ed8 0%, #733d7aff 100%)',
     difficulty: 'basico',
-    timeLimit: 45,
+    timeLimit: 30,
     contentFile: 'content/etica_kant.html',
     
     // Metadata del tema
@@ -393,8 +393,8 @@ const KANT_THEME = {
         totalQuestions: 10,
         estimatedTime: 15, // minutos
         difficultyBreakdown: {
-            basico: 5,
-            intermedio: 3,
+            basico: 4,
+            intermedio: 4,
             avanzado: 2
         },
         topicBreakdown: {
