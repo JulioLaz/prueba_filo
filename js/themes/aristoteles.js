@@ -3,7 +3,6 @@
 // ========================================
 // 📚 Unidad III: Ética - ¿Cómo debe comportarse el hombre?
 
-console.log('🏛️ Cargando tema: Aristóteles - Lo bueno es la felicidad...');
 const themeLoadStart = performance.now();
 
 /**
