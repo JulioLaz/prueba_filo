@@ -223,7 +223,7 @@ function isThemeUnlocked(theme) {
     const progress = getUserProgress();
     return theme.prerequisites.every(prereq => 
         progress.completedThemes[prereq] && 
-        progress.completedThemes[prereq].score >= 50
+        progress.completedThemes[prereq].score >= 10
     );
 }
 
