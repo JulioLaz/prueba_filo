@@ -25,7 +25,7 @@ const KANT_THEME = {
         version: '1.0',
         lastUpdated: '2024-08-21',
         category: 'Filosofía Moderna',
-        prerequisites: ['utilitarismo'],
+        prerequisites: [],
         learningObjectives: [
             'Comprender la diferencia entre ética deontológica y consecuencialista',
             'Analizar el concepto de "buena voluntad" y "actuar por deber"',
