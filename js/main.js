@@ -63,7 +63,6 @@ const AVAILABLE_THEMES = [
         color: '#667eea',
         contentFile: 'content/utilitarismo.html'
     },
-
     {
         id: 'epistemologia',
         title: '🔍 Conocimiento y Verdad',
