@@ -144,7 +144,7 @@ body::before {
    ======================================== */
 
 .search-container {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
 }
 
 .search-input {
