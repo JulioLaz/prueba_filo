@@ -64,6 +64,19 @@ const AVAILABLE_THEMES = [
         contentFile: 'content/utilitarismo.html'
     },
     {
+        id: 'pragmatismo',
+        title: '🛠️ Pragmatismo: Lo Verdadero es lo Práctico',
+        description: 'Explora la filosofía americana que evalúa las ideas por su utilidad práctica: Peirce, James, Dewey y la verdad como herramienta de acción.',
+        icon: '🛠️',
+        gradient: 'linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)',
+        difficulty: 'intermedio',
+        questions: 12,
+        timeEstimate: 10,
+        prerequisites: [],
+        color: '#ff9500',
+        contentFile: 'content/pragmatismo.html'
+    },
+    {
         id: 'epistemologia',
         title: '🔍 Conocimiento y Verdad',
         description: 'Analiza qué es el conocimiento, cómo lo adquirimos y los límites de lo que podemos saber.',
