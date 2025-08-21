@@ -11,7 +11,7 @@ const themeLoadStart = performance.now();
  */
 const PRAGMATISMO_THEME = {
     id: 'pragmatismo',
-    title: '🛠️ Pragmatismo: Lo Verdadero es lo Práctico',
+    title: 'Pragmatismo: Lo Verdadero es lo Práctico',
     description: 'Explora la filosofía americana que evalúa las ideas por su utilidad práctica: Peirce, James, Dewey y la verdad como herramienta de acción.',
     icon: '🛠️',
     gradient: 'linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)',
