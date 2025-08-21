@@ -592,7 +592,9 @@ function saveProgress(percentage, timeMs) {
 function showStudyMaterial() {
     console.log('📖 Mostrando material de estudio');
     // modalTitle.textContent = `📖 ${currentTheme.title} - Material de Estudio`;
-    modalTitle.textContent = `📖 Material de Estudio\n${currentTheme.title}`;
+    modalTitle.innerHTML = `📖 <strong>Material de Estudio</strong><br>${currentTheme.title}`;
+
+    // modalTitle.textContent = `📖 Material de Estudio\n${currentTheme.title}`;
 
     materialModal.style.display = 'block';
     
