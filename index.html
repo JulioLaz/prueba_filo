@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Cuestionario interactivo de filosofía sobre ética y moral. Evalúa tus conocimientos con preguntas sobre dilemas éticos y filosofía moral.">
-    <meta name="keywords" content="filosofía, ética, moral, cuestionario, educación, dilemas éticos">
-    <meta name="author" content="Cuestionario de Filosofía">
+    <meta name="description" content="Cuestionarios interactivos de filosofía. Elige tu tema: Ética, Epistemología, Lógica y más.">
+    <meta name="keywords" content="filosofía, ética, epistemología, lógica, cuestionarios, educación">
+    <meta name="author" content="Cuestionarios de Filosofía">
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#667eea">
@@ -14,63 +14,91 @@
     <meta name="apple-mobile-web-app-title" content="Filosofía Quiz">
     
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
     
-    <title>🧠 Cuestionario de Filosofía - Ética</title>
-    <link rel="stylesheet" href="style.css">
+    <title>🎓 Cuestionarios de Filosofía</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>🧠 Cuestionario de Filosofía</h1>
+    <div class="container">
+        <header class="main-header">
+            <h1>🎓 Cuestionarios de Filosofía</h1>
+            <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
+        </header>
 
-        <div class="header-info">
-            <div class="score-container">
-                🎯 Puntaje: <span id="score">0</span>
+        <div class="stats-container" id="stats-container">
+            <div class="stat-card">
+                <span class="stat-number" id="total-completed">0</span>
+                <span class="stat-label">Temas completados</span>
             </div>
-            <div class="question-counter-container">
-                📝 Pregunta: <span id="question-counter">0/0</span>
+            <div class="stat-card">
+                <span class="stat-number" id="total-score">0%</span>
+                <span class="stat-label">Promedio general</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="total-time">0min</span>
+                <span class="stat-label">Tiempo total</span>
             </div>
         </div>
 
-        <div id="timer-display" class="timer-container hidden">
-            ⏱️ Tiempo restante: <span id="timer">30</span> segundos
-        </div>
-
-        <div id="question-container">
-            <div id="help-text" class="hide">
-                <h3>Ayuda</h3>
-                <p id="help-paragraph"></p>
-                <div class="actions-container">
-                    <button id="show-question-btn">📝 Ver pregunta</button>
-                    <button id="show-text-btn" class="text-link-btn">📚 Ver texto completo</button>
-                </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="🔍 Buscar temas..." class="search-input">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="basico">Básico</button>
+                <button class="filter-btn" data-filter="intermedio">Intermedio</button>
+                <button class="filter-btn" data-filter="avanzado">Avanzado</button>
             </div>
-            <h2 id="question-text" class="hide"></h2>
-            <div id="answer-buttons" class="btn-grid hide"></div>
         </div>
 
-        <div id="result-container" class="hide">
-            <h2>🎉 ¡Resultados!</h2>
-            <p id="final-score"></p>
-            <button id="restart-btn">🔄 Volver a intentar</button>
+        <div class="themes-grid" id="themes-grid">
+            <!-- Los temas se cargarán dinámicamente aquí -->
         </div>
 
-        <button id="home-btn" class="hide">🏠 Inicio</button>
+        <footer class="main-footer">
+            <p>🧠 Desarrollado para el aprendizaje de la filosofía</p>
+            <div class="footer-links">
+                <a href="#" id="clear-data-btn">🗑️ Limpiar progreso</a>
+                <a href="#" id="about-btn">ℹ️ Acerca de</a>
+            </div>
+        </footer>
     </div>
 
-    <!-- Modal para el texto completo -->
-    <div id="text-modal" class="modal">
+    <!-- Modal de información -->
+    <div id="about-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2>📖 Material de Estudio</h2>
+                <h2>ℹ️ Acerca del proyecto</h2>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- El contenido se cargará dinámicamente desde txt.html -->
+            <div class="modal-body">
+                <h3>🎯 Objetivo</h3>
+                <p>Esta aplicación te permite evaluar y profundizar tus conocimientos en diferentes áreas de la filosofía a través de cuestionarios interactivos.</p>
+                
+                <h3>🎮 Cómo funciona</h3>
+                <ul>
+                    <li>📚 <strong>Selecciona un tema</strong> que te interese</li>
+                    <li>💡 <strong>Lee las pistas</strong> antes de cada pregunta</li>
+                    <li>⏱️ <strong>Responde en 30 segundos</strong> cada pregunta</li>
+                    <li>📖 <strong>Consulta el material</strong> de estudio cuando necesites</li>
+                    <li>🎯 <strong>Obtén tu calificación</strong> y mejora tus conocimientos</li>
+                </ul>
+
+                <h3>🌟 Características</h3>
+                <ul>
+                    <li>✅ Completamente responsive para móviles</li>
+                    <li>✅ Progreso guardado automáticamente</li>
+                    <li>✅ Material de estudio integrado</li>
+                    <li>✅ Preguntas con diferentes niveles de dificultad</li>
+                    <li>✅ Estadísticas detalladas de progreso</li>
+                </ul>
+
+                <h3>🏗️ Tecnología</h3>
+                <p>Desarrollado con HTML5, CSS3 y JavaScript moderno. Optimizado para GitHub Pages.</p>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
