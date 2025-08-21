@@ -51,6 +51,20 @@ const AVAILABLE_THEMES = [
     contentFile: 'content/hedonismo.html'
     },
     {
+        id: 'utilitarismo',
+        title: '🎯 Utilitarismo: La Mayor Felicidad para el Mayor Número',
+        description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
+        icon: '🎯',
+        gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        difficulty: 'intermedio',
+        questions: 12,
+        timeEstimate: 10,
+        prerequisites: [],
+        color: '#667eea',
+        contentFile: 'content/utilitarismo.html'
+    },
+
+    {
         id: 'epistemologia',
         title: '🔍 Conocimiento y Verdad',
         description: 'Analiza qué es el conocimiento, cómo lo adquirimos y los límites de lo que podemos saber.',
