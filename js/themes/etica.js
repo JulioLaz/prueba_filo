@@ -11,7 +11,7 @@ const themeLoadStart = performance.now();
  */
 const ETICA_THEME = {
     id: 'etica',
-    title: '🧭 Ética y Moral',
+    title: 'Ética y Moral',
     description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',
     icon: '🧭',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

@@ -807,7 +807,7 @@ body::before {
     }
     
     .progress-info {
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
         gap: var(--space-sm);
         text-align: center;
     }
