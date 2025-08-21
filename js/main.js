@@ -25,6 +25,19 @@ const AVAILABLE_THEMES = [
         contentFile: 'content/etica.html'
     },
     {
+        id: 'aristoteles',
+        title: '🏛️ Aristóteles: Lo Bueno es la Felicidad',
+        description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
+        icon: '🏛️',
+        gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
+        difficulty: 'intermedio',
+        questions: 12,
+        timeEstimate: 10,
+        prerequisites: ['etica'],
+        color: '#d4af37',
+        contentFile: 'content/aristoteles.html'
+    },
+    {
         id: 'epistemologia',
         title: '🔍 Conocimiento y Verdad',
         description: 'Analiza qué es el conocimiento, cómo lo adquirimos y los límites de lo que podemos saber.',

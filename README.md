@@ -327,3 +327,24 @@ npx http-server
 ---
 
 **Desarrollado con ❤️ para el aprendizaje de la filosofía**
+
+
+ESQUEMA:
+
+cuestionario-filosofia/
+├── index.html                    # 🏠 Página de selección de temas
+├── quiz.html                     # 🎮 Motor del cuestionario
+├── css/
+│   ├── main.css                  # 🎨 Estilos para selector de temas
+│   └── quiz.css                  # 🎨 Estilos para el cuestionario
+├── js/
+│   ├── main.js                   # 🎯 Lógica del selector de temas
+│   ├── quiz-engine.js            # ⚙️ Motor reutilizable del quiz
+│   └── themes/
+│       ├── etica.js              # 🧭 Tema 1: Ética y Moral
+│       ├── epistemologia.js      # 🔍 Tema 2: Conocimiento
+│       └── logica.js             # 🧠 Tema 3: Lógica y Argumentación
+└── content/
+    ├── etica.html                # 📚 Material de estudio - Ética
+    ├── epistemologia.html        # 📚 Material de estudio - Epistemología
+    └── logica.html               # 📚 Material de estudio - Lógica
