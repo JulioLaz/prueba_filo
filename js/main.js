@@ -12,6 +12,34 @@ const startTime = performance.now();
 
 const AVAILABLE_THEMES = [
     {
+        id: "cassirer",
+        title: "Ernst Cassirer: El ser humano como animal simbólico",
+        description: "Explora la antropología filosófica de Cassirer: el hombre como creador de símbolos, el lenguaje, el arte, el mito y la cultura como mediaciones de nuestra vida humana.",
+        icon: "🎭",
+        gradient: "linear-gradient(135deg, #6a85b6 0%, #bac8e0 100%)",
+        difficulty: "basico",
+        questions: 10,
+        timeEstimate: 10,
+        prerequisites: [],
+        color: "#6a85b6",
+        contentFile: "content/cassirer.html"
+    },
+    {
+    "id": "sartre",
+    "title": "Jean-Paul Sartre: El ser humano es libertad",
+    "description": "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
+    "icon": "🌀",
+    "gradient": "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+    "difficulty": "basico",
+    // "difficulty": "intermedio",
+    "questions": 10,
+    "timeEstimate": 10,
+    "prerequisites": [],
+    // "prerequisites": ["antropologia_filosofica"],
+    "color": "#00adb5",
+    "contentFile": "content/sartre.html"
+    },
+    {
         id: 'etica',
         title: 'Ética y Moral',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',
