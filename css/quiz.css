@@ -281,13 +281,13 @@ body::before {
     flex-direction: column;
 }
 
-.phase {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 400px;
-}
+/* .phase {
+    /* flex: 1; */
+    /* display: flex; */
+    /* flex-direction: column;
+    justify-content: center; */
+    /* min-height: 400px; */
+/* } */
 
 /* Help Phase */
 .help-phase {
