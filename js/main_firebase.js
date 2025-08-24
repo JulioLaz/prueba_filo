@@ -1,13 +1,35 @@
 // ========================================
-// 🎯 SELECTOR DE TEMAS - CUESTIONARIOS DE FILOSOFÍA
+// 🎯 SELECTOR DE TEMAS - CON FIREBASE INTEGRATION
 // ========================================
-// ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
-console.log('🚀 Iniciando selector de temas...');
+console.log('🚀 Iniciando selector de temas con Firebase...');
 const startTime = performance.now();
 
 // ========================================
-// 🎮 CONFIGURACIÓN DE TEMAS DISPONIBLES
+// 🔥 FIREBASE IMPORTS
+// ========================================
+
+import { 
+    signInWithGoogle, 
+    signInAnonymously, 
+    logOut, 
+    addAuthListener,
+    isSignedIn,
+    getCurrentUser,
+    getUserInfo,
+    getUserAvatar 
+} from './firebase/auth.js';
+
+import { 
+    saveUserProfile,
+    getUserProfile,
+    getAllUserProgress,
+    migrateLocalStorageProgress,
+    syncToLocalStorage
+} from './firebase/firestore.js';
+
+// ========================================
+// 🎮 CONFIGURACIÓN DE TEMAS (existente)
 // ========================================
 
 const AVAILABLE_THEMES = [
@@ -25,19 +47,17 @@ const AVAILABLE_THEMES = [
         contentFile: "content/cassirer.html"
     },
     {
-    "id": "sartre",
-    "title": "Jean-Paul Sartre: El ser humano es libertad",
-    "description": "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
-    "icon": "🌀",
-    "gradient": "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
-    "difficulty": "basico",
-    // "difficulty": "intermedio",
-    "questions": 10,
-    "timeEstimate": 10,
-    "prerequisites": [],
-    // "prerequisites": ["antropologia_filosofica"],
-    "color": "#00adb5",
-    "contentFile": "content/sartre.html"
+        id: "sartre",
+        title: "Jean-Paul Sartre: El ser humano es libertad",
+        description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
+        icon: "🌀",
+        gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+        difficulty: "basico",
+        questions: 10,
+        timeEstimate: 10,
+        prerequisites: [],
+        color: "#00adb5",
+        contentFile: "content/sartre.html"
     },
     {
         id: 'etica',
@@ -66,21 +86,21 @@ const AVAILABLE_THEMES = [
         contentFile: 'content/aristoteles.html'
     },
     {
-    id: 'hedonismo',
-    title: 'Hedonismo: El Placer como Fin de la Vida',
-    description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
-    icon: '🌸',
-    gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
-    difficulty: 'basico',
-    questions: 14,
-    timeEstimate: 12,
-    prerequisites: [],
-    color: '#ff6b6b',
-    contentFile: 'content/hedonismo.html'
+        id: 'hedonismo',
+        title: 'Hedonismo: El Placer como Fin de la Vida',
+        description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
+        icon: '🌸',
+        gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
+        difficulty: 'basico',
+        questions: 14,
+        timeEstimate: 12,
+        prerequisites: [],
+        color: '#ff6b6b',
+        contentFile: 'content/hedonismo.html'
     },
     {
         id: 'utilitarismo',
-        title: 'Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas',
+        title: 'Utilitarismo: La mayor felicidad para el mayor Número de personas',
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
         icon: '🎯',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -105,17 +125,17 @@ const AVAILABLE_THEMES = [
         contentFile: 'content/pragmatismo.html'
     },
     {
-    id: 'etica_kant',
-    title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
-    description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
-    icon: '⚖️',
-    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
-    difficulty: 'basico',
-    questions: 10,
-    timeEstimate: 15,
-    prerequisites: [],
-    color: '#1d4ed8',
-    contentFile: 'content/etica_kant.html'
+        id: 'etica_kant',
+        title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
+        description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
+        icon: '⚖️',
+        gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
+        difficulty: 'basico',
+        questions: 10,
+        timeEstimate: 15,
+        prerequisites: [],
+        color: '#1d4ed8',
+        contentFile: 'content/etica_kant.html'
     },
     {
         id: 'antropocentrismo',
@@ -129,71 +149,6 @@ const AVAILABLE_THEMES = [
         prerequisites: ['etica'],
         color: '#d4af37',
         contentFile: 'content/antropocentrismo.html'
-    },    
-    {
-        id: 'epistemologia',
-        title: 'Conocimiento y Verdad',
-        description: 'Analiza qué es el conocimiento, cómo lo adquirimos y los límites de lo que podemos saber.',
-        icon: '🔍',
-        gradient: 'linear-gradient(135deg, #4caf50 0%, #a08c45ff 100%)',
-        difficulty: 'avanzado',
-        questions: 12,
-        timeEstimate: 10,
-        prerequisites: [],
-        color: '#4caf50',
-        contentFile: 'content/epistemologia.html'
-    },
-    {
-        id: 'logica',
-        title: '🧠 Lógica y Argumentación',
-        description: 'Domina el arte del razonamiento válido, falacias lógicas y construcción de argumentos sólidos.',
-        icon: '🧠',
-        gradient: 'linear-gradient(135deg, #ff9800 0%, #f57c00 100%)',
-        difficulty: 'avanzado',
-        questions: 15,
-        timeEstimate: 12,
-        prerequisites: ['etica'],
-        color: '#ff9800',
-        contentFile: 'content/logica.html'
-    },
-    {
-        id: 'metafisica',
-        title: '🌌 Realidad y Existencia',
-        description: 'Profundiza en la naturaleza del ser, la realidad, el tiempo, el espacio y la existencia misma.',
-        icon: '🌌',
-        gradient: 'linear-gradient(135deg, #9c27b0 0%, #673ab7 100%)',
-        difficulty: 'avanzado',
-        questions: 18,
-        timeEstimate: 15,
-        prerequisites: ['epistemologia'],
-        color: '#9c27b0',
-        contentFile: 'content/metafisica.html'
-    },
-    {
-        id: 'estetica',
-        title: '🎨 Belleza y Arte',
-        description: 'Examina la naturaleza de la belleza, el arte, el gusto estético y la experiencia artística.',
-        icon: '🎨',
-        gradient: 'linear-gradient(135deg, #e91e63 0%, #ad1457 100%)',
-        difficulty: 'avanzado',
-        questions: 10,
-        timeEstimate: 8,
-        prerequisites: ['etica'],
-        color: '#e91e63',
-        contentFile: 'content/estetica.html'
-    },
-    {
-        id: 'filosofia-politica',
-        title: '🏛️ Poder y Sociedad',
-        description: 'Estudia la justicia, el poder, los derechos humanos y las formas ideales de organización social.',
-        icon: '🏛️',
-        gradient: 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)',
-        difficulty: 'avanzado',
-        questions: 20,
-        timeEstimate: 18,
-        prerequisites: ['etica', 'logica'],
-        color: '#f44336',
-        contentFile: 'content/filosofia-politica.html'
     }
 ];
 
@@ -217,72 +172,140 @@ const totalCompletedElement = document.getElementById('total-completed');
 const totalScoreElement = document.getElementById('total-score');
 const totalTimeElement = document.getElementById('total-time');
 
+// 🆕 Elementos de autenticación
+const authSection = document.getElementById('auth-section');
+const authSignedOut = document.getElementById('auth-signed-out');
+const authSignedIn = document.getElementById('auth-signed-in');
+const authLoading = document.getElementById('auth-loading');
+const signInBtn = document.getElementById('sign-in-btn');
+const signOutBtn = document.getElementById('sign-out-btn');
+const userAvatar = document.getElementById('user-avatar');
+const userName = document.getElementById('user-name');
+
+// Modal de sign in
+const signinModal = document.getElementById('signin-modal');
+const googleSigninBtn = document.getElementById('google-signin-btn');
+const anonymousSigninBtn = document.getElementById('anonymous-signin-btn');
+const closeSigninModal = document.getElementById('close-signin-modal');
+
 console.log('🎮 Elementos DOM inicializados');
 
 // ========================================
-// 💾 GESTIÓN DE DATOS LOCALES
+// 🔥 FIREBASE STATE MANAGEMENT
+// ========================================
+
+let firebaseProgress = {};
+let isFirebaseReady = false;
+
+/**
+ * Handle authentication state changes
+ */
+function handleAuthStateChange(user) {
+    console.log('🔄 Auth state changed:', user ? 'Signed in' : 'Signed out');
+    
+    if (user) {
+        showSignedInState(user);
+        loadFirebaseProgress();
+    } else {
+        showSignedOutState();
+        firebaseProgress = {};
+    }
+    
+    updateGlobalStats();
+    renderThemes();
+}
+
+/**
+ * Show signed in UI state
+ */
+function showSignedInState(user) {
+    authSignedOut.classList.add('hidden');
+    authSignedIn.classList.remove('hidden');
+    authLoading.classList.add('hidden');
+    
+    const userInfo = getUserInfo();
+    if (userInfo) {
+        userName.textContent = userInfo.displayName || userInfo.email || 'Usuario';
+        userAvatar.textContent = getUserAvatar();
+    }
+}
+
+/**
+ * Show signed out UI state
+ */
+function showSignedOutState() {
+    authSignedOut.classList.remove('hidden');
+    authSignedIn.classList.add('hidden');
+    authLoading.classList.add('hidden');
+}
+
+/**
+ * Load progress from Firebase
+ */
+async function loadFirebaseProgress() {
+    try {
+        console.log('📊 Loading progress from Firebase...');
+        firebaseProgress = await getAllUserProgress();
+        isFirebaseReady = true;
+        console.log(`✅ Loaded progress for ${Object.keys(firebaseProgress).length} themes`);
+    } catch (error) {
+        console.error('❌ Error loading Firebase progress:', error);
+        firebaseProgress = {};
+    }
+}
+
+// ========================================
+// 💾 GESTIÓN DE DATOS (HÍBRIDA)
 // ========================================
 
 /**
- * Obtiene el progreso guardado del usuario
- * @returns {Object} Datos de progreso del usuario
+ * Get combined progress (localStorage + Firebase)
  */
-function getUserProgress() {
-    const defaultProgress = {
-        completedThemes: {},
-        totalTime: 0,
-        lastVisit: new Date().toISOString()
-    };
+function getCombinedProgress() {
+    // Local progress as fallback
+    const localProgress = JSON.parse(localStorage.getItem('filosofia-quiz-progress') || '{}');
     
-    try {
-        const saved = localStorage.getItem('filosofia-quiz-progress');
-        return saved ? { ...defaultProgress, ...JSON.parse(saved) } : defaultProgress;
-    } catch (error) {
-        console.warn('⚠️ Error al cargar progreso:', error);
-        return defaultProgress;
+    if (!isSignedIn() || !isFirebaseReady) {
+        return localProgress;
     }
+    
+    // Combine Firebase and local progress
+    const combinedProgress = { ...localProgress };
+    combinedProgress.completedThemes = combinedProgress.completedThemes || {};
+    
+    // Merge Firebase progress
+    Object.keys(firebaseProgress).forEach(themeId => {
+        const fbData = firebaseProgress[themeId];
+        combinedProgress.completedThemes[themeId] = {
+            score: fbData.bestScore,
+            bestScore: fbData.bestScore,
+            attempts: fbData.attempts,
+            timeSpent: fbData.totalTime,
+            lastAttempt: fbData.lastAttemptAt?.toDate?.()?.toISOString() || new Date().toISOString()
+        };
+    });
+    
+    return combinedProgress;
 }
 
 /**
- * Guarda el progreso del usuario
- * @param {Object} progress - Datos de progreso a guardar
+ * Get theme progress (Firebase-aware)
  */
-function saveUserProgress(progress) {
-    try {
-        localStorage.setItem('filosofia-quiz-progress', JSON.stringify({
-            ...progress,
-            lastVisit: new Date().toISOString()
-        }));
-        console.log('💾 Progreso guardado exitosamente');
-    } catch (error) {
-        console.error('❌ Error al guardar progreso:', error);
-    }
-}
-
-/**
- * Limpia todos los datos guardados
- */
-function clearUserData() {
-    if (confirm('¿Estás seguro de que quieres eliminar todo tu progreso? Esta acción no se puede deshacer.')) {
-        localStorage.removeItem('filosofia-quiz-progress');
-        console.log('🗑️ Datos eliminados');
-        location.reload();
-    }
+function getThemeProgress(themeId) {
+    const progress = getCombinedProgress();
+    return progress.completedThemes?.[themeId] || null;
 }
 
 // ========================================
 // 📊 ACTUALIZACIÓN DE ESTADÍSTICAS
 // ========================================
 
-/**
- * Actualiza las estadísticas globales del usuario
- */
 function updateGlobalStats() {
     console.log('📊 Actualizando estadísticas globales...');
     const startStatsTime = performance.now();
     
-    const progress = getUserProgress();
-    const completed = Object.keys(progress.completedThemes);
+    const progress = getCombinedProgress();
+    const completed = Object.keys(progress.completedThemes || {});
     
     // Calcular estadísticas
     const totalCompleted = completed.length;
@@ -290,7 +313,16 @@ function updateGlobalStats() {
     const averageScore = totalScores.length > 0 
         ? Math.round(totalScores.reduce((a, b) => a + b, 0) / totalScores.length) 
         : 0;
-    const totalMinutes = Math.round(progress.totalTime / 60000) || 0;
+    
+    // Calculate total time
+    let totalMinutes = 0;
+    if (isSignedIn() && isFirebaseReady) {
+        // Use Firebase data for signed in users
+        totalMinutes = Math.round(Object.values(firebaseProgress).reduce((sum, data) => sum + (data.totalTime || 0), 0) / 60000);
+    } else {
+        // Use localStorage for anonymous users
+        totalMinutes = Math.round((progress.totalTime || 0) / 60000);
+    }
     
     // Actualizar elementos
     totalCompletedElement.textContent = totalCompleted;
@@ -302,39 +334,19 @@ function updateGlobalStats() {
 }
 
 // ========================================
-// 🎨 RENDERIZADO DE TEMAS
+// 🎨 RENDERIZADO DE TEMAS (actualizado)
 // ========================================
 
-/**
- * Verifica si un tema está desbloqueado
- * @param {Object} theme - Tema a verificar
- * @returns {boolean} True si está desbloqueado
- */
 function isThemeUnlocked(theme) {
     if (theme.prerequisites.length === 0) return true;
     
-    const progress = getUserProgress();
+    const progress = getCombinedProgress();
     return theme.prerequisites.every(prereq => 
-        progress.completedThemes[prereq] && 
-        progress.completedThemes[prereq].score >= 0
+        progress.completedThemes?.[prereq] && 
+        progress.completedThemes[prereq].score >= 50
     );
 }
 
-/**
- * Obtiene el progreso de un tema específico
- * @param {string} themeId - ID del tema
- * @returns {Object|null} Datos de progreso del tema
- */
-function getThemeProgress(themeId) {
-    const progress = getUserProgress();
-    return progress.completedThemes[themeId] || null;
-}
-
-/**
- * Renderiza una tarjeta de tema
- * @param {Object} theme - Datos del tema
- * @returns {HTMLElement} Elemento de la tarjeta
- */
 function createThemeCard(theme) {
     const isUnlocked = isThemeUnlocked(theme);
     const themeProgress = getThemeProgress(theme.id);
@@ -349,12 +361,16 @@ function createThemeCard(theme) {
     const lockIcon = !isUnlocked ? '🔒' : '';
     const completedBadge = isCompleted ? '<div class="completion-badge">✅</div>' : '';
     
+    // Add Firebase sync indicator for signed in users
+    const syncIndicator = isSignedIn() ? '<div class="sync-indicator">☁️</div>' : '';
+    
     card.innerHTML = `
         <div class="theme-header">
             <span class="difficulty-badge difficulty-${theme.difficulty}">
                 ${theme.difficulty}
             </span>
             ${completedBadge}
+            ${syncIndicator}
             <span class="theme-icon">${lockIcon || theme.icon}</span>
             <h3 class="theme-title">${theme.title}</h3>
             <p class="theme-description">${theme.description}</p>
@@ -394,10 +410,6 @@ function createThemeCard(theme) {
     return card;
 }
 
-/**
- * Renderiza todos los temas en el grid
- * @param {Array} themes - Array de temas a renderizar
- */
 function renderThemes(themes = AVAILABLE_THEMES) {
     console.log(`🎨 Renderizando ${themes.length} temas...`);
     const renderStart = performance.now();
@@ -416,25 +428,19 @@ function renderThemes(themes = AVAILABLE_THEMES) {
 }
 
 // ========================================
-// 🔍 BÚSQUEDA Y FILTRADO
+// 🔍 BÚSQUEDA Y FILTRADO (sin cambios)
 // ========================================
 
 let currentFilter = 'all';
 let currentSearch = '';
 
-/**
- * Filtra los temas según criterios activos
- * @returns {Array} Temas filtrados
- */
 function getFilteredThemes() {
     let filtered = AVAILABLE_THEMES;
     
-    // Filtro por dificultad
     if (currentFilter !== 'all') {
         filtered = filtered.filter(theme => theme.difficulty === currentFilter);
     }
     
-    // Filtro por búsqueda
     if (currentSearch) {
         const searchLower = currentSearch.toLowerCase();
         filtered = filtered.filter(theme => 
@@ -447,14 +453,10 @@ function getFilteredThemes() {
     return filtered;
 }
 
-/**
- * Actualiza la visualización con los filtros activos
- */
 function updateThemeDisplay() {
     const filteredThemes = getFilteredThemes();
     renderThemes(filteredThemes);
     
-    // Mostrar mensaje si no hay resultados
     if (filteredThemes.length === 0) {
         themesGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
@@ -470,11 +472,55 @@ function updateThemeDisplay() {
 // 🎧 EVENT LISTENERS
 // ========================================
 
-/**
- * Configura todos los event listeners
- */
 function setupEventListeners() {
     console.log('🎧 Configurando event listeners...');
+    
+    // 🆕 Authentication listeners
+    signInBtn.addEventListener('click', () => {
+        signinModal.style.display = 'block';
+    });
+    
+    signOutBtn.addEventListener('click', async () => {
+        const result = await logOut();
+        if (result.success) {
+            console.log('👋 Signed out successfully');
+        }
+    });
+    
+    googleSigninBtn.addEventListener('click', async () => {
+        console.log('🔑 Attempting Google sign in...');
+        const result = await signInWithGoogle();
+        
+        if (result.success) {
+            console.log('✅ Google sign in successful');
+            signinModal.style.display = 'none';
+            
+            // Migrate localStorage progress
+            const migration = await migrateLocalStorageProgress();
+            if (migration.success && migration.migrated > 0) {
+                alert(`✅ Se migró el progreso de ${migration.migrated} temas a tu cuenta!`);
+            }
+        } else {
+            console.error('❌ Google sign in failed:', result.error);
+            alert('❌ Error al iniciar sesión: ' + result.error);
+        }
+    });
+    
+    anonymousSigninBtn.addEventListener('click', async () => {
+        console.log('👻 Attempting anonymous sign in...');
+        const result = await signInAnonymously();
+        
+        if (result.success) {
+            console.log('✅ Anonymous sign in successful');
+            signinModal.style.display = 'none';
+        } else {
+            console.error('❌ Anonymous sign in failed:', result.error);
+        }
+    });
+    
+    closeSigninModal.addEventListener('click', () => {
+        signinModal.style.display = 'none';
+    });
     
     // Búsqueda en tiempo real
     searchInput.addEventListener('input', (e) => {
@@ -486,7 +532,6 @@ function setupEventListeners() {
     // Filtros de dificultad
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            // Actualizar botones activos
             filterButtons.forEach(btn => btn.classList.remove('active'));
             e.target.classList.add('active');
             
@@ -512,15 +557,23 @@ function setupEventListeners() {
         if (e.target === aboutModal) {
             aboutModal.style.display = 'none';
         }
+        if (e.target === signinModal) {
+            signinModal.style.display = 'none';
+        }
     });
     
     // Limpiar datos
     clearDataBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        clearUserData();
+        if (confirm('¿Estás seguro de que quieres eliminar todo tu progreso local? Esto no afectará tu progreso en la nube si tienes cuenta.')) {
+            localStorage.removeItem('filosofia-quiz-progress');
+            console.log('🗑️ Datos locales eliminados');
+            updateGlobalStats();
+            renderThemes();
+        }
     });
     
-    // Atajo de teclado para búsqueda
+    // Atajos de teclado
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'f') {
             e.preventDefault();
@@ -529,6 +582,7 @@ function setupEventListeners() {
         
         if (e.key === 'Escape') {
             aboutModal.style.display = 'none';
+            signinModal.style.display = 'none';
             searchInput.blur();
         }
     });
@@ -540,20 +594,18 @@ function setupEventListeners() {
 // 🚀 INICIALIZACIÓN
 // ========================================
 
-/**
- * Inicializa la aplicación
- */
 function initializeApp() {
     console.log('🚀 Inicializando aplicación del selector...');
     const initStart = performance.now();
     
+    // Setup Firebase auth listener
+    addAuthListener(handleAuthStateChange);
+    
     // Configurar event listeners
     setupEventListeners();
     
-    // Actualizar estadísticas
+    // Renderizar temas iniciales (con datos locales)
     updateGlobalStats();
-    
-    // Renderizar temas iniciales
     renderThemes();
     
     // Animación de entrada
@@ -562,19 +614,15 @@ function initializeApp() {
     const initEnd = performance.now();
     console.log(`✅ Aplicación inicializada en ${(initEnd - initStart).toFixed(2)}ms`);
     
-    // Mostrar tiempo total de carga
     const totalTime = performance.now() - startTime;
     console.log(`⚡ Tiempo total de carga: ${totalTime.toFixed(2)}ms`);
-    console.log('🎮 ¡Selector de temas listo para usar!');
+    console.log('🎮 ¡Selector de temas con Firebase listo!');
 }
 
 // ========================================
 // 🎯 UTILIDADES ADICIONALES
 // ========================================
 
-/**
- * Maneja la navegación desde el cuestionario de vuelta al selector
- */
 function handleReturnFromQuiz() {
     const urlParams = new URLSearchParams(window.location.search);
     const returning = urlParams.get('returning');
@@ -584,7 +632,6 @@ function handleReturnFromQuiz() {
         console.log('🔄 Usuario regresando del cuestionario');
         
         if (completedTheme) {
-            // Mostrar notificación de tema completado
             setTimeout(() => {
                 const theme = AVAILABLE_THEMES.find(t => t.id === completedTheme);
                 if (theme) {
@@ -593,50 +640,19 @@ function handleReturnFromQuiz() {
             }, 1000);
         }
         
-        // Limpiar URL
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-}
-
-/**
- * Exporta estadísticas para análisis (función futura)
- */
-function exportStats() {
-    const progress = getUserProgress();
-    const stats = {
-        export_date: new Date().toISOString(),
-        themes_completed: Object.keys(progress.completedThemes).length,
-        total_themes: AVAILABLE_THEMES.length,
-        completion_rate: (Object.keys(progress.completedThemes).length / AVAILABLE_THEMES.length * 100).toFixed(1),
-        total_time_minutes: Math.round(progress.totalTime / 60000),
-        detailed_progress: progress.completedThemes
-    };
-    
-    console.log('📈 Estadísticas exportadas:', stats);
-    return stats;
 }
 
 // ========================================
 // 🏁 INICIO DE LA APLICACIÓN
 // ========================================
 
-// Verificar si el usuario regresa del cuestionario
 document.addEventListener('DOMContentLoaded', () => {
     handleReturnFromQuiz();
     initializeApp();
 });
 
-// Manejar errores globales
 window.addEventListener('error', (e) => {
     console.error('❌ Error global:', e.error);
 });
-
-// Logs de rendimiento en desarrollo
-if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const stats = exportStats();
-            console.log('🔧 Modo desarrollo - Estadísticas:', stats);
-        }, 2000);
-    });
-}
