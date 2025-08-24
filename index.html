@@ -2,164 +2,1028 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Cuestionarios interactivos de filosofía. Elige tu tema: Ética, Epistemología, Lógica y más.">
-    <meta name="keywords" content="filosofía, ética, epistemología, lógica, cuestionarios, educación">
-    <meta name="author" content="Cuestionarios de Filosofía">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Quiz con Firebase</title>
     
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#667eea">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Filosofía Quiz">
+    <!-- Firebase Scripts - Versión 8 (más estable) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
-    
-    <title>🎓 Cuestionarios de Filosofía</title>
-    <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            margin: 20px 0;
+            height: 25px;
+            overflow: hidden;
+        }
+
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            border-radius: 25px;
+            transition: width 0.5s ease;
+            width: 0%;
+            position: relative;
+        }
+
+        #progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .question-section {
+            margin: 30px 0;
+        }
+
+        #current-question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+        }
+
+        .quiz-option {
+            padding: 18px;
+            margin: 12px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            background: white;
+        }
+
+        .quiz-option:hover {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+        }
+
+        .quiz-option.selected {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .quiz-option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.4);
+            cursor: pointer;
+        }
+
+        .quiz-option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+
+        .quiz-buttons button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        #prev-btn {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+        }
+
+        #prev-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #5a6268, #495057);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+        }
+
+        #next-btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        #next-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        button:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .firebase-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .firebase-connected {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .firebase-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results-section h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .results-stats {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid #dee2e6;
+        }
+
+        .stat-item {
+            margin: 15px 0;
+            font-size: 1.2em;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #28a745, #218838) !important;
+            color: white;
+            padding: 18px 35px;
+            margin-top: 25px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .quiz-buttons {
+                flex-direction: column;
+            }
+            
+            .quiz-buttons button {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .quiz-header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header class="main-header">
-            <h1>🎓 Filosofía</h1>
-            <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
+    <!-- Indicador de estado de Firebase -->
+    <div id="firebase-status" class="firebase-status firebase-error" style="display: none;">
+        🔄 Conectando a Firebase...
+    </div>
+
+    <div class="quiz-container">
+        <!-- Header del Quiz -->
+        <div class="quiz-header">
+            <h1>🚀 Quiz con Firebase</h1>
+            <p>Responde las siguientes preguntas. Tus respuestas se guardan automáticamente en Firebase.</p>
+        </div>
+
+        <!-- Barra de Progreso -->
+        <div class="progress-section">
+            <div id="progress">Inicializando...</div>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Sección de Pregunta -->
+        <div class="question-section">
+            <div id="current-question" class="loading">
+                Cargando quiz...
+            </div>
+            <div id="options-container">
+                <!-- Las opciones se generan dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="quiz-buttons">
+            <button id="prev-btn" disabled>← Anterior</button>
+            <button id="next-btn" disabled>Siguiente →</button>
+        </div>
+    </div>
+
+    <script>
+        // 🔧 CONFIGURACIÓN DE FIREBASE - ¡REEMPLAZA CON TUS CREDENCIALES REALES!
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8GSBbszBeBIVG3C56xfC5yao_1m2UPcQ",
+            authDomain: "filosofia-quiz-prod.firebaseapp.com",       
+            databaseURL: "https://filosofia-quiz-prod-default-rtdb.firebaseio.com", // ⚠️ EJEMPLO - Reemplaza
+            projectId: "filosofia-quiz-prod",        
+            storageBucket: "filosofia-quiz-prod.firebasestorage.app",
+            messagingSenderId: "344375832179",                
+            appId: "1:344375832179:web:db1ea9ab343fd90b0b4406" 
+        };
+
+        // Variable global para control de inicialización
+        let firebaseInitialized = false;
+
+        // QuizEngine con Firebase Integration
+        class QuizEngine {
+            constructor() {
+                this.currentQuestionIndex = 0;
+                this.answers = [];
+                this.questions = [];
+                this.userId = null;
+                this.startTime = null;
+                this.selectedOption = null;
+                this.database = null;
+                
+                // Generar ID único para el usuario
+                this.userId = this.generateUserId();
+                console.log('🎯 Quiz iniciado para usuario:', this.userId);
+            }
+
+            async initFirebase() {
+                try {
+                    // Verificar si Firebase ya está inicializado
+                    if (firebaseInitialized && window.firebase?.apps?.length > 0) {
+                        this.database = firebase.database();
+                        console.log('✅ Usando instancia existente de Firebase');
+                        this.updateFirebaseStatus(true);
+                        return true;
+                    }
+
+                    // Inicializar Firebase por primera vez
+                    if (!window.firebase?.apps?.length) {
+                        firebase.initializeApp(firebaseConfig);
+                        firebaseInitialized = true;
+                        console.log('🔥 Firebase inicializado por primera vez');
+                    }
+                    
+                    this.database = firebase.database();
+                    console.log('✅ Firebase listo para usar');
+                    this.updateFirebaseStatus(true);
+                    return true;
+                    
+                } catch (error) {
+                    console.error('❌ Error inicializando Firebase:', error);
+                    this.updateFirebaseStatus(false, error.message);
+                    return false;
+                }
+            }
+
+            updateFirebaseStatus(connected, error = null) {
+                const statusElement = document.getElementById('firebase-status');
+                if (statusElement) {
+                    statusElement.style.display = 'block';
+                    if (connected) {
+                        statusElement.className = 'firebase-status firebase-connected';
+                        statusElement.textContent = '✅ Conectado a Firebase';
+                        // Ocultar después de 3 segundos
+                        setTimeout(() => {
+                            statusElement.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        statusElement.className = 'firebase-status firebase-error';
+                        statusElement.textContent = `❌ Error Firebase: ${error || 'Desconocido'}`;
+                    }
+                }
+            }
+
+            generateUserId() {
+                return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+
+            async loadQuestions(questionsData) {
+                this.questions = questionsData;
+                this.currentQuestionIndex = 0;
+                this.answers = [];
+                this.startTime = new Date().toISOString();
+                
+                // Guardar inicio de sesión en Firebase
+                await this.saveSessionStart();
+            }
+
+            async saveSessionStart() {
+                if (!this.database) {
+                    console.warn('⚠️ Database no disponible para guardar inicio de sesión');
+                    return;
+                }
+                
+                try {
+                    await this.database.ref(`quiz_sessions/${this.userId}`).set({
+                        userId: this.userId,
+                        startTime: this.startTime,
+                        totalQuestions: this.questions.length,
+                        status: 'started',
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    });
+                    console.log('📝 Inicio de sesión guardado en Firebase');
+                } catch (error) {
+                    console.error('❌ Error guardando inicio de sesión:', error);
+                }
+            }
+
+            getCurrentQuestion() {
+                return this.questions[this.currentQuestionIndex];
+            }
+
+            async saveAnswer(questionId, selectedOption, optionText) {
+                const answer = {
+                    questionId: questionId,
+                    selectedOption: selectedOption,
+                    optionText: optionText,
+                    timestamp: new Date().toISOString(),
+                    questionIndex: this.currentQuestionIndex
+                };
+
+                this.answers.push(answer);
+
+                // Guardar respuesta individual en Firebase
+                if (this.database) {
+                    try {
+                        await this.database.ref(`quiz_responses/${this.userId}/answers`).push({
+                            ...answer,
+                            userId: this.userId
+                        });
+                        console.log('✅ Respuesta guardada en Firebase:', answer);
+                    } catch (error) {
+                        console.error('❌ Error guardando respuesta:', error);
+                    }
+                } else {
+                    console.warn('⚠️ Respuesta guardada solo localmente (Firebase no disponible)');
+                }
+            }
+
+            async nextQuestion() {
+                if (this.currentQuestionIndex < this.questions.length - 1) {
+                    this.currentQuestionIndex++;
+                    return this.getCurrentQuestion();
+                } else {
+                    // Quiz completado
+                    await this.completeQuiz();
+                    return null;
+                }
+            }
+
+            async completeQuiz() {
+                const endTime = new Date().toISOString();
+                const duration = this.calculateDuration();
+                
+                const quizResult = {
+                    userId: this.userId,
+                    startTime: this.startTime,
+                    endTime: endTime,
+                    totalQuestions: this.questions.length,
+                    answersCount: this.answers.length,
+                    completed: true,
+                    answers: this.answers,
+                    duration: duration,
+                    completedAt: firebase.database.ServerValue.TIMESTAMP
+                };
+
+                if (this.database) {
+                    try {
+                        // Guardar resultado completo
+                        await this.database.ref(`quiz_results/${this.userId}`).set(quizResult);
+                        
+                        // Actualizar sesión
+                        await this.database.ref(`quiz_sessions/${this.userId}`).update({
+                            status: 'completed',
+                            endTime: endTime,
+                            duration: duration,
+                            completedAt: firebase.database.ServerValue.TIMESTAMP
+                        });
+
+                        console.log('🎉 Quiz completado y guardado en Firebase:', quizResult);
+                    } catch (error) {
+                        console.error('❌ Error guardando resultado final:', error);
+                    }
+                } else {
+                    console.log('🎉 Quiz completado (solo local - Firebase no disponible)');
+                }
+                
+                return quizResult;
+            }
+
+            calculateDuration() {
+                if (!this.startTime) return 0;
+                const start = new Date(this.startTime);
+                const end = new Date();
+                return Math.round((end - start) / 1000); // duración en segundos
+            }
+
+            previousQuestion() {
+                if (this.currentQuestionIndex > 0) {
+                    this.currentQuestionIndex--;
+                    this.answers.pop(); // Remover la última respuesta
+                    return this.getCurrentQuestion();
+                }
+                return null;
+            }
+
+            getProgress() {
+                return {
+                    current: this.currentQuestionIndex + 1,
+                    total: this.questions.length,
+                    percentage: Math.round(((this.currentQuestionIndex + 1) / this.questions.length) * 100)
+                };
+            }
+
+            resetQuiz() {
+                this.currentQuestionIndex = 0;
+                this.answers = [];
+                this.startTime = new Date().toISOString();
+                this.userId = this.generateUserId();
+                this.selectedOption = null;
+                console.log('🔄 Quiz reiniciado para nuevo usuario:', this.userId);
+            }
+        }
+
+        // Clase principal de la aplicación
+        class QuizApp {
+            constructor() {
+                this.quizEngine = new QuizEngine();
+                this.initializeElements();
+                this.setupEventListeners();
+            }
+
+            initializeElements() {
+                this.currentQuestionElement = document.getElementById('current-question');
+                this.optionsContainer = document.getElementById('options-container');
+                this.progressElement = document.getElementById('progress');
+                this.progressBar = document.getElementById('progress-bar');
+                this.nextButton = document.getElementById('next-btn');
+                this.prevButton = document.getElementById('prev-btn');
+            }
+
+            setupEventListeners() {
+                this.nextButton?.addEventListener('click', () => this.handleNext());
+                this.prevButton?.addEventListener('click', () => this.handlePrevious());
+            }
+
+            async init() {
+                console.log('🚀 Iniciando aplicación Quiz...');
+                
+                // Intentar inicializar Firebase
+                const firebaseReady = await this.quizEngine.initFirebase();
+                
+                if (firebaseReady) {
+                    console.log('✅ Firebase listo - Cargando quiz');
+                    await this.loadSampleQuiz();
+                } else {
+                    console.warn('⚠️ Firebase no disponible - Continuando sin Firebase');
+                    this.showFirebaseError();
+                }
+            }
+
+            showFirebaseError() {
+                this.currentQuestionElement.innerHTML = `
+                    <div style="color: #d32f2f; text-align: center; padding: 30px; border: 2px solid #ffcdd2; border-radius: 10px; background: #ffebee;">
+                        <h3>⚠️ Error de Conexión con Firebase</h3>
+                        <p>No se pudo conectar con Firebase. Esto puede deberse a:</p>
+                        <ul style="text-align: left; margin: 20px 0;">
+                            <li>Configuración incorrecta de Firebase</li>
+                            <li>Credenciales inválidas</li>
+                            <li>Problemas de red</li>
+                            <li>Permisos de Firebase Database</li>
+                        </ul>
+                        <div style="margin-top: 20px;">
+                            <button onclick="location.reload()" style="padding: 15px 25px; margin: 5px; background: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                🔄 Reintentar
+                            </button>
+                            <button onclick="quizApp.loadSampleQuiz()" style="padding: 15px 25px; margin: 5px; background: #388e3c; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                📝 Continuar sin Firebase
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            async loadSampleQuiz() {
+                const sampleQuestions = [
+                    {
+                        id: 'q1',
+                        question: '🎨 ¿Cuál es tu color favorito?',
+                        options: ['❤️ Rojo', '💙 Azul', '💚 Verde', '💛 Amarillo']
+                    },
+                    {
+                        id: 'q2',
+                        question: '🍕 ¿Cuál es tu comida favorita?',
+                        options: ['🍕 Pizza', '🍔 Hamburguesa', '🍣 Sushi', '🌮 Tacos']
+                    },
+                    {
+                        id: 'q3',
+                        question: '🎯 ¿Cuál es tu hobby favorito?',
+                        options: ['📚 Leer', '⚽ Deportes', '🎵 Música', '✈️ Viajar']
+                    },
+                    {
+                        id: 'q4',
+                        question: '🌱 ¿Cuál es tu estación del año preferida?',
+                        options: ['🌸 Primavera', '☀️ Verano', '🍂 Otoño', '❄️ Invierno']
+                    },
+                    {
+                        id: 'q5',
+                        question: '⏰ ¿Qué prefieres hacer en tu tiempo libre?',
+                        options: ['🎬 Ver películas', '👥 Salir con amigos', '💪 Ejercitarme', '📖 Estudiar algo nuevo']
+                    }
+                ];
+
+                try {
+                    await this.quizEngine.loadQuestions(sampleQuestions);
+                    await this.displayCurrentQuestion();
+                    console.log('📝 Quiz cargado correctamente');
+                } catch (error) {
+                    console.error('❌ Error cargando quiz:', error);
+                    this.currentQuestionElement.innerHTML = `
+                        <div style="color: red; text-align: center;">
+                            <h3>Error cargando quiz</h3>
+                            <p>${error.message}</p>
+                            <button onclick="location.reload()">Reintentar</button>
+                        </div>
+                    `;
+                }
+            }
+
+            async displayCurrentQuestion() {
+                const question = this.quizEngine.getCurrentQuestion();
+                if (!question) {
+                    await this.showResults();
+                    return;
+                }
+
+                // Mostrar pregunta
+                this.currentQuestionElement.textContent = question.question;
+
+                // Mostrar opciones
+                this.optionsContainer.innerHTML = '';
+                question.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'quiz-option';
+                    optionElement.innerHTML = `
+                        <input type="radio" id="option-${index}" name="quiz-option" value="${index}">
+                        <label for="option-${index}">${option}</label>
+                    `;
+                    optionElement.addEventListener('click', () => this.selectOption(index, option));
+                    this.optionsContainer.appendChild(optionElement);
+                });
+
+                // Actualizar UI
+                this.updateProgress();
+                this.updateButtons();
+                
+                // Resetear selección
+                this.quizEngine.selectedOption = null;
+            }
+
+            selectOption(optionIndex, optionText) {
+                // Limpiar selecciones anteriores
+                document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+                document.querySelectorAll('input[name="quiz-option"]').forEach(input => input.checked = false);
+                
+                // Marcar opción seleccionada
+                const selectedElement = document.getElementById(`option-${optionIndex}`);
+                selectedElement.checked = true;
+                selectedElement.parentElement.classList.add('selected');
+
+                this.quizEngine.selectedOption = { index: optionIndex, text: optionText };
+                
+                // Habilitar botón siguiente
+                this.nextButton.disabled = false;
+            }
+
+            async handleNext() {
+                if (!this.quizEngine.selectedOption) {
+                    alert('⚠️ Por favor selecciona una opción antes de continuar');
+                    return;
+                }
+
+                // Feedback visual
+                this.nextButton.disabled = true;
+                const originalText = this.nextButton.textContent;
+                this.nextButton.textContent = '💾 Guardando...';
+
+                const question = this.quizEngine.getCurrentQuestion();
+                
+                try {
+                    // Guardar respuesta
+                    await this.quizEngine.saveAnswer(
+                        question.id, 
+                        this.quizEngine.selectedOption.index, 
+                        this.quizEngine.selectedOption.text
+                    );
+
+                    // Pequeña pausa para feedback visual
+                    await new Promise(resolve => setTimeout(resolve, 300));
+
+                    // Ir a siguiente pregunta
+                    const nextQuestion = await this.quizEngine.nextQuestion();
+
+                    if (nextQuestion) {
+                        await this.displayCurrentQuestion();
+                    } else {
+                        await this.showResults();
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ Error al procesar respuesta:', error);
+                    alert('❌ Error al guardar la respuesta. Inténtalo de nuevo.');
+                    this.nextButton.disabled = false;
+                    this.nextButton.textContent = originalText;
+                }
+            }
+
+            async handlePrevious() {
+                const prevQuestion = this.quizEngine.previousQuestion();
+                if (prevQuestion) {
+                    await this.displayCurrentQuestion();
+                }
+            }
+
+            updateProgress() {
+                const progress = this.quizEngine.getProgress();
+                this.progressElement.textContent = `Pregunta ${progress.current} de ${progress.total} (${progress.percentage}%)`;
+                this.progressBar.style.width = `${progress.percentage}%`;
+            }
+
+            updateButtons() {
+                const progress = this.quizEngine.getProgress();
+                
+                // Botón anterior
+                this.prevButton.disabled = progress.current === 1;
+                
+                // Botón siguiente (se habilitará al seleccionar opción)
+                this.nextButton.disabled = !this.quizEngine.selectedOption;
+                this.nextButton.textContent = progress.current === progress.total ? '🎯 Finalizar' : 'Siguiente →';
+            }
+
+            async showResults() {
+                // Mostrar loading
+                this.currentQuestionElement.innerHTML = '<div class="loading">📊 Procesando resultados...</div>';
+                this.optionsContainer.innerHTML = '';
+                
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                const duration = this.quizEngine.calculateDuration();
+                const answers = this.quizEngine.answers;
+                
+                this.currentQuestionElement.innerHTML = `
+                    <div class="results-section">
+                        <h2>🎉 ¡Quiz Completado!</h2>
+                        <p>¡Excelente trabajo! Has completado todas las preguntas del cuestionario.</p>
+                        
+                        <div class="results-stats">
+                            <div class="stat-item">
+                                📊 <strong>Preguntas respondidas:</strong> ${answers.length} de ${this.quizEngine.questions.length}
+                            </div>
+                            <div class="stat-item">
+                                ⏱️ <strong>Tiempo total:</strong> ${Math.floor(duration / 60)} min ${duration % 60} seg
+                            </div>
+                            <div class="stat-item">
+                                ${this.quizEngine.database ? 
+                                    '💾 <strong>Estado:</strong> Respuestas guardadas en Firebase ✅' : 
+                                    '💾 <strong>Estado:</strong> Respuestas guardadas localmente ⚠️'}
+                            </div>
+                            <div class="stat-item">
+                                🆔 <strong>ID de sesión:</strong> ${this.quizEngine.userId.substring(0, 20)}...
+                            </div>
+                        </div>
+                        
+                        <button class="restart-btn" onclick="quizApp.restartQuiz()">
+                            🔄 Realizar Quiz Nuevamente
+                        </button>
+                    </div>
+                `;
+
+                // Ocultar botones de navegación
+                this.nextButton.style.display = 'none';
+                this.prevButton.style.display = 'none';
+                
+                // Mostrar progreso completo
+                this.progressElement.textContent = '¡Completado! 🎉';
+                this.progressBar.style.width = '100%';
+            }
+
+            async restartQuiz() {
+                if (!confirm('¿Estás seguro de que quieres reiniciar el quiz? Se creará una nueva sesión.')) {
+                    return;
+                }
+
+                // Resetear quiz
+                this.quizEngine.resetQuiz();
+                
+                // Mostrar botones
+                this.nextButton.style.display = 'block';
+                this.prevButton.style.display = 'block';
+                
+                // Mostrar loading
+                this.currentQuestionElement.innerHTML = '<div class="loading">🔄 Reiniciando quiz...</div>';
+                this.optionsContainer.innerHTML = '';
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // Cargar quiz nuevamente
+                await this.loadSampleQuiz();
+            }
+
+            // Método para cargar preguntas personalizadas
+            async loadCustomQuestions(questions) {
+                await this.quizEngine.loadQuestions(questions);
+                await this.displayCurrentQuestion();
+            }
+
+            // Obtener estadísticas del quiz
+            getStats() {
+                return {
+                    userId: this.quizEngine.userId,
+                    answers: this.quizEngine.answers,
+                    duration: this.quizEngine.calculateDuration(),
+                    completed: this.quizEngine.currentQuestionIndex >= this.quizEngine.questions.length,
+                    progress: this.quizEngine.getProgress(),
+                    firebaseConnected: !!this.quizEngine.database
+                };
+            }
+        }
+
+        // Variables globales
+        let quizApp;
+
+        // Funciones de utilidad globales
+        window.loadCustomQuiz = async function(questions) {
+            if (quizApp) {
+                await quizApp.loadCustomQuestions(questions);
+                console.log('📝 Quiz personalizado cargado');
+            }
+        };
+
+        window.getQuizStats = function() {
+            return quizApp ? quizApp.getStats() : null;
+        };
+
+        window.restartQuiz = function() {
+            if (quizApp) {
+                quizApp.restartQuiz();
+            }
+        };
+
+        // Inicialización cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Inicializando Quiz App con Firebase...');
             
-            <!-- 🆕 User Authentication Section -->
-            <div class="auth-section" id="auth-section">
-                <!-- Not signed in -->
-                <div id="auth-signed-out" class="auth-state">
-                    <button id="sign-in-btn" class="auth-btn">
-                        👤 Iniciar sesión para guardar progreso
-                    </button>
-                </div>
+            // Limpiar cualquier instancia anterior
+            if (window.quizApp) {
+                console.log('🧹 Limpiando instancia anterior...');
+                window.quizApp = null;
+            }
+            
+            try {
+                quizApp = new QuizApp();
+                window.quizApp = quizApp; // Hacer disponible globalmente
+                await quizApp.init();
+                console.log('✅ Quiz App inicializado correctamente');
                 
-                <!-- Signed in -->
-                <div id="auth-signed-in" class="auth-state hidden">
-                    <div class="user-info">
-                        <span id="user-avatar" class="user-avatar">🧠</span>
-                        <span id="user-name" class="user-name">Usuario</span>
-                        <button id="sign-out-btn" class="auth-btn-small">🚪</button>
-                    </div>
-                </div>
+            } catch (error) {
+                console.error('❌ Error crítico inicializando Quiz App:', error);
                 
-                <!-- Loading state -->
-                <div id="auth-loading" class="auth-state">
-                    <div class="auth-loading-spinner"></div>
-                    <span>Cargando...</span>
-                </div>
-            </div>
-        </header>
+                const questionElement = document.getElementById('current-question');
+                if (questionElement) {
+                    questionElement.innerHTML = `
+                        <div style="color: red; text-align: center; padding: 20px; border: 2px solid #ffcdd2; border-radius: 10px; background: #ffebee;">
+                            <h3>🚨 Error Crítico de Inicialización</h3>
+                            <p>No se pudo inicializar la aplicación.</p>
+                            <p><strong>Error:</strong> <code>${error.message}</code></p>
+                            <div style="margin-top: 20px;">
+                                <button onclick="location.reload()" style="padding: 15px 25px; margin: 5px; background: #1976d2; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                    🔄 Recargar Página
+                                </button>
+                            </div>
+                            <details style="margin-top: 15px; text-align: left;">
+                                <summary style="cursor: pointer; font-weight: bold;">Ver detalles técnicos</summary>
+                                <pre style="background: #f5f5f5; padding: 10px; margin-top: 10px; border-radius: 5px; font-size: 12px; overflow: auto;">${error.stack || error.toString()}</pre>
+                            </details>
+                        </div>
+                    `;
+                }
+            }
+        });
 
-        <div class="stats-container" id="stats-container">
-            <div class="stat-card">
-                <span class="stat-number" id="total-completed">0</span>
-                <span class="stat-label">Temas completados</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number" id="total-score">0%</span>
-                <span class="stat-label">Promedio general</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number" id="total-time">0min</span>
-                <span class="stat-label">Tiempo total</span>
-            </div>
-        </div>
+        // Manejo mejorado de errores globales
+        window.addEventListener('error', (event) => {
+            console.error('🚨 Error global capturado:', {
+                message: event.message,
+                filename: event.filename,
+                lineno: event.lineno,
+                colno: event.colno,
+                error: event.error
+            });
+            
+            // Mostrar notificación de error si es relacionado con Firebase
+            if (event.message && (event.message.includes('firebase') || event.message.includes('Firebase'))) {
+                const statusElement = document.getElementById('firebase-status');
+                if (statusElement) {
+                    statusElement.style.display = 'block';
+                    statusElement.className = 'firebase-status firebase-error';
+                    statusElement.textContent = '⚠️ Error de Firebase detectado - Ver consola';
+                }
+            }
+        });
 
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="🔍 Buscar temas..." class="search-input">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="basico">Básico</button>
-                <button class="filter-btn" data-filter="intermedio">Intermedio</button>
-                <button class="filter-btn" data-filter="avanzado">Avanzado</button>
-            </div>
-        </div>
-
-        <div class="themes-grid" id="themes-grid">
-            <!-- Los temas se cargarán dinámicamente aquí -->
-        </div>
-
-        <footer class="main-footer">
-            <p>🧠 Desarrollado para el aprendizaje de la filosofía</p>
-            <div class="footer-links">
-                <a href="#" id="clear-data-btn">🗑️ Limpiar progreso</a>
-                <a href="#" id="about-btn">ℹ️ Acerca de</a>
-            </div>
-        </footer>
-    </div>
-
-    <!-- 🆕 Sign In Modal -->
-    <div id="signin-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>🎓 Únete a Filosofía Quiz</h2>
-                <span class="close" id="close-signin-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="signin-content">
-                    <h3>¿Por qué crear una cuenta?</h3>
-                    <ul class="benefits-list">
-                        <li>📊 Guarda tu progreso en todos los dispositivos</li>
-                        <li>🏆 Desbloquea logros y estadísticas</li>
-                        <li>📈 Ve tu evolución en cada tema</li>
-                        <li>🎯 Recibe recomendaciones personalizadas</li>
-                    </ul>
-                    
-                    <div class="signin-buttons">
-                        <button id="google-signin-btn" class="primary-btn">
-                            🔐 Continuar con Google
-                        </button>
-                        <button id="anonymous-signin-btn" class="secondary-btn">
-                            👻 Probar sin cuenta
-                        </button>
-                    </div>
-                    
-                    <p class="signin-note">
-                        Puedes usar la app sin cuenta, pero no se guardará tu progreso.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de información (existente) -->
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>ℹ️ Acerca del proyecto</h2>
-            </div>
-            <div class="modal-body">
-                <h3>🎯 Objetivo</h3>
-                <p>Esta aplicación te permite evaluar y profundizar tus conocimientos en diferentes áreas de la filosofía a través de cuestionarios interactivos.</p>
+        // Manejo de promesas rechazadas (especialmente Firebase)
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('🚨 Promesa rechazada:', event.reason);
+            
+            if (event.reason?.message?.includes('firebase') || event.reason?.code?.includes('firebase')) {
+                console.warn('⚠️ Error específico de Firebase detectado');
                 
-                <h3>🎮 Cómo funciona</h3>
-                <ul>
-                    <li>📚 <strong>Selecciona un tema</strong> que te interese</li>
-                    <li>💡 <strong>Lee las pistas</strong> antes de cada pregunta</li>
-                    <li>⏱️ <strong>Responde en 30 segundos</strong> cada pregunta</li>
-                    <li>📖 <strong>Consulta el material</strong> de estudio cuando necesites</li>
-                    <li>🎯 <strong>Obtén tu calificación</strong> y mejora tus conocimientos</li>
-                </ul>
+                // Actualizar estado visual
+                const statusElement = document.getElementById('firebase-status');
+                if (statusElement) {
+                    statusElement.style.display = 'block';
+                    statusElement.className = 'firebase-status firebase-error';
+                    statusElement.textContent = `❌ Firebase: ${event.reason.code || 'Error desconocido'}`;
+                }
+                
+                // Prevenir que se muestre en consola como error no manejado
+                event.preventDefault();
+            }
+        });
 
-                <h3>🌟 Características</h3>
-                <ul>
-                    <li>✅ Completamente responsive para móviles</li>
-                    <li>✅ Progreso guardado automáticamente</li>
-                    <li>✅ Material de estudio integrado</li>
-                    <li>✅ Preguntas con diferentes niveles de dificultad</li>
-                    <li>✅ Estadísticas detalladas de progreso</li>
-                    <li>✅ Sincronización en la nube con Firebase</li>
-                </ul>
+        // Prevenir cierre accidental si hay progreso
+        window.addEventListener('beforeunload', (event) => {
+            if (quizApp && quizApp.quizEngine && quizApp.quizEngine.answers.length > 0) {
+                const progress = quizApp.quizEngine.getProgress();
+                if (progress.current < progress.total) {
+                    event.preventDefault();
+                    event.returnValue = '¿Estás seguro de que quieres salir? Tu progreso está guardado automáticamente.';
+                    return event.returnValue;
+                }
+            }
+        });
 
-                <h3>🏗️ Tecnología</h3>
-                <p>Desarrollado con HTML5, CSS3, JavaScript moderno y Firebase. Optimizado para GitHub Pages.</p>
-            </div>
-        </div>
-    </div>
+        // Detectar cambios en la conectividad
+        window.addEventListener('online', () => {
+            console.log('🌐 Conexión a internet restablecida');
+            if (quizApp && !quizApp.quizEngine.database) {
+                console.log('🔄 Intentando reconectar con Firebase...');
+                quizApp.quizEngine.initFirebase();
+            }
+        });
 
-    <!-- Scripts -->
-    <script type="module" src="js/main.js"></script>
+        window.addEventListener('offline', () => {
+            console.log('📴 Conexión a internet perdida');
+            const statusElement = document.getElementById('firebase-status');
+            if (statusElement) {
+                statusElement.style.display = 'block';
+                statusElement.className = 'firebase-status firebase-error';
+                statusElement.textContent = '📴 Sin conexión - Datos se guardarán localmente';
+            }
+        });
+
+        // Información de ayuda en consola
+        console.log(`
+🎯 QUIZ CON FIREBASE CARGADO
+============================
+📋 Funciones disponibles:
+• getQuizStats() - Ver estadísticas actuales
+• loadCustomQuiz(questions) - Cargar preguntas personalizadas  
+• restartQuiz() - Reiniciar el quiz
+
+🔧 Para configurar Firebase:
+1. Ve a https://console.firebase.google.com/
+2. Crea un proyecto nuevo
+3. Habilita Realtime Database
+4. Reemplaza las credenciales en firebaseConfig
+
+📝 Ejemplo de preguntas personalizadas:
+loadCustomQuiz([
+    {
+        id: 'custom1',
+        question: '¿Tu pregunta aquí?',
+        options: ['Opción A', 'Opción B', 'Opción C', 'Opción D']
+    }
+]);
+
+🔥 Estado de Firebase: ${firebaseInitialized ? 'Inicializado' : 'Pendiente'}
+        `);
+    </script>
 </body>
 </html>
