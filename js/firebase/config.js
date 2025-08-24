@@ -17,6 +17,7 @@ const firebaseConfig = {
     authDomain: "filosofia-quiz-prod.firebaseapp.com",
     projectId: "filosofia-quiz-prod",
     storageBucket: "filosofia-quiz-prod.firebasestorage.app",
+    databaseURL: "https://filosofia-quiz-prod-default-rtdb.firebaseio.com", // https://console.firebase.google.com/u/0/project/filosofia-quiz-prod/database/filosofia-quiz-prod-default-rtdb/data/~2F?hl=es-419&fb_gclid=Cj0KCQjwqqDFBhDhARIsAIHTlktWvVhWp47IssNBbjzB4PFIsS6rVOQXFVoY4MQNLMHEEkLZbFikrSYaAne4EALw_wcB
     messagingSenderId: "344375832179",
     appId: "1:344375832179:web:db1ea9ab343fd90b0b4406",
     measurementId: "G-GJ1XNPC80C"
