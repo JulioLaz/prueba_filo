@@ -1,334 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no"
-  />
-  <meta
-    name="description"
-    content="Cuestionario interactivo de filosofía. Pon a prueba tus conocimientos."
-  />
-  <meta
-    name="keywords"
-    content="filosofía, cuestionario, educación, ética, antropología, existencialismo"
-  />
-  <meta name="author" content="Cuestionarios de Filosofía" />
-
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#667eea" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Filosofía Quiz" />
-
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>"
-  />
-
-  <title id="page-title">🧠 Cuestionario de Filosofía</title>
-  <link rel="stylesheet" href="css/quiz.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Cuestionario interactivo de filosofía. Pon a prueba tus conocimientos.">
+    <meta name="keywords" content="filosofía, cuestionario, educación, ética, epistemología, lógica">
+    <meta name="author" content="Cuestionarios de Filosofía">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Filosofía Quiz">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    
+    <title id="page-title">🧠 Cuestionario de Filosofía</title>
+    <link rel="stylesheet" href="css/quiz.css">
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div id="loading-screen" class="loading-screen">
-    <div class="loading-content">
-      <div class="loading-spinner"></div>
-      <h2>🧠 Cargando cuestionario...</h2>
-      <p id="loading-message">Preparando preguntas</p>
-      <div class="loading-progress">
-        <div class="loading-bar" id="loading-bar"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Quiz Container -->
-  <div id="quiz-container" class="quiz-container hidden">
-    <!-- Header -->
-    <header class="quiz-header">
-      <div class="quiz-nav">
-        <button id="back-btn" class="nav-btn">← Volver a temas</button>
-        <div class="theme-info">
-          <span id="theme-icon" class="theme-icon">🧠</span>
-          <span id="theme-title" class="theme-title">Filosofía</span>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>🧠 Cargando cuestionario...</h2>
+            <p id="loading-message">Preparando preguntas</p>
+            <div class="loading-progress">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
         </div>
-        <button id="help-btn" class="nav-btn">📚 Material</button>
-      </div>
-    </header>
-
-    <!-- NEW: Level Tabs / Etapas -->
-    <nav id="level-tabs" class="level-tabs">
-      <button id="tab-concepts" class="level-tab active">1) Caza de conceptos</button>
-      <button id="tab-synthesis" class="level-tab disabled" disabled>2) Frase síntesis</button>
-      <button id="tab-map" class="level-tab disabled" disabled>3) Mapa conceptual</button>
-      <button id="tab-quiz" class="level-tab disabled" disabled>4) Quiz</button>
-    </nav>
-
-    <!-- Progress Section -->
-    <div class="progress-section">
-      <div class="progress-info">
-        <div class="progress-item">
-          <span class="progress-label">Etapa</span>
-          <span id="stage-label" class="progress-value">Caza de conceptos</span>
-        </div>
-        <div class="progress-item">
-          <span class="progress-label">Progreso</span>
-          <span id="question-counter" class="progress-value">1/10</span>
-        </div>
-        <div class="progress-item">
-          <span class="progress-label">Puntaje</span>
-          <span id="score" class="progress-value">0</span>
-        </div>
-        <div class="progress-item">
-          <span class="progress-label">Tiempo</span>
-          <span id="timer" class="progress-value">30s</span>
-        </div>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <!-- NEW: Subprogreso para la etapa de caza de conceptos -->
-      <div id="concept-progress" class="mini-progress hidden">
-        <span class="progress-label">Conceptos del párrafo</span>
-        <span id="concept-counter" class="progress-value">0/0</span>
-      </div>
     </div>
 
-    <!-- MAIN PHASES WRAPPER -->
-    <main id="question-container" class="question-container">
-      <!-- ========================= -->
-      <!-- LEVEL 1: CONCEPT HUNT     -->
-      <!-- ========================= -->
-      <section id="concept-hunt-phase" class="phase concept-hunt-phase">
-        <div class="phase-header">
-          <h3>🔎 Caza de conceptos</h3>
-          <p class="phase-desc">
-            Seleccioná las palabras o frases cortas que mejor condensan la idea del
-            párrafo. Completá todas para desbloquear la síntesis.
-          </p>
-        </div>
-
-        <div class="concepts-wrapper">
-          <!-- Párrafo actual -->
-          <article class="concept-paragraph-card">
-            <header class="concept-paragraph-header">
-              <span id="paragraph-index" class="badge">Párrafo 1</span>
-              <span id="concepts-remaining" class="badge info">Conceptos por descubrir: 0</span>
-            </header>
-            <p id="concept-paragraph-text" class="concept-paragraph-text">
-              <!-- Texto del párrafo para selección interactiva -->
-            </p>
-
-            <!-- Indicador de intentos / feedback local -->
-            <div id="concept-feedback" class="concept-feedback"></div>
-
-            <div class="concept-actions">
-              <button id="skip-paragraph-btn" class="tertiary-btn">⏭️ Siguiente párrafo</button>
-              <button id="reveal-hints-btn" class="secondary-btn">💡 Pista</button>
+    <!-- Main Quiz Container -->
+    <div id="quiz-container" class="quiz-container hidden">
+        <!-- Header -->
+        <header class="quiz-header">
+            <div class="quiz-nav">
+                <button id="back-btn" class="nav-btn">
+                    ← Volver a temas
+                </button>
+                <div class="theme-info">
+                    <span id="theme-icon" class="theme-icon">🧠</span>
+                    <span id="theme-title" class="theme-title">Filosofía</span>
+                </div>
+                <button id="help-btn" class="nav-btn">
+                    📚 Material
+                </button>
             </div>
-          </article>
-        </div>
+        </header>
 
-        <!-- Navegación nivel 1 -->
-        <div class="phase-actions">
-          <button id="to-synthesis-btn" class="primary-btn disabled" disabled>
-            ✅ Pasar a 2) Frase síntesis
-          </button>
-        </div>
-      </section>
-
-      <!-- ========================= -->
-      <!-- LEVEL 2: SYNTHESIS        -->
-      <!-- ========================= -->
-      <section id="synthesis-phase" class="phase synthesis-phase hidden">
-        <div class="phase-header">
-          <h3>🧩 Frase síntesis</h3>
-          <p class="phase-desc">
-            Elegí la frase que mejor sintetiza el sentido del párrafo trabajado.
-          </p>
-        </div>
-
-        <div class="synthesis-card">
-          <header class="synthesis-header">
-            <span id="synthesis-paragraph-index" class="badge">Párrafo 1</span>
-            <span id="synthesis-progress" class="badge info">0/0</span>
-          </header>
-
-          <p id="synthesis-paragraph-brief" class="synthesis-brief">
-            <!-- (Opcional) breve recordatorio del párrafo -->
-          </p>
-
-          <div id="synthesis-options" class="synthesis-options">
-            <!-- Botones de 3 opciones se renderizan aquí -->
-          </div>
-
-          <div id="synthesis-feedback" class="synthesis-feedback"></div>
-
-          <div class="synthesis-actions">
-            <button id="prev-synthesis" class="tertiary-btn">⟵ Anterior</button>
-            <button id="next-synthesis" class="secondary-btn">Siguiente ⟶</button>
-          </div>
-        </div>
-
-        <!-- Navegación nivel 2 -->
-        <div class="phase-actions">
-          <button id="to-map-btn" class="primary-btn disabled" disabled>
-            ✅ Pasar a 3) Mapa conceptual
-          </button>
-        </div>
-      </section>
-
-      <!-- ========================= -->
-      <!-- LEVEL 3: CONCEPT MAP      -->
-      <!-- ========================= -->
-      <section id="concept-map-phase" class="phase concept-map-phase hidden">
-        <div class="phase-header">
-          <h3>🗺️ Mapa conceptual</h3>
-          <p class="phase-desc">
-            Organizá los conceptos cazados en un esquema. Cuando completes los vínculos
-            esenciales, se desbloquea el quiz.
-          </p>
-        </div>
-
-        <div class="concept-map-wrapper">
-          <!-- Área para canvas/drag & drop o lista de nodos y conexiones -->
-          <div id="concept-map-board" class="concept-map-board">
-            <!-- El engine JS dibuja aquí los nodos/relaciones -->
-          </div>
-
-          <aside class="concept-map-sidebar">
-            <div class="sidebar-section">
-              <h4>Nodos</h4>
-              <ul id="concept-map-nodes" class="node-list">
-                <!-- Lista de nodos disponibles -->
-              </ul>
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <div class="progress-item">
+                    <span class="progress-label">Progreso</span>
+                    <span id="question-counter" class="progress-value">1/10</span>
+                </div>
+                <div class="progress-item">
+                    <span class="progress-label">Puntaje</span>
+                    <span id="score" class="progress-value">0</span>
+                </div>
+                <div class="progress-item">
+                    <span class="progress-label">Tiempo</span>
+                    <span id="timer" class="progress-value">30s</span>
+                </div>
             </div>
-            <div class="sidebar-section">
-              <h4>Relaciones</h4>
-              <ul id="concept-map-edges" class="edge-list">
-                <!-- Lista de relaciones creadas -->
-              </ul>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
             </div>
-            <div class="sidebar-section">
-              <h4>Progreso</h4>
-              <div class="mini-progress">
-                <span class="progress-label">Vínculos núcleo</span>
-                <span id="map-core-counter" class="progress-value">0/0</span>
-              </div>
-            </div>
-          </aside>
         </div>
 
-        <!-- Navegación nivel 3 -->
-        <div class="phase-actions">
-          <button id="to-quiz-btn" class="primary-btn disabled" disabled>
-            ✅ Pasar a 4) Quiz
-          </button>
-        </div>
-      </section>
-
-      <!-- ========================= -->
-      <!-- LEVEL 4: QUIZ (original)  -->
-      <!-- ========================= -->
-      <section id="quiz-phase" class="phase quiz-phase hidden">
-        <!-- Help Text Phase (se mantiene) -->
-        <div id="help-phase" class="phase help-phase">
-          <div class="help-content">
-            <h3>💡 Pista</h3>
-            <p id="help-text" class="help-text"></p>
-            <div class="help-actions">
-              <button id="show-question-btn" class="primary-btn">📝 Ver pregunta</button>
-              <button id="show-material-btn" class="secondary-btn">📖 Consultar material</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Question Phase (se mantiene) -->
-        <div id="question-phase" class="phase question-phase hidden">
-          <div class="question-content">
-            <h2 id="question-text" class="question-text"></h2>
-            <div id="answers-container" class="answers-container"></div>
-          </div>
-        </div>
-
-        <!-- Results Phase (se mantiene) -->
-        <div id="results-phase" class="phase results-phase hidden">
-          <div class="results-content">
-            <div class="results-header">
-              <div id="results-icon" class="results-icon">🎉</div>
-              <h2 id="results-title" class="results-title">¡Cuestionario completado!</h2>
+        <!-- Question Container -->
+        <main id="question-container" class="question-container">
+            <!-- Help Text Phase -->
+            <div id="help-phase" class="phase help-phase">
+                <div class="help-content">
+                    <h3>💡 Pista</h3>
+                    <p id="help-text" class="help-text"></p>
+                    <div class="help-actions">
+                        <button id="show-question-btn" class="primary-btn">
+                            📝 Ver pregunta
+                        </button>
+                        <button id="show-material-btn" class="secondary-btn">
+                            📖 Consultar material
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="results-stats">
-              <div class="stat-card">
-                <div class="stat-number" id="final-score">0</div>
-                <div class="stat-label">Puntaje final</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="correct-answers">0/10</div>
-                <div class="stat-label">Respuestas correctas</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="total-time">0min</div>
-                <div class="stat-label">Tiempo total</div>
-              </div>
+            <!-- Question Phase -->
+            <div id="question-phase" class="phase question-phase hidden">
+                <div class="question-content">
+                    <h2 id="question-text" class="question-text"></h2>
+                    <div id="answers-container" class="answers-container"></div>
+                </div>
             </div>
 
-            <div class="results-message" id="results-message">
-              <p>¡Excelente trabajo! Has demostrado un buen dominio del tema.</p>
-            </div>
+            <!-- Results Phase -->
+            <div id="results-phase" class="phase results-phase hidden">
+                <div class="results-content">
+                    <div class="results-header">
+                        <div id="results-icon" class="results-icon">🎉</div>
+                        <h2 id="results-title" class="results-title">¡Cuestionario completado!</h2>
+                    </div>
+                    
+                    <div class="results-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="final-score">0</div>
+                            <div class="stat-label">Puntaje final</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="correct-answers">0/10</div>
+                            <div class="stat-label">Respuestas correctas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="total-time">0min</div>
+                            <div class="stat-label">Tiempo total</div>
+                        </div>
+                    </div>
 
-            <div class="results-actions">
-              <button id="retry-btn" class="primary-btn">🔄 Intentar de nuevo</button>
-              <button id="themes-btn" class="secondary-btn">🏠 Otros temas</button>
-              <button id="review-btn" class="tertiary-btn">📋 Revisar respuestas</button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+                    <div class="results-message" id="results-message">
+                        <p>¡Excelente trabajo! Has demostrado un buen dominio del tema.</p>
+                    </div>
 
-  <!-- Study Material Modal -->
-  <div id="material-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modal-title">📖 Material de Estudio</h3>
-        <button class="close-btn" id="close-modal">&times;</button>
-      </div>
-      <div class="modal-body" id="modal-body">
-        <!-- Contenido del material se carga aquí -->
-      </div>
+                    <div class="results-actions">
+                        <button id="retry-btn" class="primary-btn">
+                            🔄 Intentar de nuevo
+                        </button>
+                        <button id="themes-btn" class="secondary-btn">
+                            🏠 Otros temas
+                        </button>
+                        <button id="review-btn" class="tertiary-btn">
+                            📋 Revisar respuestas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-  </div>
 
-  <!-- Review Modal -->
-  <div id="review-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>📋 Revisión de Respuestas</h3>
-        <button class="close-btn" id="close-review">&times;</button>
-      </div>
-      <div class="modal-body" id="review-body">
-        <!-- Revisión de respuestas se genera aquí -->
-      </div>
+    <!-- Study Material Modal -->
+    <div id="material-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">📖 Material de Estudio</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido del material se carga aquí -->
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Error Screen -->
-  <div id="error-screen" class="error-screen hidden">
-    <div class="error-content">
-      <div class="error-icon">❌</div>
-      <h2>Error al cargar el cuestionario</h2>
-      <p id="error-message">No se pudo cargar el tema seleccionado.</p>
-      <button id="retry-load-btn" class="primary-btn">🔄 Reintentar</button>
-      <button id="back-to-themes-btn" class="secondary-btn">🏠 Volver a temas</button>
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Revisión de Respuestas</h3>
+                <button class="close-btn" id="close-review">&times;</button>
+            </div>
+            <div class="modal-body" id="review-body">
+                <!-- Revisión de respuestas se genera aquí -->
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="js/quiz-engine.js"></script>
+    <!-- Error Screen -->
+    <div id="error-screen" class="error-screen hidden">
+        <div class="error-content">
+            <div class="error-icon">❌</div>
+            <h2>Error al cargar el cuestionario</h2>
+            <p id="error-message">No se pudo cargar el tema seleccionado.</p>
+            <button id="retry-load-btn" class="primary-btn">🔄 Reintentar</button>
+            <button id="back-to-themes-btn" class="secondary-btn">🏠 Volver a temas</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/quiz-engine.js"></script>
 </body>
 </html>

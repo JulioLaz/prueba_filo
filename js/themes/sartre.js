@@ -1,235 +1,39 @@
 // ========================================
-// 🌀 TEMA: JEAN-PAUL SARTRE - JUEGO EN 4 NIVELES
+// 🌀 TEMA: JEAN-PAUL SARTRE - EL SER HUMANO ES LIBERTAD
 // ========================================
 // 📚 Unidad II: Antropología filosófica
-// Niveles: (1) Caza de conceptos → (2) Síntesis de frases → (3) Mapa conceptual → (4) Quiz
 
-const sartreGameLoadStart = performance.now();
+const sartreThemeLoadStart = performance.now();
 
-/** Configuración extendida del tema de Sartre (con 4 niveles) */
+/** Configuración del tema de Sartre */
 const SARTRE_THEME = {
   id: 'sartre',
   title: 'Jean-Paul Sartre: El ser humano es libertad',
-  description: 'Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.',
+  description: 'Existencia precede esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.',
   icon: '🌀',
   gradient: 'linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)',
   difficulty: 'intermedio',
   timeLimit: 30,
   contentFile: 'content/sartre.html',
 
-  // ─────────────────────────────────────────────────────────
-  // NIVEL 1 · Caza de conceptos (lectura activa por párrafos)
-  // ─────────────────────────────────────────────────────────
-  conceptHunt: {
-    instructions: 'Leé cada párrafo y “cazá” los conceptos clave tocando o seleccionando las palabras/fragmentos que mejor condensan la idea. Completá el contador para desbloquear la síntesis.',
-    paragraphs: [
-      {
-        id: 'p1',
-        text: 'La existencia precede a la esencia: primero existimos y, mediante nuestras elecciones, nos definimos; no hay naturaleza humana prefijada.',
-        // términos esperados (para validar selección). Pueden ser palabras o frases cortas.
-        keyTerms: ['existencia', 'esencia', 'elecciones', 'nos definimos', 'no hay naturaleza prefijada'],
-        // sinónimos opcionales (para tolerancia)
-        aliases: {
-          'no hay naturaleza prefijada': ['sin esencia previa', 'sin naturaleza dada', 'no hay esencia prefijada']
-        }
-      },
-      {
-        id: 'p2',
-        text: 'Estamos condenados a ser libres: aun cuando no elegimos explícitamente, elegimos; toda decisión implica responsabilidad.',
-        keyTerms: ['condenados a ser libres', 'elegimos', 'responsabilidad', 'decisión'],
-        aliases: {}
-      },
-      {
-        id: 'p3',
-        text: 'La facticidad nombra lo dado (cuerpo, historia, contexto) y la trascendencia es el proyecto con el que reinterpretamos y superamos esas condiciones.',
-        keyTerms: ['facticidad', 'trascendencia', 'lo dado', 'proyecto', 'reinterpretar/superar'],
-        aliases: {
-          'reinterpretar/superar': ['reinterpreta', 'supera', 'relectura de lo dado', 'proyectar sobre lo dado']
-        }
-      },
-      {
-        id: 'p4',
-        text: 'Angustia, desamparo y desesperación son afectos de la libertad: lucidez ante elegir, ausencia de valores garantizados “desde fuera” y actuar con lo que depende de mí.',
-        keyTerms: ['angustia', 'desamparo', 'desesperación', 'afectos de la libertad', 'actuar con lo que depende de mí'],
-        aliases: {}
-      },
-      {
-        id: 'p5',
-        text: 'La mala fe es autoengaño para negar la libertad refugiándose en roles o excusas; la autenticidad es asumir responsabilidad y sostener un proyecto propio.',
-        keyTerms: ['mala fe', 'autoengaño', 'roles/excusas', 'autenticidad', 'proyecto propio'],
-        aliases: {}
-      }
-    ],
-    // Config general del nivel
-    perParagraphTarget: 'all', // “all” = debe encontrar todos los términos listados
-    allowGuesses: 2, // intentos errados permitidos por término antes de feedback más guiado
-    scoring: {
-      correct: 10,    // puntos por término cazado
-      wrong: -2,      // penalidad por selección irrelevante
-      completion: 10  // bonus por completar el párrafo
-    }
+  metadata: {
+    author: 'Cuestionarios de Filosofía',
+    version: '1.0',
+    lastUpdated: '2025-08-22',
+    category: 'Filosofía Contemporánea',
+    prerequisites: ['antropologia_filosofica'],
+    learningObjectives: [
+      'Explicar “la existencia precede a la esencia”.',
+      'Diferenciar facticidad y trascendencia.',
+      'Comprender angustia, desamparo y desesperación.',
+      'Identificar la mala fe y contraponerla a la autenticidad.',
+      'Analizar el papel del Otro y la responsabilidad ética.'
+    ]
   },
 
-  // ─────────────────────────────────────────────────────────
-  // NIVEL 2 · Síntesis: elegir la frase que condensa el párrafo
-  // (Se desbloquea al completar los términos del párrafo)
-  // ─────────────────────────────────────────────────────────
-  synthesis: {
-    instructions: 'Elegí la frase que mejor sintetiza el sentido del párrafo trabajado. Solo una opción es la más adecuada.',
-    items: [
-      {
-        paragraphId: 'p1',
-        options: [
-          {
-            text: 'La esencia humana fija determina nuestras elecciones.',
-            correct: false,
-            explanation: 'Contradice a Sartre: no hay esencia previa; elegimos y nos definimos.'
-          },
-          {
-            text: 'Primero existimos y luego, eligiendo, nos definimos; no hay naturaleza prefijada.',
-            correct: true,
-            explanation: 'Síntesis adecuada del núcleo “existencia precede a esencia”.'
-          },
-          {
-            text: 'Elegimos solo cuando la sociedad nos lo permite.',
-            correct: false,
-            explanation: 'Introduce determinismo social ajeno a la tesis central.'
-          }
-        ]
-      },
-      {
-        paragraphId: 'p2',
-        options: [
-          {
-            text: 'Podemos evitar toda elección si seguimos costumbres.',
-            correct: false,
-            explanation: 'Para Sartre, no elegir también es elegir.'
-          },
-          {
-            text: 'Siempre elegimos y somos responsables de nuestras decisiones.',
-            correct: true,
-            explanation: 'Condensa libertad ineludible y responsabilidad.'
-          },
-          {
-            text: 'La responsabilidad depende de la aprobación ajena.',
-            correct: false,
-            explanation: 'La responsabilidad no depende del reconocimiento de otros.'
-          }
-        ]
-      },
-      {
-        paragraphId: 'p3',
-        options: [
-          {
-            text: 'La facticidad elimina toda posibilidad de proyecto.',
-            correct: false,
-            explanation: 'Sartre sostiene que proyectamos sobre lo dado; no desaparece la libertad.'
-          },
-          {
-            text: 'Facticidad es lo dado y trascendencia el proyecto que lo reinterpreta.',
-            correct: true,
-            explanation: 'Expresa fielmente la distinción.'
-          },
-          {
-            text: 'Trascendencia es negar el cuerpo y el pasado.',
-            correct: false,
-            explanation: 'No es negación sino reinterpretación y superación situadas.'
-          }
-        ]
-      },
-      {
-        paragraphId: 'p4',
-        options: [
-          {
-            text: 'Angustia, desamparo y desesperación son patologías clínicas.',
-            correct: false,
-            explanation: 'Aquí son afectos existenciales de la libertad, no diagnósticos clínicos.'
-          },
-          {
-            text: 'Son afectos que acompañan la libertad: lucidez, ausencia de garantías y actuar con lo controlable.',
-            correct: true,
-            explanation: 'Síntesis correcta del trío afectivo y su sentido.'
-          },
-          {
-            text: 'El desamparo prueba que no hay valores posibles.',
-            correct: false,
-            explanation: 'No es nihilismo: los valores se crean en la elección.'
-          }
-        ]
-      },
-      {
-        paragraphId: 'p5',
-        options: [
-          {
-            text: 'La mala fe es admitir la libertad y la autenticidad negarla.',
-            correct: false,
-            explanation: 'Es al revés: mala fe niega la libertad; autenticidad la asume.'
-          },
-          {
-            text: 'Mala fe: autoengaño que niega la libertad; autenticidad: asumir responsabilidad y sostener proyecto.',
-            correct: true,
-            explanation: 'Síntesis precisa de ambas nociones.'
-          },
-          {
-            text: 'La autenticidad es hacer lo que quieran los otros.',
-            correct: false,
-            explanation: 'Autenticidad es proyecto propio responsable, no heteronomía.'
-          }
-        ]
-      }
-    ],
-    scoring: {
-      correct: 15,
-      wrong: -3,
-      completion: 15
-    }
-  },
-
-  // ─────────────────────────────────────────────────────────
-  // NIVEL 3 · Mapa conceptual (estructura guía a completar)
-  // Desbloquea al terminar las síntesis. Aquí definimos “nodos”
-  // y “relaciones” esperadas como referencia de evaluación.
-  // ─────────────────────────────────────────────────────────
-  conceptMap: {
-    instructions: 'Organizá los conceptos cazados en un mapa: de “Existencia precede a esencia” se derivan libertad → responsabilidad → afectos (angustia, desamparo, desesperación); facticidad/trascendencia articulan el proyecto; mala fe vs. autenticidad orientan la ética.',
-    nodes: [
-      'Existencia precede a esencia',
-      'Libertad',
-      'Responsabilidad',
-      'Facticidad',
-      'Trascendencia (Proyecto)',
-      'Angustia',
-      'Desamparo',
-      'Desesperación',
-      'Mala fe',
-      'Autenticidad',
-      'Mirada del Otro'
-    ],
-    // relaciones esperadas (para feedback). No hace falta ser rígido; sirven de guía.
-    expectedEdges: [
-      ['Existencia precede a esencia', 'Libertad'],
-      ['Libertad', 'Responsabilidad'],
-      ['Responsabilidad', 'Angustia'],
-      ['Responsabilidad', 'Desamparo'],
-      ['Responsabilidad', 'Desesperación'],
-      ['Facticidad', 'Trascendencia (Proyecto)'],
-      ['Libertad', 'Mala fe'],
-      ['Libertad', 'Autenticidad'],
-      ['Libertad', 'Mirada del Otro']
-    ],
-    scoring: {
-      correctLink: 5,     // por relación alineada con el modelo
-      creativeLink: 2,    // por relación plausible no prevista
-      completion: 20
-    },
-    completionCriteria: {
-      minCoreLinks: 7 // número mínimo de relaciones “núcleo” para dar por completo
-    }
-  },
-
-  // ─────────────────────────────────────────────────────────
-  // NIVEL 4 · Quiz (10 ítems, como validación final)
-  // ─────────────────────────────────────────────────────────
+  // ========================== //
+  // 🧩 PREGUNTAS (10 ítems)    //
+  // ========================== //
   questions: [
     {
       id: 'sartre_001',
@@ -237,7 +41,7 @@ const SARTRE_THEME = {
       answers: [
         { text: 'Que hay una naturaleza humana fija que determina nuestras acciones.', correct: false, explanation: 'Sartre niega una esencia previa; nos definimos al elegir.' },
         { text: 'Que primero existimos y luego, con nuestras elecciones, nos definimos.', correct: true, explanation: 'Clave existencialista: no hay plan dado; el ser se hace en el actuar.' },
-        { text: 'Que la biología decide completamente quiénes somos.', correct: false, explanation: 'Determinismo biológico rechazado por Sartre.' },
+        { text: 'Que la biología decide completamente quiénes somos.', correct: false, explanation: 'Sería determinismo biológico, rechazado por Sartre.' },
         { text: 'Que la sociedad escribe nuestra identidad sin margen de libertad.', correct: false, explanation: 'Sartre subraya la libertad frente a condicionamientos.' },
         { text: 'Que Dios asigna a cada uno su función esencial.', correct: false, explanation: 'Sartre niega determinismo teológico.' }
       ],
@@ -264,7 +68,7 @@ const SARTRE_THEME = {
       question: 'En Sartre, ¿qué es la facticidad?',
       answers: [
         { text: 'El conjunto de condiciones dadas (cuerpo, historia, contexto) sobre las que proyecto mi vida.', correct: true, explanation: 'Facticidad = lo dado; no lo elijo, pero lo asumo y lo trasciendo.' },
-        { text: 'La absoluta autonomía sin límites externos.', correct: false, explanation: 'Negaría las condiciones reales de la existencia.' },
+        { text: 'La absoluta autonomía sin límites externos.', correct: false, explanation: 'Eso negaría las condiciones reales de la existencia.' },
         { text: 'La emoción de angustia ante la libertad.', correct: false, explanation: 'Eso es la angustia, no la facticidad.' },
         { text: 'La imposición social que elimina toda libertad.', correct: false, explanation: 'Sartre mantiene la libertad pese a lo social.' },
         { text: 'La esencia humana fijada por la razón.', correct: false, explanation: 'No hay esencia previa.' }
@@ -373,115 +177,81 @@ const SARTRE_THEME = {
     }
   ],
 
-  // Estadísticas globales
+  // Estadísticas
   stats: {
     totalQuestions: 10,
-    estimatedTime: 12, // minutos (agregamos 4 niveles: la sesión completa puede durar más)
+    estimatedTime: 10,
     difficultyBreakdown: { basico: 4, intermedio: 6, avanzado: 0 },
     topicBreakdown: {
       'Existencia vs. esencia': 1,
       'Libertad y responsabilidad': 1,
       'Facticidad vs. proyecto': 2,
-      'Angustia/Desamparo/Desesperación': 3,
-      'Mala fe / Autenticidad': 2,
+      'Angustia': 1,
+      'Desamparo': 1,
+      'Desesperación': 1,
+      'Mala fe': 1,
+      'Autenticidad': 1,
       'Ética existencial': 1
     }
   }
 };
 
-// ─────────────────────────────────────────────────────────
-// 🔧 VALIDACIÓN DEL TEMA (estructura de los 4 niveles)
-// ─────────────────────────────────────────────────────────
-
-function validateSartreGameTheme() {
-  console.log('🔍 Validando estructura del tema (4 niveles)…');
-
-  // Campos básicos
-  const required = ['id', 'title', 'contentFile', 'questions', 'conceptHunt', 'synthesis', 'conceptMap'];
+// ===============================
+// 🔧 VALIDACIÓN DEL TEMA (JS)
+// ===============================
+function validateSartreTheme() {
+  console.log('🔍 Validando estructura del tema de Sartre...');
+  const required = ['id', 'title', 'questions'];
   const missing = required.filter(f => !SARTRE_THEME[f]);
   if (missing.length) {
     console.error(`❌ Faltan campos requeridos: ${missing.join(', ')}`);
     return false;
   }
-
-  // Nivel 1: Caza de conceptos
-  const ch = SARTRE_THEME.conceptHunt;
-  if (!Array.isArray(ch.paragraphs) || ch.paragraphs.length === 0) {
-    console.error('❌ conceptHunt.paragraphs debe ser un array con al menos 1 ítem');
+  const bad = SARTRE_THEME.questions.filter((q, i) => {
+    if (!q.id || !q.question || !q.answers || !q.hint) {
+      console.error(`❌ Pregunta ${i + 1} inválida: faltan campos`);
+      return true;
+    }
+    if (q.answers.length !== 5) {
+      console.error(`❌ Pregunta ${i + 1}: debe tener exactamente 5 respuestas`);
+      return true;
+    }
+    const ok = q.answers.filter(a => a.correct === true);
+    if (ok.length !== 1) {
+      console.error(`❌ Pregunta ${i + 1}: debe haber exactamente 1 respuesta correcta`);
+      return true;
+    }
     return false;
-  }
-  const invalidCh = ch.paragraphs.some(p => !p.id || !p.text || !Array.isArray(p.keyTerms) || p.keyTerms.length === 0);
-  if (invalidCh) {
-    console.error('❌ Cada conceptHunt.paragraph debe tener id, text y keyTerms[]');
-    return false;
-  }
-
-  // Nivel 2: Síntesis
-  const syn = SARTRE_THEME.synthesis;
-  if (!Array.isArray(syn.items) || syn.items.length !== ch.paragraphs.length) {
-    console.warn('⚠️ synthesis.items debería corresponder 1:1 con conceptHunt.paragraphs');
-  }
-  const invalidSyn = syn.items.some(it => !it.paragraphId || !Array.isArray(it.options) || it.options.length < 3 || it.options.filter(o => o.correct).length !== 1);
-  if (invalidSyn) {
-    console.error('❌ Cada synthesis.item debe tener paragraphId, 3+ options y exactamente 1 correcta');
-    return false;
-  }
-
-  // Nivel 3: Mapa conceptual
-  const cm = SARTRE_THEME.conceptMap;
-  if (!Array.isArray(cm.nodes) || cm.nodes.length < 6) {
-    console.error('❌ conceptMap.nodes debe tener al menos 6 nodos');
-    return false;
-  }
-  if (!Array.isArray(cm.expectedEdges) || cm.expectedEdges.some(e => !Array.isArray(e) || e.length !== 2)) {
-    console.error('❌ conceptMap.expectedEdges debe ser una lista de pares [origen, destino]');
-    return false;
-  }
-
-  // Nivel 4: Quiz
-  const invalidQ = SARTRE_THEME.questions.some((q, i) => {
-    if (!q.id || !q.question || !Array.isArray(q.answers) || q.answers.length !== 5) return true;
-    const correct = q.answers.filter(a => a.correct === true);
-    return correct.length !== 1 || !q.hint;
   });
-  if (invalidQ) {
-    console.error('❌ El quiz debe tener 10 preguntas, 5 opciones c/u y 1 correcta + hint');
+  if (bad.length) {
+    console.error(`❌ ${bad.length} preguntas inválidas encontradas`);
     return false;
   }
-
-  console.log('✅ Tema de Sartre (4 niveles) validado correctamente');
+  console.log('✅ Tema de Sartre validado correctamente');
   return true;
 }
 
-function getSartreGameStats() {
+function getSartreThemeStats() {
   return {
     ...SARTRE_THEME.stats,
-    levels: {
-      conceptHunt: SARTRE_THEME.conceptHunt.paragraphs.length,
-      synthesis: SARTRE_THEME.synthesis.items.length,
-      conceptMapNodes: SARTRE_THEME.conceptMap.nodes.length,
-      quiz: SARTRE_THEME.questions.length
-    },
-    validationPassed: validateSartreGameTheme(),
-    loadTime: performance.now() - sartreGameLoadStart
+    validationPassed: validateSartreTheme(),
+    loadTime: performance.now() - sartreThemeLoadStart
   };
 }
 
-// ─────────────────────────────────────────────────────────
+// ===============================
 // 🚀 INICIALIZACIÓN
-// ─────────────────────────────────────────────────────────
-if (!validateSartreGameTheme()) {
-  console.error('❌ Error al cargar el tema de Sartre (4 niveles)');
+// ===============================
+if (!validateSartreTheme()) {
+  console.error('❌ Error al cargar el tema de Sartre');
   throw new Error('Tema de Sartre inválido');
 }
 
-const sartreGameLoadEnd = performance.now();
-console.log(`✅ Tema de Sartre (4 niveles) cargado en ${(sartreGameLoadEnd - sartreGameLoadStart).toFixed(2)}ms`);
-console.log(`📊 Niveles: CH=${SARTRE_THEME.conceptHunt.paragraphs.length} · SYN=${SARTRE_THEME.synthesis.items.length} · MAP=${SARTRE_THEME.conceptMap.nodes.length} · QUIZ=${SARTRE_THEME.questions.length}`);
+const sartreThemeLoadEnd = performance.now();
+console.log(`✅ Tema de Sartre cargado en ${(sartreThemeLoadEnd - sartreThemeLoadStart).toFixed(2)}ms`);
+console.log(`📊 ${SARTRE_THEME.questions.length} preguntas, ${SARTRE_THEME.stats.estimatedTime} min estimados`);
 
-// Exportar al ámbito global para tu app
 if (typeof window !== 'undefined') {
   window.SARTRE_THEME = SARTRE_THEME;
-  window.getSartreGameStats = getSartreGameStats;
-  console.log('🌐 Tema de Sartre (4 niveles) disponible globalmente');
+  console.log('🌐 Tema de Sartre disponible globalmente');
 }
