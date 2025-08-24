@@ -492,6 +492,8 @@ function nextQuestion() {
     }
 }
 
+// ###################################################################
+
 /**
  * Muestra los resultados finales
  */
@@ -771,6 +773,21 @@ async function main() {
         
         // Inicializar cuestionario
         initializeQuiz();
+        // ##################################################################
+        // Inicializar según el tema
+        // if (
+        // currentTheme &&
+        // currentTheme.id === 'sartre' &&
+        // currentTheme.conceptHunt &&
+        // document.getElementById('question-container') // ancla general
+        // ) {
+        // initializeFourLevelFlow(currentTheme);
+        // } else {
+
+        //     initializeQuiz();
+        // }
+        
+        // ##################################################################
         
         const mainEnd = performance.now();
         const totalTime = mainEnd - engineStartTime;

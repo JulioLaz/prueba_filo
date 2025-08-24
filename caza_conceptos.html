@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no" />
+  <title>🔎 Caza de Conceptos</title>
+  <link rel="stylesheet" href="css/quiz.css" />
+  <style>
+    /* Utilidades ligeras para el minijuego */
+    .hunt-header { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 14px; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; }
+    .chip { padding:6px 10px; border-radius:999px; background:#eef2ff; font-size:.9rem; }
+    .chip .icon { margin-right:6px; }
+    .lives { display:flex; gap:4px; }
+    .life { font-size:1.1rem; opacity:.7 }
+    .life.alive { opacity:1 }
+    .progress-line { height:6px; border-radius:6px; background:#e5e7eb; overflow:hidden; margin:8px 0 0; }
+    .progress-fill { height:100%; width:0%; background:#667eea; transition:width .35s ease; }
+
+    .hunt-container { padding: 14px; }
+    .hunt-paragraph { background:#f8fafc; border:1px dashed #c7d2fe; border-radius:12px; padding:14px; line-height:1.75; }
+    .hunt-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; }
+    .mini { font-size:.9rem; opacity:.8 }
+
+    .token { padding:2px 3px; border-radius:6px; transition:background .15s, transform .1s; }
+    .token:hover { background:#eef2ff }
+    .token.correct { background:#dcfce7 }       /* verde suave */
+    .token.wrong { background:#fee2e2 }         /* rojo suave */
+    .shake { animation: shake .2s linear 2; }
+    @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} 100%{transform:translateX(0)} }
+
+    /* Tooltip/Sheet de significado */
+    .meaning-sheet {
+      position:fixed; left:0; right:0; bottom:0; background:#ffffff;
+      border-top-left-radius:16px; border-top-right-radius:16px;
+      box-shadow:0 -8px 32px rgba(0,0,0,.15); padding:14px 14px 18px; transform:translateY(100%);
+      transition: transform .25s ease; z-index:50;
+    }
+    .meaning-sheet.open { transform:translateY(0) }
+    .sheet-handle { width:36px; height:4px; background:#e5e7eb; border-radius:999px; margin:0 auto 10px; }
+    .meaning-title { font-weight:700; margin-bottom:6px }
+    .meaning-body { font-size:.98rem; color:#374151 }
+    .sheet-actions { display:flex; justify-content:flex-end; margin-top:10px }
+    .ghost-btn { background:transparent; border:1px solid #e5e7eb; padding:8px 12px; border-radius:10px }
+
+    /* Cooldown overlay */
+    .cooldown {
+      position:fixed; inset:0; background:rgba(0,0,0,.05);
+      display:none; z-index:40;
+    }
+    .cooldown.on { display:block }
+  </style>
+</head>
+<body>
+  <header class="quiz-header">
+    <div class="quiz-nav">
+      <button class="nav-btn" onclick="window.location.href='quiz.html'">← Volver</button>
+      <div class="theme-info">
+        <span class="theme-icon">🔎</span>
+        <span class="theme-title">Caza de conceptos</span>
+      </div>
+      <button id="mute-btn" class="nav-btn" aria-label="Silenciar efectos">🔇</button>
+    </div>
+  </header>
+
+  <div class="hunt-header">
+    <div class="meta">
+      <div class="chip"><span class="icon">📄</span><span id="level-label">Párrafo 1</span></div>
+      <div class="chip"><span class="icon">🎯</span>Por descubrir: <strong id="remaining">0</strong></div>
+      <div class="chip"><span class="icon">🔥</span>Racha: <strong id="streak">0</strong></div>
+    </div>
+    <div class="lives" aria-label="Vidas">
+      <span class="life alive">❤</span>
+      <span class="life alive">❤</span>
+      <span class="life alive">❤</span>
+    </div>
+  </div>
+  <div class="progress-line"><div id="progress-fill" class="progress-fill"></div></div>
+
+  <main class="hunt-container">
+    <div id="paragraph" class="hunt-paragraph" aria-live="polite"></div>
+    <div class="hunt-controls">
+      <button id="prev-btn" class="secondary-btn">⬅ Anterior</button>
+      <div class="mini" id="hint-slot"></div>
+      <button id="next-btn" class="primary-btn">Siguiente ➡</button>
+    </div>
+  </main>
+
+  <!-- Bottom sheet con significado -->
+  <section id="meaning-sheet" class="meaning-sheet" role="dialog" aria-modal="true" aria-live="polite">
+    <div class="sheet-handle"></div>
+    <div class="meaning-title" id="meaning-title">Concepto</div>
+    <div class="meaning-body" id="meaning-body">Definición contextual…</div>
+    <div class="sheet-actions">
+      <button id="close-meaning" class="ghost-btn">Cerrar</button>
+    </div>
+  </section>
+
+  <!-- Overlay de cooldown -->
+  <div id="cooldown" class="cooldown" aria-hidden="true"></div>
+
+  <!-- Motor común y configuración del tema -->
+  <script src="js/caza_conceptos_engine.js"></script>
+  <script src="js/caza_conceptos_sartre.js"></script>
+</body>
+</html>

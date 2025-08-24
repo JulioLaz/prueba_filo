@@ -79,6 +79,9 @@
                     <h3>💡 Pista</h3>
                     <p id="help-text" class="help-text"></p>
                     <div class="help-actions">
+                        <button id="concept-hunt-btn" class="tertiary-btn">
+                            🔎 Caza de conceptos
+                        </button>
                         <button id="show-question-btn" class="primary-btn">
                             📝 Ver pregunta
                         </button>
@@ -179,5 +182,15 @@
 
     <!-- Scripts -->
     <script src="js/quiz-engine.js"></script>
+    <!-- Justo antes del cierre de </body> -->
+    <script>
+    const conceptBtn = document.getElementById("concept-hunt-btn");
+    if (conceptBtn) {
+        conceptBtn.addEventListener("click", () => {
+        window.location.href = "caza_conceptos.html?tema=sartre";
+        });
+    }
+    </script>
+
 </body>
 </html>
