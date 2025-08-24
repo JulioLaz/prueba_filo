@@ -78,13 +78,226 @@ const AVAILABLE_THEMES = [
     // Otros temas podrían añadirse aquí siguiendo el mismo esquema.
 ];
 
-// Función para renderizar la lista de temas en la página de inicio.
-// En esta versión simplificada, simplemente imprimimos la lista por consola.
-function renderThemeList() {
-    console.log('📚 Temas disponibles:');
-    AVAILABLE_THEMES.forEach(theme => {
-        console.log(` • ${theme.title} [${theme.difficulty}]`);
+// ===============================
+//  VARIABLES DE ESTADO Y DOM
+// ===============================
+
+// Contenedor de tarjetas de temas y elementos de filtro/búsqueda.
+const themesGrid = document.getElementById('themes-grid');
+const searchInput = document.getElementById('search-input');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const clearDataBtn = document.getElementById('clear-data-btn');
+const aboutBtn = document.getElementById('about-btn');
+const aboutModal = document.getElementById('about-modal');
+const closeModal = aboutModal ? aboutModal.querySelector('.close') : null;
+
+// Estadísticas globales (opcional: leer de localStorage).
+const totalCompletedEl = document.getElementById('total-completed');
+const totalScoreEl = document.getElementById('total-score');
+const totalTimeEl = document.getElementById('total-time');
+
+// Estado de filtros y búsqueda.
+let currentFilter = 'all';
+let currentSearch = '';
+
+// ===============================
+//  CREACIÓN Y RENDERIZADO DE CARTAS
+// ===============================
+
+/**
+ * Crea un elemento DOM representando la tarjeta de un tema.
+ * @param {Object} theme Configuración del tema.
+ * @returns {HTMLElement}
+ */
+function createThemeCard(theme) {
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.dataset.id = theme.id;
+    // Aplicar gradiente de fondo si está definido
+    if (theme.gradient) {
+        card.style.background = theme.gradient;
+    } else if (theme.color) {
+        card.style.background = theme.color;
+    }
+    // Construir contenido
+    const iconEl = document.createElement('div');
+    iconEl.className = 'theme-card-icon';
+    iconEl.textContent = theme.icon || '';
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'theme-card-title';
+    titleEl.textContent = theme.title;
+    const descEl = document.createElement('p');
+    descEl.className = 'theme-card-desc';
+    descEl.textContent = theme.description;
+    const footerEl = document.createElement('div');
+    footerEl.className = 'theme-card-footer';
+    footerEl.innerHTML = `
+        <span class="difficulty ${theme.difficulty}">${theme.difficulty}</span>
+        <span class="question-count">${theme.questions} preguntas</span>
+    `;
+    card.appendChild(iconEl);
+    card.appendChild(titleEl);
+    card.appendChild(descEl);
+    card.appendChild(footerEl);
+    // Click para abrir quiz
+    card.addEventListener('click', () => {
+        // Utilizamos "?theme=" en lugar de "?id=" para que el motor
+        // de quiz pueda identificar correctamente el tema a cargar.  El
+        // motor lee el parámetro "theme" de la URL mediante
+        // getURLParameter('theme').  Si se utiliza otro nombre, el
+        // cuestionario no encontrará el tema y mostrará un error.
+        window.location.href = `quiz.html?theme=${theme.id}`;
+    });
+    return card;
+}
+
+/**
+ * Renderiza la lista de temas en el contenedor.
+ * @param {Array} themes Lista de temas a mostrar.
+ */
+function renderThemes(themes = AVAILABLE_THEMES) {
+    if (!themesGrid) return;
+    themesGrid.innerHTML = '';
+    themes.forEach((theme, index) => {
+        const card = createThemeCard(theme);
+        // Animación de entrada escalonada
+        card.style.animationDelay = `${index * 0.1}s`;
+        themesGrid.appendChild(card);
     });
 }
 
-renderThemeList();
+// ===============================
+//  FILTRADO Y BÚSQUEDA
+// ===============================
+
+/**
+ * Devuelve la lista de temas filtrada por dificultad y búsqueda.
+ * @returns {Array}
+ */
+function getFilteredThemes() {
+    let filtered = AVAILABLE_THEMES;
+    // Filtrado por dificultad
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(t => t.difficulty === currentFilter);
+    }
+    // Filtrado por búsqueda
+    if (currentSearch) {
+        const searchLower = currentSearch.toLowerCase();
+        filtered = filtered.filter(t =>
+            t.title.toLowerCase().includes(searchLower) ||
+            t.description.toLowerCase().includes(searchLower)
+        );
+    }
+    return filtered;
+}
+
+/**
+ * Actualiza la visualización de temas según filtros actuales.
+ */
+function updateThemeDisplay() {
+    const filtered = getFilteredThemes();
+    renderThemes(filtered);
+    // Si no hay resultados, mostrar mensaje
+    if (filtered.length === 0 && themesGrid) {
+        themesGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+                <h3>No se encontraron temas</h3>
+                <p>Intenta con otros términos de búsqueda o cambia los filtros.</p>
+            </div>
+        `;
+    }
+}
+
+// ===============================
+//  ESTADÍSTICAS GLOBALES
+// ===============================
+
+/**
+ * Actualiza las estadísticas globales de progreso desde localStorage.
+ * Se utilizan tres claves: completed, score y time.
+ */
+function updateGlobalStats() {
+    try {
+        const progressStr = localStorage.getItem('filosofia-quiz-progress');
+        if (progressStr) {
+            const progress = JSON.parse(progressStr);
+            const completados = Object.keys(progress).length;
+            let totalScore = 0;
+            let totalTime = 0;
+            Object.values(progress).forEach(item => {
+                totalScore += item.score || 0;
+                totalTime += item.time || 0;
+            });
+            const averageScore = completados ? Math.round(totalScore / completados) : 0;
+            if (totalCompletedEl) totalCompletedEl.textContent = completados;
+            if (totalScoreEl) totalScoreEl.textContent = `${averageScore}%`;
+            if (totalTimeEl) totalTimeEl.textContent = `${Math.round(totalTime / 60)}min`;
+        }
+    } catch (err) {
+        console.warn('Error al cargar estadísticas:', err);
+    }
+}
+
+// ===============================
+//  EVENT LISTENERS
+// ===============================
+
+function setupEventListeners() {
+    // Búsqueda en tiempo real
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim();
+            updateThemeDisplay();
+        });
+    }
+    // Filtros de dificultad
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            currentFilter = e.target.dataset.filter || 'all';
+            updateThemeDisplay();
+        });
+    });
+    // Limpiar progreso
+    if (clearDataBtn) {
+        clearDataBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('¿Estás seguro de que quieres eliminar tu progreso local?')) {
+                localStorage.removeItem('filosofia-quiz-progress');
+                updateGlobalStats();
+                updateThemeDisplay();
+            }
+        });
+    }
+    // Modal Acerca de
+    if (aboutBtn && aboutModal && closeModal) {
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            aboutModal.style.display = 'block';
+        });
+        closeModal.addEventListener('click', () => {
+            aboutModal.style.display = 'none';
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === aboutModal) {
+                aboutModal.style.display = 'none';
+            }
+        });
+    }
+}
+
+// ===============================
+//  INICIALIZACIÓN
+// ===============================
+
+function initializeApp() {
+    updateGlobalStats();
+    setupEventListeners();
+    updateThemeDisplay();
+    // Animación de entrada
+    document.body.classList.add('fade-in');
+}
+
+// Ejecutar al cargar el script
+initializeApp();
