@@ -24,6 +24,31 @@
         <header class="main-header">
             <h1>🎓 Filosofía</h1>
             <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
+            
+            <!-- 🆕 User Authentication Section -->
+            <div class="auth-section" id="auth-section">
+                <!-- Not signed in -->
+                <div id="auth-signed-out" class="auth-state">
+                    <button id="sign-in-btn" class="auth-btn">
+                        👤 Iniciar sesión para guardar progreso
+                    </button>
+                </div>
+                
+                <!-- Signed in -->
+                <div id="auth-signed-in" class="auth-state hidden">
+                    <div class="user-info">
+                        <span id="user-avatar" class="user-avatar">🧠</span>
+                        <span id="user-name" class="user-name">Usuario</span>
+                        <button id="sign-out-btn" class="auth-btn-small">🚪</button>
+                    </div>
+                </div>
+                
+                <!-- Loading state -->
+                <div id="auth-loading" class="auth-state">
+                    <div class="auth-loading-spinner"></div>
+                    <span>Cargando...</span>
+                </div>
+            </div>
         </header>
 
         <div class="stats-container" id="stats-container">
@@ -64,7 +89,41 @@
         </footer>
     </div>
 
-    <!-- Modal de información -->
+    <!-- 🆕 Sign In Modal -->
+    <div id="signin-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎓 Únete a Filosofía Quiz</h2>
+                <span class="close" id="close-signin-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="signin-content">
+                    <h3>¿Por qué crear una cuenta?</h3>
+                    <ul class="benefits-list">
+                        <li>📊 Guarda tu progreso en todos los dispositivos</li>
+                        <li>🏆 Desbloquea logros y estadísticas</li>
+                        <li>📈 Ve tu evolución en cada tema</li>
+                        <li>🎯 Recibe recomendaciones personalizadas</li>
+                    </ul>
+                    
+                    <div class="signin-buttons">
+                        <button id="google-signin-btn" class="primary-btn">
+                            🔐 Continuar con Google
+                        </button>
+                        <button id="anonymous-signin-btn" class="secondary-btn">
+                            👻 Probar sin cuenta
+                        </button>
+                    </div>
+                    
+                    <p class="signin-note">
+                        Puedes usar la app sin cuenta, pero no se guardará tu progreso.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de información (existente) -->
     <div id="about-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,14 +150,16 @@
                     <li>✅ Material de estudio integrado</li>
                     <li>✅ Preguntas con diferentes niveles de dificultad</li>
                     <li>✅ Estadísticas detalladas de progreso</li>
+                    <li>✅ Sincronización en la nube con Firebase</li>
                 </ul>
 
                 <h3>🏗️ Tecnología</h3>
-                <p>Desarrollado con HTML5, CSS3 y JavaScript moderno. Optimizado para GitHub Pages.</p>
+                <p>Desarrollado con HTML5, CSS3, JavaScript moderno y Firebase. Optimizado para GitHub Pages.</p>
             </div>
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
