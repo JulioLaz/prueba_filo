@@ -50,12 +50,14 @@ window.CONCEPT_HUNT_CONFIG = {
     {
       // 1) Tesis central — SOLO PALABRAS CLAVE para tap en móvil
       html: `
-      <p><em>El existencialismo sartreano afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una “naturaleza humana” prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
+      <p><em>El <strong>existencialismo</strong> de J.P. Sartre afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una <strong>“naturaleza humana”</strong> prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
       `,
       hint: "Fijate en palabras clave como: existencia, esencia...",
       // Podés permitir avanzar aunque falten algunos (útil en clase)
       advanceAfter: 1,
       concepts: [
+        { term: "existencialismo", meaning: "El existencialismo es una corriente filosófica que se centra en la existencia individual, la libertad y la responsabilidad. Su idea principal es que la existencia precede a la esencia." },
+        { term: "naturaleza", meaning: "Aunque no hay una naturaleza humana predeterminada, Sartre sí habla de la condición humana. Esta es el conjunto de límites universales que compartimos todos los seres humanos por el simple hecho de existir en el mundo. Estos límites son:\n● Estar en el mundo.\n● Tener que trabajar.\n● Vivir entre otros.\n● Ser mortal." },
         { term: "existencia", meaning: "Primero existís; no hay esencia previa que te determine." },
         { term: "esencia", meaning: "No viene dada; se construye con tus elecciones." },
         { term: "elecciones", meaning: "Actos con los que te definís; elegir es inevitable para Sartre." },
@@ -92,8 +94,8 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "Ser", meaning: "Ser-en-sí: Modo de ser de las cosas: pleno, sin proyectos ni reflexión.\nSer-para-sí: Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         // { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
-        { term: "nada", meaning: "Nada: Hiato que introduce la conciencia y que hace posible elegir." },
-        { term: "libertad", meaning: "Libertad: Estructura del para-sí, no un extra añadido." },
+        { term: "nada", meaning: "La nada es, en este contexto, ese espacio vacío que la conciencia introduce. Es como un hiato o una pausa que se interpone entre lo que eres ahora y tus posibilidades.\nSin ese hiato (sin la nada), serías como una cosa: tu futuro estaría predeterminado por tu presente. Si eres un estudiante, solo podrías ser un estudiante para siempre. No habría lugar para la elección.\nCon el hiato (con la nada), la elección es posible: La nada te permite "negar" lo que eres en el presente y proyectarte hacia el futuro. Te da la libertad de decir no soy solo esto y decidir qué quieres ser.\nEn resumen, la nada no es la nada absoluta como un vacío de la nada, sino una fuerza activa que proviene de nuestra conciencia y que nos libera de ser simplemente objetos determinados. Es lo que nos permite elegir, crear nuestro propio camino y, en última instancia, ser libres." },
+        { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
       ],
       corollary: [
         "la libertad es estructura del para-sí",
@@ -106,7 +108,8 @@ window.CONCEPT_HUNT_CONFIG = {
       html: `
       <div class="highlight-box">
         <h4>🧭 Facticidad, trascendencia y proyecto</h4>
-        <p><strong>Facticidad</strong>: condiciones dadas (cuerpo, historia, contexto). <strong>Trascendencia</strong>: el <em>proyecto</em> que elaboro sobre esas condiciones.</p>
+        <p><strong>Facticidad</strong>: condiciones dadas (cuerpo, historia, contexto).</p>
+        <p><strong>Trascendencia</strong>: el <em>proyecto</em> que elaboro sobre esas condiciones.</p>
         <ul>
           <li>No elijo mis cartas, pero elijo <strong>cómo jugarlas</strong>.</li>
           <li>La libertad <strong>no niega</strong> la facticidad: la <strong>asume</strong> y la reinterpreta.</li>
@@ -116,7 +119,7 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Diferenciá lo dado y lo que proyectás sobre ello.",
       advanceAfter: 1,
       concepts: [
-        { term: "facticidad", meaning: "Lo dado: cuerpo, pasado, situación." },
+        { term: "facticidad", meaning: " Lo dado: el conjunto de cartas que te tocaron en la vida. Son los aspectos de tu existencia que no elegiste, pero que son tu punto de partida. Incluye:\n* Tu cuerpo (la altura, el color de ojos).\n* Tu pasado (dónde naciste, tu familia).\n* Tu situación (el contexto social y la época en que vives).\nLa facticidad es el marco sobre el cual tu libertad actúa." },
         { term: "trascendencia", meaning: "Superar lo dado mediante tu proyecto; reinterpretar la facticidad." },
         { term: "proyecto", meaning: "Estructura de actos que orienta y da sentido a tu vida." },
       ],
@@ -143,14 +146,13 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "autoengaño", meaning: "Mecanismo de evasión: ‘no pude’, ‘me hicieron’." },
         { term: "autenticidad", meaning: "Asumir tu libertad situada y sostener un proyecto propio." },
-        { term: "rol", meaning: "Papel social usado para evadir responsabilidad de elegir." },
+        // { term: "rol", meaning: "Papel social usado para evadir responsabilidad de elegir." },
       ],
       corollary: [
         "mala fe: negar tu libertad para evitar decidir",
         "autenticidad: asumir tu libertad situada"
       ],
     },
-
     {
       // 5) El Otro y la mirada
       html: `
@@ -165,10 +167,12 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "mirada", meaning: "Me descubro como objeto ante la conciencia ajena." },
         { term: "objetivarnos", meaning: "objetivacion: Ser reducido a cosa; perder la vivencia de proyecto libre." }, // sin tilde para normalizar
         { term: "revela", meaning: "intersubjetividad: Cruce de libertades: conflicto, reconocimiento, co-creación." },
+        { term: "Otro", meaning: "En la filosofía de Sartre, el Otro es mucho más que una persona diferente a mí. Es una conciencia separada y libre que coexiste con la mía. Su existencia es fundamental porque me revela mi propia existencia de una manera que yo mismo no puedo." },
       ],
       corollary: [
         "la mirada del Otro me revela como objeto",
-        "la intersubjetividad cruza libertades"
+        "Otro es esa conciencia ajena que me permite salir de mi propia perspectiva y verme a mí mismo como un objeto en el mundo, un paso esencial para la autoconciencia y la libertad.",
+        "la intersubjetividad cruza libertades: La intersubjetividad es el espacio donde las conciencias y las libertades de dos o más individuos se encuentran. Sartre argumenta que no existimos de forma aislada; nuestra libertad no se ejerce en el vacío, sino en un mundo compartido con otros."
       ],
     },
 
@@ -176,7 +180,8 @@ window.CONCEPT_HUNT_CONFIG = {
       // 6) Ética existencial
       html: `
       <div class="highlight-box">
-        <h4>🧠 Ética existencial</h4>
+        <h3>🧠 Ética existencial</h3>
+        <h4>La Creación de Valor y la Responsabilidad Universal</h4>
         <p>Sin reglas dadas, <strong>decidir</strong> crea <strong>valor</strong>. En el acto proponés una imagen de humanidad para cualquiera en situación semejante.</p>
       </div>
       `,
@@ -185,29 +190,15 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "decidir", meaning: "El acto funda valor, no lo recibe hecho." },
         { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },
-        // { term: "universalidad", meaning: "Lo que elegís propone ejemplo a otros." },
-        // { term: "responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
+        { term: "Universal", meaning: "Lo que elegís propone ejemplo a otros." },
+        { term: "Responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
       ],
       corollary: [
         "decidir crea valor",
         "lo que elegís propone ejemplo a otros",
-        "responsabilidad radical por el sentido"
+        "responsabilidad radical por el sentido",
+        "Cuando un individuo elige, no lo hace solo para sí mismo. Sartre dice que, al elegir, uno se convierte en un legislador, un creador de valor para toda la humanidad. Cada decisión es un reflejo de la imagen de ser humano que, en ese momento, se considera digna de ser universal."
       ],
     },
   ],
 };
-
-// ————————————————————————————————————————————————————————————————
-// Nota de integración (no necesaria si tu motor ya lo hace):
-// 1) Al iniciar cada nivel, construí un Set de términos válidos:
-//    const valid = new Set(level.concepts.map(c => normalizeTerm(c.term)));
-//
-// 2) En el handler de selección (tap/drag), usá:
-//    if (CONFIG.mobileSelectionGuard && !CONFIG.isValidSelectionFn(sel, valid)) { feedback('Seleccioná una palabra clave'); return; }
-//
-// 3) Para el match final:
-//    const hit = normalizeTerm(sel);
-//    const found = level.concepts.find(c => normalizeTerm(c.term) === hit);
-//
-// 4) Al completar todos los términos del nivel, mostrá level.corollary.
-// ————————————————————————————————————————————————————————————————
