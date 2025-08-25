@@ -147,6 +147,8 @@
 
     markLives();
     setCooldown(false);
+    updateNavButtons(level);
+
   }
 
   function showMeaning(term, meaning) {
@@ -170,6 +172,8 @@
     if (concept) showMeaning(concept.term, concept.meaning);
     foundSet.add(keyNorm);
     updateHeader(level);
+    updateNavButtons(level);
+
     // si completó el párrafo
     if (foundSet.size === level.concepts.length) {
       // pequeño “premio”
@@ -178,6 +182,7 @@
         meaningBody.textContent =
           "Cazaste todos los conceptos clave. Avanzá al siguiente párrafo o pasá a Frase-síntesis cuando termines.";
         meaningSheet.classList.add("open");
+          updateNavButtons(level);
       }, 250);
     }
   }
@@ -216,25 +221,57 @@
     }
   }
 
-  prevBtn.addEventListener("click", () => {
-    if (idx > 0) {
+   prevBtn.addEventListener("click", () => {
+   if (idx > 0) {
       idx--;
       renderLevel();
-    }
-  });
+   }
+   });
 
-  nextBtn.addEventListener("click", () => {
-    if (idx < CFG.levels.length - 1) {
+   nextBtn.addEventListener("click", () => {
+   const level = CFG.levels[idx];
+   if (foundSet.size < level.concepts.length) return; // no avanza si no completó
+   if (idx < CFG.levels.length - 1) {
       idx++;
       renderLevel();
-    }
-  });
+   }
+   });
+
+
+//   prevBtn.addEventListener("click", () => {
+//     if (idx > 0) {
+//       idx--;
+//       renderLevel();
+//     }
+//   });
+
+//   nextBtn.addEventListener("click", () => {
+//     if (idx < CFG.levels.length - 1) {
+//       idx++;
+//       renderLevel();
+//     }
+//   });
 
   muteBtn.addEventListener("click", () => {
     muted = !muted;
     muteBtn.textContent = muted ? "🔇" : "🔊";
   });
 
+// nueva fucncion
+
+   function updateNavButtons(level) {
+   // Prev inhabilitado en el primer párrafo
+   prevBtn.disabled = idx === 0;
+
+   const total = level.concepts.length;
+   const completos = foundSet.size >= total;
+   const isLast = idx >= (CFG.levels.length - 1);
+
+   // Next inhabilitado si no completó o si está en el último
+   nextBtn.disabled = !completos || isLast;
+   }
+
   // Inicio
   renderLevel();
+
 })();
