@@ -290,8 +290,9 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
+      advanceAfter: 2,
       concepts: [
-        { term: "ser-en-sí", meaning: "Modo de ser de las cosas: pleno, sin proyectos ni reflexión." },
+        { term: "Ser-en-sí", meaning: "Modo de ser de las cosas: pleno, sin proyectos ni reflexión." },
         { term: "ser-para-sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         { term: "nada", meaning: "Hiato que introduce la conciencia y que hace posible elegir." },
         { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
