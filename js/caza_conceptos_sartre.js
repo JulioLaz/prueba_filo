@@ -387,8 +387,8 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "decidir", meaning: "El acto funda valor, no lo recibe hecho." },
         { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },
-        { term: "universalidad", meaning: "Lo que elegís propone ejemplo a otros." },
-        { term: "responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
+        // { term: "universalidad", meaning: "Lo que elegís propone ejemplo a otros." },
+        // { term: "responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
       ],
       corollary: [
         "decidir crea valor",
