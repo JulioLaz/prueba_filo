@@ -332,10 +332,10 @@ window.CONCEPT_HUNT_CONFIG = {
       // 4) Mala fe vs autenticidad — tokens únicos para móvil
       html: `
       <div class="highlight-box">
-        <h4>🪞 Mala fe (<strong>autoengaño</strong>) vs. <strong>autenticidad</strong>)</h4>
+        <h4>🪞 Mala fe (<strong>autoengaño</strong>) vs. <strong>autenticidad</strong></h4>
         <p><strong>Mala fe</strong>: estrategia para escapar de la angustia negando mi libertad; <strong>autenticidad</strong>: asumirla y responder por mis actos.</p>
         <ul>
-          <li><em>Ejemplo del camarero</em>: se oculta en el <strong>ro</strong>) para no decidir más allá del guion.</li>
+          <li><em>Ejemplo del camarero</em>: se oculta en el <strong>rol</strong>) para no decidir más allá del guion.</li>
           <li><em>Ejemplo de la pareja</em>: evita reconocer su elección afectiva.</li>
         </ul>
       </div>
