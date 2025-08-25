@@ -108,7 +108,7 @@
   const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
   sessionStorage.setItem('tema_actual', tema);
   document.getElementById('back-btn').addEventListener('click', () => {
-    window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}`;
+    window.location.href = `quiz.html?theme=${encodeURIComponent(tema)}`; ///prueba_filo/quiz.html?theme=sartre
   });
 </script>
 
