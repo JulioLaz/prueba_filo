@@ -182,15 +182,32 @@
 
     <!-- Scripts -->
     <script src="js/quiz-engine.js"></script>
-    <!-- Justo antes del cierre de </body> -->
-    <script>
+
+    <!-- <script>
     const conceptBtn = document.getElementById("concept-hunt-btn");
     if (conceptBtn) {
         conceptBtn.addEventListener("click", () => {
         window.location.href = "caza_conceptos.html?tema=sartre";
         });
     }
-    </script>
+    </script> -->
+
+    <!-- justo antes de </body> -->
+<script>
+  // lee el tema actual del quiz
+  const params = new URLSearchParams(location.search);
+  const temaActual = params.get('tema') || 'sartre';
+
+  // guarda por si volvés sin query (seguro para mobile)
+  sessionStorage.setItem('tema_actual', temaActual);
+
+  const conceptBtn = document.getElementById('concept-hunt-btn');
+  if (conceptBtn) {
+    conceptBtn.addEventListener('click', () => {
+      window.location.href = `caza_conceptos.html?tema=${encodeURIComponent(temaActual)}`;
+    });
+  }
+</script>
 
 </body>
 </html>

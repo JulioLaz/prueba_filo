@@ -54,7 +54,9 @@
 <body>
   <header class="quiz-header">
     <div class="quiz-nav">
-      <button class="nav-btn" onclick="window.location.href='quiz.html'">← Volver</button>
+      <!-- <button class="nav-btn" onclick="window.location.href='quiz.html'">← Volver</button> -->
+      <button id="back-btn" class="nav-btn">← Volver</button>
+
       <div class="theme-info">
         <span class="theme-icon">🔎</span>
         <span class="theme-title">Caza de conceptos</span>
@@ -70,9 +72,9 @@
       <div class="chip"><span class="icon">🔥</span>Racha: <strong id="streak">0</strong></div>
     </div>
     <div class="lives" aria-label="Vidas">
-      <span class="life alive">❤</span>
-      <span class="life alive">❤</span>
-      <span class="life alive">❤</span>
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
     </div>
   </div>
   <div class="progress-line"><div id="progress-fill" class="progress-fill"></div></div>
@@ -100,6 +102,16 @@
   <div id="cooldown" class="cooldown" aria-hidden="true"></div>
 
   <!-- Motor común y configuración del tema -->
+<!-- al final del body, antes de los <script src=...> -->
+<script>
+  const q = new URLSearchParams(location.search);
+  const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
+  sessionStorage.setItem('tema_actual', tema);
+  document.getElementById('back-btn').addEventListener('click', () => {
+    window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}`;
+  });
+</script>
+
   <script defer src="js/caza_conceptos_sartre.js"></script>
   <script defer src="js/caza_conceptos_engine.js"></script>
 </body>
