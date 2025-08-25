@@ -222,7 +222,7 @@ function normalizeTerm(str) {
     .toLowerCase()
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "")
-    .replace(/[\u2013\u2014]/g, "-")         // guiones largos → guion simple
+    // .replace(/[\u2013\u2014]/g, "-")         // guiones largos → guion simple
     .replace(/[.,;:!?¿¡()"']/g, "")          // puntación común
     .trim();
 }
