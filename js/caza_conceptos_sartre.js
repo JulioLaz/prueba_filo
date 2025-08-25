@@ -44,7 +44,7 @@ window.CONCEPT_HUNT_CONFIG = {
 // AUTOR
   author: "Jean-Paul Sartre",
   menuUrl: "sartre.html",   // 👈 a dónde volver con el botón
-
+  menuUrl: "https://juliolaz.github.io/prueba_filo/quiz.html?tema=sartre&theme=sartre",
   // Niveles
   levels: [
     {

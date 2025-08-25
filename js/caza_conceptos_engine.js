@@ -150,14 +150,28 @@ function ensureSummaryDialog() {
     dlg.style.display = 'none';
   });
 
-  const backBtn = dlg.querySelector('#summary-back');
-  if (backBtn) {
-    backBtn.addEventListener('click', () => {
-      const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) || "index.html";
-      location.href = url;
-      console.log("Volviendo a", url);
-    });
-  }
+const backBtn = dlg.querySelector('#summary-back');
+if (backBtn) {
+  backBtn.addEventListener('click', () => {
+    const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) 
+                || "https://juliolaz.github.io/prueba_filo/quiz.html";
+    console.log("Volviendo a", url);
+    location.href = url;
+  });
+}
+
+
+  // const backBtn = dlg.querySelector('#summary-back');
+  // if (backBtn) {
+  //   backBtn.addEventListener('click', () => {
+  //     const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) || "index.html";
+  //     location.href = url;
+  //     console.log("Volviendo a", url);
+  //         setTimeout(() => {
+  //     location.href = url;
+  //   }, 5000); 
+  //   });
+  // }
 
   // Volver al menú
   // dlg.querySelector('#summary-back').addEventListener('click', () => {
