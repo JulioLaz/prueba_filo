@@ -43,6 +43,8 @@ window.CONCEPT_HUNT_CONFIG = {
   // isValidSelectionFn: isValidMobileSelection,
 // AUTOR
   author: "Jean-Paul Sartre",
+  menuUrl: "sartre.html",   // 👈 a dónde volver con el botón
+
   // Niveles
   levels: [
     {

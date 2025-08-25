@@ -98,19 +98,14 @@ function ensureSummaryDialog() {
       border-radius:16px;
       box-shadow:0 20px 40px rgba(0,0,0,.35);
       padding:20px 22px;
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid hsla(0, 0%, 100%, 0.08);
     ">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-        <h3 style="margin:0;font-size:1.25rem;">📚 Resumen de la caza de conceptos</h3>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
         <h3 style="margin:0;font-size:1.25rem;display:flex;gap:.5rem;align-items:center;">
-          📚 Resumen de la caza de conceptos
-          <span id="summary-author" style="font-size:.9rem;background:#0f172a;color:#a3e635;border:1px solid #3f6212;border-radius:8px;padding:2px 8px;"></span>
+        <span id="summary-author" style="font-size:1.2rem;background:#0f172a;color:#a3e635;border:1px solid #3f6212;border-radius:8px;padding:4px 10px;"></span>
+          📚 Resumen de conceptos
         </h3>
-        <button id="summary-close" style="
-          background:#1f2937;color:#e5e7eb;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;">
-          Cerrar
-        </button>
       </div>
 
         <button id="summary-close" style="
@@ -142,7 +137,7 @@ function ensureSummaryDialog() {
     const authorEl = dlg.querySelector('#summary-author');
     if (authorEl) {
       const author = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.author) || "Jean-Paul Sartre";
-      authorEl.textContent = `Autor: ${author}`;
+      authorEl.textContent = `${author}`;
     }
 
   // Cerrar
@@ -150,11 +145,19 @@ function ensureSummaryDialog() {
     dlg.style.display = 'none';
   });
 
+  const backBtn = dlg.querySelector('#summary-back');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) || "index.html";
+      location.href = url;
+    });
+  }
+
   // Volver al menú
-  dlg.querySelector('#summary-back').addEventListener('click', () => {
-    // ajustá la ruta si tu menú de Sartre es otro archivo/url
-    location.href = 'sartre.html';
-  });
+  // dlg.querySelector('#summary-back').addEventListener('click', () => {
+  //   // ajustá la ruta si tu menú de Sartre es otro archivo/url
+  //   location.href = 'sartre.html';
+  // });
 
   return dlg;
 }
