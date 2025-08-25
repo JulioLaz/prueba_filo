@@ -20,7 +20,7 @@
     .hunt-container { padding: 14px; }
     .hunt-paragraph {border:1px dashed #c7d2fe; border-radius:12px; padding:14px; line-height:1.75; }
     .hunt-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px; }
-    .mini { font-size:.9rem; opacity:.8 }
+    .mini { font-size:.9rem; opacity:.8; margin-top:6px; min-height:1.2em; }
 
     .token { padding:2px 3px; border-radius:6px; transition:background .15s, transform .1s; }
     .token:hover { background:rgb(90, 99, 41) }
@@ -81,9 +81,9 @@
 
   <main class="hunt-container">
     <div id="paragraph" class="hunt-paragraph" aria-live="polite"></div>
+    <div class="mini" id="hint-slot"></div>
     <div class="hunt-controls">
       <button id="prev-btn" class="secondary-btn">⬅ Anterior</button>
-      <div class="mini" id="hint-slot"></div>
       <button id="next-btn" class="primary-btn">Siguiente ➡</button>
     </div>
   </main>
