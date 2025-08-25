@@ -49,9 +49,9 @@ window.CONCEPT_HUNT_CONFIG = {
       html: `
       <p><em>El existencialismo sartreano afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una “naturaleza humana” prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
       `,
-      hint: "Fijate en pares clave: existencia/esencia, libertad/responsabilidad.",
+      hint: "Fijate en palabras clave como: existencia, esencia...",
       // Podés permitir avanzar aunque falten algunos (útil en clase)
-      advanceAfter: 2,
+      advanceAfter: 1,
       concepts: [
         { term: "existencia", meaning: "Primero existís; no hay esencia previa que te determine." },
         { term: "esencia", meaning: "No viene dada; se construye con tus elecciones." },
@@ -85,7 +85,7 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
-      advanceAfter: 2,
+      advanceAfter: 1,
       concepts: [
         { term: "Ser_en_sí", meaning: "Modo de ser de las cosas: pleno, sin proyectos ni reflexión." },
         { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
