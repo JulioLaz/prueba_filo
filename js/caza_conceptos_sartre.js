@@ -7,6 +7,7 @@ window.CONCEPT_HUNT_CONFIG = {
       <p><em>El existencialismo sartreano afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una “naturaleza humana” prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
       `,
       hint: "Fijate en pares clave: existencia/esencia, libertad/responsabilidad.",
+      advanceAfter: 2, 
       concepts: [
         {
           term: "existencia precede a la esencia",
