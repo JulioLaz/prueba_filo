@@ -194,20 +194,32 @@
 
     <!-- justo antes de </body> -->
 <script>
-  // lee el tema actual del quiz
-  const params = new URLSearchParams(location.search);
-  const temaActual = params.get('tema') || 'sartre';
+  // === Shim de parámetros para el quiz ===
+  (function () {
+    const params = new URLSearchParams(location.search);
+    // Recupera el tema (por si el engine usa otro nombre)
+    let tema = params.get('tema')
+             || params.get('theme')
+             || sessionStorage.getItem('tema_actual')
+             || localStorage.getItem('tema_actual')
+             || 'sartre';
 
-  // guarda por si volvés sin query (seguro para mobile)
-  sessionStorage.setItem('tema_actual', temaActual);
+    // Asegura que existan AMBOS parámetros (tema y theme)
+    if (!params.get('tema'))  params.set('tema', tema);
+    if (!params.get('theme')) params.set('theme', tema);
 
-  const conceptBtn = document.getElementById('concept-hunt-btn');
-  if (conceptBtn) {
-    conceptBtn.addEventListener('click', () => {
-      window.location.href = `caza_conceptos.html?tema=${encodeURIComponent(temaActual)}`; // /prueba_filo/quiz.html?theme=sartre
-    });
-  }
+    // Persiste para próximos “volver”
+    sessionStorage.setItem('tema_actual', tema);
+    localStorage.setItem('tema_actual', tema);
+
+    // Reescribe la URL con los params antes de que cargue el engine
+    const newUrl = location.pathname + '?' + params.toString();
+    if (location.search !== '?' + params.toString()) {
+      history.replaceState(null, '', newUrl);
+    }
+  })();
 </script>
+
 
 </body>
 </html>

@@ -102,15 +102,19 @@
   <div id="cooldown" class="cooldown" aria-hidden="true"></div>
 
   <!-- Motor común y configuración del tema -->
-<!-- al final del body, antes de los <script src=...> -->
+
 <script>
   const q = new URLSearchParams(location.search);
   const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
   sessionStorage.setItem('tema_actual', tema);
+  localStorage.setItem('tema_actual', tema);
+
   document.getElementById('back-btn').addEventListener('click', () => {
-    window.location.href = `quiz.html?theme=${encodeURIComponent(tema)}`; ///prueba_filo/quiz.html?theme=sartre
+    // Incluye ambos nombres por si el engine usa uno u otro
+    window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
   });
 </script>
+
 
   <script defer src="js/caza_conceptos_sartre.js"></script>
   <script defer src="js/caza_conceptos_engine.js"></script>
