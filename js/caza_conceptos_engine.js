@@ -122,11 +122,16 @@ function ensureSummaryDialog() {
         <ul id="summary-corollaries" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
       </div>
 
+<button id="summary-download" style="
+  background:#10b981;color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
+  ⬇ Descargar resumen (PNG)
+</button>
+
       <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
         <button id="summary-back" style="
           background:linear-gradient(90deg,#6d28d9,#7c3aed);
           color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
-          ⬅ Volver al menú de Sartre
+          ⬅ Volver al menú
         </button>
       </div>
     </div>
@@ -150,6 +155,7 @@ function ensureSummaryDialog() {
     backBtn.addEventListener('click', () => {
       const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) || "index.html";
       location.href = url;
+      console.log("Volviendo a", url);
     });
   }
 
