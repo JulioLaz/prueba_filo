@@ -79,7 +79,7 @@ window.CONCEPT_HUNT_CONFIG = {
         <ul>
           <li><strong>Ser_en_sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
           <li><strong>Ser_para_sí</strong>: la conciencia humana; se abre como posibilidad.</li>
-          <li><strong>La nada</strong>: distancia que la conciencia introduce y que permite elegir.</li>
+          <li>La <strong>nada</strong>: distancia que la conciencia introduce y que permite elegir.</li>
         </ul>
         <p>La <strong>libertad</strong> no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
       </div>
