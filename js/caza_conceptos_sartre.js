@@ -279,7 +279,7 @@ window.CONCEPT_HUNT_CONFIG = {
       // 2) Ontología: ser-en-sí / ser-para-sí / nada — tokens con guion para tap
       html: `
       <div class="highlight-box">
-        <h4>🧩 Ontología básica: ser-en-sí, ser-para-sí y la nada</h4>
+        <h4>🧩 Ontología básica: Ser_en_sí, Ser_para_sí y la nada</h4>
         <p>Sartre distingue niveles del ser para explicar la libertad:</p>
         <ul>
           <li><strong>Ser_en_sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
