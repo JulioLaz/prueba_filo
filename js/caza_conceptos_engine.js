@@ -15,6 +15,13 @@
   // ====== NUEVO: retardo para el modal final (ajustable) ======
   const FINAL_MODAL_DELAY_MS = 1200; // 700–1200 ms se siente bien en móvil
 
+  // Rutas de sonidos
+  const SND_CORRECT = "sound/collect_points.mp3";
+  const SND_WRONG = "sound/negative_beep.mp3";
+  const SND_LEVEL_DONE = "sound/fin_parrafo.mp3";   // <- agregá este archivo
+  const SND_GAME_DONE  = "sound/fin_caza.mp3";    // <- y este también
+
+
   // UI refs
   const paragraphEl = document.getElementById("paragraph");
   const remainingEl = document.getElementById("remaining");
@@ -56,12 +63,23 @@
       .replace(/\s+/g, " ")
       .trim();
 
-  function markLives() {
-    livesEls.forEach((el, i) => {
-      if (i < lives) el.classList.add("alive");
-      else el.classList.remove("alive");
-    });
-  }
+function markLives() {
+  livesEls.forEach((el, i) => {
+    if (i < lives) {
+      el.classList.add("alive");
+      el.textContent = "❤️";   // vida activa
+    } else {
+      el.classList.remove("alive");
+      el.textContent = "💔";   // vida perdida
+    }
+  });
+}
+  // function markLives() {
+  //   livesEls.forEach((el, i) => {
+  //     if (i < lives) el.classList.add("alive");
+  //     else el.classList.remove("alive");
+  //   });
+  // }
 
   function setCooldown(on) {
     cooldown.classList.toggle("on", on);
@@ -178,28 +196,53 @@
       .replace(/>/g, '&gt;');
   }
 
-  // ====== NUEVO: render del modal final con corolario ======
-  function showLevelCompleted(level) {
-    const corollary = Array.isArray(level.corollary) ? level.corollary : [];
+  function showLevelCompleted(level, { isLastLevel = false } = {}) {
+  const corollary = Array.isArray(level.corollary) ? level.corollary : [];
 
-    // No cerramos el sheet anterior: simplemente reemplazamos contenido
-    meaningTitle.textContent = "¡Nivel superado!";
-    // Aquí sí usamos innerHTML para poder listar el corolario
-    let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
-    if (corollary.length > 0) {
-      const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
-      html += `
-        <div class="corollary-box">
-          <h4>Frases clave del texto</h4>
-          <ul class="corollary-list">${list}</ul>
-        </div>`;
-    }
-    meaningBody.innerHTML = html;
-
-    // Aseguramos que el sheet esté visible (por si se cerró)
-    meaningSheet.classList.add("open");
-    updateNavButtons(level);
+  // 🔊 Sonido de cierre (nivel o juego completo)
+  if (isLastLevel) {
+    play(SND_GAME_DONE);
+  } else {
+    play(SND_LEVEL_DONE);
   }
+
+  meaningTitle.textContent = "¡Nivel superado!";
+  let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
+  if (corollary.length > 0) {
+    const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
+    html += `
+      <div class="corollary-box">
+        <h4>Frases clave del texto</h4>
+        <ul class="corollary-list">${list}</ul>
+      </div>`;
+  }
+  meaningBody.innerHTML = html;
+  meaningSheet.classList.add("open");
+  updateNavButtons(level);
+}
+
+  // ====== NUEVO: render del modal final con corolario ======
+  // function showLevelCompleted(level) {
+  //   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
+
+  //   // No cerramos el sheet anterior: simplemente reemplazamos contenido
+  //   meaningTitle.textContent = "¡Nivel superado!";
+  //   // Aquí sí usamos innerHTML para poder listar el corolario
+  //   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
+  //   if (corollary.length > 0) {
+  //     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
+  //     html += `
+  //       <div class="corollary-box">
+  //         <h4>Frases clave del texto</h4>
+  //         <ul class="corollary-list">${list}</ul>
+  //       </div>`;
+  //   }
+  //   meaningBody.innerHTML = html;
+
+  //   // Aseguramos que el sheet esté visible (por si se cerró)
+  //   meaningSheet.classList.add("open");
+  //   updateNavButtons(level);
+  // }
 
   function onCorrect(token, level, keyNorm) {
     if (token.classList.contains("correct")) return;
@@ -208,6 +251,7 @@
 
     const concept = level.concepts.find(c => normalize(c.term) === keyNorm);
     if (concept) {
+      play(SND_CORRECT); // 🔊 ACERTO      
       // 1) Mostrar significado del acierto (último también)
       showMeaning(concept.term, concept.meaning);
     }
@@ -222,34 +266,67 @@
     if (foundSet.size >= total) {
       setCooldown(false);
 
+          // ¿este es el último párrafo del tema?
+    const isLastLevel = idx >= (CFG.levels.length - 1);
+
+    setTimeout(() => {
+      showLevelCompleted(level, { isLastLevel }); // ← le pasamos el flag
+    }, FINAL_MODAL_DELAY_MS);
       // ====== NUEVO: Retardo para dejar ver el último meaning antes del modal final ======
-      setTimeout(() => {
-        showLevelCompleted(level);
-      }, FINAL_MODAL_DELAY_MS);
+      // setTimeout(() => {
+      //   showLevelCompleted(level);
+      // }, FINAL_MODAL_DELAY_MS);
     }
   }
 
   let cooling = false;
+
   function onWrong(token) {
-    if (cooling) return;
-    token.classList.add("wrong", "shake");
-    setTimeout(() => token.classList.remove("shake"), 250);
-    play("data:audio/mp3;base64,//uQxAA..."); // (silencioso por defecto)
-    streak = 0;
-    lives = Math.max(0, lives - 1);
-    markLives();
-    if (lives === 0) {
-      // cooldown anti-clicks
-      cooling = true;
-      setCooldown(true);
-      setTimeout(() => {
-        setCooldown(false);
-        cooling = false;
-        lives = 3; // restaurar vidas para seguir practicando
-        markLives();
-      }, 1500);
-    }
+  if (cooling) return;
+  token.classList.add("wrong", "shake");
+  setTimeout(() => token.classList.remove("shake"), 250);
+
+  play(SND_WRONG); // 🔊 ERROR
+
+  streak = 0;
+  lives = Math.max(0, lives - 1);
+  markLives();
+  if (lives === 0) {
+    cooling = true;
+    setCooldown(true);
+    setTimeout(() => {
+      setCooldown(false);
+      cooling = false;
+      lives = 3;
+      markLives();
+    }, 1500);
   }
+}
+
+//   function onWrong(token) {
+//     if (cooling) return;
+//     token.classList.add("wrong", "shake");
+//     setTimeout(() => token.classList.remove("shake"), 250);
+//     // play("data:audio/mp3;base64,//uQxAA...");
+//     play("sound/negative_beep.mp3");
+//     play("sound/collect_points.mp3");
+
+//  // (silencioso por defecto)
+//     streak = 0;
+//     lives = Math.max(0, lives - 1);
+//     markLives();
+//     if (lives === 0) {
+//       // cooldown anti-clicks
+//       cooling = true;
+//       setCooldown(true);
+//       setTimeout(() => {
+//         setCooldown(false);
+//         cooling = false;
+//         lives = 3; // restaurar vidas para seguir practicando
+//         markLives();
+//       }, 1500);
+//     }
+//   }
 
   function onTokenTap(token, level) {
     if (cooling) return;
