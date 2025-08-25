@@ -286,7 +286,7 @@ window.CONCEPT_HUNT_CONFIG = {
           <li><strong>Ser-para-sí (pour-soi)</strong>: la conciencia humana; se abre como posibilidad.</li>
           <li><strong>La nada (néant)</strong>: distancia que la conciencia introduce y que permite elegir.</li>
         </ul>
-        <p>La libertad no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
+        <p>La <strong>libertad</strong> no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
       </div>
       `,
       hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
@@ -316,6 +316,7 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Diferenciá lo dado y lo que proyectás sobre ello.",
+      advanceAfter: 1,
       concepts: [
         { term: "facticidad", meaning: "Lo dado: cuerpo, pasado, situación." },
         { term: "trascendencia", meaning: "Superar lo dado mediante tu proyecto; reinterpretar la facticidad." },
@@ -331,15 +332,16 @@ window.CONCEPT_HUNT_CONFIG = {
       // 4) Mala fe vs autenticidad — tokens únicos para móvil
       html: `
       <div class="highlight-box">
-        <h4>🪞 Mala fe (autoengaño) vs. autenticidad</h4>
+        <h4>🪞 Mala fe (<strong>autoengaño</strong>) vs. <strong>autenticida</strong>)</h4>
         <p><strong>Mala fe</strong>: estrategia para escapar de la angustia negando mi libertad; <strong>autenticidad</strong>: asumirla y responder por mis actos.</p>
         <ul>
-          <li><em>Ejemplo del camarero</em>: se oculta en el rol para no decidir más allá del guion.</li>
+          <li><em>Ejemplo del camarero</em>: se oculta en el <strong>ro</strong>) para no decidir más allá del guion.</li>
           <li><em>Ejemplo de la pareja</em>: evita reconocer su elección afectiva.</li>
         </ul>
       </div>
       `,
       hint: "¿Dónde te escondés para no elegir? Eso es mala fe.",
+      advanceAfter: 1,
       concepts: [
         { term: "autoengaño", meaning: "Mecanismo de evasión: ‘no pude’, ‘me hicieron’." },
         { term: "autenticidad", meaning: "Asumir tu libertad situada y sostener un proyecto propio." },
@@ -360,10 +362,11 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Atendé a ‘mirada’ y ‘objetivación’.",
+      advanceAfter: 1,
       concepts: [
         { term: "mirada", meaning: "Me descubro como objeto ante la conciencia ajena." },
-        { term: "objetivacion", meaning: "Ser reducido a cosa; perder la vivencia de proyecto libre." }, // sin tilde para normalizar
-        { term: "intersubjetividad", meaning: "Cruce de libertades: conflicto, reconocimiento, co-creación." },
+        { term: "objetivarnos", meaning: "objetivacion: Ser reducido a cosa; perder la vivencia de proyecto libre." }, // sin tilde para normalizar
+        { term: "revela", meaning: "intersubjetividad: Cruce de libertades: conflicto, reconocimiento, co-creación." },
       ],
       corollary: [
         "la mirada del Otro me revela como objeto",
@@ -376,13 +379,14 @@ window.CONCEPT_HUNT_CONFIG = {
       html: `
       <div class="highlight-box">
         <h4>🧠 Ética existencial</h4>
-        <p>Sin reglas dadas, <strong>decidir</strong> crea valor. En el acto proponés una imagen de humanidad para cualquiera en situación semejante.</p>
+        <p>Sin reglas dadas, <strong>decidir</strong> crea <strong>valor</strong>. En el acto proponés una imagen de humanidad para cualquiera en situación semejante.</p>
       </div>
       `,
       hint: "Elegir = instituir valor (para vos y como ejemplo).",
+      advanceAfter: 1,
       concepts: [
         { term: "decidir", meaning: "El acto funda valor, no lo recibe hecho." },
-        { term: "valores", meaning: "Instituidos por la acción, no heredados sin más." },
+        { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },
         { term: "universalidad", meaning: "Lo que elegís propone ejemplo a otros." },
         { term: "responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
       ],
