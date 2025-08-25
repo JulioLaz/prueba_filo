@@ -38,6 +38,113 @@
   const livesEls = Array.from(document.querySelectorAll(".life"));
   const hintSlot = document.getElementById("hint-slot");
 
+// modal final
+// Aparece el resumen un ratito después del modal final:
+const SUMMARY_DIALOG_DELAY_MS = 900;
+
+// Construye el dataset de resumen desde la config
+function buildSummaryData(cfg) {
+  const keywords = [];
+  const corollaries = [];
+  cfg.levels.forEach(lv => {
+    (lv.concepts || []).forEach(c => {
+      if (c && c.term) keywords.push(String(c.term));
+    });
+    if (Array.isArray(lv.corollary)) {
+      lv.corollary.forEach(fr => { if (fr) corollaries.push(String(fr)); });
+    }
+  });
+  return {
+    keywords,
+    corollaries
+  };
+}
+
+// Crea el cuadro de diálogo si no existe
+function ensureSummaryDialog() {
+  let dlg = document.getElementById('summary-dialog');
+  if (dlg) return dlg;
+
+  dlg = document.createElement('div');
+  dlg.id = 'summary-dialog';
+  dlg.style.position = 'fixed';
+  dlg.style.inset = '0';
+  dlg.style.background = 'rgba(0,0,0,.45)';
+  dlg.style.display = 'none';
+  dlg.style.alignItems = 'center';
+  dlg.style.justifyContent = 'center';
+  dlg.style.zIndex = '9999';
+
+  dlg.innerHTML = `
+    <div class="summary-card" style="
+      width:min(720px,92vw);
+      max-height:85vh;
+      overflow:auto;
+      background:#111827;
+      color:#e5e7eb;
+      border-radius:16px;
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      padding:20px 22px;
+      border:1px solid rgba(255,255,255,.08);
+    ">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <h3 style="margin:0;font-size:1.25rem;">📚 Resumen de la caza de conceptos</h3>
+        <button id="summary-close" style="
+          background:#1f2937;color:#e5e7eb;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;">
+          Cerrar
+        </button>
+      </div>
+
+      <div style="margin-top:14px;">
+        <h4 style="margin:.25rem 0 .5rem 0;">Palabras clave</h4>
+        <ul id="summary-keywords" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
+
+        <h4 style="margin:.25rem 0 .5rem 0;">Frases del corolario</h4>
+        <ul id="summary-corollaries" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
+      </div>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
+        <button id="summary-back" style="
+          background:linear-gradient(90deg,#6d28d9,#7c3aed);
+          color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
+          ⬅ Volver al menú de Sartre
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(dlg);
+
+  // Cerrar
+  dlg.querySelector('#summary-close').addEventListener('click', () => {
+    dlg.style.display = 'none';
+  });
+
+  // Volver al menú
+  dlg.querySelector('#summary-back').addEventListener('click', () => {
+    // ajustá la ruta si tu menú de Sartre es otro archivo/url
+    location.href = 'sartre.html';
+  });
+
+  return dlg;
+}
+
+// Rellena y muestra el cuadro
+function showSummaryDialog(cfg) {
+  const dlg = ensureSummaryDialog();
+  const { keywords, corollaries } = buildSummaryData(cfg);
+
+  const kwEl = dlg.querySelector('#summary-keywords');
+  const coEl = dlg.querySelector('#summary-corollaries');
+
+  kwEl.innerHTML = keywords.map(k => `<li>${escapeHtml(k)}</li>`).join('');
+  coEl.innerHTML = corollaries.map(f => `<li>${escapeHtml(f)}</li>`).join('');
+
+  dlg.style.display = 'flex';
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~fin modal resumen
+
+
   // Estado global
   let idx = 0; // párrafo actual
   let foundSet = new Set(); // conceptos encontrados en este párrafo
@@ -195,10 +302,10 @@ function markLives() {
       .replace(/>/g, '&gt;');
   }
 
-  function showLevelCompleted(level, { isLastLevel = false } = {}) {
+function showLevelCompleted(level, { isLastLevel = false } = {}) {
   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
 
-  // 🔊 Sonido de cierre (nivel o juego completo)
+  // Sonido de cierre (nivel o juego completo)
   if (isLastLevel) {
     play(SND_GAME_DONE);
   } else {
@@ -217,8 +324,43 @@ function markLives() {
   }
   meaningBody.innerHTML = html;
   meaningSheet.classList.add("open");
-  updateNavButtons(level);
+
+  // Botones (deshabilita “Siguiente” si es el último)
+  updateNavButtons(level, { isLastLevel });
+
+  // 👉 Al terminar todo, mostramos el cuadro de resumen pasado un pequeño delay
+  if (isLastLevel) {
+    setTimeout(() => {
+      showSummaryDialog(CFG);
+    }, SUMMARY_DIALOG_DELAY_MS);
+  }
 }
+
+
+//   function showLevelCompleted(level, { isLastLevel = false } = {}) {
+//   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
+
+//   // 🔊 Sonido de cierre (nivel o juego completo)
+//   if (isLastLevel) {
+//     play(SND_GAME_DONE);
+//   } else {
+//     play(SND_LEVEL_DONE);
+//   }
+
+//   meaningTitle.textContent = "¡Nivel superado!";
+//   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
+//   if (corollary.length > 0) {
+//     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
+//     html += `
+//       <div class="corollary-box">
+//         <h4>Frases clave del texto</h4>
+//         <ul class="corollary-list">${list}</ul>
+//       </div>`;
+//   }
+//   meaningBody.innerHTML = html;
+//   meaningSheet.classList.add("open");
+//   updateNavButtons(level);
+// }
 
   // ====== NUEVO: render del modal final con corolario ======
   // function showLevelCompleted(level) {
