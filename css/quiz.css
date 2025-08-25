@@ -919,3 +919,8 @@ button:focus-visible,
         --text-secondary: #cccccc;
     }
 }
+
+li{
+    margin-left: 20px;
+    color: aliceblue
+}
