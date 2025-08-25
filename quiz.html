@@ -181,7 +181,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/quiz-engine.js"></script>
 
     <!-- <script>
     const conceptBtn = document.getElementById("concept-hunt-btn");
@@ -192,27 +191,40 @@
     }
     </script> -->
 
-    <!-- justo antes de </body> -->
 <script>
-  // === Shim de parámetros para el quiz ===
+  const params = new URLSearchParams(location.search);
+  const temaActual = params.get('theme') || params.get('tema') || 'sartre';
+  sessionStorage.setItem('tema_actual', temaActual);
+
+  const conceptBtn = document.getElementById('concept-hunt-btn');
+  if (conceptBtn) {
+    conceptBtn.addEventListener('click', () => {
+      // pasamos ambos nombres para evitar conflictos
+      window.location.href = `caza_conceptos.html?tema=${encodeURIComponent(temaActual)}&theme=${encodeURIComponent(temaActual)}`;
+    });
+  }
+</script>
+
+
+<script>
+  // Shim de parámetros para el quiz
   (function () {
     const params = new URLSearchParams(location.search);
-    // Recupera el tema (por si el engine usa otro nombre)
     let tema = params.get('tema')
              || params.get('theme')
              || sessionStorage.getItem('tema_actual')
              || localStorage.getItem('tema_actual')
-             || 'sartre';
+             || 'sartre'; // valor por defecto para pruebas
 
-    // Asegura que existan AMBOS parámetros (tema y theme)
+    // Garantiza que existan ambos parámetros
     if (!params.get('tema'))  params.set('tema', tema);
     if (!params.get('theme')) params.set('theme', tema);
 
-    // Persiste para próximos “volver”
+    // Persiste para futuros "volver"
     sessionStorage.setItem('tema_actual', tema);
     localStorage.setItem('tema_actual', tema);
 
-    // Reescribe la URL con los params antes de que cargue el engine
+    // Actualiza la URL antes de que cargue el engine
     const newUrl = location.pathname + '?' + params.toString();
     if (location.search !== '?' + params.toString()) {
       history.replaceState(null, '', newUrl);
@@ -220,6 +232,7 @@
   })();
 </script>
 
+<script src="js/quiz-engine.js"></script>
 
 </body>
 </html>
