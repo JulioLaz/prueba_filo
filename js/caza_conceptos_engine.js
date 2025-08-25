@@ -40,6 +40,13 @@
 
 // modal final
 // Aparece el resumen un ratito después del modal final:
+
+// Tras crear el diálogo:
+// const authorEl = dlg.querySelector('#summary-author');
+// const author = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.author) || "Jean-Paul Sartre";
+// authorEl.textContent = `Autor: ${author}`;
+
+
 const SUMMARY_DIALOG_DELAY_MS = 900;
 
 // Construye el dataset de resumen desde la config
@@ -48,7 +55,12 @@ function buildSummaryData(cfg) {
   const corollaries = [];
   cfg.levels.forEach(lv => {
     (lv.concepts || []).forEach(c => {
-      if (c && c.term) keywords.push(String(c.term));
+      if (c && c.term) {
+        keywords.push({
+          term: String(c.term),
+          meaning: c.meaning ? String(c.meaning) : ""
+        });
+      }
     });
     if (Array.isArray(lv.corollary)) {
       lv.corollary.forEach(fr => { if (fr) corollaries.push(String(fr)); });
@@ -59,6 +71,7 @@ function buildSummaryData(cfg) {
     corollaries
   };
 }
+
 
 // Crea el cuadro de diálogo si no existe
 function ensureSummaryDialog() {
@@ -89,6 +102,17 @@ function ensureSummaryDialog() {
     ">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
         <h3 style="margin:0;font-size:1.25rem;">📚 Resumen de la caza de conceptos</h3>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <h3 style="margin:0;font-size:1.25rem;display:flex;gap:.5rem;align-items:center;">
+          📚 Resumen de la caza de conceptos
+          <span id="summary-author" style="font-size:.9rem;background:#0f172a;color:#a3e635;border:1px solid #3f6212;border-radius:8px;padding:2px 8px;"></span>
+        </h3>
+        <button id="summary-close" style="
+          background:#1f2937;color:#e5e7eb;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;">
+          Cerrar
+        </button>
+      </div>
+
         <button id="summary-close" style="
           background:#1f2937;color:#e5e7eb;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;">
           Cerrar
@@ -114,6 +138,13 @@ function ensureSummaryDialog() {
   `;
   document.body.appendChild(dlg);
 
+    // 👇 Aquí colocás lo que preguntabas:
+    const authorEl = dlg.querySelector('#summary-author');
+    if (authorEl) {
+      const author = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.author) || "Jean-Paul Sartre";
+      authorEl.textContent = `Autor: ${author}`;
+    }
+
   // Cerrar
   dlg.querySelector('#summary-close').addEventListener('click', () => {
     dlg.style.display = 'none';
@@ -136,11 +167,17 @@ function showSummaryDialog(cfg) {
   const kwEl = dlg.querySelector('#summary-keywords');
   const coEl = dlg.querySelector('#summary-corollaries');
 
-  kwEl.innerHTML = keywords.map(k => `<li>${escapeHtml(k)}</li>`).join('');
-  coEl.innerHTML = corollaries.map(f => `<li>${escapeHtml(f)}</li>`).join('');
+  kwEl.innerHTML = keywords
+    .map(k => `<li><strong>${escapeHtml(k.term)}:</strong> ${escapeHtml(k.meaning)}</li>`)
+    .join('');
+
+  coEl.innerHTML = corollaries
+    .map(f => `<li>${escapeHtml(f)}</li>`)
+    .join('');
 
   dlg.style.display = 'flex';
 }
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~fin modal resumen
 

@@ -41,7 +41,8 @@ window.CONCEPT_HUNT_CONFIG = {
   // allowOnlyDefined: true,         // Restringir a términos definidos en cada nivel
   // mobileSelectionGuard: true,     // Aplicar isValidMobileSelection en onSelect
   // isValidSelectionFn: isValidMobileSelection,
-
+// AUTOR
+  author: "Jean-Paul Sartre",
   // Niveles
   levels: [
     {
