@@ -21,7 +21,6 @@
   const SND_LEVEL_DONE = "sound/fin_parrafo.mp3";   // <- agregá este archivo
   const SND_GAME_DONE  = "sound/fin_caza.mp3";    // <- y este también
 
-
   // UI refs
   const paragraphEl = document.getElementById("paragraph");
   const remainingEl = document.getElementById("remaining");
@@ -195,15 +194,28 @@ function markLives() {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
   }
+// ====== NUEVO: render del modal final con corolario ======
+const total = level.concepts.length;
+if (foundSet.size >= total) {
+  setCooldown(false);
 
-  function showLevelCompleted(level, { isLastLevel = false } = {}) {
+  // ¿este es el último párrafo del tema?
+  const isLastLevel = idx >= (CFG.levels.length - 1);
+
+  setTimeout(() => {
+    showLevelCompleted(level, { isLastLevel }); // ← pasamos el flag
+  }, FINAL_MODAL_DELAY_MS);
+}
+// ========================================
+
+function showLevelCompleted(level, { isLastLevel = false } = {}) {
   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
 
   // 🔊 Sonido de cierre (nivel o juego completo)
   if (isLastLevel) {
-    play(SND_GAME_DONE);
+    play(SND_GAME_DONE);       // << sonido de “victoria final”
   } else {
-    play(SND_LEVEL_DONE);
+    play(SND_LEVEL_DONE);      // << sonido de “nivel superado”
   }
 
   meaningTitle.textContent = "¡Nivel superado!";
@@ -217,32 +229,41 @@ function markLives() {
       </div>`;
   }
   meaningBody.innerHTML = html;
+
   meaningSheet.classList.add("open");
-  updateNavButtons(level);
+
+  // 🟣 IMPORTANTE: actualizar botones aquí también
+  updateNavButtons(level, { isLastLevel });
 }
 
-  // ====== NUEVO: render del modal final con corolario ======
-  // function showLevelCompleted(level) {
-  //   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
 
-  //   // No cerramos el sheet anterior: simplemente reemplazamos contenido
-  //   meaningTitle.textContent = "¡Nivel superado!";
-  //   // Aquí sí usamos innerHTML para poder listar el corolario
-  //   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
-  //   if (corollary.length > 0) {
-  //     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
-  //     html += `
-  //       <div class="corollary-box">
-  //         <h4>Frases clave del texto</h4>
-  //         <ul class="corollary-list">${list}</ul>
-  //       </div>`;
-  //   }
-  //   meaningBody.innerHTML = html;
 
-  //   // Aseguramos que el sheet esté visible (por si se cerró)
-  //   meaningSheet.classList.add("open");
-  //   updateNavButtons(level);
-  // }
+//   function showLevelCompleted(level, { isLastLevel = false } = {}) {
+//   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
+
+//   // 🔊 Sonido de cierre (nivel o juego completo)
+//   if (isLastLevel) {
+//     play(SND_GAME_DONE);
+//   } else {
+//     play(SND_LEVEL_DONE);
+//   }
+
+//   meaningTitle.textContent = "¡Nivel superado!";
+//   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
+//   if (corollary.length > 0) {
+//     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
+//     html += `
+//       <div class="corollary-box">
+//         <h4>Frases clave del texto</h4>
+//         <ul class="corollary-list">${list}</ul>
+//       </div>`;
+//   }
+//   meaningBody.innerHTML = html;
+//   meaningSheet.classList.add("open");
+//   updateNavButtons(level);
+// }
+
+
 
   function onCorrect(token, level, keyNorm) {
     if (token.classList.contains("correct")) return;
@@ -363,15 +384,34 @@ function markLives() {
   });
 
   // nueva funcion
-  function updateNavButtons(level) {
-    prevBtn.disabled = idx === 0;
+  function updateNavButtons(level, { isLastLevel = (idx >= CFG.levels.length - 1) } = {}) {
+  prevBtn.disabled = idx === 0;
 
-    const threshold = getAdvanceThreshold(level);
-    const completos = foundSet.size >= threshold;
-    const isLast = idx >= (CFG.levels.length - 1);
+  const threshold = getAdvanceThreshold(level);
+  const completos = foundSet.size >= threshold;
 
-    nextBtn.disabled = !completos || isLast;
+  // Regla general: siguiente solo si cumpliste el umbral y NO es el último
+  nextBtn.disabled = !completos || isLastLevel;
+
+  // Ajustes de etiqueta para UX
+  if (isLastLevel) {
+    nextBtn.textContent = "Finalizado";  // o "✔ Listo"
+    nextBtn.classList.add("disabled");   // por si tenés estilos
+  } else {
+    nextBtn.textContent = "SIGUIENTE ➜";
+    nextBtn.classList.remove("disabled");
   }
+}
+
+  // function updateNavButtons(level) {
+  //   prevBtn.disabled = idx === 0;
+
+  //   const threshold = getAdvanceThreshold(level);
+  //   const completos = foundSet.size >= threshold;
+  //   const isLast = idx >= (CFG.levels.length - 1);
+
+  //   nextBtn.disabled = !completos || isLast;
+  // }
 
   // Inicio
   renderLevel();
