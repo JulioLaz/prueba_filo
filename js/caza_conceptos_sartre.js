@@ -74,11 +74,11 @@ window.CONCEPT_HUNT_CONFIG = {
       // 2) Ontología: ser-en-sí / ser-para-sí / nada — tokens con guion para tap
       html: `
       <div class="highlight-box">
-        <h4>🧩 Ontología básica: Ser_en_sí, Ser_para_sí y la nada</h4>
+        <h4>🧩 Ontología básica: Ser en sí, Ser para sí y la nada</h4>
         <p>Sartre distingue niveles del ser para explicar la libertad:</p>
         <ul>
-          <li><strong>Ser_en_sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
-          <li><strong>Ser_para_sí</strong>: la conciencia humana; se abre como posibilidad.</li>
+          <li><strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
+          <li><strong>Ser para sí</strong>: la conciencia humana; se abre como posibilidad.</li>
           <li>La <strong>nada</strong>: distancia que la conciencia introduce y que permite elegir.</li>
         </ul>
         <p>La <strong>libertad</strong> no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
@@ -87,8 +87,8 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
       advanceAfter: 1,
       concepts: [
-        { term: "Ser_en_sí", meaning: "Modo de ser de las cosas: pleno, sin proyectos ni reflexión." },
-        { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
+        { term: "Ser", meaning: 'Ser-en-sí: Modo de ser de las cosas: pleno, sin proyectos ni reflexión./nSer-para-sí: Conciencia humana: apertura, posibilidad, proyecto, auto-superación.' },
+        // { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         { term: "nada", meaning: "Nada: Hiato que introduce la conciencia y que hace posible elegir." },
         { term: "libertad", meaning: "Libertad: Estructura del para-sí, no un extra añadido." },
       ],
