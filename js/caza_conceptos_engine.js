@@ -52,6 +52,9 @@
       .replace(/\s+/g, " ")
       .trim();
 
+
+
+
   function markLives() {
     livesEls.forEach((el, i) => {
       if (i < lives) el.classList.add("alive");
@@ -62,6 +65,14 @@
   function setCooldown(on) {
     cooldown.classList.toggle("on", on);
   }
+
+function getAdvanceThreshold(level) {
+  if (typeof level.advanceAfter === 'number' && level.advanceAfter > 0) {
+    return Math.min(level.advanceAfter, level.concepts.length);
+  }
+  return level.concepts.length; // por defecto: completar todos
+}
+
 
   function updateHeader(level) {
     levelLabelEl.textContent = `Párrafo ${idx + 1}/${CFG.levels.length}`;
@@ -96,32 +107,60 @@
 
   // Envuelve palabras restantes (para feedback en rojo si tocan algo irrelevante)
   function wrapRemainingWords(container) {
-    // Para cada nodo de texto, dividir en palabras y envolver
-    const walker = document.createTreeWalker(
-      container,
-      NodeFilter.SHOW_TEXT,
-      null
-    );
-    const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
 
-    textNodes.forEach((node) => {
-      const txt = node.nodeValue;
-      if (!txt.trim()) return;
-      const frag = document.createDocumentFragment();
-      txt.split(/(\s+)/).forEach((chunk) => {
-        if (/\s+/.test(chunk)) {
-          frag.appendChild(document.createTextNode(chunk));
-        } else {
-          const span = document.createElement("span");
-          span.className = "token";
-          span.textContent = chunk;
-          frag.appendChild(span);
-        }
-      });
-      node.parentNode.replaceChild(frag, node);
+  textNodes.forEach((node) => {
+    // ⛔️ No tocar texto que esté dentro de un token ya marcado
+    if (node.parentElement && node.parentElement.closest('.token')) return;
+
+    const txt = node.nodeValue;
+    if (!txt || !txt.trim()) return;
+
+    const frag = document.createDocumentFragment();
+    txt.split(/(\s+)/).forEach((chunk) => {
+      if (/\s+/.test(chunk)) {
+        frag.appendChild(document.createTextNode(chunk));
+      } else {
+        const span = document.createElement('span');
+        span.className = 'token';
+        span.textContent = chunk;
+        frag.appendChild(span);
+      }
     });
-  }
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+
+  
+  // function wrapRemainingWords(container) {
+  //   // Para cada nodo de texto, dividir en palabras y envolver
+  //   const walker = document.createTreeWalker(
+  //     container,
+  //     NodeFilter.SHOW_TEXT,
+  //     null
+  //   );
+  //   const textNodes = [];
+  //   while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  //   textNodes.forEach((node) => {
+  //     const txt = node.nodeValue;
+  //     if (!txt.trim()) return;
+  //     const frag = document.createDocumentFragment();
+  //     txt.split(/(\s+)/).forEach((chunk) => {
+  //       if (/\s+/.test(chunk)) {
+  //         frag.appendChild(document.createTextNode(chunk));
+  //       } else {
+  //         const span = document.createElement("span");
+  //         span.className = "token";
+  //         span.textContent = chunk;
+  //         frag.appendChild(span);
+  //       }
+  //     });
+  //     node.parentNode.replaceChild(frag, node);
+  //   });
+  // }
 
   function renderLevel() {
     const level = CFG.levels[idx];
@@ -161,31 +200,54 @@
     meaningSheet.classList.remove("open");
   });
 
-  function onCorrect(token, level, keyNorm) {
-    if (token.classList.contains("correct")) return; // ya marcado
-    token.classList.add("correct");
-    play("data:audio/mp3;base64,//uQxAA..."); // (silencioso por defecto)
-    streak++;
-    const concept = level.concepts.find(
-      (c) => normalize(c.term) === keyNorm
-    );
-    if (concept) showMeaning(concept.term, concept.meaning);
-    foundSet.add(keyNorm);
-    updateHeader(level);
-    updateNavButtons(level);
+  // function onCorrect(token, level, keyNorm) {
+  //   if (token.classList.contains("correct")) return; // ya marcado
+  //   token.classList.add("correct");
+  //   play("data:audio/mp3;base64,//uQxAA..."); // (silencioso por defecto)
+  //   streak++;
+  //   const concept = level.concepts.find(
+  //     (c) => normalize(c.term) === keyNorm
+  //   );
+  //   if (concept) showMeaning(concept.term, concept.meaning);
+  //   foundSet.add(keyNorm);
+  //   updateHeader(level);
+  //   updateNavButtons(level);
 
-    // si completó el párrafo
-    if (foundSet.size === level.concepts.length) {
-      // pequeño “premio”
-      setTimeout(() => {
-        meaningTitle.textContent = "¡Nivel superado!";
-        meaningBody.textContent =
-          "Cazaste todos los conceptos clave. Avanzá al siguiente párrafo o pasá a Frase-síntesis cuando termines.";
-        meaningSheet.classList.add("open");
-          updateNavButtons(level);
-      }, 250);
-    }
+  //   // si completó el párrafo
+  //   if (foundSet.size === level.concepts.length) {
+  //     // pequeño “premio”
+  //     setTimeout(() => {
+  //       meaningTitle.textContent = "¡Nivel superado!";
+  //       meaningBody.textContent =
+  //         "Cazaste todos los conceptos clave. Avanzá al siguiente párrafo o pasá a Frase-síntesis cuando termines.";
+  //       meaningSheet.classList.add("open");
+  //         updateNavButtons(level);
+  //     }, 250);
+  //   }
+  // }
+function onCorrect(token, level, keyNorm) {
+  if (token.classList.contains("correct")) return;
+  token.classList.add("correct");
+  streak++;
+  const concept = level.concepts.find(c => normalize(c.term) === keyNorm);
+  if (concept) showMeaning(concept.term, concept.meaning);
+  foundSet.add(keyNorm);
+
+  updateHeader(level);
+  updateNavButtons(level);
+
+  if (foundSet.size >= level.concepts.length) {
+    setCooldown(false);
+    setTimeout(() => {
+      meaningTitle.textContent = "¡Nivel superado!";
+      meaningBody.textContent = "Cazaste todos los conceptos clave. Podés avanzar.";
+      meaningSheet.classList.add("open");
+      updateNavButtons(level);
+    }, 250);
   }
+}
+
+
 
   let cooling = false;
   function onWrong(token) {
@@ -210,16 +272,27 @@
   }
 
   function onTokenTap(token, level) {
-    if (cooling) return;
-    const isCorrect = token.dataset.correct === "1";
-    if (isCorrect) {
-      const keyNorm = token.dataset.key || "";
-      const decoded = decodeURIComponent(keyNorm);
-      onCorrect(token, level, decoded);
-    } else {
-      onWrong(token);
-    }
+  if (cooling) return;
+  const isCorrect = token.dataset.correct === "1";
+  if (isCorrect) {
+    const keyNorm = decodeURIComponent(token.dataset.key || "").trim();
+    onCorrect(token, level, keyNorm);
+  } else {
+    onWrong(token);
   }
+}
+
+  // function onTokenTap(token, level) {
+  //   if (cooling) return;
+  //   const isCorrect = token.dataset.correct === "1";
+  //   if (isCorrect) {
+  //     const keyNorm = token.dataset.key || "";
+  //     const decoded = decodeURIComponent(keyNorm);
+  //     onCorrect(token, level, decoded);
+  //   } else {
+  //     onWrong(token);
+  //   }
+  // }
 
    prevBtn.addEventListener("click", () => {
    if (idx > 0) {
@@ -228,14 +301,26 @@
    }
    });
 
-   nextBtn.addEventListener("click", () => {
-   const level = CFG.levels[idx];
-   if (foundSet.size < level.concepts.length) return; // no avanza si no completó
-   if (idx < CFG.levels.length - 1) {
-      idx++;
-      renderLevel();
-   }
-   });
+nextBtn.addEventListener("click", () => {
+  const level = CFG.levels[idx];
+  const threshold = getAdvanceThreshold(level);
+  if (foundSet.size < threshold) return; // doble seguridad
+
+  if (idx < CFG.levels.length - 1) {
+    idx++;
+    renderLevel();
+  }
+});
+
+
+  //  nextBtn.addEventListener("click", () => {
+  //  const level = CFG.levels[idx];
+  //  if (foundSet.size < level.concepts.length) return; // no avanza si no completó
+  //  if (idx < CFG.levels.length - 1) {
+  //     idx++;
+  //     renderLevel();
+  //  }
+  //  });
 
 
 //   prevBtn.addEventListener("click", () => {
@@ -258,18 +343,27 @@
   });
 
 // nueva fucncion
+function updateNavButtons(level) {
+  prevBtn.disabled = idx === 0;
 
-   function updateNavButtons(level) {
-   // Prev inhabilitado en el primer párrafo
-   prevBtn.disabled = idx === 0;
+  const threshold = getAdvanceThreshold(level);
+  const completos = foundSet.size >= threshold;
+  const isLast = idx >= (CFG.levels.length - 1);
 
-   const total = level.concepts.length;
-   const completos = foundSet.size >= total;
-   const isLast = idx >= (CFG.levels.length - 1);
+  nextBtn.disabled = !completos || isLast;
+}
 
-   // Next inhabilitado si no completó o si está en el último
-   nextBtn.disabled = !completos || isLast;
-   }
+  //  function updateNavButtons(level) {
+  //  // Prev inhabilitado en el primer párrafo
+  //  prevBtn.disabled = idx === 0;
+
+  //  const total = level.concepts.length;
+  //  const completos = foundSet.size >= total;
+  //  const isLast = idx >= (CFG.levels.length - 1);
+
+  //  // Next inhabilitado si no completó o si está en el último
+  //  nextBtn.disabled = !completos || isLast;
+  //  }
 
   // Inicio
   renderLevel();
