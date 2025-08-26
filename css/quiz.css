@@ -301,7 +301,7 @@ body::before {
     border-radius: var(--radius-lg);
     padding: var(--space-xl);
     box-shadow: var(--shadow-md);
-    max-width: 600px;
+    /* max-width: 600px; */
     margin: 0 auto;
 }
 

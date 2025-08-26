@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Hub del Tema</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
+  <style>
+  :root{
+    --bg:#0b1220; --panel:#121a2b; --muted:#7b88a8; --text:#eaf0ff;
+    --brand:#6b7cff; --brand-2:#9b6bff; --ok:#2dd4bf; --card:#0f172a;
+    --ring:rgba(107,124,255,.35); --radius:18px;
+  }
+
+  *{ box-sizing:border-box }
+  html,body{ height:100% }
+  body{
+    margin:0;
+    background:radial-gradient(1200px 500px at 70% -100px, rgba(107,124,255,.2), transparent 60%), var(--bg);
+    color:var(--text);
+    font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .container{ max-width:1100px; margin:0 auto; padding:20px }
+
+  header{ display:flex; align-items:center; gap:16px; justify-content:space-between; margin-bottom:18px }
+  .left{ display:flex; align-items:center; gap:12px }
+  .back{ background:transparent; border:1px solid #273250; color:var(--text); padding:10px 14px; border-radius:999px; cursor:pointer }
+  .back:hover{ border-color:#3b4a73 }
+  .title{ display:flex; align-items:center; gap:12px }
+  .title .icon{ font-size:28px }
+  .chip{ padding:6px 10px; border-radius:999px; background:#1c2540; color:#9fb0ff; border:1px solid #2a3763; font-size:12px }
+
+  .hero{ background:linear-gradient(135deg,rgba(107,124,255,.14), rgba(155,107,255,.10)); border:1px solid #25305a; border-radius:var(--radius); padding:18px; margin-bottom:18px }
+  .hero h1{ margin:0 0 6px; font-size:22px }
+  .muted{ color:var(--muted) }
+
+  .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
+  @media (max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+  @media (max-width:560px){ .grid{ grid-template-columns:1fr } }
+
+  .card{
+    position:relative; background:linear-gradient(180deg,#0f1629 0%, #0b1220 100%);
+    border:1px solid #1f2a4a; border-radius:var(--radius); padding:18px;
+    display:flex; flex-direction:column; gap:10px; min-height:170px;
+    transition:.25s transform,.25s box-shadow,.25s border-color;
+  }
+  .card:hover{ transform:translateY(-2px); border-color:#2a3763; box-shadow:0 10px 30px -10px rgba(0,0,0,.55) }
+  .card .card-icon{ font-size:28px }
+  .card h3{ margin:0; font-size:18px }
+  .card p{ margin:0; color:var(--muted); font-size:14px }
+
+  .status{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:8px }
+  .status small{ color:#97a6d9 }
+
+  .btn{ appearance:none; border:0; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600 }
+  .btn-primary{ background:linear-gradient(90deg,var(--brand),var(--brand-2)); color:#fff }
+
+  .progress{ margin-top:20px; background:#0c1426; border:1px solid #1f2a4a; border-radius:12px; padding:14px }
+  .progress .row{ display:flex; align-items:center; justify-content:space-between; gap:12px }
+  .bar{ margin-top:10px; height:10px; background:#0a1020; border-radius:999px; overflow:hidden; border:1px solid #1f2a4a }
+  .bar>div{ height:100%; width:0; background:linear-gradient(90deg,#6b7cff,#9b6bff); transition:width .6s ease }
+
+  .info{ display:inline-flex; align-items:center; gap:8px }
+  .info .i{ display:inline-grid; place-items:center; width:20px; height:20px; border-radius:999px; background:#1c2540; color:#bcd1ff; font-size:12px }
+
+  /* ----- Modal (lámina) ----- */
+  .sheet-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:saturate(120%) blur(2px); z-index:1000 }
+  .sheet{
+    position:fixed; left:50%; top:6%; transform:translateX(-50%);
+    width:min(960px,92vw); max-height:88vh;
+    background:#0e1426; border:1px solid #25305a; border-radius:18px;
+    box-shadow:0 40px 120px rgba(0,0,0,.7);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .sheet-header{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background:linear-gradient(180deg,rgba(107,124,255,.16),rgba(107,124,255,.08)); border-bottom:1px solid #223059 }
+  .sheet-title{ font-weight:700 }
+  .sheet-close{ appearance:none; background:transparent; border:0; color:#c7d2ff; font-size:24px; line-height:1; cursor:pointer; padding:6px 10px; border-radius:8px }
+  .sheet-close:hover{ background:#1b2544 }
+  .sheet-body{ padding:0; overflow:hidden; max-height:calc(88vh - 56px) }
+  .sheet-iframe{ border:0; width:100%; height:calc(88vh - 56px) }
+</style>
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="left">
+        <button class="back" id="backToIndex">← Volver a temas</button>
+        <div class="title">
+          <div class="icon" id="temaIcon">🧠</div>
+          <div>
+            <div id="temaTitle" style="font-weight:700;font-size:18px">Tema</div>
+            <div class="muted" id="temaSubtitle" style="font-size:13px">Actividades</div>
+          </div>
+        </div>
+      </div>
+      <div class="chip" id="temaChip">Tema activo</div>
+    </header>
+
+    <section class="hero">
+      <h1 id="heroTitle">Explorá el tema</h1>
+      <p class="muted" id="heroDesc">Elegí una actividad para empezar. Tu progreso se guarda automáticamente.</p>
+    </section>
+
+    <section class="grid" aria-label="Actividades disponibles">
+      <article class="card">
+        <div class="card-icon">📝</div>
+        <h3>Quiz</h3>
+        <p>Poné a prueba lo que sabés.</p>
+        <div class="status">
+          <small id="statusQuiz">—</small>
+          <button class="btn btn-primary" id="goQuiz">Abrir</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🔎</div>
+        <h3>Caza de conceptos</h3>
+        <p>Detectá conceptos en el texto y practicá definiciones.</p>
+        <div class="status">
+          <small id="statusCaza">—</small>
+          <button class="btn btn-primary" id="goCaza">Abrir</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">📖</div>
+        <h3>Material de estudio</h3>
+        <p>Resumen por conceptos, ejemplos y palabras clave.</p>
+        <div class="status">
+          <small id="statusMaterial">—</small>
+          <button class="btn btn-primary" id="goMaterial">Abrir</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🗺️</div>
+        <h3>Mapa conceptual</h3>
+        <p>Visualizá cómo se conectan los conceptos.</p>
+        <div class="status">
+          <small id="statusMapa">—</small>
+          <button class="btn btn-primary" id="goMapa">Abrir</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="progress" aria-label="Progreso general">
+      <div class="row">
+        <div class="info"><span class="i">ℹ️</span><span id="progressLabel">Tu progreso en este tema</span></div>
+        <div id="progressPct">0%</div>
+      </div>
+      <div class="bar"><div id="progressBar"></div></div>
+    </section>
+  </div>
+
+   <!-- Modal Material (lámina oscura) -->
+   <div id="sheetBackdrop" class="sheet-backdrop" style="display:none;">
+   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <div class="sheet-header">
+         <div class="sheet-title" id="sheetTitle">📖 Material de Estudio</div>
+         <button class="sheet-close" id="sheetClose" aria-label="Cerrar">×</button>
+      </div>
+      <div class="sheet-body" id="sheetBody">
+         <div style="text-align:center;padding:32px;">
+         <div class="loading-spinner"></div>
+         <p>Cargando material…</p>
+         </div>
+      </div>
+   </div>
+   </div>
+
+  <script>
+    // ===== Normalizar parámetros (canónico: ?tema=) =====
+    const url = new URL(window.location.href);
+    let tema = url.searchParams.get('tema') || url.searchParams.get('theme') || 'sartre';
+    if (!url.searchParams.get('tema'))  url.searchParams.set('tema', tema);
+    if (!url.searchParams.get('theme')) url.searchParams.set('theme', tema);
+    if (location.search !== '?' + url.searchParams.toString()) {
+      history.replaceState(null, '', location.pathname + '?' + url.searchParams.toString());
+    }
+    sessionStorage.setItem('tema.active', tema);
+
+    // ===== Datos visibles del tema (podés ampliar este mapa) =====
+    const TOPICS = {
+      sartre: {icon:'🌀', name:'Jean-Paul Sartre', desc:'Existencialismo: libertad, responsabilidad, mala fe y proyecto.'}
+    };
+    const tdata = TOPICS[tema] || {icon:'🧠', name: tema, desc:'Explorá las actividades disponibles.'};
+
+    // Pintar cabecera
+    document.getElementById('temaIcon').textContent = tdata.icon;
+    document.getElementById('temaTitle').textContent = tdata.name;
+    document.getElementById('temaChip').textContent  = 'Tema activo: ' + tema;
+    document.getElementById('heroTitle').textContent = 'Explorá ' + tdata.name;
+    document.getElementById('heroDesc').textContent  = tdata.desc + ' Elegí una actividad, tu progreso se guarda automáticamente.';
+
+    // ===== Estado guardado (para mostrar “micro-progreso”) =====
+    const ns = (k)=>`tema.${tema}.${k}`;
+    const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
+
+    const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
+    const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6, hits:0, completed:false });
+    const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+    const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[], total:10, progress:0, completed:false });
+
+    const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
+    const quizPct     = pct(sQuiz.qIndex, sQuiz.total);
+    const cazaPct     = pct(sCaza.paragraph, sCaza.total);
+    const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total);
+    const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
+                                       : pct((sMapa.nodesVisited||[]).length, sMapa.total);
+
+    document.getElementById('statusQuiz').textContent     = sQuiz.completed ? `Completado · Mejor: ${(JSON.parse(localStorage.getItem(ns('records'))||'{}').bestScore ?? sQuiz.score)}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`;
+    document.getElementById('statusCaza').textContent     = sCaza.completed ? 'Completado' : `Párrafo ${sCaza.paragraph}/${sCaza.total}`;
+    document.getElementById('statusMaterial').textContent = `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`;
+    document.getElementById('statusMapa').textContent     = `${mapaPct}% explorado`;
+
+    const globalPct = Math.round((quizPct + cazaPct + materialPct + mapaPct) / 4);
+    document.getElementById('progressPct').textContent = globalPct + '%';
+    document.getElementById('progressBar').style.width = globalPct + '%';
+
+    // ===== Navegación (respeta subcarpeta de GitHub Pages) =====
+    const go = (path) => {
+      const p = new URL(path, location);     // base = URL actual
+      p.searchParams.set('tema', tema);
+      p.searchParams.set('theme', tema);     // compat
+      location.href = p.toString();
+    };
+    document.getElementById('goQuiz').addEventListener('click',    ()=> go('quiz.html'));
+    document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
+   //  document.getElementById('goMaterial').addEventListener('click',()=> go(`content/${tema}.html`)); // usa tus contenidos existentes
+
+// ####################################################################
+
+
+const sheetBackdrop = document.getElementById('sheetBackdrop');
+const sheetClose    = document.getElementById('sheetClose');
+const sheetBody     = document.getElementById('sheetBody');
+
+function openMaterialSheet(){
+  sheetBackdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  const url = new URL(`content/${tema}.html`, location); // respeta /prueba_filo/
+  sheetBody.innerHTML = `<iframe class="sheet-iframe" src="${url.toString()}" loading="lazy"></iframe>`;
+}
+
+function closeMaterialSheet(){
+  sheetBackdrop.style.display = 'none';
+  document.body.style.overflow = '';
+  sheetBody.innerHTML = '';
+}
+
+sheetBackdrop.addEventListener('click', (e)=>{ if(e.target===sheetBackdrop) closeMaterialSheet(); });
+sheetClose.addEventListener('click', closeMaterialSheet);
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMaterialSheet(); });
+
+document.getElementById('goMaterial').addEventListener('click', openMaterialSheet);
+
+
+// ####################################################################
+
+
+
+    document.getElementById('goMapa').addEventListener('click',    ()=> go('mapa.html'));            // placeholder
+    document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
+
+    // Guardamos “última vez abierto” (opcional)
+    const recordsKey = ns('records');
+    const rec = JSON.parse(localStorage.getItem(recordsKey) || '{}');
+    rec.lastOpened = new Date().toISOString();
+    localStorage.setItem(recordsKey, JSON.stringify(rec));
+  </script>
+</body>
+</html>
+<!--
+  NOTAS:
+  - El hub del tema (tema.html) es una página intermedia entre el índice de temas (index.html) y las actividades (quiz.html, caza_conceptos.html, etc).
+  - El parámetro canónico es "tema" (p.ej. ?tema=sartre) pero se acepta "theme" por compatibilidad.
+  - El hub muestra el progreso parcial en cada actividad y el progreso global del tema.
+  - Cada actividad guarda su propio estado en sessionStorage bajo la clave "tema.{tema}.{actividad}".
+  - El hub guarda un resumen de progreso en localStorage bajo la clave "tema.{tema}.records".
+  - La navegación entre páginas respeta la subcarpeta si se usa GitHub Pages.

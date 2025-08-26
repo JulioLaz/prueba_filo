@@ -1,3 +1,77 @@
+<style>
+/* ====== Tema oscuro elegante, encapsulado ====== */
+.material-dark{
+  /* paleta y espaciados */
+  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
+  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
+  --space:14px; --space-md:18px; --space-lg:22px;
+
+  background:
+    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  padding: var(--space-lg);
+  border-radius: 12px;
+}
+
+/* tipografía */
+.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
+  color:var(--title);
+  margin: 0 0 .4em;
+  line-height: 1.25;
+}
+.material-dark h1{ font-size: 28px; }
+.material-dark h2{ font-size: 22px; }
+.material-dark h3{ font-size: 18px; }
+.material-dark p{ margin: .6em 0; color:var(--text); }
+.material-dark em{ color:var(--text); }
+.material-dark strong{ color:var(--title); }
+
+/* listas y citas */
+.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
+.material-dark li::marker{ color: #8aa1ff; }
+.material-dark blockquote{
+  margin: 16px 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
+  border-radius: 10px;
+  color: var(--text);
+}
+
+/* enlaces y código */
+.material-dark a{ color:#aab6ff; text-decoration: underline; }
+.material-dark code,.material-dark pre{
+  background:#0b1325;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.material-dark code{ padding:.15rem .35rem }
+.material-dark pre{ padding:10px 12px; overflow:auto }
+
+/* imágenes */
+.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
+
+/* caja de “destacado” */
+.material-dark .highlight-box{
+  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
+  border:1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
+}
+
+/* separaciones finas en móvil */
+@media (max-width: 600px){
+  .material-dark{ padding: 16px; }
+  .material-dark h1{ font-size: 24px }
+}
+</style>
+
+<main class="material-dark">
 <h2>🎭 ANTROPOCENTRISMO: El Humano en el Centro del Universo</h2>
 <p><em>Imaginen que la historia de la humanidad es un gran guion. Durante miles de años, la estrella principal fue un ser divino. Pero de repente, en un giro épico, el foco se movió y la nueva estrella se convirtió en el ser humano. Esa es, en esencia, la historia del <strong>antropocentrismo</strong>, la doctrina que puso al hombre en el centro del escenario, un lugar que antes ocupaba Dios.</em></p>
 
@@ -343,3 +417,4 @@
         <li>📚 <strong>Jared Diamond:</strong> "Colapso: Por qué unas sociedades perduran y otras desaparecen"</li>
     </ul>
 </blockquote>
+</main>

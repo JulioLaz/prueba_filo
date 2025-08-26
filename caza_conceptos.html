@@ -111,6 +111,22 @@
 
   <!-- Motor común y configuración del tema -->
 
+
+<!-- <script>
+  const q = new URLSearchParams(location.search);
+  const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
+  sessionStorage.setItem('tema_actual', tema);
+  localStorage.setItem('tema_actual', tema);
+
+  document.getElementById('back-btn').addEventListener('click', () => {
+    const url = new URL('tema.html', location);
+    url.searchParams.set('tema', tema);
+    url.searchParams.set('theme', tema); // compat
+    location.href = url.toString();
+  });
+</script> -->
+
+
 <script>
   const q = new URLSearchParams(location.search);
   const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
@@ -119,7 +135,8 @@
 
   document.getElementById('back-btn').addEventListener('click', () => {
     // Incluye ambos nombres por si el engine usa uno u otro
-    window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+    window.location.href = `tema.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+    // window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
   });
 </script>
 

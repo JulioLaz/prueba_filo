@@ -44,9 +44,9 @@
                     <span id="theme-icon" class="theme-icon">🧠</span>
                     <span id="theme-title" class="theme-title">Filosofía</span>
                 </div>
-                <button id="help-btn" class="nav-btn">
-                    📚 Material
-                </button>
+                <!-- <button id="help-btn" class="nav-btn">
+                    📖 Consultar Tema
+                </button> -->
             </div>
         </header>
 
@@ -82,15 +82,14 @@
                         <button id="show-question-btn" class="primary-btn">
                             📝 Ver pregunta
                         </button>
-                        <div style="display: flex; justify-content: space-around;">
+                        <!-- <div style="display: flex; justify-content: space-around;">
                             <button id="concept-hunt-btn" class="secondary-btn" style="margin-right: 3px;">
-                                <!-- <button id="concept-hunt-btn" class="tertiary-btn"> -->
                                     🔎 Caza de conceptos
                                 </button>
                                 <button id="show-material-btn" class="secondary-btn" style="margin-left: 3px;">
                                     📖 Consultar material
                                 </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -183,18 +182,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
-
-    <!-- <script>
-    const conceptBtn = document.getElementById("concept-hunt-btn");
-    if (conceptBtn) {
-        conceptBtn.addEventListener("click", () => {
-        window.location.href = "caza_conceptos.html?tema=sartre";
-        });
-    }
-    </script> -->
-
-<script>
+<!-- <script>
   const params = new URLSearchParams(location.search);
   const temaActual = params.get('theme') || params.get('tema') || 'sartre';
   sessionStorage.setItem('tema_actual', temaActual);
@@ -206,7 +194,7 @@
       window.location.href = `caza_conceptos.html?tema=${encodeURIComponent(temaActual)}&theme=${encodeURIComponent(temaActual)}`;
     });
   }
-</script>
+</script> -->
 
 
 <script>

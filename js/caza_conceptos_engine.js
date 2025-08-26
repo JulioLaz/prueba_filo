@@ -239,20 +239,67 @@ function ensureSummaryDialog() {
       authorEl.textContent = `${author}`;
     }
 
+// ####################################################################
+
+// const backBtn_final = dlg.querySelector('#summary-back');
+// const q = new URLSearchParams(location.search);
+// const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
+// if (backBtn_final) 
+// {sessionStorage.setItem('tema_actual', tema);
+//   localStorage.setItem('tema_actual', tema);
+
+//   document.getElementById('back-btn').addEventListener('click', () => {
+//     // Incluye ambos nombres por si el engine usa uno u otro
+//     window.location.href = `tema.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+//     // window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+//   });
+// }
+// ####################################################################
   // Cerrar
   dlg.querySelector('#summary-close').addEventListener('click', () => {
     dlg.style.display = 'none';
   });
 
+// const backBtn = document.getElementById('back-btn');
+
+// const backBtn = dlg.querySelector('#summary-back');
+// if (backBtn) {
+//   backBtn.addEventListener('click', () => {
+//     const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) 
+//     || "https://juliolaz.github.io/prueba_filo/tema.html";
+//     // || "prueba_filo/quiz.html";
+//     console.log("Volviendo a", url);
+//     location.href = url;
+//   });
+// }
 const backBtn = dlg.querySelector('#summary-back');
 if (backBtn) {
   backBtn.addEventListener('click', () => {
-    const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) 
-                || "https://juliolaz.github.io/prueba_filo/quiz.html";
-    console.log("Volviendo a", url);
-    location.href = url;
+    // 1) Resolver el slug del tema de forma robusta
+    const qs = new URLSearchParams(location.search);
+    const temaSlug =
+      qs.get('tema') ||
+      qs.get('theme') ||
+      sessionStorage.getItem('tema.active') ||
+      sessionStorage.getItem('tema_actual') ||
+      localStorage.getItem('tema_actual') ||
+      'sartre';
+
+    // 2) Construir la URL usando la URL actual como base
+    //    (esto hace que funcione igual en /prueba_filo/ y en local)
+    const hub = new URL('tema.html', location);
+    hub.searchParams.set('tema', temaSlug);   // canónico
+    hub.searchParams.set('theme', temaSlug);  // compat
+
+    // 3) (Opcional) limpiar el diálogo antes de salir
+    dlg.remove();
+
+    // 4) Navegar
+    location.href = hub.toString();
   });
 }
+
+
 
   return dlg;
 }

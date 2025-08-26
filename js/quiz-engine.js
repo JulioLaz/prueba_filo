@@ -132,9 +132,23 @@ function showScreen(screen) {
  * Navega de vuelta al selector de temas
  */
 function goBackToThemes() {
-    console.log('🏠 Navegando de vuelta al selector');
-    window.location.href = 'index.html?returning=true';
+  console.log('🏠 Volver al hub del tema');
+  const tema =
+    getURLParameter('tema') ||
+    getURLParameter('theme') ||
+    sessionStorage.getItem('tema.active') ||
+    'sartre';
+
+  const url = new URL('tema.html', location);  // respeta /prueba_filo/
+  url.searchParams.set('tema', tema);
+  url.searchParams.set('theme', tema);         // compat
+  location.href = url.toString();
 }
+
+// function goBackToThemes() {
+//     console.log('🏠 Navegando de vuelta al selector');
+//     window.location.href = 'index.html?returning=true';
+// }
 
 /**
  * Mezcla un array aleatoriamente (Fisher-Yates)
@@ -214,31 +228,61 @@ async function loadTheme(themeId) {
  * @returns {Promise<string>} Contenido HTML del material
  */
 async function loadStudyMaterial(contentFile) {
-    console.log(`📖 Cargando material: ${contentFile}`);
-    const loadStart = performance.now();
-    
-    try {
-        const response = await fetch(contentFile);
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const content = await response.text();
-        const loadEnd = performance.now();
-        console.log(`✅ Material cargado en ${(loadEnd - loadStart).toFixed(2)}ms`);
-        return content;
-        
-    } catch (error) {
-        console.warn('⚠️ No se pudo cargar el material de estudio:', error);
-        return `
-            <div class="highlight-box">
-                <h3>⚠️ Material no disponible</h3>
-                <p>No se pudo cargar el material de estudio para este tema.</p>
-                <p><strong>Error:</strong> ${error.message}</p>
-            </div>
-        `;
+  console.log(`📖 Cargando material: ${contentFile}`);
+  const loadStart = performance.now();
+
+  try {
+    // Construye URL absoluta (funciona bien en GitHub Pages y local)
+    const url = new URL(contentFile, location.href);
+    const res = await fetch(url.toString(), { cache: 'no-store' }); // evita caché vieja
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
     }
+
+    const html = await res.text();
+    const loadEnd = performance.now();
+    console.log(`✅ Material cargado en ${(loadEnd - loadStart).toFixed(2)}ms`);
+    return html;
+
+  } catch (error) {
+    console.warn('⚠️ No se pudo cargar el material:', error);
+    return `
+      <div class="highlight-box">
+        <h3>⚠️ No se pudo cargar el material</h3>
+        <p>${error.message}</p>
+        <p><a class="primary-btn" href="${contentFile}" target="_blank" rel="noopener">Abrir en pestaña</a></p>
+      </div>
+    `;
+  }
 }
+
+
+// async function loadStudyMaterial(contentFile) {
+//     console.log(`📖 Cargando material: ${contentFile}`);
+//     const loadStart = performance.now();
+    
+//     try {
+//         const response = await fetch(contentFile);
+//         if (!response.ok) {
+//             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+//         }
+        
+//         const content = await response.text();
+//         const loadEnd = performance.now();
+//         console.log(`✅ Material cargado en ${(loadEnd - loadStart).toFixed(2)}ms`);
+//         return content;
+        
+//     } catch (error) {
+//         console.warn('⚠️ No se pudo cargar el material de estudio:', error);
+//         return `
+//             <div class="highlight-box">
+//                 <h3>⚠️ Material no disponible</h3>
+//                 <p>No se pudo cargar el material de estudio para este tema.</p>
+//                 <p><strong>Error:</strong> ${error.message}</p>
+//             </div>
+//         `;
+//     }
+// }
 
 // ========================================
 // 🎮 LÓGICA DEL CUESTIONARIO
@@ -667,8 +711,31 @@ function setupEventListeners() {
     
     // Controles del cuestionario
     showQuestionBtn.addEventListener('click', showQuestionPhase);
-    showMaterialBtn.addEventListener('click', showStudyMaterial);
-    helpBtn.addEventListener('click', showStudyMaterial);
+
+    // showMaterialBtn.addEventListener('click', showStudyMaterial);
+
+    // helpBtn.addEventListener('click', showStudyMaterial);
+
+
+if (helpBtn) helpBtn.addEventListener('click', showStudyMaterial);
+if (showMaterialBtn) showMaterialBtn.addEventListener('click', showStudyMaterial);
+
+    // helpBtn.addEventListener('click', () => {
+    // // tomamos el tema actual de la URL / storage
+    //     const params = new URLSearchParams(location.search);
+    //     const tema = params.get('tema')
+    //             || params.get('theme')
+    //             || sessionStorage.getItem('tema_actual')
+    //             || 'sartre';
+
+    //     // armamos URL absoluta respetando subcarpeta (GitHub Pages)
+    //     const dest = new URL('tema.html', location);
+    //     dest.searchParams.set('tema', tema);
+    //     dest.searchParams.set('theme', tema); // compat
+
+    //     location.href = dest.toString();
+    // });
+
     retryBtn.addEventListener('click', () => {
         console.log('🔄 Reiniciando cuestionario');
         initializeQuiz();

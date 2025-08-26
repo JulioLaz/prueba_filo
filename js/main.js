@@ -199,6 +199,15 @@ const AVAILABLE_THEMES = [
 
 console.log(`📚 Configuración cargada: ${AVAILABLE_THEMES.length} temas disponibles`);
 
+// function goToHub(slug) {
+//     // guardamos tema activo para el hub/actividades
+//     sessionStorage.setItem('tema.active', slug);
+//     const url = new URL('tema.html', location.origin);
+//     url.searchParams.set('tema', slug);   // canónico
+//     url.searchParams.set('theme', slug);  // compat
+//     location.href = url.pathname + '?' + url.searchParams.toString();
+// }
+
 // ========================================
 // 🎯 ELEMENTOS DEL DOM
 // ========================================
@@ -377,10 +386,19 @@ function createThemeCard(theme) {
     `;
     
     // Event listener para navegación
+        // if (isUnlocked) {
+        //     card.addEventListener('click', () => {
+        //         console.log(`🎯 Navegando al hub del tema: ${theme.id}`);
+        //         goToHub(theme.id);
+        //     });
+        // } else {    
     if (isUnlocked) {
         card.addEventListener('click', () => {
             console.log(`🎯 Navegando al tema: ${theme.id}`);
-            window.location.href = `quiz.html?theme=${theme.id}`;
+            // window.location.href = `tema.html?theme=${theme.id}`;
+            window.location.href = `tema.html?tema=${theme.id}`;
+
+            // window.location.href = `quiz.html?theme=${theme.id}`;
         });
     } else {
         card.addEventListener('click', () => {

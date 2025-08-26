@@ -1,83 +1,18 @@
 <style>
-/* ====== Tema oscuro elegante, encapsulado ====== */
-.material-dark{
-  /* paleta y espaciados */
-  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
-  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
-  --space:14px; --space-md:18px; --space-lg:22px;
-
-  background:
-    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  padding: var(--space-lg);
-  border-radius: 12px;
-}
-
-/* tipografía */
-.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
-  color:var(--title);
-  margin: 0 0 .4em;
-  line-height: 1.25;
-}
-.material-dark h1{ font-size: 28px; }
-.material-dark h2{ font-size: 22px; }
-.material-dark h3{ font-size: 18px; }
-.material-dark p{ margin: .6em 0; color:var(--text); }
-.material-dark em{ color:var(--text); }
-.material-dark strong{ color:var(--title); }
-
-/* listas y citas */
-.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
-.material-dark li::marker{ color: #8aa1ff; }
-.material-dark blockquote{
-  margin: 16px 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--accent);
-  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
-  border-radius: 10px;
-  color: var(--text);
-}
-
-/* enlaces y código */
-.material-dark a{ color:#aab6ff; text-decoration: underline; }
-.material-dark code,.material-dark pre{
-  background:#0b1325;
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.material-dark code{ padding:.15rem .35rem }
-.material-dark pre{ padding:10px 12px; overflow:auto }
-
-/* imágenes */
-.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
-
-/* caja de “destacado” */
-.material-dark .highlight-box{
-  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
-  border:1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
-}
-
-/* separaciones finas en móvil */
-@media (max-width: 600px){
-  .material-dark{ padding: 16px; }
-  .material-dark h1{ font-size: 24px }
-}
-</style>
-
-<main class="material-dark">
-  <h1>Tema 2.9: Jean-Paul Sartre — el ser humano es el ser libre</h1>
-
+.highlight-box {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-left: 4px solid #667eea;
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    border-radius: var(--radius-sm);
+} 
+  </style>
+<main style="font-family: Inter, system-ui, -apple-system, Roboto, Helvetica, Arial; color: aliceblue;">
+  <h2>Tema 2.9: Jean-Paul Sartre — el ser humano es el ser libre</h2>
   <p><em>El existencialismo sartreano afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una “naturaleza humana” prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
 
   <div class="highlight-box">
-    <h3>🌍 Contexto histórico y tesis central</h3>
+    <h4>🌍 Contexto histórico y tesis central</h4>
     <p>Tras las Guerras Mundiales, el optimismo racionalista quedó herido. Sartre responde que el ser humano no tiene un guion previo: <strong>se hace a sí mismo en sus actos</strong>. Elige incluso cuando aparenta no elegir. Por eso:</p>
     <ul>
       <li><strong>Existencia &gt; esencia</strong>: no hay modelo previo de lo humano.</li>
@@ -88,7 +23,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🧩 Ontología básica: ser-en-sí, ser-para-sí y la nada</h3>
+    <h4>🧩 Ontología básica: ser-en-sí, ser-para-sí y la nada</h4>
     <p>Sartre distingue niveles del ser para explicar la libertad:</p>
     <ul>
       <li><strong>Ser-en-sí (en-soi)</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos. Un árbol “es”, sin preguntarse por su ser.</li>
@@ -99,7 +34,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🧭 Facticidad, trascendencia y proyecto</h3>
+    <h4>🧭 Facticidad, trascendencia y proyecto</h4>
     <p><strong>Facticidad</strong>: condiciones dadas (cuerpo, historia, contexto). <strong>Trascendencia</strong>: el <em>proyecto</em> que elaboro sobre esas condiciones.</p>
     <ul>
       <li>No elijo mis cartas, pero elijo <strong>cómo jugarlas</strong>.</li>
@@ -109,17 +44,17 @@
   </div>
 
   <div class="highlight-box">
-    <h3>⚡ Afectos fundamentales: angustia, desamparo, desesperación</h3>
+    <h4>⚡ Afectos fundamentales: angustia, desamparo, desesperación</h4>
     <ul>
       <li><strong>Angustia</strong>: lucidez de que <em>yo decido</em> y respondo; no es miedo a algo externo, es vértigo ante mi libertad y su alcance.</li>
-      <li><strong>Desamparo</strong>: no hay valores garantizados “desde afuera”; <strong>debemos crear valores</strong> al elegir.</li>
+      <li><strong>Desamparo</strong>: no hay valores garantizados “desde afuera” (ni Dios, ni esencia prefijada); <strong>debemos crear valores</strong> al elegir.</li>
       <li><strong>Desesperación</strong>: actuar solo con lo que depende de mí, sin basar mis proyectos en fuerzas fuera de control.</li>
     </ul>
     <blockquote><em>“La angustia es el modo de ser de la libertad como conciencia de ser.” — <em>El ser y la nada</em></em></blockquote>
   </div>
 
   <div class="highlight-box">
-    <h3>🪞 Mala fe (autoengaño) vs. autenticidad</h3>
+    <h4>🪞 Mala fe (autoengaño) vs. autenticidad</h4>
     <p><strong>Mala fe</strong>: estrategia para escapar de la angustia negando mi libertad (“no pude”, “me hicieron”, “soy solo mi rol”). Me <em>cosifico</em> para eximirme de responsabilidad.</p>
     <ul>
       <li><em>Ejemplo del camarero</em>: se identifica totalmente con su papel para no decidir más allá del guion.</li>
@@ -130,7 +65,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>👁️ El Otro y la mirada: ser-para-otros</h3>
+    <h4>👁️ El Otro y la mirada: ser-para-otros</h4>
     <p>La <strong>mirada del Otro</strong> puede objetivarnos (vergüenza: me descubro como “cosa” ante otro), pero también revela que somos seres en relación. La convivencia es tensión: mi libertad se cruza con la de los demás.</p>
     <ul>
       <li><strong>No</strong> significa que “los otros” sean siempre un infierno literal: advierte el riesgo de relaciones que <strong>nos objetivan</strong>.</li>
@@ -139,7 +74,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🧠 Ética existencial: creación de valores y universalidad encarnada</h3>
+    <h4>🧠 Ética existencial: creación de valores y universalidad encarnada</h4>
     <p>Sin reglas universales garantizadas, <strong>decidir</strong> crea valor. En el acto se propone una imagen de humanidad “imitable”: elijo para mí y, de hecho, <strong>para cualquiera</strong> en situación semejante.</p>
     <ul>
       <li><em>Caso del estudiante</em>: sin receta infalible, debe decidir entre cuidar a su madre o unirse a la resistencia; la decisión lo constituye.</li>
@@ -148,7 +83,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🏛️ Compromiso (engagement) y vida pública</h3>
+    <h4>🏛️ Compromiso (engagement) y vida pública</h4>
     <p>Sartre defiende al <strong>intelectual comprometido</strong>: no basta describir, hay que <strong>tomar partido</strong> en el mundo. Su filosofía empuja a intervenir en lo social y político desde proyectos libres y responsables.</p>
     <ul>
       <li>La libertad no es intimista: se <strong>ejercita</strong> en instituciones, luchas y vínculos.</li>
@@ -157,7 +92,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>📚 Literatura y ejemplos sartreanos</h3>
+    <h4>📚 Literatura y ejemplos sartreanos</h4>
     <ul>
       <li><strong><em>La náusea</em></strong>: experiencia de contingencia; lo real “está de más” si no lo proyecto.</li>
       <li><strong><em>A puerta cerrada</em></strong>: la mirada ajena nos fija; “el infierno son los otros” como alerta sobre relaciones cosificantes.</li>
@@ -166,7 +101,7 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🧪 Cómo detectar la mala fe (guía práctica)</h3>
+    <h4>🧪 Cómo detectar la mala fe (guía práctica)</h4>
     <ul>
       <li>¿Apelo siempre a mi rol para evitar decidir (“soy empleado, no decido nada”)?</li>
       <li>¿Cargo mis decisiones sobre “la sociedad”, “la familia”, “el destino”?</li>
@@ -177,18 +112,18 @@
   </div>
 
   <div class="highlight-box">
-    <h3>🔎 Críticas y límites</h3>
+    <h4>🔎 Críticas y límites</h4>
     <ul>
       <li><strong>Determinismos subestimados</strong>: objetan que minimiza estructuras económicas, culturales o psicológicas.</li>
       <li><strong>Relación con el marxismo</strong>: tensión entre libertad individual y condicionamientos históricos.</li>
-      <li><strong>Perspectiva feminista</strong> (puente con Beauvoir): libertad situada y opresiones de género.</li>
+      <li><strong>Perspectiva feminista</strong> (puente con Beauvoir): libertad situada y opresiones de género; ampliar la noción de proyecto encarnado.</li>
       <li><strong>Neurociencias/psicoanálisis</strong>: cuestionan la amplitud de la libertad consciente.</li>
     </ul>
     <p>Respuesta sartreana: <em>aun situados</em>, <strong>seguimos siendo responsables</strong> de cómo respondemos a la situación.</p>
   </div>
 
   <div class="highlight-box">
-    <h3>🧩 Aplicaciones contemporáneas</h3>
+    <h4>🧩 Aplicaciones contemporáneas</h4>
     <ul>
       <li><strong>Redes sociales</strong>: ¿busco miradas que me fijen? ¿Posteo auténticamente o para encajar?</li>
       <li><strong>Trabajo</strong>: ¿me escondo en el rol (“solo cumplo órdenes”) o proyecto mejoras posibles?</li>
@@ -196,15 +131,15 @@
     </ul>
   </div>
 
-  <h2>💡 Actividades y debate</h2>
-  <blockquote>
+  <h3>💡 Actividades y debate</h3>
+  <blockquote style="border:1px solid #4169e1;border-radius:0 5px 5px 0;padding:20px;border-left:5px solid #4169e1;margin:20px 0;">
     <p><strong>1.</strong> Narrá una elección difícil reciente. ¿Qué parte fue facticidad y cuál fue proyecto?</p>
     <p><strong>2.</strong> Escribí tres frases típicas de mala fe que escuches y reescribilas asumiendo libertad.</p>
     <p><strong>3.</strong> Diseñá un “micro-compromiso” semanal (pequeño, concreto, bajo tu control) y sostenelo un mes.</p>
   </blockquote>
 
   <div class="highlight-box">
-    <h3>🗂️ Glosario mínimo</h3>
+    <h4>🗂️ Glosario mínimo</h4>
     <ul>
       <li><strong>Existencia precede a esencia</strong>: me defino al elegir.</li>
       <li><strong>Ser-en-sí / ser-para-sí</strong>: cosa plena vs. conciencia como posibilidad.</li>
@@ -217,11 +152,13 @@
   </div>
 
   <div class="highlight-box">
-    <h3>📚 Para profundizar</h3>
+    <h4>📚 Para profundizar</h4>
     <ul>
       <li><strong>Jean-Paul Sartre</strong>: <em>El ser y la nada</em>, <em>El existencialismo es un humanismo</em>.</li>
-      <li><strong>Simone de Beauvoir</strong>: <em>El segundo sexo</em>, <em>La ética de la ambigüedad</em>.</li>
+      <li><strong>Simone de Beauvoir</strong>: <em>El segundo sexo</em>, <em>La ética de la ambigüedad</em> (complementos clave).</li>
       <li><strong>Teatro y novela</strong>: <em>A puerta cerrada</em>, <em>La náusea</em>, <em>Las manos sucias</em>.</li>
     </ul>
   </div>
+  <br>
+  <br>
 </main>
