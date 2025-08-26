@@ -284,7 +284,7 @@ function showSummaryDialog(cfg) {
   let idx = 0; // párrafo actual
   let foundSet = new Set(); // conceptos encontrados en este párrafo
   let streak = 0;
-  let lives = 5;
+  let lives = 10;
   let muted = false;
 
   // Efectos simples (opcionales)

@@ -1,47 +1,7 @@
 // js/caza_conceptos_sartre.js
-// ————————————————————————————————————————————————————————————————
-// Config listo para móvil: solo términos "tap-eables" y frases-corolario
-// ————————————————————————————————————————————————————————————————
-
-/**
- * Normaliza texto para comparación:
- * - minúsculas
- * - sin diacríticos (tildes)
- * - sin puntuación de borde
- * - guion estándar
- * - trim
- */
-function normalizeTerm(str) {
-  if (!str) return "";
-  return str
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    // .replace(/[\u2013\u2014]/g, "-")         // guiones largos → guion simple
-    .replace(/[.,;:!?¿¡()"']/g, "")          // puntación común
-    .trim();
-}
-
-/**
- * Valida selección para móvil:
- * - Debe corresponder a un término definido (tras normalizar)
- * - Rechaza frases arbitrarias no listadas
- */
-function isValidMobileSelection(sel, validSet) {
-  const n = normalizeTerm(sel);
-  if (!n) return false;
-  // Evita falsos positivos cuando el user arrastra espacios/puntuación
-  // Solo se acepta si está en el set de términos permitidos
-  return validSet.has(n);
-}
 
 window.CONCEPT_HUNT_CONFIG = {
-  // Motor: usá estas utilidades para comparar selección vs términos
-  // normalizeFn: normalizeTerm,
-  // allowOnlyDefined: true,         // Restringir a términos definidos en cada nivel
-  // mobileSelectionGuard: true,     // Aplicar isValidMobileSelection en onSelect
-  // isValidSelectionFn: isValidMobileSelection,
-// AUTOR
+
   author: "Jean-Paul Sartre",
   menuUrl: "sartre.html",   // 👈 a dónde volver con el botón
   menuUrl: "https://juliolaz.github.io/prueba_filo/quiz.html?tema=sartre&theme=sartre",
@@ -79,7 +39,7 @@ window.CONCEPT_HUNT_CONFIG = {
       // 2) Ontología: ser-en-sí / ser-para-sí / nada — tokens con guion para tap
       html: `
       <div class="highlight-box">
-        <h4>🧩 Ontología básica: Ser en sí, Ser para sí y la nada</h4>
+        <h4>🧩 Ontología básica de Sartre: Ser en sí, Ser para sí y la nada</h4>
         <p>Sartre distingue niveles del ser para explicar la libertad:</p>
         <ul>
           <li><strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
@@ -95,7 +55,8 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "Ser", meaning: "Ser-en-sí: Modo de ser de las cosas: pleno, sin proyectos ni reflexión.\nSer-para-sí: Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         // { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         { term: "nada", meaning: "La nada es, en este contexto, ese espacio vacío que la conciencia introduce. Es como un hiato o una pausa que se interpone entre lo que eres ahora y tus posibilidades.\nSin ese hiato (sin la nada), serías como una cosa: tu futuro estaría predeterminado por tu presente. Si eres un estudiante, solo podrías ser un estudiante para siempre. No habría lugar para la elección.\nCon el hiato (con la nada), la elección es posible: La nada te permite negar lo que eres en el presente y proyectarte hacia el futuro. Te da la libertad de decir no soy solo esto y decidir qué quieres ser.\nEn resumen, la nada no es la nada absoluta como un vacío de la nada, sino una fuerza activa que proviene de nuestra conciencia y que nos libera de ser simplemente objetos determinados. Es lo que nos permite elegir, crear nuestro propio camino y, en última instancia, ser libres." },
-        { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
+        // { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
+        { term: "Ontología", meaning: "Es una rama de la filosofía que se pregunta qué es lo que existe realmente. 🤔??? Busca hacer un como una lista de la realidad para entender los tipos de cosas que existen en el universo, desde objetos físicos hasta ideas abstractas como la justicia o los números." },
       ],
       corollary: [
         "La libertad es estructura del para-sí.",
@@ -177,7 +138,7 @@ window.CONCEPT_HUNT_CONFIG = {
       // 6) Ética existencial
       html: `
       <div class="highlight-box">
-        <h3>🧠 Ética existencial</h3>
+        <h3>Etica existencial</h3>
         <h4>La Creación de Valor y la Responsabilidad Universal</h4>
         <p>Sin reglas dadas, <strong>decidir</strong> crea <strong>valor</strong>. En el acto proponés una imagen de humanidad para cualquiera en situación semejante.</p>
       </div>
@@ -189,6 +150,7 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },
         { term: "Universal", meaning: "Lo que elegís propone ejemplo a otros." },
         { term: "Responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
+        { term: "Etica", meaning: "La ética existencial es una corriente filosófica que sostiene que no hay reglas morales universales ni valores predefinidos. En cambio, cada persona es totalmente responsable de crear su propio conjunto de valores a través de sus elecciones y acciones. 🧐" }
       ],
       corollary: [
         "Decidir crea valor.",

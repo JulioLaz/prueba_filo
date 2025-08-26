@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="css/quiz.css" />
   <style>
     /* Utilidades ligeras para el minijuego */
-    .hunt-header { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 14px; }
+    .hunt-header { display:flex;flex-direction:column; align-items:center; justify-content:space-between; gap:8px; padding:10px 14px; }
     .meta { display:flex; gap:10px; flex-wrap:wrap; }
     .chip { padding:6px 10px; border-radius:999px; border:1px solid white; font-size:.9rem; }
     .chip .icon { margin-right:6px; }
@@ -61,7 +61,7 @@
         <span class="theme-icon">🔎</span>
         <span class="theme-title">Caza de conceptos</span>
       </div>
-      <button id="mute-btn" class="nav-btn" aria-label="Silenciar efectos">🔇</button>
+      <button id="mute-btn" class="nav-btn" aria-label="Silenciar efectos">🔊</button> <!--🔇-->
     </div>
   </header>
 
@@ -72,6 +72,11 @@
       <div class="chip"><span class="icon">🔥</span>Racha: <strong id="streak">0</strong></div>
     </div>
     <div class="lives" aria-label="Vidas">
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
+      <span class="life alive">♥️</span>
       <span class="life alive">♥️</span>
       <span class="life alive">♥️</span>
       <span class="life alive">♥️</span>
