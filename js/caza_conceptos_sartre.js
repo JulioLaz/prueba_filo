@@ -50,7 +50,7 @@ window.CONCEPT_HUNT_CONFIG = {
     {
       // 1) Tesis central — SOLO PALABRAS CLAVE para tap en móvil
       html: `
-      <p><em>El <strong>existencialismo</strong> de J.P. Sartre afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una <strong>“naturaleza humana”</strong> prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
+      <p><em>El <strong>existencialismo</strong> de J.P. Sartre afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una <strong>“naturaleza humana”</strong> prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La <strong>libertad</strong> no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
       `,
       hint: "Fijate en palabras clave como: existencia, esencia...",
       // Podés permitir avanzar aunque falten algunos (útil en clase)
@@ -66,15 +66,15 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "angustia", meaning: "Lucidez/vértigo de que tus decisiones te constituyen." },
         { term: "desamparo", meaning: "No hay valores dados ‘desde afuera’; debés crearlos al actuar." },
         { term: "desesperación", meaning: "Actuar según lo que depende de vos, sin garantías externas." },
+        { term: "condenados", meaning: "No es un castigo, sino una carga. Nos obliga a ser completamente responsables de cada una de nuestras decisiones y de la persona en la que nos convertimos, sin poder echar la culpa a nada ni a nadie." },
       ],
       // Se muestra al completar todos los términos del nivel
       corollary: [
-        "la existencia precede a la esencia",
-        "estamos condenados a ser libres",
-        "la libertad implica responsabilidad"
+        "La libertad implica responsabilidad",
+        "La existencia precede a la esencia:\nPrimero existimos, somos arrojados al mundo sin ninguna esencia o manual de instrucciones. Después, a través de nuestras decisiones, acciones y elecciones, nos vamos construyendo a nosotros mismos.\nEn otras palabras, no somos nada al principio, y es nuestra libertad y responsabilidad lo que nos define y crea nuestra esencia a lo largo de la vida.",
+        "Estamos condenados a ser libres:\nCuando Sartre dice que estamos condenados, no se refiere a un castigo divino o a una maldición. En su lugar, lo usa en el sentido de que es un hecho ineludible de nuestra existencia. No elegimos existir, pero una vez que lo hacemos, la libertad se convierte en una carga de la que no podemos escapar.\nEs una condena porque nos arroja a un estado de responsabilidad total. No podemos culpar a Dios, a la naturaleza humana o a las circunstancias por lo que somos o lo que hacemos. Nuestra existencia precede a nuestra esencia, lo que significa que primero existimos y luego, a través de nuestras decisiones y acciones, definimos quiénes somos."
       ],
     },
-
     {
       // 2) Ontología: ser-en-sí / ser-para-sí / nada — tokens con guion para tap
       html: `
@@ -98,11 +98,10 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
       ],
       corollary: [
-        "la libertad es estructura del para-sí",
-        "la nada abre distancia y posibilidad"
+        "La libertad es estructura del para-sí.",
+        "La nada abre distancia y posibilidad."
       ],
     },
-
     {
       // 3) Facticidad / Trascendencia / Proyecto
       html: `
@@ -124,11 +123,10 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "proyecto", meaning: "Estructura de actos que orienta y da sentido a tu vida." },
       ],
       corollary: [
-        "no elegís las cartas, elegís cómo jugarlas",
-        "la libertad asume y resignifica lo dado"
+        "No elegís las cartas, elegís cómo jugarlas.",
+        "La libertad asume y resignifica lo dado."
       ],
     },
-
     {
       // 4) Mala fe vs autenticidad — tokens únicos para móvil
       html: `
@@ -149,8 +147,8 @@ window.CONCEPT_HUNT_CONFIG = {
         // { term: "rol", meaning: "Papel social usado para evadir responsabilidad de elegir." },
       ],
       corollary: [
-        "mala fe: negar tu libertad para evitar decidir",
-        "autenticidad: asumir tu libertad situada"
+        "Mala fe: negar tu libertad para evitar decidir.",
+        "Autenticidad: asumir tu libertad situada."
       ],
     },
     {
@@ -170,12 +168,11 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "Otro", meaning: "En la filosofía de Sartre, el Otro es mucho más que una persona diferente a mí. Es una conciencia separada y libre que coexiste con la mía. Su existencia es fundamental porque me revela mi propia existencia de una manera que yo mismo no puedo." },
       ],
       corollary: [
-        "la mirada del Otro me revela como objeto",
+        "La mirada del Otro me revela como objeto.",
         "Otro es esa conciencia ajena que me permite salir de mi propia perspectiva y verme a mí mismo como un objeto en el mundo, un paso esencial para la autoconciencia y la libertad.",
-        "la intersubjetividad cruza libertades: La intersubjetividad es el espacio donde las conciencias y las libertades de dos o más individuos se encuentran. Sartre argumenta que no existimos de forma aislada; nuestra libertad no se ejerce en el vacío, sino en un mundo compartido con otros."
+        "La intersubjetividad cruza libertades: La intersubjetividad es el espacio donde las conciencias y las libertades de dos o más individuos se encuentran. Sartre argumenta que no existimos de forma aislada; nuestra libertad no se ejerce en el vacío, sino en un mundo compartido con otros."
       ],
     },
-
     {
       // 6) Ética existencial
       html: `
@@ -194,9 +191,9 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "Responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
       ],
       corollary: [
-        "decidir crea valor",
-        "lo que elegís propone ejemplo a otros",
-        "responsabilidad radical por el sentido",
+        "Decidir crea valor.",
+        "Lo que elegís propone ejemplo a otros.",
+        "Responsabilidad radical por el sentido.",
         "Cuando un individuo elige, no lo hace solo para sí mismo. Sartre dice que, al elegir, uno se convierte en un legislador, un creador de valor para toda la humanidad. Cada decisión es un reflejo de la imagen de ser humano que, en ese momento, se considera digna de ser universal."
       ],
     },

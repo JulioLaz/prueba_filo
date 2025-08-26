@@ -13,7 +13,7 @@
   }
 
   // ====== NUEVO: retardo para el modal final (ajustable) ======
-  const FINAL_MODAL_DELAY_MS = 1200; // 700–1200 ms se siente bien en móvil
+  const FINAL_MODAL_DELAY_MS = 1400; // 700–1200 ms se siente bien en móvil
 
   // Rutas de sonidos
   const SND_CORRECT = "sound/collect_points.mp3";
@@ -38,16 +38,7 @@
   const livesEls = Array.from(document.querySelectorAll(".life"));
   const hintSlot = document.getElementById("hint-slot");
 
-// modal final
-// Aparece el resumen un ratito después del modal final:
-
-// Tras crear el diálogo:
-// const authorEl = dlg.querySelector('#summary-author');
-// const author = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.author) || "Jean-Paul Sartre";
-// authorEl.textContent = `Autor: ${author}`;
-
-
-const SUMMARY_DIALOG_DELAY_MS = 900;
+const SUMMARY_DIALOG_DELAY_MS = 1000;
 
 // Construye el dataset de resumen desde la config
 function buildSummaryData(cfg) {
@@ -89,6 +80,100 @@ function ensureSummaryDialog() {
   dlg.style.zIndex = '9999';
 
   dlg.innerHTML = `
+  <style>
+  /* Estilo base de la tarjeta */
+.summary-card {
+    width: min(720px, 92vw);
+    max-height: 85vh;
+    overflow: auto;
+    background-color: #111827;
+    color: #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más suave */
+    padding: 24px; /* Un poco más de padding */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; /* Mejor fuente */
+}
+
+/* Encabezado */
+.summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 16px;
+}
+
+.summary-title {
+    margin: 0;
+    font-size: 1.5rem; /* Título más grande */
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+/* Etiqueta del autor */
+.author-tag {
+    font-size: 1.1rem;
+    background: #a3e635; /* Color más llamativo */
+    color: #111827; /* Texto oscuro para alto contraste */
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-weight: 600;
+}
+
+/* Botón de cerrar */
+.close-btn {
+    background: #1f2937;
+    color: #e5e7eb;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s; /* Transición suave */
+}
+
+.close-btn:hover {
+    background-color: #374151;
+    transform: scale(1.02);
+}
+
+/* Cuerpo del resumen */
+.summary-body {
+    margin-top: 14px;
+}
+
+.section-title {
+    margin: 0.25rem 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #9ca3af; /* Un gris sutil para los títulos de sección */
+    }
+    
+    /* Listas de conceptos y corolarios */
+    .keyword-list, .corollary-list {
+      font-size: 1rem;
+    margin: 0 0 1.5rem 1.2rem;
+    font-style: italic;
+    font-weight: 400; /* Fuente un poco más gruesa */
+
+    line-height: 2; /* Mayor espacio entre líneas */
+}
+
+/* El estilo de las palabras clave en sí */
+.keyword-list strong {
+    color: #38bdf8; /* Un azul claro para destacar los términos */
+}
+
+/* Separador horizontal */
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #374151; /* Color de línea más suave */
+    margin: 1rem 0;
+}
+  
+  </style>
     <div class="summary-card" style="
       width:min(720px,92vw);
       max-height:85vh;
@@ -114,28 +199,37 @@ function ensureSummaryDialog() {
         </button>
       </div>
 
-      <div style="margin-top:14px;">
-        <h4 style="margin:.25rem 0 .5rem 0;">Palabras clave</h4>
-        <ul id="summary-keywords" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
-
-        <h4 style="margin:.25rem 0 .5rem 0;">Frases del corolario</h4>
-        <ul id="summary-corollaries" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
+      <div class="summary-body">
+        <h4 class="section-title">Palabras clave</h4>
+        <ul id="summary-keywords" class="keyword-list"></ul>
+        <hr class="divider">
+        <h4 class="section-title">Frases del corolario</h4>
+        <p id="summary-corollaries" class="corollary-list"></p>
       </div>
-
-<button id="summary-download" style="
-  background:#10b981;color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
-  ⬇ Descargar resumen (PNG)
-</button>
 
       <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
-        <button id="summary-back" style="
-          background:linear-gradient(90deg,#6d28d9,#7c3aed);
-          color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
-          ⬅ Volver al menú
-        </button>
+      <button id="summary-back" style="
+      background:linear-gradient(90deg,#6d28d9,#7c3aed);
+      color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
+      ⬅ Volver al menú
+      </button>
       </div>
-    </div>
-  `;
+      </div>
+      `;
+
+      // <div style="margin-top:14px;">
+      //   <h4 style="margin:.25rem 0 .5rem 0;">Palabras clave</h4>
+      //   <ul id="summary-keywords" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
+      //   <hr>
+      //   <h4 style="margin:.25rem 0 .5rem 0;">Frases del corolario</h4>
+      //   <ul id="summary-corollaries" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
+      // </div>
+      
+
+      // <button id="summary-download" style="
+      //   background:#10b981;color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
+      //   ⬇ Descargar resumen (PNG)
+      // </button>
   document.body.appendChild(dlg);
 
     // 👇 Aquí colocás lo que preguntabas:
@@ -159,25 +253,6 @@ if (backBtn) {
     location.href = url;
   });
 }
-
-
-  // const backBtn = dlg.querySelector('#summary-back');
-  // if (backBtn) {
-  //   backBtn.addEventListener('click', () => {
-  //     const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) || "index.html";
-  //     location.href = url;
-  //     console.log("Volviendo a", url);
-  //         setTimeout(() => {
-  //     location.href = url;
-  //   }, 5000); 
-  //   });
-  // }
-
-  // Volver al menú
-  // dlg.querySelector('#summary-back').addEventListener('click', () => {
-  //   // ajustá la ruta si tu menú de Sartre es otro archivo/url
-  //   location.href = 'sartre.html';
-  // });
 
   return dlg;
 }
@@ -209,8 +284,8 @@ function showSummaryDialog(cfg) {
   let idx = 0; // párrafo actual
   let foundSet = new Set(); // conceptos encontrados en este párrafo
   let streak = 0;
-  let lives = 3;
-  let muted = true;
+  let lives = 5;
+  let muted = false;
 
   // Efectos simples (opcionales)
   const play = (name) => {
@@ -240,12 +315,6 @@ function markLives() {
     }
   });
 }
-  // function markLives() {
-  //   livesEls.forEach((el, i) => {
-  //     if (i < lives) el.classList.add("alive");
-  //     else el.classList.remove("alive");
-  //   });
-  // }
 
   function setCooldown(on) {
     cooldown.classList.toggle("on", on);
@@ -396,55 +465,6 @@ function showLevelCompleted(level, { isLastLevel = false } = {}) {
   }
 }
 
-
-//   function showLevelCompleted(level, { isLastLevel = false } = {}) {
-//   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
-
-//   // 🔊 Sonido de cierre (nivel o juego completo)
-//   if (isLastLevel) {
-//     play(SND_GAME_DONE);
-//   } else {
-//     play(SND_LEVEL_DONE);
-//   }
-
-//   meaningTitle.textContent = "¡Nivel superado!";
-//   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
-//   if (corollary.length > 0) {
-//     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
-//     html += `
-//       <div class="corollary-box">
-//         <h4>Frases clave del texto</h4>
-//         <ul class="corollary-list">${list}</ul>
-//       </div>`;
-//   }
-//   meaningBody.innerHTML = html;
-//   meaningSheet.classList.add("open");
-//   updateNavButtons(level);
-// }
-
-  // ====== NUEVO: render del modal final con corolario ======
-  // function showLevelCompleted(level) {
-  //   const corollary = Array.isArray(level.corollary) ? level.corollary : [];
-
-  //   // No cerramos el sheet anterior: simplemente reemplazamos contenido
-  //   meaningTitle.textContent = "¡Nivel superado!";
-  //   // Aquí sí usamos innerHTML para poder listar el corolario
-  //   let html = `<p>Cazaste todos los conceptos clave. Podés avanzar.</p>`;
-  //   if (corollary.length > 0) {
-  //     const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
-  //     html += `
-  //       <div class="corollary-box">
-  //         <h4>Frases clave del texto</h4>
-  //         <ul class="corollary-list">${list}</ul>
-  //       </div>`;
-  //   }
-  //   meaningBody.innerHTML = html;
-
-  //   // Aseguramos que el sheet esté visible (por si se cerró)
-  //   meaningSheet.classList.add("open");
-  //   updateNavButtons(level);
-  // }
-
   function onCorrect(token, level, keyNorm) {
     if (token.classList.contains("correct")) return;
     token.classList.add("correct");
@@ -473,10 +493,6 @@ function showLevelCompleted(level, { isLastLevel = false } = {}) {
     setTimeout(() => {
       showLevelCompleted(level, { isLastLevel }); // ← le pasamos el flag
     }, FINAL_MODAL_DELAY_MS);
-      // ====== NUEVO: Retardo para dejar ver el último meaning antes del modal final ======
-      // setTimeout(() => {
-      //   showLevelCompleted(level);
-      // }, FINAL_MODAL_DELAY_MS);
     }
   }
 
@@ -503,31 +519,6 @@ function showLevelCompleted(level, { isLastLevel = false } = {}) {
     }, 1500);
   }
 }
-
-//   function onWrong(token) {
-//     if (cooling) return;
-//     token.classList.add("wrong", "shake");
-//     setTimeout(() => token.classList.remove("shake"), 250);
-//     // play("data:audio/mp3;base64,//uQxAA...");
-//     play("sound/negative_beep.mp3");
-//     play("sound/collect_points.mp3");
-
-//  // (silencioso por defecto)
-//     streak = 0;
-//     lives = Math.max(0, lives - 1);
-//     markLives();
-//     if (lives === 0) {
-//       // cooldown anti-clicks
-//       cooling = true;
-//       setCooldown(true);
-//       setTimeout(() => {
-//         setCooldown(false);
-//         cooling = false;
-//         lives = 3; // restaurar vidas para seguir practicando
-//         markLives();
-//       }, 1500);
-//     }
-//   }
 
   function onTokenTap(token, level) {
     if (cooling) return;
