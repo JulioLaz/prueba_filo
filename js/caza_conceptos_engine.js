@@ -203,7 +203,7 @@ function ensureSummaryDialog() {
         <h4 class="section-title">Palabras clave</h4>
         <ul id="summary-keywords" class="keyword-list"></ul>
         <hr class="divider">
-        <h4 class="section-title">Frases del corolario</h4>
+        <h4 class="section-title">Frases claves</h4>
         <p id="summary-corollaries" class="corollary-list"></p>
       </div>
 
@@ -266,11 +266,11 @@ function showSummaryDialog(cfg) {
   const coEl = dlg.querySelector('#summary-corollaries');
 
   kwEl.innerHTML = keywords
-    .map(k => `<li><strong>${escapeHtml(k.term)}:</strong> ${escapeHtml(k.meaning)}</li>`)
+    .map(k => `<p><strong>${escapeHtml(k.term)}:</strong> ${escapeHtml(k.meaning)}</p>`)
     .join('');
 
   coEl.innerHTML = corollaries
-    .map(f => `<li>${escapeHtml(f)}</li>`)
+    .map(f => `<p>✔️ ${escapeHtml(f)}</p>`)
     .join('');
 
   dlg.style.display = 'flex';
