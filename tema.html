@@ -80,6 +80,52 @@
   .sheet-close:hover{ background:#1b2544 }
   .sheet-body{ padding:0; overflow:hidden; max-height:calc(88vh - 56px) }
   .sheet-iframe{ border:0; width:100%; height:calc(88vh - 56px) }
+
+/* === Sheet base (ya lo usás para Material) === */
+.sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:saturate(120%) blur(2px);z-index:1000}
+.sheet-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(180deg,rgba(107,124,255,.18),rgba(107,124,255,.10));border-bottom:1px solid #223059}
+.sheet-title{font-weight:800}
+.sheet-close{appearance:none;background:transparent;border:0;color:#c7d2ff;font-size:24px;line-height:1;cursor:pointer;padding:6px 10px;border-radius:8px}
+.sheet-close:hover{background:#1b2544}
+
+/* === Mapa conceptual — dark gamer === */
+.mapa-sheet{
+  position:fixed;left:50%;top:5%;
+  transform:translateX(-50%);
+  width:min(1000px,92vw);max-height:90vh;
+  background:#0b1020; border:1px solid #243257; border-radius:18px;
+  box-shadow:0 40px 120px rgba(0,0,0,.7); display:flex; flex-direction:column; overflow:hidden;
+}
+.mapa-body{padding:16px;overflow:auto;max-height:calc(90vh - 56px)}
+
+/* Botones */
+.btn{appearance:none;border:1px solid #2a3c6f;background:linear-gradient(180deg,#101a33,#0c142b);color:#e6ecff;padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700}
+.btn:hover{filter:brightness(1.08)}
+.sheet-actions{display:flex;align-items:center;gap:10px}
+
+/* Árbol */
+.tree{margin-top:8px}
+.tree ul{list-style:none;margin:0;padding-left:24px;border-left:2px dashed #23325a}
+.tree>ul{border-left:none;padding-left:0}
+.tree li{position:relative;margin:12px 0 10px}
+.tree li::before{content:\"\";position:absolute;top:18px;left:-24px;width:24px;height:2px;background:#23325a}
+
+.node{
+  display:grid;gap:4px;grid-template-columns:auto 1fr;column-gap:10px;
+  background:linear-gradient(180deg,rgba(22,28,52,.9),rgba(13,19,38,.95));
+  border:1px solid #2b3d6f;border-radius:14px;padding:10px 12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(118,77,255,.06);
+}
+.toggle{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;font-weight:900;cursor:pointer;user-select:none;background:radial-gradient(70% 70% at 50% 30%,rgba(118,77,255,.4),rgba(118,77,255,.12));border:1px solid rgba(118,77,255,.6);color:#d4c7ff}
+.title{grid-column:2;font-weight:900;font-size:1rem}
+.desc{grid-column:2;color:#91a3d9;font-size:.95rem}
+.badge{grid-column:2;justify-self:start;font-size:.75rem;background:rgba(46,204,113,.15);color:#aef8d0;padding:2px 8px;border-radius:999px;border:1px solid rgba(46,204,113,.35)}
+
+/* Estados */
+li.collapsed>ul{display:none}
+li.collapsed>.node .toggle{transform:rotate(-90deg)}
+
+
 </style>
 
 </head>
@@ -171,6 +217,25 @@
       </div>
    </div>
    </div>
+
+   <!-- Mapa conceptual (sheet modal) -->
+<div id="mapa-backdrop" class="sheet-backdrop" style="display:none;">
+  <div class="mapa-sheet" role="dialog" aria-modal="true" aria-labelledby="mapa-title">
+    <div class="sheet-header">
+      <div class="sheet-title" id="mapa-title">🗺️ Mapa conceptual — <span id="mapa-autor">Jean-Paul Sartre</span></div>
+      <div class="sheet-actions">
+        <button class="btn" id="mapa-toggle">Expandir todo</button>
+        <button class="sheet-close" id="mapa-close" aria-label="Cerrar">×</button>
+      </div>
+    </div>
+    <div class="mapa-body" id="mapa-body">
+      <!-- Contenido del mapa se inyecta aquí -->
+    </div>
+  </div>
+</div>
+
+
+
 
   <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
@@ -265,15 +330,17 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
 
     // document.getElementById('goMapa').addEventListener('click',    ()=> go('mapa.html'));            // placeholder
     // Rutas de mapas por tema (podés ir agregando más)
-    const MAP_PATHS = {
-      sartre: 'content/sartre_mapa_conceptual.html',
-      // marx: 'marx_mapa_conceptual.html', etc.
-    };
+    // const MAP_PATHS = {
+    //   sartre: 'content/sartre_mapa_conceptual.html',
+    //   // marx: 'marx_mapa_conceptual.html', etc.
+    // };
 
-    document.getElementById('goMapa').addEventListener('click', () => {
-      const path = MAP_PATHS[tema] || 'mapa.html'; // fallback si aún no existe
-      go(path); // go() ya añade ?tema=&theme= y usa base = location
-    });
+    // document.getElementById('goMapa').addEventListener('click', () => {
+    //   const path = MAP_PATHS[tema] || 'mapa.html'; // fallback si aún no existe
+    //   go(path); // go() ya añade ?tema=&theme= y usa base = location
+    // });
+
+    document.getElementById('goMapa').addEventListener('click', openMapaSheet);
 
     
     document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
@@ -284,6 +351,238 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
     const rec = JSON.parse(localStorage.getItem(recordsKey) || '{}');
     rec.lastOpened = new Date().toISOString();
     localStorage.setItem(recordsKey, JSON.stringify(rec));
+
+// ====== Mapa conceptual (modal) ======
+const mapaBackdrop = document.getElementById('mapa-backdrop');
+const mapaBody     = document.getElementById('mapa-body');
+const mapaClose    = document.getElementById('mapa-close');
+const mapaToggle   = document.getElementById('mapa-toggle');
+const mapaAutor    = document.getElementById('mapa-autor');
+
+function mapaHTML_SARTRE(){
+  return `
+  <section class="tree" aria-label="Mapa de conceptos">
+    <ul>
+      <li>
+        <div class="node">
+          <div class="toggle" role="button">▾</div>
+          <div class="title">La existencia precede a la esencia</div>
+          <div class="desc">Primero existimos; luego, mediante elecciones y acciones, construimos quiénes somos.</div>
+          <span class="badge">Existencialismo</span>
+        </div>
+        <ul>
+          <li>
+            <div class="node">
+              <div class="toggle" role="button">▾</div>
+              <div class="title">Modos del ser</div>
+              <div class="desc">Dos modos fundamentales: <b>ser-en-sí</b> (cosas) y <b>ser-para-sí</b> (conciencia).</div>
+            </div>
+            <ul>
+              <li>
+                <div class="node">
+                  <div class="toggle" role="button">▾</div>
+                  <div class="title">Ser-en-sí</div>
+                  <div class="desc">Pleno y opaco; sin proyecto ni reflexión. Modo de ser de las cosas.</div>
+                </div>
+              </li>
+              <li>
+                <div class="node">
+                  <div class="toggle" role="button">▾</div>
+                  <div class="title">Ser-para-sí</div>
+                  <div class="desc">Conciencia humana: apertura, posibilidad y proyecto; se relaciona con la nada.</div>
+                </div>
+                <ul>
+                  <li>
+                    <div class="node">
+                      <div class="toggle" role="button">▾</div>
+                      <div class="title">La nada</div>
+                      <div class="desc">Hiato que abre distancia entre lo que soy y lo que puedo ser; habilita la negación y la elección.</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="node">
+                      <div class="toggle" role="button">▾</div>
+                      <div class="title">Libertad (estructura del para-sí)</div>
+                      <div class="desc">No es opcional ni añadida: somos <i>condenados a ser libres</i>.</div>
+                    </div>
+                    <ul>
+                      <li><div class="node"><div class="toggle">▾</div><div class="title">Angustia</div><div class="desc">Lúcida ante la responsabilidad por nuestras decisiones.</div></div></li>
+                      <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad radical</div><div class="desc">Responder por lo elegido; sin excusas en esencias o destinos.</div></div></li>
+                      <li><div class="node"><div class="toggle">▾</div><div class="title">Desamparo</div><div class="desc">Sin valores dados “desde afuera”; hay que crearlos actuando.</div></div></li>
+                      <li><div class="node"><div class="toggle">▾</div><div class="title">Desesperación</div><div class="desc">Actuar según lo que depende de uno, sin garantías externas.</div></div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <div class="node">
+              <div class="toggle" role="button">▾</div>
+              <div class="title">Condición humana: lo dado y el proyecto</div>
+              <div class="desc">Libertad situada: se ejerce sobre un trasfondo de límites universales.</div>
+            </div>
+            <ul>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Facticidad</div><div class="desc">Las cartas que nos tocaron (cuerpo, pasado, situación).</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Trascendencia</div><div class="desc">Superar/ resignificar lo dado mediante el proyecto.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Proyecto</div><div class="desc">Estructura de actos que orienta y da sentido a la vida.</div></div></li>
+            </ul>
+          </li>
+
+          <li>
+            <div class="node">
+              <div class="toggle" role="button">▾</div>
+              <div class="title">Relación con el Otro e intersubjetividad</div>
+              <div class="desc">Cruce de libertades: conflicto, reconocimiento y co-creación.</div>
+            </div>
+            <ul>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">El Otro</div><div class="desc">Conciencia libre que coexiste con la mía; me revela a mí mismo.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">La mirada</div><div class="desc">Me descubre como objeto, limitando la vivencia de libertad.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Objetivación</div><div class="desc">Ser reducido a cosa; perder el proyecto libre propio.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Intersubjetividad</div><div class="desc">Espacio donde se entrecruzan y se reconocen libertades.</div></div></li>
+            </ul>
+          </li>
+
+          <li>
+            <div class="node">
+              <div class="toggle" role="button">▾</div>
+              <div class="title">Autenticidad vs. mala fe</div>
+              <div class="desc">Dos actitudes ante la libertad situada.</div>
+            </div>
+            <ul>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Autenticidad</div><div class="desc">Asumir la libertad situada y sostener un proyecto propio.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Mala fe (autoengaño)</div><div class="desc">Negar la propia libertad para evitar decidir.</div></div></li>
+            </ul>
+          </li>
+
+          <li>
+            <div class="node">
+              <div class="toggle" role="button">▾</div>
+              <div class="title">Elegir y crear valor</div>
+              <div class="desc">El acto de decidir funda valor y propone ejemplo universal.</div>
+            </div>
+            <ul>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Decidir</div><div class="desc">El acto que nos define; ineludible.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Valores</div><div class="desc">Instituidos por la acción, no heredados sin más.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Universalidad de la elección</div><div class="desc">Al elegir, proponés una imagen de humanidad.</div></div></li>
+              <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad común</div><div class="desc">Responder por el sentido impreso a la vida propia y compartida.</div></div></li>
+            </ul>
+          </li>
+
+        </ul>
+      </li>
+    </ul>
+  </section>`;
+}
+
+function wireMapaInteractions(){
+  const tree = mapaBody.querySelector('.tree');
+  const hasChildren = (li)=> !!li.querySelector(':scope > ul');
+
+  for (const li of tree.querySelectorAll('li')){
+    const node = li.querySelector(':scope > .node');
+    if (!node) continue;
+    if (hasChildren(li)){
+      node.addEventListener('click', (e)=>{
+        if (e.target.closest('a,button,input,textarea,select')) return;
+        li.classList.toggle('collapsed');
+        markVisited(node);
+      });
+    } else {
+      const tgl = node.querySelector('.toggle'); if (tgl) tgl.style.visibility='hidden';
+      node.addEventListener('click', ()=> markVisited(node));
+    }
+  }
+}
+
+let mapaCollapsed = false;
+function toggleAll(){
+  mapaCollapsed = !mapaCollapsed;
+  const lis = mapaBody.querySelectorAll('.tree li');
+  lis.forEach(li=>{
+    if (li.querySelector(':scope > ul')){
+      li.classList.toggle('collapsed', mapaCollapsed);
+    }
+  });
+  mapaToggle.textContent = mapaCollapsed ? 'Expandir todo' : 'Colapsar todo';
+}
+
+/* === Progreso del mapa para el hub === */
+const mapaKey = `tema.${tema}.mapa`;
+const NAMES = { sartre: 'Jean-Paul Sartre' };
+
+function allTitles(){
+  return Array.from(mapaBody.querySelectorAll('.node .title')).map(el=>el.textContent.trim());
+}
+function readMapa(){
+  try{ return JSON.parse(sessionStorage.getItem(mapaKey)) || {}; }catch{ return {}; }
+}
+function saveMapa(state){
+  sessionStorage.setItem(mapaKey, JSON.stringify(state));
+}
+function markVisited(node){
+  const title = node.querySelector('.title')?.textContent?.trim();
+  if (!title) return;
+  const state = readMapa();
+  const set = new Set(state.nodesVisited || []);
+  set.add(title);
+  const total = allTitles().length || 1;
+  const progress = set.size / total;
+  saveMapa({nodesVisited:[...set], total, progress, completed: progress>=1});
+}
+
+// Abrir / Cerrar
+function openMapaSheet(){
+  // autor dinámico
+  mapaAutor.textContent = NAMES[tema] || tema;
+
+  // ⚠️ siempre limpiamos e inyectamos (evita el bug del comentario)
+  // elimina cualquier nodo (incluye comentarios) y previene duplicar listeners
+  mapaBody.replaceChildren();
+  mapaBody.insertAdjacentHTML('afterbegin', mapaHTML_SARTRE());
+  wireMapaInteractions();
+
+  // estado del botón
+  mapaCollapsed = false;
+  mapaToggle.textContent = 'Colapsar todo';
+
+  // mostrar modal
+  mapaBackdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+// function openMapaSheet(){
+//   // autor dinámico
+//   mapaAutor.textContent = NAMES[tema] || tema;
+
+//   // inyectar contenido si no está cargado
+//   if (!mapaBody.hasChildNodes()){
+//     // por ahora sólo Sartre; si sumás autores, podés hacer switch por tema
+//     mapaBody.innerHTML = mapaHTML_SARTRE();
+//     wireMapaInteractions();
+//   }
+//   // estado del botón
+//   mapaCollapsed = false;
+//   mapaToggle.textContent = 'Colapsar todo';
+
+//   mapaBackdrop.style.display='block';
+//   document.body.style.overflow='hidden';
+// }
+
+function closeMapaSheet(){
+  mapaBackdrop.style.display='none';
+  document.body.style.overflow='';
+}
+
+mapaToggle.addEventListener('click', toggleAll);
+mapaClose.addEventListener('click', closeMapaSheet);
+mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMapaSheet(); });
+
+
+
+
   </script>
 </body>
 </html>
