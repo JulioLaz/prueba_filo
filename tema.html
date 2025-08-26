@@ -263,8 +263,21 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
 
 
 
-    document.getElementById('goMapa').addEventListener('click',    ()=> go('mapa.html'));            // placeholder
+    // document.getElementById('goMapa').addEventListener('click',    ()=> go('mapa.html'));            // placeholder
+    // Rutas de mapas por tema (podés ir agregando más)
+    const MAP_PATHS = {
+      sartre: 'content/sartre_mapa_conceptual.html',
+      // marx: 'marx_mapa_conceptual.html', etc.
+    };
+
+    document.getElementById('goMapa').addEventListener('click', () => {
+      const path = MAP_PATHS[tema] || 'mapa.html'; // fallback si aún no existe
+      go(path); // go() ya añade ?tema=&theme= y usa base = location
+    });
+
+    
     document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
+
 
     // Guardamos “última vez abierto” (opcional)
     const recordsKey = ns('records');

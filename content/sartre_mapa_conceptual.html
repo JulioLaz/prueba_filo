@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jean‑Paul Sartre · Mapa de conceptos (interactivo)</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #0f1520;
+      --muted: #9fb0c2;
+      --text: #e6eef7;
+      --accent: #4cc3ff;
+      --accent-2: #7df1a8;
+      --danger: #ff6b6b;
+      --line: #2a3b52;
+      --chip: #172133;
+      --chip-text: #c5d7ea;
+      --shadow: 0 6px 24px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.3);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg:#f4f7fb; --card:#ffffff; --muted:#4a5b70; --text:#1e293b; --accent:#2563eb; --accent-2:#059669; --danger:#dc2626; --line:#d7e0ea; --chip:#f1f5f9; --chip-text:#334155; --shadow:0 10px 30px rgba(2,6,23,.1), 0 2px 10px rgba(2,6,23,.06);
+      }
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0; background: radial-gradient(1200px 700px at 20% -10%, rgba(76,195,255,.12), rgba(0,0,0,0)) ,
+                                   radial-gradient(800px 600px at 120% 10%, rgba(125,241,168,.12), rgba(0,0,0,0)) ,
+                                   var(--bg);
+      color: var(--text); font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", system-ui, sans-serif;
+      line-height: 1.5;
+    }
+
+    header.appbar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    }
+    .bar {
+      max-width: 1200px; margin: 0 auto; padding: 12px 16px; display: grid; align-items: center; gap: 12px;
+      grid-template-columns: 1fr auto auto auto auto;
+    }
+    .title {
+      display: flex; align-items: center; gap: 10px; font-size: clamp(18px, 2.3vw, 22px); font-weight: 700;
+    }
+    .title .sub { color: var(--muted); font-weight: 500; font-size: .95rem }
+
+    .btn { appearance: none; border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); background: var(--card); color: var(--text);
+      padding: 8px 12px; border-radius: 12px; cursor: pointer; box-shadow: var(--shadow);
+      display: inline-flex; align-items: center; gap: 8px; font-weight: 600; transition: transform .08s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.primary { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 22%, var(--card)), var(--card)); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+    .btn.ghost { background: transparent }
+
+    .search {
+      display: flex; align-items: center; background: var(--card); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      border-radius: 12px; padding: 6px 10px; box-shadow: var(--shadow);
+    }
+    .search input { width: 100%; border: none; outline: none; background: transparent; color: var(--text); font-size: .95rem; padding: 6px 8px; }
+
+    main { max-width: 1200px; margin: 26px auto; padding: 0 16px 80px }
+
+    /* Chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0 }
+    .chip { background: var(--chip); color: var(--chip-text); padding: 6px 10px; border-radius: 999px; font-size: .8rem; border: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+
+    /* Tree */
+    .tree { margin-top: 18px }
+    .tree ul { list-style: none; margin: 0; padding-left: 22px; border-left: 2px dashed var(--line); }
+    .tree > ul { border-left: none; padding-left: 0 }
+    .tree li { position: relative; margin: 10px 0 6px 0; }
+    .tree li::before { content: ""; position: absolute; top: 18px; left: -22px; width: 22px; height: 2px; background: var(--line); }
+
+    .node {
+      display: grid; gap: 3px; align-items: start; grid-template-columns: auto 1fr; column-gap: 10px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--card) 85%, #000) , var(--card));
+      border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      border-radius: 16px; padding: 10px 12px; box-shadow: var(--shadow);
+    }
+    .node .toggle {
+      width: 24px; height: 24px; border-radius: 8px; display: inline-grid; place-items: center; font-weight: 800; cursor: pointer;
+      user-select: none; background: color-mix(in srgb, var(--accent) 15%, var(--card)); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+    }
+    .node .title { grid-column: 2; font-weight: 800; font-size: 1rem }
+    .node .desc { grid-column: 2; color: var(--muted); font-size: .92rem }
+    .node .badge { grid-column: 2; justify-self: start; font-size: .75rem; background: color-mix(in srgb, var(--accent-2) 10%, var(--chip)); color: var(--chip-text); padding: 2px 8px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--line)); }
+
+    li.collapsed > ul { display: none }
+    li.collapsed > .node .toggle { transform: rotate(-90deg) }
+
+    /* Search states */
+    .dimmed { opacity: .28; filter: saturate(.8) }
+    .match { outline: 2px solid color-mix(in srgb, var(--accent) 60%, white); outline-offset: 2px; }
+
+    /* Panels */
+    details.panel { margin-top: 28px; background: var(--card); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); border-radius: 14px; box-shadow: var(--shadow); }
+    details.panel > summary { list-style: none; cursor: pointer; padding: 14px 16px; font-weight: 800; display: flex; align-items: center; gap: 10px }
+    details.panel > summary::-webkit-details-marker { display: none }
+    details.panel[open] > summary { border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent) }
+    .panel .content { padding: 16px }
+
+    /* Keywords grid */
+    .terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px }
+    .term { border: 1px solid color-mix(in srgb, var(--line) 70%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--card) 85%, #000), var(--card)); border-radius: 14px; padding: 10px 12px; box-shadow: var(--shadow) }
+    .term h4 { margin: 0 0 6px; font-size: 1rem }
+    .term p { margin: 0; color: var(--muted); font-size: .92rem }
+
+    footer { margin-top: 40px; color: var(--muted); font-size: .9rem; text-align: center }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: var(--chip); color: var(--chip-text); padding: 2px 6px; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--line) 60%, transparent) }
+  </style>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div class="title"><span>Jean‑Paul Sartre</span> <span class="sub">📚 Resumen de conceptos</span></div>
+      <label class="search" title="Buscar conceptos (Ctrl/Cmd + K)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+        <input id="q" type="search" placeholder="Buscar concepto…" autocomplete="off" />
+      </label>
+      <button id="expandAll" class="btn">Expandir todo</button>
+      <button id="collapseAll" class="btn">Colapsar todo</button>
+      <button id="closeBtn" class="btn ghost" title="Cerrar y volver">✕ Cerrar</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node">
+            <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+            <div class="title">La existencia precede a la esencia</div>
+            <div class="desc">Primero existimos; luego, mediante elecciones y acciones, construimos quiénes somos.</div>
+            <span class="badge">Existencialismo</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node">
+                <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                <div class="title">Modos del ser</div>
+                <div class="desc">Dos modos fundamentales: <strong>ser‑en‑sí</strong> (cosas) y <strong>ser‑para‑sí</strong> (conciencia).</div>
+              </div>
+              <ul>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Ser‑en‑sí</div>
+                    <div class="desc">Pleno y opaco; sin proyecto ni reflexión. Modo de ser de las cosas.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Ser‑para‑sí</div>
+                    <div class="desc">Conciencia humana: apertura, posibilidad y proyecto; se relaciona con la nada.</div>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="node">
+                        <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                        <div class="title">La nada</div>
+                        <div class="desc">Hiato que abre distancia entre lo que soy y lo que puedo ser; habilita la negación y la elección.</div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="node">
+                        <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                        <div class="title">Libertad (estructura del para‑sí)</div>
+                        <div class="desc">No es opcional ni añadida: somos <em>condenados a ser libres</em>.</div>
+                      </div>
+                      <ul>
+                        <li>
+                          <div class="node">
+                            <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                            <div class="title">Angustia</div>
+                            <div class="desc">Lucidez/vértigo ante la responsabilidad por nuestras decisiones.</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="node">
+                            <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                            <div class="title">Responsabilidad radical</div>
+                            <div class="desc">Responder por lo que elegimos; sin excusas en esencias o destinos previos.</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="node">
+                            <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                            <div class="title">Desamparo</div>
+                            <div class="desc">Ausencia de valores dados “desde afuera”; debemos crearlos actuando.</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="node">
+                            <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                            <div class="title">Desesperación</div>
+                            <div class="desc">Actuar según lo que depende de uno, sin garantías externas.</div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node">
+                <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                <div class="title">Condición humana: lo dado y el proyecto</div>
+                <div class="desc">Libertad situada: se ejerce sobre un trasfondo de límites universales.</div>
+              </div>
+              <ul>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Facticidad</div>
+                    <div class="desc">Las cartas que nos tocaron (cuerpo, pasado, situación). Punto de partida.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Trascendencia</div>
+                    <div class="desc">Capacidad de superar/ reinterpretar lo dado mediante el proyecto.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Proyecto</div>
+                    <div class="desc">Estructura de actos que orienta y da sentido a la vida.</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node">
+                <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                <div class="title">Relación con el Otro e intersubjetividad</div>
+                <div class="desc">Cruce de libertades: conflicto, reconocimiento y co‑creación.</div>
+              </div>
+              <ul>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">El Otro</div>
+                    <div class="desc">Conciencia libre que coexiste con la mía; me revela a mí mismo.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">La mirada</div>
+                    <div class="desc">Me descubre como objeto en el mundo, limitando mi vivencia de libertad.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Objetivación</div>
+                    <div class="desc">Ser reducido a cosa; perder el proyecto libre propio.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Intersubjetividad</div>
+                    <div class="desc">Espacio donde se entrecruzan y se reconocen las libertades.</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node">
+                <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                <div class="title">Autenticidad vs. mala fe</div>
+                <div class="desc">Dos actitudes ante la libertad situada.</div>
+              </div>
+              <ul>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Autenticidad</div>
+                    <div class="desc">Asumir la libertad situada y sostener un proyecto propio.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Mala fe (autoengaño)</div>
+                    <div class="desc">Negar la propia libertad para evitar decidir: “no pude”, “me hicieron”.</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node">
+                <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                <div class="title">Elegir y crear valor</div>
+                <div class="desc">El acto de decidir funda valor y propone ejemplo universal.</div>
+              </div>
+              <ul>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Decidir</div>
+                    <div class="desc">El acto que nos define; ineludible para Sartre.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Valores</div>
+                    <div class="desc">Instituidos por la acción, no heredados sin más.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Universalidad de la elección</div>
+                    <div class="desc">Al elegir, nos convertimos en “legisladores”: proponemos una imagen de humanidad.</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <div class="toggle" role="button" aria-label="Alternar rama">▾</div>
+                    <div class="title">Responsabilidad común</div>
+                    <div class="desc">Responder por el sentido impreso a la vida propia y compartida.</div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>📌 Palabras clave</summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Existencialismo</h4><p>Corriente que centra la existencia individual, la libertad y la responsabilidad: la existencia precede a la esencia.</p></article>
+          <article class="term"><h4>Naturaleza / Condición humana</h4><p>No hay “naturaleza” predeterminada; sí <em>condición</em>: estar en el mundo, trabajar, vivir entre otros, ser mortal.</p></article>
+          <article class="term"><h4>Existencia</h4><p>Primero existís; no hay esencia previa que te determine.</p></article>
+          <article class="term"><h4>Esencia</h4><p>Se construye con elecciones y actos.</p></article>
+          <article class="term"><h4>Elecciones</h4><p>Actos con los que te definís; elegir es inevitable.</p></article>
+          <article class="term"><h4>Libertad</h4><p>Estructura del para‑sí; estamos “condenados” a ella.</p></article>
+          <article class="term"><h4>Responsabilidad</h4><p>Responder por lo elegido; sin excusas en esencias previas.</p></article>
+          <article class="term"><h4>Angustia</h4><p>Vértigo lúcido de que nuestras decisiones nos constituyen.</p></article>
+          <article class="term"><h4>Desamparo</h4><p>Ausencia de valores dados desde afuera; hay que crearlos.</p></article>
+          <article class="term"><h4>Desesperación</h4><p>Actuar según lo que depende de uno, sin garantías externas.</p></article>
+          <article class="term"><h4>Ser‑en‑sí</h4><p>Modo de ser de las cosas: pleno, sin proyecto ni reflexión.</p></article>
+          <article class="term"><h4>Ser‑para‑sí</h4><p>Conciencia humana: apertura, posibilidad, proyecto.</p></article>
+          <article class="term"><h4>Nada</h4><p>Hiato activo que permite negar lo que se es y proyectarse.</p></article>
+          <article class="term"><h4>Facticidad</h4><p>Lo dado (cuerpo, pasado, situación) como punto de partida.</p></article>
+          <article class="term"><h4>Trascendencia</h4><p>Superar/ resignificar la facticidad mediante el proyecto.</p></article>
+          <article class="term"><h4>Proyecto</h4><p>Estructura de actos que da sentido y dirección a la vida.</p></article>
+          <article class="term"><h4>Mala fe</h4><p>Mecanismo de evasión: negar la propia libertad para no decidir.</p></article>
+          <article class="term"><h4>Autenticidad</h4><p>Asumir la libertad situada y sostener un proyecto propio.</p></article>
+          <article class="term"><h4>Mirada</h4><p>El Otro me descubre como objeto en el mundo.</p></article>
+          <article class="term"><h4>Objetivación</h4><p>Reducción a cosa; pérdida de la vivencia de proyecto libre.</p></article>
+          <article class="term"><h4>Intersubjetividad</h4><p>Cruce de libertades: conflicto, reconocimiento, co‑creación.</p></article>
+          <article class="term"><h4>Decidir</h4><p>El acto funda valor; no lo recibe hecho.</p></article>
+          <article class="term"><h4>Valores</h4><p>Instituidos por la acción, no heredados sin más.</p></article>
+          <article class="term"><h4>Universal</h4><p>Lo que elegís propone ejemplo a otros.</p></article>
+          <article class="term"><h4>Responsabilidad radical</h4><p>Responder por el sentido impreso a la vida propia y común.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>🧭 Frases clave</summary>
+      <div class="content">
+        <ul class="chips">
+          <li class="chip">La libertad implica responsabilidad.</li>
+          <li class="chip">La existencia precede a la esencia.</li>
+          <li class="chip">Estamos condenados a ser libres.</li>
+          <li class="chip">La nada abre distancia y posibilidad.</li>
+          <li class="chip">No elegís las cartas, elegís cómo jugarlas.</li>
+          <li class="chip">La libertad asume y resignifica lo dado.</li>
+          <li class="chip">Mala fe: negar tu libertad para evitar decidir.</li>
+          <li class="chip">Autenticidad: asumir tu libertad situada.</li>
+          <li class="chip">La mirada del Otro me revela como objeto.</li>
+          <li class="chip">La intersubjetividad es cruce de libertades.</li>
+          <li class="chip">Decidir crea valor.</li>
+          <li class="chip">Al elegir, proponés un universal.</li>
+        </ul>
+      </div>
+    </details>
+
+    <footer>
+      Sugerencias rápidas: <span class="kbd">Click</span> sobre una tarjeta para colapsar/expandir · <span class="kbd">Ctrl/Cmd + K</span> para buscar · <span class="kbd">Esc</span> limpia la búsqueda
+    </footer>
+  </main>
+
+  <script>
+    // --- Back/Cerrar logic ---
+const closeBtn = document.getElementById('closeBtn');
+closeBtn?.addEventListener('click', () => {
+  // 1) Recuperar el slug del tema
+  const qs = new URLSearchParams(location.search);
+  const tema =
+    qs.get('tema') ||
+    qs.get('theme') ||
+    sessionStorage.getItem('tema.active') ||
+    'sartre';
+
+  // 2) Ir al hub subiendo un nivel: ../tema.html (desde /content/)
+  const hub = new URL('../tema.html', location);   // ✅ funciona en file://, http:// y https://
+  hub.searchParams.set('tema', tema);
+  hub.searchParams.set('theme', tema);             // compat
+  location.href = hub.toString();
+});
+
+
+// 
+// --- Progreso del mapa para el hub ---
+const qs2 = new URLSearchParams(location.search);
+const temaSlug =
+  qs2.get('tema') || qs2.get('theme') ||
+  sessionStorage.getItem('tema.active') || 'sartre';
+
+    // ⬇️ AQUÍ va el código del título dinámico
+  const NAMES = { sartre: 'Jean-Paul Sartre' }; // ampliá con más autores si querés
+  const temaName = NAMES[temaSlug] || temaSlug;
+  const nameEl = document.querySelector('.title > span:first-child'); // el primer span del header
+  if (nameEl) nameEl.textContent = temaName;
+
+
+const mapaKey = `tema.${temaSlug}.mapa`;
+
+// total de nodos (por los títulos visibles)
+const allTitles = Array.from(document.querySelectorAll('.node .title'))
+  .map(el => el.textContent.trim());
+
+// estado previo (si existe)
+let mapaState = {};
+try { mapaState = JSON.parse(sessionStorage.getItem(mapaKey)) || {}; } catch {}
+const visited = new Set(mapaState.nodesVisited || []);
+
+function saveMapaProgress() {
+  const total = allTitles.length || 1;
+  const progress = visited.size / total;
+  sessionStorage.setItem(mapaKey, JSON.stringify({
+    nodesVisited: Array.from(visited),
+    total,
+    progress,
+    completed: progress >= 1
+  }));
+}
+
+// marcar visitado al interactuar con un nodo
+document.querySelectorAll('.node').forEach(node => {
+  node.addEventListener('click', () => {
+    const title = node.querySelector('.title')?.textContent?.trim();
+    if (title) { visited.add(title); saveMapaProgress(); }
+  });
+});
+
+// guarda al salir por si quedó pendiente
+window.addEventListener('beforeunload', saveMapaProgress);
+
+//  ###################################################
+
+
+
+    // --- Toggle helpers & progressive enhancement ---
+    const tree = document.querySelector('.tree');
+    const hasChildren = li => !!li.querySelector(':scope > ul');
+
+    for (const li of tree.querySelectorAll('li')) {
+      const node = li.querySelector(':scope > .node');
+      if (!node) continue;
+      if (hasChildren(li)) {
+        node.classList.add('collapsible');
+        node.addEventListener('click', (e) => {
+          // Evitar que el click en inputs dentro del nodo activen el toggle
+          if (e.target.closest('a, button, input, textarea, select')) return;
+          li.classList.toggle('collapsed');
+        });
+      } else {
+        // Si no tiene hijos, escondemos el chevron
+        const tgl = node.querySelector('.toggle');
+        if (tgl) tgl.style.visibility = 'hidden';
+      }
+    }
+
+    // --- Expand/Collapse All ---
+    const expandAllBtn = document.getElementById('expandAll');
+    const collapseAllBtn = document.getElementById('collapseAll');
+    expandAllBtn?.addEventListener('click', () => {
+      document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
+    });
+    collapseAllBtn?.addEventListener('click', () => {
+      document.querySelectorAll('.tree li').forEach(li => { if (li.querySelector(':scope > ul')) li.classList.add('collapsed'); });
+    });
+
+    // --- Search/Highlight ---
+    const q = document.getElementById('q');
+    const nodes = Array.from(document.querySelectorAll('.node'));
+
+    function clearSearch() {
+      nodes.forEach(n => n.classList.remove('match'));
+      document.querySelectorAll('.tree li').forEach(li => li.classList.remove('dimmed'));
+    }
+    function doSearch(term) {
+      const t = term.trim().toLowerCase();
+      if (!t) { clearSearch(); return; }
+      // Colapsar nada; expandir todo para poder ver matches
+      expandAllBtn.click();
+      let any = false;
+      nodes.forEach(n => {
+        const text = n.innerText.toLowerCase();
+        if (text.includes(t)) { n.classList.add('match'); any = true; }
+        else n.classList.remove('match');
+      });
+      // Atenuar no coincidentes
+      document.querySelectorAll('.tree li').forEach(li => {
+        const matched = li.querySelector(':scope > .node.match') || li.querySelector('.node.match');
+        li.classList.toggle('dimmed', !matched);
+      });
+    }
+
+    q?.addEventListener('input', e => doSearch(e.target.value));
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); q.focus(); }
+      if (e.key === 'Escape') { q.value=''; clearSearch(); }
+    });
+  </script>
+</body>
+</html>
