@@ -267,9 +267,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
   </div>
 </div>
 
-
-
-
   <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);
@@ -417,7 +414,16 @@ function openMaterialSheet(){
   sheetBackdrop.style.display = 'block';
   document.body.style.overflow = 'hidden';
 
-  const url = new URL(`content/${tema}.html`, location);
+  // const url = new URL(`content/${tema}.html`, location);
+
+  // Intentar cargar desde nueva estructura primero
+  let contentPath = `themes/${tema}/content.html`;
+  // Fallback a estructura legacy
+  const fallbackPath = `content/${tema}.html`;
+
+  const url = new URL(contentPath, location);
+
+
   sheetBody.innerHTML = '';
   const iframe = document.createElement('iframe');
   iframe.className = 'sheet-iframe';
@@ -439,15 +445,6 @@ function openMaterialSheet(){
   });
   sheetBody.appendChild(iframe);
 }
-
-
-
-// function openMaterialSheet(){
-//   sheetBackdrop.style.display = 'block';
-//   document.body.style.overflow = 'hidden';
-//   const url = new URL(`content/${tema}.html`, location); // respeta /prueba_filo/
-//   sheetBody.innerHTML = `<iframe class="sheet-iframe" src="${url.toString()}" loading="lazy"></iframe>`;
-// }
 
 function closeMaterialSheet(){
   sheetBackdrop.style.display = 'none';
@@ -834,7 +831,14 @@ function openMapaSheet(){
   mapaAutor.textContent = NAMES[tema] || tema;
 
   mapaBody.innerHTML = ''; // limpiar
-  const url = new URL(`content/${tema}_mapa_conceptual.html`, location);
+  // const url = new URL(`content/${tema}_mapa_conceptual.html`, location);
+  // Nueva estructura modular
+  let mapaPath = `themes/${tema}/mapa.html`;
+  // Fallback a legacy
+  const fallbackMapaPath = `content/${tema}_mapa_conceptual.html`;
+
+  const url = new URL(mapaPath, location);
+
   url.searchParams.set('embed', '1'); // por si luego querés modo “embed”
   
   const ifr = document.createElement('iframe');

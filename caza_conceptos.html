@@ -111,22 +111,6 @@
 
   <!-- Motor común y configuración del tema -->
 
-
-<!-- <script>
-  const q = new URLSearchParams(location.search);
-  const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
-  sessionStorage.setItem('tema_actual', tema);
-  localStorage.setItem('tema_actual', tema);
-
-  document.getElementById('back-btn').addEventListener('click', () => {
-    const url = new URL('tema.html', location);
-    url.searchParams.set('tema', tema);
-    url.searchParams.set('theme', tema); // compat
-    location.href = url.toString();
-  });
-</script> -->
-
-
 <script>
   const q = new URLSearchParams(location.search);
   const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
@@ -143,7 +127,56 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <!-- <script defer src=`js/caza_conceptos_${tema}.js`></script> -->
-  <script defer src="js/caza_conceptos_sartre.js"></script>
-  <script defer src="js/caza_conceptos_engine.js"></script>
+  <!-- <script defer src="js/caza_conceptos_sartre.js"></script> -->
+<script>
+console.log('🔧 Cargando configuración de caza de conceptos...');
+(function() {
+  const params = new URLSearchParams(location.search);
+  const tema = params.get('tema') || params.get('theme') || 'sartre';
+  console.log('🎯 Tema detectado:', tema);
+  
+  // Cargar configuración
+  const script = document.createElement('script');
+  script.src = `themes/${tema}/conceptos.js`;
+  script.onload = () => console.log('✅ Configuración cargada desde themes/' + tema + '/conceptos.js');
+  script.onerror = () => {
+    console.warn('⚠️ Fallback a ruta legacy para conceptos');
+    const fallbackScript = document.createElement('script');
+    fallbackScript.src = `js/caza_conceptos_${tema}.js`;
+    fallbackScript.onload = () => console.log('✅ Configuración cargada desde fallback');
+    fallbackScript.onerror = () => console.error('❌ No se pudo cargar configuración de conceptos');
+    document.head.appendChild(fallbackScript);
+  };
+  document.head.appendChild(script);
+})();
+</script>
+  <!-- <script defer src="js/caza_conceptos_engine.js"></script> -->
+   <script>
+// Cargar engine DESPUÉS de la configuración
+(function() {
+  const params = new URLSearchParams(location.search);
+  const tema = params.get('tema') || params.get('theme') || 'sartre';
+  
+  const script = document.createElement('script');
+  script.src = `themes/${tema}/conceptos.js`;
+  script.onload = () => {
+    // Ahora cargar el engine
+    const engineScript = document.createElement('script');
+    engineScript.src = 'js/caza_conceptos_engine.js';
+    document.head.appendChild(engineScript);
+  };
+  script.onerror = () => {
+    const fallbackScript = document.createElement('script');
+    fallbackScript.src = `js/caza_conceptos_${tema}.js`;
+    fallbackScript.onload = () => {
+      const engineScript = document.createElement('script');
+      engineScript.src = 'js/caza_conceptos_engine.js';
+      document.head.appendChild(engineScript);
+    };
+    document.head.appendChild(fallbackScript);
+  };
+  document.head.appendChild(script);
+})();
+</script>
 </body>
 </html>
