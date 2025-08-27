@@ -25,19 +25,19 @@ const AVAILABLE_THEMES = [
         contentFile: "content/cassirer.html"
     },
     {
-    "id": "sartre",
-    "title": "Jean-Paul Sartre: El ser humano es libertad",
-    "description": "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
-    "icon": "🌀",
-    "gradient": "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+    id: "sartre",
+    title: "Jean-Paul Sartre: El ser humano es libertad",
+    description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
+    icon: "🌀",
+    gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
     // "difficulty": "basico",
-    "difficulty": "intermedio",
-    "questions": 10,
-    "timeEstimate": 12,
-    "prerequisites": [],
+    difficulty: "intermedio",
+    questions: 10,
+    timeEstimate: 12,
+    prerequisites: [],
     // "prerequisites": ["antropologia_filosofica"],
-    "color": "#00adb5",
-    "contentFile": "content/sartre.html"
+    color: "#00adb5",
+    contentFile: "content/sartre.html"
     },
     {
         id: 'etica',
