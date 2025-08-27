@@ -73,6 +73,38 @@ const backToThemesBtn = document.getElementById('back-to-themes-btn');
 console.log('🎮 Elementos DOM inicializados');
 
 // ========================================
+// 🔧 CARGADOR MODULAR DE TEMAS
+// ========================================
+
+/**
+ * Obtiene la ruta del archivo de quiz según si el tema es modular o no
+ * @param {string} themeId - ID del tema
+ * @returns {Promise<string>} Ruta del archivo de quiz
+ */
+async function getThemeQuizPath(themeId) {
+    console.log(`🔧 Determinando ruta de quiz para tema: ${themeId}`);
+    
+    try {
+        // Intentar cargar config.json del tema
+        const configUrl = new URL(`themes/${themeId}/config.json`, location.href);
+        const response = await fetch(configUrl.toString(), { cache: 'no-cache' });
+        
+        if (response.ok) {
+            const config = await response.json();
+            console.log(`✅ Tema ${themeId} es modular, usando themes/${themeId}/${config.files.quiz}`);
+            return `themes/${themeId}/${config.files.quiz}`;
+        }
+    } catch (error) {
+        console.log(`⚠️ Config no encontrado para ${themeId}, usando ruta legacy`);
+    }
+    
+    // Fallback a ruta legacy
+    console.log(`📁 Usando ruta legacy: themes/${themeId}.js`);
+    return `themes/${themeId}.js`;
+}
+
+
+// ========================================
 // 📊 ESTADO DEL CUESTIONARIO
 // ========================================
 
@@ -194,14 +226,6 @@ function updateProgress(){
   hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed:false });
 }
 
-// al terminar
-function showResults(){
-  // ... tu código existente ...
-  const totalQuestions = currentTheme.questions.length;
-  hubSaveQuiz({ qIndex: totalQuestions, score, completed:true });
-}
-
-
 // ========================================
 // 📚 CARGA DEL TEMA
 // ========================================
@@ -211,7 +235,8 @@ function showResults(){
  * @param {string} themeId - ID del tema a cargar
  * @returns {Promise<Object>} Datos del tema cargado
  */
-async function loadTheme(themeId) {
+// async function loadTheme(themeId) {
+    async function loadTheme(themeId) {
     console.log(`📚 Cargando tema: ${themeId}`);
     const loadStart = performance.now();
     
@@ -219,8 +244,11 @@ async function loadTheme(themeId) {
         updateLoadingProgress(20, 'Cargando configuración del tema...');
         
         // Cargar archivo JS del tema
+        // script.src = `js/themes/${themeId}.js`;
+        // Cargar archivo JS del tema
         const script = document.createElement('script');
-        script.src = `js/themes/${themeId}.js`;
+        const scriptPath = await getThemeQuizPath(themeId);
+        script.src = scriptPath;
         
         return new Promise((resolve, reject) => {
             script.onload = () => {
@@ -246,7 +274,8 @@ async function loadTheme(themeId) {
             };
             
             script.onerror = () => {
-                const error = new Error(`Error al cargar js/themes/${themeId}.js`);
+                // const error = new Error(`Error al cargar js/themes/${themeId}.js`);
+                const error = new Error(`Error al cargar tema ${themeId} desde ${scriptPath}`);
                 console.error('❌', error);
                 reject(error);
             };
@@ -867,7 +896,8 @@ async function main() {
         setupEventListeners();
         
         // Obtener tema de la URL
-        const themeId = getURLParameter('theme');
+        // const themeId = getURLParameter('theme');
+        const themeId = getURLParameter('theme') || getURLParameter('tema');
         if (!themeId) {
             throw new Error('No se especificó un tema en la URL');
         }

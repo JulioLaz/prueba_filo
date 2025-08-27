@@ -23,21 +23,21 @@ const AVAILABLE_THEMES = [
         prerequisites: [],
         color: "#6a85b6",
         contentFile: "content/cassirer.html"
+
     },
     {
-    id: "sartre",
-    title: "Jean-Paul Sartre: El ser humano es libertad",
-    description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
-    icon: "🌀",
-    gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
-    // "difficulty": "basico",
-    difficulty: "intermedio",
-    questions: 10,
-    timeEstimate: 12,
-    prerequisites: [],
-    // "prerequisites": ["antropologia_filosofica"],
-    color: "#00adb5",
-    contentFile: "content/sartre.html"
+        id: "sartre",
+        title: "Jean-Paul Sartre: El ser humano es libertad", 
+        description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
+        icon: "🌀",
+        gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+        difficulty: "intermedio",
+        questions: 10,
+        timeEstimate: 12,
+        prerequisites: [],
+        color: "#00adb5",
+        contentFile: "themes/sartre/content.html", // ✅ Nueva ruta
+        useModularConfig: true // ✅ Flag para usar config.json
     },
     {
         id: 'etica',
@@ -657,4 +657,109 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
             console.log('🔧 Modo desarrollo - Estadísticas:', stats);
         }, 2000);
     });
+}
+
+// ========================================
+// 🔧 CARGADOR DINÁMICO DE TEMAS
+// ========================================
+
+/**
+ * Carga la configuración de un tema desde su archivo config.json
+ * @param {string} themeId - ID del tema a cargar
+ * @returns {Promise<Object>} Configuración del tema
+ */
+async function loadThemeConfig(themeId) {
+    console.log(`🔧 Cargando configuración para tema: ${themeId}`);
+    
+    try {
+        const configUrl = new URL(`themes/${themeId}/config.json`, location.href);
+        const response = await fetch(configUrl.toString(), { cache: 'no-cache' });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: No se pudo cargar config.json para ${themeId}`);
+        }
+        
+        const config = await response.json();
+        
+        // Validar estructura mínima
+        if (!config.id || !config.meta || !config.activities) {
+            throw new Error(`Configuración inválida para tema ${themeId}`);
+        }
+        
+        console.log(`✅ Configuración de ${themeId} cargada desde config.json`);
+        return config;
+        
+    } catch (error) {
+        console.error(`❌ Error cargando configuración de ${themeId}:`, error);
+        
+        // Fallback a configuración hardcodeada si existe
+        const fallback = AVAILABLE_THEMES.find(t => t.id === themeId);
+        if (fallback) {
+            console.warn(`⚠️ Usando configuración fallback para ${themeId}`);
+            return convertLegacyToModular(fallback);
+        }
+        
+        throw error;
+    }
+}
+
+/**
+ * Convierte tema legacy al formato modular para compatibilidad
+ * @param {Object} legacyTheme - Tema en formato anterior
+ * @returns {Object} Tema en formato modular
+ */
+function convertLegacyToModular(legacyTheme) {
+    return {
+        id: legacyTheme.id,
+        meta: {
+            title: legacyTheme.title,
+            author: legacyTheme.title.split(':')[0]?.trim() || legacyTheme.id,
+            icon: legacyTheme.icon,
+            gradient: legacyTheme.gradient,
+            difficulty: legacyTheme.difficulty,
+            description: legacyTheme.description
+        },
+        activities: {
+            quiz: {
+                enabled: true,
+                questions: legacyTheme.questions || 10,
+                timeLimit: 30,
+                timeEstimate: legacyTheme.timeEstimate || 10
+            },
+            conceptos: { enabled: true, levels: 6, timeEstimate: 8 },
+            material: { enabled: true, sections: 8, timeEstimate: 10 },
+            mapa: { enabled: true, nodes: 10, timeEstimate: 5 }
+        },
+        files: {
+            content: legacyTheme.contentFile || `content/${legacyTheme.id}.html`,
+            quiz: `${legacyTheme.id}.js`,
+            conceptos: `${legacyTheme.id}.js`,
+            mapa: `${legacyTheme.id}_mapa_conceptual.html`
+        },
+        prerequisites: legacyTheme.prerequisites || [],
+        color: legacyTheme.color,
+        _legacy: true // Flag interno
+    };
+}
+
+/**
+ * Obtiene la configuración de un tema (modular o legacy)
+ * @param {string} themeId - ID del tema
+ * @returns {Promise<Object>} Configuración del tema
+ */
+async function getThemeConfig(themeId) {
+    const legacyTheme = AVAILABLE_THEMES.find(t => t.id === themeId);
+    
+    // Si el tema usa configuración modular, cargarla
+    if (legacyTheme?.useModularConfig) {
+        try {
+            return await loadThemeConfig(themeId);
+        } catch (error) {
+            console.warn(`Fallback a configuración legacy para ${themeId}`);
+            return convertLegacyToModular(legacyTheme);
+        }
+    }
+    
+    // Usar configuración legacy
+    return legacyTheme ? convertLegacyToModular(legacyTheme) : null;
 }

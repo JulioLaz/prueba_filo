@@ -1,0 +1,42 @@
+{
+  "id": "sartre",
+  "meta": {
+    "title": "Jean-Paul Sartre: El ser humano es libertad",
+    "author": "Jean-Paul Sartre",
+    "icon": "🌀",
+    "gradient": "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+    "difficulty": "intermedio",
+    "description": "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 6,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 8,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 24,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "content.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js", 
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#00adb5"
+}
