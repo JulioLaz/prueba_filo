@@ -482,6 +482,123 @@ const mapaClose    = document.getElementById('mapa-close');
 const mapaToggle   = document.getElementById('mapa-toggle');
 const mapaAutor    = document.getElementById('mapa-autor');
 
+// function mapaHTML_SARTRE(){
+//   return `
+//   <section class="tree" aria-label="Mapa de conceptos">
+//     <ul>
+//       <li>
+//         <div class="node">
+//           <div class="toggle" role="button">▾</div>
+//           <div class="title">La existencia precede a la esencia</div>
+//           <div class="desc">Primero existimos; luego, mediante elecciones y acciones, construimos quiénes somos.</div>
+//           <span class="badge">Existencialismo</span>
+//         </div>
+//         <ul>
+//           <li>
+//             <div class="node">
+//               <div class="toggle" role="button">▾</div>
+//               <div class="title">Modos del ser</div>
+//               <div class="desc">Dos modos fundamentales: <b>ser-en-sí</b> (cosas) y <b>ser-para-sí</b> (conciencia).</div>
+//             </div>
+//             <ul>
+//               <li>
+//                 <div class="node">
+//                   <div class="toggle" role="button">▾</div>
+//                   <div class="title">Ser-en-sí</div>
+//                   <div class="desc">Pleno y opaco; sin proyecto ni reflexión. Modo de ser de las cosas.</div>
+//                 </div>
+//               </li>
+//               <li>
+//                 <div class="node">
+//                   <div class="toggle" role="button">▾</div>
+//                   <div class="title">Ser-para-sí</div>
+//                   <div class="desc">Conciencia humana: apertura, posibilidad y proyecto; se relaciona con la nada.</div>
+//                 </div>
+//                 <ul>
+//                   <li>
+//                     <div class="node">
+//                       <div class="toggle" role="button">▾</div>
+//                       <div class="title">La nada</div>
+//                       <div class="desc">Hiato que abre distancia entre lo que soy y lo que puedo ser; habilita la negación y la elección.</div>
+//                     </div>
+//                   </li>
+//                   <li>
+//                     <div class="node">
+//                       <div class="toggle" role="button">▾</div>
+//                       <div class="title">Libertad (estructura del para-sí)</div>
+//                       <div class="desc">No es opcional ni añadida: somos <i>condenados a ser libres</i>.</div>
+//                     </div>
+//                     <ul>
+//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Angustia</div><div class="desc">Lúcida ante la responsabilidad por nuestras decisiones.</div></div></li>
+//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad radical</div><div class="desc">Responder por lo elegido; sin excusas en esencias o destinos.</div></div></li>
+//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Desamparo</div><div class="desc">Sin valores dados “desde afuera”; hay que crearlos actuando.</div></div></li>
+//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Desesperación</div><div class="desc">Actuar según lo que depende de uno, sin garantías externas.</div></div></li>
+//                     </ul>
+//                   </li>
+//                 </ul>
+//               </li>
+//             </ul>
+//           </li>
+
+//           <li>
+//             <div class="node">
+//               <div class="toggle" role="button">▾</div>
+//               <div class="title">Condición humana: lo dado y el proyecto</div>
+//               <div class="desc">Libertad situada: se ejerce sobre un trasfondo de límites universales.</div>
+//             </div>
+//             <ul>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Facticidad</div><div class="desc">Las cartas que nos tocaron (cuerpo, pasado, situación).</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Trascendencia</div><div class="desc">Superar/ resignificar lo dado mediante el proyecto.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Proyecto</div><div class="desc">Estructura de actos que orienta y da sentido a la vida.</div></div></li>
+//             </ul>
+//           </li>
+
+//           <li>
+//             <div class="node">
+//               <div class="toggle" role="button">▾</div>
+//               <div class="title">Relación con el Otro e intersubjetividad</div>
+//               <div class="desc">Cruce de libertades: conflicto, reconocimiento y co-creación.</div>
+//             </div>
+//             <ul>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">El Otro</div><div class="desc">Conciencia libre que coexiste con la mía; me revela a mí mismo.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">La mirada</div><div class="desc">Me descubre como objeto, limitando la vivencia de libertad.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Objetivación</div><div class="desc">Ser reducido a cosa; perder el proyecto libre propio.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Intersubjetividad</div><div class="desc">Espacio donde se entrecruzan y se reconocen libertades.</div></div></li>
+//             </ul>
+//           </li>
+
+//           <li>
+//             <div class="node">
+//               <div class="toggle" role="button">▾</div>
+//               <div class="title">Autenticidad vs. mala fe</div>
+//               <div class="desc">Dos actitudes ante la libertad situada.</div>
+//             </div>
+//             <ul>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Autenticidad</div><div class="desc">Asumir la libertad situada y sostener un proyecto propio.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Mala fe (autoengaño)</div><div class="desc">Negar la propia libertad para evitar decidir.</div></div></li>
+//             </ul>
+//           </li>
+
+//           <li>
+//             <div class="node">
+//               <div class="toggle" role="button">▾</div>
+//               <div class="title">Elegir y crear valor</div>
+//               <div class="desc">El acto de decidir funda valor y propone ejemplo universal.</div>
+//             </div>
+//             <ul>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Decidir</div><div class="desc">El acto que nos define; ineludible.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Valores</div><div class="desc">Instituidos por la acción, no heredados sin más.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Universalidad de la elección</div><div class="desc">Al elegir, proponés una imagen de humanidad.</div></div></li>
+//               <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad común</div><div class="desc">Responder por el sentido impreso a la vida propia y compartida.</div></div></li>
+//             </ul>
+//           </li>
+
+//         </ul>
+//       </li>
+//     </ul>
+//   </section>`;
+// }
+
 function mapaHTML_SARTRE(){
   return `
   <section class="tree" aria-label="Mapa de conceptos">
@@ -596,8 +713,62 @@ function mapaHTML_SARTRE(){
         </ul>
       </li>
     </ul>
-  </section>`;
+  </section>
+
+  <details class="panel" open>
+    <summary>📌 Palabras clave</summary>
+    <div class="content">
+      <div class="terms">
+        <article class="term"><h4>Existencialismo</h4><p>Corriente que centra la existencia individual, la libertad y la responsabilidad: la existencia precede a la esencia.</p></article>
+        <article class="term"><h4>Naturaleza / Condición humana</h4><p>No hay “naturaleza” predeterminada; sí <em>condición</em>: estar en el mundo, trabajar, vivir entre otros, ser mortal.</p></article>
+        <article class="term"><h4>Existencia</h4><p>Primero existís; no hay esencia previa que te determine.</p></article>
+        <article class="term"><h4>Esencia</h4><p>Se construye con elecciones y actos.</p></article>
+        <article class="term"><h4>Elecciones</h4><p>Actos con los que te definís; elegir es inevitable.</p></article>
+        <article class="term"><h4>Libertad</h4><p>Estructura del para-sí; estamos “condenados” a ella.</p></article>
+        <article class="term"><h4>Responsabilidad</h4><p>Responder por lo elegido; sin excusas en esencias previas.</p></article>
+        <article class="term"><h4>Angustia</h4><p>Vértigo lúcido de que nuestras decisiones nos constituyen.</p></article>
+        <article class="term"><h4>Desamparo</h4><p>Ausencia de valores dados desde afuera; hay que crearlos.</p></article>
+        <article class="term"><h4>Desesperación</h4><p>Actuar según lo que depende de uno, sin garantías externas.</p></article>
+        <article class="term"><h4>Ser-en-sí</h4><p>Modo de ser de las cosas: pleno, sin proyecto ni reflexión.</p></article>
+        <article class="term"><h4>Ser-para-sí</h4><p>Conciencia humana: apertura, posibilidad, proyecto.</p></article>
+        <article class="term"><h4>Nada</h4><p>Hiato activo que permite negar lo que se es y proyectarse.</p></article>
+        <article class="term"><h4>Facticidad</h4><p>Lo dado (cuerpo, pasado, situación) como punto de partida.</p></article>
+        <article class="term"><h4>Trascendencia</h4><p>Superar/ resignificar la facticidad mediante el proyecto.</p></article>
+        <article class="term"><h4>Proyecto</h4><p>Estructura de actos que da sentido y dirección a la vida.</p></article>
+        <article class="term"><h4>Mala fe</h4><p>Mecanismo de evasión: negar la propia libertad para no decidir.</p></article>
+        <article class="term"><h4>Autenticidad</h4><p>Asumir la libertad situada y sostener un proyecto propio.</p></article>
+        <article class="term"><h4>Mirada</h4><p>El Otro me descubre como objeto en el mundo.</p></article>
+        <article class="term"><h4>Objetivación</h4><p>Reducción a cosa; pérdida de la vivencia de proyecto libre.</p></article>
+        <article class="term"><h4>Intersubjetividad</h4><p>Cruce de libertades: conflicto, reconocimiento, co-creación.</p></article>
+        <article class="term"><h4>Decidir</h4><p>El acto funda valor; no lo recibe hecho.</p></article>
+        <article class="term"><h4>Valores</h4><p>Instituidos por la acción, no heredados sin más.</p></article>
+        <article class="term"><h4>Universal</h4><p>Lo que elegís propone ejemplo a otros.</p></article>
+        <article class="term"><h4>Responsabilidad radical</h4><p>Responder por el sentido impreso a la vida propia y común.</p></article>
+      </div>
+    </div>
+  </details>
+
+  <details class="panel" open>
+    <summary>🧭 Frases clave</summary>
+    <div class="content">
+      <ul class="chips">
+        <li class="chip">La libertad implica responsabilidad.</li>
+        <li class="chip">La existencia precede a la esencia.</li>
+        <li class="chip">Estamos condenados a ser libres.</li>
+        <li class="chip">La nada abre distancia y posibilidad.</li>
+        <li class="chip">No elegís las cartas, elegís cómo jugarlas.</li>
+        <li class="chip">La libertad asume y resignifica lo dado.</li>
+        <li class="chip">Mala fe: negar tu libertad para evitar decidir.</li>
+        <li class="chip">Autenticidad: asumir tu libertad situada.</li>
+        <li class="chip">La mirada del Otro me revela como objeto.</li>
+        <li class="chip">La intersubjetividad es cruce de libertades.</li>
+        <li class="chip">Decidir crea valor.</li>
+        <li class="chip">Al elegir, proponés un universal.</li>
+      </ul>
+    </div>
+  </details>`;
 }
+
 
 function wireMapaInteractions(){
   const tree = mapaBody.querySelector('.tree');
@@ -658,24 +829,61 @@ function markVisited(node){
 }
 
 // Abrir / Cerrar
+
 function openMapaSheet(){
-  // autor dinámico
   mapaAutor.textContent = NAMES[tema] || tema;
 
-  // ⚠️ siempre limpiamos e inyectamos (evita el bug del comentario)
-  // elimina cualquier nodo (incluye comentarios) y previene duplicar listeners
-  mapaBody.replaceChildren();
-  mapaBody.insertAdjacentHTML('afterbegin', mapaHTML_SARTRE());
-  wireMapaInteractions();
+  mapaBody.innerHTML = ''; // limpiar
+  const url = new URL(`content/${tema}_mapa_conceptual.html`, location);
+  url.searchParams.set('embed', '1'); // por si luego querés modo “embed”
+  
+  const ifr = document.createElement('iframe');
+  ifr.className = 'sheet-iframe';
+  ifr.src = url.toString();
+  ifr.onload = () => {
+    const d = ifr.contentDocument;
 
-  // estado del botón
-  mapaCollapsed = false;
-  mapaToggle.textContent = 'Colapsar todo';
+    // Ocultar elementos que no querés en el modal
+    d.querySelector('.search')?.remove();
+    d.getElementById('closeBtn')?.remove();
+    // Si querés, también ocultá los dos botones internos y usá el del hub:
+    d.getElementById('expandAll')?.classList.add('hidden');
+    d.getElementById('collapseAll')?.classList.add('hidden');
 
-  // mostrar modal
-  mapaBackdrop.style.display = 'block';
-  document.body.style.overflow = 'hidden';
+    // Nuestro botón único del hub controla el árbol del iframe
+    let collapsed = false;
+    mapaToggle.textContent = 'Colapsar todo';
+    mapaToggle.onclick = () => {
+      collapsed = !collapsed;
+      (collapsed ? d.getElementById('collapseAll') : d.getElementById('expandAll'))?.click();
+      mapaToggle.textContent = collapsed ? 'Expandir todo' : 'Colapsar todo';
+    };
+  };
+
+  mapaBody.appendChild(ifr);
+  mapaBackdrop.style.display='block';
+  document.body.style.overflow='hidden';
 }
+
+
+// function openMapaSheet(){
+//   // autor dinámico
+//   mapaAutor.textContent = NAMES[tema] || tema;
+
+//   // ⚠️ siempre limpiamos e inyectamos (evita el bug del comentario)
+//   // elimina cualquier nodo (incluye comentarios) y previene duplicar listeners
+//   mapaBody.replaceChildren();
+//   mapaBody.insertAdjacentHTML('afterbegin', mapaHTML_SARTRE());
+//   wireMapaInteractions();
+
+//   // estado del botón
+//   mapaCollapsed = false;
+//   mapaToggle.textContent = 'Colapsar todo';
+
+//   // mostrar modal
+//   mapaBackdrop.style.display = 'block';
+//   document.body.style.overflow = 'hidden';
+// }
 
 function closeMapaSheet(){
   mapaBackdrop.style.display='none';

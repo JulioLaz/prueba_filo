@@ -119,13 +119,13 @@
   <header class="appbar">
     <div class="bar">
       <div class="title"><span>Jean‑Paul Sartre</span> <span class="sub">📚 Resumen de conceptos</span></div>
-      <label class="search" title="Buscar conceptos (Ctrl/Cmd + K)">
+      <!-- <label class="search" title="Buscar conceptos (Ctrl/Cmd + K)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
         <input id="q" type="search" placeholder="Buscar concepto…" autocomplete="off" />
-      </label>
-      <button id="expandAll" class="btn">Expandir todo</button>
+      </label> -->
+      <!-- <button id="expandAll" class="btn">Expandir todo</button>
       <button id="collapseAll" class="btn">Colapsar todo</button>
-      <button id="closeBtn" class="btn ghost" title="Cerrar y volver">✕ Cerrar</button>
+      <button id="closeBtn" class="btn ghost" title="Cerrar y volver">✕ Cerrar</button> -->
     </div>
   </header>
 
@@ -406,22 +406,22 @@
 
   <script>
     // --- Back/Cerrar logic ---
-const closeBtn = document.getElementById('closeBtn');
-closeBtn?.addEventListener('click', () => {
-  // 1) Recuperar el slug del tema
-  const qs = new URLSearchParams(location.search);
-  const tema =
-    qs.get('tema') ||
-    qs.get('theme') ||
-    sessionStorage.getItem('tema.active') ||
-    'sartre';
+// const closeBtn = document.getElementById('closeBtn');
+// closeBtn?.addEventListener('click', () => {
+//   // 1) Recuperar el slug del tema
+//   const qs = new URLSearchParams(location.search);
+//   const tema =
+//     qs.get('tema') ||
+//     qs.get('theme') ||
+//     sessionStorage.getItem('tema.active') ||
+//     'sartre';
 
-  // 2) Ir al hub subiendo un nivel: ../tema.html (desde /content/)
-  const hub = new URL('../tema.html', location);   // ✅ funciona en file://, http:// y https://
-  hub.searchParams.set('tema', tema);
-  hub.searchParams.set('theme', tema);             // compat
-  location.href = hub.toString();
-});
+//   // 2) Ir al hub subiendo un nivel: ../tema.html (desde /content/)
+//   const hub = new URL('../tema.html', location);   // ✅ funciona en file://, http:// y https://
+//   hub.searchParams.set('tema', tema);
+//   hub.searchParams.set('theme', tema);             // compat
+//   location.href = hub.toString();
+// });
 
 
 // 
@@ -496,15 +496,23 @@ window.addEventListener('beforeunload', saveMapaProgress);
       }
     }
 
+    // 🔽 Estado inicial: colapsar todos los nodos con hijos
+document.querySelectorAll('.tree li').forEach(li => {
+  if (li.querySelector(':scope > ul')) li.classList.add('collapsed');
+});
+
+// (opcional) mantener la raíz expandida
+const root = document.querySelector('.tree > ul > li');
+root?.classList.remove('collapsed');
     // --- Expand/Collapse All ---
-    const expandAllBtn = document.getElementById('expandAll');
-    const collapseAllBtn = document.getElementById('collapseAll');
-    expandAllBtn?.addEventListener('click', () => {
-      document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
-    });
-    collapseAllBtn?.addEventListener('click', () => {
-      document.querySelectorAll('.tree li').forEach(li => { if (li.querySelector(':scope > ul')) li.classList.add('collapsed'); });
-    });
+    // const expandAllBtn = document.getElementById('expandAll');
+    // const collapseAllBtn = document.getElementById('collapseAll');
+    // expandAllBtn?.addEventListener('click', () => {
+    //   document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
+    // });
+    // collapseAllBtn?.addEventListener('click', () => {
+    //   document.querySelectorAll('.tree li').forEach(li => { if (li.querySelector(':scope > ul')) li.classList.add('collapsed'); });
+    // });
 
     // --- Search/Highlight ---
     const q = document.getElementById('q');
