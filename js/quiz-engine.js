@@ -165,6 +165,44 @@ function shuffleArray(array) {
 }
 
 // ========================================
+// guardar progreso para que el hub lo lea
+// ========================================
+
+// ==== Progreso para el hub (tema.html) ====
+function hubTemaSlug(){
+  const p = new URLSearchParams(location.search);
+  return p.get('tema') || p.get('theme') || sessionStorage.getItem('tema.active') || 'sartre';
+}
+function hubSaveQuiz(partial){
+  const key = `tema.${hubTemaSlug()}.quiz`;
+  let prev = {};
+  try{ prev = JSON.parse(sessionStorage.getItem(key)) || {} }catch{}
+  const state = { total:(currentTheme?.questions?.length||prev.total||10), ...prev, ...partial };
+  sessionStorage.setItem(key, JSON.stringify(state));
+}
+
+// llámalo cuando actualizas contadores
+function updateProgress(){
+  const totalQuestions = currentTheme.questions.length;
+  const progressPercentage = (currentQuestionIndex / totalQuestions) * 100;
+
+  questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
+  scoreElement.textContent = score;
+  progressBar.style.width = `${progressPercentage}%`;
+
+  // ⬇️ guardo para el hub
+  hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed:false });
+}
+
+// al terminar
+function showResults(){
+  // ... tu código existente ...
+  const totalQuestions = currentTheme.questions.length;
+  hubSaveQuiz({ qIndex: totalQuestions, score, completed:true });
+}
+
+
+// ========================================
 // 📚 CARGA DEL TEMA
 // ========================================
 
@@ -332,7 +370,8 @@ function updateProgress() {
     questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
     scoreElement.textContent = score;
     progressBar.style.width = `${progressPercentage}%`;
-    
+    hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed: false });
+
     console.log(`📊 Progreso: ${currentQuestionIndex + 1}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
 }
 
@@ -626,6 +665,8 @@ function saveProgress(percentage, timeMs) {
     } catch (error) {
         console.error('❌ Error al guardar progreso:', error);
     }
+    hubSaveQuiz({ qIndex: currentTheme.questions.length, score, completed: true });
+
 }
 
 // ========================================

@@ -125,6 +125,36 @@
 li.collapsed>ul{display:none}
 li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
+/* ==== Progreso por sección (barra segmentada) ==== */
+.segments{
+  margin:12px 0 8px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+}
+.seg{
+  position:relative;
+  background:#0a1020; border:1px solid #1f2a4a; border-radius:10px; overflow:hidden;
+  height:26px; display:flex; align-items:center;
+}
+.seg .fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#6b7cff,#9b6bff);
+  transition:width .5s ease;
+}
+.seg .label{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:#cfe2ff; font-size:12px; font-weight:700; text-shadow:0 1px 1px rgba(0,0,0,.5);
+  pointer-events:none;
+}
+.seg[data-type="quiz"]  .fill{ background:linear-gradient(90deg,#60a5fa,#38bdf8) }
+.seg[data-type="caza"]  .fill{ background:linear-gradient(90deg,#a78bfa,#7c3aed) }
+.seg[data-type="mat"]   .fill{ background:linear-gradient(90deg,#34d399,#10b981) }
+.seg[data-type="mapa"]  .fill{ background:linear-gradient(90deg,#f59e0b,#fb923c) }
+
+/* clic en segmento */
+.seg.clickable{ cursor:pointer }
+.seg.clickable:hover{ filter:brightness(1.05) }
+
 
 </style>
 
@@ -198,6 +228,9 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         <div class="info"><span class="i">ℹ️</span><span id="progressLabel">Tu progreso en este tema</span></div>
         <div id="progressPct">0%</div>
       </div>
+        <!-- ⬇︎ nuevo: barra segmentada por actividad -->
+      <div id="segments" class="segments" aria-label="Progreso por actividad"></div>
+
       <div class="bar"><div id="progressBar"></div></div>
     </section>
   </div>
@@ -262,29 +295,93 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     document.getElementById('heroDesc').textContent  = tdata.desc + ' Elegí una actividad, tu progreso se guarda automáticamente.';
 
     // ===== Estado guardado (para mostrar “micro-progreso”) =====
-    const ns = (k)=>`tema.${tema}.${k}`;
-    const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
+// ==== Estado guardado (helpers) ====
+const ns = (k)=>`tema.${tema}.${k}`;
+const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
+const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
-    const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
-    const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6, hits:0, completed:false });
-    const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
-    const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[], total:10, progress:0, completed:false });
+// Lee estados parciales
+function readSectionStates(){
+  const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
+  const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6,  hits:0, completed:false });
+  const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+  const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[],   total:10, progress:0, completed:false });
 
-    const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
-    const quizPct     = pct(sQuiz.qIndex, sQuiz.total);
-    const cazaPct     = pct(sCaza.paragraph, sCaza.total);
-    const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total);
-    const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
-                                       : pct((sMapa.nodesVisited||[]).length, sMapa.total);
+  const quizPct     = sQuiz.total ? pct(sQuiz.qIndex, sQuiz.total) : 0;
+  const cazaPct     = sCaza.total ? pct(sCaza.paragraph, sCaza.total) : 0;
+  const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
+  const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
+                                     : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
 
-    document.getElementById('statusQuiz').textContent     = sQuiz.completed ? `Completado · Mejor: ${(JSON.parse(localStorage.getItem(ns('records'))||'{}').bestScore ?? sQuiz.score)}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`;
-    document.getElementById('statusCaza').textContent     = sCaza.completed ? 'Completado' : `Párrafo ${sCaza.paragraph}/${sCaza.total}`;
-    document.getElementById('statusMaterial').textContent = `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`;
-    document.getElementById('statusMapa').textContent     = `${mapaPct}% explorado`;
+  return {
+    quiz:     {pct:quizPct,     text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`},
+    caza:     {pct:cazaPct,     text: sCaza.completed ? `Completado` : `Párrafo ${sCaza.paragraph}/${sCaza.total}`},
+    mat:      {pct:materialPct, text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`},
+    mapa:     {pct:mapaPct,     text: `${mapaPct}% explorado`},
+  };
+}
 
-    const globalPct = Math.round((quizPct + cazaPct + materialPct + mapaPct) / 4);
-    document.getElementById('progressPct').textContent = globalPct + '%';
-    document.getElementById('progressBar').style.width = globalPct + '%';
+// Pinta segmentos + global
+function renderProgressUI(){
+  const s = readSectionStates();
+
+  // micro-textos bajo cada tarjeta (mantengo tu UI existente)
+  document.getElementById('statusQuiz').textContent     = s.quiz.text;
+  document.getElementById('statusCaza').textContent     = s.caza.text;
+  document.getElementById('statusMaterial').textContent = s.mat.text;
+  document.getElementById('statusMapa').textContent     = s.mapa.text;
+
+  // barra segmentada
+  const segments = document.getElementById('segments');
+  segments.innerHTML = '';
+  [
+    {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
+    {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
+    {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
+    {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
+  ].forEach(seg=>{
+    const el = document.createElement('div');
+    el.className = 'seg clickable';
+    el.dataset.type = seg.key;
+    el.innerHTML = `<div class="fill" style="width:${seg.pct}%"></div><div class="label">${seg.label} · ${seg.pct}%</div>`;
+    el.addEventListener('click', ()=> document.getElementById(seg.target).click());
+    segments.appendChild(el);
+  });
+
+  // % global = promedio simple de las 4 secciones
+  const globalPct = Math.round((s.quiz.pct + s.caza.pct + s.mat.pct + s.mapa.pct) / 4);
+  document.getElementById('progressPct').textContent = globalPct + '%';
+  document.getElementById('progressBar').style.width = globalPct + '%';
+}
+
+// Llamá una vez al cargar
+renderProgressUI();
+
+
+
+    // const ns = (k)=>`tema.${tema}.${k}`;
+    // const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
+
+    // const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
+    // const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6, hits:0, completed:false });
+    // const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+    // const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[], total:10, progress:0, completed:false });
+
+    // const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
+    // const quizPct     = pct(sQuiz.qIndex, sQuiz.total);
+    // const cazaPct     = pct(sCaza.paragraph, sCaza.total);
+    // const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total);
+    // const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
+    //                                    : pct((sMapa.nodesVisited||[]).length, sMapa.total);
+
+    // document.getElementById('statusQuiz').textContent     = sQuiz.completed ? `Completado · Mejor: ${(JSON.parse(localStorage.getItem(ns('records'))||'{}').bestScore ?? sQuiz.score)}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`;
+    // document.getElementById('statusCaza').textContent     = sCaza.completed ? 'Completado' : `Párrafo ${sCaza.paragraph}/${sCaza.total}`;
+    // document.getElementById('statusMaterial').textContent = `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`;
+    // document.getElementById('statusMapa').textContent     = `${mapaPct}% explorado`;
+
+    // const globalPct = Math.round((quizPct + cazaPct + materialPct + mapaPct) / 4);
+    // document.getElementById('progressPct').textContent = globalPct + '%';
+    // document.getElementById('progressBar').style.width = globalPct + '%';
 
     // ===== Navegación (respeta subcarpeta de GitHub Pages) =====
     const go = (path) => {
@@ -304,12 +401,53 @@ const sheetBackdrop = document.getElementById('sheetBackdrop');
 const sheetClose    = document.getElementById('sheetClose');
 const sheetBody     = document.getElementById('sheetBody');
 
+function bumpMaterialProgress(delta=1){
+  const key = ns('material');
+  const cur = readJSON(key, { sectionsViewed:[], total:8, completed:false });
+  const seen = new Set(cur.sectionsViewed || []);
+  // solo incrementamos con IDs sintéticos
+  const id = 'v' + (seen.size + 1);
+  if (seen.size < (cur.total||8)) seen.add(id);
+  const state = { sectionsViewed:[...seen], total:cur.total||8, completed: seen.size >= (cur.total||8) };
+  sessionStorage.setItem(key, JSON.stringify(state));
+  renderProgressUI();
+}
+
 function openMaterialSheet(){
   sheetBackdrop.style.display = 'block';
   document.body.style.overflow = 'hidden';
-  const url = new URL(`content/${tema}.html`, location); // respeta /prueba_filo/
-  sheetBody.innerHTML = `<iframe class="sheet-iframe" src="${url.toString()}" loading="lazy"></iframe>`;
+
+  const url = new URL(`content/${tema}.html`, location);
+  sheetBody.innerHTML = '';
+  const iframe = document.createElement('iframe');
+  iframe.className = 'sheet-iframe';
+  iframe.src = url.toString();
+  iframe.loading = 'lazy';
+  iframe.addEventListener('load', () => {
+    bumpMaterialProgress(1); // al menos “abrió”
+    try {
+      // Simple: si hace scroll dentro del iframe, contamos otra sección
+      const w = iframe.contentWindow;
+      let ticked = false;
+      w.addEventListener('scroll', () => {
+        if (ticked) return;
+        ticked = true;
+        bumpMaterialProgress(1);
+        setTimeout(()=> ticked=false, 1500);
+      }, { passive:true });
+    } catch(e){}
+  });
+  sheetBody.appendChild(iframe);
 }
+
+
+
+// function openMaterialSheet(){
+//   sheetBackdrop.style.display = 'block';
+//   document.body.style.overflow = 'hidden';
+//   const url = new URL(`content/${tema}.html`, location); // respeta /prueba_filo/
+//   sheetBody.innerHTML = `<iframe class="sheet-iframe" src="${url.toString()}" loading="lazy"></iframe>`;
+// }
 
 function closeMaterialSheet(){
   sheetBackdrop.style.display = 'none';
@@ -327,22 +465,7 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
 // ####################################################################
 
 
-
-    // document.getElementById('goMapa').addEventListener('click',    ()=> go('mapa.html'));            // placeholder
-    // Rutas de mapas por tema (podés ir agregando más)
-    // const MAP_PATHS = {
-    //   sartre: 'content/sartre_mapa_conceptual.html',
-    //   // marx: 'marx_mapa_conceptual.html', etc.
-    // };
-
-    // document.getElementById('goMapa').addEventListener('click', () => {
-    //   const path = MAP_PATHS[tema] || 'mapa.html'; // fallback si aún no existe
-    //   go(path); // go() ya añade ?tema=&theme= y usa base = location
-    // });
-
     document.getElementById('goMapa').addEventListener('click', openMapaSheet);
-
-    
     document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
 
 
@@ -530,6 +653,8 @@ function markVisited(node){
   const total = allTitles().length || 1;
   const progress = set.size / total;
   saveMapa({nodesVisited:[...set], total, progress, completed: progress>=1});
+  renderProgressUI(); // <- refresca la barra y los segmentos al instante
+
 }
 
 // Abrir / Cerrar
@@ -552,27 +677,11 @@ function openMapaSheet(){
   document.body.style.overflow = 'hidden';
 }
 
-// function openMapaSheet(){
-//   // autor dinámico
-//   mapaAutor.textContent = NAMES[tema] || tema;
-
-//   // inyectar contenido si no está cargado
-//   if (!mapaBody.hasChildNodes()){
-//     // por ahora sólo Sartre; si sumás autores, podés hacer switch por tema
-//     mapaBody.innerHTML = mapaHTML_SARTRE();
-//     wireMapaInteractions();
-//   }
-//   // estado del botón
-//   mapaCollapsed = false;
-//   mapaToggle.textContent = 'Colapsar todo';
-
-//   mapaBackdrop.style.display='block';
-//   document.body.style.overflow='hidden';
-// }
-
 function closeMapaSheet(){
   mapaBackdrop.style.display='none';
   document.body.style.overflow='';
+  renderProgressUI(); // <- refresco final
+
 }
 
 mapaToggle.addEventListener('click', toggleAll);
