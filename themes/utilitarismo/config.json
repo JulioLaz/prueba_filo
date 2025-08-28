@@ -1,0 +1,42 @@
+{
+  "id": "utilitarismo",
+  "meta": {
+    "title": "Utilitarismo: La mayor felicidad para el mayor número",
+    "author": "John Stuart Mill",
+    "icon": "🎯",
+    "gradient": "linear-gradient(135deg, #283048 0%, #859398 100%)",
+    "difficulty": "avanzado",
+    "description": "Explora el principio de la mayor felicidad, la distinción entre placeres superiores e inferiores, la imparcialidad y la aplicación del utilitarismo en la vida moral y política."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 6,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 8,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 25,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "utilitarismo.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#4169e1"
+}

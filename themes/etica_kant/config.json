@@ -1,0 +1,42 @@
+{
+  "id": "etica_kant",
+  "meta": {
+    "title": "Ética kantiana: El deber por el deber",
+    "author": "Immanuel Kant",
+    "icon": "🤖",
+    "gradient": "linear-gradient(135deg, #457b9d 0%, #a8dadc 100%)",
+    "difficulty": "avanzado",
+    "description": "La filosofía moral de Kant, centrada en el 'imperativo categórico' como una ley universal. Sostiene que los actos son moralmente buenos solo si se realizan por puro deber, sin considerar las consecuencias."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 6,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 6,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 20,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "etica_kant.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#457b9d"
+}

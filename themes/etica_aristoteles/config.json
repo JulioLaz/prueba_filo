@@ -1,0 +1,42 @@
+{
+  "id": "aristoteles",
+  "meta": {
+    "title": "Aristóteles: La felicidad como fin supremo",
+    "author": "Aristóteles",
+    "icon": "🎯",
+    "gradient": "linear-gradient(135deg, #4b67ff 0%, #b074ff 100%)",
+    "difficulty": "avanzado",
+    "description": "El objetivo de la vida humana es la felicidad (eudaimonía), que se alcanza a través de la virtud y la razón. Su ética se basa en el 'justo medio' y la formación del carácter."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 6,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 7,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 20,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "aristoteles.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#4b67ff"
+}

@@ -7,6 +7,51 @@ console.log('⚙️ Iniciando motor del cuestionario...');
 const engineStartTime = performance.now();
 
 // ========================================
+// 🔊 SISTEMA DE SONIDOS
+// ========================================
+
+// Rutas de sonidos para el quiz
+const SND_CORRECT_QUIZ = "sound/correct_answer.mp3";
+const SND_WRONG_QUIZ = "sound/negative_beep.mp3";
+const SND_TIMER_WARNING = "sound/timer_warning.mp3";
+const SND_TIMER_DANGER = "sound/timer_danger.mp3";
+const SND_QUIZ_COMPLETE = "sound/fin_parrafo.mp3";
+const SND_BUTTON_CLICK = "sound/collect_points.mp3";
+const SND_SHOW_QUESTION = "sound/show_question.mp3"; // ← Nuevo sonido
+
+// Estado global de audio
+let audioMuted = false;
+
+/**
+ * Reproduce un sonido si el audio está habilitado
+ * @param {string} soundPath - Ruta del archivo de sonido
+ */
+function playSound(soundPath) {
+    if (audioMuted) return;
+    
+    try {
+        const audio = new Audio(soundPath);
+        audio.volume = 0.6; // Volumen moderado
+        audio.play().catch(error => {
+            console.warn('No se pudo reproducir sonido:', error);
+        });
+    } catch (error) {
+        console.warn('Error al crear audio:', error);
+    }
+}
+
+/**
+ * Alternar estado de audio
+ */
+function toggleAudio() {
+    audioMuted = !audioMuted;
+    console.log(`🔊 Audio ${audioMuted ? 'silenciado' : 'activado'}`);
+    return audioMuted;
+}
+
+
+
+// ========================================
 // 🎯 ELEMENTOS DEL DOM
 // ========================================
 
@@ -323,34 +368,6 @@ async function loadStudyMaterial(contentFile) {
   }
 }
 
-
-// async function loadStudyMaterial(contentFile) {
-//     console.log(`📖 Cargando material: ${contentFile}`);
-//     const loadStart = performance.now();
-    
-//     try {
-//         const response = await fetch(contentFile);
-//         if (!response.ok) {
-//             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-//         }
-        
-//         const content = await response.text();
-//         const loadEnd = performance.now();
-//         console.log(`✅ Material cargado en ${(loadEnd - loadStart).toFixed(2)}ms`);
-//         return content;
-        
-//     } catch (error) {
-//         console.warn('⚠️ No se pudo cargar el material de estudio:', error);
-//         return `
-//             <div class="highlight-box">
-//                 <h3>⚠️ Material no disponible</h3>
-//                 <p>No se pudo cargar el material de estudio para este tema.</p>
-//                 <p><strong>Error:</strong> ${error.message}</p>
-//             </div>
-//         `;
-//     }
-// }
-
 // ========================================
 // 🎮 LÓGICA DEL CUESTIONARIO
 // ========================================
@@ -483,11 +500,23 @@ function startTimer() {
         timerElement.textContent = `${timeLeft}s`;
         
         // Cambiar estados visuales según tiempo restante
+        // Cambiar estados visuales según tiempo restante
         if (timeLeft <= TIMER_DANGER_THRESHOLD) {
             timerElement.className = 'progress-value danger';
+            if (timeLeft === TIMER_DANGER_THRESHOLD) {
+                playSound(SND_TIMER_DANGER); // 🚨 Sonido peligro
+            }
         } else if (timeLeft <= TIMER_WARNING_THRESHOLD) {
             timerElement.className = 'progress-value warning';
+            if (timeLeft === TIMER_WARNING_THRESHOLD) {
+                playSound(SND_TIMER_WARNING); // ⚠️ Sonido advertencia
+            }
         }
+        // if (timeLeft <= TIMER_DANGER_THRESHOLD) {
+        //     timerElement.className = 'progress-value danger';
+        // } else if (timeLeft <= TIMER_WARNING_THRESHOLD) {
+        //     timerElement.className = 'progress-value warning';
+        // }
         
         // Tiempo agotado
         if (timeLeft <= 0) {
@@ -527,10 +556,18 @@ function selectAnswer(selectedButton, answer) {
     });
     
     // Actualizar puntaje
+    // Actualizar puntaje
     if (answer.correct) {
         score++;
         scoreElement.textContent = score;
+        playSound(SND_CORRECT_QUIZ); // ✅ Sonido correcto
+    } else {
+        playSound(SND_WRONG_QUIZ); // ❌ Sonido incorrecto
     }
+    // if (answer.correct) {
+    //     score++;
+    //     scoreElement.textContent = score;
+    // }
     
     // Mostrar estados visuales en todos los botones
     const allButtons = answersContainer.querySelectorAll('.answer-btn');
@@ -610,6 +647,8 @@ function nextQuestion() {
  * Muestra los resultados finales
  */
 function showResults() {
+    playSound(SND_QUIZ_COMPLETE); // 🎉 Sonido completar quiz
+
     console.log('🏆 Mostrando resultados finales...');
     const resultsStart = performance.now();
     
@@ -780,7 +819,11 @@ function setupEventListeners() {
     backToThemesBtn.addEventListener('click', goBackToThemes);
     
     // Controles del cuestionario
-    showQuestionBtn.addEventListener('click', showQuestionPhase);
+    // showQuestionBtn.addEventListener('click', showQuestionPhase);
+    showQuestionBtn.addEventListener('click', () => {
+    playSound(SND_SHOW_QUESTION); // 🔊 Sonido al mostrar pregunta
+    showQuestionPhase();
+});
 
     // showMaterialBtn.addEventListener('click', showStudyMaterial);
 

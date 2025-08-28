@@ -1,0 +1,42 @@
+{
+  "id": "cassirer",
+  "meta": {
+    "title": "Cassirer: El ser humano como animal simbólico",
+    "author": "Ernst Cassirer",
+    "icon": "🗣️",
+    "gradient": "linear-gradient(135deg, #2a9d8f 0%, #264653 100%)",
+    "difficulty": "intermedio",
+    "description": "Una filosofía centrada en el lenguaje y la cultura. Afirma que el ser humano no se relaciona directamente con el mundo, sino a través de un 'universo simbólico' que ha creado."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 5,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 5,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 15,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "cassirer.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#2a9d8f"
+}

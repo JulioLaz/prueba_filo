@@ -1,0 +1,42 @@
+{
+  "id": "etica",
+  "meta": {
+    "title": "Ética y libertad: La carga de ser responsable",
+    "author": "Ética y Libertad",
+    "icon": "⚖️",
+    "gradient": "linear-gradient(135deg, #f4a261 0%, #e76f51 100%)",
+    "difficulty": "básico",
+    "description": "Explora los fundamentos de la moralidad, la distinción entre actos humanos y del hombre, y la relación ineludible entre la libertad y la responsabilidad en la vida cotidiana."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 5,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 5,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 15,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "etica.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#f4a261"
+}

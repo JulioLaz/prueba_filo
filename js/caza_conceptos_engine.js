@@ -217,19 +217,6 @@ function ensureSummaryDialog() {
       </div>
       `;
 
-      // <div style="margin-top:14px;">
-      //   <h4 style="margin:.25rem 0 .5rem 0;">Palabras clave</h4>
-      //   <ul id="summary-keywords" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
-      //   <hr>
-      //   <h4 style="margin:.25rem 0 .5rem 0;">Frases del corolario</h4>
-      //   <ul id="summary-corollaries" style="margin:0 0 1rem 1.2rem;line-height:1.5;"></ul>
-      // </div>
-      
-
-      // <button id="summary-download" style="
-      //   background:#10b981;color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
-      //   ⬇ Descargar resumen (PNG)
-      // </button>
   document.body.appendChild(dlg);
 
     // 👇 Aquí colocás lo que preguntabas:
@@ -239,39 +226,11 @@ function ensureSummaryDialog() {
       authorEl.textContent = `${author}`;
     }
 
-// ####################################################################
-
-// const backBtn_final = dlg.querySelector('#summary-back');
-// const q = new URLSearchParams(location.search);
-// const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'sartre';
-// if (backBtn_final) 
-// {sessionStorage.setItem('tema_actual', tema);
-//   localStorage.setItem('tema_actual', tema);
-
-//   document.getElementById('back-btn').addEventListener('click', () => {
-//     // Incluye ambos nombres por si el engine usa uno u otro
-//     window.location.href = `tema.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
-//     // window.location.href = `quiz.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
-//   });
-// }
-// ####################################################################
   // Cerrar
   dlg.querySelector('#summary-close').addEventListener('click', () => {
     dlg.style.display = 'none';
   });
 
-// const backBtn = document.getElementById('back-btn');
-
-// const backBtn = dlg.querySelector('#summary-back');
-// if (backBtn) {
-//   backBtn.addEventListener('click', () => {
-//     const url = (window.CONCEPT_HUNT_CONFIG && window.CONCEPT_HUNT_CONFIG.menuUrl) 
-//     || "https://juliolaz.github.io/prueba_filo/tema.html";
-//     // || "prueba_filo/quiz.html";
-//     console.log("Volviendo a", url);
-//     location.href = url;
-//   });
-// }
 const backBtn = dlg.querySelector('#summary-back');
 if (backBtn) {
   backBtn.addEventListener('click', () => {
@@ -298,9 +257,6 @@ if (backBtn) {
     location.href = hub.toString();
   });
 }
-
-
-
   return dlg;
 }
 
@@ -322,10 +278,6 @@ function showSummaryDialog(cfg) {
 
   dlg.style.display = 'flex';
 }
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~fin modal resumen
-
 
   // Estado global
   let idx = 0; // párrafo actual
@@ -385,6 +337,7 @@ function markLives() {
     hintSlot.textContent = level.hint ? `💡 Pista: ${level.hint}` : "";
   }
 
+ 
   // Envuelve ocurrencias de frases (multi-palabra) sin solaparse
   function wrapPhrases(text, phrases) {
     let html = text;
@@ -393,16 +346,40 @@ function markLives() {
       .sort((a, b) => b.length - a.length)
       .forEach((phrase) => {
         const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        // límite de palabra aproximado + acentos
-        const re = new RegExp(`\\b(${esc})\\b`, "giu");
-        html = html.replace(re, (m) => {
-          return `<span class="token" data-key="${encodeURIComponent(
+        
+        // Usar una aproximación de límites de palabra que funcione con acentos
+        // (^|[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\d_]) = inicio de línea o no-letra
+        // (?=[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\d_]|$) = seguido por no-letra o fin de línea
+        const re = new RegExp(`(^|[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_])(${esc})(?=[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_]|$)`, "gi");
+        
+        html = html.replace(re, (match, prefix, word) => {
+          return `${prefix}<span class="token" data-key="${encodeURIComponent(
             normalize(phrase)
-          )}" data-correct="1">${m}</span>`;
+          )}" data-correct="1">${word}</span>`;
         });
       });
     return html;
   }
+      
+
+
+  // function wrapPhrases(text, phrases) {
+  //   let html = text;
+  //   phrases
+  //     .filter(Boolean)
+  //     .sort((a, b) => b.length - a.length)
+  //     .forEach((phrase) => {
+  //       const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  //       // límite de palabra aproximado + acentos
+  //       const re = new RegExp(`\\b(${esc})\\b`, "giu");
+  //       html = html.replace(re, (m) => {
+  //         return `<span class="token" data-key="${encodeURIComponent(
+  //           normalize(phrase)
+  //         )}" data-correct="1">${m}</span>`;
+  //       });
+  //     });
+  //   return html;
+  // }
 
   // Envuelve palabras restantes (para feedback en rojo si tocan algo irrelevante)
   function wrapRemainingWords(container) {
