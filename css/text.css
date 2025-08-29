@@ -23,7 +23,7 @@
 .material-dark h1{ font-size: 28px; }
 .material-dark h2{ font-size: 22px; }
 .material-dark h3{ font-size: 18px; }
-.material-dark p{ margin: .6em 0; color:var(--text); }
+.material-dark p{ margin: .6em 10px; color:var(--text); }
 .material-dark em{ color:var(--text); }
 .material-dark strong{ color:var(--title); }
 

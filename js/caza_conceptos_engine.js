@@ -361,26 +361,6 @@ function markLives() {
     return html;
   }
       
-
-
-  // function wrapPhrases(text, phrases) {
-  //   let html = text;
-  //   phrases
-  //     .filter(Boolean)
-  //     .sort((a, b) => b.length - a.length)
-  //     .forEach((phrase) => {
-  //       const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  //       // límite de palabra aproximado + acentos
-  //       const re = new RegExp(`\\b(${esc})\\b`, "giu");
-  //       html = html.replace(re, (m) => {
-  //         return `<span class="token" data-key="${encodeURIComponent(
-  //           normalize(phrase)
-  //         )}" data-correct="1">${m}</span>`;
-  //       });
-  //     });
-  //   return html;
-  // }
-
   // Envuelve palabras restantes (para feedback en rojo si tocan algo irrelevante)
   function wrapRemainingWords(container) {
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);

@@ -22,6 +22,8 @@ const SND_SHOW_QUESTION = "sound/show_question.mp3"; // ← Nuevo sonido
 // Estado global de audio
 let audioMuted = false;
 
+let currentCorrectButton = null; // botón correcto de la pregunta actual
+
 /**
  * Reproduce un sonido si el audio está habilitado
  * @param {string} soundPath - Ruta del archivo de sonido
@@ -40,6 +42,18 @@ function playSound(soundPath) {
     }
 }
 
+
+function showCelebration(emoji) {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.textContent = emoji;
+        document.body.appendChild(celebration);
+        
+        setTimeout(() => {
+          document.body.removeChild(celebration);
+        }, 2000);
+      }
+
 /**
  * Alternar estado de audio
  */
@@ -48,8 +62,6 @@ function toggleAudio() {
     console.log(`🔊 Audio ${audioMuted ? 'silenciado' : 'activado'}`);
     return audioMuted;
 }
-
-
 
 // ========================================
 // 🎯 ELEMENTOS DEL DOM
@@ -72,6 +84,7 @@ const helpBtn = document.getElementById('help-btn');
 const pageTitle = document.getElementById('page-title');
 
 // Progress elements
+const attemptsElement = document.getElementById('attempts');
 const questionCounter = document.getElementById('question-counter');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
@@ -148,7 +161,6 @@ async function getThemeQuizPath(themeId) {
     return `themes/${themeId}.js`;
 }
 
-
 // ========================================
 // 📊 ESTADO DEL CUESTIONARIO
 // ========================================
@@ -166,7 +178,54 @@ const ANSWER_DISPLAY_TIME = 2500; // Tiempo en ms para mostrar respuesta correct
 const TIMER_WARNING_THRESHOLD = 10;
 const TIMER_DANGER_THRESHOLD = 5;
 
+// === Intentos del QUIZ (no por pregunta) ===
+let revealCorrectOnMistake = false; // se activa recién en el 3er intento del quiz
+
+function getThemeAttemptCount(themeId) {
+  try {
+    const progress = JSON.parse(localStorage.getItem('filosofia-quiz-progress') || '{}');
+    return progress?.completedThemes?.[themeId]?.attempts || 0; // intentos COMPLETADOS
+  } catch {
+    return 0;
+  }
+}
+
 console.log('📊 Estado inicial configurado');
+
+function getAttemptsCompletedForCurrentTheme() {
+  try {
+    const k = 'filosofia-quiz-progress';
+    const p = JSON.parse(localStorage.getItem(k) || '{}');
+    const id = currentTheme?.id;
+    return (id && p.completedThemes && p.completedThemes[id]?.attempts) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+/**
+ * Recalcula el intento actual (mostrado) y el flag revealCorrectOnMistake.
+ * Llamar SIEMPRE antes de iniciar un nuevo intento (al cargar y al reintentar).
+ */
+function updateAttemptUIAndGating() {
+  const attemptsCompleted = getAttemptsCompletedForCurrentTheme(); // intentos ya finalizados
+  const currentAttempt = attemptsCompleted + 1;                    // intento en curso
+
+  if (attemptsElement) {
+    attemptsElement.textContent = String(currentAttempt);
+    attemptsElement.title = currentAttempt >= 3
+      ? 'Desde este intento se muestran las correctas al errar'
+      : 'Hasta el intento 2 no se muestran las correctas al errar';
+  }
+
+  // Activar revelado solo a partir del 3er intento del QUIZ
+  revealCorrectOnMistake = attemptsCompleted >= 2;
+
+  console.log(`🔁 attemptsCompleted=${attemptsCompleted} → currentAttempt=${currentAttempt} → revealCorrectOnMistake=${revealCorrectOnMistake}`);
+}
+
+
+
 
 // ========================================
 // 🔧 FUNCIONES UTILITARIAS
@@ -181,6 +240,13 @@ function getURLParameter(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
+
+function getBoolParam(name) {
+  const v = getURLParameter(name);
+  if (v === null) return null;
+  return v === '1' || v === 'true';
+}
+
 
 /**
  * Actualiza la barra de progreso del loading
@@ -259,17 +325,26 @@ function hubSaveQuiz(partial){
 }
 
 // llámalo cuando actualizas contadores
-function updateProgress(){
+// ✅ Dejá SOLO esta versión
+function updateProgress() {
   const totalQuestions = currentTheme.questions.length;
-  const progressPercentage = (currentQuestionIndex / totalQuestions) * 100;
 
-  questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
+  // Cuando ya pasaste la última, mostrás total/total (no total+1)
+  const displayIndex = Math.min(currentQuestionIndex + 1, totalQuestions);
+
+  // Progreso visual: clamp a 100%
+  const progressPercentage = Math.min((currentQuestionIndex / totalQuestions) * 100, 100);
+
+  questionCounter.textContent = `${displayIndex}/${totalQuestions}`;
   scoreElement.textContent = score;
   progressBar.style.width = `${progressPercentage}%`;
 
-  // ⬇️ guardo para el hub
-  hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed:false });
+  // Guardado para el hub
+  hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed: false });
+
+  console.log(`📊 Progreso: ${displayIndex}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
 }
+
 
 // ========================================
 // 📚 CARGA DEL TEMA
@@ -409,17 +484,17 @@ function initializeQuiz() {
 /**
  * Actualiza los indicadores de progreso
  */
-function updateProgress() {
-    const totalQuestions = currentTheme.questions.length;
-    const progressPercentage = (currentQuestionIndex / totalQuestions) * 100;
+// function updateProgress() {
+//     const totalQuestions = currentTheme.questions.length;
+//     const progressPercentage = (currentQuestionIndex / totalQuestions) * 100;
     
-    questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
-    scoreElement.textContent = score;
-    progressBar.style.width = `${progressPercentage}%`;
-    hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed: false });
+//     questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
+//     scoreElement.textContent = score;
+//     progressBar.style.width = `${progressPercentage}%`;
+//     hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed: false });
 
-    console.log(`📊 Progreso: ${currentQuestionIndex + 1}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
-}
+//     console.log(`📊 Progreso: ${currentQuestionIndex + 1}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
+// }
 
 /**
  * Muestra la fase de ayuda/pista
@@ -461,19 +536,28 @@ function showQuestionPhase() {
     questionText.textContent = currentQuestion.question;
     
     // Limpiar respuestas anteriores
+    // Limpiar respuestas anteriores
     answersContainer.innerHTML = '';
-    
-    // Mezclar respuestas y crear botones
+    currentCorrectButton = null; // reset ref al correcto
+
+    // Mezclar respuestas y crear botones (sin data-correct visible)
     const shuffledAnswers = shuffleArray(currentQuestion.answers);
-    shuffledAnswers.forEach((answer, index) => {
-        const button = document.createElement('button');
-        button.className = 'answer-btn';
-        button.textContent = answer.text;
-        button.dataset.correct = answer.correct;
-        button.dataset.explanation = answer.explanation || '';
-        button.addEventListener('click', () => selectAnswer(button, answer));
-        answersContainer.appendChild(button);
+    shuffledAnswers.forEach((answer) => {
+    const button = document.createElement('button');
+    button.className = 'answer-btn';
+    button.textContent = answer.text;
+    // NO usar data-correct aquí
+    button.dataset.explanation = answer.explanation || '';
+
+    // Guardar en memoria cuál es el correcto (sin exponerlo al DOM)
+    if (answer.correct) {
+        currentCorrectButton = button;
+    }
+
+    button.addEventListener('click', () => selectAnswer(button, answer));
+    answersContainer.appendChild(button);
     });
+
     
     // Iniciar timer
     startTimer();
@@ -512,11 +596,6 @@ function startTimer() {
                 playSound(SND_TIMER_WARNING); // ⚠️ Sonido advertencia
             }
         }
-        // if (timeLeft <= TIMER_DANGER_THRESHOLD) {
-        //     timerElement.className = 'progress-value danger';
-        // } else if (timeLeft <= TIMER_WARNING_THRESHOLD) {
-        //     timerElement.className = 'progress-value warning';
-        // }
         
         // Tiempo agotado
         if (timeLeft <= 0) {
@@ -529,101 +608,204 @@ function startTimer() {
     }, 1000);
 }
 
-/**
- * Maneja la selección de una respuesta
- * @param {HTMLElement} selectedButton - Botón seleccionado
- * @param {Object} answer - Datos de la respuesta
- */
 function selectAnswer(selectedButton, answer) {
-    if (isAnswered) return;
-    
-    console.log(`🎯 Respuesta seleccionada: ${answer.correct ? 'Correcta' : 'Incorrecta'}`);
-    const answerStart = performance.now();
-    
-    isAnswered = true;
-    clearInterval(timer);
-    
-    // Registrar respuesta del usuario
-    const currentQuestion = currentTheme.questions[currentQuestionIndex];
-    userAnswers.push({
-        questionId: currentQuestion.id,
-        question: currentQuestion.question,
-        selectedAnswer: answer.text,
-        correctAnswer: currentQuestion.answers.find(a => a.correct).text,
-        isCorrect: answer.correct,
-        timeUsed: currentTheme.timeLimit - timeLeft,
-        explanation: answer.explanation
-    });
-    
-    // Actualizar puntaje
-    // Actualizar puntaje
-    if (answer.correct) {
-        score++;
-        scoreElement.textContent = score;
-        playSound(SND_CORRECT_QUIZ); // ✅ Sonido correcto
-    } else {
-        playSound(SND_WRONG_QUIZ); // ❌ Sonido incorrecto
+  if (isAnswered) return;
+
+  console.log(`🎯 Respuesta seleccionada: ${answer.correct ? 'Correcta' : 'Incorrecta'} | revealCorrectOnMistake=${revealCorrectOnMistake}`);
+  const answerStart = performance.now();
+
+  isAnswered = true;
+  clearInterval(timer);
+
+  // Registrar respuesta del usuario
+  const currentQuestion = currentTheme.questions[currentQuestionIndex];
+  userAnswers.push({
+    questionId: currentQuestion.id,
+    question: currentQuestion.question,
+    selectedAnswer: answer.text,
+    correctAnswer: currentQuestion.answers.find(a => a.correct).text,
+    isCorrect: !!answer.correct,
+    timeUsed: currentTheme.timeLimit - timeLeft,
+    explanation: answer.explanation || ''
+  });
+
+  // Deshabilitar todo
+  const allButtons = answersContainer.querySelectorAll('.answer-btn');
+  allButtons.forEach(btn => btn.disabled = true);
+
+  if (answer.correct) {
+    selectedButton.classList.add('correct');
+    score++;
+    scoreElement.textContent = score;
+    playSound(SND_CORRECT_QUIZ);
+  } else {
+    selectedButton.classList.add('incorrect');
+    playSound(SND_WRONG_QUIZ);
+
+    // 🔒 Revelar la correcta SOLO desde el 3er intento del QUIZ
+    if (revealCorrectOnMistake && currentCorrectButton) {
+      currentCorrectButton.classList.add('correct');
     }
-    // if (answer.correct) {
-    //     score++;
-    //     scoreElement.textContent = score;
-    // }
-    
-    // Mostrar estados visuales en todos los botones
-    const allButtons = answersContainer.querySelectorAll('.answer-btn');
-    allButtons.forEach(button => {
-        button.disabled = true;
-        
-        if (button.dataset.correct === 'true') {
-            button.classList.add('correct');
-        } else if (button === selectedButton && !answer.correct) {
-            button.classList.add('incorrect');
-        }
-    });
-    
-    const answerEnd = performance.now();
-    console.log(`⏱️ Respuesta procesada en ${(answerEnd - answerStart).toFixed(2)}ms`);
-    
-    // Continuar después de mostrar resultado
-    setTimeout(() => {
-        nextQuestion();
-    }, ANSWER_DISPLAY_TIME);
+  }
+
+  const answerEnd = performance.now();
+  console.log(`⏱️ Respuesta procesada en ${(answerEnd - answerStart).toFixed(2)}ms`);
+
+  setTimeout(() => {
+    nextQuestion();
+  }, ANSWER_DISPLAY_TIME);
 }
+
+
+// /**
+//  * Maneja la selección de una respuesta
+//  * @param {HTMLElement} selectedButton - Botón seleccionado
+//  * @param {Object} answer - Datos de la respuesta
+//  */
+// function selectAnswer(selectedButton, answer) {
+//     if (isAnswered) return;
+    
+//     console.log(`🎯 Respuesta seleccionada: ${answer.correct ? 'Correcta' : 'Incorrecta'}`);
+//     const answerStart = performance.now();
+    
+//     isAnswered = true;
+//     clearInterval(timer);
+    
+//     // Registrar respuesta del usuario
+//     const currentQuestion = currentTheme.questions[currentQuestionIndex];
+//     userAnswers.push({
+//         questionId: currentQuestion.id,
+//         question: currentQuestion.question,
+//         selectedAnswer: answer.text,
+//         correctAnswer: currentQuestion.answers.find(a => a.correct).text,
+//         isCorrect: answer.correct,
+//         timeUsed: currentTheme.timeLimit - timeLeft,
+//         explanation: answer.explanation
+//     });
+    
+//     // Actualizar puntaje
+//     if (answer.correct) {
+//         // this.showCelebration('🎉');
+//         score++;
+//         scoreElement.textContent = score;
+//         playSound(SND_CORRECT_QUIZ); // ✅ Sonido correcto
+//     } else {
+//         playSound(SND_WRONG_QUIZ); // ❌ Sonido incorrecto
+//     }
+//     // if (answer.correct) {
+//     //     score++;
+//     //     scoreElement.textContent = score;
+//     // }
+    
+//     // Mostrar estados visuales en todos los botones
+//     const allButtons = answersContainer.querySelectorAll('.answer-btn');
+//     allButtons.forEach(button => {
+//         button.disabled = true;
+        
+//         if (button.dataset.correct === 'true') {
+//             button.classList.add('correct');
+//         } else if (button === selectedButton && !answer.correct) {
+//             button.classList.add('incorrect');
+//         }
+//     });
+    
+//     const answerEnd = performance.now();
+//     // this.showCelebration('🎉');
+//     console.log(`⏱️ Respuesta procesada en ${(answerEnd - answerStart).toFixed(2)}ms`);
+//     console.log(`        showCelebration('🎉')`);
+    
+//     // Continuar después de mostrar resultado
+//     setTimeout(() => {
+//         nextQuestion();
+//     }, ANSWER_DISPLAY_TIME);
+// }
 
 /**
  * Maneja el caso cuando se agota el tiempo
  */
-function handleTimeOut() {
-    console.log('⏰ Manejando timeout');
-    
-    isAnswered = true;
-    const currentQuestion = currentTheme.questions[currentQuestionIndex];
-    
-    // Registrar respuesta como incorrecta
-    userAnswers.push({
-        questionId: currentQuestion.id,
-        question: currentQuestion.question,
-        selectedAnswer: 'Sin respuesta (tiempo agotado)',
-        correctAnswer: currentQuestion.answers.find(a => a.correct).text,
-        isCorrect: false,
-        timeUsed: currentTheme.timeLimit,
-        explanation: 'Tiempo agotado'
-    });
-    
-    // Mostrar respuesta correcta
-    const allButtons = answersContainer.querySelectorAll('.answer-btn');
-    allButtons.forEach(button => {
-        button.disabled = true;
-        if (button.dataset.correct === 'true') {
-            button.classList.add('correct');
-        }
-    });
-    
-    // Continuar después de mostrar resultado
-    setTimeout(() => {
-        nextQuestion();
-    }, 2500);
+function getBoolParam(name) {
+  const v = new URLSearchParams(location.search).get(name);
+  if (v === null) return null;
+  return v === '1' || v === 'true';
 }
+function resetAttemptsForTheme(themeId){
+  const k='filosofia-quiz-progress';
+  const p=JSON.parse(localStorage.getItem(k)||'{}');
+  if (p.completedThemes && p.completedThemes[themeId]) {
+    p.completedThemes[themeId].attempts = 0; // o: delete p.completedThemes[themeId];
+    localStorage.setItem(k, JSON.stringify(p));
+    console.log(`🔄 Intentos reseteados para "${themeId}"`);
+  } else {
+    console.log(`ℹ️ No hay intentos guardados para "${themeId}"`);
+  }
+}
+
+
+
+
+function handleTimeOut() {
+  console.log('⏰ Manejando timeout | revealCorrectOnMistake=' + revealCorrectOnMistake);
+
+  isAnswered = true;
+
+  const currentQuestion = currentTheme.questions[currentQuestionIndex];
+  userAnswers.push({
+    questionId: currentQuestion.id,
+    question: currentQuestion.question,
+    selectedAnswer: 'Sin respuesta (tiempo agotado)',
+    correctAnswer: currentQuestion.answers.find(a => a.correct).text,
+    isCorrect: false,
+    timeUsed: currentTheme.timeLimit,
+    explanation: 'Tiempo agotado'
+  });
+
+  // Deshabilitar
+  const allButtons = answersContainer.querySelectorAll('.answer-btn');
+  allButtons.forEach(button => button.disabled = true);
+
+  // 🔒 Revelar la correcta solo desde el 3er intento
+  if (revealCorrectOnMistake && currentCorrectButton) {
+    currentCorrectButton.classList.add('correct');
+  }
+
+  setTimeout(() => {
+    nextQuestion();
+  }, ANSWER_DISPLAY_TIME);
+}
+
+
+
+// function handleTimeOut() {
+//     console.log('⏰ Manejando timeout');
+    
+//     isAnswered = true;
+//     const currentQuestion = currentTheme.questions[currentQuestionIndex];
+    
+//     // Registrar respuesta como incorrecta
+//     userAnswers.push({
+//         questionId: currentQuestion.id,
+//         question: currentQuestion.question,
+//         selectedAnswer: 'Sin respuesta (tiempo agotado)',
+//         correctAnswer: currentQuestion.answers.find(a => a.correct).text,
+//         isCorrect: false,
+//         timeUsed: currentTheme.timeLimit,
+//         explanation: 'Tiempo agotado'
+//     });
+    
+//     // Mostrar respuesta correcta
+//     const allButtons = answersContainer.querySelectorAll('.answer-btn');
+//     allButtons.forEach(button => {
+//         button.disabled = true;
+//         if (button.dataset.correct === 'true') {
+//             button.classList.add('correct');
+//         }
+//     });
+    
+//     // Continuar después de mostrar resultado
+//     setTimeout(() => {
+//         nextQuestion();
+//     }, 2200);
+// }
 
 /**
  * Avanza a la siguiente pregunta o muestra resultados
@@ -825,32 +1007,13 @@ function setupEventListeners() {
     showQuestionPhase();
 });
 
-    // showMaterialBtn.addEventListener('click', showStudyMaterial);
-
-    // helpBtn.addEventListener('click', showStudyMaterial);
-
-
 if (helpBtn) helpBtn.addEventListener('click', showStudyMaterial);
 if (showMaterialBtn) showMaterialBtn.addEventListener('click', showStudyMaterial);
 
-    // helpBtn.addEventListener('click', () => {
-    // // tomamos el tema actual de la URL / storage
-    //     const params = new URLSearchParams(location.search);
-    //     const tema = params.get('tema')
-    //             || params.get('theme')
-    //             || sessionStorage.getItem('tema_actual')
-    //             || 'sartre';
-
-    //     // armamos URL absoluta respetando subcarpeta (GitHub Pages)
-    //     const dest = new URL('tema.html', location);
-    //     dest.searchParams.set('tema', tema);
-    //     dest.searchParams.set('theme', tema); // compat
-
-    //     location.href = dest.toString();
-    // });
-
     retryBtn.addEventListener('click', () => {
         console.log('🔄 Reiniciando cuestionario');
+        // Releer intentos completados en localStorage (porque saveProgress ya incrementó al terminar)
+        updateAttemptUIAndGating();  // ← esto actualiza el número que ves y el flag revealCorrectOnMistake
         initializeQuiz();
     });
     
@@ -882,21 +1045,38 @@ if (showMaterialBtn) showMaterialBtn.addEventListener('click', showStudyMaterial
     });
     
     // Atajos de teclado
+    // Atajos de teclado
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            materialModal.style.display = 'none';
-            reviewModal.style.display = 'none';
+    if (e.key === 'Escape') {
+        materialModal.style.display = 'none';
+        reviewModal.style.display = 'none';
+    }
+
+    // Números 1-8 para seleccionar respuestas SOLO cuando la pregunta está visible
+    if (e.key >= '1' && e.key <= '8' && !questionPhase.classList.contains('hidden')) {
+        const buttons = answersContainer.querySelectorAll('.answer-btn');
+        const index = parseInt(e.key, 10) - 1;
+        if (buttons[index] && !isAnswered) {
+        buttons[index].click();
         }
-        
-        // Números 1-5 para seleccionar respuestas
-        if (e.key >= '1' && e.key <= '5' && !helpPhase.classList.contains('hidden')) {
-            const buttons = answersContainer.querySelectorAll('.answer-btn');
-            const index = parseInt(e.key) - 1;
-            if (buttons[index] && !isAnswered) {
-                buttons[index].click();
-            }
-        }
+    }
     });
+
+    // document.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Escape') {
+    //         materialModal.style.display = 'none';
+    //         reviewModal.style.display = 'none';
+    //     }
+        
+    //     // Números 1-5 para seleccionar respuestas
+    //     if (e.key >= '1' && e.key <= '5' && !helpPhase.classList.contains('hidden')) {
+    //         const buttons = answersContainer.querySelectorAll('.answer-btn');
+    //         const index = parseInt(e.key) - 1;
+    //         if (buttons[index] && !isAnswered) {
+    //             buttons[index].click();
+    //         }
+    //     }
+    // });
     
     console.log('✅ Event listeners configurados');
 }
@@ -939,36 +1119,48 @@ async function main() {
         setupEventListeners();
         
         // Obtener tema de la URL
-        // const themeId = getURLParameter('theme');
         const themeId = getURLParameter('theme') || getURLParameter('tema');
-        if (!themeId) {
-            throw new Error('No se especificó un tema en la URL');
-        }
-        
-        console.log(`🎯 Tema solicitado: ${themeId}`);
-        updateLoadingProgress(10, `Cargando tema: ${themeId}...`);
-        
+        if (!themeId) throw new Error('No se especificó un tema en la URL');
+
+        // ⬇️ PRIMERO: reset por query si corresponde (aplica a este intento)
+        // (ya venías obteniendo themeId arriba)
+        // OJO: si vas a usar resetAttempts, hacelo ANTES de leer intentos
+        const reset = getBoolParam('resetAttempts');
+        if (reset) resetAttemptsForTheme(themeId);
+
         // Cargar tema
         currentTheme = await loadTheme(themeId);
         console.log(`✅ Tema cargado: ${currentTheme.title}`);
-        
+
+        // ⬇️ Actualiza intento mostrado y el flag revealCorrectOnMistake
+        updateAttemptUIAndGating();
+
+        // Leer intentos COMPLETADOS y setear el intento actual en la UI
+        let attemptsCompleted = getThemeAttemptCount(currentTheme.id); // completados
+        const currentAttempt = attemptsCompleted + 1;                  // el que estás cursando
+        if (attemptsElement) {
+        attemptsElement.textContent = String(currentAttempt);
+        attemptsElement.title = currentAttempt >= 3
+            ? 'A partir de este intento se revelan las correctas al errar'
+            : 'Las correctas no se revelan al errar hasta el intento 3';
+        }
+
+        // Activar revelado de correctas solo desde el 3er intento
+        revealCorrectOnMistake = attemptsCompleted >= 2;
+        console.log(`🔁 Intentos completados de "${currentTheme.id}": ${attemptsCompleted} → revealCorrectOnMistake=${revealCorrectOnMistake}`);
+
+        // (opcional) override por query
+        const forceReveal = getBoolParam('forceReveal');
+        if (forceReveal !== null) {
+        revealCorrectOnMistake = forceReveal;
+        console.log(`🧪 Override revealCorrectOnMistake por query: ${revealCorrectOnMistake}`);
+        }
+
+
         // Inicializar cuestionario
         initializeQuiz();
-        // ##################################################################
-        // Inicializar según el tema
-        // if (
-        // currentTheme &&
-        // currentTheme.id === 'sartre' &&
-        // currentTheme.conceptHunt &&
-        // document.getElementById('question-container') // ancla general
-        // ) {
-        // initializeFourLevelFlow(currentTheme);
-        // } else {
 
-        //     initializeQuiz();
-        // }
-        
-        // ##################################################################
+
         
         const mainEnd = performance.now();
         const totalTime = mainEnd - engineStartTime;
