@@ -1,382 +1,603 @@
-<style>
-/* ====== Tema oscuro elegante, encapsulado ====== */
-.material-dark{
-  /* paleta y espaciados */
-  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
-  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
-  --space:14px; --space-md:18px; --space-lg:22px;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tema 2 — Ética y Moral (Estudio Progresivo)</title>
+  <style>
+    /* ====== Tema oscuro elegante, encapsulado ====== */
+    .material-dark{
+      --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
+      --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
+      --success:#10b981; --error:#ef4444; --warning:#f59e0b;
 
-  background:
-    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  padding: var(--space-lg);
-  border-radius: 12px;
-}
+      background:
+        radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      padding:22px;
+      border-radius:12px;
+      max-width:900px;
+      margin:0 auto;
+    }
 
-/* tipografía */
-.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
-  color:var(--title);
-  margin: 0 0 .4em;
-  line-height: 1.25;
-}
-.material-dark h1{ font-size: 28px; }
-.material-dark h2{ font-size: 22px; }
-.material-dark h3{ font-size: 18px; }
-.material-dark p{ margin: .6em 0; color:var(--text); }
-.material-dark em{ color:var(--text); }
-.material-dark strong{ color:var(--title); }
+    /* tipografía */
+    .material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
+      color:var(--title);
+      margin:0 0 .4em;
+      line-height:1.25;
+    }
+    .material-dark h1{ font-size:28px; }
+    .material-dark h2{ font-size:22px; }
+    .material-dark h3{ font-size:18px; }
+    .material-dark p{ margin:.6em 0; color:var(--text); }
+    .material-dark em{ color:var(--text); }
+    .material-dark strong{ color:var(--title); }
+    .material-dark ul{ padding-left:1.2rem; margin:.6em 0; }
+    .material-dark li::marker{ color:#8aa1ff; }
+    .material-dark blockquote{
+      margin:16px 0; padding:14px 16px; border-left:4px solid var(--accent);
+      background:linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
+      border-radius:10px; color:var(--text);
+    }
+    .highlight-box{
+      background:linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
+      border:1px solid var(--border);
+      border-left:4px solid var(--accent);
+      padding:22px; margin:22px 0; border-radius:var(--radius);
+      box-shadow:0 10px 30px -18px rgba(0,0,0,.6);
+      position:relative;
+    }
 
-/* listas y citas */
-.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
-.material-dark li::marker{ color: #8aa1ff; }
-.material-dark blockquote{
-  margin: 16px 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--accent);
-  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
-  border-radius: 10px;
-  color: var(--text);
-}
+    /* Secciones progresivas */
+    .study-section{ margin-bottom:2rem; opacity:.3; transition:all .5s ease; border-radius:var(--radius); overflow:hidden; }
+    .study-section.active{ opacity:1; transform:scale(1.02); }
+    .study-section.completed{ opacity:.7; border-left:4px solid var(--success); }
 
-/* enlaces y código */
-.material-dark a{ color:#aab6ff; text-decoration: underline; }
-.material-dark code,.material-dark pre{
-  background:#0b1325;
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.material-dark code{ padding:.15rem .35rem }
-.material-dark pre{ padding:10px 12px; overflow:auto }
+    /* Sistema de evaluación */
+    .comprehension-check{
+      margin-top:1.5rem; padding:20px;
+      background:linear-gradient(135deg, rgba(107,124,255,.08), rgba(176,116,255,.06));
+      border-radius:12px; border:1px solid var(--border);
+      opacity:0; transform:translateY(20px); transition:all .6s ease;
+    }
+    .comprehension-check.show{ opacity:1; transform:translateY(0); }
+    .check-title{ font-size:16px; font-weight:600; margin-bottom:15px; color:var(--accent); display:flex; align-items:center; gap:8px; }
+    .options-container{ display:grid; gap:10px; }
+    .option{
+      background:var(--panel); border:2px solid var(--border); border-radius:10px;
+      padding:12px 16px; cursor:pointer; transition:all .3s ease; font-size:14px; line-height:1.4;
+    }
+    .option:hover{ border-color:var(--accent); background:linear-gradient(135deg, rgba(107,124,255,.1), rgba(176,116,255,.08)); transform:translateX(4px); }
+    .option.correct{ border-color:var(--success); background:linear-gradient(135deg, rgba(16,185,129,.15), rgba(16,185,129,.08)); animation:correctPulse .6s ease; }
+    .option.incorrect{ border-color:var(--error); background:linear-gradient(135deg, rgba(239,68,68,.15), rgba(239,68,68,.08)); animation:shake .5s ease; }
 
-/* imágenes */
-.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
+    @keyframes correctPulse{ 0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)} }
+    @keyframes shake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
 
-/* caja de “destacado” */
-.material-dark .highlight-box{
-  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
-  border:1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
-}
+    /* Indicador de progreso */
+    .progress-header{
+      position:sticky; top:0; background:rgba(14,20,38,.95); backdrop-filter:blur(10px);
+      padding:16px 22px; margin:-22px -22px 30px -22px; border-bottom:1px solid var(--border); z-index:100;
+    }
+    .progress-bar{ width:100%; height:8px; background:var(--panel); border-radius:4px; overflow:hidden; margin-top:12px; }
+    .progress-fill{ height:100%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:4px; width:0%; transition:width .8s ease; }
+    .progress-text{ display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); }
 
-/* tablas sencillas */
-.material-dark .table-container{ overflow-x:auto; }
-.material-dark .table-ethics{
-  width:100%; border-collapse: collapse; margin-top: .6rem;
-}
-.material-dark .table-ethics th,
-.material-dark .table-ethics td{
-  padding:10px; border:1px solid var(--border); text-align:left; vertical-align:top;
-}
-.material-dark .table-ethics th{ background:#1a2747; color:var(--title); }
+    /* Efectos de celebración */
+    .celebration{ position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-size:48px; z-index:1000; pointer-events:none; animation:celebrate 2s ease forwards; }
+    @keyframes celebrate{ 0%{opacity:0; transform:translate(-50%,-50%) scale(.5)} 50%{opacity:1; transform:translate(-50%,-50%) scale(1.2)} 100%{opacity:0; transform:translate(-50%,-50%) scale(1)} }
 
-/* separaciones finas en móvil */
-@media (max-width: 600px){
-  .material-dark{ padding: 16px; }
-  .material-dark h1{ font-size: 24px }
-}
+    /* Responsive */
+    @media (max-width:600px){ .material-dark{ padding:16px; } .material-dark h1{ font-size:24px; } .highlight-box{ padding:16px; } }
+  </style>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 14 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
 
-.n_moral{ color: rgb(236, 192, 68) }
-.n_etico{ color: rgb(97, 224, 243) }
-</style>
+    <h1>UNIDAD III — TEMA 2: Ética y Moral</h1>
+    <p><em>Primero clarificamos conceptos (formación del <strong>êthos</strong>, diferencia entre <strong>ética</strong> y <strong>moral</strong> y condiciones del juicio moral); luego pasamos a aplicaciones: libertad y responsabilidad, principios, problemas y casos.</em></p>
 
-<main class="material-dark">
+    <!-- 1. Introducción: diferencia de nivel -->
+    <div class="study-section active" data-section="intro">
+      <div class="highlight-box">
+        <h3>🌱 Ética y moral: dos niveles complementarios</h3>
+        <p><strong>Moral</strong>: conjunto de <em>normas, juicios y hábitos</em> que guían la vida cotidiana —la <em>moral vivida</em>.</p>
+        <p><strong>Ética</strong>: <em>reflexión filosófica</em> sobre la moral: pregunta por <strong>fundamentos, validez y justificación</strong> —la <em>moral pensada</em>.</p>
+        <p>Son distinguibles, pero se retroalimentan: los conflictos morales impulsan reflexión ética, y los principios éticos orientan la práctica.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Verificación de comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La moral regula la acción; la ética justifica por qué esas reglas valen</div>
+          <div class="option">La ética y la moral son sinónimos perfectos en filosofía</div>
+          <div class="option">La ética es un código legal; la moral, una teoría abstracta</div>
+          <div class="option">La moral solo existe en leyes estatales escritas</div>
+          <div class="option">La ética se limita a describir costumbres sin evaluarlas</div>
+        </div>
+      </div>
+    </div>
 
-  <h2>🌟 UNIDAD III · Ética: ¿Cómo debe comportarse el ser humano?</h2>
+    <!-- 2. Etimología -->
+    <div class="study-section" data-section="etimologia">
+      <div class="highlight-box">
+        <h3>📜 Etimología: êthos y mos</h3>
+        <ul>
+          <li><strong>Ética</strong> &lt; gr. <em>êthos</em>: “estancia”, luego <strong>carácter</strong> o <strong>modo de ser</strong>. Se adquiere, no se hereda.</li>
+          <li><strong>Moral</strong> &lt; lat. <em>mos</em>: <strong>costumbre</strong>. Reglas compartidas que orientan la conducta.</li>
+        </ul>
+        <p>De aquí surge la idea de una <strong>segunda naturaleza</strong>: el <em>êthos</em> se <strong>forja con hábitos</strong> generados por la repetición de actos.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">📌 Check rápido</div>
+        <div class="options-container">
+          <div class="option">Ética significa “ley humana positiva”</div>
+          <div class="option" data-correct="true">El êthos es un carácter adquirido mediante hábitos</div>
+          <div class="option">Moral proviene del griego y significa “carácter”</div>
+          <div class="option">Los hábitos morales se heredan biológicamente</div>
+          <div class="option">Ética: normas concretas; moral: reflexión general</div>
+        </div>
+      </div>
+    </div>
 
-  <!-- ===========================
-       PARTE FORMATIVA · CONCEPTOS
-       =========================== -->
-  <h3>📚 TEMA 2: Ética y Moral (Marco conceptual ampliado)</h3>
+    <!-- 3. Formación del êthos (hábitos) -->
+    <div class="study-section" data-section="habitos">
+      <div class="highlight-box">
+        <h3>🔁 ¿Cómo se forma el êthos?</h3>
+        <p>Por <strong>repetición de actos</strong>; esa repetición forma <strong>hábitos</strong>, y los hábitos configuran el <strong>carácter</strong>. A su vez, el carácter predispone a ciertos actos: un <em>círculo formativo</em>.</p>
+        <ul>
+          <li>Actos → <strong>hábitos</strong> → <strong>carácter</strong> (êthos) → actos coherentes con ese carácter.</li>
+          <li>Este proceso es <strong>educable</strong>: podemos cultivar virtudes y desarraigar vicios.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧩 Comprensión</div>
+        <div class="options-container">
+          <div class="option">El carácter determina todo y no puede educarse</div>
+          <div class="option" data-correct="true">La repetición de actos genera hábitos que configuran el carácter</div>
+          <div class="option">Los hábitos morales no influyen en nuestras acciones futuras</div>
+          <div class="option">El êthos es innato y fijo</div>
+          <div class="option">Los hábitos se forman solo por imposición externa</div>
+        </div>
+      </div>
+    </div>
 
-  <p>Para comprender la conducta humana, distinguimos dos niveles complementarios: <strong>moral</strong> (lo que hacemos y juzgamos en la vida diaria) y <strong>ética</strong> (la reflexión crítica que fundamenta esas normas y juicios). Primero formamos el marco conceptual; luego lo aplicamos a casos.</p>
+    <!-- 4. Moral en comunidades -->
+    <div class="study-section" data-section="comunidades">
+      <div class="highlight-box">
+        <h3>👥 Moral como código compartido</h3>
+        <p>En toda comunidad hay <strong>prescripciones y prohibiciones</strong> (lo “debido” y lo “vedado”). Incluso grupos “al margen” (p. ej., piratas) tienen su <em>código</em> (valor en combate, justicia en el reparto).</p>
+        <p>La <strong>deshonra</strong> social sanciona la transgresión a ese código; por eso, la moral no depende solo de leyes escritas.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🎯 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Las morales aparecen como códigos compartidos, incluso fuera del derecho estatal</div>
+          <div class="option">Sin leyes estatales no hay moral posible</div>
+          <div class="option">Solo las religiones poseen moral</div>
+          <div class="option">La moral es idéntica en todas las culturas</div>
+          <div class="option">La moral no influye en la reputación de las personas</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>📜 Etimología y sentido</h4>
-    <ul>
-      <li><strong>Ética</strong> (gr. <em>êthos</em>): “modo de ser” o <strong>carácter</strong>. Es una <em>segunda naturaleza</em> que se moldea por hábitos (Aristóteles).</li>
-      <li><strong>Moral</strong> (lat. <em>mos</em>): “costumbre”. Conjunto de <strong>normas y juicios</strong> que orientan la conducta en una comunidad.</li>
-    </ul>
-    <p><strong>Diferencia de nivel:</strong> la moral es <em>vivida</em> (práctica); la ética es <em>pensada</em> (teórica y crítica).</p>
-  </div>
+    <!-- 5. Ética como reflexión -->
+    <div class="study-section" data-section="etica-reflexion">
+      <div class="highlight-box">
+        <h3>🧠 Ética: moral pensada</h3>
+        <ul>
+          <li>Pregunta <strong>por qué</strong> consideramos válidas ciertas normas.</li>
+          <li><strong>Compara</strong> morales de distintas culturas y contextos.</li>
+          <li>Busca <strong>fundamentos</strong> y <strong>principios</strong> que orienten la vida buena.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔎 Comprensión</div>
+        <div class="options-container">
+          <div class="option">La ética repite sin más la moral de la mayoría</div>
+          <div class="option">La ética prohíbe reflexionar sobre normas</div>
+          <div class="option" data-correct="true">La ética justifica y fundamenta principios y normas</div>
+          <div class="option">La ética es equivalente al derecho penal</div>
+          <div class="option">La ética no puede comparar morales distintas</div>
+        </div>
+      </div>
+    </div>
 
-  <h4>🧩 Componentes del fenómeno moral</h4>
-  <ul>
-    <li><strong>Hechos</strong> (lo que ocurre) vs. <strong>juicios</strong> (cómo lo valoramos).</li>
-    <li><strong>Normas</strong> (mandatos/prohibiciones) y <strong>valores</strong> (lo preferible: justicia, libertad, dignidad, amistad…).</li>
-    <li><strong>Virtudes</strong> (hábitos excelentes: prudencia, honestidad, valentía, templanza, justicia).</li>
-    <li><strong>Derechos</strong> y <strong>deberes</strong> (marcos de protección y responsabilidad mutua).</li>
-    <li><strong>Intención</strong>, <strong>medios</strong> y <strong>consecuencias</strong> (tres dimensiones clave del acto moral).</li>
-  </ul>
+    <!-- 6. Niveles: moral/ética con ejemplos -->
+    <div class="study-section" data-section="niveles">
+      <div class="highlight-box">
+        <h3>📊 Niveles en ejemplos</h3>
+        <ul>
+          <li><strong>Nivel moral</strong>: cumplo una promesa aunque me perjudique; no copio en un examen; ayudo a un compañero.</li>
+          <li><strong>Nivel ético</strong>: analizo si “pacta sunt servanda” debe cumplirse siempre; discuto si vale más la intención o el resultado; pondero autenticidad vs amistad.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">✅ ¿Cuál es ético y cuál moral?</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Reflexionar si la honestidad vale más que la amistad es nivel ético</div>
+          <div class="option">No copiar en un examen es nivel ético</          div>
+          <div class="option">Cumplir una promesa es nivel ético</div>
+          <div class="option">Debatir el valor de la “regla de oro” es nivel moral</div>
+          <div class="option">Elegir ayudar a alguien solo si conviene es nivel ético</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>⚖️ Condiciones para el juicio moral</h4>
-    <ol>
-      <li><strong>Agencia libre</strong>: la acción proviene de una persona capaz de elegir y responder por lo que hace.</li>
-      <li><strong>Relevancia interpersonal</strong>: la acción afecta (o puede afectar) a otros, directa o indirectamente.</li>
-    </ol>
-    <p>Si falta libertad (accidente, coacción extrema) o no hay impacto en otros, el juicio moral cambia de naturaleza.</p>
-  </div>
+    <!-- 7. Condiciones del juicio moral -->
+    <div class="study-section" data-section="condiciones">
+      <div class="highlight-box">
+        <h3>⚖️ Condiciones para juzgar moralmente</h3>
+        <ol>
+          <li><strong>Agencia libre</strong>: el acto procede de una <em>elección</em> (no es un accidente ni un reflejo).</li>
+          <li><strong>Impacto interpersonal</strong>: el acto tiene <em>efectos posibles sobre otros</em> (no es puramente privado).</li>
+        </ol>
+        <blockquote>Un pensamiento no expresado no cumple la 2ª condición; por eso, no suele ser objeto de juicio moral.</blockquote>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧪 Comprensión</div>
+        <div class="options-container">
+          <div class="option">Todo lo humano es juzgable moralmente, incluso reflejos</div>
+          <div class="option" data-correct="true">Sin libertad e impacto en otros, no se configura un juicio moral pleno</div>
+          <div class="option">Los accidentes siempre son inmorales</div>
+          <div class="option">Los pensamientos privados son inmorales si son “malos”</div>
+          <div class="option">Solo importa el impacto; la libertad no</div>
+        </div>
+      </div>
+    </div>
 
-  <h3>🏛️ Marco teórico: corrientes y criterios</h3>
+    <!-- 8. Libertad y responsabilidad -->
+    <div class="study-section" data-section="libertad">
+      <div class="highlight-box">
+        <h3>🧭 Libertad y responsabilidad</h3>
+        <p>La <strong>intencionalidad</strong> distingue una piedra que cae (accidente) de un humano que golpea (acto libre). Solo de los libres decimos que <strong>actúan bien o mal</strong>, porque <em>eligen</em> y pueden asumir <strong>responsabilidad</strong>.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔬 Chequeo</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Un desmayo que provoca daño no es un acto moral: falta intencionalidad</div>
+          <div class="option">Una roca que mata “obra mal”</div>
+          <div class="option">Golpear accidentalmente equivale a elegir golpear</div>
+          <div class="option">Todo evento con daño es inmoral</div>
+          <div class="option">Solo la ley decide si hubo responsabilidad</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>1) Deontología (Kant)</h4>
-    <ul>
-      <li>Evalúa la <strong>rectitud del deber</strong>: actuar por respeto a la ley moral.</li>
-      <li>Criterio: <em>universalidad</em> (“Obra sólo según una máxima que puedas querer que se vuelva ley universal”).</li>
-      <li>Fuerza: protege la dignidad y evita justificar injusticias por “buenos resultados”.</li>
-      <li>Riesgo: rigidez ante contextos complejos.</li>
-    </ul>
-  </div>
+    <!-- 9. Tres visiones sobre libertad -->
+    <div class="study-section" data-section="visiones">
+      <div class="highlight-box">
+        <h3>🌌 Tres visiones sobre la libertad</h3>
+        <ul>
+          <li><strong>Sartre</strong>: libertad radical; “estamos condenados a ser libres”.</li>
+          <li><strong>Skinner</strong>: <em>determinismo conductual</em>; la libertad sería ilusión.</li>
+          <li><strong>Fromm</strong>: <em>libertad condicionada</em>; contexto influye, pero hay margen de elección responsable.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧭 Identifica la postura</div>
+        <div class="options-container">
+          <div class="option">Sartre sostiene que la comunidad decide por ti</div>
+          <div class="option" data-correct="true">Fromm defiende un margen de libertad dentro de condicionamientos</div>
+          <div class="option">Skinner afirma la libertad radical</div>
+          <div class="option">Sartre niega toda responsabilidad</div>
+          <div class="option">Fromm dice que el contexto elimina toda elección</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>2) Utilitarismo (Bentham/Mill)</h4>
-    <ul>
-      <li>Evalúa <strong>consecuencias</strong>: lo correcto maximiza el bienestar y minimiza el daño para el mayor número.</li>
-      <li>Fuerza: sensibilidad al impacto real de las decisiones.</li>
-      <li>Riesgo: sacrificar derechos de minorías si sólo cuenta el “total” de felicidad.</li>
-    </ul>
-  </div>
+    <!-- 10. Principios éticos personales -->
+    <div class="study-section" data-section="principios-personales">
+      <div class="highlight-box">
+        <h3>🛡️ Principios personales</h3>
+        <ul>
+          <li><strong>Honestidad</strong>: reconocer errores y decir la verdad.</li>
+          <li><strong>Integridad</strong>: coherencia entre valores y actos; <em>el fin no justifica los medios</em>.</li>
+          <li><strong>Compromiso</strong>: cumplir promesas y responsabilidades.</li>
+          <li><strong>Excelencia</strong>: dar lo mejor en lo que hacemos.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La integridad rechaza que el fin justifique los medios</div>
+          <div class="option">La honestidad consiste en proteger a los tuyos aunque mientas</div>
+          <div class="option">El compromiso implica cambiar promesas si no convienen</div>
+          <div class="option">La excelencia justifica engañar para ganar</div>
+          <div class="option">La integridad permite cualquier medio si el fin es noble</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>3) Ética de la virtud (Aristóteles)</h4>
-    <ul>
-      <li>Centro en el <strong>carácter</strong> y la excelencia humana (virtudes) que se adquieren por práctica.</li>
-      <li>Criterio: <em>término medio prudente</em> según la situación (phronesis).</li>
-      <li>Fuerza: forma personas íntegras; visión integral del florecimiento (<em>eudaimonía</em>).</li>
-      <li>Riesgo: ambigüedad sin pautas más objetivas.</li>
-    </ul>
-  </div>
+    <!-- 11. Principios sociales -->
+    <div class="study-section" data-section="principios-sociales">
+      <div class="highlight-box">
+        <h3>🤝 Principios sociales</h3>
+        <ul>
+          <li><strong>Ecuanimidad</strong>: justicia e imparcialidad.</li>
+          <li><strong>Respeto</strong>: dignidad y libertad de todas las personas.</li>
+          <li><strong>Responsabilidad ciudadana</strong>: cumplir leyes y cuidar el bien común.</li>
+          <li><strong>Empatía</strong>: considerar los efectos de nuestras acciones en otros.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔗 Comprensión</div>
+        <div class="options-container">
+          <div class="option">La responsabilidad ciudadana permite el soborno si “ayuda”</div>
+          <div class="option" data-correct="true">La conciencia social contrarresta el egoísmo</div>
+          <div class="option">El respeto aplica solo a los cercanos</div>
+          <div class="option">La empatía es irrelevante para decidir</div>
+          <div class="option">La ecuanimidad acepta favoritismos por amistad</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>4) Ética del cuidado (Gilligan, Noddings)</h4>
-    <ul>
-      <li>Subraya <strong>relaciones, vulnerabilidad</strong> y <strong>responsabilidad</strong> hacia el otro concreto.</li>
-      <li>Complementa perspectivas excesivamente abstractas con atención a contextos y dependencias reales.</li>
-    </ul>
-  </div>
+    <!-- 12. Herramienta para decidir -->
+    <div class="study-section" data-section="herramienta">
+      <div class="highlight-box">
+        <h3>🧰 Herramienta de decisión ética</h3>
+        <ol>
+          <li><strong>¿Es legal?</strong></li>
+          <li><strong>¿Es justo?</strong></li>
+          <li><strong>¿Lo toleraría si fuera público?</strong></li>
+          <li><strong>¿Querría que me lo hicieran?</strong> (regla de oro)</li>
+          <li><strong>¿Aporta al bien común?</strong></li>
+          <li><strong>¿Representa mis mejores valores?</strong></li>
+        </ol>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧭 Chequeo</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">“¿Me sentiría cómodo si fuera público?” evalúa transparencia y reputación</div>
+          <div class="option">“¿Es legal?” decide toda cuestión ética por sí sola</div>
+          <div class="option">“¿Aporta al bien común?” es irrelevante</div>
+          <div class="option">La regla de oro es: trata a los otros peor si puedes</div>
+          <div class="option">Las preguntas son decorativas; no orientan decisiones</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>5) Contractualismo (Rawls)</h4>
-    <ul>
-      <li>Justicia como <strong>imparcialidad</strong>: elegiríamos principios justos <em>tras un velo de ignorancia</em> (sin saber nuestra posición social).</li>
-      <li>Fuerza: equidad estructural; protección de los peor situados.</li>
-    </ul>
-  </div>
+    <!-- 13. Caso Juan (dilema) -->
+    <div class="study-section" data-section="juan">
+      <div class="highlight-box">
+        <h3>📌 Caso: El dilema de Juan</h3>
+        <p>Juan atropella accidentalmente a un niño camino al aeropuerto para despedirse de su padre moribundo. Debe elegir:</p>
+        <ul>
+          <li>🚑 <strong>Llevar al niño al hospital</strong> (pierde el avión).</li>
+          <li>✈️ <strong>Seguir al aeropuerto</strong> (abandona al herido).</li>
+        </ul>
+        <p>Ilustra <strong>conflicto de valores</strong> y la necesidad de <strong>criterios</strong>.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧪 Comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Priorizar al herido refleja una norma categórica de no abandono</div>
+          <div class="option">Ir al aeropuerto es siempre la opción moralmente superior</div>
+          <div class="option">Cualquier opción es amoral porque fue un accidente</div>
+          <div class="option">La decisión no requiere reflexión ética</div>
+          <div class="option">El dilema muestra que no existen valores en conflicto</div>
+        </div>
+      </div>
+    </div>
 
-  <h3>🧠 Herramientas para pensar decisiones</h3>
+    <!-- 14. Casos para analizar -->
+    <div class="study-section" data-section="casos">
+      <div class="highlight-box">
+        <h3>📝 Casos para analizar</h3>
+        <ul>
+          <li><strong>Banco</strong>: detectás desvío de fondos. Denunciar vs proteger empleo y familia.</li>
+          <li><strong>Examen</strong>: podés copiar sin que te vean; tu beca depende de nota.</li>
+          <li><strong>Trasplante</strong>: un solo riñón; pacientes con perfiles distintos.</li>
+        </ul>
+        <p>Identificá <em>opciones</em>, <em>afectados</em>, <em>principios en conflicto</em> y justificá la decisión más ética.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🎯 Check final</div>
+        <div class="options-container">
+          <div class="option">En el examen, “nadie me ve” vuelve moral copiar</div>
+          <div class="option">En el banco, la lealtad excesiva justifica encubrir</div>
+          <div class="option" data-correct="true">En el examen, chocan honestidad/justicia con interés personal (beca)</div>
+          <div class="option">En trasplante, no hay principios en conflicto</div>
+          <div class="option">Los casos no aportan a la formación del juicio moral</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="highlight-box">
-    <h4>🔍 Pruebas rápidas</h4>
-    <ul>
-      <li><strong>Legalidad</strong>: ¿viola leyes o reglas institucionales?</li>
-      <li><strong>Universalidad</strong>: ¿podría querer que todos actúen así?</li>
-      <li><strong>Publicidad</strong>: ¿estaría bien si se hiciera público?</li>
-      <li><strong>Regla de oro</strong>: ¿querría que me lo hicieran a mí?</li>
-      <li><strong>Bien común</strong>: ¿promueve o daña lo colectivo?</li>
-      <li><strong>Dignidad</strong>: ¿respeta la dignidad de cada persona involucrada?</li>
-    </ul>
-  </div>
+    <!-- Síntesis -->
+    <div class="study-section" data-section="sintesis">
+      <div class="highlight-box">
+        <h3>🎯 Síntesis</h3>
+        <ul>
+          <li>Solo los <strong>actos libres e intencionales</strong> son moralmente evaluables.</li>
+          <li><strong>Ética</strong> (fundamenta) y <strong>moral</strong> (regula) se necesitan mutuamente.</li>
+          <li>Los <strong>principios</strong> ayudan a resolver <strong>dilemas</strong> con responsabilidad hacia otros y el bien común.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">✅ Cierre</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Ética sin moral carece de anclaje práctico; moral sin ética carece de justificación</div>
+          <div class="option">La ética reemplaza por completo a la moral</          div>
+          <div class="option">Los dilemas se resuelven sin principios ni análisis</div>
+          <div class="option">La responsabilidad es irrelevante si hay leyes</div>
+          <div class="option">Solo importan las intenciones, no los efectos</div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-  <div class="highlight-box">
-    <h4>🗺️ Pasos sugeridos</h4>
-    <ol>
-      <li><strong>Describir</strong> hechos y actores (sin juicios prematuros).</li>
-      <li><strong>Identificar</strong> valores en conflicto y posibles cursos de acción.</li>
-      <li><strong>Evaluar</strong> con varios criterios (deber, consecuencias, virtudes, cuidado, justicia).</li>
-      <li><strong>Decidir</strong> y <strong>justificar</strong> (explicar por qué es la mejor opción).</li>
-      <li><strong>Asumir</strong> responsabilidad y plan de mitigación de daños.</li>
-    </ol>
-  </div>
+  <script>
+         // ► Pégalo arriba del class ProgressiveStudy (o al inicio del <script>)
+   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
+      // Esto resuelve a "/sound/" tanto si el HTML está en la raíz como dentro de /themes/etica/
 
-  <div class="highlight-box">
-    <h4>🧯 Errores frecuentes (a evitar)</h4>
-    <ul>
-      <li><strong>Falacia de tradición</strong>: “siempre fue así, entonces está bien”.</li>
-      <li><strong>Consecuencialismo crudo</strong>: “el fin justifica cualquier medio”.</li>
-      <li><strong>Relativismo total</strong>: “todo da lo mismo”.</li>
-      <li><strong>Sesgos y favoritismos</strong>: juzgar distinto según afinidades.</li>
-    </ul>
-  </div>
+   class ProgressiveStudy {
+      constructor() {
+        this.currentSection = 0;
+        this.totalSections = document.querySelectorAll('.study-section').length;
+        this.completedSections = new Set();
+        this.init();
+      }
+      init() {
+        // activar primera sección
+        const sections = document.querySelectorAll('.study-section');
+        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
+        this.setupEventListeners();
+        this.showComprehensionCheck();
+        this.updateProgress();
+      }
+      setupEventListeners() {
+        document.querySelectorAll('.option').forEach(option => {
+          option.addEventListener('click', (e) => this.handleOptionClick(e));
+        });
+      }
+      showComprehensionCheck() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        if (!currentSectionEl) return;
+        const checkEl = currentSectionEl.querySelector('.comprehension-check');
+        if (checkEl) {
+          setTimeout(() => { checkEl.classList.add('show'); }, 5000); // lectura
+        }
+      }
+      handleOptionClick(e) {
+        const option = e.target;
+        const checkContainer = option.closest('.comprehension-check');
+        const allOptions = checkContainer.querySelectorAll('.option');
+        // deshabilitar mientras se procesa
+        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
 
-  <h3>📊 Tabla: Moral (vivida) vs. Ética (pensada)</h3>
-  <div class="table-container">
-    <table class="table-ethics">
-      <thead>
-        <tr>
-          <th >Nivel moral (acción)</th>
-          <th>Nivel ético (fundamentación)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td  class="n_moral">Cumplo una promesa aunque me perjudique.</td>
-          <td class="n_etico">Analizo por qué mantener promesas sostiene la confianza social (deber / virtud).</td>
-        </tr>
-        <tr>
-          <td  class="n_moral">No copio en un examen aunque nadie me vea.</td>
-          <td class="n_etico">Considero universalidad, dignidad del aprendizaje y justicia con otros.</td>
-        </tr>
-        <tr>
-          <td  class="n_moral">Digo la verdad a un amigo aunque duela.</td>
-          <td class="n_etico">Sopeso autenticidad vs. cuidado; busco el modo prudente (virtud/cuidado).</td>
-        </tr>
-        <tr>
-          <td  class="n_moral">Ayudo a alguien aunque me incomode.</td>
-          <td class="n_etico">Evalúo intención y consecuencias; priorizo compasión sin paternalismo.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        if (option.dataset.correct === 'true') {
+          option.classList.add('correct');
+          this.playSound('success');
+          this.showCelebration('🎉');
+          setTimeout(() => {
+            this.markSectionCompleted();
+            this.moveToNextSection();
+          }, 1200);
+        } else {
+          option.classList.add('incorrect');
+          this.playSound('error');
+          setTimeout(() => {
+            // Reset opciones y reintento
+            allOptions.forEach(opt => {
+              opt.classList.remove('correct','incorrect');
+              opt.style.pointerEvents = 'auto';
+            });
+            this.shuffleOptions(checkContainer);
+          }, 900);
+        }
+      }
+      shuffleOptions(container) {
+        const options = Array.from(container.querySelectorAll('.option'));
+        const parent = options[0].parentNode;
+        for (let i = options.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [options[i], options[j]] = [options[j], options[i]];
+        }
+        options.forEach(option => parent.appendChild(option));
+      }
+      markSectionCompleted() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        currentSectionEl.classList.add('completed');
+        currentSectionEl.classList.remove('active');
+        this.completedSections.add(this.currentSection);
+        this.updateProgress();
+      }
+      moveToNextSection() {
+        this.currentSection++;
+        const sections = document.querySelectorAll('.study-section');
+        if (this.currentSection < this.totalSections) {
+          const nextSectionEl = sections[this.currentSection];
+          nextSectionEl.classList.add('active');
+          setTimeout(() => {
+            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
+            setTimeout(() => { window.scrollBy(0, -80); }, 800);
+          }, 300);
+          setTimeout(() => { this.showComprehensionCheck(); }, 800);
+        } else {
+          this.showCompletion();
+        }
+      }
+      updateProgress() {
+        const progressFill = document.getElementById('progress-fill');
+        const progressCounter = document.getElementById('progress-counter');
+        const percentage = (this.completedSections.size / this.totalSections) * 100;
+        progressFill.style.width = `${percentage}%`;
+        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
+      }
+      showCelebration(emoji) {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.textContent = emoji;
+        document.body.appendChild(celebration);
+        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
+      }
+      showCompletion() {
+        this.showCelebration('🎊');
+        setTimeout(() => {
+          alert('¡Excelente! Completaste Ética y Moral. Ya podés pasar a las actividades y al quiz.');
+        }, 800);
+      }
 
-  <div class="highlight-box">
-    <h4>🎯 Síntesis conceptual</h4>
-    <ul>
-      <li>La <strong>moral</strong> guía la práctica; la <strong>ética</strong> la fundamenta y orienta.</li>
-      <li>Un buen juicio moral integra <strong>deber</strong>, <strong>consecuencias</strong>, <strong>virtudes</strong>, <strong>cuidado</strong> y <strong>justicia</strong>.</li>
-      <li>La formación ética fortalece la <strong>responsabilidad</strong> y la <strong>prudencia</strong> para decidir mejor.</li>
-    </ul>
-  </div>
 
-  <!-- ======================
-       PARTE APLICADA · CASOS
-       ====================== -->
-  <h3>🧪 TEMA 1: Los problemas éticos (Aplicación)</h3>
+      // ► Dentro de la clase ProgressiveStudy, reemplaza el método playSound por este:
+      async playSound(type) {
+      try {
+         const files = {
+            success: 'collect_points.mp3',
+            error: 'negative_beep.mp3',
+            show_question: 'show_question.mp3',
+            timer_warning: 'timer_warning.mp3',
+            timer_danger: 'timer_danger.mp3'
+         };
+         const file = files[type] || 'collect_points.mp3';
+         const audio = new Audio(SOUND_BASE + file); // ← usa /sound/ en la raíz
+         audio.volume = 0.7;
+         audio.preload = 'auto';
+         const p = audio.play();
+         if (p !== undefined) await p;
+      } catch (err) {
+         console.warn('No se pudo reproducir sonido:', err);
+      }
+      }
 
-  <div class="highlight-box">
-    <h4>📌 Caso: El dilema de Juan</h4>
-    <p><strong>Juan va al aeropuerto para despedir a su padre gravemente enfermo. En el camino atropella accidentalmente a un niño.</strong></p>
-    <p>Debe elegir entre llevar al niño al hospital (y perder el vuelo) o continuar al aeropuerto (y dejar al niño herido a la espera de ayuda). No hay opción “perfecta”.</p>
-    <p><strong>Opciones:</strong></p>
-    <ul>
-      <li>🚑 <strong>Llevar al niño</strong> → prioriza cuidado y deber de socorro; pierde la despedida.</li>
-      <li>✈️ <strong>Ir al aeropuerto</strong> → prioriza deber familiar; arriesga el bienestar inmediato del niño.</li>
-    </ul>
-    <p><strong>Preguntas guía:</strong></p>
-    <ul>
-      <li>¿Qué deberes son más urgentes aquí y por qué? (deontología/cuidado)</li>
-      <li>¿Qué acción produce menos daño total? (utilitarismo)</li>
-      <li>¿Qué haría una persona virtuosa y prudente? (virtudes)</li>
-      <li>Si cualquiera pudiera estar en el lugar del niño, ¿qué regla querríamos que rigiera? (justicia)</li>
-    </ul>
-  </div>
 
-  <h4>🧭 Libertad y responsabilidad</h4>
-  <p>Juzgamos moralmente a <strong>agentes libres</strong>, no a objetos o fenómenos naturales. Un alud que mata es un <em>accidente</em>; una agresión mortal intencional es un <em>acto moralmente imputable</em>.</p>
-  <ul>
-    <li>⚡ <strong>Accidente</strong>: sin intención ni control (no hay responsabilidad moral).</li>
-    <li>👊 <strong>Acto intencional</strong>: hay elección, previsión y responsabilidad.</li>
-  </ul>
 
-  <div class="highlight-box">
-    <h4>📌 Diferencia clave</h4>
-    <ul>
-      <li><strong>Naturaleza</strong> → leyes físicas, sin libertad.</li>
-      <li><strong>Ser humano</strong> → elige con intención; por eso puede ser responsable.</li>
-    </ul>
-  </div>
-
-  <h4>📋 Guía práctica para decidir</h4>
-  <div class="highlight-box">
-    <h4>🔍 Preguntas de chequeo</h4>
-    <ol>
-      <li><strong>¿Es legal?</strong></li>
-      <li><strong>¿Es justo e imparcial?</strong></li>
-      <li><strong>¿Respetaría la dignidad de todos?</strong></li>
-      <li><strong>¿Qué pasaría si todos hicieran lo mismo?</strong></li>
-      <li><strong>¿Contribuye al bien común?</strong></li>
-      <li><strong>¿Me sentiría orgulloso si se hiciera público?</strong></li>
-    </ol>
-  </div>
-
-  <h3>🗣️ Tres miradas sobre la libertad (aplicadas al juicio moral)</h3>
-
-  <div class="highlight-box">
-    <h4>A. Jean-Paul Sartre (existencialismo)</h4>
-    <ul>
-      <li>“Estamos condenados a ser libres”: <strong>siempre elegimos</strong>, incluso al no elegir.</li>
-      <li>Responsabilidad radical por nuestros actos y valores.</li>
-    </ul>
-  </div>
-
-  <div class="highlight-box">
-    <h4>B. B. F. Skinner (conductismo)</h4>
-    <ul>
-      <li>La conducta está <strong>determinada</strong> por condicionamientos y ambiente.</li>
-      <li>Cuestiona la <strong>libertad</strong> como base de la responsabilidad moral.</li>
-    </ul>
-  </div>
-
-  <div class="highlight-box">
-    <h4>C. Erich Fromm (humanismo)</h4>
-    <ul>
-      <li><strong>Libres pero condicionados</strong>: hay márgenes de elección reales.</li>
-      <li>La responsabilidad considera circunstancias sin anular la libertad.</li>
-    </ul>
-  </div>
-
-  <div class="highlight-box">
-    <h4>👉 Actividad de integración</h4>
-    <ul>
-      <li>Elegí un caso real o imaginado y aplicá <em>dos</em> enfoques (deber y consecuencias, o virtudes y cuidado).</li>
-      <li>Mostrá en 5-7 líneas por qué tu decisión respeta dignidad y bien común.</li>
-    </ul>
-  </div>
-
-  <h3>⚠️ Problemas éticos frecuentes</h3>
-  <ul>
-    <li>🏢 Abuso de poder</li>
-    <li>💸 Sobornos</li>
-    <li>👨‍👩‍👧 Nepotismo</li>
-    <li>⚔️ Conflicto de intereses</li>
-    <li>🤐 Encubrimiento</li>
-    <li>😡 Egoísmo</li>
-    <li>📉 Incompetencia deliberada</li>
-    <li>🔄 Lealtad mal entendida (por encima de principios)</li>
-  </ul>
-
-  <h3>🌱 Principios éticos básicos</h3>
-  <div class="highlight-box">
-    <h4>🛡️ Personales</h4>
-    <ul>
-      <li>Honestidad, Integridad, Compromiso, Excelencia</li>
-    </ul>
-  </div>
-  <div class="highlight-box">
-    <h4>🤝 Sociales</h4>
-    <ul>
-      <li>Ecuanimidad, Respeto, Responsabilidad ciudadana, Empatía</li>
-    </ul>
-  </div>
-
-  <h3>💭 Casos para analizar</h3>
-  <div class="highlight-box">
-    <h4>📝 Ejercicio</h4>
-    <p><strong>Caso 1:</strong> Desvío de fondos por un superior. Denunciar vs. silencio.</p>
-    <p><strong>Caso 2:</strong> Copiar en un examen para sostener una beca.</p>
-    <p><strong>Caso 3:</strong> Asignación de un órgano escaso entre pacientes.</p>
-    <p><strong>Guía:</strong></p>
-    <ul>
-      <li>Opciones y afectados.</li>
-      <li>Valores en conflicto.</li>
-      <li>Evaluación con múltiples criterios (deber, consecuencias, virtudes, cuidado, justicia).</li>
-      <li>Decisión justificada y plan para mitigar daños.</li>
-    </ul>
-  </div>
-
-  <div class="highlight-box">
-    <h3>🎯 Cierre</h3>
-    <ul>
-      <li>🔑 Sólo los actos libres e intencionales son imputables moralmente.</li>
-      <li>⚖️ La libertad exige responsabilidad.</li>
-      <li>🧭 Decidir bien requiere formar criterio (conceptos) y ejercitarlo (casos).</li>
-    </ul>
-  </div>
-
-</main>
+      // async playSound(type) {
+      //   try {
+      //     let soundFile;
+      //     switch(type){
+      //       case 'success': soundFile='collect_points.mp3'; break;
+      //       case 'error': soundFile='negative_beep.mp3'; break;
+      //       case 'show_question': soundFile='show_question.mp3'; break;
+      //       case 'timer_warning': soundFile='timer_warning.mp3'; break;
+      //       case 'timer_danger': soundFile='timer_danger.mp3'; break;
+      //       default: soundFile='collect_points.mp3';
+      //     }
+      //     const audio = new Audio(`sound/${soundFile}`);
+      //     audio.volume = .7; audio.preload='auto';
+      //     const playPromise = audio.play();
+      //     if (playPromise !== undefined) await playPromise;
+      //   } catch (error) {
+      //     // fallback
+      //     try {
+      //       const fb = new Audio(`sound/${type==='success'?'collect_points':'negative_beep'}.MP3`);
+      //       fb.volume=.7; await fb.play();
+      //     } catch {}
+      //   }
+      // }
+    }
+    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
+  </script>
+</body>
+</html>

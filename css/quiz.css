@@ -207,10 +207,11 @@ body::before {
 }
 
 .theme-icon {
-    font-size: 1.5em;
+    font-size: 2.2em;
 }
 
 .theme-title {
+    font-size: 2.2em;
     font-weight: 600;
     color: var(--text-primary);
 }

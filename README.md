@@ -348,3 +348,64 @@ cuestionario-filosofia/
     ├── etica.html                # 📚 Material de estudio - Ética
     ├── epistemologia.html        # 📚 Material de estudio - Epistemología
     └── logica.html               # 📚 Material de estudio - Lógica
+
+-------------------------------------------------------------------------
+
+######   INSPECCION POR CONSOLA DEL NAVEGADOR   ######
+
+# 1)  Resetear todo (todos los temas)
+## Borra todo el progreso guardado del quiz y el progreso del hub (opcional)
+
+localStorage.removeItem('filosofia-quiz-progress');
+sessionStorage.clear(); // opcional
+console.log('✅ Progreso global reseteado');
+
+# 2) Resetear solo un tema por ID (ej.: "etica")
+
+(function resetTheme(themeId){
+  const k='filosofia-quiz-progress';
+  const p=JSON.parse(localStorage.getItem(k)||'{}');
+  if (p.completedThemes && p.completedThemes[themeId]) {
+    delete p.completedThemes[themeId]; // elimina intentos, bestScore, etc.
+    localStorage.setItem(k, JSON.stringify(p));
+    console.log('✅ Reseteado tema:', themeId);
+  } else {
+    console.log('ℹ️ No había datos para el tema:', themeId);
+  }
+})('etica'); // ← cambia "etica" por el ID de tu tema
+
+
+# 3) Resetear el tema actual en la URL (?theme= o ?tema=)
+
+(function(){
+  const params = new URLSearchParams(location.search);
+  const themeId = params.get('theme') || params.get('tema');
+  if(!themeId){ console.warn('⚠️ No se encontró ?theme= o ?tema= en la URL'); return; }
+  const k='filosofia-quiz-progress';
+  const p=JSON.parse(localStorage.getItem(k)||'{}');
+  if (p.completedThemes && p.completedThemes[themeId]) {
+    delete p.completedThemes[themeId];
+    localStorage.setItem(k, JSON.stringify(p));
+    console.log('✅ Reseteado tema actual:', themeId);
+  } else {
+    console.log('ℹ️ No había datos para el tema:', themeId);
+  }
+})();
+
+
+# 4) Poner intentos = 0 (conservando bestScore y demás) para un tema
+
+(function(themeId){
+  const k='filosofia-quiz-progress';
+  const p=JSON.parse(localStorage.getItem(k)||'{}');
+  if(p.completedThemes && p.completedThemes[themeId]){
+    p.completedThemes[themeId].attempts = 0;
+    localStorage.setItem(k, JSON.stringify(p));
+    console.log('✅ Intentos puestos en 0 para:', themeId);
+  } else {
+    console.log('ℹ️ No había datos para el tema:', themeId);
+  }
+})('etica'); // ← cambia el ID
+
+# 5) Verificar qué hay guardado
+JSON.parse(localStorage.getItem('filosofia-quiz-progress') || '{}');

@@ -1,0 +1,382 @@
+<style>
+/* ====== Tema oscuro elegante, encapsulado ====== */
+.material-dark{
+  /* paleta y espaciados */
+  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
+  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
+  --space:14px; --space-md:18px; --space-lg:22px;
+
+  background:
+    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  padding: var(--space-lg);
+  border-radius: 12px;
+}
+
+/* tipografía */
+.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
+  color:var(--title);
+  margin: 0 0 .4em;
+  line-height: 1.25;
+}
+.material-dark h1{ font-size: 28px; }
+.material-dark h2{ font-size: 22px; }
+.material-dark h3{ font-size: 18px; }
+.material-dark p{ margin: .6em 0; color:var(--text); }
+.material-dark em{ color:var(--text); }
+.material-dark strong{ color:var(--title); }
+
+/* listas y citas */
+.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
+.material-dark li::marker{ color: #8aa1ff; }
+.material-dark blockquote{
+  margin: 16px 0;
+  padding: 14px 16px;
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
+  border-radius: 10px;
+  color: var(--text);
+}
+
+/* enlaces y código */
+.material-dark a{ color:#aab6ff; text-decoration: underline; }
+.material-dark code,.material-dark pre{
+  background:#0b1325;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.material-dark code{ padding:.15rem .35rem }
+.material-dark pre{ padding:10px 12px; overflow:auto }
+
+/* imágenes */
+.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
+
+/* caja de “destacado” */
+.material-dark .highlight-box{
+  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
+  border:1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
+}
+
+/* tablas sencillas */
+.material-dark .table-container{ overflow-x:auto; }
+.material-dark .table-ethics{
+  width:100%; border-collapse: collapse; margin-top: .6rem;
+}
+.material-dark .table-ethics th,
+.material-dark .table-ethics td{
+  padding:10px; border:1px solid var(--border); text-align:left; vertical-align:top;
+}
+.material-dark .table-ethics th{ background:#1a2747; color:var(--title); }
+
+/* separaciones finas en móvil */
+@media (max-width: 600px){
+  .material-dark{ padding: 16px; }
+  .material-dark h1{ font-size: 24px }
+}
+
+.n_moral{ color: rgb(236, 192, 68) }
+.n_etico{ color: rgb(97, 224, 243) }
+</style>
+
+<main class="material-dark">
+
+  <h2>🌟 UNIDAD III · Ética: ¿Cómo debe comportarse el ser humano?</h2>
+
+  <!-- ===========================
+       PARTE FORMATIVA · CONCEPTOS
+       =========================== -->
+  <h3>📚 TEMA 2: Ética y Moral (Marco conceptual ampliado)</h3>
+
+  <p>Para comprender la conducta humana, distinguimos dos niveles complementarios: <strong>moral</strong> (lo que hacemos y juzgamos en la vida diaria) y <strong>ética</strong> (la reflexión crítica que fundamenta esas normas y juicios). Primero formamos el marco conceptual; luego lo aplicamos a casos.</p>
+
+  <div class="highlight-box">
+    <h4>📜 Etimología y sentido</h4>
+    <ul>
+      <li><strong>Ética</strong> (gr. <em>êthos</em>): “modo de ser” o <strong>carácter</strong>. Es una <em>segunda naturaleza</em> que se moldea por hábitos (Aristóteles).</li>
+      <li><strong>Moral</strong> (lat. <em>mos</em>): “costumbre”. Conjunto de <strong>normas y juicios</strong> que orientan la conducta en una comunidad.</li>
+    </ul>
+    <p><strong>Diferencia de nivel:</strong> la moral es <em>vivida</em> (práctica); la ética es <em>pensada</em> (teórica y crítica).</p>
+  </div>
+
+  <h4>🧩 Componentes del fenómeno moral</h4>
+  <ul>
+    <li><strong>Hechos</strong> (lo que ocurre) vs. <strong>juicios</strong> (cómo lo valoramos).</li>
+    <li><strong>Normas</strong> (mandatos/prohibiciones) y <strong>valores</strong> (lo preferible: justicia, libertad, dignidad, amistad…).</li>
+    <li><strong>Virtudes</strong> (hábitos excelentes: prudencia, honestidad, valentía, templanza, justicia).</li>
+    <li><strong>Derechos</strong> y <strong>deberes</strong> (marcos de protección y responsabilidad mutua).</li>
+    <li><strong>Intención</strong>, <strong>medios</strong> y <strong>consecuencias</strong> (tres dimensiones clave del acto moral).</li>
+  </ul>
+
+  <div class="highlight-box">
+    <h4>⚖️ Condiciones para el juicio moral</h4>
+    <ol>
+      <li><strong>Agencia libre</strong>: la acción proviene de una persona capaz de elegir y responder por lo que hace.</li>
+      <li><strong>Relevancia interpersonal</strong>: la acción afecta (o puede afectar) a otros, directa o indirectamente.</li>
+    </ol>
+    <p>Si falta libertad (accidente, coacción extrema) o no hay impacto en otros, el juicio moral cambia de naturaleza.</p>
+  </div>
+
+  <h3>🏛️ Marco teórico: corrientes y criterios</h3>
+
+  <div class="highlight-box">
+    <h4>1) Deontología (Kant)</h4>
+    <ul>
+      <li>Evalúa la <strong>rectitud del deber</strong>: actuar por respeto a la ley moral.</li>
+      <li>Criterio: <em>universalidad</em> (“Obra sólo según una máxima que puedas querer que se vuelva ley universal”).</li>
+      <li>Fuerza: protege la dignidad y evita justificar injusticias por “buenos resultados”.</li>
+      <li>Riesgo: rigidez ante contextos complejos.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>2) Utilitarismo (Bentham/Mill)</h4>
+    <ul>
+      <li>Evalúa <strong>consecuencias</strong>: lo correcto maximiza el bienestar y minimiza el daño para el mayor número.</li>
+      <li>Fuerza: sensibilidad al impacto real de las decisiones.</li>
+      <li>Riesgo: sacrificar derechos de minorías si sólo cuenta el “total” de felicidad.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>3) Ética de la virtud (Aristóteles)</h4>
+    <ul>
+      <li>Centro en el <strong>carácter</strong> y la excelencia humana (virtudes) que se adquieren por práctica.</li>
+      <li>Criterio: <em>término medio prudente</em> según la situación (phronesis).</li>
+      <li>Fuerza: forma personas íntegras; visión integral del florecimiento (<em>eudaimonía</em>).</li>
+      <li>Riesgo: ambigüedad sin pautas más objetivas.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>4) Ética del cuidado (Gilligan, Noddings)</h4>
+    <ul>
+      <li>Subraya <strong>relaciones, vulnerabilidad</strong> y <strong>responsabilidad</strong> hacia el otro concreto.</li>
+      <li>Complementa perspectivas excesivamente abstractas con atención a contextos y dependencias reales.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>5) Contractualismo (Rawls)</h4>
+    <ul>
+      <li>Justicia como <strong>imparcialidad</strong>: elegiríamos principios justos <em>tras un velo de ignorancia</em> (sin saber nuestra posición social).</li>
+      <li>Fuerza: equidad estructural; protección de los peor situados.</li>
+    </ul>
+  </div>
+
+  <h3>🧠 Herramientas para pensar decisiones</h3>
+
+  <div class="highlight-box">
+    <h4>🔍 Pruebas rápidas</h4>
+    <ul>
+      <li><strong>Legalidad</strong>: ¿viola leyes o reglas institucionales?</li>
+      <li><strong>Universalidad</strong>: ¿podría querer que todos actúen así?</li>
+      <li><strong>Publicidad</strong>: ¿estaría bien si se hiciera público?</li>
+      <li><strong>Regla de oro</strong>: ¿querría que me lo hicieran a mí?</li>
+      <li><strong>Bien común</strong>: ¿promueve o daña lo colectivo?</li>
+      <li><strong>Dignidad</strong>: ¿respeta la dignidad de cada persona involucrada?</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>🗺️ Pasos sugeridos</h4>
+    <ol>
+      <li><strong>Describir</strong> hechos y actores (sin juicios prematuros).</li>
+      <li><strong>Identificar</strong> valores en conflicto y posibles cursos de acción.</li>
+      <li><strong>Evaluar</strong> con varios criterios (deber, consecuencias, virtudes, cuidado, justicia).</li>
+      <li><strong>Decidir</strong> y <strong>justificar</strong> (explicar por qué es la mejor opción).</li>
+      <li><strong>Asumir</strong> responsabilidad y plan de mitigación de daños.</li>
+    </ol>
+  </div>
+
+  <div class="highlight-box">
+    <h4>🧯 Errores frecuentes (a evitar)</h4>
+    <ul>
+      <li><strong>Falacia de tradición</strong>: “siempre fue así, entonces está bien”.</li>
+      <li><strong>Consecuencialismo crudo</strong>: “el fin justifica cualquier medio”.</li>
+      <li><strong>Relativismo total</strong>: “todo da lo mismo”.</li>
+      <li><strong>Sesgos y favoritismos</strong>: juzgar distinto según afinidades.</li>
+    </ul>
+  </div>
+
+  <h3>📊 Tabla: Moral (vivida) vs. Ética (pensada)</h3>
+  <div class="table-container">
+    <table class="table-ethics">
+      <thead>
+        <tr>
+          <th >Nivel moral (acción)</th>
+          <th>Nivel ético (fundamentación)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td  class="n_moral">Cumplo una promesa aunque me perjudique.</td>
+          <td class="n_etico">Analizo por qué mantener promesas sostiene la confianza social (deber / virtud).</td>
+        </tr>
+        <tr>
+          <td  class="n_moral">No copio en un examen aunque nadie me vea.</td>
+          <td class="n_etico">Considero universalidad, dignidad del aprendizaje y justicia con otros.</td>
+        </tr>
+        <tr>
+          <td  class="n_moral">Digo la verdad a un amigo aunque duela.</td>
+          <td class="n_etico">Sopeso autenticidad vs. cuidado; busco el modo prudente (virtud/cuidado).</td>
+        </tr>
+        <tr>
+          <td  class="n_moral">Ayudo a alguien aunque me incomode.</td>
+          <td class="n_etico">Evalúo intención y consecuencias; priorizo compasión sin paternalismo.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <h4>🎯 Síntesis conceptual</h4>
+    <ul>
+      <li>La <strong>moral</strong> guía la práctica; la <strong>ética</strong> la fundamenta y orienta.</li>
+      <li>Un buen juicio moral integra <strong>deber</strong>, <strong>consecuencias</strong>, <strong>virtudes</strong>, <strong>cuidado</strong> y <strong>justicia</strong>.</li>
+      <li>La formación ética fortalece la <strong>responsabilidad</strong> y la <strong>prudencia</strong> para decidir mejor.</li>
+    </ul>
+  </div>
+
+  <!-- ======================
+       PARTE APLICADA · CASOS
+       ====================== -->
+  <h3>🧪 TEMA 1: Los problemas éticos (Aplicación)</h3>
+
+  <div class="highlight-box">
+    <h4>📌 Caso: El dilema de Juan</h4>
+    <p><strong>Juan va al aeropuerto para despedir a su padre gravemente enfermo. En el camino atropella accidentalmente a un niño.</strong></p>
+    <p>Debe elegir entre llevar al niño al hospital (y perder el vuelo) o continuar al aeropuerto (y dejar al niño herido a la espera de ayuda). No hay opción “perfecta”.</p>
+    <p><strong>Opciones:</strong></p>
+    <ul>
+      <li>🚑 <strong>Llevar al niño</strong> → prioriza cuidado y deber de socorro; pierde la despedida.</li>
+      <li>✈️ <strong>Ir al aeropuerto</strong> → prioriza deber familiar; arriesga el bienestar inmediato del niño.</li>
+    </ul>
+    <p><strong>Preguntas guía:</strong></p>
+    <ul>
+      <li>¿Qué deberes son más urgentes aquí y por qué? (deontología/cuidado)</li>
+      <li>¿Qué acción produce menos daño total? (utilitarismo)</li>
+      <li>¿Qué haría una persona virtuosa y prudente? (virtudes)</li>
+      <li>Si cualquiera pudiera estar en el lugar del niño, ¿qué regla querríamos que rigiera? (justicia)</li>
+    </ul>
+  </div>
+
+  <h4>🧭 Libertad y responsabilidad</h4>
+  <p>Juzgamos moralmente a <strong>agentes libres</strong>, no a objetos o fenómenos naturales. Un alud que mata es un <em>accidente</em>; una agresión mortal intencional es un <em>acto moralmente imputable</em>.</p>
+  <ul>
+    <li>⚡ <strong>Accidente</strong>: sin intención ni control (no hay responsabilidad moral).</li>
+    <li>👊 <strong>Acto intencional</strong>: hay elección, previsión y responsabilidad.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <h4>📌 Diferencia clave</h4>
+    <ul>
+      <li><strong>Naturaleza</strong> → leyes físicas, sin libertad.</li>
+      <li><strong>Ser humano</strong> → elige con intención; por eso puede ser responsable.</li>
+    </ul>
+  </div>
+
+  <h4>📋 Guía práctica para decidir</h4>
+  <div class="highlight-box">
+    <h4>🔍 Preguntas de chequeo</h4>
+    <ol>
+      <li><strong>¿Es legal?</strong></li>
+      <li><strong>¿Es justo e imparcial?</strong></li>
+      <li><strong>¿Respetaría la dignidad de todos?</strong></li>
+      <li><strong>¿Qué pasaría si todos hicieran lo mismo?</strong></li>
+      <li><strong>¿Contribuye al bien común?</strong></li>
+      <li><strong>¿Me sentiría orgulloso si se hiciera público?</strong></li>
+    </ol>
+  </div>
+
+  <h3>🗣️ Tres miradas sobre la libertad (aplicadas al juicio moral)</h3>
+
+  <div class="highlight-box">
+    <h4>A. Jean-Paul Sartre (existencialismo)</h4>
+    <ul>
+      <li>“Estamos condenados a ser libres”: <strong>siempre elegimos</strong>, incluso al no elegir.</li>
+      <li>Responsabilidad radical por nuestros actos y valores.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>B. B. F. Skinner (conductismo)</h4>
+    <ul>
+      <li>La conducta está <strong>determinada</strong> por condicionamientos y ambiente.</li>
+      <li>Cuestiona la <strong>libertad</strong> como base de la responsabilidad moral.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>C. Erich Fromm (humanismo)</h4>
+    <ul>
+      <li><strong>Libres pero condicionados</strong>: hay márgenes de elección reales.</li>
+      <li>La responsabilidad considera circunstancias sin anular la libertad.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>👉 Actividad de integración</h4>
+    <ul>
+      <li>Elegí un caso real o imaginado y aplicá <em>dos</em> enfoques (deber y consecuencias, o virtudes y cuidado).</li>
+      <li>Mostrá en 5-7 líneas por qué tu decisión respeta dignidad y bien común.</li>
+    </ul>
+  </div>
+
+  <h3>⚠️ Problemas éticos frecuentes</h3>
+  <ul>
+    <li>🏢 Abuso de poder</li>
+    <li>💸 Sobornos</li>
+    <li>👨‍👩‍👧 Nepotismo</li>
+    <li>⚔️ Conflicto de intereses</li>
+    <li>🤐 Encubrimiento</li>
+    <li>😡 Egoísmo</li>
+    <li>📉 Incompetencia deliberada</li>
+    <li>🔄 Lealtad mal entendida (por encima de principios)</li>
+  </ul>
+
+  <h3>🌱 Principios éticos básicos</h3>
+  <div class="highlight-box">
+    <h4>🛡️ Personales</h4>
+    <ul>
+      <li>Honestidad, Integridad, Compromiso, Excelencia</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <h4>🤝 Sociales</h4>
+    <ul>
+      <li>Ecuanimidad, Respeto, Responsabilidad ciudadana, Empatía</li>
+    </ul>
+  </div>
+
+  <h3>💭 Casos para analizar</h3>
+  <div class="highlight-box">
+    <h4>📝 Ejercicio</h4>
+    <p><strong>Caso 1:</strong> Desvío de fondos por un superior. Denunciar vs. silencio.</p>
+    <p><strong>Caso 2:</strong> Copiar en un examen para sostener una beca.</p>
+    <p><strong>Caso 3:</strong> Asignación de un órgano escaso entre pacientes.</p>
+    <p><strong>Guía:</strong></p>
+    <ul>
+      <li>Opciones y afectados.</li>
+      <li>Valores en conflicto.</li>
+      <li>Evaluación con múltiples criterios (deber, consecuencias, virtudes, cuidado, justicia).</li>
+      <li>Decisión justificada y plan para mitigar daños.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h3>🎯 Cierre</h3>
+    <ul>
+      <li>🔑 Sólo los actos libres e intencionales son imputables moralmente.</li>
+      <li>⚖️ La libertad exige responsabilidad.</li>
+      <li>🧭 Decidir bien requiere formar criterio (conceptos) y ejercitarlo (casos).</li>
+    </ul>
+  </div>
+
+</main>

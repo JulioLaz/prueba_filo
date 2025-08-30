@@ -105,7 +105,7 @@
 
 /* Árbol */
 .tree{margin-top:8px}
-.tree ul{list-style:none;margin:0;padding-left:24px;border-left:2px dashed #23325a}
+.tree ul{list-style:none;margin:0;padding-left:24px;border-left:2px solid #23325a}
 .tree>ul{border-left:none;padding-left:0}
 .tree li{position:relative;margin:12px 0 10px}
 .tree li::before{content:\"\";position:absolute;top:18px;left:-24px;width:24px;height:2px;background:#23325a}
@@ -128,7 +128,11 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 /* ==== Progreso por sección (barra segmentada) ==== */
 .segments{
   margin:12px 0 8px;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+  display:grid; grid-template-columns:repeat(5,1fr); gap:10px;
+  /* display:grid; grid-template-columns:repeat(4,1fr); gap:10px; */
+}
+.seg[data-type="cruci"] .fill{ 
+  background:linear-gradient(90deg,#22d3ee,#38bdf8); /* estilo del crucigrama */
 }
 .seg{
   position:relative;
@@ -212,6 +216,16 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         </div>
       </article>
 
+    <article class="card">
+      <div class="card-icon">🧩</div>
+      <h3>Crucigrama</h3>
+      <p>Resolvé palabras a partir de preguntas.</p>
+      <div class="status">
+        <small id="statusCruci">—</small>
+        <button class="btn btn-primary" id="goCruci">Abrir</button>
+      </div>
+    </article>
+
       <article class="card">
         <div class="card-icon">🗺️</div>
         <h3>Mapa conceptual</h3>
@@ -257,7 +271,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     <div class="sheet-header">
       <div class="sheet-title" id="mapa-title">🗺️ Mapa conceptual — <span id="mapa-autor">Jean-Paul Sartre</span></div>
       <div class="sheet-actions">
-        <button class="btn" id="mapa-toggle">Expandir todo</button>
+        <button class="btn" id="mapa-toggle" style="display: none;">Expandir todo</button>
         <button class="sheet-close" id="mapa-close" aria-label="Cerrar">×</button>
       </div>
     </div>
@@ -298,23 +312,75 @@ const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?
 const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
 // Lee estados parciales
+// Lee estados parciales
 function readSectionStates(){
-  const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
-  const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6,  hits:0, completed:false });
-  const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
-  const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[],   total:10, progress:0, completed:false });
+  console.log('🔍 Revisando almacenamiento para tema:', tema);
+  
+  // Listar todas las claves de sessionStorage relacionadas con este tema
+  for (let i = 0; i < sessionStorage.length; i++) {
+    const key = sessionStorage.key(i);
+    if (key && key.includes(tema)) {
+      console.log(`📦 ${key}:`, sessionStorage.getItem(key));
+    }
+  }
 
-  const quizPct     = sQuiz.total ? pct(sQuiz.qIndex, sQuiz.total) : 0;
-  const cazaPct     = sCaza.total ? pct(sCaza.paragraph, sCaza.total) : 0;
+  const sQuiz = readJSON(ns('quiz'), { qIndex:0, score:0, total:10, completed:false });
+  console.log('📝 Quiz state:', sQuiz);
+  
+  const sCazaRaw = readJSON(ns('caza'), { total:0, found:0, completed:false });
+  console.log('🔎 Caza state (raw):', sCazaRaw);
+  
+  // Transformar datos de caza a formato esperado
+  const sCaza = {
+    paragraph: sCazaRaw.found || 0,
+    total: sCazaRaw.total || 0,
+    hits: sCazaRaw.found || 0,
+    completed: sCazaRaw.completed || false
+  };
+  console.log('🔎 Caza state (processed):', sCaza);
+  
+  const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+  console.log('📖 Material state:', sMaterial);
+  
+  const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
+  console.log('🗺️ Mapa state:', sMapa);
+
+  // Calcular porcentajes con validación extra
+  const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
+  const cazaPct = (sCaza.total && sCaza.total > 0 && !isNaN(sCaza.paragraph)) ? pct(sCaza.paragraph, sCaza.total) : 0;
   const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
-  const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
-                                     : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
+  const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
+                                 : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
+    // 👇 Crucigrama
+  const sCruci = readJSON(ns('cruci'), { total:0, solved:0, score:0, completed:false });
+  const cruciPct = (sCruci.total && sCruci.total > 0) ? pct(sCruci.solved, sCruci.total) : 0;
+
+  console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct,cruciPct });
 
   return {
-    quiz:     {pct:quizPct,     text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`},
-    caza:     {pct:cazaPct,     text: sCaza.completed ? `Completado` : `Párrafo ${sCaza.paragraph}/${sCaza.total}`},
-    mat:      {pct:materialPct, text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`},
-    mapa:     {pct:mapaPct,     text: `${mapaPct}% explorado`},
+    quiz: {
+      pct: quizPct,
+      text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`
+    },
+    caza: {
+      pct: cazaPct,
+      text: sCaza.completed ? `Completado · ${sCaza.hits}/${sCaza.total}` : `${sCaza.hits}/${sCaza.total} conceptos`
+    },
+    mat: {
+      pct: materialPct,
+      text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`
+    },
+    mapa: {
+      pct: mapaPct,
+      text: `${mapaPct}% explorado`
+    },
+    cruci: {
+      pct: cruciPct,
+      text: sCruci.total ? (
+        sCruci.completed ? `Completado · ${sCruci.solved}/${sCruci.total}` 
+                         : `${sCruci.solved}/${sCruci.total} palabras`
+      ) : 'Sin avances'
+    }
   };
 }
 
@@ -327,6 +393,7 @@ function renderProgressUI(){
   document.getElementById('statusCaza').textContent     = s.caza.text;
   document.getElementById('statusMaterial').textContent = s.mat.text;
   document.getElementById('statusMapa').textContent     = s.mapa.text;
+  document.getElementById('statusCruci').textContent = s.cruci.text;
 
   // barra segmentada
   const segments = document.getElementById('segments');
@@ -334,6 +401,7 @@ function renderProgressUI(){
   [
     {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
     {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
+    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'}, // ← nuevo
     {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
     {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
   ].forEach(seg=>{
@@ -346,39 +414,18 @@ function renderProgressUI(){
   });
 
   // % global = promedio simple de las 4 secciones
-  const globalPct = Math.round((s.quiz.pct + s.caza.pct + s.mat.pct + s.mapa.pct) / 4);
+  const parts = [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
+  const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
   document.getElementById('progressPct').textContent = globalPct + '%';
   document.getElementById('progressBar').style.width = globalPct + '%';
+
+  // const globalPct = Math.round((s.quiz.pct + s.caza.pct + s.mat.pct + s.mapa.pct) / 4);
+  // document.getElementById('progressPct').textContent = globalPct + '%';
+  // document.getElementById('progressBar').style.width = globalPct + '%';
 }
 
 // Llamá una vez al cargar
 renderProgressUI();
-
-
-
-    // const ns = (k)=>`tema.${tema}.${k}`;
-    // const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
-
-    // const sQuiz     = readJSON(ns('quiz'),     { qIndex:0, score:0, total:10, completed:false });
-    // const sCaza     = readJSON(ns('caza'),     { paragraph:0, total:6, hits:0, completed:false });
-    // const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
-    // const sMapa     = readJSON(ns('mapa'),     { nodesVisited:[], total:10, progress:0, completed:false });
-
-    // const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
-    // const quizPct     = pct(sQuiz.qIndex, sQuiz.total);
-    // const cazaPct     = pct(sCaza.paragraph, sCaza.total);
-    // const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total);
-    // const mapaPct     = sMapa.progress ? Math.round(sMapa.progress*100)
-    //                                    : pct((sMapa.nodesVisited||[]).length, sMapa.total);
-
-    // document.getElementById('statusQuiz').textContent     = sQuiz.completed ? `Completado · Mejor: ${(JSON.parse(localStorage.getItem(ns('records'))||'{}').bestScore ?? sQuiz.score)}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`;
-    // document.getElementById('statusCaza').textContent     = sCaza.completed ? 'Completado' : `Párrafo ${sCaza.paragraph}/${sCaza.total}`;
-    // document.getElementById('statusMaterial').textContent = `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`;
-    // document.getElementById('statusMapa').textContent     = `${mapaPct}% explorado`;
-
-    // const globalPct = Math.round((quizPct + cazaPct + materialPct + mapaPct) / 4);
-    // document.getElementById('progressPct').textContent = globalPct + '%';
-    // document.getElementById('progressBar').style.width = globalPct + '%';
 
     // ===== Navegación (respeta subcarpeta de GitHub Pages) =====
     const go = (path) => {
@@ -389,10 +436,6 @@ renderProgressUI();
     };
     document.getElementById('goQuiz').addEventListener('click',    ()=> go('quiz.html'));
     document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
-   //  document.getElementById('goMaterial').addEventListener('click',()=> go(`content/${tema}.html`)); // usa tus contenidos existentes
-
-// ####################################################################
-
 
 const sheetBackdrop = document.getElementById('sheetBackdrop');
 const sheetClose    = document.getElementById('sheetClose');
@@ -458,12 +501,10 @@ document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMaterialSh
 
 document.getElementById('goMaterial').addEventListener('click', openMaterialSheet);
 
+document.getElementById('goMapa').addEventListener('click', openMapaSheet);
+document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
 
-// ####################################################################
-
-
-    document.getElementById('goMapa').addEventListener('click', openMapaSheet);
-    document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
+document.getElementById('goCruci').addEventListener('click', ()=> go(`themes/${tema}/crossword.html`));
 
 
     // Guardamos “última vez abierto” (opcional)
@@ -478,294 +519,6 @@ const mapaBody     = document.getElementById('mapa-body');
 const mapaClose    = document.getElementById('mapa-close');
 const mapaToggle   = document.getElementById('mapa-toggle');
 const mapaAutor    = document.getElementById('mapa-autor');
-
-// function mapaHTML_SARTRE(){
-//   return `
-//   <section class="tree" aria-label="Mapa de conceptos">
-//     <ul>
-//       <li>
-//         <div class="node">
-//           <div class="toggle" role="button">▾</div>
-//           <div class="title">La existencia precede a la esencia</div>
-//           <div class="desc">Primero existimos; luego, mediante elecciones y acciones, construimos quiénes somos.</div>
-//           <span class="badge">Existencialismo</span>
-//         </div>
-//         <ul>
-//           <li>
-//             <div class="node">
-//               <div class="toggle" role="button">▾</div>
-//               <div class="title">Modos del ser</div>
-//               <div class="desc">Dos modos fundamentales: <b>ser-en-sí</b> (cosas) y <b>ser-para-sí</b> (conciencia).</div>
-//             </div>
-//             <ul>
-//               <li>
-//                 <div class="node">
-//                   <div class="toggle" role="button">▾</div>
-//                   <div class="title">Ser-en-sí</div>
-//                   <div class="desc">Pleno y opaco; sin proyecto ni reflexión. Modo de ser de las cosas.</div>
-//                 </div>
-//               </li>
-//               <li>
-//                 <div class="node">
-//                   <div class="toggle" role="button">▾</div>
-//                   <div class="title">Ser-para-sí</div>
-//                   <div class="desc">Conciencia humana: apertura, posibilidad y proyecto; se relaciona con la nada.</div>
-//                 </div>
-//                 <ul>
-//                   <li>
-//                     <div class="node">
-//                       <div class="toggle" role="button">▾</div>
-//                       <div class="title">La nada</div>
-//                       <div class="desc">Hiato que abre distancia entre lo que soy y lo que puedo ser; habilita la negación y la elección.</div>
-//                     </div>
-//                   </li>
-//                   <li>
-//                     <div class="node">
-//                       <div class="toggle" role="button">▾</div>
-//                       <div class="title">Libertad (estructura del para-sí)</div>
-//                       <div class="desc">No es opcional ni añadida: somos <i>condenados a ser libres</i>.</div>
-//                     </div>
-//                     <ul>
-//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Angustia</div><div class="desc">Lúcida ante la responsabilidad por nuestras decisiones.</div></div></li>
-//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad radical</div><div class="desc">Responder por lo elegido; sin excusas en esencias o destinos.</div></div></li>
-//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Desamparo</div><div class="desc">Sin valores dados “desde afuera”; hay que crearlos actuando.</div></div></li>
-//                       <li><div class="node"><div class="toggle">▾</div><div class="title">Desesperación</div><div class="desc">Actuar según lo que depende de uno, sin garantías externas.</div></div></li>
-//                     </ul>
-//                   </li>
-//                 </ul>
-//               </li>
-//             </ul>
-//           </li>
-
-//           <li>
-//             <div class="node">
-//               <div class="toggle" role="button">▾</div>
-//               <div class="title">Condición humana: lo dado y el proyecto</div>
-//               <div class="desc">Libertad situada: se ejerce sobre un trasfondo de límites universales.</div>
-//             </div>
-//             <ul>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Facticidad</div><div class="desc">Las cartas que nos tocaron (cuerpo, pasado, situación).</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Trascendencia</div><div class="desc">Superar/ resignificar lo dado mediante el proyecto.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Proyecto</div><div class="desc">Estructura de actos que orienta y da sentido a la vida.</div></div></li>
-//             </ul>
-//           </li>
-
-//           <li>
-//             <div class="node">
-//               <div class="toggle" role="button">▾</div>
-//               <div class="title">Relación con el Otro e intersubjetividad</div>
-//               <div class="desc">Cruce de libertades: conflicto, reconocimiento y co-creación.</div>
-//             </div>
-//             <ul>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">El Otro</div><div class="desc">Conciencia libre que coexiste con la mía; me revela a mí mismo.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">La mirada</div><div class="desc">Me descubre como objeto, limitando la vivencia de libertad.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Objetivación</div><div class="desc">Ser reducido a cosa; perder el proyecto libre propio.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Intersubjetividad</div><div class="desc">Espacio donde se entrecruzan y se reconocen libertades.</div></div></li>
-//             </ul>
-//           </li>
-
-//           <li>
-//             <div class="node">
-//               <div class="toggle" role="button">▾</div>
-//               <div class="title">Autenticidad vs. mala fe</div>
-//               <div class="desc">Dos actitudes ante la libertad situada.</div>
-//             </div>
-//             <ul>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Autenticidad</div><div class="desc">Asumir la libertad situada y sostener un proyecto propio.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Mala fe (autoengaño)</div><div class="desc">Negar la propia libertad para evitar decidir.</div></div></li>
-//             </ul>
-//           </li>
-
-//           <li>
-//             <div class="node">
-//               <div class="toggle" role="button">▾</div>
-//               <div class="title">Elegir y crear valor</div>
-//               <div class="desc">El acto de decidir funda valor y propone ejemplo universal.</div>
-//             </div>
-//             <ul>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Decidir</div><div class="desc">El acto que nos define; ineludible.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Valores</div><div class="desc">Instituidos por la acción, no heredados sin más.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Universalidad de la elección</div><div class="desc">Al elegir, proponés una imagen de humanidad.</div></div></li>
-//               <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad común</div><div class="desc">Responder por el sentido impreso a la vida propia y compartida.</div></div></li>
-//             </ul>
-//           </li>
-
-//         </ul>
-//       </li>
-//     </ul>
-//   </section>`;
-// }
-
-function mapaHTML_SARTRE(){
-  return `
-  <section class="tree" aria-label="Mapa de conceptos">
-    <ul>
-      <li>
-        <div class="node">
-          <div class="toggle" role="button">▾</div>
-          <div class="title">La existencia precede a la esencia</div>
-          <div class="desc">Primero existimos; luego, mediante elecciones y acciones, construimos quiénes somos.</div>
-          <span class="badge">Existencialismo</span>
-        </div>
-        <ul>
-          <li>
-            <div class="node">
-              <div class="toggle" role="button">▾</div>
-              <div class="title">Modos del ser</div>
-              <div class="desc">Dos modos fundamentales: <b>ser-en-sí</b> (cosas) y <b>ser-para-sí</b> (conciencia).</div>
-            </div>
-            <ul>
-              <li>
-                <div class="node">
-                  <div class="toggle" role="button">▾</div>
-                  <div class="title">Ser-en-sí</div>
-                  <div class="desc">Pleno y opaco; sin proyecto ni reflexión. Modo de ser de las cosas.</div>
-                </div>
-              </li>
-              <li>
-                <div class="node">
-                  <div class="toggle" role="button">▾</div>
-                  <div class="title">Ser-para-sí</div>
-                  <div class="desc">Conciencia humana: apertura, posibilidad y proyecto; se relaciona con la nada.</div>
-                </div>
-                <ul>
-                  <li>
-                    <div class="node">
-                      <div class="toggle" role="button">▾</div>
-                      <div class="title">La nada</div>
-                      <div class="desc">Hiato que abre distancia entre lo que soy y lo que puedo ser; habilita la negación y la elección.</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="node">
-                      <div class="toggle" role="button">▾</div>
-                      <div class="title">Libertad (estructura del para-sí)</div>
-                      <div class="desc">No es opcional ni añadida: somos <i>condenados a ser libres</i>.</div>
-                    </div>
-                    <ul>
-                      <li><div class="node"><div class="toggle">▾</div><div class="title">Angustia</div><div class="desc">Lúcida ante la responsabilidad por nuestras decisiones.</div></div></li>
-                      <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad radical</div><div class="desc">Responder por lo elegido; sin excusas en esencias o destinos.</div></div></li>
-                      <li><div class="node"><div class="toggle">▾</div><div class="title">Desamparo</div><div class="desc">Sin valores dados “desde afuera”; hay que crearlos actuando.</div></div></li>
-                      <li><div class="node"><div class="toggle">▾</div><div class="title">Desesperación</div><div class="desc">Actuar según lo que depende de uno, sin garantías externas.</div></div></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <div class="node">
-              <div class="toggle" role="button">▾</div>
-              <div class="title">Condición humana: lo dado y el proyecto</div>
-              <div class="desc">Libertad situada: se ejerce sobre un trasfondo de límites universales.</div>
-            </div>
-            <ul>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Facticidad</div><div class="desc">Las cartas que nos tocaron (cuerpo, pasado, situación).</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Trascendencia</div><div class="desc">Superar/ resignificar lo dado mediante el proyecto.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Proyecto</div><div class="desc">Estructura de actos que orienta y da sentido a la vida.</div></div></li>
-            </ul>
-          </li>
-
-          <li>
-            <div class="node">
-              <div class="toggle" role="button">▾</div>
-              <div class="title">Relación con el Otro e intersubjetividad</div>
-              <div class="desc">Cruce de libertades: conflicto, reconocimiento y co-creación.</div>
-            </div>
-            <ul>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">El Otro</div><div class="desc">Conciencia libre que coexiste con la mía; me revela a mí mismo.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">La mirada</div><div class="desc">Me descubre como objeto, limitando la vivencia de libertad.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Objetivación</div><div class="desc">Ser reducido a cosa; perder el proyecto libre propio.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Intersubjetividad</div><div class="desc">Espacio donde se entrecruzan y se reconocen libertades.</div></div></li>
-            </ul>
-          </li>
-
-          <li>
-            <div class="node">
-              <div class="toggle" role="button">▾</div>
-              <div class="title">Autenticidad vs. mala fe</div>
-              <div class="desc">Dos actitudes ante la libertad situada.</div>
-            </div>
-            <ul>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Autenticidad</div><div class="desc">Asumir la libertad situada y sostener un proyecto propio.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Mala fe (autoengaño)</div><div class="desc">Negar la propia libertad para evitar decidir.</div></div></li>
-            </ul>
-          </li>
-
-          <li>
-            <div class="node">
-              <div class="toggle" role="button">▾</div>
-              <div class="title">Elegir y crear valor</div>
-              <div class="desc">El acto de decidir funda valor y propone ejemplo universal.</div>
-            </div>
-            <ul>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Decidir</div><div class="desc">El acto que nos define; ineludible.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Valores</div><div class="desc">Instituidos por la acción, no heredados sin más.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Universalidad de la elección</div><div class="desc">Al elegir, proponés una imagen de humanidad.</div></div></li>
-              <li><div class="node"><div class="toggle">▾</div><div class="title">Responsabilidad común</div><div class="desc">Responder por el sentido impreso a la vida propia y compartida.</div></div></li>
-            </ul>
-          </li>
-
-        </ul>
-      </li>
-    </ul>
-  </section>
-
-  <details class="panel" open>
-    <summary>📌 Palabras clave</summary>
-    <div class="content">
-      <div class="terms">
-        <article class="term"><h4>Existencialismo</h4><p>Corriente que centra la existencia individual, la libertad y la responsabilidad: la existencia precede a la esencia.</p></article>
-        <article class="term"><h4>Naturaleza / Condición humana</h4><p>No hay “naturaleza” predeterminada; sí <em>condición</em>: estar en el mundo, trabajar, vivir entre otros, ser mortal.</p></article>
-        <article class="term"><h4>Existencia</h4><p>Primero existís; no hay esencia previa que te determine.</p></article>
-        <article class="term"><h4>Esencia</h4><p>Se construye con elecciones y actos.</p></article>
-        <article class="term"><h4>Elecciones</h4><p>Actos con los que te definís; elegir es inevitable.</p></article>
-        <article class="term"><h4>Libertad</h4><p>Estructura del para-sí; estamos “condenados” a ella.</p></article>
-        <article class="term"><h4>Responsabilidad</h4><p>Responder por lo elegido; sin excusas en esencias previas.</p></article>
-        <article class="term"><h4>Angustia</h4><p>Vértigo lúcido de que nuestras decisiones nos constituyen.</p></article>
-        <article class="term"><h4>Desamparo</h4><p>Ausencia de valores dados desde afuera; hay que crearlos.</p></article>
-        <article class="term"><h4>Desesperación</h4><p>Actuar según lo que depende de uno, sin garantías externas.</p></article>
-        <article class="term"><h4>Ser-en-sí</h4><p>Modo de ser de las cosas: pleno, sin proyecto ni reflexión.</p></article>
-        <article class="term"><h4>Ser-para-sí</h4><p>Conciencia humana: apertura, posibilidad, proyecto.</p></article>
-        <article class="term"><h4>Nada</h4><p>Hiato activo que permite negar lo que se es y proyectarse.</p></article>
-        <article class="term"><h4>Facticidad</h4><p>Lo dado (cuerpo, pasado, situación) como punto de partida.</p></article>
-        <article class="term"><h4>Trascendencia</h4><p>Superar/ resignificar la facticidad mediante el proyecto.</p></article>
-        <article class="term"><h4>Proyecto</h4><p>Estructura de actos que da sentido y dirección a la vida.</p></article>
-        <article class="term"><h4>Mala fe</h4><p>Mecanismo de evasión: negar la propia libertad para no decidir.</p></article>
-        <article class="term"><h4>Autenticidad</h4><p>Asumir la libertad situada y sostener un proyecto propio.</p></article>
-        <article class="term"><h4>Mirada</h4><p>El Otro me descubre como objeto en el mundo.</p></article>
-        <article class="term"><h4>Objetivación</h4><p>Reducción a cosa; pérdida de la vivencia de proyecto libre.</p></article>
-        <article class="term"><h4>Intersubjetividad</h4><p>Cruce de libertades: conflicto, reconocimiento, co-creación.</p></article>
-        <article class="term"><h4>Decidir</h4><p>El acto funda valor; no lo recibe hecho.</p></article>
-        <article class="term"><h4>Valores</h4><p>Instituidos por la acción, no heredados sin más.</p></article>
-        <article class="term"><h4>Universal</h4><p>Lo que elegís propone ejemplo a otros.</p></article>
-        <article class="term"><h4>Responsabilidad radical</h4><p>Responder por el sentido impreso a la vida propia y común.</p></article>
-      </div>
-    </div>
-  </details>
-
-  <details class="panel" open>
-    <summary>🧭 Frases clave</summary>
-    <div class="content">
-      <ul class="chips">
-        <li class="chip">La libertad implica responsabilidad.</li>
-        <li class="chip">La existencia precede a la esencia.</li>
-        <li class="chip">Estamos condenados a ser libres.</li>
-        <li class="chip">La nada abre distancia y posibilidad.</li>
-        <li class="chip">No elegís las cartas, elegís cómo jugarlas.</li>
-        <li class="chip">La libertad asume y resignifica lo dado.</li>
-        <li class="chip">Mala fe: negar tu libertad para evitar decidir.</li>
-        <li class="chip">Autenticidad: asumir tu libertad situada.</li>
-        <li class="chip">La mirada del Otro me revela como objeto.</li>
-        <li class="chip">La intersubjetividad es cruce de libertades.</li>
-        <li class="chip">Decidir crea valor.</li>
-        <li class="chip">Al elegir, proponés un universal.</li>
-      </ul>
-    </div>
-  </details>`;
-}
-
 
 function wireMapaInteractions(){
   const tree = mapaBody.querySelector('.tree');
@@ -869,26 +622,6 @@ function openMapaSheet(){
   document.body.style.overflow='hidden';
 }
 
-
-// function openMapaSheet(){
-//   // autor dinámico
-//   mapaAutor.textContent = NAMES[tema] || tema;
-
-//   // ⚠️ siempre limpiamos e inyectamos (evita el bug del comentario)
-//   // elimina cualquier nodo (incluye comentarios) y previene duplicar listeners
-//   mapaBody.replaceChildren();
-//   mapaBody.insertAdjacentHTML('afterbegin', mapaHTML_SARTRE());
-//   wireMapaInteractions();
-
-//   // estado del botón
-//   mapaCollapsed = false;
-//   mapaToggle.textContent = 'Colapsar todo';
-
-//   // mostrar modal
-//   mapaBackdrop.style.display = 'block';
-//   document.body.style.overflow = 'hidden';
-// }
-
 function closeMapaSheet(){
   mapaBackdrop.style.display='none';
   document.body.style.overflow='';
@@ -901,17 +634,6 @@ mapaClose.addEventListener('click', closeMapaSheet);
 mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMapaSheet(); });
 
-
-
-
   </script>
 </body>
 </html>
-<!--
-  NOTAS:
-  - El hub del tema (tema.html) es una página intermedia entre el índice de temas (index.html) y las actividades (quiz.html, caza_conceptos.html, etc).
-  - El parámetro canónico es "tema" (p.ej. ?tema=sartre) pero se acepta "theme" por compatibilidad.
-  - El hub muestra el progreso parcial en cada actividad y el progreso global del tema.
-  - Cada actividad guarda su propio estado en sessionStorage bajo la clave "tema.{tema}.{actividad}".
-  - El hub guarda un resumen de progreso en localStorage bajo la clave "tema.{tema}.records".
-  - La navegación entre páginas respeta la subcarpeta si se usa GitHub Pages.

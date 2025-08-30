@@ -72,7 +72,8 @@
 
     /* Tree */
     .tree { margin-top: 18px }
-    .tree ul { list-style: none; margin: 0; padding-left: 22px; border-left: 2px dashed var(--line); }
+    .tree ul { list-style: none; margin: 0; padding-left: 22px; border-left: 2px dashed rgb(50, 50, 50); }
+    /* .tree ul { list-style: none; margin: 0; padding-left: 22px; border-left: 2px solid var(--line); } */
     .tree > ul { border-left: none; padding-left: 0 }
     .tree li { position: relative; margin: 10px 0 6px 0; }
     .tree li::before { content: ""; position: absolute; top: 18px; left: -22px; width: 22px; height: 2px; background: var(--line); }
@@ -405,26 +406,7 @@
   </main>
 
   <script>
-    // --- Back/Cerrar logic ---
-// const closeBtn = document.getElementById('closeBtn');
-// closeBtn?.addEventListener('click', () => {
-//   // 1) Recuperar el slug del tema
-//   const qs = new URLSearchParams(location.search);
-//   const tema =
-//     qs.get('tema') ||
-//     qs.get('theme') ||
-//     sessionStorage.getItem('tema.active') ||
-//     'sartre';
 
-//   // 2) Ir al hub subiendo un nivel: ../tema.html (desde /content/)
-//   const hub = new URL('../tema.html', location);   // ✅ funciona en file://, http:// y https://
-//   hub.searchParams.set('tema', tema);
-//   hub.searchParams.set('theme', tema);             // compat
-//   location.href = hub.toString();
-// });
-
-
-// 
 // --- Progreso del mapa para el hub ---
 const qs2 = new URLSearchParams(location.search);
 const temaSlug =
@@ -505,15 +487,6 @@ document.querySelectorAll('.tree li').forEach(li => {
 const root = document.querySelector('.tree > ul > li');
 root?.classList.remove('collapsed');
     // --- Expand/Collapse All ---
-    // const expandAllBtn = document.getElementById('expandAll');
-    // const collapseAllBtn = document.getElementById('collapseAll');
-    // expandAllBtn?.addEventListener('click', () => {
-    //   document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
-    // });
-    // collapseAllBtn?.addEventListener('click', () => {
-    //   document.querySelectorAll('.tree li').forEach(li => { if (li.querySelector(':scope > ul')) li.classList.add('collapsed'); });
-    // });
-
     // --- Search/Highlight ---
     const q = document.getElementById('q');
     const nodes = Array.from(document.querySelectorAll('.node'));

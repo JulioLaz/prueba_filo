@@ -174,7 +174,7 @@ let startTime = null;
 let userAnswers = [];
 let isAnswered = false;
 
-const ANSWER_DISPLAY_TIME = 2500; // Tiempo en ms para mostrar respuesta correcta
+const ANSWER_DISPLAY_TIME = 2200; // Tiempo en ms para mostrar respuesta correcta
 const TIMER_WARNING_THRESHOLD = 10;
 const TIMER_DANGER_THRESHOLD = 5;
 
@@ -223,8 +223,6 @@ function updateAttemptUIAndGating() {
 
   console.log(`🔁 attemptsCompleted=${attemptsCompleted} → currentAttempt=${currentAttempt} → revealCorrectOnMistake=${revealCorrectOnMistake}`);
 }
-
-
 
 
 // ========================================
@@ -480,21 +478,6 @@ function initializeQuiz() {
         console.log('✅ Cuestionario inicializado correctamente');
     }, 500);
 }
-
-/**
- * Actualiza los indicadores de progreso
- */
-// function updateProgress() {
-//     const totalQuestions = currentTheme.questions.length;
-//     const progressPercentage = (currentQuestionIndex / totalQuestions) * 100;
-    
-//     questionCounter.textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
-//     scoreElement.textContent = score;
-//     progressBar.style.width = `${progressPercentage}%`;
-//     hubSaveQuiz({ qIndex: currentQuestionIndex, score, completed: false });
-
-//     console.log(`📊 Progreso: ${currentQuestionIndex + 1}/${totalQuestions} (${progressPercentage.toFixed(1)}%)`);
-// }
 
 /**
  * Muestra la fase de ayuda/pista
