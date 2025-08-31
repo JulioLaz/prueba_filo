@@ -1,3 +1,5 @@
+<!-- tema.html -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +14,7 @@
     --brand:#6b7cff; --brand-2:#9b6bff; --ok:#2dd4bf; --card:#0f172a;
     --ring:rgba(107,124,255,.35); --radius:18px;
   }
-
+-
   *{ box-sizing:border-box }
   html,body{ height:100% }
   body{
@@ -504,7 +506,12 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
 document.getElementById('goMapa').addEventListener('click', openMapaSheet);
 document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
 
-document.getElementById('goCruci').addEventListener('click', ()=> go(`themes/${tema}/crossword.html`));
+// document.getElementById('goCruci').addEventListener('click', ()=> go(`themes/${tema}/crossword.html`));
+document.getElementById('goCruci').addEventListener('click', ()=> {
+  const u = new URL('crossword.html', location);
+  u.searchParams.set('tema', tema); u.searchParams.set('theme', tema);
+  location.href = u.toString();
+});
 
 
     // Guardamos “última vez abierto” (opcional)
