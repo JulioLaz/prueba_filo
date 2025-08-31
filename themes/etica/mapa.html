@@ -74,9 +74,9 @@
     /* Juego de matching */
     .game-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
     .game-board { background: var(--card); border-radius: 20px; max-width: 1200px; max-height: 90vh; overflow: auto; padding: 20px; box-shadow: var(--shadow); }
-    .game-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .game-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-direction: column;}
     .game-stats { display: flex; gap: 15px; font-size: 14px; color: var(--muted); }
-    .close-game { background: var(--danger); color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+    .close-game { background: var(--danger); color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;   }
 
     .game-zone { margin-bottom: 30px; }
     .zone-title { font-weight: 700; margin-bottom: 15px; color: var(--accent); }
@@ -105,6 +105,7 @@
 
     .progress-bar { width: 100%; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin: 0 10px; }
     .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 0.3s ease; }
+
   </style>
 </head>
 <body>
@@ -326,14 +327,16 @@
     <div class="game-overlay" id="gameOverlay">
       <div class="game-board">
         <div class="game-header">
-          <h2>🎯 Conecta conceptos con definiciones</h2>
+            <div style="display: flex; align-items: center; gap: 10px;justify-content: space-around; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+            </div>          
           <div class="game-stats">
             <div>Aciertos: <span id="correctCount">0</span></div>
             <div>Errores: <span id="errorCount">0</span></div>
             <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
             <div><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
-          </div>
-          <button class="close-game" id="closeGame">Cerrar</button>
+            </div>
         </div>
 
         <div class="game-zone">
