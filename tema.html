@@ -504,7 +504,13 @@ document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMaterialSh
 
 document.getElementById('goMaterial').addEventListener('click', openMaterialSheet);
 
-document.getElementById('goMapa').addEventListener('click', openMapaSheet);
+// document.getElementById('goMapa').addEventListener('click', openMapaSheet);
+document.getElementById('goMapa').addEventListener('click', () => {
+  const url = new URL(`themes/${tema}/mapa.html`, location);
+  url.searchParams.set('tema', tema);
+  location.href = url.toString();
+});
+
 document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
 
 // document.getElementById('goCruci').addEventListener('click', ()=> go(`themes/${tema}/crossword.html`));
@@ -514,6 +520,10 @@ document.getElementById('goCruci').addEventListener('click', ()=> {
   location.href = u.toString();
 });
 
+// Actualizar progreso cuando vuelves de otras páginas
+window.addEventListener('focus', () => {
+  renderProgressUI();
+});
 
     // Guardamos “última vez abierto” (opcional)
     const recordsKey = ns('records');
