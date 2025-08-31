@@ -45,7 +45,7 @@
   .card{
     position:relative; background:linear-gradient(180deg,#0f1629 0%, #0b1220 100%);
     border:1px solid #1f2a4a; border-radius:var(--radius); padding:18px;
-    display:flex; flex-direction:column; gap:10px; min-height:170px;
+    display:flex; flex-direction:column; gap:10px; min-height:120px;
     transition:.25s transform,.25s box-shadow,.25s border-color;
   }
   .card:hover{ transform:translateY(-2px); border-color:#2a3763; box-shadow:0 10px 30px -10px rgba(0,0,0,.55) }
@@ -130,7 +130,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 /* ==== Progreso por sección (barra segmentada) ==== */
 .segments{
   margin:12px 0 8px;
-  display:grid; grid-template-columns:repeat(5,1fr); gap:10px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
   /* display:grid; grid-template-columns:repeat(4,1fr); gap:10px; */
 }
 .seg[data-type="cruci"] .fill{ 
@@ -179,18 +179,18 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
           </div>
         </div>
       </div>
-      <div class="chip" id="temaChip">Tema activo</div>
+      <div class="chip" id="temaChip" style="display: none;">Tema activo</div>
     </header>
 
     <section class="hero">
       <h1 id="heroTitle">Explorá el tema</h1>
-      <p class="muted" id="heroDesc">Elegí una actividad para empezar. Tu progreso se guarda automáticamente.</p>
+      <p class="muted" id="heroDesc">Elegí una actividad.</p>
     </section>
 
     <section class="grid" aria-label="Actividades disponibles">
       <article class="card">
-        <div class="card-icon">📝</div>
-        <h3>Quiz</h3>
+        <div class="card-icon">📝 Quiz</div>
+        <!-- <h3>Quiz</h3> -->
         <p>Poné a prueba lo que sabés.</p>
         <div class="status">
           <small id="statusQuiz">—</small>
@@ -199,8 +199,8 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       </article>
 
       <article class="card">
-        <div class="card-icon">🔎</div>
-        <h3>Caza de conceptos</h3>
+        <div class="card-icon">🔎 Caza de conceptos</div>
+        <!-- <h3>Caza de conceptos</h3> -->
         <p>Detectá conceptos en el texto y practicá definiciones.</p>
         <div class="status">
           <small id="statusCaza">—</small>
@@ -209,8 +209,8 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       </article>
 
       <article class="card">
-        <div class="card-icon">📖</div>
-        <h3>Material de estudio</h3>
+        <div class="card-icon">📖 Material de estudio</div>
+        <!-- <h3>Material de estudio</h3> -->
         <p>Resumen por conceptos, ejemplos y palabras clave.</p>
         <div class="status">
           <small id="statusMaterial">—</small>
@@ -219,8 +219,8 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       </article>
 
     <article class="card">
-      <div class="card-icon">🧩</div>
-      <h3>Crucigrama</h3>
+      <div class="card-icon">🧩 Crucigrama</div>
+      <!-- <h3>Crucigrama</h3> -->
       <p>Resolvé palabras a partir de preguntas.</p>
       <div class="status">
         <small id="statusCruci">—</small>
@@ -229,8 +229,8 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     </article>
 
       <article class="card">
-        <div class="card-icon">🗺️</div>
-        <h3>Mapa conceptual</h3>
+        <div class="card-icon">🗺️ Mapa conceptual</div>
+        <!-- <h3>Mapa conceptual</h3> -->
         <p>Visualizá cómo se conectan los conceptos.</p>
         <div class="status">
           <small id="statusMapa">—</small>
@@ -283,7 +283,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
   </div>
 </div>
 
-  <script>
+<script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);
     let tema = url.searchParams.get('tema') || url.searchParams.get('theme') || 'sartre';
@@ -296,7 +296,8 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
     // ===== Datos visibles del tema (podés ampliar este mapa) =====
     const TOPICS = {
-      sartre: {icon:'🌀', name:'Jean-Paul Sartre', desc:'Existencialismo: libertad, responsabilidad, mala fe y proyecto.'}
+      sartre: {icon:'🌀', name:'Jean-Paul Sartre', desc:'Existencialismo: libertad, responsabilidad, mala fe y proyecto.'},
+      etica: {icon:'⚖️', name:'Ética y Moral', desc:'La moral es lo que hacemos, la ética es lo que pensamos sobre lo que hacemos.'}
     };
     const tdata = TOPICS[tema] || {icon:'🧠', name: tema, desc:'Explorá las actividades disponibles.'};
 
@@ -305,7 +306,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     document.getElementById('temaTitle').textContent = tdata.name;
     document.getElementById('temaChip').textContent  = 'Tema activo: ' + tema;
     document.getElementById('heroTitle').textContent = 'Explorá ' + tdata.name;
-    document.getElementById('heroDesc').textContent  = tdata.desc + ' Elegí una actividad, tu progreso se guarda automáticamente.';
+    document.getElementById('heroDesc').textContent  = tdata.desc + ' Elegí una actividad.';
 
     // ===== Estado guardado (para mostrar “micro-progreso”) =====
 // ==== Estado guardado (helpers) ====
@@ -640,7 +641,7 @@ mapaToggle.addEventListener('click', toggleAll);
 mapaClose.addEventListener('click', closeMapaSheet);
 mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMapaSheet(); });
+</script>
 
-  </script>
 </body>
 </html>
