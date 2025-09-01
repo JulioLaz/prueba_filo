@@ -17,7 +17,7 @@ const AVAILABLE_THEMES = [
         description: "Explora la antropología filosófica de Cassirer: el hombre como creador de símbolos, el lenguaje, el arte, el mito y la cultura como mediaciones de nuestra vida humana.",
         icon: "🎭",
         gradient: "linear-gradient(135deg, #6a85b6 0%, #bac8e0 100%)",
-        difficulty: "basico",
+        difficulty: "UNIDAD_II",
         questions: 10,
         timeEstimate: 10,
         prerequisites: [],
@@ -31,7 +31,7 @@ const AVAILABLE_THEMES = [
         description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
         icon: "🌀",
         gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
-        difficulty: "intermedio",
+        difficulty: "UNIDAD_II",
         questions: 10,
         timeEstimate: 12,
         prerequisites: [],
@@ -45,7 +45,7 @@ const AVAILABLE_THEMES = [
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',
         icon: '🧭',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        difficulty: 'basico',
+        difficulty: 'UNIDAD_III',
         questions: 10,
         timeEstimate: 8,
         prerequisites: [],
@@ -58,7 +58,7 @@ const AVAILABLE_THEMES = [
         description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
         icon: '🏛️',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
-        difficulty: 'basico',
+        difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 10,
         prerequisites: ['etica'],
@@ -71,7 +71,7 @@ const AVAILABLE_THEMES = [
     description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
     icon: '🌸',
     gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
-    difficulty: 'basico',
+    difficulty: 'UNIDAD_III',
     questions: 14,
     timeEstimate: 12,
     prerequisites: [],
@@ -84,7 +84,7 @@ const AVAILABLE_THEMES = [
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
         icon: '🎯',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        difficulty: 'basico',
+        difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 10,
         prerequisites: [],
@@ -97,7 +97,7 @@ const AVAILABLE_THEMES = [
         description: 'Explora la filosofía americana que evalúa las ideas por su utilidad práctica: Peirce, James, Dewey y la verdad como herramienta de acción.',
         icon: '🛠️',
         gradient: 'linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)',
-        difficulty: 'intermedio',
+        difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 10,
         prerequisites: [],
@@ -110,7 +110,7 @@ const AVAILABLE_THEMES = [
     description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
     icon: '⚖️',
     gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
-    difficulty: 'basico',
+    difficulty: 'UNIDAD_III',
     questions: 10,
     timeEstimate: 15,
     prerequisites: [],
@@ -123,7 +123,7 @@ const AVAILABLE_THEMES = [
         description: 'Explora el gran cambio del pensamiento medieval al moderno: del teocentrismo al antropocentrismo, el Renacimiento, el Humanismo y sus implicaciones éticas contemporáneas.',
         icon: '🎭',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
-        difficulty: 'intermedio',
+        difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 15,
         prerequisites: ['etica'],
@@ -194,7 +194,23 @@ const AVAILABLE_THEMES = [
         prerequisites: ['etica', 'logica'],
         color: '#f44336',
         contentFile: 'content/filosofia-politica.html'
-    }
+    },
+{
+  id: "proyecto_antropologia_trimestre2",
+  title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
+  description: "Desentrañando el misterio humano con método, investigación y debate.",
+  icon: "📚✨",
+  gradient: "linear-gradient(135deg, #6b00f5 0%, #9b5cff 50%, #cdb7ff 100%)",
+  difficulty: "PROYECTO_TRIMESTRAL",
+  questions: 0,
+  timeEstimate: 240,
+  prerequisites: [],
+//   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
+  color: "#8a5cf6",
+  contentFile: "projects/proyecto_trimestre2.html",
+  useModularConfig: true
+}
+
 ];
 
 console.log(`📚 Configuración cargada: ${AVAILABLE_THEMES.length} temas disponibles`);
@@ -352,11 +368,11 @@ function createThemeCard(theme) {
     
     const lockIcon = !isUnlocked ? '🔒' : '';
     const completedBadge = isCompleted ? '<div class="completion-badge">✅</div>' : '';
-    
+    const dificultadFormateada = theme.difficulty.replace(/_/g, ' ');
     card.innerHTML = `
         <div class="theme-header">
             <span class="difficulty-badge difficulty-${theme.difficulty}">
-                ${theme.difficulty}
+                ${dificultadFormateada}
             </span>
             ${completedBadge}
             <span class="theme-icon">${lockIcon || theme.icon}</span>
