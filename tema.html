@@ -508,6 +508,7 @@ document.getElementById('goMaterial').addEventListener('click', openMaterialShee
 document.getElementById('goMapa').addEventListener('click', () => {
   const url = new URL(`themes/${tema}/mapa.html`, location);
   url.searchParams.set('tema', tema);
+  url.searchParams.set('theme', tema);
   location.href = url.toString();
 });
 
