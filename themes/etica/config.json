@@ -11,7 +11,7 @@
   "activities": {
     "quiz": {
       "enabled": true,
-      "questions": 10,
+      "questions": 12,
       "timeLimit": 30,
       "timeEstimate": 12
     },

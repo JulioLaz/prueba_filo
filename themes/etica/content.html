@@ -571,31 +571,6 @@
       }
       }
 
-
-
-      // async playSound(type) {
-      //   try {
-      //     let soundFile;
-      //     switch(type){
-      //       case 'success': soundFile='collect_points.mp3'; break;
-      //       case 'error': soundFile='negative_beep.mp3'; break;
-      //       case 'show_question': soundFile='show_question.mp3'; break;
-      //       case 'timer_warning': soundFile='timer_warning.mp3'; break;
-      //       case 'timer_danger': soundFile='timer_danger.mp3'; break;
-      //       default: soundFile='collect_points.mp3';
-      //     }
-      //     const audio = new Audio(`sound/${soundFile}`);
-      //     audio.volume = .7; audio.preload='auto';
-      //     const playPromise = audio.play();
-      //     if (playPromise !== undefined) await playPromise;
-      //   } catch (error) {
-      //     // fallback
-      //     try {
-      //       const fb = new Audio(`sound/${type==='success'?'collect_points':'negative_beep'}.MP3`);
-      //       fb.volume=.7; await fb.play();
-      //     } catch {}
-      //   }
-      // }
     }
     document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
   </script>

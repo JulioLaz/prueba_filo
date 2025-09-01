@@ -50,10 +50,10 @@ const AVAILABLE_THEMES = [
         timeEstimate: 8,
         prerequisites: [],
         color: '#667eea',
-        contentFile: 'content/etica.html'
+        contentFile: 'themes/etica/content.html'
     },
     {
-        id: 'aristoteles',
+        id: 'etica_aristoteles',
         title: 'Aristóteles: Lo Bueno es la Felicidad',
         description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
         icon: '🏛️',
@@ -63,7 +63,7 @@ const AVAILABLE_THEMES = [
         timeEstimate: 10,
         prerequisites: ['etica'],
         color: '#d4af37',
-        contentFile: 'content/aristoteles.html'
+        contentFile: 'themes/etica_aristoteles/content.html'
     },
     {
     id: 'hedonismo',
@@ -76,7 +76,7 @@ const AVAILABLE_THEMES = [
     timeEstimate: 12,
     prerequisites: [],
     color: '#ff6b6b',
-    contentFile: 'content/hedonismo.html'
+    contentFile: 'themes/hedonismo/content.html'
     },
     {
         id: 'utilitarismo',
@@ -89,7 +89,7 @@ const AVAILABLE_THEMES = [
         timeEstimate: 10,
         prerequisites: [],
         color: '#667eea',
-        contentFile: 'content/utilitarismo.html'
+        contentFile: 'themes/utilitarismo/content.html.html'
     },
     {
         id: 'pragmatismo',
@@ -198,15 +198,6 @@ const AVAILABLE_THEMES = [
 ];
 
 console.log(`📚 Configuración cargada: ${AVAILABLE_THEMES.length} temas disponibles`);
-
-// function goToHub(slug) {
-//     // guardamos tema activo para el hub/actividades
-//     sessionStorage.setItem('tema.active', slug);
-//     const url = new URL('tema.html', location.origin);
-//     url.searchParams.set('tema', slug);   // canónico
-//     url.searchParams.set('theme', slug);  // compat
-//     location.href = url.pathname + '?' + url.searchParams.toString();
-// }
 
 // ========================================
 // 🎯 ELEMENTOS DEL DOM

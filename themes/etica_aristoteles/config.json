@@ -32,7 +32,7 @@
     }
   },
   "files": {
-    "content": "aristoteles.html",
+    "content": "etica_aristoteles.html",
     "quiz": "quiz.js",
     "conceptos": "conceptos.js",
     "mapa": "mapa.html"

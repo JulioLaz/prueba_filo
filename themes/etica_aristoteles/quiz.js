@@ -9,14 +9,14 @@ const themeLoadStart = performance.now();
  * Configuración del tema de Aristóteles
  */
 const ARISTOTELES_THEME = {
-    id: 'aristoteles',
+    id: 'etica_aristoteles',
     title: 'Aristóteles: Lo Bueno es la Felicidad',
     description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
     icon: '🏛️',
     gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
     difficulty: 'intermedio',
     timeLimit: 30,
-    contentFile: 'content/aristoteles.html',
+    contentFile: 'content/etica_aristoteles.html',
     
     // Metadata del tema
     metadata: {

@@ -639,70 +639,6 @@ function selectAnswer(selectedButton, answer) {
   }, ANSWER_DISPLAY_TIME);
 }
 
-
-// /**
-//  * Maneja la selección de una respuesta
-//  * @param {HTMLElement} selectedButton - Botón seleccionado
-//  * @param {Object} answer - Datos de la respuesta
-//  */
-// function selectAnswer(selectedButton, answer) {
-//     if (isAnswered) return;
-    
-//     console.log(`🎯 Respuesta seleccionada: ${answer.correct ? 'Correcta' : 'Incorrecta'}`);
-//     const answerStart = performance.now();
-    
-//     isAnswered = true;
-//     clearInterval(timer);
-    
-//     // Registrar respuesta del usuario
-//     const currentQuestion = currentTheme.questions[currentQuestionIndex];
-//     userAnswers.push({
-//         questionId: currentQuestion.id,
-//         question: currentQuestion.question,
-//         selectedAnswer: answer.text,
-//         correctAnswer: currentQuestion.answers.find(a => a.correct).text,
-//         isCorrect: answer.correct,
-//         timeUsed: currentTheme.timeLimit - timeLeft,
-//         explanation: answer.explanation
-//     });
-    
-//     // Actualizar puntaje
-//     if (answer.correct) {
-//         // this.showCelebration('🎉');
-//         score++;
-//         scoreElement.textContent = score;
-//         playSound(SND_CORRECT_QUIZ); // ✅ Sonido correcto
-//     } else {
-//         playSound(SND_WRONG_QUIZ); // ❌ Sonido incorrecto
-//     }
-//     // if (answer.correct) {
-//     //     score++;
-//     //     scoreElement.textContent = score;
-//     // }
-    
-//     // Mostrar estados visuales en todos los botones
-//     const allButtons = answersContainer.querySelectorAll('.answer-btn');
-//     allButtons.forEach(button => {
-//         button.disabled = true;
-        
-//         if (button.dataset.correct === 'true') {
-//             button.classList.add('correct');
-//         } else if (button === selectedButton && !answer.correct) {
-//             button.classList.add('incorrect');
-//         }
-//     });
-    
-//     const answerEnd = performance.now();
-//     // this.showCelebration('🎉');
-//     console.log(`⏱️ Respuesta procesada en ${(answerEnd - answerStart).toFixed(2)}ms`);
-//     console.log(`        showCelebration('🎉')`);
-    
-//     // Continuar después de mostrar resultado
-//     setTimeout(() => {
-//         nextQuestion();
-//     }, ANSWER_DISPLAY_TIME);
-// }
-
 /**
  * Maneja el caso cuando se agota el tiempo
  */
@@ -722,9 +658,6 @@ function resetAttemptsForTheme(themeId){
     console.log(`ℹ️ No hay intentos guardados para "${themeId}"`);
   }
 }
-
-
-
 
 function handleTimeOut() {
   console.log('⏰ Manejando timeout | revealCorrectOnMistake=' + revealCorrectOnMistake);
@@ -755,40 +688,6 @@ function handleTimeOut() {
     nextQuestion();
   }, ANSWER_DISPLAY_TIME);
 }
-
-
-
-// function handleTimeOut() {
-//     console.log('⏰ Manejando timeout');
-    
-//     isAnswered = true;
-//     const currentQuestion = currentTheme.questions[currentQuestionIndex];
-    
-//     // Registrar respuesta como incorrecta
-//     userAnswers.push({
-//         questionId: currentQuestion.id,
-//         question: currentQuestion.question,
-//         selectedAnswer: 'Sin respuesta (tiempo agotado)',
-//         correctAnswer: currentQuestion.answers.find(a => a.correct).text,
-//         isCorrect: false,
-//         timeUsed: currentTheme.timeLimit,
-//         explanation: 'Tiempo agotado'
-//     });
-    
-//     // Mostrar respuesta correcta
-//     const allButtons = answersContainer.querySelectorAll('.answer-btn');
-//     allButtons.forEach(button => {
-//         button.disabled = true;
-//         if (button.dataset.correct === 'true') {
-//             button.classList.add('correct');
-//         }
-//     });
-    
-//     // Continuar después de mostrar resultado
-//     setTimeout(() => {
-//         nextQuestion();
-//     }, 2200);
-// }
 
 /**
  * Avanza a la siguiente pregunta o muestra resultados
@@ -1045,22 +944,7 @@ if (showMaterialBtn) showMaterialBtn.addEventListener('click', showStudyMaterial
     }
     });
 
-    // document.addEventListener('keydown', (e) => {
-    //     if (e.key === 'Escape') {
-    //         materialModal.style.display = 'none';
-    //         reviewModal.style.display = 'none';
-    //     }
-        
-    //     // Números 1-5 para seleccionar respuestas
-    //     if (e.key >= '1' && e.key <= '5' && !helpPhase.classList.contains('hidden')) {
-    //         const buttons = answersContainer.querySelectorAll('.answer-btn');
-    //         const index = parseInt(e.key) - 1;
-    //         if (buttons[index] && !isAnswered) {
-    //             buttons[index].click();
-    //         }
-    //     }
-    // });
-    
+ 
     console.log('✅ Event listeners configurados');
 }
 
@@ -1143,8 +1027,6 @@ async function main() {
         // Inicializar cuestionario
         initializeQuiz();
 
-
-        
         const mainEnd = performance.now();
         const totalTime = mainEnd - engineStartTime;
         console.log(`⚡ Tiempo total de inicialización: ${totalTime.toFixed(2)}ms`);
