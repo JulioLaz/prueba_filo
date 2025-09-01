@@ -286,11 +286,6 @@ function goBackToThemes() {
   location.href = url.toString();
 }
 
-// function goBackToThemes() {
-//     console.log('🏠 Navegando de vuelta al selector');
-//     window.location.href = 'index.html?returning=true';
-// }
-
 /**
  * Mezcla un array aleatoriamente (Fisher-Yates)
  * @param {Array} array - Array a mezclar

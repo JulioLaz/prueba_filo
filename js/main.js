@@ -198,6 +198,10 @@ const AVAILABLE_THEMES = [
 ];
 
 console.log(`📚 Configuración cargada: ${AVAILABLE_THEMES.length} temas disponibles`);
+console.log("📚 Temas disponibles (IDs):");
+AVAILABLE_THEMES.forEach(theme => {
+  console.log(theme.id);
+});
 
 // ========================================
 // 🎯 ELEMENTOS DEL DOM

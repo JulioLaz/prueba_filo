@@ -8,7 +8,7 @@ const themeLoadStart = performance.now();
 /**
  * Configuración del tema de Aristóteles
  */
-const ARISTOTELES_THEME = {
+const ETICA_ARISTOTELES_THEME  = {
     id: 'etica_aristoteles',
     title: 'Aristóteles: Lo Bueno es la Felicidad',
     description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
@@ -494,7 +494,7 @@ function validateTheme() {
     console.log('🔍 Validando estructura del tema de Aristóteles...');
     
     const requiredFields = ['id', 'title', 'questions'];
-    const missingFields = requiredFields.filter(field => !ARISTOTELES_THEME[field]);
+    const missingFields = requiredFields.filter(field => !ETICA_ARISTOTELES_THEME [field]);
     
     if (missingFields.length > 0) {
         console.error(`❌ Faltan campos requeridos: ${missingFields.join(', ')}`);
@@ -502,7 +502,7 @@ function validateTheme() {
     }
     
     // Validar preguntas
-    const invalidQuestions = ARISTOTELES_THEME.questions.filter((q, index) => {
+    const invalidQuestions = ETICA_ARISTOTELES_THEME .questions.filter((q, index) => {
         if (!q.id || !q.question || !q.answers || !q.hint) {
             console.error(`❌ Pregunta ${index + 1} inválida: faltan campos requeridos`);
             return true;
@@ -537,7 +537,7 @@ function validateTheme() {
  */
 function getThemeStats() {
     return {
-        ...ARISTOTELES_THEME.stats,
+        ...ETICA_ARISTOTELES_THEME .stats,
         validationPassed: validateTheme(),
         loadTime: performance.now() - themeLoadStart
     };
@@ -555,10 +555,10 @@ if (!validateTheme()) {
 
 const themeLoadEnd = performance.now();
 console.log(`✅ Tema de Aristóteles cargado exitosamente en ${(themeLoadEnd - themeLoadStart).toFixed(2)}ms`);
-console.log(`📊 Estadísticas: ${ARISTOTELES_THEME.questions.length} preguntas, ${ARISTOTELES_THEME.stats.estimatedTime} min estimados`);
+console.log(`📊 Estadísticas: ${ETICA_ARISTOTELES_THEME .questions.length} preguntas, ${ETICA_ARISTOTELES_THEME .stats.estimatedTime} min estimados`);
 
 // Exportar tema para uso global
 if (typeof window !== 'undefined') {
-    window.ARISTOTELES_THEME = ARISTOTELES_THEME;
+    window.ETICA_ARISTOTELES_THEME  = ETICA_ARISTOTELES_THEME ;
     console.log('🌐 Tema de Aristóteles disponible globalmente');
 }

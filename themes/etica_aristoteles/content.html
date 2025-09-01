@@ -1,326 +1,568 @@
-<style>
-/* ====== Tema oscuro elegante, encapsulado ====== */
-.material-dark{
-  /* paleta y espaciados */
-  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
-  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
-  --space:14px; --space-md:18px; --space-lg:22px;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tema 2 — Ética de Aristóteles (Estudio Progresivo)</title>
+  <style>
+    /* ====== Tema oscuro elegante, encapsulado ====== */
+    .material-dark{
+      --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
+      --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
+      --success:#10b981; --error:#ef4444; --warning:#f59e0b;
 
-  background:
-    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  padding: var(--space-lg);
-  border-radius: 12px;
-}
+      background:
+        radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      padding:22px;
+      border-radius:12px;
+      max-width:900px;
+      margin:0 auto;
+    }
 
-/* tipografía */
-.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
-  color:var(--title);
-  margin: 0 0 .4em;
-  line-height: 1.25;
-}
-.material-dark h1{ font-size: 28px; }
-.material-dark h2{ font-size: 22px; }
-.material-dark h3{ font-size: 18px; }
-.material-dark p{ margin: .6em 0; color:var(--text); }
-.material-dark em{ color:var(--text); }
-.material-dark strong{ color:var(--title); }
+    /* tipografía */
+    .material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
+      color:var(--title);
+      margin:0 0 .4em;
+      line-height:1.25;
+    }
+    .material-dark h1{ font-size:28px; }
+    .material-dark h2{ font-size:22px; }
+    .material-dark h3{ font-size:18px; }
+    .material-dark p{ margin:.6em 0; color:var(--text); }
+    .material-dark em{ color:var(--text); }
+    .material-dark strong{ color:var(--title); }
+    .material-dark ul{ padding-left:1.2rem; margin:.6em 0; }
+    .material-dark li::marker{ color:#8aa1ff; }
+    .material-dark blockquote{
+      margin:16px 0; padding:14px 16px; border-left:4px solid var(--accent);
+      background:linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
+      border-radius:10px; color:var(--text);
+    }
+    .highlight-box{
+      background:linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
+      border:1px solid var(--border);
+      border-left:4px solid var(--accent);
+      padding:22px; margin:22px 0; border-radius:var(--radius);
+      box-shadow:0 10px 30px -18px rgba(0,0,0,.6);
+      position:relative;
+    }
 
-/* listas y citas */
-.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
-.material-dark li::marker{ color: #8aa1ff; }
-.material-dark blockquote{
-  margin: 16px 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--accent);
-  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
-  border-radius: 10px;
-  color: var(--text);
-}
+    /* Secciones progresivas */
+    .study-section{ margin-bottom:2rem; opacity:.3; transition:all .5s ease; border-radius:var(--radius); overflow:hidden; }
+    .study-section.active{ opacity:1; transform:scale(1.02); }
+    .study-section.completed{ opacity:.7; border-left:4px solid var(--success); }
 
-/* enlaces y código */
-.material-dark a{ color:#aab6ff; text-decoration: underline; }
-.material-dark code,.material-dark pre{
-  background:#0b1325;
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.material-dark code{ padding:.15rem .35rem }
-.material-dark pre{ padding:10px 12px; overflow:auto }
+    /* Sistema de evaluación */
+    .comprehension-check{
+      margin-top:1.5rem; padding:20px;
+      background:linear-gradient(135deg, rgba(107,124,255,.08), rgba(176,116,255,.06));
+      border-radius:12px; border:1px solid var(--border);
+      opacity:0; transform:translateY(20px); transition:all .6s ease;
+    }
+    .comprehension-check.show{ opacity:1; transform:translateY(0); }
+    .check-title{ font-size:16px; font-weight:600; margin-bottom:15px; color:var(--accent); display:flex; align-items:center; gap:8px; }
+    .options-container{ display:grid; gap:10px; }
+    .option{
+      background:var(--panel); border:2px solid var(--border); border-radius:10px;
+      padding:12px 16px; cursor:pointer; transition:all .3s ease; font-size:14px; line-height:1.4;
+    }
+    .option:hover{ border-color:var(--accent); background:linear-gradient(135deg, rgba(107,124,255,.1), rgba(176,116,255,.08)); transform:translateX(4px); }
+    .option.correct{ border-color:var(--success); background:linear-gradient(135deg, rgba(16,185,129,.15), rgba(16,185,129,.08)); animation:correctPulse .6s ease; }
+    .option.incorrect{ border-color:var(--error); background:linear-gradient(135deg, rgba(239,68,68,.15), rgba(239,68,68,.08)); animation:shake .5s ease; }
 
-/* imágenes */
-.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
+    @keyframes correctPulse{ 0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)} }
+    @keyframes shake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
 
-/* caja de “destacado” */
-.material-dark .highlight-box{
-  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
-  border:1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
-}
+    /* Indicador de progreso */
+    .progress-header{
+      position:sticky; top:0; background:rgba(14,20,38,.95); backdrop-filter:blur(10px);
+      padding:16px 22px; margin:-22px -22px 30px -22px; border-bottom:1px solid var(--border); z-index:100;
+    }
+    .progress-bar{ width:100%; height:8px; background:var(--panel); border-radius:4px; overflow:hidden; margin-top:12px; }
+    .progress-fill{ height:100%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:4px; width:0%; transition:width .8s ease; }
+    .progress-text{ display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); }
 
-/* separaciones finas en móvil */
-@media (max-width: 600px){
-  .material-dark{ padding: 16px; }
-  .material-dark h1{ font-size: 24px }
-}
-</style>
+    /* Efectos de celebración */
+    .celebration{ position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-size:48px; z-index:1000; pointer-events:none; animation:celebrate 2s ease forwards; }
+    @keyframes celebrate{ 0%{opacity:0; transform:translate(-50%,-50%) scale(.5)} 50%{opacity:1; transform:translate(-50%,-50%) scale(1.2)} 100%{opacity:0; transform:translate(-50%,-50%) scale(1)} }
 
-<main class="material-dark">
+    /* Responsive */
+    @media (max-width:600px){ .material-dark{ padding:16px; } .material-dark h1{ font-size:24px; } .highlight-box{ padding:16px; } }
+  </style>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 14 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
 
-<h2>🏛️ ARISTÓTELES: Lo Bueno es la Felicidad</h2>
-<p><em>384-322 a.C. | El primer tratado sistemático de ética: "Ética a Nicómaco"</em></p>
+    <h1>UNIDAD III — TEMA 2: Ética de Aristóteles</h1>
+    <p><em>De la <strong>cadena de fines</strong> al <strong>Sumo Bien</strong>, pasando por la <strong>función humana</strong>, las <strong>virtudes</strong> (término medio), la <strong>prudencia</strong>, la <strong>justicia</strong> y la <strong>amistad</strong>: una guía completa y práctica —orientada a estudiantes— para entender <strong>cómo vivir bien</strong> según Aristóteles.</em></p>
 
-<div class="highlight-box">
-    <h4>🎯 Pregunta central</h4>
-    <p><strong>¿Dónde reside el bien para los seres humanos?</strong></p>
-    <p>A lo largo de la historia se han propuesto múltiples respuestas: en la felicidad, el placer, el amor, Dios, la armonía con la naturaleza, la paz interior, el ejercicio del poder... Aristóteles fue el primero en abordar esta pregunta de manera sistemática.</p>
-</div>
+    <!-- 1. Pregunta central y Sumo Bien -->
+    <div class="study-section active" data-section="pregunta-central">
+      <div class="highlight-box">
+        <h3>🎯 ¿Dónde está el bien humano? — El Sumo Bien y la felicidad</h3>
+        <p>Aristóteles observa que <strong>toda acción apunta a un fin</strong>. Si todo fin fuera medio para otro, viviríamos en un <em>regreso infinito</em>. Por eso debe haber un <strong>fin último</strong>, buscado por sí mismo.</p>
+        <p>Ese fin último es la <strong>felicidad</strong> (<em>eudaimonía</em>): <strong>actividad excelente</strong> de toda una vida, no un momento suelto de placer.</p>
+        <blockquote><em>La felicidad es lo que deseamos por sí mismo; lo demás, por ella.</em></blockquote>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Verificación de comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Debe existir un fin último para evitar un regreso infinito de fines</div>
+          <div class="option">La felicidad es solo placer intenso y pasajero</div>
+          <div class="option">No hay fines en la acción humana</div>
+          <div class="option">El dinero es el fin último porque sirve para todo</div>
+          <div class="option">El fin último es siempre el reconocimiento público</div>
+        </div>
+      </div>
+    </div>
 
-<h3>🔗 La Cadena de Fines</h3>
+    <!-- 2. Cadena de fines -->
+    <div class="study-section" data-section="cadena-fines">
+      <div class="highlight-box">
+        <h3>🔗 La cadena de fines (meta → medio → meta…)</h3>
+        <p>Estudiar <strong>para</strong> aprobar, aprobar <strong>para</strong> ingresar, ingresar <strong>para</strong> un buen trabajo… La cadena termina en algo que <strong>vale por sí mismo</strong>: vivir bien.</p>
+        <ul>
+          <li><strong>Fin intermedio</strong>: se busca por otra cosa.</li>
+          <li><strong>Fin último</strong>: se busca por sí mismo (felicidad).</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">📌 Check rápido</div>
+        <div class="options-container">
+          <div class="option">Todos los fines son solo medios, no existe fin último</div>
+          <div class="option" data-correct="true">Los fines intermedios se ordenan a un fin último que vale por sí mismo</div>
+          <div class="option">El fin último es siempre la fama</div>
+          <div class="option">La cadena de fines no explica el sentido de la acción</div>
+          <div class="option">El fin último cambia cada día según el humor</div>
+        </div>
+      </div>
+    </div>
 
-<p>Para Aristóteles, <strong>todos los actos humanos tienen un fin</strong>. Siempre que hacemos algo, lo hacemos para llegar a una meta u objetivo, y esa meta es lo que le da sentido a nuestro accionar.</p>
+    <!-- 3. Función humana -->
+    <div class="study-section" data-section="funcion-humana">
+      <div class="highlight-box">
+        <h3>🧠 El argumento de la función (<em>ergon</em>)</h3>
+        <p>Compartimos con los animales funciones vitales (nutrirse, sentir), pero lo <strong>propio</strong> del humano es la <strong>actividad racional</strong>. Por eso, la vida feliz es <strong>vivir razonablemente</strong> y <strong>con virtud</strong>.</p>
+        <ul>
+          <li><strong>Eudaimonía</strong> = actividad del alma <strong>conforme a virtud</strong>.</li>
+          <li>No es un “estado”: es <strong>práctica sostenida</strong>.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧩 Comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La razón es la función específicamente humana</div>
+          <div class="option">La función humana es dormir y comer</div>
+          <div class="option">La felicidad es ausencia total de actividad</div>
+          <div class="option">La razón impide la felicidad</div>
+          <div class="option">La felicidad no tiene que ver con la virtud</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>📚 Ejemplo: La estudiante y sus metas</h4>
-    <p>Una alumna va a la escuela <strong>para</strong> aprender → aprende <strong>para</strong> entrar en la universidad → quiere entrar en la universidad <strong>para</strong> recibirse → quiere recibirse <strong>para</strong> conseguir un buen empleo → quiere un buen empleo <strong>para</strong> ganar un buen sueldo → quiere ganar un buen sueldo <strong>para</strong> comprar una casa confortable...</p>
-    
-    <p><strong>¿Hacia dónde nos lleva esta cadena?</strong></p>
-</div>
+    <!-- 4. Virtudes éticas y dianoéticas -->
+    <div class="study-section" data-section="tipos-virtud">
+      <div class="highlight-box">
+        <h3>🧩 Dos familias de virtudes</h3>
+        <ul>
+          <li><strong>Éticas (carácter)</strong>: ordenan deseos/emociones y se adquieren por <strong>hábito</strong> (valentía, templanza, generosidad, amabilidad…).</li>
+          <li><strong>Dianoéticas (intelectuales)</strong>: perfeccionan la razón por <strong>educación</strong> (entendimiento, ciencia, arte/técnica, sabiduría, <strong>prudencia</strong>).</li>
+        </ul>
+        <p>Ambas cooperan: sin carácter recto, la razón práctica se deforma; sin razón, el carácter actúa a ciegas.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔎 Verificación</div>
+        <div class="options-container">
+          <div class="option">Las virtudes éticas se heredan biológicamente</div>
+          <div class="option" data-correct="true">Las virtudes dianoéticas se adquieren por educación y perfeccionan la razón</div>
+          <div class="option">Las virtudes éticas impiden sentir emociones</div>
+          <div class="option">Carácter y razón no se relacionan</div>
+          <div class="option">La prudencia no es una virtud</div>
+        </div>
+      </div>
+    </div>
 
-<p>Según Aristóteles, nuestra vida se conforma como una <strong>cadena de fines</strong>: actuamos para conseguir un fin, pero ese fin es a la vez un <strong>medio</strong> para otro fin.</p>
+    <!-- 5. Doctrina del término medio -->
+    <div class="study-section" data-section="termino-medio">
+      <div class="highlight-box">
+        <h3>📐 Término medio: arte de equilibrar</h3>
+        <p>La virtud es un <strong>término medio</strong> entre <em>exceso</em> y <em>defecto</em>, <em>relativo a nosotros</em> y a la situación. No es matemática; exige juicio.</p>
+        <ul>
+          <li><strong>Valentía</strong>: entre <em>cobardía</em> y <em>temeridad</em>.</li>
+          <li><strong>Generosidad</strong>: entre <em>tacañería</em> y <em>derroche</em>.</li>
+          <li><strong>Amabilidad</strong>: entre <em>hosquedad</em> y <em>adulación</em>.</li>
+        </ul>
+        <p>La <strong>prudencia</strong> indica dónde está ese medio en cada caso concreto.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El “medio” es relativo a la persona y a la situación</div>
+          <div class="option">El medio es siempre exactamente 50%</div>
+          <div class="option">Toda emoción es vicio</div>
+          <div class="option">La templanza es exceso por definición</div>
+          <div class="option">La virtud suprime la deliberación</div>
+        </div>
+      </div>
+    </div>
 
-<h4>🤔 El problema lógico</h4>
+    <!-- 6. Prudencia -->
+    <div class="study-section" data-section="prudencia">
+      <div class="highlight-box">
+        <h3>🧭 Prudencia (<em>frónesis</em>): decidir bien aquí y ahora</h3>
+        <p>Saber práctico para <strong>deliberar</strong> sobre medios adecuados al fin humano (eudaimonía) en circunstancias concretas.</p>
+        <ul>
+          <li>Integra <strong>experiencia</strong>, <strong>fines</strong> y <strong>detalles</strong> de la situación.</li>
+          <li>No es “viveza”: <strong>orienta al bien</strong>, no a la conveniencia egoísta.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧪 Comprensión</div>
+        <div class="options-container">
+          <div class="option">La prudencia es pura teoría</div>
+          <div class="option" data-correct="true">La prudencia delibera sobre medios correctos según el fin humano</div>
+          <div class="option">La prudencia busca solo lo útil para mí</div>
+          <div class="option">La prudencia evita considerar las circunstancias</div>
+          <div class="option">La prudencia reemplaza todas las virtudes</div>
+        </div>
+      </div>
+    </div>
 
-<p>Si cada fin fuera solo un medio para otro fin, <strong>¿para qué hacemos todo lo que hacemos?</strong> Si esa pregunta no tuviera respuesta, nuestra actividad sería inútil y absurda.</p>
+    <!-- 7. Voluntario e involuntario -->
+    <div class="study-section" data-section="voluntario">
+      <div class="highlight-box">
+        <h3>⚖️ Voluntario, involuntario y acciones mixtas</h3>
+        <ul>
+          <li><strong>Voluntario</strong>: con conocimiento y sin coacción → hay <strong>responsabilidad</strong>.</li>
+          <li><strong>Involuntario</strong>: por fuerza externa o ignorancia invencible.</li>
+          <li><strong>Mixtas</strong>: se elige un mal menor por un bien mayor (p.ej., tirar carga en tormenta).</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔍 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Un acto hecho con conocimiento y sin coacción es voluntario</div>
+          <div class="option">Todo lo ignorado es siempre voluntario</div>
+          <div class="option">La coacción no altera la responsabilidad</div>
+          <div class="option">Las acciones mixtas no son elegidas nunca</div>
+          <div class="option">Solo la ley decide si hubo voluntariedad</div>
+        </div>
+      </div>
+    </div>
 
-<p><strong>Por lo tanto</strong>, debe existir un <strong>fin último</strong>: un fin que se quiera por sí mismo, que tenga valor intrínseco y que no sea medio para llegar a otra cosa.</p>
+    <!-- 8. Akrasia -->
+    <div class="study-section" data-section="akrasia">
+      <div class="highlight-box">
+        <h3>⚡ Akrasia (incontinencia): “sé lo mejor, pero hago lo peor”</h3>
+        <p>Debilidad de la voluntad: el deseo vence al juicio correcto. La educación del carácter y los <strong>hábitos</strong> ayudan a <strong>alinear</strong> razón y deseo.</p>
+        <ul>
+          <li>La prudencia <em>sin</em> hábito es frágil.</li>
+          <li>El hábito <em>sin</em> razón es ciego.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧩 Comprensión</div>
+        <div class="options-container">
+          <div class="option">La akrasia describe una virtud</div>
+          <div class="option" data-correct="true">La akrasia es actuar contra el mejor juicio por debilidad del deseo</div>
+          <div class="option">La akrasia se cura con más dinero</div>
+          <div class="option">La akrasia implica actuar sin emociones</div>
+          <div class="option">La akrasia prueba que no existe libertad</div>
+        </div>
+      </div>
+    </div>
 
-<h3>👑 El Sumo Bien</h3>
+    <!-- 9. Justicia -->
+    <div class="study-section" data-section="justicia">
+      <div class="highlight-box">
+        <h3>⚖️ Justicia: virtud social</h3>
+        <ul>
+          <li><strong>General</strong>: vivir legal y virtuosamente por el <strong>bien común</strong>.</li>
+          <li><strong>Particular</strong>:
+            <ul>
+              <li><em>Distributiva</em>: reparte honores/cargas según <strong>mérito</strong> (proporción).</li>
+              <li><em>Conmutativa</em>/<em>correctiva</em>: <strong>restaura igualdad</strong> en intercambios o daños.</li>
+            </ul>
+          </li>
+          <li><strong>Natural vs. legal</strong>: válido por naturaleza vs. por convención/ley.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La justicia correctiva busca restaurar igualdad en intercambios/daños</div>
+          <div class="option">La justicia distributiva ignora el mérito</div>
+          <div class="option">La justicia general no mira el bien común</div>
+          <div class="option">Toda justicia depende solo de la ley positiva</div>
+          <div class="option">La justicia no es una virtud para Aristóteles</div>
+        </div>
+      </div>
+    </div>
 
-<p>Ese fin último es lo que Aristóteles llama el <strong>Sumo Bien</strong>, que debe tener dos características fundamentales:</p>
+    <!-- 10. Amistad -->
+    <div class="study-section" data-section="amistad">
+      <div class="highlight-box">
+        <h3>🤝 Amistad (<em>philia</em>): tejido de la vida buena</h3>
+        <p>La amistad es necesaria para vivir bien. Tipos:</p>
+        <ul>
+          <li><strong>Utilidad</strong>: por provecho.</li>
+          <li><strong>Placer</strong>: por lo agradable.</li>
+          <li><strong>Perfecta</strong>: entre personas buenas que se quieren <em>por sí mismas</em>.</li>
+        </ul>
+        <p>La amistad perfecta exige <strong>tiempo</strong>, <strong>confianza</strong> y <strong>virtud</strong>.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">📌 Check</div>
+        <div class="options-container">
+          <div class="option">La amistad perfecta es la más rápida y fácil</div>
+          <div class="option">La amistad de utilidad es superior a todas</div>
+          <div class="option" data-correct="true">La amistad perfecta quiere el bien del otro por sí mismo</div>
+          <div class="option">La amistad es irrelevante para la vida buena</div>
+          <div class="option">Solo existe amistad por placer</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>✨ Características del Sumo Bien</h4>
-    <ul>
-        <li><strong>🎯 Autosuficiente:</strong> Buscado por sí mismo, no como medio para otra cosa</li>
-        <li><strong>⭐ Perfecto:</strong> El fin más elevado posible</li>
-    </ul>
-</div>
+    <!-- 11. Bienes externos y fortuna -->
+    <div class="study-section" data-section="bienes-externos">
+      <div class="highlight-box">
+        <h3>🏗️ Bienes externos y fortuna</h3>
+        <p>Para sostener la vida virtuosa hacen falta en alguna medida <strong>bienes externos</strong> (salud, recursos, amistades) y <strong>suerte</strong>. No todo depende del carácter; pero <em>sin virtud</em> tampoco hay eudaimonía.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔎 Comprensión</div>
+        <div class="options-container">
+          <div class="option">La fortuna determina toda la felicidad</div>
+          <div class="option" data-correct="true">Los bienes externos ayudan, pero no sustituyen la virtud</div>
+          <div class="option">La virtud es irrelevante si hay dinero</div>
+          <div class="option">La amistad no cuenta como bien externo</div>
+          <div class="option">La eudaimonía es puro azar</div>
+        </div>
+      </div>
+    </div>
 
-<h4>🎉 La respuesta: La Felicidad</h4>
+    <!-- 12. Vida contemplativa -->
+    <div class="study-section" data-section="vida-contemplativa">
+      <div class="highlight-box">
+        <h3>🏛️ Vida activa y vida contemplativa</h3>
+        <p>Aristóteles valora la <strong>contemplación</strong> (actividad de la inteligencia) como culmen, sin negar la importancia de la <strong>acción moral y política</strong>. Una vida plena integra ambas dimensiones.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧭 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La contemplación es alta, pero no excluye la acción moral y cívica</div>
+          <div class="option">La acción cívica impide toda felicidad</div>
+          <div class="option">La contemplación es ocio vacío</div>
+          <div class="option">La vida buena es solo placer sensorial</div>
+          <div class="option">La política reemplaza a la ética</div>
+        </div>
+      </div>
+    </div>
 
-<p>Ese fin último es la <strong>felicidad</strong>. Todos los seres humanos desean ser felices, y nadie desea ser feliz para llegar a otra cosa.</p>
+    <!-- 13. Hábito y educación -->
+    <div class="study-section" data-section="habito-educacion">
+      <div class="highlight-box">
+        <h3>🔁 Hábito, carácter y educación cívica</h3>
+        <p>Nos volvemos virtuosos <strong>practicando actos virtuosos</strong>, educados por familias, escuelas y leyes que forman costumbres.</p>
+        <ul>
+          <li><strong>Repetición con sentido</strong>: no es rutina vacía; es <em>aprender a querer lo bueno</em>.</li>
+          <li><strong>Modelos prudentes</strong>: imitar a quienes juzgan bien.</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧪 Comprensión</div>
+        <div class="options-container">
+          <div class="option">El carácter no puede educarse</div>
+          <div class="option" data-correct="true">La repetición de actos rectos, guiada por razón, forma el carácter</div>
+          <div class="option">Solo la ley impone virtudes sin hábito</div>
+          <div class="option">Los modelos prudentes no ayudan</div>
+          <div class="option">La educación moral es irrelevante</div>
+        </div>
+      </div>
+    </div>
 
-<blockquote>
-    <p><strong>"¿Para qué queremos ser felices? Para ser felices. No hay otra respuesta."</strong></p>
-</blockquote>
+    <!-- 14. Críticas, aplicaciones y síntesis -->
+    <div class="study-section" data-section="sintesis">
+      <div class="highlight-box">
+        <h3>🧪 Críticas breves, aplicaciones y síntesis</h3>
+        <ul>
+          <li><strong>Críticas</strong>: cierto elitismo (ideal del magnánimo); teleología difícil de conciliar con ciencia moderna; dependencia parcial de la fortuna.</li>
+          <li><strong>Aplicaciones actuales</strong>:
+            <ul>
+              <li><em>Redes</em>: amabilidad firme entre silencio y agresión.</li>
+              <li><em>Estudio</em>: hábito diario vs. rachas; prudencia para organizar tiempos.</li>
+              <li><em>Equipo</em>: justicia distributiva al repartir tareas.</li>
+            </ul>
+          </li>
+          <li><strong>Síntesis</strong>:
+            <ul>
+              <li>Eudaimonía = actividad racional <strong>conforme a virtud</strong>.</li>
+              <li>Término medio guiado por <strong>prudencia</strong>.</li>
+              <li>Dimensión social: <strong>justicia</strong> y <strong>amistad</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">✅ Cierre</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Para Aristóteles, vivir bien es obrar virtuosamente con prudencia a lo largo de la vida</div>
+          <div class="option">La felicidad es puro azar y placer</div>
+          <div class="option">La justicia no importa para la vida buena</div>
+          <div class="option">La amistad perfecta es interés mutuo</div>
+          <div class="option">El término medio es una fórmula matemática fija</div>
+        </div>
+      </div>
+    </div>
 
-<p>La felicidad nos satisface plenamente. Todo lo que hacemos lo hacemos teniendo como objetivo último el ser felices.</p>
+  </main>
 
-<h3>❌ Lo que NO es la felicidad</h3>
+  <script>
+   // ► Ruta base de sonidos (si usás /sound/ en la raíz del proyecto)
+   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
 
-<p>Aunque todos buscamos la felicidad, tenemos diferentes conceptos de lo que esta es. Aristóteles analiza y rechaza tres concepciones populares:</p>
+   class ProgressiveStudy {
+      constructor() {
+        this.currentSection = 0;
+        this.totalSections = document.querySelectorAll('.study-section').length;
+        this.completedSections = new Set();
+        this.init();
+      }
+      init() {
+        // activar primera sección
+        const sections = document.querySelectorAll('.study-section');
+        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
+        this.setupEventListeners();
+        this.showComprehensionCheck();
+        this.updateProgress();
+      }
+      setupEventListeners() {
+        document.querySelectorAll('.option').forEach(option => {
+          option.addEventListener('click', (e) => this.handleOptionClick(e));
+        });
+      }
+      showComprehensionCheck() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        if (!currentSectionEl) return;
+        const checkEl = currentSectionEl.querySelector('.comprehension-check');
+        if (checkEl) {
+          setTimeout(() => { checkEl.classList.add('show'); }, 5000); // tiempo de lectura
+        }
+      }
+      handleOptionClick(e) {
+        const option = e.target;
+        const checkContainer = option.closest('.comprehension-check');
+        const allOptions = checkContainer.querySelectorAll('.option');
+        // deshabilitar mientras se procesa
+        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
 
-<h4>🍷 1. El Placer</h4>
-<div class="highlight-box">
-    <p><strong>Definición:</strong> La felicidad se relaciona con la gratificación de los sentidos.</p>
-    <p><strong>¿Por qué lo rechaza?</strong></p>
-    <ul>
-        <li>✅ <strong>Es autosuficiente</strong> (se busca por sí mismo)</li>
-        <li>❌ <strong>No es perfecto</strong> porque apela a aspectos fisiológicos que <em>compartimos con los animales</em></li>
-    </ul>
-    <p><strong>Problema central:</strong> No ejercita lo específicamente humano.</p>
-</div>
+        if (option.dataset.correct === 'true') {
+          option.classList.add('correct');
+          this.playSound('success');
+          this.showCelebration('🎉');
+          setTimeout(() => {
+            this.markSectionCompleted();
+            this.moveToNextSection();
+          }, 1200);
+        } else {
+          option.classList.add('incorrect');
+          this.playSound('error');
+          setTimeout(() => {
+            // Reset opciones y reintento
+            allOptions.forEach(opt => {
+              opt.classList.remove('correct','incorrect');
+              opt.style.pointerEvents = 'auto';
+            });
+            this.shuffleOptions(checkContainer);
+          }, 900);
+        }
+      }
+      shuffleOptions(container) {
+        const options = Array.from(container.querySelectorAll('.option'));
+        const parent = options[0].parentNode;
+        for (let i = options.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [options[i], options[j]] = [options[j], options[i]];
+        }
+        options.forEach(option => parent.appendChild(option));
+      }
+      markSectionCompleted() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        currentSectionEl.classList.add('completed');
+        currentSectionEl.classList.remove('active');
+        this.completedSections.add(this.currentSection);
+        this.updateProgress();
+      }
+      moveToNextSection() {
+        this.currentSection++;
+        const sections = document.querySelectorAll('.study-section');
+        if (this.currentSection < this.totalSections) {
+          const nextSectionEl = sections[this.currentSection];
+          nextSectionEl.classList.add('active');
+          setTimeout(() => {
+            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
+            setTimeout(() => { window.scrollBy(0, -80); }, 800);
+          }, 300);
+          setTimeout(() => { this.showComprehensionCheck(); }, 800);
+        } else {
+          this.showCompletion();
+        }
+      }
+      updateProgress() {
+        const progressFill = document.getElementById('progress-fill');
+        const progressCounter = document.getElementById('progress-counter');
+        const percentage = (this.completedSections.size / this.totalSections) * 100;
+        progressFill.style.width = `${percentage}%`;
+        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
+      }
+      showCelebration(emoji) {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.textContent = emoji;
+        document.body.appendChild(celebration);
+        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
+      }
+      showCompletion() {
+        this.showCelebration('🎊');
+        setTimeout(() => {
+          alert('¡Excelente! Completaste Ética de Aristóteles. Ya podés pasar a las actividades y al quiz.');
+        }, 800);
+      }
 
-<h4>🏆 2. Los Honores</h4>
-<div class="highlight-box">
-    <p><strong>Definición:</strong> Lograr fama, celebridad y reconocimiento público (en la época: cargos públicos).</p>
-    <p><strong>¿Por qué los rechaza?</strong></p>
-    <ul>
-        <li>❌ <strong>No son autosuficientes</strong> porque depende de <em>otros</em> el otorgarlos</li>
-        <li>❌ <strong>No son perfectos</strong> porque se buscan como <em>reconocimiento</em> de los propios méritos</li>
-    </ul>
-    <p><strong>Problema central:</strong> Dependen de factores externos a nosotros.</p>
-</div>
-
-<h4>💰 3. Las Riquezas</h4>
-<div class="highlight-box">
-    <p><strong>Definición:</strong> La felicidad reside en poder comprar aquello que deseamos.</p>
-    <p><strong>¿Por qué las rechaza?</strong></p>
-    <ul>
-        <li>❌ <strong>No son autosuficientes</strong> porque constituyen <em>medios</em> para otra cosa</li>
-        <li>❌ <strong>No son perfectas</strong> porque no tienen que ver con la perfección de lo propiamente humano</li>
-    </ul>
-    <p><strong>Problema central:</strong> Son instrumentos, no fines en sí mismos.</p>
-</div>
-
-<h3>🧠 La Función Específicamente Humana</h3>
-
-<p>Para encontrar la verdadera felicidad, Aristóteles se pregunta: <strong>¿Cuál es la parte más elevada del hombre?</strong></p>
-
-<p>El ser humano comparte con los animales:</p>
-<ul>
-    <li>🫁 La capacidad de <strong>respirar</strong></li>
-    <li>🍎 La capacidad de <strong>alimentarse</strong></li>
-    <li>❤️ La capacidad de <strong>sentir</strong></li>
-</ul>
-
-<p>Pero la <strong>racionalidad</strong> es exclusivamente humana. Por tanto:</p>
-
-<div class="highlight-box">
-    <h4>💡 Conclusión clave</h4>
-    <p><strong>La parte más elevada del hombre es su razón</strong>, y en consecuencia <strong>la virtud superior es la búsqueda del conocimiento más elevado: la sabiduría</strong>.</p>
-</div>
-
-<h3>🎓 La Sabiduría como Verdadera Felicidad</h3>
-
-<p>¿Por qué la sabiduría cumple los requisitos del Sumo Bien?</p>
-
-<div class="highlight-box">
-    <h4>🏆 La sabiduría es autosuficiente</h4>
-    <ul>
-        <li>✅ <strong>Depende de cada uno de nosotros</strong> (no de otras personas como los honores)</li>
-        <li>✅ <strong>No nos esclaviza a objetos</strong> (como el placer con el alcohol, por ejemplo)</li>
-        <li>✅ <strong>Nos vuelve autárquicos</strong> (dueños de nosotros mismos)</li>
-    </ul>
-</div>
-
-<div class="highlight-box">
-    <h4>⭐ La sabiduría es perfecta</h4>
-    <ul>
-        <li>✅ <strong>Ejercita la función más elevada</strong> del ser humano: la razón</li>
-        <li>✅ <strong>Se busca por sí misma</strong>, no como medio para otra cosa</li>
-        <li>✅ <strong>Representa lo específicamente humano</strong> en su máxima expresión</li>
-    </ul>
-</div>
-
-<h4>🏛️ La Vida Contemplativa</h4>
-
-<p>Por ello, para Aristóteles, <strong>la vida mejor es la contemplativa</strong>, dedicada a la reflexión y al estudio, es decir, a adquirir sabiduría.</p>
-
-<h3>⚖️ Las Virtudes Éticas</h3>
-
-<p>Aristóteles admite que además de la sabiduría, hay otras virtudes importantes: las <strong>virtudes éticas o del carácter</strong>.</p>
-
-<div class="highlight-box">
-    <h4>📐 La Doctrina del Término Medio</h4>
-    <p>Las virtudes éticas se logran cuando <strong>la razón controla los impulsos instintivos</strong> y constituyen el <strong>término medio</strong> entre un exceso y un defecto.</p>
-</div>
-
-<h4>⚔️ Ejemplo: La Valentía</h4>
-
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-    <tr style="background: #444;">
-        <th style="padding: 10px; border: 1px solid #ddd;">DEFECTO (Poco)</th>
-        <th style="padding: 10px; border: 1px solid #ddd;">VIRTUD (Término Medio)</th>
-        <th style="padding: 10px; border: 1px solid #ddd;">EXCESO (Demasiado)</th>
-    </tr>
-    <tr>
-        <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
-            <strong>😰 COBARDÍA</strong><br>
-            Miedo excesivo ante el peligro
-        </td>
-        <td style="padding: 10px; border: 1px solid #ddd; text-align: center; background: #054705;">
-            <strong>⚔️ VALENTÍA</strong><br>
-            Actitud apropiada ante el peligro
-        </td>
-        <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
-            <strong>🤡 TEMERIDAD</strong><br>
-            Inconsciencia ante el peligro
-        </td>
-    </tr>
-</table>
-
-<h4>⚖️ Más ejemplos de virtudes éticas</h4>
-
-<ul>
-    <li><strong>Generosidad:</strong> Entre la tacañería y el derroche</li>
-    <li><strong>Modestia:</strong> Entre la timidez excesiva y la vanidad</li>
-    <li><strong>Amabilidad:</strong> Entre la hosquedad y la adulación</li>
-    <li><strong>Justicia:</strong> Entre dar menos de lo debido y dar más de lo necesario</li>
-</ul>
-
-<h3>🧭 Razón y Pasiones</h3>
-
-<div class="highlight-box">
-    <h4>👑 El gobierno de la razón</h4>
-    <p>La felicidad sólo es posible para aquel que:</p>
-    <ul>
-        <li>🧠 <strong>Vive guiándose por la razón</strong></li>
-        <li>🎭 <strong>No se deja llevar por las pasiones</strong></li>
-        <li>⚖️ <strong>Es capaz de controlar sus deseos y temores</strong></li>
-    </ul>
-    <p><strong>La razón debe guiar nuestras vidas.</strong> Solo así podremos vivir una vida feliz.</p>
-</div>
-
-<h3>🎯 Síntesis de la Ética Aristotélica</h3>
-
-<div class="highlight-box">
-    <h4>🔑 Ideas centrales</h4>
-    <ol>
-        <li><strong>Teleología:</strong> Todos nuestros actos tienen un fin</li>
-        <li><strong>Fin último:</strong> Debe existir un bien supremo que no sea medio para otra cosa</li>
-        <li><strong>Felicidad:</strong> Es el único fin que se busca por sí mismo</li>
-        <li><strong>Función humana:</strong> Lo específicamente humano es la razón</li>
-        <li><strong>Vida contemplativa:</strong> La búsqueda de sabiduría es la vida más feliz</li>
-        <li><strong>Virtudes éticas:</strong> Término medio entre extremos, controladas por la razón</li>
-        <li><strong>Autarquía:</strong> La verdadera felicidad depende de nosotros mismos</li>
-    </ol>
-</div>
-
-<h3>💭 Preguntas para reflexionar</h3>
-
-<div class="highlight-box">
-    <h4>🤔 Piensa y analiza</h4>
-    <ul>
-        <li>¿Estás de acuerdo con que la felicidad es el fin último de toda acción humana?</li>
-        <li>¿Crees que la vida contemplativa es realmente superior a la vida activa?</li>
-        <li>¿Es realista pensar que la razón siempre puede controlar las pasiones?</li>
-        <li>¿Qué opinas de la crítica aristotélica al placer, los honores y las riquezas?</li>
-        <li>¿Puedes pensar en ejemplos modernos de "término medio" en las virtudes?</li>
-        <li>¿Es la sabiduría realmente autosuficiente en nuestro mundo actual?</li>
-    </ul>
-</div>
-
-<h3>🌟 Aplicación práctica</h3>
-
-<div class="highlight-box">
-    <h4>📝 Ejercicio: Analiza tu propia "cadena de fines"</h4>
-    <p><strong>Elige una actividad que realizas regularmente y pregúntate:</strong></p>
-    <ul>
-        <li>¿Para qué hago esto?</li>
-        <li>¿Y para qué quiero eso?</li>
-        <li>¿Y para qué quiero eso otro?</li>
-    </ul>
-    <p><strong>Continúa hasta llegar a algo que quieras "por sí mismo".</strong></p>
-    <p><strong>¿Llegas finalmente a la felicidad, o a otra cosa?</strong></p>
-</div>
-
-<div class="highlight-box">
-    <h4>⚖️ Ejercicio: Encuentra el término medio</h4>
-    <p><strong>Para cada situación, identifica los dos extremos y la virtud del medio:</strong></p>
-    <ul>
-        <li><strong>En el uso del dinero:</strong> ¿Entre qué extremos se encuentra la generosidad?</li>
-        <li><strong>Al hablar de uno mismo:</strong> ¿Entre qué extremos se encuentra la modestia?</li>
-        <li><strong>En las relaciones sociales:</strong> ¿Entre qué extremos se encuentra la amistad?</li>
-    </ul>
-</div>
-
-<div class="highlight-box">
-    <h3>🎭 Legado de Aristóteles</h3>
-    <p>La ética aristotélica ha influido profundamente en el pensamiento occidental durante más de 2000 años. Su enfoque en:</p>
-    <ul>
-        <li>🎯 <strong>La finalidad</strong> de la acción humana</li>
-        <li>⚖️ <strong>El equilibrio</strong> y la moderación</li>
-        <li>🧠 <strong>El papel central de la razón</strong></li>
-        <li>🌟 <strong>La vida contemplativa</strong> como ideal</li>
-    </ul>
-    <p>Continúan siendo temas centrales en la filosofía moral contemporánea.</p>
-</div>
-<main>
+      // ► Reproductor de sonido
+      async playSound(type) {
+        try {
+          const files = {
+            success: 'collect_points.mp3',
+            error: 'negative_beep.mp3',
+            show_question: 'show_question.mp3',
+            timer_warning: 'timer_warning.mp3',
+            timer_danger: 'timer_danger.mp3'
+          };
+          const file = files[type] || 'collect_points.mp3';
+          const audio = new Audio(SOUND_BASE + file);
+          audio.volume = 0.7;
+          audio.preload = 'auto';
+          const p = audio.play();
+          if (p !== undefined) await p;
+        } catch (err) {
+          console.warn('No se pudo reproducir sonido:', err);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
+  </script>
+</body>
+</html>
