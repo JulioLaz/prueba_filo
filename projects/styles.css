@@ -353,7 +353,7 @@
            background: linear-gradient(45deg, #4caf50, #8bc34a);
            color: white;
            border: none;
-           padding: 15px 30px;
+           padding: 8px 10px;
            border-radius: 25px;
            font-size: 16px;
            font-weight: bold;
@@ -452,7 +452,7 @@
            }
 
            .action-btn {
-              width: 100%;
+              /* width: 100%; */
               margin: 8px 0;
            }
 
