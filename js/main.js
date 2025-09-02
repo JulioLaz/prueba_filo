@@ -196,7 +196,7 @@ const AVAILABLE_THEMES = [
         contentFile: 'content/filosofia-politica.html'
     },
     {
-    id: "proyect_t2",
+    id: "proyecto_T2",
     title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
     description: "Desentrañando el misterio humano con método, investigación y debate.",
     icon: "📚✨",
@@ -398,29 +398,30 @@ function createThemeCard(theme) {
     
     // Event listener para navegación
 
-    if (isUnlocked) {
-        card.addEventListener('click', () => {
-            console.log(`🎯 Navegando al tema: ${theme.id}`);
-            // window.location.href = `tema.html?theme=${theme.id}`;
-            window.location.href = `tema.html?tema=${theme.id}`;
-
-            // window.location.href = `quiz.html?theme=${theme.id}`;
-        });
-    }
-    // Event listener para navegación
     // if (isUnlocked) {
     //     card.addEventListener('click', () => {
     //         console.log(`🎯 Navegando al tema: ${theme.id}`);
-            
-    //         // Si es un proyecto, ir directo al HTML del proyecto
-    //         if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
-    //             window.location.href = theme.contentFile;
-    //         } else {
-    //             // Temas normales van al hub de actividades
-    //             window.location.href = `tema.html?tema=${theme.id}`;
-    //         }
+    //         // window.location.href = `tema.html?theme=${theme.id}`;
+    //         window.location.href = `tema.html?tema=${theme.id}`;
+
+    //         // window.location.href = `quiz.html?theme=${theme.id}`;
     //     });
-    // }    
+    // }
+    // Event listener para navegación
+    if (isUnlocked) {
+        card.addEventListener('click', () => {
+            console.log(`🎯 Navegando al tema: ${theme.id}`);
+            
+            // Si es un proyecto, ir directo al HTML del proyecto
+            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+                window.location.href = theme.contentFile;
+                console.log(`🎯 Navegando en: ${theme.contentFile}`);
+            } else {
+                // Temas normales van al hub de actividades
+                window.location.href = `tema.html?tema=${theme.id}`;
+            }
+        });
+    }    
     else {
         card.addEventListener('click', () => {
             const prereqNames = theme.prerequisites.map(id => 
