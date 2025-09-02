@@ -161,7 +161,10 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .seg.clickable{ cursor:pointer }
 .seg.clickable:hover{ filter:brightness(1.05) }
 
-
+.label-strong {
+    color: aliceblue;
+    font-weight: 450;
+  }
 </style>
 
 </head>
@@ -339,10 +342,20 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
     const expositorEl = document.getElementById('expositores');
 
+// if (tdata.expositores) {
+//   expositorEl.textContent = 'Expositores: ' + tdata.expositores;
+// } else if (tdata.biography) {
+//   expositorEl.textContent = '<strong>Biografía: </strong>' + tdata.biography;
+// } else {
+//   expositorEl.textContent = ''; // O podés ocultarlo si no hay contenido
+// }
+
 if (tdata.expositores) {
-  expositorEl.textContent = 'Expositores: ' + tdata.expositores;
+  expositorEl.textContent = '<strong slass="label-strong>Expositores: </strong>'+ tdata.expositores;
 } else if (tdata.biography) {
-  expositorEl.textContent = 'Biografía: ' + tdata.biography;
+  // expositorEl.innerHTML = '<strong>Biografía: </strong>' + tdata.biography;
+  expositorEl.innerHTML = '<span class="label-strong">Biografía: </span>' + tdata.biography;
+
 } else {
   expositorEl.textContent = ''; // O podés ocultarlo si no hay contenido
 }
