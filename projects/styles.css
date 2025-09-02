@@ -9,12 +9,13 @@
            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
            min-height: 100vh;
            overflow-x: hidden;
+           padding: 5px !important;
         }
 
         .game-container {
            max-width: 1200px;
            margin: 0 auto;
-           padding: 20px;
+           padding: 5px;
            position: relative;
         }
 
@@ -59,6 +60,7 @@
            font-size: 12px;
            opacity: 0.3;
            transition: all 0.3s ease;
+           width: 10em;
         }
 
         .badge.earned {
@@ -463,11 +465,18 @@
            .interactive-element {
               padding: 15px;
            }
+
+           .badges{
+            display: grid;
+           }
+           .badge{
+            width: 100%;
+           }
         }
 
         @media (max-width: 480px) {
            .game-title {
-              font-size: 1.8em;
+              font-size: 1.5em;
            }
 
            .case-card {

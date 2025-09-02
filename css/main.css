@@ -34,6 +34,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    padding: 5px;
 }
 
 body::before {
@@ -53,7 +54,7 @@ body::before {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 20px; */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -550,7 +551,7 @@ body::before {
     
     .modal-body,
     .modal-header {
-        padding: 20px;
+        padding: 5px;
     }
 }
 
@@ -561,7 +562,7 @@ body::before {
     }
     
     .theme-header {
-        padding: 20px 15px;
+        padding: 5px 5px !important;
     }
     
     .theme-stats {
