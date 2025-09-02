@@ -60,7 +60,8 @@
            font-size: 12px;
            opacity: 0.3;
            transition: all 0.3s ease;
-           width: 10em;
+           width: 12em;
+           text-align: center;
         }
 
         .badge.earned {

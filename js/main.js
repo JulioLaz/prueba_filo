@@ -209,6 +209,21 @@ const AVAILABLE_THEMES = [
     color: "#8a5cf6",
     contentFile: "projects/project_t2.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
     useModularConfig: true
+    },
+    {
+    id: "proyecto_T3",
+    title: "¡A Filosofar! Proyecto Final",
+    description: "Desentrañando el misterio humano con método, investigación y debate.",
+    icon: "📚✨",
+    gradient: "linear-gradient(135deg, #f74513ff 0%, #d0e833ff 50%, #42a714ff 100%)",
+    difficulty: "PROYECTO_TRIMESTRAL",
+    questions: 0,
+    timeEstimate: 240,
+    prerequisites: [],
+    //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
+    color: "#264befff",
+    contentFile: "projects/project_t3.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    useModularConfig: true
     }
 
 ];
