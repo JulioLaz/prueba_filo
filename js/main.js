@@ -195,21 +195,21 @@ const AVAILABLE_THEMES = [
         color: '#f44336',
         contentFile: 'content/filosofia-politica.html'
     },
-{
-  id: "proyecto_antropologia_trimestre2",
-  title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
-  description: "Desentrañando el misterio humano con método, investigación y debate.",
-  icon: "📚✨",
-  gradient: "linear-gradient(135deg, #6b00f5 0%, #9b5cff 50%, #cdb7ff 100%)",
-  difficulty: "PROYECTO_TRIMESTRAL",
-  questions: 0,
-  timeEstimate: 240,
-  prerequisites: [],
-//   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
-  color: "#8a5cf6",
-  contentFile: "projects/proyecto_trimestre2.html",
-  useModularConfig: true
-}
+    {
+    id: "proyect_t2",
+    title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
+    description: "Desentrañando el misterio humano con método, investigación y debate.",
+    icon: "📚✨",
+    gradient: "linear-gradient(135deg, #6b00f5 0%, #9b5cff 50%, #cdb7ff 100%)",
+    difficulty: "PROYECTO_TRIMESTRAL",
+    questions: 0,
+    timeEstimate: 240,
+    prerequisites: [],
+    //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
+    color: "#8a5cf6",
+    contentFile: "../../projects/project_t2.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    useModularConfig: true
+    }
 
 ];
 
@@ -397,21 +397,31 @@ function createThemeCard(theme) {
     `;
     
     // Event listener para navegación
-        // if (isUnlocked) {
-        //     card.addEventListener('click', () => {
-        //         console.log(`🎯 Navegando al hub del tema: ${theme.id}`);
-        //         goToHub(theme.id);
-        //     });
-        // } else {    
+
+    // if (isUnlocked) {
+    //     card.addEventListener('click', () => {
+    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
+    //         // window.location.href = `tema.html?theme=${theme.id}`;
+    //         window.location.href = `tema.html?tema=${theme.id}`;
+
+    //         // window.location.href = `quiz.html?theme=${theme.id}`;
+    //     });
+    // }
+    // Event listener para navegación
     if (isUnlocked) {
         card.addEventListener('click', () => {
             console.log(`🎯 Navegando al tema: ${theme.id}`);
-            // window.location.href = `tema.html?theme=${theme.id}`;
-            window.location.href = `tema.html?tema=${theme.id}`;
-
-            // window.location.href = `quiz.html?theme=${theme.id}`;
+            
+            // Si es un proyecto, ir directo al HTML del proyecto
+            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+                window.location.href = theme.contentFile;
+            } else {
+                // Temas normales van al hub de actividades
+                window.location.href = `tema.html?tema=${theme.id}`;
+            }
         });
-    } else {
+    }    
+    else {
         card.addEventListener('click', () => {
             const prereqNames = theme.prerequisites.map(id => 
                 AVAILABLE_THEMES.find(t => t.id === id)?.title || id
