@@ -207,7 +207,7 @@ const AVAILABLE_THEMES = [
     prerequisites: [],
     //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
     color: "#8a5cf6",
-    contentFile: "../../projects/project_t2.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    contentFile: "projects/project_t2.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
     useModularConfig: true
     }
 
@@ -398,29 +398,29 @@ function createThemeCard(theme) {
     
     // Event listener para navegación
 
-    // if (isUnlocked) {
-    //     card.addEventListener('click', () => {
-    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
-    //         // window.location.href = `tema.html?theme=${theme.id}`;
-    //         window.location.href = `tema.html?tema=${theme.id}`;
-
-    //         // window.location.href = `quiz.html?theme=${theme.id}`;
-    //     });
-    // }
-    // Event listener para navegación
     if (isUnlocked) {
         card.addEventListener('click', () => {
             console.log(`🎯 Navegando al tema: ${theme.id}`);
-            
-            // Si es un proyecto, ir directo al HTML del proyecto
-            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
-                window.location.href = theme.contentFile;
-            } else {
-                // Temas normales van al hub de actividades
-                window.location.href = `tema.html?tema=${theme.id}`;
-            }
+            // window.location.href = `tema.html?theme=${theme.id}`;
+            window.location.href = `tema.html?tema=${theme.id}`;
+
+            // window.location.href = `quiz.html?theme=${theme.id}`;
         });
-    }    
+    }
+    // Event listener para navegación
+    // if (isUnlocked) {
+    //     card.addEventListener('click', () => {
+    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
+            
+    //         // Si es un proyecto, ir directo al HTML del proyecto
+    //         if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+    //             window.location.href = theme.contentFile;
+    //         } else {
+    //             // Temas normales van al hub de actividades
+    //             window.location.href = `tema.html?tema=${theme.id}`;
+    //         }
+    //     });
+    // }    
     else {
         card.addEventListener('click', () => {
             const prereqNames = theme.prerequisites.map(id => 
