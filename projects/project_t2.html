@@ -333,12 +333,14 @@
             min-height: 400px;
             border-radius: 12px;
             position: relative;
-            border: 2px dashed #6c757d;
+            border: 2px solid #6c757d;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
             color: #6c757d;
+            flex-direction: column;
+            padding: 1rem;
         }
 
         /* Botones de acción */
@@ -762,7 +764,7 @@
                     
                     <div class="presentation-tools">
                         <div class="tool-card" onclick="openConceptMapBuilder()">
-                            <h3>🗺️ Modelo de Mapa Conceptual</h3>
+                            <h3 style="text-align: center; margin-bottom: 1rem;">🗺️ Modelo de Mapa Conceptual</h3>
                             <p>Organiza visualmente tus ideas principales</p>
                         </div>
                         
@@ -797,7 +799,7 @@
     <div id="conceptMapModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('conceptMapModal')">&times;</span>
-            <h2>🗺️ Modelo de Mapa Conceptual</h2>
+            <h2 style="text-align: center; margin-bottom: 1rem;">🗺️ Modelo de Mapa Conceptual</h2>
             <div class="concept-map-builder" id="conceptMapArea">
                 <div style="text-align: center; margin-bottom: 20px;">
                     <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; border-radius: 20px; display: inline-block; font-weight: bold; font-size: 1.2em;">
