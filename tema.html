@@ -204,17 +204,32 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .video-info h3{ margin:0 0 8px; color:var(--text); }
 .video-info p{ margin:0; color:var(--muted); font-size:14px; }
 
-.sheet.short-video {
-  width: min(450px, 92vw);
-  max-width: 450px;
-}
-
 .video-container.short {
+  padding-bottom: 177.78%; /* 9:16 para shorts */
+  max-width: 380px;       /* Reducido ligeramente */
+  margin: 15px auto;      /* Menos margen */
   border-radius: 16px;
   overflow: hidden;
-  margin: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4); /* Sombra más marcada */
 }
 
+.sheet.short-video {
+  width: min(420px, 90vw);  /* Ajustado para mejor fit */
+  max-width: 420px;
+}
+
+.short-video .video-info {
+  padding: 16px 12px;       /* Padding reducido */
+}
+
+.short-video .video-info h3 {
+  font-size: 15px;          /* Texto más pequeño */
+  margin: 0 0 6px;
+}
+
+.short-video .video-info p {
+  font-size: 12px;          /* Info más compacta */
+}
 </style>
 
 </head>
@@ -686,7 +701,112 @@ const videoSegmentInfo = document.getElementById('videoSegmentInfo');
 let videoIframe = null;
 let videoStartTime = null;
 
+// 1. REEMPLAZAR la función openVideoModal() completa con esta versión corregida:
+
 function openVideoModal() {
+  if (!hasVideo) return;
+  
+  const config = VIDEO_CONFIG[tema];
+  const isShort = config.type === 'short';
+  
+  videoTopicTitle.textContent = config.title;
+  videoSegmentInfo.textContent = `Segmento: ${Math.floor(config.startTime/60)}:${String(config.startTime%60).padStart(2,'0')} - ${Math.floor(config.endTime/60)}:${String(config.endTime%60).padStart(2,'0')} • Duración: ${config.duration} min`;
+  
+  videoBackdrop.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  
+  // ⭐ CORRECCIÓN: Aplicar clases CSS para shorts
+  videoContainer.classList.toggle('short', isShort);
+  document.querySelector('.sheet').classList.toggle('short-video', isShort);
+  
+  // ⭐ CORRECCIÓN: URL con velocidad 1.25x y mejor formato para shorts
+  const embedUrl = `https://www.youtube.com/embed/${config.youtubeId}?` +
+    `start=${config.startTime}&` +
+    `end=${config.endTime}&` +
+    `autoplay=1&` +
+    `playsinline=1&` +               // ⭐ Mejor para móviles
+    `rel=0&` +                       // Sin videos relacionados
+    `modestbranding=1&` +            // Sin logo de YouTube prominente
+    `iv_load_policy=3&` +            // Sin anotaciones
+    `enablejsapi=1&` +               // API de JavaScript
+    `loop=1&` +                      // Loop al terminar
+    `playlist=${config.youtubeId}&` + // Playlist de 1 video para loop
+    `origin=${window.location.origin}`;
+  
+  videoIframe = document.createElement('iframe');
+  videoIframe.src = embedUrl;
+  videoIframe.style.width = '100%';
+  videoIframe.style.height = '100%';
+  videoIframe.setAttribute('allowfullscreen', '');
+  videoIframe.setAttribute('frameborder', '0');
+  
+  videoContainer.innerHTML = '';
+  videoContainer.appendChild(videoIframe);
+  
+  // ⭐ NUEVO: Intentar establecer velocidad 1.25x después de cargar
+  videoIframe.addEventListener('load', () => {
+    try {
+      // Para la velocidad, necesitamos esperar un poco y usar postMessage
+      setTimeout(() => {
+        const message = {
+          event: 'command',
+          func: 'setPlaybackRate',
+          args: [1.25]
+        };
+        if (videoIframe.contentWindow) {
+          videoIframe.contentWindow.postMessage(JSON.stringify(message), '*');
+        }
+      }, 2000); // Esperamos 2 segundos para que cargue
+    } catch(e) {
+      console.log('No se pudo establecer velocidad 1.25x:', e);
+    }
+  });
+  
+  // Marcar como "visto" inmediatamente
+  markVideoProgress(true, false);
+  
+  videoStartTime = Date.now();
+  
+  // Simular completado después del tiempo del segmento
+  const segmentDuration = (config.endTime - config.startTime) * 1000;
+  setTimeout(() => {
+    if (videoIframe && videoBackdrop.style.display === 'block') {
+      markVideoProgress(true, true);
+    }
+  }, segmentDuration);
+}
+
+// ⭐ TAMBIÉN agregar esta función para limpiar las clases al cerrar:
+
+// 2. REEMPLAZAR la función closeVideoModal() con esta versión:
+
+function closeVideoModal() {
+  videoBackdrop.style.display = 'none';
+  document.body.style.overflow = '';
+  
+  // ⭐ CORRECCIÓN: Limpiar clases CSS de shorts
+  videoContainer.classList.remove('short');
+  document.querySelector('.sheet').classList.remove('short-video');
+  
+  // Calcular tiempo visto
+  if (videoStartTime) {
+    const watchTime = Math.round((Date.now() - videoStartTime) / 1000);
+    const key = ns('video');
+    const current = readJSON(key, { watched:false, watchTime:0, completed:false });
+    current.watchTime = Math.max(current.watchTime, watchTime);
+    sessionStorage.setItem(key, JSON.stringify(current));
+    videoStartTime = null;
+  }
+  
+  // Limpiar iframe
+  videoContainer.innerHTML = '';
+  videoIframe = null;
+  
+  renderProgressUI();
+}
+
+
+function openVideoModal_00() {
   if (!hasVideo) return;
   
   const config = VIDEO_CONFIG[tema];
@@ -735,7 +855,7 @@ function openVideoModal() {
   }, segmentDuration);
 }
 
-function closeVideoModal() {
+function closeVideoModal_00() {
   videoBackdrop.style.display = 'none';
   document.body.style.overflow = '';
   
