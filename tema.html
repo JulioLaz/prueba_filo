@@ -351,7 +351,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 // }
 
 if (tdata.expositores) {
-  expositorEl.textContent = '<span class="label-strong>Expositores: </span>'+ tdata.expositores;
+  expositorEl.innerHTML = '<span class="label-strong">Expositores: </span>'+ tdata.expositores;
 } else if (tdata.biography) {
   // expositorEl.innerHTML = '<strong>Biografía: </strong>' + tdata.biography;
   expositorEl.innerHTML = '<span class="label-strong">Biografía: </span>' + tdata.biography;
