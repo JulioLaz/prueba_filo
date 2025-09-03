@@ -199,7 +199,7 @@ const AVAILABLE_THEMES = [
     id: "proyecto_T2",
     title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
     description: "Desentrañando el misterio humano con método, investigación y debate.",
-    icon: "📚✨",
+    icon: "✨",
     gradient: "linear-gradient(135deg, #6b00f5 0%, #9b5cff 50%, #cdb7ff 100%)",
     difficulty: "PROYECTO_TRIMESTRAL",
     questions: 0,
@@ -214,7 +214,7 @@ const AVAILABLE_THEMES = [
     id: "proyecto_T3",
     title: "¡A Filosofar! Proyecto Final",
     description: "Desentrañando el misterio humano con método, investigación y debate.",
-    icon: "📚✨",
+    icon: "✨",
     gradient: "linear-gradient(135deg, #f74513ff 0%, #d0e833ff 50%, #42a714ff 100%)",
     difficulty: "PROYECTO_TRIMESTRAL",
     questions: 0,
@@ -383,7 +383,18 @@ function createThemeCard(theme) {
     
     const lockIcon = !isUnlocked ? '🔒' : '';
     const completedBadge = isCompleted ? '<div class="completion-badge">✅</div>' : '';
-    const dificultadFormateada = theme.difficulty.replace(/_/g, ' ');
+    // const dificultadFormateada = theme.difficulty.replace(/_/g, ' ');
+
+    let dificultadFormateada = theme.difficulty;
+
+    if (dificultadFormateada === 'PROYECTO_TRIMESTRAL') {
+    dificultadFormateada = dificultadFormateada
+        .replace(/_/g, ' ')         // Reemplaza guiones bajos por espacios
+        .replace('PROYECTO', 'PROYECTO\n'); // Inserta salto de línea después de "PROYECTO"
+    }
+
+
+
     card.innerHTML = `
         <div class="theme-header">
             <span class="difficulty-badge difficulty-${theme.difficulty}">
