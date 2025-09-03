@@ -188,6 +188,13 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
   border:0;
 }
 
+.video-container.short {
+  padding-bottom: 177.78%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+
 .video-info{
   padding:20px;
   text-align:center;
@@ -196,6 +203,18 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 }
 .video-info h3{ margin:0 0 8px; color:var(--text); }
 .video-info p{ margin:0; color:var(--muted); font-size:14px; }
+
+.sheet.short-video {
+  width: min(450px, 92vw);
+  max-width: 450px;
+}
+
+.video-container.short {
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 10px;
+}
+
 </style>
 
 </head>
@@ -347,28 +366,10 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
   </div>
 </div>
 
+<!-- INSERTA JSON CON DATOS DE LAS TARJETAS EN TOPICS Y DE LOS VIDEOS EN VIDEO_CONFIG -->
 <script src="temas_data.js"></script>
-<!-- <script src="../../js/temas_data.js"></script> -->
 
 <script>
-    // ⭐ NUEVO: Configuración de videos por tema
-   //  const VIDEO_CONFIG = {
-   //    etica_aristoteles: {
-   //      youtubeId: 'qYU0hTprTAc',
-   //      startTime: 13,
-   //      endTime: 360,
-   //      title: 'Aristóteles: Ética a Nicómaco',
-   //      duration: '5:47'
-   //    },
-   //    // Agregar más temas con video según necesites
-   //    // sartre: {
-   //    //   youtubeId: 'otro_video_id',
-   //    //   startTime: 0,
-   //    //   endTime: 300,
-   //    //   title: 'Jean-Paul Sartre: Existencialismo'
-   //    // }
-   //  };
-
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);
     let tema = url.searchParams.get('tema') || url.searchParams.get('theme');
@@ -689,6 +690,7 @@ function openVideoModal() {
   if (!hasVideo) return;
   
   const config = VIDEO_CONFIG[tema];
+  const isShort = config.type === 'short';
   
   videoTopicTitle.textContent = config.title;
   videoSegmentInfo.textContent = `Segmento: ${Math.floor(config.startTime/60)}:${String(config.startTime%60).padStart(2,'0')} - ${Math.floor(config.endTime/60)}:${String(config.endTime%60).padStart(2,'0')} • Duración: ${config.duration} min`;
