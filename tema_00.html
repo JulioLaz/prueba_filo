@@ -14,7 +14,7 @@
     --brand:#6b7cff; --brand-2:#9b6bff; --ok:#2dd4bf; --card:#0f172a;
     --ring:rgba(107,124,255,.35); --radius:18px;
   }
-
+-
   *{ box-sizing:border-box }
   html,body{ height:100% }
   body{
@@ -110,7 +110,7 @@
 .tree ul{list-style:none;margin:0;padding-left:24px;border-left:2px solid #23325a}
 .tree>ul{border-left:none;padding-left:0}
 .tree li{position:relative;margin:12px 0 10px}
-.tree li::before{content:"";position:absolute;top:18px;left:-24px;width:24px;height:2px;background:#23325a}
+.tree li::before{content:\"\";position:absolute;top:18px;left:-24px;width:24px;height:2px;background:#23325a}
 
 .node{
   display:grid;gap:4px;grid-template-columns:auto 1fr;column-gap:10px;
@@ -157,11 +157,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .seg[data-type="mat"]   .fill{ background:linear-gradient(90deg,#34d399,#10b981) }
 .seg[data-type="mapa"]  .fill{ background:linear-gradient(90deg,#f59e0b,#fb923c) }
 
-/* ⭐ NUEVO: Estilo para video */
-.seg[data-type="video"] .fill{ 
-  background:linear-gradient(90deg,#ef4444,#dc2626); /* rojo cinematográfico */
-}
-
 /* clic en segmento */
 .seg.clickable{ cursor:pointer }
 .seg.clickable:hover{ filter:brightness(1.05) }
@@ -170,32 +165,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     color: aliceblue;
     font-weight: 450;
   }
-
-/* ⭐ NUEVO: Estilos para modal de video */
-.video-container{ 
-  position:relative; 
-  padding-bottom:56.25%; /* 16:9 aspect ratio */
-  height:0; 
-  overflow:hidden; 
-  background:#000;
-  border-radius:12px;
-  margin:20px;
-}
-.video-container iframe{ 
-  position:absolute; 
-  top:0; left:0; 
-  width:100%; height:100%;
-  border:0;
-}
-
-.video-info{
-  padding:20px;
-  text-align:center;
-  background:linear-gradient(135deg,rgba(107,124,255,.08), rgba(155,107,255,.05));
-  border-bottom:1px solid #223059;
-}
-.video-info h3{ margin:0 0 8px; color:var(--text); }
-.video-info p{ margin:0; color:var(--muted); font-size:14px; }
 </style>
 
 </head>
@@ -206,7 +175,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       <div class="left">
         <button class="back" id="backToIndex">⬅️ ver temas</button>
         <div class="title">
-          <div class="icon" id="temaIcon">🔑</div>
+          <div class="icon" id="temaIcon">📒</div>
           <div>
             <div id="temaTitle" style="font-weight:700;font-size:18px">Tema</div>
             <!-- <div class="muted" id="temaSubtitle" style="font-size:13px">Actividades</div> -->
@@ -240,16 +209,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         <div class="status">
           <small id="statusCaza">—</small>
           <button class="btn btn-primary" id="goCaza">Abrir</button>
-        </div>
-      </article>
-
-      <!-- ⭐ NUEVO: Tarjeta de Video (solo se muestra si el tema tiene video) -->
-      <article class="card" id="videoCard" style="display:none;">
-        <div class="card-icon">🎬 Video explicativo</div>
-        <p>Mirá la explicación clave del tema.</p>
-        <div class="status">
-          <small id="statusVideo">—</small>
-          <button class="btn btn-primary" id="goVideo">Ver</button>
         </div>
       </article>
 
@@ -289,7 +248,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         <div class="info"><span class="i">ℹ️</span><span id="progressLabel">Tu progreso en este tema</span></div>
         <div id="progressPct">0%</div>
       </div>
-        <!-- ⬇️ nuevo: barra segmentada por actividad -->
+        <!-- ⬇︎ nuevo: barra segmentada por actividad -->
       <div id="segments" class="segments" aria-label="Progreso por actividad"></div>
 
       <div class="bar"><div id="progressBar"></div></div>
@@ -312,25 +271,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
    </div>
    </div>
 
-   <!-- ⭐ NUEVO: Modal Video -->
-   <div id="videoBackdrop" class="sheet-backdrop" style="display:none;">
-     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
-       <div class="sheet-header">
-         <div class="sheet-title" id="videoTitle">🎬 Video Explicativo</div>
-         <button class="sheet-close" id="videoClose" aria-label="Cerrar">×</button>
-       </div>
-       <div class="sheet-body" id="videoBody" style="padding:0;">
-         <div class="video-info">
-           <h3 id="videoTopicTitle">Cargando video...</h3>
-           <p id="videoSegmentInfo">Cargando información...</p>
-         </div>
-         <div class="video-container" id="videoContainer">
-           <!-- El iframe se inyecta aquí -->
-         </div>
-       </div>
-     </div>
-   </div>
-
    <!-- Mapa conceptual (sheet modal) -->
 <div id="mapa-backdrop" class="sheet-backdrop" style="display:none;">
   <div class="mapa-sheet" role="dialog" aria-modal="true" aria-labelledby="mapa-title">
@@ -351,24 +291,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 <!-- <script src="../../js/temas_data.js"></script> -->
 
 <script>
-    // ⭐ NUEVO: Configuración de videos por tema
-   //  const VIDEO_CONFIG = {
-   //    etica_aristoteles: {
-   //      youtubeId: 'qYU0hTprTAc',
-   //      startTime: 13,
-   //      endTime: 360,
-   //      title: 'Aristóteles: Ética a Nicómaco',
-   //      duration: '5:47'
-   //    },
-   //    // Agregar más temas con video según necesites
-   //    // sartre: {
-   //    //   youtubeId: 'otro_video_id',
-   //    //   startTime: 0,
-   //    //   endTime: 300,
-   //    //   title: 'Jean-Paul Sartre: Existencialismo'
-   //    // }
-   //  };
-
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);
     let tema = url.searchParams.get('tema') || url.searchParams.get('theme');
@@ -380,11 +302,11 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     }
     sessionStorage.setItem('tema.active', tema);
 
-    // ⭐ NUEVO: Mostrar tarjeta de video solo si el tema tiene video configurado
-    const hasVideo = VIDEO_CONFIG[tema];
-    if (hasVideo) {
-      document.getElementById('videoCard').style.display = 'flex';
-    }
+    // ===== Datos visibles del tema (podés ampliar este mapa) =====
+    // const TOPICS = {
+    //   sartre: {icon:'🌀', name:'Jean-Paul Sartre', desc:'Existencialismo: libertad, responsabilidad, mala fe y proyecto.'},
+    //   etica: {icon:'⚖️', name:'Ética y Moral', desc:'La moral es lo que hacemos, la ética es lo que pensamos sobre lo que hacemos.'}
+    // };
 
     const tdata = TOPICS[tema] || {icon:'🕵🏼', name: tema, desc:'Explorá las actividades disponibles.'};
 
@@ -433,12 +355,13 @@ if (tdata.expositores) {
 
     // document.getElementById('expositores').textContent  = tdata.expositores;
 
-    // ===== Estado guardado (para mostrar "micro-progreso") =====
+    // ===== Estado guardado (para mostrar “micro-progreso”) =====
 // ==== Estado guardado (helpers) ====
 const ns = (k)=>`tema.${tema}.${k}`;
 const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
 const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
+// Lee estados parciales
 // Lee estados parciales
 function readSectionStates(){
   console.log('🔍 Revisando almacenamiento para tema:', tema);
@@ -478,17 +401,13 @@ function readSectionStates(){
   const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
   const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
                                  : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
-    // 🔧 Crucigrama
+    // 👇 Crucigrama
   const sCruci = readJSON(ns('cruci'), { total:0, solved:0, score:0, completed:false });
   const cruciPct = (sCruci.total && sCruci.total > 0) ? pct(sCruci.solved, sCruci.total) : 0;
 
-  // ⭐ NUEVO: Estado del video
-  const sVideo = readJSON(ns('video'), { watched:false, watchTime:0, completed:false });
-  const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 50 : 0);
+  console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct,cruciPct });
 
-  console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct, cruciPct, videoPct });
-
-  const result = {
+  return {
     quiz: {
       pct: quizPct,
       text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`
@@ -513,16 +432,6 @@ function readSectionStates(){
       ) : 'Sin avances'
     }
   };
-
-  // ⭐ NUEVO: Solo agregar video si el tema lo tiene
-  if (hasVideo) {
-    result.video = {
-      pct: videoPct,
-      text: sVideo.completed ? 'Video completado' : (sVideo.watched ? 'En progreso' : hasVideo.duration + ' min')
-    };
-  }
-
-  return result;
 }
 
 // Pinta segmentos + global
@@ -536,35 +445,16 @@ function renderProgressUI(){
   document.getElementById('statusMapa').textContent     = s.mapa.text;
   document.getElementById('statusCruci').textContent = s.cruci.text;
 
-  // ⭐ NUEVO: Solo actualizar status de video si existe
-  if (hasVideo && s.video) {
-    document.getElementById('statusVideo').textContent = s.video.text;
-  }
-
   // barra segmentada
   const segments = document.getElementById('segments');
   segments.innerHTML = '';
-  
-  // ⭐ MODIFICADO: Array base sin video
-  const baseSegments = [
+  [
     {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
     {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
+    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'}, // ← nuevo
     {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
     {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
-  ];
-
-  // ⭐ NUEVO: Agregar video solo si existe
-  const allSegments = hasVideo ? [
-    {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
-    {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-    {key:'video', label:'🎬 Video',       pct:s.video.pct, target:'goVideo'},
-    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
-    {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
-    {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
-  ] : baseSegments;
-
-  allSegments.forEach(seg=>{
+  ].forEach(seg=>{
     const el = document.createElement('div');
     el.className = 'seg clickable';
     el.dataset.type = seg.key;
@@ -573,12 +463,15 @@ function renderProgressUI(){
     segments.appendChild(el);
   });
 
-  // % global = promedio de todas las actividades (incluyendo video si existe)
-  const parts = hasVideo ? [s.quiz.pct, s.caza.pct, s.video.pct, s.cruci.pct, s.mat.pct, s.mapa.pct]
-                         : [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
+  // % global = promedio simple de las 4 secciones
+  const parts = [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
   const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
   document.getElementById('progressPct').textContent = globalPct + '%';
   document.getElementById('progressBar').style.width = globalPct + '%';
+
+  // const globalPct = Math.round((s.quiz.pct + s.caza.pct + s.mat.pct + s.mapa.pct) / 4);
+  // document.getElementById('progressPct').textContent = globalPct + '%';
+  // document.getElementById('progressBar').style.width = globalPct + '%';
 }
 
 // Llamá una vez al cargar
@@ -630,7 +523,7 @@ function openMaterialSheet(){
   iframe.src = url.toString();
   iframe.loading = 'lazy';
   iframe.addEventListener('load', () => {
-    bumpMaterialProgress(1); // al menos "abrió"
+    bumpMaterialProgress(1); // al menos “abrió”
     try {
       // Simple: si hace scroll dentro del iframe, contamos otra sección
       const w = iframe.contentWindow;
@@ -675,107 +568,12 @@ document.getElementById('goCruci').addEventListener('click', ()=> {
   location.href = u.toString();
 });
 
-// ⭐ NUEVO: Modal de Video
-const videoBackdrop = document.getElementById('videoBackdrop');
-const videoClose = document.getElementById('videoClose');
-const videoContainer = document.getElementById('videoContainer');
-const videoTopicTitle = document.getElementById('videoTopicTitle');
-const videoSegmentInfo = document.getElementById('videoSegmentInfo');
-
-let videoIframe = null;
-let videoStartTime = null;
-
-function openVideoModal() {
-  if (!hasVideo) return;
-  
-  const config = VIDEO_CONFIG[tema];
-  
-  videoTopicTitle.textContent = config.title;
-  videoSegmentInfo.textContent = `Segmento: ${Math.floor(config.startTime/60)}:${String(config.startTime%60).padStart(2,'0')} - ${Math.floor(config.endTime/60)}:${String(config.endTime%60).padStart(2,'0')} • Duración: ${config.duration} min`;
-  
-  videoBackdrop.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  
-  // ⭐ NUEVO: Crear iframe con parámetros para evitar videos relacionados
-  const embedUrl = `https://www.youtube.com/embed/${config.youtubeId}?` +
-    `start=${config.startTime}&` +
-    `end=${config.endTime}&` +
-    `autoplay=1&` +
-    `rel=0&` +                    // Sin videos relacionados
-    `modestbranding=1&` +         // Sin logo de YouTube prominente
-    `iv_load_policy=3&` +         // Sin anotaciones
-    `enablejsapi=1&` +           // API de JavaScript
-    `loop=1&` +                  // ⭐ Loop al terminar
-    `playlist=${config.youtubeId}&` + // ⭐ Playlist de 1 video para que funcione el loop
-    `origin=${window.location.origin}`;
-  
-  videoIframe = document.createElement('iframe');
-  videoIframe.src = embedUrl;
-  videoIframe.style.width = '100%';
-  videoIframe.style.height = '100%';
-  videoIframe.setAttribute('allowfullscreen', '');
-  videoIframe.setAttribute('frameborder', '0');
-  
-  videoContainer.innerHTML = '';
-  videoContainer.appendChild(videoIframe);
-  
-  // Marcar como "visto" inmediatamente
-  markVideoProgress(true, false);
-  
-  videoStartTime = Date.now();
-  
-  // ⭐ NUEVO: Simular completado después del tiempo del segmento
-  const segmentDuration = (config.endTime - config.startTime) * 1000;
-  setTimeout(() => {
-    if (videoIframe && videoBackdrop.style.display === 'block') {
-      markVideoProgress(true, true);
-    }
-  }, segmentDuration);
-}
-
-function closeVideoModal() {
-  videoBackdrop.style.display = 'none';
-  document.body.style.overflow = '';
-  
-  // Calcular tiempo visto
-  if (videoStartTime) {
-    const watchTime = Math.round((Date.now() - videoStartTime) / 1000);
-    const key = ns('video');
-    const current = readJSON(key, { watched:false, watchTime:0, completed:false });
-    current.watchTime = Math.max(current.watchTime, watchTime);
-    sessionStorage.setItem(key, JSON.stringify(current));
-    videoStartTime = null;
-  }
-  
-  // Limpiar iframe
-  videoContainer.innerHTML = '';
-  videoIframe = null;
-  
-  renderProgressUI();
-}
-
-function markVideoProgress(watched, completed) {
-  const key = ns('video');
-  const state = { watched, completed, watchTime: 0 };
-  sessionStorage.setItem(key, JSON.stringify(state));
-  renderProgressUI();
-}
-
-// ⭐ NUEVO: Event listeners para video (solo si tiene video)
-if (hasVideo) {
-  document.getElementById('goVideo').addEventListener('click', openVideoModal);
-  videoClose.addEventListener('click', closeVideoModal);
-  videoBackdrop.addEventListener('click', (e) => {
-    if (e.target === videoBackdrop) closeVideoModal();
-  });
-}
-
 // Actualizar progreso cuando vuelves de otras páginas
 window.addEventListener('focus', () => {
   renderProgressUI();
 });
 
-    // Guardamos "última vez abierto" (opcional)
+    // Guardamos “última vez abierto” (opcional)
     const recordsKey = ns('records');
     const rec = JSON.parse(localStorage.getItem(recordsKey) || '{}');
     rec.lastOpened = new Date().toISOString();
@@ -860,7 +658,7 @@ function openMapaSheet(){
 
   const url = new URL(mapaPath, location);
 
-  url.searchParams.set('embed', '1'); // por si luego querés modo "embed"
+  url.searchParams.set('embed', '1'); // por si luego querés modo “embed”
   
   const ifr = document.createElement('iframe');
   ifr.className = 'sheet-iframe';
@@ -900,15 +698,7 @@ function closeMapaSheet(){
 mapaToggle.addEventListener('click', toggleAll);
 mapaClose.addEventListener('click', closeMapaSheet);
 mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
-
-// ⭐ MODIFICADO: ESC cierra todos los modales
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeMaterialSheet();
-    closeMapaSheet();
-    if (hasVideo) closeVideoModal(); // Solo si tiene video
-  }
-});
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMapaSheet(); });
 </script>
 
 </body>

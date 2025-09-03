@@ -97,3 +97,20 @@ const TOPICS = {
     expositores: ['Platón', ' Nicolás Maquiavelo', ' Thomas Hobbes', ' John Locke', ' Jean-Jacques Rousseau', ' John Rawls', ' Hannah Arendt']
   }
 };
+
+    const VIDEO_CONFIG = {
+      etica_aristoteles: {
+        youtubeId: 'qYU0hTprTAc',
+        startTime: 13,
+        endTime: 360,
+        title: 'Aristóteles: Ética a Nicómaco',
+        duration: '5:47'
+      },
+      // Agregar más temas con video según necesites
+      // sartre: {
+      //   youtubeId: 'otro_video_id',
+      //   startTime: 0,
+      //   endTime: 300,
+      //   title: 'Jean-Paul Sartre: Existencialismo'
+      // }
+    };
