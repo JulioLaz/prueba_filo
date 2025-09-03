@@ -208,7 +208,8 @@ const AVAILABLE_THEMES = [
     //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
     color: "#8a5cf6",
     contentFile: "projects/project_t2.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
-    useModularConfig: true
+    useModularConfig: true,
+    type: 'intermedio'
     },
     {
     id: "proyecto_T3",
@@ -223,7 +224,8 @@ const AVAILABLE_THEMES = [
     //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
     color: "#264befff",
     contentFile: "projects/project_t3.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
-    useModularConfig: true
+    useModularConfig: true,
+    type: 'intermedio'
     }
 
 ];
@@ -383,21 +385,33 @@ function createThemeCard(theme) {
     
     const lockIcon = !isUnlocked ? '🔒' : '';
     const completedBadge = isCompleted ? '<div class="completion-badge">✅</div>' : '';
-    // const dificultadFormateada = theme.difficulty.replace(/_/g, ' ');
+
+    // FORMATO A DIFICULTAD EN TARGET DE TEMAS EXTREMO SUP DERECHO
 
     let dificultadFormateada = theme.difficulty;
+    let style_difficulty = '';
 
-    if (dificultadFormateada === 'PROYECTO_TRIMESTRAL') {
-    dificultadFormateada = dificultadFormateada
-        .replace(/_/g, ' ')         // Reemplaza guiones bajos por espacios
-        .replace('PROYECTO', 'PROYECTO\n'); // Inserta salto de línea después de "PROYECTO"
+    if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL') {
+        dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
+
+        if (dificultadFormateada == 'basico' || dificultadFormateada == 'UNIDAD I') {
+            style_difficulty = 'basico';
+        }
+        else if (dificultadFormateada == 'intermedio' || dificultadFormateada == 'UNIDAD II') {
+            style_difficulty = 'intermedio';
+        }
+        else if (dificultadFormateada == 'avanzado' || dificultadFormateada == 'UNIDAD III') {
+            style_difficulty = 'avanzado';
+        }
+    } else {
+        dificultadFormateada = 'PROYECTO';
+        style_difficulty = 'PROYECTO';
     }
-
 
 
     card.innerHTML = `
         <div class="theme-header">
-            <span class="difficulty-badge difficulty-${theme.difficulty}">
+            <span class="difficulty-badge difficulty-${style_difficulty}">
                 ${dificultadFormateada}
             </span>
             ${completedBadge}

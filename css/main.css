@@ -330,6 +330,10 @@ body::before {
     background: var(--danger-gradient);
     color: white;
 }
+.difficulty-PROYECTO {
+    background: var(--primary-gradient);
+    color: white;
+}
 
 /* Estados especiales de las cards */
 .theme-card.completed .theme-header::after {

@@ -342,13 +342,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
     const expositorEl = document.getElementById('expositores');
 
-// if (tdata.expositores) {
-//   expositorEl.textContent = 'Expositores: ' + tdata.expositores;
-// } else if (tdata.biography) {
-//   expositorEl.textContent = '<strong>Biografía: </strong>' + tdata.biography;
-// } else {
-//   expositorEl.textContent = ''; // O podés ocultarlo si no hay contenido
-// }
 
 if (tdata.expositores) {
   expositorEl.innerHTML = '<span class="label-strong">Expositores: </span>'+ tdata.expositores;
@@ -359,9 +352,6 @@ if (tdata.expositores) {
 } else {
   expositorEl.textContent = ''; // O podés ocultarlo si no hay contenido
 }
-
-
-
 
     // document.getElementById('expositores').textContent  = tdata.expositores;
 
