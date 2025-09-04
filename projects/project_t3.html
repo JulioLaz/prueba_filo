@@ -92,7 +92,7 @@
         background: linear-gradient(90deg, #667eea, #764ba2);
         position: relative;
         overflow: hidden;
-        transition: width 0.7s ease;
+        transition: width 0.2s ease;
         }
 
         /* Efecto de luz animada */
@@ -103,8 +103,8 @@
         left: -50%;
         width: 50%;
         height: 100%;
-        background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
-        animation: shine 2s linear infinite;
+        background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+        animation: shine 1.5s linear infinite;
         }
 
         @keyframes shine {
@@ -127,12 +127,12 @@
         .badge {
             background: rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
-            padding: 8px 15px;
+            padding: 6px 5px;
             border-radius: 25px;
             font-size: 13px;
             transition: all 0.4s ease;
             border: 1px solid rgba(255,255,255,0.1);
-            width: 10rem;
+            width: 10em;
             text-align: center;
         }
 
@@ -551,7 +551,7 @@
             }
             
             .subtitle {
-                font-size: 1.1em;
+                font-size: 1em;
             }
             
             .topic-card {
@@ -594,10 +594,10 @@
         <!-- Pantalla de selección de tema -->
         <div class="screen active" id="selectionScreen">
             <div class="selection-screen">
-                <h1 class="main-title">🤔 Las Grandes Preguntas</h1>
+                <h2 class="main-title">🤔 Las Grandes Preguntas</h2>
                 <p class="subtitle">
                     Proyecto Final de Filosofía: Aplica el método científico adaptado a la investigación filosófica 
-                    para explorar las preguntas más profundas de la existencia humana.
+                    para explorar las preguntas más profundas de la existencia humana. Seleciona tu tema!
                 </p>
                 
                 <div class="topics-grid">
@@ -624,7 +624,7 @@
                         <span class="topic-icon">🌟</span>
                         <h3 class="topic-title">El Sentido de la Vida</h3>
                         <p class="topic-description">
-                            ¿tiene sentido nuestra existencia? ¿Cuál es el propósito de nuestra existencia? Investiga si existe un sentido universal o si cada individuo debe construir su propio significado.
+                            ¿Tiene sentido nuestra existencia? ¿Cuál es el propósito de nuestra existencia? Investiga si existe un sentido universal o si cada individuo debe construir su propio significado.
                         </p>
                         <div class="topic-preview">
                             <h4>Investigarás:</h4>
