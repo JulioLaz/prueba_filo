@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="Cuestionarios interactivos de filosofía. Elige tu tema: Ética, Epistemología, Lógica y más.">
+    <meta name="description"
+        content="Cuestionarios interactivos de filosofía. Elige tu tema: Ética, Epistemología, Lógica y más.">
     <meta name="keywords" content="filosofía, ética, epistemología, lógica, cuestionarios, educación">
     <meta name="author" content="Cuestionarios de Filosofía">
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Filosofía Quiz">
-    
+
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
     <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"> -->
-    
+
     <title>🎓 Cuestionarios de Filosofía</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <div class="container">
         <header class="main-header">
@@ -42,9 +46,9 @@
             </div>
         </div>
 
-        <div class="search-container" >
-        <!-- <div class="search-container" style="display: none;"> -->
-            <input type="text" id="search-input" placeholder="🔍 Buscar temas..." class="search-input" >
+        <div class="search-container">
+            <!-- <div class="search-container" style="display: none;"> -->
+            <input type="text" id="search-input" placeholder="🔍 Buscar temas..." class="search-input">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="UNIDAD_I">Unidad I</button>
@@ -77,9 +81,22 @@
                 <h2>ℹ️ Acerca del proyecto</h2>
             </div>
             <div class="modal-body">
+
+                <h3>👤 Autor y derechos</h3>
+                <p><strong>Autor:</strong> Julio Alberto Lazarte —
+                    <a href="mailto:julioalbertolazarte00@gmail.com">julioalbertolazarte00@gmail.com</a> ·
+                    <!-- <a href="https://github.com/JulioLaz" target="_blank" rel="noopener">GitHub</a> · -->
+                    <a href="https://cv-lazarte-julio.web.app/" target="_blank" rel="noopener">Sitio</a>
+                </p>
+                <p>
+                    <span id="cr-line">© <span data-year-range>2023–<span data-year></span></span>
+                        Julio Alberto Lazarte. Todos los derechos reservados.</span>
+                </p>
+
                 <h3>🎯 Objetivo</h3>
-                <p>Esta aplicación te permite evaluar y profundizar tus conocimientos en diferentes áreas de la filosofía a través de cuestionarios interactivos.</p>
-                
+                <p>Esta aplicación te permite evaluar y profundizar tus conocimientos en diferentes áreas de la
+                    filosofía a través de cuestionarios interactivos.</p>
+
                 <h3>🎮 Cómo funciona</h3>
                 <ul>
                     <li>📚 <strong>Selecciona un tema</strong> que te interese</li>
@@ -98,35 +115,24 @@
                     <li>✅ Estadísticas detalladas de progreso</li>
                 </ul>
 
-<h3>👤 Autor y derechos</h3>
-<p><strong>Autor:</strong> Julio Alberto Lazarte —
-  <a href="mailto:julioalbertolazarte00@gmail.com">julioalbertolazarte00@gmail.com</a> ·
-  <!-- <a href="https://github.com/JulioLaz" target="_blank" rel="noopener">GitHub</a> · -->
-  <a href="https://cv-lazarte-julio.web.app/" target="_blank" rel="noopener">Sitio</a>
-</p>
-<p>
-  <span id="cr-line">© <span data-year-range>2023–<span data-year></span></span>
-  Julio Alberto Lazarte. Todos los derechos reservados.</span>
-</p>
-
-
                 <h3>🏗️ Tecnología</h3>
                 <p>Desarrollado con HTML5, CSS3 y JavaScript moderno. Optimizado para GitHub Pages.</p>
             </div>
         </div>
     </div>
 
-<footer id="app-footer" class="footer">
-  <div class="footer-inner">
-    <span>© <span data-year-range>2023–<span data-year></span></span> Julio Alberto Lazarte</span>
-    <span class="sep">•</span>
-    <span>App de Filosofía (web)</span>
-    <!-- <span class="sep">•</span> -->
-    <!-- <a href="https://github.com/JulioLaz/prueba_filo" target="_blank" rel="noopener">Código fuente</a> -->
-  </div>
-</footer>
+    <footer id="app-footer" class="footer">
+        <div class="footer-inner">
+            <span>© <span data-year-range>2023–<span data-year></span></span> Julio Alberto Lazarte</span>
+            <span class="sep">•</span>
+            <span>App de Filosofía (web)</span>
+            <!-- <span class="sep">•</span> -->
+            <!-- <a href="https://github.com/JulioLaz/prueba_filo" target="_blank" rel="noopener">Código fuente</a> -->
+        </div>
+    </footer>
 
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
