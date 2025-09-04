@@ -197,7 +197,7 @@ const AVAILABLE_THEMES = [
     },
     {
     id: "proyecto_T2",
-    title: "¡A Filosofar! Proyecto de Antropología Filosófica (Cierre 2º Trimestre)",
+    title: "Proyecto de Antropología Filosófica",
     description: "Desentrañando el misterio humano con método, investigación y debate.",
     icon: "✨",
     gradient: "linear-gradient(135deg, #6b00f5 0%, #9b5cff 50%, #cdb7ff 100%)",
@@ -213,7 +213,7 @@ const AVAILABLE_THEMES = [
     },
     {
     id: "proyecto_T3",
-    title: "¡A Filosofar! Proyecto Final",
+    title: "Proyecto Final",
     description: "Desentrañando el misterio humano con método, investigación y debate.",
     icon: "✨",
     gradient: "linear-gradient(135deg, #f74513ff 0%, #d0e833ff 50%, #42a714ff 100%)",
