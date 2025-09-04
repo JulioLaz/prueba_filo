@@ -115,7 +115,7 @@ const TOPICS = {
         type: 'short'
       },
       utilitarismo: { //https://youtu.be/YU19bTA656I?si=ns1OzYx5AZyJPQKV
-        youtubeId: 'ns1OzYx5AZyJPQKV',
+        youtubeId: 'YU19bTA656I',
         startTime: 1,
         endTime: 127,
         title: 'Utilitarismo',
@@ -123,7 +123,7 @@ const TOPICS = {
         // type: 'short'
       },
       pragmatismo: { // https://youtu.be/jHix800gjVQ?si=CXmquX1hq3CiA3fa
-        youtubeId: 'CXmquX1hq3CiA3fa',
+        youtubeId: 'jHix800gjVQ',
         startTime: 1,
         endTime: 158,
         title: 'Pragmatismo',
@@ -131,7 +131,7 @@ const TOPICS = {
         // type: 'short'
       },
       etica_kant: { // https://youtube.com/shorts/SD8kiCDupYc?si=_HISyvC6m5cmJH0i
-        youtubeId: '_HISyvC6m5cmJH0i',
+        youtubeId: 'SD8kiCDupYc',
         startTime: 1,
         endTime: 127,
         title: 'Etica de Kant',
@@ -144,7 +144,7 @@ const TOPICS = {
         endTime: 127,
         title: 'Antropocentrismo',
         duration: '57',
-        type: 'short'
+        // type: 'short'
       },
       // Agregar más temas con video según necesites
       // sartre: {
