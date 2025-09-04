@@ -103,7 +103,7 @@ const TOPICS = {
         youtubeId: 'qYU0hTprTAc',
         startTime: 13,
         endTime: 360,
-        title: 'Aristóteles: Ética a Nicómaco',
+        title: 'Ética de Aristóteles',
         duration: '5:47'
       }, // https://www.youtube.com/shorts/0s73cG7fJoA
       hedonismo: {
