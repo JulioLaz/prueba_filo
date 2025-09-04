@@ -79,11 +79,41 @@
             margin: 15px 0;
         }
 
-        .progress-fill {
+        /* .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #667eea, #764ba2);
             transition: width 0.7s ease;
             width: 0%;
+        } */
+
+        .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        position: relative;
+        overflow: hidden;
+        transition: width 0.7s ease;
+        }
+
+        /* Efecto de luz animada */
+        .progress-fill::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+        animation: shine 2s linear infinite;
+        }
+
+        @keyframes shine {
+        0% {
+            left: -50%;
+        }
+        100% {
+            left: 100%;
+        }
         }
 
         .badges {
@@ -91,6 +121,7 @@
             gap: 12px;
             flex-wrap: wrap;
             margin-top: 15px;
+            justify-content: space-evenly;
         }
 
         .badge {
@@ -101,6 +132,8 @@
             font-size: 13px;
             transition: all 0.4s ease;
             border: 1px solid rgba(255,255,255,0.1);
+            width: 10rem;
+            text-align: center;
         }
 
         .badge.earned {
@@ -145,6 +178,7 @@
             font-size: 2.5em;
             background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
             text-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -536,10 +570,11 @@
         <!-- Header -->
         <div class="project-header">
             <div class="header-controls">
+                <h2><span style="font-size: 2em">🕵🏼</span> Proyecto Final</h2>
+                <!-- <h3 style="margin-left: .5em;">🤔 Proyecto Final: <span id="currentTopic">Selecciona tu tema</span></h3> -->
                 <!-- <button class="btn home" onclick="window.location.href='index.html'">← Inicio</button> -->
-                <button class="btn home" onclick="window.location.href='../index.html'">← Inicio</button>
+                <button class="btn home" onclick="window.location.href='../index.html'">Inicio</button>
 
-                <h2>🤔 Proyecto Final: <span id="currentTopic">Selecciona tu tema</span></h2>
             </div>
             
             <div class="progress-section">
@@ -571,8 +606,7 @@
                         <span class="topic-icon">⛪</span>
                         <h3 class="topic-title">La Existencia de Dios</h3>
                         <p class="topic-description">
-                            ¿Es posible demostrar la existencia de Dios? Explora los argumentos históricos 
-                            a favor y en contra, desde el argumento cosmológico hasta el problema del mal.
+                            ¿Existe dios? ¿Es posible demostrar la existencia de Dios? Explora los argumentos históricos a favor y en contra, desde el argumento cosmológico hasta el problema del mal.
                         </p>
                         <div class="topic-preview">
                             <h4>Investigarás:</h4>
@@ -590,8 +624,7 @@
                         <span class="topic-icon">🌟</span>
                         <h3 class="topic-title">El Sentido de la Vida</h3>
                         <p class="topic-description">
-                            ¿Cuál es el propósito de nuestra existencia? Investiga si existe un sentido universal 
-                            o si cada individuo debe construir su propio significado.
+                            ¿tiene sentido nuestra existencia? ¿Cuál es el propósito de nuestra existencia? Investiga si existe un sentido universal o si cada individuo debe construir su propio significado.
                         </p>
                         <div class="topic-preview">
                             <h4>Investigarás:</h4>
@@ -821,6 +854,9 @@
     </div>
 
     <script>
+        // carga el efecto de la barra de avance
+        // window.addEventListener("load", () => {document.getElementById("progressFill").style.width = "100%";});
+
         // Estado del proyecto
         let projectState = {
             currentTopic: null,
