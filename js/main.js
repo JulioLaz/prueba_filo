@@ -127,7 +127,8 @@ const AVAILABLE_THEMES = [
         difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 15,
-        prerequisites: ['etica'],
+        prerequisites: [],
+        // prerequisites: ['etica'],
         color: '#d4af37',
         contentFile: 'content/antropocentrismo.html'
     },    
