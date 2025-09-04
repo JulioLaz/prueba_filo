@@ -825,3 +825,13 @@ async function getThemeConfig(themeId) {
     // Usar configuración legacy
     return legacyTheme ? convertLegacyToModular(legacyTheme) : null;
 }
+
+  (function () {
+    const y = new Date().getFullYear();
+    document.querySelectorAll('[data-year]').forEach(el => el.textContent = y);
+    // Si querés que cuando cambie el año quede "2023–2026", mantiene el "desde" fijo:
+    document.querySelectorAll('[data-year-range]').forEach(el => {
+      const since = (el.getAttribute('data-since') || '2023').trim();
+      el.innerHTML = `${since}–<span data-year>${y}</span>`;
+    });
+  })();
