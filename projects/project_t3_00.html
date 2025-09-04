@@ -79,34 +79,41 @@
             margin: 15px 0;
         }
 
-        .progress-fill {
+        /* .progress-fill {
             height: 100%;
-            width: 0%;
             background: linear-gradient(90deg, #667eea, #764ba2);
-            position: relative;
-            overflow: hidden;
-            transition: width 0.2s ease;
+            transition: width 0.7s ease;
+            width: 0%;
+        } */
+
+        .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        position: relative;
+        overflow: hidden;
+        transition: width 0.2s ease;
         }
 
         /* Efecto de luz animada */
         .progress-fill::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -50%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
-            animation: shine 1.5s linear infinite;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+        animation: shine 1.5s linear infinite;
         }
 
         @keyframes shine {
-            0% {
-                left: -50%;
-            }
-            100% {
-                left: 100%;
-            }
+        0% {
+            left: -50%;
+        }
+        100% {
+            left: 100%;
+        }
         }
 
         .badges {
@@ -564,7 +571,10 @@
         <div class="project-header">
             <div class="header-controls">
                 <h2><span style="font-size: 2em">🕵🏼</span> Proyecto Final</h2>
+                <!-- <h3 style="margin-left: .5em;">🤔 Proyecto Final: <span id="currentTopic">Selecciona tu tema</span></h3> -->
+                <!-- <button class="btn home" onclick="window.location.href='index.html'">← Inicio</button> -->
                 <button class="btn home" onclick="window.location.href='../index.html'">Inicio</button>
+
             </div>
             
             <div class="progress-section">
@@ -576,7 +586,7 @@
                     <span class="badge" id="badge2">💭 Hipótesis</span>
                     <span class="badge" id="badge3">⚔️ Argumentación</span>
                     <span class="badge" id="badge4">🎯 Conclusiones</span>
-                    <span class="badge" id="badge5">📋 Presentación</span>
+                    <span class="badge" id="badge5">📝 Presentación</span>
                 </div>
             </div>
         </div>
@@ -587,7 +597,7 @@
                 <h2 class="main-title">🤔 Las Grandes Preguntas</h2>
                 <p class="subtitle">
                     Proyecto Final de Filosofía: Aplica el método científico adaptado a la investigación filosófica 
-                    para explorar las preguntas más profundas de la existencia humana. ¡Selecciona tu tema!
+                    para explorar las preguntas más profundas de la existencia humana. Seleciona tu tema!
                 </p>
                 
                 <div class="topics-grid">
@@ -596,7 +606,7 @@
                         <span class="topic-icon">⛪</span>
                         <h3 class="topic-title">La Existencia de Dios</h3>
                         <p class="topic-description">
-                            ¿Existe Dios? ¿Es posible demostrar la existencia de Dios? Explora los argumentos históricos a favor y en contra, desde el argumento cosmológico hasta el problema del mal.
+                            ¿Existe dios? ¿Es posible demostrar la existencia de Dios? Explora los argumentos históricos a favor y en contra, desde el argumento cosmológico hasta el problema del mal.
                         </p>
                         <div class="topic-preview">
                             <h4>Investigarás:</h4>
@@ -657,7 +667,7 @@
 
                 <!-- Fase 1: Pregunta de Investigación -->
                 <div class="phase-content active" id="phase1">
-                    <h2 class="section-title">🔬 FASE 1: Pregunta de Investigación</h2>
+                    <h2 class="section-title">🔍 FASE 1: Pregunta de Investigación</h2>
                     <div class="content-section">
                         <h3 style="color: #e8eaed; margin-bottom: 15px;">Define tu pregunta filosófica</h3>
                         <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">
@@ -844,12 +854,8 @@
     </div>
 
     <script>
-        // Carga el efecto de la barra de avance
-        window.addEventListener("load", function() {
-            console.log("🚀 Iniciando aplicación...");
-            document.getElementById("progressFill").style.width = "20%";
-            console.log("✅ Barra de progreso inicializada");
-        });
+        // carga el efecto de la barra de avance
+        window.addEventListener("load", () => {document.getElementById("progressFill").style.width = "100%";});
 
         // Estado del proyecto
         let projectState = {
@@ -912,104 +918,63 @@
         };
 
         function selectTopic(topicNumber) {
-            console.log(`🎯 Seleccionando tema ${topicNumber}...`);
-            
-            if (!topics[topicNumber]) {
-                console.error(`❌ Tema ${topicNumber} no encontrado`);
-                return;
-            }
-            
             projectState.currentTopic = topicNumber;
+            document.getElementById('currentTopic').textContent = topics[topicNumber].title;
+            document.getElementById('selectionScreen').classList.remove('active');
+            document.getElementById('workScreen').classList.add('active');
             
-            try {
-                document.getElementById('selectionScreen').classList.remove('active');
-                document.getElementById('workScreen').classList.add('active');
-                
-                // Cargar contenido específico del tema
-                loadTopicContent(topicNumber);
-                updateProgress();
-                updatePhaseNavigation();
-                
-                console.log(`✅ Tema "${topics[topicNumber].title}" seleccionado correctamente`);
-            } catch (error) {
-                console.error(`❌ Error al seleccionar tema: ${error.message}`);
-            }
+            // Cargar contenido específico del tema
+            loadTopicContent(topicNumber);
+            updateProgress();
+            updatePhaseNavigation();
         }
 
         function loadTopicContent(topicNumber) {
-            console.log(`📚 Cargando contenido del tema ${topicNumber}...`);
+            const topic = topics[topicNumber];
             
-            try {
-                const topic = topics[topicNumber];
-                
-                // Cargar fuentes recomendadas
-                const sourcesContainer = document.getElementById('recommendedSources');
-                if (sourcesContainer) {
-                    sourcesContainer.innerHTML = '<ul style="color: rgba(255,255,255,0.7); padding-left: 20px; line-height: 1.8;">' + 
-                        topic.recommendedSources.map(source => `<li>${source}</li>`).join('') + '</ul>';
-                }
-                
-                // Cargar preguntas de reflexión final
-                const questionsContainer = document.getElementById('finalReflectionQuestions');
-                if (questionsContainer) {
-                    questionsContainer.innerHTML = '<ul style="color: rgba(255,255,255,0.7); padding-left: 20px; line-height: 1.8;">' + 
-                        topic.reflectionQuestions.map(question => `<li>${question}</li>`).join('') + '</ul>';
-                }
-                
-                console.log(`✅ Contenido del tema cargado correctamente`);
-            } catch (error) {
-                console.error(`❌ Error al cargar contenido del tema: ${error.message}`);
-            }
+            // Cargar fuentes recomendadas
+            const sourcesContainer = document.getElementById('recommendedSources');
+            sourcesContainer.innerHTML = '<ul style="color: rgba(255,255,255,0.7); padding-left: 20px; line-height: 1.8;">' + 
+                topic.recommendedSources.map(source => `<li>${source}</li>`).join('') + '</ul>';
+            
+            // Cargar preguntas de reflexión final
+            const questionsContainer = document.getElementById('finalReflectionQuestions');
+            questionsContainer.innerHTML = '<ul style="color: rgba(255,255,255,0.7); padding-left: 20px; line-height: 1.8;">' + 
+                topic.reflectionQuestions.map(question => `<li>${question}</li>`).join('') + '</ul>';
         }
 
         function showPhase(phaseNumber) {
-            console.log(`📖 Mostrando fase ${phaseNumber}...`);
-            
-            try {
-                const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
-                if (phaseBtn && phaseBtn.disabled) {
-                    console.warn(`⚠️ Fase ${phaseNumber} está bloqueada`);
-                    return;
-                }
+            const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
+            if (phaseBtn.disabled) return;
 
-                document.querySelectorAll('.phase-btn').forEach(btn => btn.classList.remove('active'));
-                if (phaseBtn) phaseBtn.classList.add('active');
+            document.querySelectorAll('.phase-btn').forEach(btn => btn.classList.remove('active'));
+            phaseBtn.classList.add('active');
 
-                document.querySelectorAll('.phase-content').forEach(content => content.classList.remove('active'));
-                const phaseContent = document.getElementById(`phase${phaseNumber}`);
-                if (phaseContent) phaseContent.classList.add('active');
+            document.querySelectorAll('.phase-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`phase${phaseNumber}`).classList.add('active');
 
-                projectState.currentPhase = phaseNumber;
-                updatePhaseNavigation();
-                
-                console.log(`✅ Fase ${phaseNumber} mostrada correctamente`);
-            } catch (error) {
-                console.error(`❌ Error al mostrar fase: ${error.message}`);
-            }
+            projectState.currentPhase = phaseNumber;
+            updatePhaseNavigation();
         }
 
         function updatePhaseNavigation() {
-            try {
-                const prevBtn = document.getElementById('prevPhaseBtn');
-                const nextBtn = document.getElementById('nextPhaseBtn');
-                const indicator = document.getElementById('phaseIndicator');
-                
-                if (prevBtn) {
-                    prevBtn.style.display = projectState.currentPhase > 1 ? 'block' : 'none';
-                }
-                
-                if (nextBtn) {
-                    nextBtn.style.display = 
-                        (projectState.currentPhase < 5 && projectState.completedPhases.includes(projectState.currentPhase)) 
-                        ? 'block' : 'none';
-                }
-                
-                if (indicator) {
-                    indicator.textContent = `Fase ${projectState.currentPhase} de 5`;
-                }
-            } catch (error) {
-                console.error(`❌ Error al actualizar navegación: ${error.message}`);
+            const prevBtn = document.getElementById('prevPhaseBtn');
+            const nextBtn = document.getElementById('nextPhaseBtn');
+            const indicator = document.getElementById('phaseIndicator');
+            
+            if (projectState.currentPhase > 1) {
+                prevBtn.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'none';
             }
+            
+            if (projectState.currentPhase < 5 && projectState.completedPhases.includes(projectState.currentPhase)) {
+                nextBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'none';
+            }
+            
+            indicator.textContent = `Fase ${projectState.currentPhase} de 5`;
         }
 
         function goToPreviousPhase() {
@@ -1025,267 +990,191 @@
         }
 
         function validateQuestion() {
-            console.log("🔍 Validando pregunta de investigación...");
-            
-            try {
-                const question = document.getElementById('researchQuestion').value.trim();
-                
-                if (question.length < 30) {
-                    alert('Tu pregunta necesita ser más específica y desarrollada. Piensa en los aspectos más profundos del tema.');
-                    return;
-                }
-                
-                if (!question.includes('¿') && !question.includes('?')) {
-                    alert('Recuerda formular una PREGUNTA clara que guíe tu investigación.');
-                    return;
-                }
-
-                projectState.data.researchQuestion = question;
-                completePhase(1);
-                unlockPhase(2);
-                
-                setTimeout(() => {
-                    showPhase(2);
-                }, 1000);
-                
-                console.log("✅ Pregunta validada correctamente");
-            } catch (error) {
-                console.error(`❌ Error al validar pregunta: ${error.message}`);
+            const question = document.getElementById('researchQuestion').value.trim();
+            if (question.length < 30) {
+                alert('Tu pregunta necesita ser más específica y desarrollada. Piensa en los aspectos más profundos del tema.');
+                return;
             }
+            
+            if (!question.includes('¿') && !question.includes('?')) {
+                alert('Recuerda formular una PREGUNTA clara que guíe tu investigación.');
+                return;
+            }
+
+            projectState.data.researchQuestion = question;
+            completePhase(1);
+            unlockPhase(2);
+            
+            setTimeout(() => {
+                showPhase(2);
+            }, 1000);
         }
 
         function addBibliographyEntry() {
-            try {
-                const container = document.getElementById('bibliographyContainer');
-                const count = container.children.length + 1;
-                const newEntry = document.createElement('div');
-                newEntry.className = 'argument-item';
-                newEntry.innerHTML = `
-                    <h4 style="color: #667eea; margin-bottom: 10px;">Perspectiva ${count}:</h4>
-                    <textarea class="question-input" style="min-height: 100px;" 
-                            placeholder="Filósofo/Corriente y su posición sobre tu pregunta..."></textarea>
-                `;
-                container.appendChild(newEntry);
-                
-                console.log(`✅ Entrada bibliográfica ${count} agregada`);
-            } catch (error) {
-                console.error(`❌ Error al agregar entrada: ${error.message}`);
-            }
+            const container = document.getElementById('bibliographyContainer');
+            const count = container.children.length + 1;
+            const newEntry = document.createElement('div');
+            newEntry.className = 'argument-item';
+            newEntry.innerHTML = `
+                <h4 style="color: #667eea; margin-bottom: 10px;">Perspectiva ${count}:</h4>
+                <textarea class="question-input" style="min-height: 100px;" 
+                        placeholder="Filósofo/Corriente y su posición sobre tu pregunta..."></textarea>
+            `;
+            container.appendChild(newEntry);
         }
 
         function validateBibliography() {
-            console.log("📚 Validando bibliografía...");
-            
-            try {
-                const bibliographyEntries = Array.from(document.querySelectorAll('#bibliographyContainer textarea'))
-                    .map(textarea => textarea.value.trim())
-                    .filter(text => text.length > 20);
+            const bibliographyEntries = Array.from(document.querySelectorAll('#bibliographyContainer textarea'))
+                .map(textarea => textarea.value.trim())
+                .filter(text => text.length > 20);
 
-                if (bibliographyEntries.length < 3) {
-                    alert('Necesitas investigar al menos 3 perspectivas diferentes sobre tu pregunta. La riqueza filosófica viene de la diversidad de enfoques.');
-                    return;
-                }
-
-                projectState.data.bibliography = bibliographyEntries;
-                completePhase(2);
-                unlockPhase(3);
-                
-                setTimeout(() => {
-                    showPhase(3);
-                }, 1000);
-                
-                console.log("✅ Bibliografía validada correctamente");
-            } catch (error) {
-                console.error(`❌ Error al validar bibliografía: ${error.message}`);
+            if (bibliographyEntries.length < 3) {
+                alert('Necesitas investigar al menos 3 perspectivas diferentes sobre tu pregunta. La riqueza filosófica viene de la diversidad de enfoques.');
+                return;
             }
+
+            projectState.data.bibliography = bibliographyEntries;
+            completePhase(2);
+            unlockPhase(3);
+            
+            setTimeout(() => {
+                showPhase(3);
+            }, 1000);
         }
 
         function validateHypothesis() {
-            console.log("💭 Validando hipótesis...");
-            
-            try {
-                const hypothesis = document.getElementById('hypothesis').value.trim();
-                const reasoning = document.getElementById('hypothesisReasoning').value.trim();
+            const hypothesis = document.getElementById('hypothesis').value.trim();
+            const reasoning = document.getElementById('hypothesisReasoning').value.trim();
 
-                if (hypothesis.length < 30) {
-                    alert('Tu hipótesis necesita ser más desarrollada. Debe ser una respuesta clara a tu pregunta de investigación.');
-                    return;
-                }
-
-                if (reasoning.length < 50) {
-                    alert('Explica mejor por qué crees en tu hipótesis. ¿Qué te lleva a esta conclusión?');
-                    return;
-                }
-
-                projectState.data.hypothesis = hypothesis;
-                projectState.data.hypothesisReasoning = reasoning;
-                completePhase(3);
-                unlockPhase(4);
-                
-                setTimeout(() => {
-                    showPhase(4);
-                }, 1000);
-                
-                console.log("✅ Hipótesis validada correctamente");
-            } catch (error) {
-                console.error(`❌ Error al validar hipótesis: ${error.message}`);
+            if (hypothesis.length < 30) {
+                alert('Tu hipótesis necesita ser más desarrollada. Debe ser una respuesta clara a tu pregunta de investigación.');
+                return;
             }
+
+            if (reasoning.length < 50) {
+                alert('Explica mejor por qué crees en tu hipótesis. ¿Qué te lleva a esta conclusión?');
+                return;
+            }
+
+            projectState.data.hypothesis = hypothesis;
+            projectState.data.hypothesisReasoning = reasoning;
+            completePhase(3);
+            unlockPhase(4);
+            
+            setTimeout(() => {
+                showPhase(4);
+            }, 1000);
         }
 
         function addProArgument() {
-            try {
-                const container = document.getElementById('proArgumentsContainer');
-                const count = container.children.length + 1;
-                const newArgument = document.createElement('div');
-                newArgument.className = 'argument-item';
-                newArgument.innerHTML = `
-                    <textarea class="question-input" style="min-height: 80px;" 
-                            placeholder="Argumento ${count}: ¿Por qué tu hipótesis es correcta?"></textarea>
-                `;
-                container.appendChild(newArgument);
-                
-                console.log(`✅ Argumento a favor ${count} agregado`);
-            } catch (error) {
-                console.error(`❌ Error al agregar argumento a favor: ${error.message}`);
-            }
+            const container = document.getElementById('proArgumentsContainer');
+            const count = container.children.length + 1;
+            const newArgument = document.createElement('div');
+            newArgument.className = 'argument-item';
+            newArgument.innerHTML = `
+                <textarea class="question-input" style="min-height: 80px;" 
+                        placeholder="Argumento ${count}: ¿Por qué tu hipótesis es correcta?"></textarea>
+            `;
+            container.appendChild(newArgument);
         }
 
         function addContraArgument() {
-            try {
-                const container = document.getElementById('contraArgumentsContainer');
-                const count = container.children.length + 1;
-                const newArgument = document.createElement('div');
-                newArgument.className = 'argument-item';
-                newArgument.innerHTML = `
-                    <textarea class="question-input" style="min-height: 80px;" 
-                            placeholder="Objeción ${count}: ¿Qué dirían los críticos?"></textarea>
-                `;
-                container.appendChild(newArgument);
-                
-                console.log(`✅ Argumento en contra ${count} agregado`);
-            } catch (error) {
-                console.error(`❌ Error al agregar argumento en contra: ${error.message}`);
-            }
+            const container = document.getElementById('contraArgumentsContainer');
+            const count = container.children.length + 1;
+            const newArgument = document.createElement('div');
+            newArgument.className = 'argument-item';
+            newArgument.innerHTML = `
+                <textarea class="question-input" style="min-height: 80px;" 
+                        placeholder="Objeción ${count}: ¿Qué dirían los críticos?"></textarea>
+            `;
+            container.appendChild(newArgument);
         }
 
         function validateArguments() {
-            console.log("⚔️ Validando argumentación...");
-            
-            try {
-                const proArgs = Array.from(document.querySelectorAll('#proArgumentsContainer textarea'))
-                    .map(textarea => textarea.value.trim())
-                    .filter(text => text.length > 20);
+            const proArgs = Array.from(document.querySelectorAll('#proArgumentsContainer textarea'))
+                .map(textarea => textarea.value.trim())
+                .filter(text => text.length > 20);
 
-                const contraArgs = Array.from(document.querySelectorAll('#contraArgumentsContainer textarea'))
-                    .map(textarea => textarea.value.trim())
-                    .filter(text => text.length > 20);
+            const contraArgs = Array.from(document.querySelectorAll('#contraArgumentsContainer textarea'))
+                .map(textarea => textarea.value.trim())
+                .filter(text => text.length > 20);
 
-                const rebuttal = document.getElementById('rebuttalResponse').value.trim();
+            const rebuttal = document.getElementById('rebuttalResponse').value.trim();
 
-                if (proArgs.length < 2) {
-                    alert('Necesitas al menos 2 argumentos sólidos a favor de tu hipótesis.');
-                    return;
-                }
-
-                if (contraArgs.length < 2) {
-                    alert('Un buen filósofo considera las objeciones. Necesitas al menos 2 argumentos en contra.');
-                    return;
-                }
-
-                if (rebuttal.length < 50) {
-                    alert('Debes responder a las objeciones. ¿Cómo defiendes tu hipótesis ante las críticas?');
-                    return;
-                }
-
-                projectState.data.proArguments = proArgs;
-                projectState.data.contraArguments = contraArgs;
-                projectState.data.rebuttalResponse = rebuttal;
-                
-                completePhase(4);
-                unlockPhase(5);
-                
-                setTimeout(() => {
-                    showPhase(5);
-                }, 1000);
-                
-                console.log("✅ Argumentación validada correctamente");
-            } catch (error) {
-                console.error(`❌ Error al validar argumentos: ${error.message}`);
+            if (proArgs.length < 2) {
+                alert('Necesitas al menos 2 argumentos sólidos a favor de tu hipótesis.');
+                return;
             }
+
+            if (contraArgs.length < 2) {
+                alert('Un buen filósofo considera las objeciones. Necesitas al menos 2 argumentos en contra.');
+                return;
+            }
+
+            if (rebuttal.length < 50) {
+                alert('Debes responder a las objeciones. ¿Cómo defiendes tu hipótesis ante las críticas?');
+                return;
+            }
+
+            projectState.data.proArguments = proArgs;
+            projectState.data.contraArguments = contraArgs;
+            projectState.data.rebuttalResponse = rebuttal;
+            
+            completePhase(4);
+            unlockPhase(5);
+            
+            setTimeout(() => {
+                showPhase(5);
+            }, 1000);
         }
 
         function completePhase(phaseNumber) {
-            try {
-                if (!projectState.completedPhases.includes(phaseNumber)) {
-                    projectState.completedPhases.push(phaseNumber);
-                    const badge = document.getElementById(`badge${phaseNumber}`);
-                    if (badge) badge.classList.add('earned');
-                    updateProgress();
-                    updatePhaseNavigation();
-                    
-                    const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
-                    if (phaseBtn) phaseBtn.classList.add('completed');
-                    
-                    console.log(`✅ Fase ${phaseNumber} completada`);
-                }
-            } catch (error) {
-                console.error(`❌ Error al completar fase: ${error.message}`);
+            if (!projectState.completedPhases.includes(phaseNumber)) {
+                projectState.completedPhases.push(phaseNumber);
+                document.getElementById(`badge${phaseNumber}`).classList.add('earned');
+                updateProgress();
+                updatePhaseNavigation();
+                
+                const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
+                phaseBtn.classList.add('completed');
             }
         }
 
         function unlockPhase(phaseNumber) {
-            try {
-                const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
-                if (phaseBtn) {
-                    phaseBtn.disabled = false;
-                    phaseBtn.style.opacity = '1';
-                    console.log(`🔓 Fase ${phaseNumber} desbloqueada`);
-                }
-            } catch (error) {
-                console.error(`❌ Error al desbloquear fase: ${error.message}`);
-            }
+            const phaseBtn = document.querySelector(`[onclick="showPhase(${phaseNumber})"]`);
+            phaseBtn.disabled = false;
+            phaseBtn.style.opacity = '1';
         }
 
         function updateProgress() {
-            try {
-                const progress = (projectState.completedPhases.length / 5) * 100;
-                const progressFill = document.getElementById('progressFill');
-                if (progressFill) {
-                    progressFill.style.width = progress + '%';
-                }
-                console.log(`📊 Progreso actualizado: ${progress}%`);
-            } catch (error) {
-                console.error(`❌ Error al actualizar progreso: ${error.message}`);
-            }
+            const progress = (projectState.completedPhases.length / 5) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
         }
 
         function generateFinalReport() {
-            console.log("📋 Generando trabajo final...");
-            
-            try {
-                const finalAnswer = document.getElementById('finalAnswer').value.trim();
-                const personalReflection = document.getElementById('personalReflection').value.trim();
+            const finalAnswer = document.getElementById('finalAnswer').value.trim();
+            const personalReflection = document.getElementById('personalReflection').value.trim();
 
-                if (finalAnswer.length < 50) {
-                    alert('Completa tu respuesta final antes de generar el trabajo.');
-                    return;
-                }
+            if (finalAnswer.length < 50) {
+                alert('Completa tu respuesta final antes de generar el trabajo.');
+                return;
+            }
 
-                if (personalReflection.length < 50) {
-                    alert('Agrega una reflexión personal sobre lo que has aprendido.');
-                    return;
-                }
+            if (personalReflection.length < 50) {
+                alert('Agrega una reflexión personal sobre lo que has aprendido.');
+                return;
+            }
 
-                projectState.data.finalAnswer = finalAnswer;
-                projectState.data.personalReflection = personalReflection;
+            projectState.data.finalAnswer = finalAnswer;
+            projectState.data.personalReflection = personalReflection;
 
-                const reportContent = `TRABAJO FINAL DE FILOSOFÍA
+            const reportContent = `TRABAJO FINAL DE FILOSOFÍA
 ${topics[projectState.currentTopic].title}
 
 Estudiante: [Tu nombre]
 Fecha: ${new Date().toLocaleDateString()}
 
-═══════════════════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
 
 1. PREGUNTA DE INVESTIGACIÓN
 ${projectState.data.researchQuestion}
@@ -1316,45 +1205,41 @@ ${finalAnswer}
 REFLEXIÓN PERSONAL:
 ${personalReflection}
 
-═══════════════════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════
 Trabajo completado usando el método científico adaptado a la filosofía.
 Progreso: ${projectState.completedPhases.length}/5 fases completadas.`;
 
-                // Mostrar en nueva ventana
-                const newWindow = window.open('', '_blank');
-                newWindow.document.write(`
-                    <html>
-                        <head>
-                            <title>Trabajo Final - ${topics[projectState.currentTopic].title}</title>
-                            <style>
-                                body { 
-                                    font-family: 'Times New Roman', serif; 
-                                    padding: 40px; 
-                                    line-height: 1.8; 
-                                    max-width: 800px; 
-                                    margin: 0 auto;
-                                    background: #1a1a2e;
-                                    color: #e8eaed;
-                                }
-                                h1 { color: #667eea; text-align: center; }
-                                pre { 
-                                    white-space: pre-wrap; 
-                                    font-family: 'Times New Roman', serif; 
-                                    font-size: 12px; 
-                                }
-                            </style>
-                        </head>
-                        <body>
-                            <pre>${reportContent}</pre>
-                        </body>
-                    </html>
-                `);
-                
-                completePhase(5);
-                console.log("✅ Trabajo final generado correctamente");
-            } catch (error) {
-                console.error(`❌ Error al generar trabajo final: ${error.message}`);
-            }
+            // Mostrar en nueva ventana
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Trabajo Final - ${topics[projectState.currentTopic].title}</title>
+                        <style>
+                            body { 
+                                font-family: 'Times New Roman', serif; 
+                                padding: 40px; 
+                                line-height: 1.8; 
+                                max-width: 800px; 
+                                margin: 0 auto;
+                                background: #1a1a2e;
+                                color: #e8eaed;
+                            }
+                            h1 { color: #667eea; text-align: center; }
+                            pre { 
+                                white-space: pre-wrap; 
+                                font-family: 'Times New Roman', serif; 
+                                font-size: 12px; 
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <pre>${reportContent}</pre>
+                    </body>
+                </html>
+            `);
+            
+            completePhase(5);
         }
 
         function openPresentationGuide() {
@@ -1403,9 +1288,7 @@ Progreso: ${projectState.completedPhases.length}/5 fases completadas.`;
             alert(guideContent);
         }
 
-        // Inicialización
         console.log('🤔 Proyecto Final de Filosofía iniciado correctamente');
-        console.log('✅ Todas las funciones JavaScript cargadas');
     </script>
 </body>
 </html>
