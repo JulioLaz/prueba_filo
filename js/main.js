@@ -61,7 +61,8 @@ const AVAILABLE_THEMES = [
         difficulty: 'UNIDAD_III',
         questions: 12,
         timeEstimate: 10,
-        prerequisites: ['etica'],
+        prerequisites: [],
+        // prerequisites: ['etica'],
         color: '#d4af37',
         contentFile: 'themes/etica_aristoteles/content.html'
     },
