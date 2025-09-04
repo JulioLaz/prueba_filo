@@ -1,394 +1,1062 @@
-<style>
-/* ====== Tema oscuro elegante, encapsulado ====== */
-.material-dark{
-  /* paleta y espaciados */
-  --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
-  --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
-  --space:14px; --space-md:18px; --space-lg:22px;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Utilitarismo: La Mayor Felicidad para el Mayor Número (Estudio Progresivo)</title>
+  <style>
+    /* ====== Tema oscuro elegante, encapsulado ====== */
+    .material-dark{
+      --bg:#0e1426; --panel:#111a31; --text:#cfd8ff; --muted:#9aa6d1; --title:#eaf0ff;
+      --accent:#6b7cff; --accent-2:#b074ff; --border:#223059; --radius:16px;
+      --success:#10b981; --error:#ef4444; --warning:#f59e0b;
 
-  background:
-    radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font: 16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  padding: var(--space-lg);
-  border-radius: 12px;
-}
+      background:
+        radial-gradient(1200px 500px at 70% -120px, rgba(107,124,255,.18), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font:16px/1.65 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      padding:22px;
+      border-radius:12px;
+      max-width:900px;
+      margin:0 auto;
+    }
 
-/* tipografía */
-.material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
-  color:var(--title);
-  margin: 0 0 .4em;
-  line-height: 1.25;
-}
-.material-dark h1{ font-size: 28px; }
-.material-dark h2{ font-size: 22px; }
-.material-dark h3{ font-size: 18px; }
-.material-dark p{ margin: .6em 0; color:var(--text); }
-.material-dark em{ color:var(--text); }
-.material-dark strong{ color:var(--title); }
+    /* tipografía */
+    .material-dark h1,.material-dark h2,.material-dark h3,.material-dark h4{
+      color:var(--title);
+      margin:0 0 .4em;
+      line-height:1.25;
+    }
+    .material-dark h1{ font-size:28px; }
+    .material-dark h2{ font-size:22px; }
+    .material-dark h3{ font-size:18px; }
+    .material-dark p{ margin:.6em 0; color:var(--text); }
+    .material-dark em{ color:var(--text); }
+    .material-dark strong{ color:var(--title); }
+    .material-dark ul{ padding-left:1.2rem; margin:.6em 0; }
+    .material-dark li::marker{ color:#8aa1ff; }
+    .material-dark blockquote{
+      margin:16px 0; padding:14px 16px; border-left:4px solid var(--accent);
+      background:linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
+      border-radius:10px; color:var(--text);
+    }
+    .highlight-box{
+      background:linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
+      border:1px solid var(--border);
+      border-left:4px solid var(--accent);
+      padding:22px; margin:22px 0; border-radius:var(--radius);
+      box-shadow:0 10px 30px -18px rgba(0,0,0,.6);
+      position:relative;
+    }
 
-/* listas y citas */
-.material-dark ul{ padding-left: 1.2rem; margin:.6em 0; }
-.material-dark li::marker{ color: #8aa1ff; }
-.material-dark blockquote{
-  margin: 16px 0;
-  padding: 14px 16px;
-  border-left: 4px solid var(--accent);
-  background: linear-gradient(180deg, rgba(107,124,255,.12), rgba(107,124,255,.06));
-  border-radius: 10px;
-  color: var(--text);
-}
+    /* Secciones progresivas */
+    .study-section{ margin-bottom:2rem; opacity:.3; transition:all .5s ease; border-radius:var(--radius); overflow:hidden; }
+    .study-section.active{ opacity:1; transform:scale(1.02); }
+    .study-section.completed{ opacity:.7; border-left:4px solid var(--success); }
 
-/* enlaces y código */
-.material-dark a{ color:#aab6ff; text-decoration: underline; }
-.material-dark code,.material-dark pre{
-  background:#0b1325;
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.material-dark code{ padding:.15rem .35rem }
-.material-dark pre{ padding:10px 12px; overflow:auto }
+    /* Sistema de evaluación */
+    .comprehension-check{
+      margin-top:1.5rem; padding:20px;
+      background:linear-gradient(135deg, rgba(107,124,255,.08), rgba(176,116,255,.06));
+      border-radius:12px; border:1px solid var(--border);
+      opacity:0; transform:translateY(20px); transition:all .6s ease;
+    }
+    .comprehension-check.show{ opacity:1; transform:translateY(0); }
+    .check-title{ font-size:16px; font-weight:600; margin-bottom:15px; color:var(--accent); display:flex; align-items:center; gap:8px; }
+    .options-container{ display:grid; gap:10px; }
+    .option{
+      background:var(--panel); border:2px solid var(--border); border-radius:10px;
+      padding:12px 16px; cursor:pointer; transition:all .3s ease; font-size:14px; line-height:1.4;
+    }
+    .option:hover{ border-color:var(--accent); background:linear-gradient(135deg, rgba(107,124,255,.1), rgba(176,116,255,.08)); transform:translateX(4px); }
+    .option.correct{ border-color:var(--success); background:linear-gradient(135deg, rgba(16,185,129,.15), rgba(16,185,129,.08)); animation:correctPulse .6s ease; }
+    .option.incorrect{ border-color:var(--error); background:linear-gradient(135deg, rgba(239,68,68,.15), rgba(239,68,68,.08)); animation:shake .5s ease; }
 
-/* imágenes */
-.material-dark img{ max-width:100%; height:auto; border-radius:10px; }
+    @keyframes correctPulse{ 0%{transform:scale(1)} 50%{transform:scale(1.02)} 100%{transform:scale(1)} }
+    @keyframes shake{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
 
-/* caja de “destacado” */
-.material-dark .highlight-box{
-  background: linear-gradient(135deg, rgba(107,124,255,.12) 0%, rgba(176,116,255,.08) 100%);
-  border:1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
-}
+    /* Indicador de progreso */
+    .progress-header{
+      position:sticky; top:0; background:rgba(14,20,38,.95); backdrop-filter:blur(10px);
+      padding:16px 22px; margin:-22px -22px 30px -22px; border-bottom:1px solid var(--border); z-index:100;
+    }
+    .progress-bar{ width:100%; height:8px; background:var(--panel); border-radius:4px; overflow:hidden; margin-top:12px; }
+    .progress-fill{ height:100%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:4px; width:0%; transition:width .8s ease; }
+    .progress-text{ display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); }
 
-/* separaciones finas en móvil */
-@media (max-width: 600px){
-  .material-dark{ padding: 16px; }
-  .material-dark h1{ font-size: 24px }
-}
-</style>
+    /* Efectos de celebración */
+    .celebration{ position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); font-size:48px; z-index:1000; pointer-events:none; animation:celebrate 2s ease forwards; }
+    @keyframes celebrate{ 0%{opacity:0; transform:translate(-50%,-50%) scale(.5)} 50%{opacity:1; transform:translate(-50%,-50%) scale(1.2)} 100%{opacity:0; transform:translate(-50%,-50%) scale(1)} }
 
+    /* Responsive */
+    @media (max-width:600px){ .material-dark{ padding:16px; } .material-dark h1{ font-size:24px; } .highlight-box{ padding:16px; } }
 
-<main class="material-dark">
-<h2>🎯 UTILITARISMO: La mayor felicidad para el mayor número de personas</h2>
-<p><em>John Stuart Mill (1806-1873) - El refinamiento de la ética consecuencialista</em></p>
+    /* Tablas responsivas */
+    .comparison-table{ width:100%; border-collapse:collapse; margin:20px 0; }
+    .comparison-table th, .comparison-table td{ padding:15px; border:1px solid var(--border); text-align:left; }
+    .comparison-table th{ background:var(--panel); color:var(--title); font-weight:600; }
+    .comparison-table tr:nth-child(even){ background:rgba(107,124,255,.03); }
+    @media (max-width:600px){
+      .comparison-table, .comparison-table thead, .comparison-table tbody, .comparison-table th, .comparison-table td, .comparison-table tr{
+        display:block;
+      }
+      .comparison-table thead tr{ position:absolute; top:-9999px; left:-9999px; }
+      .comparison-table tr{ margin:0 0 1rem 0; padding:.5rem; background:var(--panel); border-radius:8px; }
+      .comparison-table td{ border:none; position:relative; padding-left:50%; }
+      .comparison-table td:before{ content:attr(data-label); position:absolute; left:6px; width:45%; padding-right:10px; white-space:nowrap; color:var(--accent); font-weight:600; }
+    }
 
-<div class="highlight-box">
-    <h4>🎯 Principio fundamental</h4>
-    <p><strong>El Principio de la Mayor Felicidad:</strong> Las acciones son correctas en la medida en que tienden a promover la felicidad; incorrectas en cuanto tienden a producir lo contrario de la felicidad.</p>
-    <ul>
-        <li>📈 <strong>Maximizar:</strong> La mayor cantidad de felicidad/bienestar</li>
-        <li>👥 <strong>Para:</strong> El mayor número de personas</li>
-        <li>⚖️ <strong>Criterio:</strong> Las consecuencias de nuestras acciones</li>
-    </ul>
-</div>
+    .quote-box{
+      background:linear-gradient(135deg, rgba(107,124,255,.15), rgba(176,116,255,.08));
+      border:2px solid var(--accent); border-radius:12px; padding:20px; margin:20px 0;
+      position:relative; font-style:italic;
+    }
+    .quote-box::before{
+      content:'"'; position:absolute; top:-10px; left:20px; font-size:60px; color:var(--accent);
+      background:var(--bg); padding:0 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 18 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
 
-<h3>🧠 Más Allá de lo Básico: La Sofisticación del Utilitarismo</h3>
+    <h1>🎯 UTILITARISMO: La Mayor Felicidad para el Mayor Número</h1>
+    <p><em>John Stuart Mill (1806-1873) — Una ética que evalúa las acciones por sus <strong>consecuencias</strong> y busca maximizar el <strong>bienestar general</strong> de la humanidad.</em></p>
 
-<p>El utilitarismo de John Stuart Mill no es solo una regla simple; es un <strong>marco filosófico con matices profundos</strong> que responde a críticas complejas y ofrece una guía práctica para la vida moral y política.</p>
+    <!-- 1. Principio fundamental -->
+    <div class="study-section active" data-section="principio-fundamental">
+      <div class="highlight-box">
+        <h3>🎯 El Principio de la Mayor Felicidad</h3>
+        <div class="quote-box">
+          Las acciones son correctas en la medida en que tienden a promover la felicidad; incorrectas en cuanto tienden a producir lo contrario de la felicidad.
+        </div>
+        <p>El utilitarismo se basa en tres elementos clave:</p>
+        <ul>
+          <li>📈 <strong>Maximizar:</strong> La mayor cantidad de felicidad/bienestar posible</li>
+          <li>👥 <strong>Para:</strong> El mayor número de personas (no solo para uno mismo)</li>
+          <li>⚖️ <strong>Criterio:</strong> Evaluamos la moralidad por las consecuencias de nuestras acciones</li>
+        </ul>
+        <p><strong>Idea central:</strong> Una acción es moralmente buena si produce más felicidad total que dolor total en el mundo.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Verificación de comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo evalúa las acciones por sus consecuencias y busca maximizar la felicidad general</div>
+          <div class="option">El utilitarismo solo se preocupa por la felicidad personal</div>
+          <div class="option">El utilitarismo ignora las consecuencias de las acciones</div>
+          <div class="option">El utilitarismo rechaza la búsqueda de la felicidad</div>
+        </div>
+      </div>
+    </div>
 
-<h3>⭐ La Distinción entre Placeres Superiores e Inferiores</h3>
+    <!-- 2. John Stuart Mill -->
+    <div class="study-section" data-section="mill-biografia">
+      <div class="highlight-box">
+        <h3>👨‍🎓 John Stuart Mill: El Refinador del Utilitarismo</h3>
+        <ul>
+          <li>📅 <strong>Vida:</strong> 1806-1873 (67 años de vida productiva)</li>
+          <li>🏛️ <strong>Lugar:</strong> Inglaterra, durante la Revolución Industrial</li>
+          <li>📚 <strong>Educación:</strong> Educado intensamente desde niño por su padre, Jeremy Bentham (creador del utilitarismo básico)</li>
+          <li>✍️ <strong>Obras principales:</strong> "Utilitarismo" (1863), "Sobre la libertad" (1859), "La sujeción de las mujeres" (1869)</li>
+          <li>🗳️ <strong>Activismo:</strong> Defensor de los derechos de las mujeres, sufragio universal y reformas sociales</li>
+          <li>💡 <strong>Innovación:</strong> Distinguió entre placeres superiores e inferiores, refinando el utilitarismo primitivo</li>
+        </ul>
+        <p><strong>Contexto histórico:</strong> Vivió durante una época de grandes cambios sociales e industriales, lo que influyó en su preocupación por la justicia social.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">📚 Check rápido</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Mill refinó el utilitarismo distinguiendo entre placeres superiores e inferiores</div>
+          <div class="option">Mill rechazó completamente las ideas de Bentham</div>
+          <div class="option">Mill solo se dedicó a la filosofía teórica</div>
+          <div class="option">Mill vivió en la antigua Grecia</div>
+        </div>
+      </div>
+    </div>
 
-<p>Una de las principales críticas al utilitarismo es que <em>"reduce la vida humana a una simple búsqueda de placer, equiparando a las personas con animales"</em>. Mill respondió con una distinción fundamental:</p>
+    <!-- 3. Placeres superiores e inferiores -->
+    <div class="study-section" data-section="placeres-superiores-inferiores">
+      <div class="highlight-box">
+        <h3>⭐ Placeres Superiores vs. Inferiores</h3>
+        <p>Una crítica común al utilitarismo era: <em>"¿No reduce la vida humana a una simple búsqueda animal de placer?"</em></p>
+        <p><strong>Mill respondió con una distinción crucial:</strong></p>
+        
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Características</th>
+              <th>Ejemplos</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Tipo"><strong>🐷 Placeres Inferiores</strong></td>
+              <td data-label="Características">Físicos, compartidos con animales, inmediatos</td>
+              <td data-label="Ejemplos">Comer, beber, gratificación sexual básica</td>
+              <td data-label="Valor">Necesarios pero limitados</td>
+            </tr>
+            <tr>
+              <td data-label="Tipo"><strong>🧠 Placeres Superiores</strong></td>
+              <td data-label="Características">Intelectuales, exclusivos humanos, duraderos</td>
+              <td data-label="Ejemplos">Arte, amistad, conocimiento, creatividad</td>
+              <td data-label="Valor">Superior en calidad</td>
+            </tr>
+          </tbody>
+        </table>
 
-<div class="highlight-box">
-    <h4>🐷 Placeres Inferiores</h4>
-    <ul>
-        <li>🍖 <strong>Compartidos con otros animales:</strong> comer, beber, gratificación sexual</li>
-        <li>💪 <strong>Relacionados con:</strong> Supervivencia y necesidades físicas básicas</li>
-        <li>⚡ <strong>Características:</strong> Inmediatos, intensos, pero limitados</li>
-        <li>✅ <strong>Necesarios</strong> para la vida, pero no definen nuestra humanidad</li>
-    </ul>
-</div>
+        <div class="quote-box">
+          Es mejor ser un ser humano insatisfecho que un cerdo satisfecho; mejor ser Sócrates insatisfecho que un necio satisfecho.
+        </div>
+        <p><strong>Significado:</strong> Nuestra capacidad para placeres intelectuales y emocionales complejos nos eleva por encima de la mera satisfacción animal.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🎨 Comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Los placeres superiores son intelectuales y tienen mayor calidad que los inferiores</div>
+          <div class="option">Los placeres inferiores son más valiosos que los superiores</div>
+          <div class="option">No hay diferencia entre tipos de placeres</div>
+          <div class="option">Mill rechazaba todos los placeres físicos</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>🌟 Placeres Superiores</h4>
-    <ul>
-        <li>🧠 <strong>Exclusivos de los seres humanos:</strong> Se relacionan con nuestras facultades mentales e intelectuales</li>
-        <li>🤝 <strong>Ejemplos:</strong> El gozo de la amistad, contemplación de una obra de arte, satisfacción de un logro creativo, placer de aprender</li>
-        <li>💎 <strong>Características:</strong> Duraderos, complejos, enriquecedores</li>
-        <li>🎯 <strong>Valor:</strong> Superior en calidad, no solo cantidad</li>
-    </ul>
-</div>
+    <!-- 4. La prueba de Mill -->
+    <div class="study-section" data-section="prueba-mill">
+      <div class="highlight-box">
+        <h3>🧪 La Prueba de Mill para Identificar Placeres Superiores</h3>
+        <p><strong>Criterio experimental:</strong> Un placer es superior a otro si las personas que han experimentado ambos prefieren consistentemente el primero, incluso sabiendo que viene con más insatisfacción.</p>
+        
+        <h4>🔬 ¿Cómo funciona esta prueba?</h4>
+        <ul>
+          <li>🎓 <strong>Personas educadas</strong> que conocen tanto placeres intelectuales como físicos</li>
+          <li>⚖️ <strong>Eligen consistentemente</strong> actividades como leer, crear, debatir ideas</li>
+          <li>😔 <strong>Prefieren esto</strong> incluso si a veces les trae frustración o dificultad</li>
+          <li>🎯 <strong>Esta preferencia universal</strong> demuestra la superioridad objetiva</li>
+        </ul>
 
-<h4>🐷 vs 🧠 La Famosa Comparación de Mill</h4>
+        <h4>📱 Ejemplo moderno</h4>
+        <p>Imagina dos opciones para pasar una tarde:</p>
+        <ul>
+          <li><strong>Opción A:</strong> Ver videos virales sin parar (placer inmediato, fácil)</li>
+          <li><strong>Opción B:</strong> Leer un libro desafiante o aprender una habilidad nueva</li>
+        </ul>
+        <p>Las personas que han probado ambas opciones generalmente sienten más satisfacción duradera con la opción B, aunque requiera más esfuerzo.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔍 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La prueba de Mill se basa en las preferencias de quienes han experimentado ambos tipos de placeres</div>
+          <div class="option">La prueba de Mill es puramente teórica</div>
+          <div class="option">Solo los filósofos pueden aplicar esta prueba</div>
+          <div class="option">La prueba demuestra que los placeres físicos son superiores</div>
+        </div>
+      </div>
+    </div>
 
-<blockquote style="border:1px solid #4169e1;border-radius:0 5px 5px 0; padding: 20px; border-left: 5px solid #4169e1; margin: 20px 0;">
-    <p><strong>"Es mejor ser un ser humano insatisfecho que un cerdo satisfecho"</strong></p>
-    <p><em>— John Stuart Mill</em></p>
-</blockquote>
+    <!-- 5. Utilitarismo no es egoísmo -->
+    <div class="study-section" data-section="no-egoismo">
+      <div class="highlight-box">
+        <h3>🚫 El Utilitarismo NO es Egoísmo</h3>
+        <p>A menudo se malinterpreta el utilitarismo como <em>"haz lo que te haga más feliz"</em>. Esto es <strong>completamente incorrecto</strong>.</p>
 
-<div class="highlight-box">
-    <h4>💡 ¿Qué significa esta frase?</h4>
-    <ul>
-        <li>🎭 <strong>Nuestra capacidad</strong> para placeres intelectuales y emocionales nos eleva</li>
-        <li>😔 <strong>La infelicidad</strong> que acompaña a la reflexión es preferible a la ignorancia</li>
-        <li>🏆 <strong>Los placeres superiores</strong> tienen tal valor que justifican cierta insatisfacción</li>
-        <li>🧬 <strong>Lo que nos hace humanos</strong> es más valioso que la mera satisfacción animal</li>
-    </ul>
-</div>
+        <h4>👁️ El Principio del Espectador Imparcial</h4>
+        <p>Cuando evaluamos una acción, debemos actuar como un <strong>"espectador imparcial"</strong>:</p>
+        <ul>
+          <li>🚫 <strong>NO dar peso especial</strong> a nuestra propia felicidad</li>
+          <li>⚖️ <strong>Considerar equitativamente</strong> las consecuencias para todos los afectados</li>
+          <li>🔍 <strong>Evaluar objetivamente</strong> los resultados totales</li>
+          <li>❤️ <strong>Actuar con genuino altruismo</strong> basado en la razón</li>
+        </ul>
 
-<h4>🧪 La Prueba de Mill</h4>
+        <h4>🌍 ¿Quién cuenta en el cálculo utilitarista?</h4>
+        <ul>
+          <li>👨‍👩‍👧‍👦 <strong>Familia y amigos cercanos</strong></li>
+          <li>🏘️ <strong>Comunidad local</strong></li>
+          <li>🌍 <strong>Sociedad en general</strong></li>
+          <li>🌱 <strong>Generaciones futuras</strong></li>
+          <li>🐾 <strong>Incluso los animales</strong> (según Mill, también pueden sufrir)</li>
+        </ul>
 
-<p>Para Mill, <strong>un ser humano que ha experimentado ambos tipos de placeres siempre preferirá los superiores</strong>. Esta preferencia no se basa en prejuicio, sino en conocimiento experimental de ambos tipos de satisfacción.</p>
+        <p><strong>Resultado:</strong> El utilitarismo es una ética <em>profundamente altruista</em>, no egoísta.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧩 Verificación</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo requiere considerar imparcialmente el bienestar de todos los afectados</div>
+          <div class="option">El utilitarismo es una filosofía egoísta</div>
+          <div class="option">Solo importa nuestra propia felicidad en el utilitarismo</div>
+          <div class="option">El utilitarismo excluye a las generaciones futuras</div>
+        </div>
+      </div>
+    </div>
 
-<h3>🚫 El Utilitarismo NO es Egoísmo</h3>
+    <!-- 6. Utilitarismo del acto vs regla -->
+    <div class="study-section" data-section="acto-vs-regla">
+      <div class="highlight-box">
+        <h3>📋 Utilitarismo del Acto vs. Utilitarismo de la Regla</h3>
+        <p>Una pregunta crucial: <em>¿Debemos evaluar cada acción individualmente o seguir reglas morales generales?</em></p>
 
-<p>A primera vista, el utilitarismo podría parecer una justificación del egoísmo, pero es <strong>todo lo contrario</strong>.</p>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Enfoque</th>
+              <th>Ejemplo</th>
+              <th>Ventaja</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Tipo"><strong>🎯 Utilitarismo del Acto</strong></td>
+              <td data-label="Enfoque">Evalúa cada acto individual por sus consecuencias específicas</td>
+              <td data-label="Ejemplo">Mentir para salvar una vida en esta situación concreta</td>
+              <td data-label="Ventaja">Flexibilidad total, adaptación a cada caso</td>
+            </tr>
+            <tr>
+              <td data-label="Tipo"><strong>📜 Utilitarismo de la Regla</strong></td>
+              <td data-label="Enfoque">Sigue reglas que generalmente maximizan la felicidad</td>
+              <td data-label="Ejemplo">La regla "no mentir" generalmente crea confianza social</td>
+              <td data-label="Ventaja">Estabilidad, confianza social, eficiencia práctica</td>
+            </tr>
+          </tbody>
+        </table>
 
-<div class="highlight-box">
-    <h4>⚖️ El Principio de Imparcialidad Estricta</h4>
-    <p>Cuando evaluamos una acción, <strong>NO</strong> debemos considerar solo nuestra propia felicidad, sino la de <strong>TODOS</strong> los afectados:</p>
-    <ul>
-        <li>👨‍👩‍👧‍👦 <strong>Familia</strong> y amigos</li>
-        <li>🏘️ <strong>Comunidad</strong> local</li>
-        <li>🌍 <strong>Sociedad</strong> en general</li>
-        <li>🌱 <strong>Futuras generaciones</strong></li>
-    </ul>
-</div>
+        <h4>📜 ¿Por qué Mill prefiere el Utilitarismo de la Regla?</h4>
+        <ul>
+          <li>📈 <strong>Experiencia histórica:</strong> Las reglas morales se desarrollaron porque funcionan</li>
+          <li>🤝 <strong>Confianza social:</strong> Necesitamos predecibilidad en las relaciones</li>
+          <li>⚡ <strong>Eficiencia práctica:</strong> No podemos calcular constantemente</li>
+          <li>🎯 <strong>Mejores resultados:</strong> A largo plazo produce más bienestar</li>
+        </ul>
 
-<h4>👁️ El Espectador Imparcial</h4>
+        <h4>⚠️ Excepciones Justificadas</h4>
+        <p>Las reglas pueden romperse solo en situaciones extremas donde:</p>
+        <ul>
+          <li>🔥 <strong>Circunstancias muy inusuales</strong></li>
+          <li>📊 <strong>El beneficio es mucho mayor</strong> que seguir la regla</li>
+          <li>🛡️ <strong>Se previene un daño significativo</strong></li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">⚖️ Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Mill prefiere el utilitarismo de la regla porque crea estabilidad y confianza social</div>
+          <div class="option">El utilitarismo del acto es siempre superior</div>
+          <div class="option">Las reglas morales nunca deben romperse</div>
+          <div class="option">No hay diferencia práctica entre ambos tipos</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>🎭 Cómo actuar como espectador imparcial</h4>
-    <ol>
-        <li>🚫 <strong>No dar peso especial</strong> a nuestra propia felicidad</li>
-        <li>⚖️ <strong>Sopesar equitativamente</strong> las consecuencias para todos</li>
-        <li>🔍 <strong>Evaluar objetivamente</strong> los resultados de nuestras acciones</li>
-        <li>❤️ <strong>Actuar con genuino altruismo</strong> basado en razón</li>
-    </ol>
-</div>
+    <!-- 7. Aplicaciones políticas -->
+    <div class="study-section" data-section="aplicaciones-politicas">
+      <div class="highlight-box">
+        <h3>🏛️ El Utilitarismo en la Política y Sociedad</h3>
+        <p>El utilitarismo no es solo una ética personal; es una <strong>herramienta poderosa para diseñar políticas públicas</strong>.</p>
 
-<p>Esto convierte al utilitarismo en una <strong>ética profundamente altruista</strong>, no egoísta.</p>
+        <h4>🎓 Educación Universal</h4>
+        <ul>
+          <li>🧠 <strong>Desarrolla</strong> la capacidad para placeres superiores en toda la población</li>
+          <li>🚀 <strong>Promueve</strong> el progreso social y tecnológico</li>
+          <li>💡 <strong>Crea</strong> ciudadanos más capaces de tomar decisiones racionales</li>
+          <li>🌍 <strong>Beneficia</strong> a la sociedad entera a largo plazo</li>
+        </ul>
 
-<h3>🏛️ La Dimensión Política y Social del Utilitarismo</h3>
+        <h4>💰 Impuestos Progresivos</h4>
+        <p><strong>Justificación utilitarista:</strong></p>
+        <ul>
+          <li>💸 <strong>Utilidad marginal decreciente:</strong> $1000 extra significa mucho más para alguien pobre</li>
+          <li>🎯 <strong>Redistribución eficiente:</strong> Transferir de ricos a pobres aumenta felicidad total</li>
+          <li>📈 <strong>Reducción del sufrimiento:</strong> Eliminar pobreza extrema tiene alto valor utilitarista</li>
+        </ul>
 
-<p>El utilitarismo de Mill no es solo una ética personal, sino una <strong>poderosa herramienta para el diseño de políticas públicas</strong>.</p>
+        <h4>🗣️ Libertad de Expresión</h4>
+        <p>En "Sobre la libertad", Mill argumentó:</p>
+        <ul>
+          <li>💬 <strong>Ideas libres:</strong> Incluso ideas incorrectas deben poder expresarse</li>
+          <li>💎 <strong>Búsqueda de verdad:</strong> La verdad emerge del debate abierto</li>
+          <li>🚀 <strong>Progreso social:</strong> Requiere intercambio de perspectivas diversas</li>
+          <li>🌟 <strong>Beneficio colectivo:</strong> La sociedad entera se beneficia del debate libre</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🏛️ Comprensión</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo justifica políticas como educación universal e impuestos progresivos</div>
+          <div class="option">El utilitarismo solo se aplica a decisiones personales</div>
+          <div class="option">Mill se oponía a la libertad de expresión</div>
+          <div class="option">Los impuestos progresivos van contra el utilitarismo</div>
+        </div>
+      </div>
+    </div>
 
-<h4>📚 Aplicaciones Políticas Clave</h4>
+    <!-- 8. Ejemplos prácticos modernos -->
+    <div class="study-section" data-section="ejemplos-modernos">
+      <div class="highlight-box">
+        <h3>🚗 Ejemplos Prácticos del Utilitarismo Moderno</h3>
 
-<div class="highlight-box">
-    <h4>🎓 Educación Universal</h4>
-    <ul>
-        <li>🧠 <strong>Fomenta</strong> los placeres superiores en la población</li>
-        <li>🚀 <strong>Promueve</strong> el progreso social general</li>
-        <li>💡 <strong>Desarrolla</strong> capacidades intelectuales y críticas</li>
-        <li>🌍 <strong>Beneficia</strong> a toda la sociedad a largo plazo</li>
-    </ul>
-</div>
+        <h4>🚗 Automóviles Autónomos</h4>
+        <p><strong>Dilema:</strong> Un auto debe elegir: ¿atropellar a 1 persona para evitar atropellar a 5?</p>
+        <ul>
+          <li>🎯 <strong>Utilitarismo del acto:</strong> Sacrifica a 1 para salvar a 5 (mayor bien)</li>
+          <li>📜 <strong>Utilitarismo de la regla:</strong> ¿Qué regla general produce mejor resultado?</li>
+          <li>🤔 <strong>Consideraciones:</strong> Confianza pública, efectos psicológicos, precedente</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>⚖️ Reformas Legales</h4>
-    <ul>
-        <li>🤝 <strong>Promueven</strong> la igualdad y reducen la pobreza</li>
-        <li>😰 <strong>Eliminan</strong> fuentes de gran infelicidad (miseria)</li>
-        <li>🎯 <strong>Se evalúan</strong> por su capacidad de maximizar bienestar</li>
-        <li>🏗️ <strong>Construyen</strong> instituciones más justas</li>
-    </ul>
-</div>
+        <h4>🏥 Distribución de Recursos Médicos</h4>
+        <p><strong>Situación:</strong> Hospital con recursos limitados durante pandemia</p>
+        <ul>
+          <li>⚖️ <strong>Criterio utilitarista:</strong> Maximizar vidas salvadas y años de vida</li>
+          <li>📊 <strong>Factores:</strong> Edad, probabilidad de supervivencia, años de vida restantes</li>
+          <li>🎯 <strong>Objetivo:</strong> Generar el mayor bienestar total posible</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>🗣️ Libertad de Expresión</h4>
-    <p>En su obra <em>"Sobre la libertad"</em>, Mill argumentó que:</p>
-    <ul>
-        <li>💬 <strong>La libre circulación de ideas</strong> (incluso incorrectas) es esencial</li>
-        <li>💎 <strong>La verdad emerge</strong> del debate y confrontación de ideas</li>
-        <li>🚀 <strong>El progreso requiere</strong> intercambio abierto de perspectivas</li>
-        <li>🌟 <strong>Beneficia a la sociedad</strong> a largo plazo</li>
-    </ul>
-</div>
+        <h4>🌍 Cambio Climático</h4>
+        <p><strong>Análisis utilitarista:</strong></p>
+        <ul>
+          <li>⏳ <strong>Generaciones futuras:</strong> Sus intereses cuentan igual que los nuestros</li>
+          <li>🌡️ <strong>Costo-beneficio global:</strong> Costos presentes vs. beneficios futuros</li>
+          <li>🌍 <strong>Escala planetaria:</strong> Considerar impacto en toda la humanidad</li>
+          <li>💰 <strong>Justifica:</strong> Inversión presente para bienestar futuro</li>
+        </ul>
 
-<h3>📋 Utilitarismo del Acto vs. Utilitarismo de la Regla</h3>
+        <h4>📱 Redes Sociales y Bienestar</h4>
+        <p><strong>Evaluación utilitarista:</strong></p>
+        <ul>
+          <li>✅ <strong>Beneficios:</strong> Conexión, información, entretenimiento</li>
+          <li>❌ <strong>Costos:</strong> Adicción, ansiedad, desinformación, polarización</li>
+          <li>⚖️ <strong>Pregunta clave:</strong> ¿El balance neto es positivo o negativo?</li>
+          <li>🔧 <strong>Solución:</strong> Regulación para maximizar beneficios, minimizar daños</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔧 Check práctico</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo puede aplicarse a dilemas modernos como autos autónomos y cambio climático</div>
+          <div class="option">El utilitarismo no tiene aplicaciones modernas</div>
+          <div class="option">Solo los filósofos pueden usar análisis utilitarista</div>
+          <div class="option">El utilitarismo siempre da respuestas simples</div>
+        </div>
+      </div>
+    </div>
 
-<p>Una pregunta frecuente: <em>¿Si lo que importa son las consecuencias, significa que no hay reglas morales absolutas?</em></p>
+    <!-- 9. Críticas principales -->
+    <div class="study-section" data-section="criticas">
+      <div class="highlight-box">
+        <h3>🤔 Principales Críticas al Utilitarismo</h3>
 
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-    <tr style="background: #2a2a2a;">
-        <th style="padding: 15px; border: 1px solid #444; color: white;">Tipo</th>
-        <th style="padding: 15px; border: 1px solid #444; color: white;">Enfoque</th>
-        <th style="padding: 15px; border: 1px solid #444; color: white;">Ejemplo</th>
-    </tr>
-    <tr style="background: #333;">
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            <strong>🎯 Utilitarismo del Acto</strong>
-        </td>
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            Evalúa las consecuencias de cada <strong>acto individual</strong>
-        </td>
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            Si mentir en esta situación específica salva una vida, esa mentira es moralmente buena
-        </td>
-    </tr>
-    <tr style="background: #2a2a2a;">
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            <strong>📜 Utilitarismo de la Regla</strong>
-        </td>
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            Sigue reglas morales que <strong>generalmente</strong> promueven la mayor felicidad
-        </td>
-        <td style="padding: 15px; border: 1px solid #444; color: white;">
-            La regla "no mentir" generalmente conduce a confianza social y bienestar
-        </td>
-    </tr>
-</table>
+        <h4>⚖️ El Problema de la Justicia</h4>
+        <div class="quote-box">
+          Escenario: ¿Sería moral torturar a una persona inocente si esto produjera gran placer a millones de espectadores?
+        </div>
+        <ul>
+          <li>❌ <strong>Crítica:</strong> El utilitarismo podría justificar injusticias si maximizan bienestar total</li>
+          <li>✅ <strong>Respuesta utilitarista:</strong> Los efectos a largo plazo (desconfianza, desensibilización) reducirían el bienestar total</li>
+          <li>🎯 <strong>Defensa:</strong> Un análisis completo consideraría todas las consecuencias</li>
+        </ul>
 
-<h4>📜 ¿Por qué Mill prefiere el Utilitarismo de la Regla?</h4>
+        <h4>📊 El Problema del Cálculo</h4>
+        <ul>
+          <li>🧮 <strong>Dificultad práctica:</strong> ¿Cómo medir y comparar diferentes tipos de bienestar?</li>
+          <li>⏰ <strong>Limitaciones de tiempo:</strong> ¿Podemos calcular en situaciones urgentes?</li>
+          <li>🔮 <strong>Incertidumbre:</strong> ¿Cómo predecir consecuencias complejas?</li>
+          <li>📏 <strong>Medición:</strong> ¿Es posible cuantificar la felicidad objetivamente?</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>🏛️ Razones para seguir reglas morales</h4>
-    <ul>
-        <li>📈 <strong>Experiencia histórica:</strong> Las reglas se desarrollaron porque maximizan felicidad</li>
-        <li>🤝 <strong>Confianza social:</strong> Reglas estables crean confianza mutua</li>
-        <li>⚡ <strong>Eficiencia práctica:</strong> No hay que calcular constantemente</li>
-        <li>🎯 <strong>Resultados a largo plazo:</strong> Mejor bienestar general sostenido</li>
-    </ul>
-</div>
+        <h4>🎯 El Problema de la Demandingness (Exigencia Excesiva)</h4>
+        <p><strong>Crítica:</strong> Si siempre debemos maximizar bienestar total, ¿deberíamos:</p>
+        <ul>
+          <li>💰 <strong>Donar casi todos nuestros ingresos</strong> a los más necesitados?</li>
+          <li>⏰ <strong>Dedicar todo nuestro tiempo libre</strong> a actividades altruistas?</li>
+          <li>🚫 <strong>Renunciar a placeres personales</strong> para ayudar a otros?</li>
+        </ul>
+        <p><strong>Respuesta:</strong> El utilitarismo de la regla sugiere que reglas más moderadas podrían producir mejor resultado general.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🧠 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Las críticas incluyen problemas de justicia, cálculo y exigencia excesiva</div>
+          <div class="option">El utilitarismo no tiene ninguna crítica válida</div>
+          <div class="option">Solo el problema del cálculo es relevante</div>
+          <div class="option">Las críticas han refutado completamente el utilitarismo</div>
+        </div>
+      </div>
+    </div>
 
-<h4>⚠️ Excepciones a las Reglas</h4>
+    <!-- 10. Aplicaciones en vida cotidiana -->
+    <div class="study-section" data-section="vida-cotidiana">
+      <div class="highlight-box">
+        <h3>📱 Aplicando el Utilitarismo en la Vida Cotidiana</h3>
 
-<p>Mill reconoce que las reglas morales <strong>pueden tener excepciones</strong> en situaciones extremas:</p>
+        <h4>🎓 En tus estudios</h4>
+        <ul>
+          <li>⚖️ <strong>Balance:</strong> ¿Cuánto tiempo dedicar a cada materia para maximizar tu aprendizaje total?</li>
+          <li>🤝 <strong>Trabajo en grupo:</strong> Buscar el mayor beneficio para todos los miembros</li>
+          <li>🎯 <strong>Elección de carrera:</strong> Considerar tanto tu felicidad como tu contribución social</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>🚨 Criterios para excepciones</h4>
-    <ul>
-        <li>🔥 <strong>Situación extrema:</strong> Circunstancias muy inusuales</li>
-        <li>📊 <strong>Beneficio mucho mayor:</strong> Romper la regla produce significativamente más bienestar</li>
-        <li>🛡️ <strong>Prevención de daño significativo:</strong> Evita sufrimiento considerable</li>
-        <li>⚖️ <strong>Cálculo claro:</strong> Los beneficios superan claramente los costos</li>
-    </ul>
-</div>
+        <h4>👨‍👩‍👧‍👦 En las relaciones familiares</h4>
+        <ul>
+          <li>🕊️ <strong>Resolución de conflictos:</strong> Buscar soluciones que beneficien a todos</li>
+          <li>💰 <strong>Gastos familiares:</strong> Priorizar lo que genere más bienestar familiar</li>
+          <li>⏰ <strong>Tiempo compartido:</strong> Equilibrar necesidades de todos los miembros</li>
+        </ul>
 
-<h3>🎓 Ejemplos Prácticos del Utilitarismo</h3>
+        <h4>🛍️ Como consumidor</h4>
+        <ul>
+          <li>🌱 <strong>Compras éticas:</strong> Considerar el impacto social y ambiental</li>
+          <li>💡 <strong>Productos:</strong> ¿Qué empresas contribuyen más al bienestar general?</li>
+          <li>♻️ <strong>Sostenibilidad:</strong> Pensar en las generaciones futuras</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>🏥 Dilema médico: Distribución de recursos</h4>
-    <p><strong>Situación:</strong> Un hospital tiene un riñón disponible y dos pacientes que lo necesitan.</p>
-    <ul>
-        <li>👦 <strong>Paciente A:</strong> 25 años, vida productiva por delante</li>
-        <li>👴 <strong>Paciente B:</strong> 65 años, esperanza de vida menor</li>
-    </ul>
-    <p><strong>Análisis utilitarista:</strong> Se consideraría cuál decisión produce más bienestar total (años de vida, calidad de vida, impacto en familias, etc.)</p>
-</div>
+        <h4>🗳️ Como ciudadano</h4>
+        <ul>
+          <li>📊 <strong>Voto informado:</strong> Elegir candidatos/políticas que maximicen bienestar social</li>
+          <li>🤝 <strong>Voluntariado:</strong> Contribuir donde puedas generar mayor impacto positivo</li>
+          <li>💬 <strong>Participación cívica:</strong> Promover políticas basadas en evidencia</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔧 Aplicación práctica</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo puede guiar decisiones en estudios, familia, consumo y ciudadanía</div>
+          <div class="option">El utilitarismo no se aplica a la vida cotidiana</div>
+          <div class="option">Solo se puede usar en grandes decisiones políticas</div>
+          <div class="option">Es demasiado complicado para uso diario</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>💰 Política fiscal: Impuestos progresivos</h4>
-    <p><strong>Justificación utilitarista:</strong></p>
-    <ul>
-        <li>💸 <strong>Utilidad marginal decreciente:</strong> $1000 extra significa más para alguien pobre que para alguien rico</li>
-        <li>🎯 <strong>Redistribución eficiente:</strong> Transferir de ricos a pobres aumenta bienestar total</li>
-        <li>📈 <strong>Reducción de sufrimiento:</strong> Eliminar pobreza extrema tiene alto valor utilitarista</li>
-    </ul>
-</div>
+    <!-- 11. Utilitarismo y tecnología -->
+    <div class="study-section" data-section="tecnologia">
+      <div class="highlight-box">
+        <h3>🤖 Utilitarismo y Tecnología: Desafíos del Siglo XXI</h3>
 
-<div class="highlight-box">
-    <h4>🌍 Política ambiental: Cambio climático</h4>
-    <p><strong>Análisis utilitarista:</strong></p>
-    <ul>
-        <li>⏳ <strong>Generaciones futuras:</strong> Sus intereses cuentan igual que los nuestros</li>
-        <li>🌡️ <strong>Costo-beneficio:</strong> Comparar costos presentes vs. beneficios futuros</li>
-        <li>🌍 <strong>Escala global:</strong> Considerar impacto en toda la humanidad</li>
-    </ul>
-</div>
+        <h4>🧠 Inteligencia Artificial</h4>
+        <p><strong>¿Cómo programar máquinas para tomar decisiones éticas?</strong></p>
+        <ul>
+          <li>⚖️ <strong>Algoritmos utilitaristas:</strong> Maximizar bienestar en decisiones automatizadas</li>
+          <li>🎯 <strong>Sesgos:</strong> ¿Cómo asegurar imparcialidad en los cálculos?</li>
+          <li>🔍 <strong>Transparencia:</strong> Las decisiones deben ser explicables</li>
+          <li>👥 <strong>Control humano:</strong> Balance entre eficiencia y supervisión</li>
+        </ul>
 
-<h3>🤔 Desafíos y Críticas al Utilitarismo</h3>
+        <h4>📊 Big Data y Privacidad</h4>
+        <ul>
+          <li>✅ <strong>Beneficios:</strong> Mejores servicios, investigación médica, eficiencia</li>
+          <li>❌ <strong>Costos:</strong> Pérdida de privacidad, manipulación, discriminación</li>
+          <li>⚖️ <strong>Balance utilitarista:</strong> ¿El beneficio social supera los riesgos individuales?</li>
+        </ul>
 
-<h4>⚖️ El Problema de la Justicia</h4>
+        <h4>🌐 Redes Sociales y Bienestar Mental</h4>
+        <p><strong>Análisis utilitarista de plataformas digitales:</strong></p>
+        <ul>
+          <li>📈 <strong>Métricas de bienestar:</strong> ¿Tiempo bien gastado vs. adicción?</li>
+          <li>🧠 <strong>Salud mental:</strong> Impacto en ansiedad, depresión, autoestima</li>
+          <li>🤝 <strong>Conexión social:</strong> ¿Facilita o reemplaza relaciones genuinas?</li>
+          <li>🔧 <strong>Diseño ético:</strong> Algoritmos que promuevan bienestar, no solo engagement</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🚀 Check tecnológico</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo ofrece marcos para evaluar el impacto de la tecnología en el bienestar</div>
+          <div class="option">La tecnología no puede evaluarse con criterios utilitaristas</div>
+          <div class="option">La IA siempre maximiza el bienestar automáticamente</div>
+          <div class="option">Las redes sociales no afectan el bienestar general</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>🎭 Ejemplo del gladiador</h4>
-    <p><strong>Escenario:</strong> ¿Sería justificable torturar a una persona inocente si esto produjera gran placer a millones de espectadores?</p>
-    <p><strong>Crítica:</strong> El utilitarismo podría justificar injusticias si maximizan el bienestar total.</p>
-    <p><strong>Respuesta utilitarista:</strong> Los efectos a largo plazo (desconfianza social, desensibilización, etc.) harían que esta acción reduzca el bienestar total.</p>
-</div>
+    <!-- 12. Mill y los derechos de las mujeres -->
+    <div class="study-section" data-section="derechos-mujeres">
+      <div class="highlight-box">
+        <h3>👩‍⚖️ Mill y los Derechos de las Mujeres: Utilitarismo Progresista</h3>
+        <p>Mill fue <strong>pionero en la defensa de la igualdad de género</strong>, usando argumentos utilitaristas:</p>
 
-<h4>📊 El Problema del Cálculo</h4>
+        <h4>📖 "La Sujeción de las Mujeres" (1869)</h4>
+        <p><strong>Argumentos utilitaristas para la igualdad:</strong></p>
+        <ul>
+          <li>🧠 <strong>Desperdicio de talento:</strong> La sociedad pierde al no usar todo el potencial humano</li>
+          <li>📈 <strong>Progreso social:</strong> Más personas educadas = más innovación y bienestar</li>
+          <li>⚖️ <strong>Justicia produce felicidad:</strong> La opresión genera sufrimiento innecesario</li>
+          <li>🌍 <strong>Beneficio mutuo:</strong> Tanto hombres como mujeres se benefician de la igualdad</li>
+        </ul>
 
-<ul>
-    <li>🧮 <strong>Dificultad práctica:</strong> ¿Cómo medir y comparar diferentes tipos de bienestar?</li>
-    <li>⏰ <strong>Limitaciones de tiempo:</strong> ¿Tenemos tiempo para calcular en situaciones urgentes?</li>
-    <li>🔮 <strong>Incertidumbre:</strong> ¿Cómo predecir consecuencias a largo plazo?</li>
-</ul>
+        <h4>🗳️ Sufragio Femenino</h4>
+        <p><strong>¿Por qué el voto femenino maximiza el bienestar?</strong></p>
+        <ul>
+          <li>🎯 <strong>Mejor representación:</strong> Las políticas consideran intereses de toda la población</li>
+          <li>📊 <strong>Decisiones más informadas:</strong> Más perspectivas llevan a mejores resultados</li>
+          <li>🏛️ <strong>Legitimidad democrática:</strong> Gobiernos más justos y estables</li>
+        </ul>
 
-<h4>👥 El Problema de la Demandingness</h4>
+        <p><strong>Relevancia actual:</strong> Los argumentos de Mill siguen aplicándose a luchas por igualdad de género, derechos LGBTI+ y inclusión social.</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">👩‍🎓 Check</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Mill usó argumentos utilitaristas para defender la igualdad de género y el sufragio femenino</div>
+          <div class="option">Mill se oponía a los derechos de las mujeres</div>
+          <div class="option">El utilitarismo no se aplica a cuestiones de género</div>
+          <div class="option">Mill solo se enfocó en filosofía abstracta</div>
+        </div>
+      </div>
+    </div>
 
-<p>¿El utilitarismo exige demasiado? Si siempre debemos maximizar el bienestar total, ¿deberíamos donar casi todos nuestros ingresos a los más necesitados?</p>
+    <!-- 13. Utilitarismo y medio ambiente -->
+    <div class="study-section" data-section="medio-ambiente">
+      <div class="highlight-box">
+        <h3>🌍 Utilitarismo y Medio Ambiente: Pensando en el Futuro</h3>
 
-<h3>💭 Preguntas para Reflexión Profunda</h3>
+        <h4>🌡️ Cambio Climático desde Perspectiva Utilitarista</h4>
+        <ul>
+          <li>⏳ <strong>Generaciones futuras cuentan:</strong> Sus intereses tienen igual peso moral</li>
+          <li>🌍 <strong>Escala global:</strong> Considerar impacto en toda la humanidad</li>
+          <li>💰 <strong>Análisis costo-beneficio intergeneracional:</strong> Inversión presente para bienestar futuro</li>
+          <li>📊 <strong>Riesgo y incertidumbre:</strong> Principio de precaución ante daños potencialmente catastróficos</li>
+        </ul>
 
-<div class="highlight-box">
-    <h4>🤔 Analiza y evalúa</h4>
-    <ul>
-        <li>¿Es realmente posible ser un "espectador imparcial" en situaciones que nos afectan directamente?</li>
-        <li>¿Los placeres superiores son objetivamente mejores, o es solo preferencia cultural?</li>
-        <li>¿Puede el utilitarismo de la regla evitar los problemas del utilitarismo del acto?</li>
-        <li>¿Es justo sacrificar los derechos de una minoría por el bienestar de la mayoría?</li>
-        <li>¿Cómo deberíamos pesar el bienestar de las generaciones futuras vs. las presentes?</li>
-        <li>¿Es práctico aplicar el cálculo utilitarista en la vida cotidiana?</li>
-    </ul>
-</div>
+        <h4>🐾 ¿Los Animales Cuentan en el Cálculo Utilitarista?</h4>
+        <p><strong>Mill sugiere que sí:</strong></p>
+        <ul>
+          <li>😰 <strong>Capacidad de sufrir:</strong> Los animales pueden experimentar dolor</li>
+          <li>⚖️ <strong>Su sufrimiento cuenta:</strong> Debe incluirse en el cálculo moral</li>
+          <li>🥩 <strong>Industria ganadera:</strong> ¿El placer gastronómico justifica el sufrimiento animal?</li>
+          <li>🔬 <strong>Experimentación:</strong> Balance entre beneficios médicos y bienestar animal</li>
+        </ul>
 
-<h3>🔬 Aplicación Práctica del Utilitarismo</h3>
+        <h4>♻️ Consumo Sostenible</h4>
+        <p><strong>Preguntas utilitaristas:</strong></p>
+        <ul>
+          <li>🛍️ <strong>¿Mis decisiones de compra</strong> maximizan bienestar a largo plazo?</li>
+          <li>🌱 <strong>¿Qué estilo de vida</strong> genera el mejor balance bienestar presente vs. futuro?</li>
+          <li>🚗 <strong>¿Cómo evaluar</strong> el transporte, la dieta, el consumo energético?</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🌱 Check ambiental</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo considera el bienestar de futuras generaciones y potencialmente de los animales</div>
+          <div class="option">El utilitarismo solo se preocupa por el presente</div>
+          <div class="option">Los animales no pueden incluirse en análisis utilitarista</div>
+          <div class="option">El medio ambiente no es relevante para la ética utilitarista</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>📝 Ejercicio: Análisis utilitarista de decisiones</h4>
-    <p><strong>Para cada dilema, aplica el análisis utilitarista:</strong></p>
-    
-    <h5>🚗 Dilema 1: Automóviles autónomos</h5>
-    <p>Un auto autónomo debe elegir: ¿atropellar a 1 persona para evitar atropellar a 5?</p>
-    <ul>
-        <li>¿Qué diría el utilitarismo del acto?</li>
-        <li>¿Qué diría el utilitarismo de la regla?</li>
-        <li>¿Qué factores adicionales considerar?</li>
-    </ul>
-    
-    <h5>💊 Dilema 2: Precios de medicamentos</h5>
-    <p>Una farmacéutica puede: (A) vender medicamento vital a precio alto, ganando mucho; (B) venderlo barato, ganando poco pero salvando más vidas.</p>
-    <ul>
-        <li>¿Cómo evaluar las consecuencias?</li>
-        <li>¿Qué stakeholders considerar?</li>
-        <li>¿Efectos a corto vs. largo plazo?</li>
-    </ul>
-</div>
+    <!-- 14. Utilitarismo vs otras éticas -->
+    <div class="study-section" data-section="comparacion-eticas">
+      <div class="highlight-box">
+        <h3>⚔️ Utilitarismo vs. Otras Corrientes Éticas</h3>
 
-<div class="highlight-box">
-    <h4>🧘 Ejercicio: Evaluación personal</h4>
-    <p><strong>Reflexiona sobre tus propias decisiones:</strong></p>
-    <ul>
-        <li>¿Qué decisiones recientes has tomado considerando solo tu bienestar vs. el de otros?</li>
-        <li>¿Cómo podrías aplicar el principio del "espectador imparcial" en tus relaciones?</li>
-        <li>¿Qué placeres superiores podrías cultivar más en tu vida?</li>
-        <li>¿En qué situaciones sigues reglas morales vs. evalúas consecuencias específicas?</li>
-    </ul>
-</div>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Corriente Ética</th>
+              <th>Criterio Principal</th>
+              <th>Ventaja</th>
+              <th>Limitación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Corriente"><strong>🎯 Utilitarismo</strong></td>
+              <td data-label="Criterio">Consecuencias: maximizar bienestar general</td>
+              <td data-label="Ventaja">Práctico, altruista, orientado a resultados</td>
+              <td data-label="Limitación">Difícil de calcular, puede justificar injusticias</td>
+            </tr>
+            <tr>
+              <td data-label="Corriente"><strong>📜 Ética Kantiana</strong></td>
+              <td data-label="Criterio">Deber: seguir reglas morales absolutas</td>
+              <td data-label="Ventaja">Clara, respeta dignidad, consistente</td>
+              <td data-label="Limitación">Rígida, puede ignorar consecuencias</td>
+            </tr>
+            <tr>
+              <td data-label="Corriente"><strong>⚖️ Ética Aristotélica</strong></td>
+              <td data-label="Criterio">Virtud: desarrollar buen carácter</td>
+              <td data-label="Ventaja">Formación integral, sabiduría práctica</td>
+              <td data-label="Limitación">Subjetiva, depende de la cultura</td>
+            </tr>
+            <tr>
+              <td data-label="Corriente"><strong>🙋 Ética del Cuidado</strong></td>
+              <td data-label="Criterio">Relaciones: mantener vínculos y responsabilidades</td>
+              <td data-label="Ventaja">Contextual, enfoque en emociones</td>
+              <td data-label="Limitación">Puede ser parcial, difícil de universalizar</td>
+            </tr>
+          </tbody>
+        </table>
 
-<h3>🌟 Legado e Influencia del Utilitarismo</h3>
+        <h4>🤝 ¿Pueden Combinarse?</h4>
+        <p>Muchos filósofos modernos sugieren que:</p>
+        <ul>
+          <li>🌟 <strong>Cada ética</strong> aporta perspectivas valiosas</li>
+          <li>🎯 <strong>El utilitarismo</strong> es especialmente útil para políticas públicas</li>
+          <li>📜 <strong>Las reglas kantianas</strong> dan estabilidad en relaciones personales</li>
+          <li>⚖️ <strong>Las virtudes aristotélicas</strong> forman el carácter</li>
+          <li>💡 <strong>La integración</strong> puede ofrecer guía moral más completa</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🔄 Check comparativo</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Cada corriente ética tiene ventajas y limitaciones distintas</div>
+          <div class="option">Solo el utilitarismo es válido</div>
+          <div class="option">Todas las éticas son idénticas</div>
+          <div class="option">Las corrientes éticas no pueden compararse</div>
+        </div>
+      </div>
+    </div>
 
-<div class="highlight-box">
-    <h4>🏛️ Aplicaciones modernas</h4>
-    <ul>
-        <li>📊 <strong>Análisis costo-beneficio</strong> en políticas públicas</li>
-        <li>🏥 <strong>Bioética médica</strong> y distribución de recursos</li>
-        <li>🌍 <strong>Ética ambiental</strong> y cambio climático</li>
-        <li>💰 <strong>Economía del bienestar</strong> y política fiscal</li>
-        <li>🤖 <strong>Ética de la inteligencia artificial</strong> y decisiones automatizadas</li>
-        <li>🏢 <strong>Responsabilidad social corporativa</strong></li>
-    </ul>
-</div>
+    <!-- 15. Ejercicios prácticos -->
+    <div class="study-section" data-section="ejercicios-practicos">
+      <div class="highlight-box">
+        <h3>🎮 Ejercicios Prácticos: Aplica el Utilitarismo</h3>
 
-<div class="highlight-box">
-    <h3>🎯 Síntesis del Utilitarismo</h3>
-    <p>El utilitarismo nos enseña que:</p>
-    <ul>
-        <li>🎯 <strong>Las consecuencias importan</strong> más que las intenciones</li>
-        <li>⚖️ <strong>La imparcialidad es esencial</strong> para la moralidad</li>
-        <li>🧠 <strong>Los placeres superiores</strong> enriquecen la vida humana</li>
-        <li>🏛️ <strong>La política debe servir</strong> al bienestar general</li>
-        <li>📜 <strong>Las reglas morales tienen valor</strong> pero admiten excepciones</li>
-        <li>🌍 <strong>Nuestras obligaciones</strong> se extienden más allá de nosotros mismos</li>
-    </ul>
-    <p>Su influencia continúa siendo fundamental en la ética aplicada, la política pública y los debates contemporáneos sobre justicia social.</p>
-</div>
-</main>
+        <h4>🚀 Ejercicio 1: El Dilema del Tranvía</h4>
+        <p><strong>Situación:</strong> Un tranvía fuera de control va hacia 5 personas. Puedes desviar el tranvía hacia otra vía donde matará a 1 persona.</p>
+        <ul>
+          <li>🎯 <strong>Desde utilitarismo del acto:</strong> ¿Qué harías?</li>
+          <li>📜 <strong>Desde utilitarismo de la regla:</strong> ¿Qué regla seguir?</li>
+          <li>🤔 <strong>Factores adicionales:</strong> ¿Importa si conoces a las personas? ¿Si una es médica que podría salvar más vidas?</li>
+        </ul>
+
+        <h4>💊 Ejercicio 2: Distribución de Vacunas</h4>
+        <p><strong>Situación:</strong> Eres ministro de salud con vacunas limitadas durante pandemia. ¿A quién vacunar primero?</p>
+        <ul>
+          <li>👴 <strong>Adultos mayores</strong> (mayor riesgo individual)</li>
+          <li>👩‍⚕️ <strong>Personal de salud</strong> (pueden ayudar a más personas)</li>
+          <li>👨‍🏫 <strong>Trabajadores esenciales</strong> (mantienen la sociedad funcionando)</li>
+          <li>👶 <strong>Jóvenes</strong> (más años de vida potenciales)</li>
+        </ul>
+
+        <h4>📱 Ejercicio 3: Diseño de Redes Sociales</h4>
+        <p><strong>Situación:</strong> Diriges una plataforma de redes sociales. ¿Cómo diseñar el algoritmo?</p>
+        <ul>
+          <li>⏰ <strong>Opción A:</strong> Maximizar tiempo en pantalla (más ganancias)</li>
+          <li>😊 <strong>Opción B:</strong> Priorizar contenido que mejore bienestar mental</li>
+          <li>🤝 <strong>Opción C:</strong> Promover conexiones sociales genuinas</li>
+          <li>📚 <strong>Opción D:</strong> Favorecer contenido educativo e informativo</li>
+        </ul>
+
+        <h4>🎯 Reflexión Personal</h4>
+        <p><strong>Analiza una decisión reciente tuya:</strong></p>
+        <ul>
+          <li>¿Consideraste las consecuencias para otras personas?</li>
+          <li>¿Actuaste como "espectador imparcial"?</li>
+          <li>¿Buscaste maximizar el bienestar general o solo el tuyo?</li>
+          <li>¿Cómo podrías haber aplicado mejor el criterio utilitarista?</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🎯 Check aplicativo</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Los ejercicios ayudan a aplicar principios utilitaristas a situaciones reales</div>
+          <div class="option">Los dilemas éticos no tienen respuestas</div>
+          <div class="option">Solo los expertos pueden resolver estos ejercicios</div>
+          <div class="option">El utilitarismo da respuestas automáticas a todos los dilemas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Legado y relevancia actual -->
+    <div class="study-section" data-section="legado-relevancia">
+      <div class="highlight-box">
+        <h3>🌟 Legado del Utilitarismo: Impacto en el Mundo Moderno</h3>
+
+        <h4>🏛️ En las Instituciones Públicas</h4>
+        <ul>
+          <li>📊 <strong>Análisis costo-beneficio:</strong> Evaluación estándar de políticas públicas</li>
+          <li>🏥 <strong>Sistemas de salud:</strong> Distribución eficiente de recursos médicos</li>
+          <li>🌍 <strong>Organizaciones internacionales:</strong> Criterios para ayuda humanitaria</li>
+          <li>⚖️ <strong>Derecho:</strong> Influencia en legislación sobre bienestar social</li>
+        </ul>
+
+        <h4>💼 En el Mundo Empresarial</h4>
+        <ul>
+          <li>🤝 <strong>Responsabilidad Social Corporativa:</strong> Maximizar impacto social positivo</li>
+          <li>🌱 <strong>Sostenibilidad:</strong> Balance entre ganancias y bienestar general</li>
+          <li>👥 <strong>Gestión de personal:</strong> Políticas que beneficien a más empleados</li>
+          <li>🎯 <strong>Innovación ética:</strong> Productos que mejoren la vida humana</li>
+        </ul>
+
+        <h4>🧠 En Psicología y Bienestar</h4>
+        <ul>
+          <li>📈 <strong>Psicología positiva:</strong> Estudio científico de la felicidad y bienestar</li>
+          <li>💊 <strong>Terapias:</strong> Enfoques centrados en maximizar bienestar del paciente</li>
+          <li>📊 <strong>Medición de felicidad:</strong> Índices de bienestar nacional (como en Bután)</li>
+          <li>🎓 <strong>Educación:</strong> Programas enfocados en desarrollo integral</li>
+        </ul>
+
+        <h4>🚀 En Tecnología e IA</h4>
+        <ul>
+          <li>🤖 <strong>Ética de la IA:</strong> Algoritmos que maximicen bienestar humano</li>
+          <li>📱 <strong>Diseño tecnológico:</strong> Productos que promuevan uso saludable</li>
+          <li>🌐 <strong>Plataformas digitales:</strong> Reducir daños, maximizar beneficios sociales</li>
+          <li>🔬 <strong>Investigación:</strong> Priorización de proyectos con mayor impacto social</li>
+        </ul>
+
+        <h4>🤔 Preguntas para el Futuro</h4>
+        <ul>
+          <li>¿Cómo puede el utilitarismo guiar decisiones sobre inteligencia artificial general?</li>
+          <li>¿Qué implicaciones tiene para la exploración espacial y colonización?</li>
+          <li>¿Cómo aplicarlo a dilemas de modificación genética humana?</li>
+          <li>¿Puede ayudar a resolver conflictos globales y crisis climática?</li>
+        </ul>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🎊 Check de cierre</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo sigue influenciando políticas públicas, empresas, psicología y tecnología</div>
+          <div class="option">El utilitarismo solo tiene valor histórico</div>
+          <div class="option">Las ideas de Mill no se aplican al mundo moderno</div>
+          <div class="option">El utilitarismo ha sido completamente superado</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. Síntesis final -->
+    <div class="study-section" data-section="sintesis-final">
+      <div class="highlight-box">
+        <h3>🎯 Síntesis: ¿Qué nos enseña el Utilitarismo?</h3>
+
+        <h4>💎 Principios Fundamentales</h4>
+        <ul>
+          <li>⚖️ <strong>Las consecuencias importan más que las intenciones</strong></li>
+          <li>🌍 <strong>Nuestras obligaciones morales se extienden a todos los seres sensibles</strong></li>
+          <li>🧠 <strong>Los placeres superiores enriquecen la experiencia humana</strong></li>
+          <li>👁️ <strong>La imparcialidad es esencial para la moralidad genuina</strong></li>
+          <li>📜 <strong>Las reglas morales tienen valor pero admiten excepciones racionales</strong></li>
+        </ul>
+
+        <h4>🛠️ Herramientas Prácticas</h4>
+        <ul>
+          <li>🎯 <strong>Análisis costo-beneficio</strong> para decisiones complejas</li>
+          <li>👁️ <strong>Perspectiva del espectador imparcial</strong> para superar egoísmo</li>
+          <li>📊 <strong>Consideración de stakeholders</strong> (todos los afectados)</li>
+          <li>⏳ <strong>Pensamiento a largo plazo</strong> sobre consecuencias</li>
+          <li>🔄 <strong>Evaluación continua</strong> de políticas y decisiones</li>
+        </ul>
+
+        <h4>🌟 Relevancia Permanente</h4>
+        <p>El utilitarismo nos recuerda que:</p>
+        <ul>
+          <li>🤝 <strong>Somos parte de una comunidad global</strong> interconectada</li>
+          <li>💫 <strong>Nuestras acciones tienen impacto</strong> más allá de nosotros mismos</li>
+          <li>🧭 <strong>La razón puede guiar</strong> nuestras decisiones morales</li>
+          <li>🌍 <strong>Es posible hacer del mundo</strong> un lugar mejor para todos</li>
+          <li>⚡ <strong>La ética no es abstracta</strong> sino práctica y aplicable</li>
+        </ul>
+
+        <div class="quote-box">
+          El utilitarismo no nos promete respuestas fáciles, pero nos ofrece un método racional para buscar el bien común en un mundo complejo.
+        </div>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">✅ Comprensión final</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo ofrece principios y herramientas prácticas para decisiones éticas complejas</div>
+          <div class="option">El utilitarismo es solo teoría sin aplicación práctica</div>
+          <div class="option">Mill creía que la ética debe ser simple e intuitiva</div>
+          <div class="option">El utilitarismo ignora la importancia de la razón</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. Aplicación personal -->
+    <div class="study-section" data-section="aplicacion-personal">
+      <div class="highlight-box">
+        <h3>🎯 Tu Propia Filosofía Utilitarista</h3>
+
+        <h4>📝 Reflexión Personal: ¿Cómo Aplicarías el Utilitarismo?</h4>
+        
+        <p><strong>En tus decisiones diarias:</strong></p>
+        <ul>
+          <li>🤔 ¿Qué decisiones recientes podrías haber evaluado mejor considerando el bienestar general?</li>
+          <li>👥 ¿En qué situaciones actúas principalmente pensando en ti vs. pensando en otros?</li>
+          <li>⚖️ ¿Cómo podrías ser más imparcial en conflictos con amigos o familia?</li>
+        </ul>
+
+        <p><strong>En tu futuro profesional:</strong></p>
+        <ul>
+          <li>🎯 ¿Qué carrera o trabajo te permitiría generar mayor impacto positivo?</li>
+          <li>💰 ¿Cómo equilibrar aspiraciones personales con contribución social?</li>
+          <li>🌍 ¿Qué habilidades podrías desarrollar para maximizar tu contribución al bienestar general?</li>
+        </ul>
+
+        <p><strong>Como ciudadano del mundo:</strong></p>
+        <ul>
+          <li>🗳️ ¿Cómo evaluar candidatos y políticas desde perspectiva utilitarista?</li>
+          <li>🛍️ ¿Qué cambios en tus hábitos de consumo generarían mayor bienestar global?</li>
+          <li>📱 ¿Cómo usar la tecnología de manera que beneficie a más personas?</li>
+        </ul>
+
+        <h4>🌟 Desafío Personal</h4>
+        <p><strong>Durante la próxima semana, intenta:</strong></p>
+        <ul>
+          <li>🎯 Aplicar el "test del espectador imparcial" en al menos una decisión importante</li>
+          <li>🧠 Identificar y cultivar un placer superior que no practiques habitualmente</li>
+          <li>🤝 Tomar una decisión que beneficie a otros aunque te cueste un poco</li>
+          <li>📊 Evaluar una política pública desde criterios utilitaristas</li>
+        </ul>
+
+        <p><strong>Pregunta final para reflexión:</strong> ¿Cómo sería el mundo si más personas aplicaran principios utilitaristas en sus decisiones diarias?</p>
+      </div>
+      <div class="comprehension-check">
+        <div class="check-title">🚀 Aplicación personal</div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El utilitarismo puede aplicarse a decisiones personales, profesionales y cívicas</div>
+          <div class="option">El utilitarismo no se puede aplicar a nivel personal</div>
+          <div class="option">Solo los filósofos pueden usar principios utilitaristas</div>
+          <div class="option">La reflexión personal no es importante en el utilitarismo</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+   // ▶ Ruta base de sonidos
+   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
+
+   class ProgressiveStudy {
+      constructor() {
+        this.currentSection = 0;
+        this.totalSections = document.querySelectorAll('.study-section').length;
+        this.completedSections = new Set();
+        this.init();
+      }
+      init() {
+        const sections = document.querySelectorAll('.study-section');
+        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
+        this.setupEventListeners();
+        this.showComprehensionCheck();
+        this.updateProgress();
+      }
+      setupEventListeners() {
+        document.querySelectorAll('.option').forEach(option => {
+          option.addEventListener('click', (e) => this.handleOptionClick(e));
+        });
+      }
+      showComprehensionCheck() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        if (!currentSectionEl) return;
+        const checkEl = currentSectionEl.querySelector('.comprehension-check');
+        if (checkEl) {
+          setTimeout(() => { checkEl.classList.add('show'); }, 5000);
+        }
+      }
+      handleOptionClick(e) {
+        const option = e.target;
+        const checkContainer = option.closest('.comprehension-check');
+        const allOptions = checkContainer.querySelectorAll('.option');
+        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+
+        if (option.dataset.correct === 'true') {
+          option.classList.add('correct');
+          this.playSound('success');
+          this.showCelebration('🎯');
+          setTimeout(() => {
+            this.markSectionCompleted();
+            this.moveToNextSection();
+          }, 1200);
+        } else {
+          option.classList.add('incorrect');
+          this.playSound('error');
+          setTimeout(() => {
+            allOptions.forEach(opt => {
+              opt.classList.remove('correct','incorrect');
+              opt.style.pointerEvents = 'auto';
+            });
+            this.shuffleOptions(checkContainer);
+          }, 900);
+        }
+      }
+      shuffleOptions(container) {
+        const options = Array.from(container.querySelectorAll('.option'));
+        const parent = options[0].parentNode;
+        for (let i = options.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [options[i], options[j]] = [options[j], options[i]];
+        }
+        options.forEach(option => parent.appendChild(option));
+      }
+      markSectionCompleted() {
+        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
+        currentSectionEl.classList.add('completed');
+        currentSectionEl.classList.remove('active');
+        this.completedSections.add(this.currentSection);
+        this.updateProgress();
+      }
+      moveToNextSection() {
+        this.currentSection++;
+        const sections = document.querySelectorAll('.study-section');
+        if (this.currentSection < this.totalSections) {
+          const nextSectionEl = sections[this.currentSection];
+          nextSectionEl.classList.add('active');
+          setTimeout(() => {
+            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
+            setTimeout(() => { window.scrollBy(0, -80); }, 800);
+          }, 300);
+          setTimeout(() => { this.showComprehensionCheck(); }, 800);
+        } else {
+          this.showCompletion();
+        }
+      }
+      updateProgress() {
+        const progressFill = document.getElementById('progress-fill');
+        const progressCounter = document.getElementById('progress-counter');
+        const percentage = (this.completedSections.size / this.totalSections) * 100;
+        progressFill.style.width = `${percentage}%`;
+        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
+      }
+      showCelebration(emoji) {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration';
+        celebration.textContent = emoji;
+        document.body.appendChild(celebration);
+        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
+      }
+      showCompletion() {
+        this.showCelebration('🎊');
+        setTimeout(() => {
+          alert('¡Excelente! Completaste el estudio sobre Utilitarismo. Ya podés pasar a las actividades y al quiz.');
+        }, 800);
+      }
+
+      async playSound(type) {
+        try {
+          const files = {
+            success: 'collect_points.mp3',
+            error: 'negative_beep.mp3',
+            show_question: 'show_question.mp3',
+            timer_warning: 'timer_warning.mp3',
+            timer_danger: 'timer_danger.mp3'
+          };
+          const file = files[type] || 'collect_points.mp3';
+          const audio = new Audio(SOUND_BASE + file);
+          audio.volume = 0.7;
+          audio.preload = 'auto';
+          const p = audio.play();
+          if (p !== undefined) await p;
+        } catch (err) {
+          console.warn('No se pudo reproducir sonido:', err);
+        }
+      }
+    }
+    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
+  </script>
+</body>
+</html>
