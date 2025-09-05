@@ -166,14 +166,14 @@
     <div class="game-overlay" id="gameOverlay">
       <div class="game-board">
         <div class="game-header">
-          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-around; width: 100%;">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
             <h2>🎯 Conecta conceptos con definiciones</h2>
             <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
           </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
           <div class="game-stats">
             <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
             <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
-            <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
             <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
           </div>
         </div>

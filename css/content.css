@@ -99,3 +99,77 @@
       .comparison-table td{ border:none; position:relative; padding-left:50%; }
       .comparison-table td:before{ content:attr(data-label); position:absolute; left:6px; width:45%; padding-right:10px; white-space:nowrap; color:var(--accent); font-weight:600; }
     }
+
+    /* para showCompletion() */
+
+    /* Overlay de celebración */
+.completion-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(14, 20, 38, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.6s ease;
+}
+
+.completion-content {
+  text-align: center;
+  background: var(--panel, #111a31);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(107,124,255,0.4);
+  color: var(--text, #fff);
+}
+
+.completion-content h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--accent, #6b7cff);
+}
+
+.completion-content button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent-2, #b074ff);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.completion-content button:hover {
+  transform: scale(1.05);
+}
+
+/* Confeti */
+.confetti-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  z-index: 2500;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px; height: 10px;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

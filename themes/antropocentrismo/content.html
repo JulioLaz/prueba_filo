@@ -6,6 +6,7 @@
   <title>Antropocentrismo: El Humano en el Centro del Universo (Estudio Progresivo)</title>
   <link rel="stylesheet" href="../../css/content.css">
 </head>
+
 <body>
   <main class="material-dark">
     <div class="progress-header">
@@ -1261,10 +1262,12 @@
         document.body.appendChild(celebration);
         setTimeout(() => { document.body.removeChild(celebration); }, 2000);
       }
+
       showCompletion() {
         this.showCelebration('🎊');
         setTimeout(() => {
           alert('¡Excelente! Completaste el estudio sobre Antropocentrismo. Ya podés pasar a las actividades y al quiz.');
+                    // Aquí puedes integrar con tu sistema de progreso general
         }, 800);
       }
 

@@ -1,0 +1,90 @@
+/* celebration.css – estilos compartidos para el overlay y lluvia */
+
+/* Overlay base */
+.cele-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 20, 38, 0.92);
+  display: grid;
+  place-items: center;
+  z-index: 3000;
+  animation: cele-fade-in 0.4s ease;
+  backdrop-filter: blur(2px);
+}
+
+.cele-content {
+  width: min(640px, 92vw);
+  background: var(--panel, #111a31);
+  color: var(--text, #cfd8ff);
+  border-radius: 20px;
+  padding: clamp(20px, 4vw, 36px);
+  text-align: center;
+  box-shadow: 0 0 24px rgba(107,124,255,.35);
+  transform: translateY(8px);
+  animation: cele-pop 0.35s ease-out forwards;
+}
+
+.cele-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 10px;
+  color: var(--accent, #6b7cff);
+}
+
+.cele-msg {
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.6;
+  margin: 6px 0 18px;
+}
+
+.cele-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cele-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+}
+
+.cele-btn-primary {
+  background: var(--accent-2, #b074ff);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(176,116,255,.3);
+}
+.cele-btn-primary:hover { transform: translateY(-1px) scale(1.03); }
+
+/* Lluvia de emojis */
+.cele-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3500;
+}
+
+.cele-emoji {
+  position: absolute;
+  top: -10vh;
+  animation-name: cele-fall;
+  animation-timing-function: linear;
+  will-change: transform;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.25));
+}
+
+@keyframes cele-fall {
+  0%   { transform: translateY(-10vh) rotate(0deg);   opacity: .9; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: .95; }
+}
+
+@keyframes cele-fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes cele-pop {
+  from { transform: translateY(8px) scale(.98); opacity: .7; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
