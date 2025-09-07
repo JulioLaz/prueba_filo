@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Paul Sartre - Lectura Guiada</title>
+    <link rel="stylesheet" href="../../css/celebration.css">
+    <link rel="stylesheet" href="../../css/readaloud.css">
+    <script src="../../js/celebration.js" defer></script>      
+
+</head>
+<body>
+    <main class="material-dark">
+        <div class="progress-header">
+            <div class="progress-text">
+                <span>Progreso de Comprensión</span>
+                <span id="progress-counter">0 / 3 secciones</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <h1>Jean-Paul Sartre — el ser humano es el ser libre</h1>
+
+        <!-- Sección 1: Introducción -->
+        <div class="study-section active" data-section="intro">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>📚 Lectura Obligatoria</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        El <strong>existencialismo sartreano</strong> afirma que 
+                        <strong>la existencia precede a la esencia</strong>: primero 
+                        existimos y luego, mediante nuestras <strong>elecciones</strong>, 
+                        nos definimos. No hay una "naturaleza humana" prefijada que nos 
+                        dicte quiénes somos.<br><br>
+                        De ahí la tesis: <strong>estamos condenados a ser libres</strong>. 
+                        La libertad no es un privilegio cómodo sino una 
+                        <strong>carga de responsabilidad</strong> que nos expone a la 
+                        <strong>angustia</strong>, el <strong>desamparo</strong> y la 
+                        <strong>desesperación</strong>.
+                    </p>
+                </div>
+
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Lee en voz alta cada frase. Se marcará en verde lo que hayas leído correctamente.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🧠 Verificación de Comprensión</h4>
+                    <p>Ahora que has leído el texto, responde:</p>
+                </div>
+                <div class="question">
+                    <p>¿Cuál es la idea central del existencialismo sartreano?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        La libertad en Sartre es inevitable y genera responsabilidad total sobre nuestros actos
+                    </div>
+                    <div class="option">
+                        Los seres humanos tienen una esencia predeterminada que guía sus elecciones
+                    </div>
+                    <div class="option">
+                        La angustia es un sentimiento negativo que debemos evitar completamente
+                    </div>
+                    <div class="option">
+                        Sartre defiende que podemos escapar de la responsabilidad de elegir
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 2: Contexto -->
+        <div class="study-section" data-section="contexto">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>🌍 Contexto Histórico</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        Tras las <strong>Guerras Mundiales</strong>, el optimismo racionalista quedó 
+                        herido. Sartre responde que el ser humano no tiene un guion previo: 
+                        <strong>se hace a sí mismo en sus actos</strong>.<br><br>
+                        
+                        Elige incluso cuando aparenta no elegir. Por eso: la 
+                        <strong>existencia es superior a la esencia</strong> - no hay modelo 
+                        previo de lo humano. Tenemos una <strong>libertad inevitable</strong> 
+                        de la que no podemos "salirnos". Cada elección implica una 
+                        <strong>responsabilidad radical</strong> porque cada elección 
+                        "propone" a otros un modo de ser.
+                    </p>
+                </div>
+
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Lee despacio y con claridad para mejor reconocimiento.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🎯 Verificación de Comprensión</h4>
+                    <p>Basándote en lo que acabas de leer:</p>
+                </div>
+                <div class="question">
+                    <p>¿Qué significa que "la existencia precede a la esencia"?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        El ser humano se define a través de sus actos, no por una naturaleza preestablecida
+                    </div>
+                    <div class="option">
+                        Las Guerras Mundiales no influyeron en el pensamiento existencialista
+                    </div>
+                    <div class="option">
+                        Sartre defiende que hay situaciones donde realmente no elegimos
+                    </div>
+                    <div class="option">
+                        Cada persona debe seguir un modelo universal de comportamiento humano
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 3: Ontología -->
+        <div class="study-section" data-section="ontologia">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>🧩 Ontología Básica</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        Sartre distingue niveles del ser para explicar la libertad:<br><br>
+                        
+                        <strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras 
+                        ni proyectos. Un árbol "es", sin preguntarse por su ser.<br><br>
+                        
+                        <strong>Ser para sí</strong>: la conciencia humana; no es "plena", 
+                        se abre como posibilidad. Puede negarse a sí misma, reinterpretarse, 
+                        apartarse de lo dado.<br><br>
+                        
+                        <strong>La nada</strong>: distancia interna que la conciencia introduce 
+                        en lo real. Ese "hueco" hace posible <strong>elegir</strong> y no 
+                        reaccionar mecánicamente. La libertad no es una propiedad adicional: 
+                        <strong>es la estructura misma del para sí</strong>.
+                    </p>
+                </div>
+
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Este es un texto conceptual. Lee con atención cada término.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🔬 Verificación de Comprensión</h4>
+                    <p>Sobre los conceptos ontológicos de Sartre:</p>
+                </div>
+                <div class="question">
+                    <p>¿Qué caracteriza al "ser-para-sí" según Sartre?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        La conciencia humana se caracteriza por su apertura a posibilidades
+                    </div>
+                    <div class="option">
+                        El ser-en-sí y el ser-para-sí son conceptos equivalentes
+                    </div>
+                    <div class="option">
+                        Los objetos tienen la misma estructura ontológica que los seres humanos
+                    </div>
+                    <div class="option">
+                        La libertad es una característica que se puede agregar o quitar del ser humano
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+        const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
+        
+        /* JavaScript Integrado - readaloud-optimized.js */
+        (function() {
+            'use strict';
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                console.warn('SpeechRecognition no soportado en este navegador');
+                document.querySelectorAll('.mic-button').forEach(btn => {
+                    btn.disabled = true;
+                    btn.querySelector('.mic-text').textContent = 'Micrófono no soportado';
+                });
+                return;
+            }
+
+            // Configuración pedagógica
+            const CONFIG = {
+                lang: 'es-AR',
+                threshold: 0.80, // 75% del texto debe ser leído
+                tolerance: 0.3,
+                minSpeed: 1.0,
+                maxSpeed: 4.0,
+                synonymMap: {
+                    'el': ['un', 'este', 'ese'],
+                    'la': ['una', 'esta', 'esa'],
+                    'y': ['e'],
+                    'o': ['u'],
+                    'ser': ['estar', 'existir'],
+                    'humano': ['persona', 'hombre', 'individuo'],
+                    'eleccion': ['decision', 'opcion'],
+                    'libertad': ['autonomia'],
+                    'responsabilidad': ['compromiso', 'deber']
+                }
+            };
+
+            // Utilidades de normalización
+            const TextUtils = {
+                normalize(text) {
+                    return text
+                        .toLowerCase()
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/[.,;:¡!¿?()[\]«»"'"']/g, ' ')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+                },
+
+                tokenizePreservingHTML(element) {
+                    const tokens = [];
+                    let wordIndex = 0;
+                    const self = this;
+
+                    function processNode(node) {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            const text = node.textContent;
+                            const words = text.split(/(\s+)/);
+                            
+                            words.forEach(word => {
+                                if (word.trim()) {
+                                    const span = document.createElement('span');
+                                    span.className = 'rl-word rl-pending';
+                                    span.textContent = word;
+                                    span.dataset.wordIndex = wordIndex;
+                                    span.dataset.normalized = self.normalize(word);
+                                    
+                                    tokens.push({
+                                        element: span,
+                                        original: word,
+                                        normalized: self.normalize(word),
+                                        index: wordIndex
+                                    });
+                                    
+                                    node.parentNode.insertBefore(span, node);
+                                    wordIndex++;
+                                } else if (word) {
+                                    node.parentNode.insertBefore(document.createTextNode(word), node);
+                                }
+                            });
+                            
+                            node.remove();
+                        } else if (node.nodeType === Node.ELEMENT_NODE) {
+                            Array.from(node.childNodes).forEach(child => processNode(child));
+                        }
+                    }
+
+                    Array.from(element.childNodes).forEach(processNode);
+                    return tokens;
+                },
+
+                getSynonyms(word) {
+                    const normalized = this.normalize(word);
+                    return CONFIG.synonymMap[normalized] || [];
+                },
+
+                isMatch(spokenWord, targetWord) {
+                    const spoken = this.normalize(spokenWord);
+                    const target = this.normalize(targetWord);
+                    
+                    if (spoken === target) return 1.0;
+                    
+                    const synonyms = this.getSynonyms(target);
+                    if (synonyms.some(syn => this.normalize(syn) === spoken)) {
+                        return 0.9;
+                    }
+                    
+                    if (target.length > 3 && spoken.includes(target.substring(0, target.length - 1))) {
+                        return 0.7;
+                    }
+                    
+                    return 0.0;
+                }
+            };
+
+
+            
+            // Clase principal del sistema de lectura
+            class ReadAloudSystem {
+                constructor(paragraphEl, options = {}) {
+                    this.paragraph = paragraphEl;
+                    this.options = { ...CONFIG, ...options };
+                    this.tokens = [];
+                    this.recognizedWords = new Set();
+                    this.currentProgress = 0;
+                    this.isListening = false;
+                    this.recognition = null;
+                    this.startTime = null;
+                    this.readWords = 0;
+                    
+                    this.init();
+                }
+
+                init() {
+                    this.setupRecognition();
+                    this.tokenizeParagraph();
+                    this.setupControls();
+                    this.updateProgress();
+                }
+
+                setupRecognition() {
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.lang = this.options.lang;
+                    this.recognition.continuous = true;
+                    this.recognition.interimResults = true;
+                    this.recognition.maxAlternatives = 3;
+
+                    this.recognition.onstart = () => {
+                        this.startTime = Date.now();
+                        this.onListeningStart();
+                    };
+
+                    this.recognition.onresult = (event) => {
+                        this.processRecognitionResult(event);
+                    };
+
+                    this.recognition.onerror = (event) => {
+                        this.onError(event.error);
+                    };
+
+                    this.recognition.onend = () => {
+                        if (this.isListening && !this.isCompleted()) {
+                            setTimeout(() => {
+                                if (this.isListening) {
+                                    try {
+                                        this.recognition.start();
+                                    } catch (e) {
+                                        console.warn('Error reiniciando reconocimiento:', e);
+                                    }
+                                }
+                            }, 100);
+                        }
+                    };
+                }
+
+                tokenizeParagraph() {
+                    this.tokens = TextUtils.tokenizePreservingHTML(this.paragraph);
+                    console.log(`[ReadAloud] Tokenizado: ${this.tokens.length} palabras`);
+                }
+
+                setupControls() {
+                    this.micButton = this.paragraph.closest('.reading-area').querySelector('.mic-button');
+                    this.statusEl = this.paragraph.closest('.reading-area').querySelector('.reading-status');
+                    this.progressBar = this.paragraph.closest('.reading-area').querySelector('.progress-fill-reading');
+                    this.progressText = this.paragraph.closest('.reading-area').querySelector('.progress-text-reading');
+
+                    this.micButton.addEventListener('click', () => {
+                        this.toggleListening();
+                    });
+                }
+
+                toggleListening() {
+                    if (this.isCompleted()) {
+                        return;
+                    }
+
+                    if (this.isListening) {
+                        this.stopListening();
+                    } else {
+                        this.startListening();
+                    }
+                }
+
+                startListening() {
+                    try {
+                        this.recognition.start();
+                        this.isListening = true;
+                        this.startTime = Date.now();
+                        this.readWords = 0;
+                    } catch (error) {
+                        this.onError('no-speech');
+                    }
+                }
+
+                stopListening() {
+                    this.isListening = false;
+                    try {
+                        this.recognition.stop();
+                    } catch (error) {
+                        console.warn('Error deteniendo reconocimiento:', error);
+                    }
+                    this.onListeningStop();
+                }
+
+                processRecognitionResult(event) {
+                    let finalTranscript = '';
+                    let interimTranscript = '';
+
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const result = event.results[i];
+                        const transcript = result[0].transcript;
+
+                        if (result.isFinal) {
+                            finalTranscript += transcript + ' ';
+                        } else {
+                            interimTranscript += transcript + ' ';
+                        }
+                    }
+
+                    if (finalTranscript.trim()) {
+                        this.processSpokenText(finalTranscript.trim());
+                    }
+
+                    if (interimTranscript.trim()) {
+                        this.highlightInterimProgress(interimTranscript.trim());
+                    }
+                }
+
+                processSpokenText(spokenText) {
+                    const spokenWords = TextUtils.normalize(spokenText).split(/\s+/).filter(Boolean);
+                    let newMatches = 0;
+
+                    console.log(`[ReadAloud] Procesando: "${spokenText}"`);
+                    
+                    const currentTime = Date.now();
+                    const timeElapsed = (currentTime - this.startTime) / 1000;
+                    const wordsPerSecond = spokenWords.length / timeElapsed;
+                    
+                    if (wordsPerSecond > CONFIG.maxSpeed) {
+                        console.warn('[ReadAloud] Lectura demasiado rápida, posible trampa');
+                        this.onError('reading-too-fast');
+                        return;
+                    }
+
+                    spokenWords.forEach(spokenWord => {
+                        this.tokens.forEach(token => {
+                            if (!this.recognizedWords.has(token.index)) {
+                                const matchScore = TextUtils.isMatch(spokenWord, token.original);
+                                
+                                if (matchScore >= 0.7) {
+                                    this.recognizedWords.add(token.index);
+                                    token.element.classList.remove('rl-pending', 'rl-current');
+                                    token.element.classList.add('rl-done');
+                                    newMatches++;
+                                    this.readWords++;
+                                   
+                                    this.animateWordConfirmation(token.element);
+                                }
+                            }
+                        });
+                    });
+
+                    if (newMatches > 0) {
+                        // this.playWordConfirmSound();
+                        this.updateProgress();
+                        this.checkCompletion();
+                        this.playSound('success');
+                    }
+                }
+
+                highlightInterimProgress(interimText) {
+                    const spokenWords = TextUtils.normalize(interimText).split(/\s+/).filter(Boolean);
+                    
+                    this.tokens.forEach(token => {
+                        if (!this.recognizedWords.has(token.index)) {
+                            token.element.classList.remove('rl-current');
+                            token.element.classList.add('rl-pending');
+                        }
+                    });
+
+                    spokenWords.forEach(spokenWord => {
+                        this.tokens.forEach(token => {
+                            if (!this.recognizedWords.has(token.index)) {
+                                const matchScore = TextUtils.isMatch(spokenWord, token.original);
+                                
+                                if (matchScore >= 0.5) {
+                                    token.element.classList.remove('rl-pending');
+                                    token.element.classList.add('rl-current');
+                                }
+                            }
+                        });
+                    });
+                }
+
+                updateProgress() {
+                    const progress = this.recognizedWords.size / this.tokens.length;
+                    this.currentProgress = progress;
+                    
+                    if (this.progressBar) {
+                        this.progressBar.style.width = `${progress * 100}%`;
+                    }
+                    
+                    if (this.progressText) {
+                        this.progressText.textContent = `${Math.round(progress * 100)}% leído`;
+                    }
+
+                    console.log(`[ReadAloud] Progreso: ${Math.round(progress * 100)}% (${this.recognizedWords.size}/${this.tokens.length})`);
+                }
+
+                checkCompletion() {
+                    if (this.currentProgress >= this.options.threshold) {
+                        this.onComplete();
+                    }
+                }
+
+                isCompleted() {
+                    return this.currentProgress >= this.options.threshold;
+                }
+
+                onListeningStart() {
+                    this.micButton.classList.add('listening');
+                    this.micButton.querySelector('.mic-text').textContent = 'Escuchando...';
+                    this.statusEl.textContent = 'Leyendo en voz alta 🎤';
+                    this.statusEl.classList.add('listening');
+                    
+                    this.paragraph.closest('.readaloud-container').classList.add('reading-active');
+                }
+
+                onListeningStop() {
+                    this.micButton.classList.remove('listening');
+                    this.micButton.querySelector('.mic-text').textContent = 'Continuar Lectura';
+                    this.statusEl.textContent = 'Presiona para continuar';
+                    this.statusEl.classList.remove('listening');
+                    
+                    this.paragraph.closest('.readaloud-container').classList.remove('reading-active');
+                }
+
+                onComplete() {
+                    this.isListening = false;
+                    this.recognition.stop();
+                    
+                    this.micButton.classList.remove('listening');
+                    this.micButton.classList.add('completed');
+                    this.micButton.querySelector('.mic-text').textContent = '✅ Completado';
+                    this.statusEl.textContent = 'Lectura completada exitosamente';
+                    this.statusEl.classList.add('completed');
+                    this.statusEl.classList.remove('listening');
+                    
+                    this.tokens.forEach(token => {
+                        token.element.classList.remove('rl-pending', 'rl-current');
+                        token.element.classList.add('rl-done');
+                    });
+
+                    if (this.options.onComplete) {
+                        setTimeout(() => {
+                            this.options.onComplete();
+                        }, 500);
+                    }
+
+                    console.log(`[ReadAloud] ¡Lectura completada! Tiempo total: ${(Date.now() - this.startTime) / 1000}s`);
+                }
+
+                onError(error) {
+                    console.error('[ReadAloud] Error:', error);
+                    
+                    this.stopListening();
+                    
+                    let errorMessage;
+                    switch (error) {
+                        case 'no-speech':
+                            errorMessage = 'No se detectó voz. Verifica tu micrófono.';
+                            break;
+                        case 'audio-capture':
+                            errorMessage = 'Error de micrófono. Verifica permisos.';
+                            break;
+                        case 'not-allowed':
+                            errorMessage = 'Permiso de micrófono denegado.';
+                            break;
+                        case 'reading-too-fast':
+                            errorMessage = 'Lectura muy rápida. Lee más despacio.';
+                            break;
+                        default:
+                            errorMessage = 'Error de reconocimiento. Intenta nuevamente.';
+                    }
+                    
+                    this.showError(errorMessage);
+                }
+
+                showError(message) {
+                    const existingError = this.paragraph.closest('.reading-area').querySelector('.reading-error');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+
+                    const errorEl = document.createElement('div');
+                    errorEl.className = 'reading-error';
+                    errorEl.textContent = message;
+                    
+                    this.paragraph.closest('.reading-area').appendChild(errorEl);
+                    
+                    setTimeout(() => {
+                        if (errorEl.parentNode) {
+                            errorEl.remove();
+                        }
+                    }, 5000);
+                }
+
+                animateWordConfirmation(element) {
+                    element.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        element.style.transform = 'scale(1)';
+                    }, 200);
+                }
+
+                      // ▶ Reproductor de sonido
+                async playSound(type) {
+                    try {
+                    const files = {
+                        success: 'collect_points.mp3',
+                        error: 'negative_beep.mp3',
+                        show_question: 'show_question.mp3',
+                        timer_warning: 'timer_warning.mp3',
+                        celebration: 'celebration.mp3',
+                        timer_danger: 'timer_danger.mp3'
+                    };
+                    const file = files[type] || 'collect_points.mp3';
+                    const audio = new Audio(SOUND_BASE + file);
+                    audio.volume = 0.7;
+                    audio.preload = 'auto';
+                    const p = audio.play();
+                    if (p !== undefined) await p;
+                    } catch (err) {
+                    console.warn('No se pudo reproducir sonido:', err);
+                    }
+                }
+
+            }
+
+            // Sistema de gestión de secciones
+            class ProgressiveStudySystem {
+                constructor() {
+                    this.sections = document.querySelectorAll('.study-section');
+                    this.currentSectionIndex = 0;
+                    this.completedSections = new Set();
+                    this.readAloudSystems = new Map();
+                    
+                    this.init();
+                }
+
+                init() {
+                    this.setupCurrentSection();
+                    this.updateGlobalProgress();
+                }
+
+                setupCurrentSection() {
+                    const currentSection = this.sections[this.currentSectionIndex];
+                    if (!currentSection) return;
+
+                    const paragraph = currentSection.querySelector('.readaloud');
+                    if (!paragraph) {
+                        console.warn('No se encontró párrafo para leer en la sección actual');
+                        return;
+                    }
+
+                    const readAloudSystem = new ReadAloudSystem(paragraph, {
+                        onComplete: () => {
+                            this.onSectionReadingComplete();
+                        }
+                    });
+
+                    this.readAloudSystems.set(this.currentSectionIndex, readAloudSystem);
+                }
+
+                onSectionReadingComplete() {
+                    console.log(`[Study] Sección ${this.currentSectionIndex} - Lectura completada`);
+                    
+                    const currentSection = this.sections[this.currentSectionIndex];
+                    const comprehensionCheck = currentSection.querySelector('.comprehension-check');
+                    
+                    if (comprehensionCheck) {
+                        setTimeout(() => {
+                            comprehensionCheck.style.display = 'block';
+                            setTimeout(() => {
+                                comprehensionCheck.classList.add('show');
+                                this.setupComprehensionCheck(comprehensionCheck);
+                            }, 100);
+                        }, 500);
+                    }
+                }
+
+                setupComprehensionCheck(checkElement) {
+                    const options = checkElement.querySelectorAll('.option');
+                    
+                    options.forEach(option => {
+                        option.addEventListener('click', (e) => {
+                            this.handleOptionClick(e.target, checkElement);
+                        });
+                    });
+                }
+
+                handleOptionClick(clickedOption, checkElement) {
+                    const options = checkElement.querySelectorAll('.option');
+                    const isCorrect = clickedOption.dataset.correct === 'true';
+                    
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                    
+                    if (isCorrect) {
+                        clickedOption.classList.add('correct');
+                        this.playSound('success');
+                        setTimeout(() => {
+                            this.onSectionCompleted();
+                        }, 1000);
+                    } else {
+                        clickedOption.classList.add('incorrect');
+                        
+                        setTimeout(() => {
+                            options.forEach(opt => {
+                                opt.classList.remove('correct', 'incorrect');
+                                opt.style.pointerEvents = 'auto';
+                            });
+                            
+                            this.shuffleOptions(checkElement);
+                        }, 1500);
+                    }
+                }
+
+                shuffleOptions(checkElement) {
+                    const container = checkElement.querySelector('.options-container');
+                    const options = Array.from(container.children);
+                    
+                    for (let i = options.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [options[i], options[j]] = [options[j], options[i]];
+                    }
+                    
+                    options.forEach(option => container.appendChild(option));
+                }
+
+                onSectionCompleted() {
+                    console.log(`[Study] Sección ${this.currentSectionIndex} completada`);
+                    
+                    this.completedSections.add(this.currentSectionIndex);
+                    
+                    const currentSection = this.sections[this.currentSectionIndex];
+                    currentSection.classList.add('completed-section');
+                    currentSection.classList.remove('active');
+                    
+                    this.updateGlobalProgress();
+                    
+                    this.currentSectionIndex++;
+                    
+                    if (this.currentSectionIndex < this.sections.length) {
+                        setTimeout(() => {
+                            this.showNextSection();
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            this.onAllSectionsCompleted();
+                        }, 1000);
+                    }
+                }
+
+                showNextSection() {
+                    const nextSection = this.sections[this.currentSectionIndex];
+                    
+                    nextSection.classList.add('active');
+                    nextSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                    
+                    setTimeout(() => {
+                        this.setupCurrentSection();
+                    }, 200);
+                }
+
+                updateGlobalProgress() {
+                    const progressFill = document.getElementById('progress-fill');
+                    const progressCounter = document.getElementById('progress-counter');
+                    
+                    if (progressFill && progressCounter) {
+                        const progress = (this.completedSections.size / this.sections.length) * 100;
+                        progressFill.style.width = `${progress}%`;
+                        progressCounter.textContent = `${this.completedSections.size} / ${this.sections.length} secciones`;
+                    }
+                }
+
+                onAllSectionsCompleted() {
+                    console.log('[Study] ¡Todas las secciones completadas!');
+                    // alert('¡Felicitaciones! Has completado todo el material de Sartre.');
+                // Reemplazar showCelebration() por:
+                if (typeof Celebration !== 'undefined') {
+                    this.playSound('celebration');
+                    Celebration.celebrateStudyComplete("Sartre", {
+                        message: "¡Completaste Sartre! 🎉",
+                        emojis: ['🎊', '🎉', '⭐'],
+                    onContinue: () => { location.href = '../../tema.html?tema=antropocentrismo'; }
+                    });
+                } else {                   
+                    alert('¡Felicitaciones! Has completado todo el material de Sartre.');
+                }
+            }
+            
+            // ▶ Reproductor de sonido
+            async playSound(type) {
+                    try {
+                    const files = {
+                        success: 'collect_points.mp3',
+                        error: 'negative_beep.mp3',
+                        show_question: 'show_question.mp3',
+                        timer_warning: 'timer_warning.mp3',
+                        celebration: 'celebration.mp3',
+                        timer_danger: 'timer_danger.mp3'
+                    };
+                    const file = files[type] || 'collect_points.mp3';
+                    const audio = new Audio(SOUND_BASE + file);
+                    audio.volume = 0.7;
+                    audio.preload = 'auto';
+                    const p = audio.play();
+                    if (p !== undefined) await p;
+                } catch (err) {
+                    console.warn('No se pudo reproducir sonido:', err);
+                }
+            }
+        }
+
+
+            // Inicializar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    new ProgressiveStudySystem();
+                });
+            } else {
+                new ProgressiveStudySystem();
+            }
+
+        })();
+    </script>
+</body>
+</html>

@@ -173,3 +173,46 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* nuevas lineas para lectura */
+
+
+/* No cambies el flujo: cada palabra sigue inline */
+.rl-word { display: inline; padding: 1px 2px; border-radius: 6px; }
+
+/* Estados de lectura */
+.rl-done    { background: rgba(125,241,168,.22); }
+.rl-current { background: rgba(76,195,255,.20); }
+.rl-pending {}
+
+/* Bloque completo */
+.rl-complete {
+  background: linear-gradient(90deg, rgba(125,241,168,.10), transparent 60%);
+  border-radius: 12px;
+}
+
+/* Toolbar del mic del bloque */
+.rl-toolbar {
+  display: flex; gap: 8px; align-items: center;
+  margin: 8px 0 6px;
+}
+.rl-mic {
+  border: 1px solid var(--border, #223059);
+  background: var(--chip, #172133);
+  color: var(--text, #cfd8ff);
+  padding: 6px 10px; border-radius: 10px; cursor: pointer;
+  font-size: .9rem;
+}
+.rl-mic[aria-pressed="true"] {
+  background: #b074ff; color: #fff; box-shadow: 0 0 0 2px rgba(176,116,255,.35) inset;
+}
+.rl-status { font-size: .85rem; padding: 2px 8px; border-radius: 999px;
+  background: rgba(107,124,255,.18); color: var(--text,#cfd8ff); }
+
+/* Ajustes tipográficos para listas y títulos (seguís usando tu CSS base) */
+.readaloud-scope ul { margin: .6rem 0 .8rem 1.2rem; }
+.readaloud-scope li { margin: .2rem 0; }
+.readaloud-scope h3 { margin-top: .8rem; margin-bottom: .4rem; }
+
+
+/* LECTURA CON VOS DE CLAUDE */

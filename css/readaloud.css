@@ -1,0 +1,433 @@
+ * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .material-dark {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 16px;
+            min-height: 100vh;
+        }
+
+        /* Header de progreso general */
+        .progress-header {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #404040;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        /* Título principal */
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 300;
+            margin: 0 0 32px 0;
+            line-height: 1.3;
+        }
+
+        /* Secciones de estudio */
+        .study-section {
+            display: none;
+            margin-bottom: 32px;
+        }
+
+        .study-section.active {
+            display: block;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Área de lectura */
+        .reading-area {
+            background: #2d2d2d;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .reading-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .reading-header h3 {
+            margin: 0;
+            color: #81C784;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Progreso de lectura individual */
+        .reading-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 140px;
+        }
+
+        .progress-bar-reading {
+            width: 80px;
+            height: 6px;
+            background: #404040;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill-reading {
+            height: 100%;
+            background: linear-gradient(90deg, #2196F3, #42A5F5);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text-reading {
+            font-size: 12px;
+            color: #bbb;
+            font-weight: 500;
+        }
+
+        /* Container del texto a leer */
+        .readaloud-container {
+            background: #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196F3;
+            position: relative;
+        }
+
+        .readaloud {
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0;
+            color: #e8e8e8;
+        }
+
+        /* Estados de las palabras durante la lectura */
+        .rl-word {
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            padding: 1px 2px;
+        }
+
+        .rl-word.rl-pending {
+            background: transparent;
+            color: #e8e8e8;
+        }
+
+        .rl-word.rl-current {
+            background: rgba(255, 193, 7, 0.3);
+            color: #fff;
+            box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);
+        }
+
+        .rl-word.rl-done {
+            background: rgba(76, 175, 80, 0.3);
+            color: #fff;
+            box-shadow: 0 0 4px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Controles de lectura */
+        .reading-controls {
+            text-align: center;
+        }
+
+        .mic-button {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 auto 16px auto;
+            min-width: 200px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mic-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .mic-button:active {
+            transform: translateY(0);
+        }
+
+        .mic-button.listening {
+            background: linear-gradient(135deg, #F44336, #EF5350);
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-button.completed {
+            background: linear-gradient(135deg, #2196F3, #42A5F5);
+            cursor: default;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(244, 67, 54, 0.3); }
+            50% { box-shadow: 0 4px 24px rgba(244, 67, 54, 0.6); }
+        }
+
+        .mic-icon {
+            font-size: 20px;
+        }
+
+        .mic-text {
+            font-size: 16px;
+        }
+
+        .reading-status {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .reading-status.listening {
+            color: #F44336;
+            animation: statusPulse 2s infinite;
+        }
+
+        .reading-status.completed {
+            color: #4CAF50;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .reading-hint {
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Error states */
+        .reading-error {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            color: #F44336;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Verificación de comprensión */
+        .comprehension-check {
+            background: #2d2d2d;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            border-top: 4px solid #4CAF50;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comprehension-check.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .check-header h4 {
+            margin: 0 0 8px 0;
+            color: #81C784;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .check-header p {
+            margin: 0 0 20px 0;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .question {
+            background: #404040;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+         }
+         
+         .question p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #d13f3f;
+            text-align: center;
+        }
+
+        /* Opciones de respuesta */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+            gap: 12px;
+        }
+
+        .option {
+            background: #404040;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+            line-height: 1.5;
+            color: #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            background: #4a4a4a;
+            border-color: #666;
+            transform: translateY(-1px);
+        }
+
+        .option:active {
+            transform: translateY(0);
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-color: #4CAF50;
+            color: white;
+            animation: correctAnswer 0.6s ease;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #F44336, #EF5350);
+            border-color: #F44336;
+            color: white;
+            animation: incorrectAnswer 0.6s ease;
+        }
+
+        @keyframes correctAnswer {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes incorrectAnswer {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .material-dark {
+                max-width: 800px;
+                padding: 24px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .reading-header {
+                flex-wrap: nowrap;
+            }
+            
+            .readaloud {
+                font-size: 18px;
+            }
+            
+            .options-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .material-dark {
+                padding: 12px;
+            }
+            
+            .reading-area {
+                padding: 16px;
+            }
+            
+            .readaloud-container {
+                padding: 16px;
+            }
+            
+            .mic-button {
+                min-width: 180px;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+
+        .completed-section {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .completed-section .reading-area {
+            background: #1f2f1f;
+            border-left-color: #4CAF50;
+        }

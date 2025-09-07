@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Antropocentrismo: El Humano en el Centro del Universo (Estudio Progresivo)</title>
   <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>  
+  
 </head>
 
 <body>
@@ -1263,13 +1266,24 @@
         setTimeout(() => { document.body.removeChild(celebration); }, 2000);
       }
 
-      showCompletion() {
-        this.showCelebration('🎊');
-        setTimeout(() => {
-          alert('¡Excelente! Completaste el estudio sobre Antropocentrismo. Ya podés pasar a las actividades y al quiz.');
-                    // Aquí puedes integrar con tu sistema de progreso general
-        }, 800);
+
+            showCompletion() {
+        Celebration.celebrateStudyComplete('Antropocentrismo', {
+          // message opcional (HTML)
+          message: 'Has completado el material de <strong>Antropocentrismo</strong>... 💪',
+          emojis: ['😁','🤩','😍'], // opcional
+          // emojis: ['🎉','📚','✨'], // opcional
+          onContinue: () => { location.href = '../../tema.html?tema=antropocentrismo'; }
+        });
+        this.playSound('celebration')
       }
+      // showCompletion() {
+      //   this.showCelebration('🎊');
+      //   setTimeout(() => {
+      //     alert('¡Excelente! Completaste el estudio sobre Antropocentrismo. Ya podés pasar a las actividades y al quiz.');
+      //               // Aquí puedes integrar con tu sistema de progreso general
+      //   }, 800);
+      // }
 
       // ▶ Reproductor de sonido
       async playSound(type) {
@@ -1279,6 +1293,7 @@
             error: 'negative_beep.mp3',
             show_question: 'show_question.mp3',
             timer_warning: 'timer_warning.mp3',
+            celebration: 'celebration.mp3',
             timer_danger: 'timer_danger.mp3'
           };
           const file = files[type] || 'collect_points.mp3';

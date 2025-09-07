@@ -1,299 +1,254 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jean-Paul Sartre - Estudio Progresivo</title>
-  <link rel="stylesheet" href="../../css/content.css">
-  <link rel="stylesheet" href="../../css/celebration.css">
-  <script src="../../js/celebration.js" defer></script>
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Paul Sartre - Lectura Guiada</title>
+    <link rel="stylesheet" href="../../css/celebration.css">
+    <link rel="stylesheet" href="../../css/readaloud.css">
+    <script src="../../js/celebration.js" defer></script>
+    
+    <!-- 🔧 CONFIGURACIÓN DEL TEMA -->
+    <script>
+        // Configuración específica para este tema
+        window.ReadAloudSystemConfig = {
+            tema: 'Sartre',
+            threshold: 0.85, // 85% de lectura requerida
+            sections: 3,
+            soundsPath: '../../sound/',
+            redirectTo: '../../tema.html?tema=antropocentrismo',
+            celebrationEmojis: ['🎊', '🎉', '⭐', '🌟'],
+            
+            // Sinónimos específicos para Sartre (opcional)
+            synonymMap: {
+                'existencialismo': ['filosofía existencial'],
+                'libertad': ['autonomía', 'libre albedrío'],
+                'responsabilidad': ['compromiso', 'deber'],
+                'angustia': ['ansiedad', 'inquietud'],
+                'esencia': ['naturaleza', 'ser'],
+                'existencia': ['vida', 'ser'],
+                'elección': ['decisión', 'opción', 'elección'],
+                'conciencia': ['conocimiento', 'percepción'],
+                'nada': ['vacío', 'nihil'],
+                'proyecto': ['plan', 'propósito']
+            }
+        };
+    </script>
 </head>
 <body>
-  <main class="material-dark">
-    <div class="progress-header">
-      <div class="progress-text">
-        <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 14 secciones</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-    </div>
-
-    <h1>Jean-Paul Sartre — el ser humano es el ser libre</h1>
-
-    <div class="study-section active" data-section="intro">
-      <p><em>El existencialismo sartreano afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una "naturaleza humana" prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La libertad no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
-      
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Verificación de comprensión</div>
-        <div class="options-container">
-          <div class="option" data-correct="true">La libertad en Sartre es inevitable y genera responsabilidad total sobre nuestros actos</div>
-          <div class="option">Los seres humanos tienen una esencia predeterminada que guía sus elecciones</div>
-          <div class="option">La angustia es un sentimiento negativo que debemos evitar completamente</div>
-          <div class="option">Sartre defiende que podemos escapar de la responsabilidad de elegir</div>
-          <div class="option">La existencia y la esencia son conceptos equivalentes en el existencialismo</div>
+    <main class="material-dark">
+        <div class="progress-header">
+            <div class="progress-text">
+                <span>Progreso de Comprensión</span>
+                <span id="progress-counter">0 / 3 secciones</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="study-section" data-section="contexto">
-      <div class="highlight-box">
-        <h3>🌍 Contexto histórico y tesis central</h3>
-        <p>Tras las Guerras Mundiales, el optimismo racionalista quedó herido. Sartre responde que el ser humano no tiene un guion previo: <strong>se hace a sí mismo en sus actos</strong>. Elige incluso cuando aparenta no elegir. Por eso:</p>
-        <ul>
-          <li><strong>Existencia > esencia</strong>: no hay modelo previo de lo humano.</li>
-          <li><strong>Libertad inevitable</strong>: no podemos "salirnos" de elegir.</li>
-          <li><strong>Responsabilidad radical</strong>: cada elección "propone" a otros un modo de ser.</li>
-        </ul>
-        <blockquote><em>"El hombre no es otra cosa que lo que él se hace." — Sartre</em></blockquote>
-      </div>
-      
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Verificación de comprensión</div>
-        <div class="options-container">
-          <div class="option">Las Guerras Mundiales no influyeron en el pensamiento existencialista</div>
-          <div class="option" data-correct="true">El ser humano se define a través de sus actos, no por una naturaleza preestablecida</div>
-          <div class="option">Sartre defiende que hay situaciones donde realmente no elegimos</div>
-          <div class="option">La responsabilidad solo aplica a nuestras decisiones importantes</div>
-          <div class="option">Cada persona debe seguir un modelo universal de comportamiento humano</div>
+        <h1>Jean-Paul Sartre — el ser humano es el ser libre</h1>
+
+        <!-- Sección 1: Introducción -->
+        <div class="study-section active" data-section="intro">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>📚 Lectura Obligatoria</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        El <strong>existencialismo sartreano</strong> afirma que 
+                        <strong>la existencia precede a la esencia</strong>: primero 
+                        existimos y luego, mediante nuestras <strong>elecciones</strong>, 
+                        nos definimos. No hay una "naturaleza humana" prefijada que nos 
+                        dicte quiénes somos.<br><br>
+                        De ahí la tesis: <strong>estamos condenados a ser libres</strong>. 
+                        La libertad no es un privilegio cómodo sino una 
+                        <strong>carga de responsabilidad</strong> que nos expone a la 
+                        <strong>angustia</strong>, el <strong>desamparo</strong> y la 
+                        <strong>desesperación</strong>.
+                    </p>
+                </div>
+
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Lee en voz alta cada frase. Se marcará en verde lo que hayas leído correctamente.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🧠 Verificación de Comprensión</h4>
+                    <p>Ahora que has leído el texto, responde:</p>
+                </div>
+                <div class="question">
+                    <p>¿Cuál es la idea central del existencialismo sartreano?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        La libertad en Sartre es inevitable y genera responsabilidad total sobre nuestros actos
+                    </div>
+                    <div class="option">
+                        Los seres humanos tienen una esencia predeterminada que guía sus elecciones
+                    </div>
+                    <div class="option">
+                        La angustia es un sentimiento negativo que debemos evitar completamente
+                    </div>
+                    <div class="option">
+                        Sartre defiende que podemos escapar de la responsabilidad de elegir
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="study-section" data-section="ontologia">
-      <div class="highlight-box">
-        <h3>🧩 Ontología básica: ser-en-sí, ser-para-sí y la nada</h3>
-        <p>Sartre distingue niveles del ser para explicar la libertad:</p>
-        <ul>
-          <li><strong>Ser-en-sí (en-soi)</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos. Un árbol "es", sin preguntarse por su ser.</li>
-          <li><strong>Ser-para-sí (pour-soi)</strong>: la conciencia humana; no es "plena", se <em>abre</em> como posibilidad. Puede negarse a sí misma, reinterpretarse, apartarse de lo dado.</li>
-          <li><strong>La nada (néant)</strong>: distancia interna que la conciencia introduce en lo real. Ese "hueco" hace posible <strong>elegir</strong> y no reaccionar mecánicamente.</li>
-        </ul>
-        <p>La libertad no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
-      </div>
-      
-      <div class="comprehension-check">
-        <div class="check-title">🔬 Verificación de comprensión</div>
-        <div class="options-container">
-          <div class="option">El ser-en-sí y el ser-para-sí son conceptos equivalentes</div>
-          <div class="option">La nada es simplemente la ausencia total de existencia</div>
-          <div class="option" data-correct="true">La conciencia humana (ser-para-sí) se caracteriza por su apertura a posibilidades</div>
-          <div class="option">Los objetos tienen la misma estructura ontológica que los seres humanos</div>
-          <div class="option">La libertad es una característica que se puede agregar o quitar del ser humano</div>
+        <!-- Sección 2: Contexto -->
+        <div class="study-section" data-section="contexto">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>🌍 Contexto Histórico</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        Tras las <strong>Guerras Mundiales</strong>, el optimismo racionalista quedó 
+                        herido. Sartre responde que el ser humano no tiene un guion previo: 
+                        <strong>se hace a sí mismo en sus actos</strong>.<br><br>
+                        
+                        Elige incluso cuando aparenta no elegir. Por eso: la 
+                        <strong>existencia es superior a la esencia</strong> - no hay modelo 
+                        previo de lo humano. Tenemos una <strong>libertad inevitable</strong> 
+                        de la que no podemos "salirnos". Cada elección implica una 
+                        <strong>responsabilidad radical</strong> porque cada elección 
+                        "propone" a otros un modo de ser.
+                    </p>
+                </div>
+
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Lee despacio y con claridad para mejor reconocimiento.
+                    </div>
+                </div>
+            </div>
+
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🎯 Verificación de Comprensión</h4>
+                    <p>Basándote en lo que acabas de leer:</p>
+                </div>
+                <div class="question">
+                    <p>¿Qué significa que "la existencia precede a la esencia"?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        El ser humano se define a través de sus actos, no por una naturaleza preestablecida
+                    </div>
+                    <div class="option">
+                        Las Guerras Mundiales no influyeron en el pensamiento existencialista
+                    </div>
+                    <div class="option">
+                        Sartre defiende que hay situaciones donde realmente no elegimos
+                    </div>
+                    <div class="option">
+                        Cada persona debe seguir un modelo universal de comportamiento humano
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Continuar con las demás secciones... -->
+        <!-- Sección 3: Ontología -->
+        <div class="study-section" data-section="ontologia">
+            <div class="reading-area">
+                <div class="reading-header">
+                    <h3>🧩 Ontología Básica</h3>
+                    <div class="reading-progress">
+                        <div class="progress-bar-reading">
+                            <div class="progress-fill-reading"></div>
+                        </div>
+                        <span class="progress-text-reading">0% leído</span>
+                    </div>
+                </div>
+                
+                <div class="readaloud-container">
+                    <p class="readaloud" data-lang="es-AR">
+                        Sartre distingue niveles del ser para explicar la libertad:<br><br>
+                        
+                        <strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras 
+                        ni proyectos. Un árbol "es", sin preguntarse por su ser.<br><br>
+                        
+                        <strong>Ser para sí</strong>: la conciencia humana; no es "plena", 
+                        se abre como posibilidad. Puede negarse a sí misma, reinterpretarse, 
+                        apartarse de lo dado.<br><br>
+                        
+                        <strong>La nada</strong>: distancia interna que la conciencia introduce 
+                        en lo real. Ese "hueco" hace posible <strong>elegir</strong> y no 
+                        reaccionar mecánicamente. La libertad no es una propiedad adicional: 
+                        <strong>es la estructura misma del para sí</strong>.
+                    </p>
+                </div>
 
-  </main>
+                <div class="reading-controls">
+                    <button class="mic-button" type="button">
+                        <span class="mic-icon">🎤</span>
+                        <span class="mic-text">Comenzar Lectura</span>
+                    </button>
+                    <div class="reading-status">Presiona el micrófono para comenzar</div>
+                    <div class="reading-hint">
+                        💡 Este es un texto conceptual. Lee con atención cada término.
+                    </div>
+                </div>
+            </div>
 
-  <script>
+            <div class="comprehension-check" style="display: none;">
+                <div class="check-header">
+                    <h4>🔬 Verificación de Comprensión</h4>
+                    <p>Sobre los conceptos ontológicos de Sartre:</p>
+                </div>
+                <div class="question">
+                    <p>¿Qué caracteriza al "ser-para-sí" según Sartre?</p>
+                </div>
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        La conciencia humana se caracteriza por su apertura a posibilidades
+                    </div>
+                    <div class="option">
+                        El ser-en-sí y el ser-para-sí son conceptos equivalentes
+                    </div>
+                    <div class="option">
+                        Los objetos tienen la misma estructura ontológica que los seres humanos
+                    </div>
+                    <div class="option">
+                        La libertad es una característica que se puede agregar o quitar del ser humano
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    class ProgressiveStudy {
-      constructor() {
-        this.currentSection = 0;
-        this.totalSections = document.querySelectorAll('.study-section').length;
-        this.completedSections = new Set();
-        this.init();
-      }
-
-      init() {
-        this.setupEventListeners();
-        this.showComprehensionCheck();
-        this.updateProgress();
-      }
-
-      setupEventListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-          option.addEventListener('click', (e) => this.handleOptionClick(e));
-        });
-      }
-
-      showComprehensionCheck() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        if (!currentSectionEl) return;
-
-        const checkEl = currentSectionEl.querySelector('.comprehension-check');
-        if (checkEl) {
-          setTimeout(() => {
-            checkEl.classList.add('show');
-          }, 5000); // 5 segundos para leer
-        }
-      }
-
-      handleOptionClick(e) {
-        const option = e.target;
-        const checkContainer = option.closest('.comprehension-check');
-        const allOptions = checkContainer.querySelectorAll('.option');
-        
-        // Deshabilitar todas las opciones
-        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-
-        if (option.dataset.correct === 'true') {
-          option.classList.add('correct');
-          this.playSound('success');
-          this.showCelebration('🎉');
-          
-          setTimeout(() => {
-            this.markSectionCompleted();
-            this.moveToNextSection();
-          }, 1500);
-        } else {
-          option.classList.add('incorrect');
-          this.playSound('error');
-          
-          setTimeout(() => {
-            // Resetear opciones y permitir reintento
-            allOptions.forEach(opt => {
-              opt.classList.remove('correct', 'incorrect');
-              opt.style.pointerEvents = 'auto';
-            });
-            // Mezclar opciones
-            this.shuffleOptions(checkContainer);
-          }, 1000);
-        }
-      }
-
-      shuffleOptions(container) {
-        const options = Array.from(container.querySelectorAll('.option'));
-        const parent = options[0].parentNode;
-        
-        // Shuffle array
-        for (let i = options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [options[i], options[j]] = [options[j], options[i]];
-        }
-        
-        // Reappend in new order
-        options.forEach(option => parent.appendChild(option));
-      }
-
-      markSectionCompleted() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        currentSectionEl.classList.add('completed');
-        currentSectionEl.classList.remove('active');
-        
-        this.completedSections.add(this.currentSection);
-        this.updateProgress();
-      }
-
-      moveToNextSection() {
-        this.currentSection++;
-        
-        if (this.currentSection < this.totalSections) {
-          const nextSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-          nextSectionEl.classList.add('active');
-          
-          // Scroll suave a la nueva sección con mejor posicionamiento
-          setTimeout(() => {
-            nextSectionEl.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start'
-            });
-            
-            // Ajuste adicional para evitar que quede muy arriba
-            setTimeout(() => {
-              window.scrollBy(0, -80); // Baja 80px para mejor visibilidad
-            }, 800);
-          }, 300);
-
-          setTimeout(() => {
-            this.showComprehensionCheck();
-          }, 800);
-        } else {
-          this.showCompletion();
-        }
-      }
-
-      updateProgress() {
-        const progressFill = document.getElementById('progress-fill');
-        const progressCounter = document.getElementById('progress-counter');
-        
-        const percentage = (this.completedSections.size / this.totalSections) * 100;
-        progressFill.style.width = `${percentage}%`;
-        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
-      }
-
-      showCelebration(emoji) {
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration';
-        celebration.textContent = emoji;
-        document.body.appendChild(celebration);
-        
-        setTimeout(() => {
-          document.body.removeChild(celebration);
-        }, 2000);
-      }
-
-      showCompletion() {
-        Celebration.celebrateStudyComplete('Sartre', {
-          // message opcional (HTML)
-          message: 'Has completado el material de <strong>Sartre</strong>... 💪',
-          emojis: ['✨'], // opcional
-          // emojis: ['🎉','📚','✨'], // opcional
-          onContinue: () => { location.href = '../../tema.html?tema=sartre'; }
-        });
-        this.playSound('celebration')
-      }
-
-      async playSound(type) {
-        try {
-          let soundFile;
-          switch(type) {
-            case 'success':
-              soundFile = 'collect_points.mp3';
-              break;
-            case 'error':
-              soundFile = 'negative_beep.mp3';
-              break;
-            case 'show_question':
-              soundFile = 'show_question.mp3';
-              break;
-            case 'timer_warning':
-              soundFile = 'timer_warning.mp3';
-              break;
-            case 'timer_danger':
-              soundFile = 'timer_danger.mp3';
-              break;
-            case 'celebration':
-              soundFile = 'celebration.mp3';
-              break;
-            default:
-              soundFile = 'collect_points.mp3';
-          }
-          
-          const audio = new Audio(`../../sound/${soundFile}`);
-          audio.volume = 0.7;
-          audio.preload = 'auto';
-          
-          // Intentar reproducir
-          const playPromise = audio.play();
-          if (playPromise !== undefined) {
-            await playPromise;
-            console.log(`Sonido reproducido: ${soundFile}`);
-          }
-        } catch (error) {
-          console.warn(`Error al reproducir sonido ${type}:`, error);
-          
-          // Fallback: intentar con extensión .MP3
-          try {
-            const fallbackAudio = new Audio(`../../sound/${type === 'success' ? 'collect_points' : 'negative_beep'}.MP3`);
-            fallbackAudio.volume = 0.7;
-            await fallbackAudio.play();
-          } catch (fallbackError) {
-            console.warn('Fallback audio también falló:', fallbackError);
-          }
-        }
-      }
-    }
-
-    // Inicializar cuando cargue el DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      new ProgressiveStudy();
-    });
-  </script>
+    <!-- 🚀 SISTEMA MODULAR - Solo esta línea hace toda la magia -->
+    <script src="../../js/readaloud-system.js"></script>
 </body>
 </html>

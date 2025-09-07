@@ -1,0 +1,342 @@
+<!-- # Patch: slower pace, friendlier spawn, brighter Dino with outline, and a "Modo Relax" toggle. -->
+html2 = r"""<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Dino Relax – Versión lenta y visible</title>
+  <style>
+    :root{
+      --bg:#0e0f14; --bg-2:#101624; --panel:#0f1522; --text:#e8f0ff; --muted:#9fb0c2; --accent:#70e0a1;
+      --danger:#ff6b6b; --gold:#ffd166;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),var(--bg-2));color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    .wrap{max-width:900px;margin:0 auto;padding:12px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;padding:8px 12px;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent);z-index:2}
+    .title{font-weight:700;letter-spacing:.2px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);
+      color:var(--text);border-radius:999px;padding:8px 12px;font-weight:600;cursor:pointer;
+      backdrop-filter: blur(6px);
+    }
+    .btn:active{transform:translateY(1px)}
+    #gameArea{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    canvas{display:block;width:100%;height:60vh;touch-action:none;background:#87ceeb}
+    .hud{position:absolute;inset:0;pointer-events:none;display:flex;align-items:flex-start;justify-content:center;padding:10px;z-index:1}
+    .score{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+    .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35));text-align:center;padding:20px}
+    .overlay h1{margin:0;font-size:clamp(22px,6vw,30px)}
+    .overlay p{margin:0;color:var(--muted)}
+    .overlay .cta{pointer-events:auto}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:10px 14px;border-radius:999px}
+    .tips{display:flex;flex-direction:column;gap:8px;color:#cfe6ff;max-width:560px}
+    .tips b{color:#fff}
+    .msg{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:10px;font-size:14px;color:#def7ff;pointer-events:none}
+    @media (max-width:520px){canvas{height:68vh}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">🦖 Dino Relax</div>
+      <div class="controls">
+        <button id="muteBtn" class="btn" aria-pressed="false">🔊 Sonido</button>
+        <button id="pauseBtn" class="btn" aria-pressed="false">⏸️ Pausa</button>
+        <button id="relaxBtn" class="btn" aria-pressed="true">🌿 Modo Relax</button>
+      </div>
+    </header>
+
+    <div id="gameArea">
+      <canvas id="game"></canvas>
+      <div class="hud"><div id="score" class="score">Puntos 0000 · Récord 0000</div></div>
+
+      <div id="startOverlay" class="overlay">
+        <h1>Juego de relajación</h1>
+        <p>Tocá la pantalla o presioná <b>Espacio</b> para saltar. Esta versión es <b>más lenta</b> y el Dino es claro sobre el suelo.</p>
+        <div class="pill">🎯 Objetivo: disfrutá, sumá puntos y alcanzá el <b>arcoíris</b> 🌈</div>
+        <button id="playBtn" class="btn cta">▶️ Jugar</button>
+      </div>
+
+      <div id="gameOverOverlay" class="overlay" style="display:none">
+        <h1>¡Gran intento! 🌟</h1>
+        <p id="finalStats">Puntos 0 · Récord 0</p>
+        <button id="retryBtn" class="btn cta">🔄 Volver a jugar</button>
+      </div>
+
+      <div id="motiv" class="msg" style="display:none"></div>
+    </div>
+  </div>
+
+  <script>
+  // Audio
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let actx = null, muted = false;
+  function tone(freq=440, dur=0.08, type='sine', gain=0.03){
+    if (muted) return;
+    if (!actx) actx = new AudioCtx();
+    const o = actx.createOscillator();
+    const g = actx.createGain();
+    o.type = type; o.frequency.value = freq;
+    g.gain.value = gain;
+    o.connect(g); g.connect(actx.destination);
+    o.start(); setTimeout(()=>o.stop(), dur*1000);
+  }
+  const snd = { jump:()=>tone(740,.09,'square',.05), hit:()=>tone(220,.25,'sawtooth',.06), point:()=>tone(1200,.05,'triangle',.03), star:()=>tone(880,.12,'sine',.05) };
+
+  // Canvas
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  function fitCanvas(){
+    const dpr = Math.max(1, window.devicePixelRatio || 1);
+    const cssW = canvas.clientWidth, cssH = canvas.clientHeight;
+    canvas.width = Math.floor(cssW * dpr); canvas.height = Math.floor(cssH * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', fitCanvas);
+
+  // State
+  const state = {
+    running:false, paused:false, over:false,
+    score:0, hiscore: Number(localStorage.getItem('dino_relax_hiscore')||0),
+    speed: 3.2, gravity: 0.85, jump: -17,
+    t:0, weather:'sun', life:1, relax:true,
+    particles:{rain:[], snow:[], wind:[]},
+    nextSpawn:0, nextBird:0, nextStar:0, nextHeart:0
+  };
+  const world = { groundY: ()=> canvas.clientHeight - 52 };
+
+  // Player
+  const player = { x: 48, y: 0, w: 36, h: 42, vy:0, frame:0, frameT:0, color:'#41d3a2' };
+  function resetPlayer(){ player.y = world.groundY()-player.h; player.vy = 0; player.frame=0; player.frameT=0; }
+
+  // Entities
+  const obstacles = [], birds = [], stars = [], hearts = [];
+  function rand(a,b){ return a + Math.random()*(b-a); }
+  function chance(p){ return Math.random() < p; }
+  function clamp(v,a,b){ return Math.max(a, Math.min(b,v)); }
+  function coll(a,b){ return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y; }
+
+  // Input
+  function doJump(){
+    if (!state.running) startGame();
+    if (state.over || state.paused) return;
+    const onGround = player.y >= world.groundY()-player.h - 0.01;
+    if (onGround){ player.vy = state.jump; snd.jump(); }
+  }
+  canvas.addEventListener('touchstart', (e)=>{ e.preventDefault(); doJump(); }, {passive:false});
+  document.addEventListener('keydown', (e)=>{
+    if (e.code==='Space') { e.preventDefault(); doJump(); }
+    if (e.key==='p') togglePause();
+    if (e.key==='m') toggleMute();
+  });
+
+  // UI
+  const muteBtn = document.getElementById('muteBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const relaxBtn = document.getElementById('relaxBtn');
+  const startOverlay = document.getElementById('startOverlay');
+  const overOverlay = document.getElementById('gameOverOverlay');
+  const playBtn = document.getElementById('playBtn');
+  const retryBtn = document.getElementById('retryBtn');
+  const scoreEl = document.getElementById('score');
+  const motivEl = document.getElementById('motiv');
+
+  muteBtn.onclick = toggleMute; pauseBtn.onclick = togglePause;
+  relaxBtn.onclick = toggleRelax;
+  playBtn.onclick = startGame; retryBtn.onclick = ()=>{ init(); startGame(); };
+
+  function toggleMute(){ muted = !muted; muteBtn.textContent = muted? '🔇 Silencio' : '🔊 Sonido'; muteBtn.setAttribute('aria-pressed', String(muted)); }
+  function togglePause(){ if (!state.running || state.over) return; state.paused = !state.paused; pauseBtn.textContent = state.paused? '▶️ Reanudar' : '⏸️ Pausa'; pauseBtn.setAttribute('aria-pressed', String(state.paused)); if (!state.paused) loop(); }
+  function toggleRelax(){
+    state.relax = !state.relax;
+    relaxBtn.textContent = state.relax? '🌿 Modo Relax' : '⚡ Modo Rápido';
+    relaxBtn.setAttribute('aria-pressed', String(state.relax));
+  }
+
+  const quotes = ['“Conócete a ti mismo.” — Sócrates','“Vivir es elegir.” — Sartre','“Somos lo que hacemos repetidamente.” — Aristóteles','“Quien tiene un porqué soporta cualquier cómo.” — Nietzsche'];
+  function pingMsg(txt, ms=1800){ motivEl.textContent = txt; motivEl.style.display = 'block'; clearTimeout(pingMsg._t); pingMsg._t = setTimeout(()=>{ motivEl.style.display='none'; }, ms); }
+
+  function updateWeather(){
+    const s = state.score;
+    if (s >= 2200) state.weather = 'rainbow';
+    else if (s >= 1700) state.weather = 'storm';
+    else if (s >= 1200) state.weather = 'snow';
+    else if (s >= 700) state.weather = 'rain';
+    else if (s >= 350) state.weather = 'wind';
+    else state.weather = 'sun';
+  }
+  function drawWeather(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    const P = state.particles;
+    if (state.weather==='rain'){ if (P.rain.length<120) P.rain.push({x:rand(0,w), y:rand(-h,0), s:rand(3,6)});
+      ctx.fillStyle='rgba(173,216,230,.6)'; for (const p of P.rain){ ctx.fillRect(p.x,p.y,2,10); p.y+=p.s; if(p.y>h){p.y=rand(-80,0); p.x=rand(0,w);} } }
+    else if (state.weather==='snow'){ if (P.snow.length<90) P.snow.push({x:rand(0,w), y:rand(-h,0), r:rand(1.6,2.8), s:rand(.5,1)});
+      ctx.fillStyle='#fff'; for (const p of P.snow){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); p.y+=p.s; p.x+=Math.sin(p.y*.02)*.3; if(p.y>h){p.y=rand(-40,0); p.x=rand(0,w);} } }
+    else if (state.weather==='wind'){ if (P.wind.length<50) P.wind.push({x:rand(-40,0), y:rand(0,h), s:rand(2.2,4)});
+      ctx.fillStyle='rgba(255,255,255,.25)'; for (const p of P.wind){ ctx.fillRect(p.x,p.y,16,2); p.x+=p.s; if(p.x>w+40){p.x=-40; p.y=rand(0,h);} } }
+    else if (state.weather==='storm'){ if (Math.random()<0.01){ ctx.fillStyle='rgba(255,255,255,.75)'; ctx.fillRect(0,0,w,h);} }
+    else if (state.weather==='rainbow'){ drawRainbow(); }
+  }
+  function drawRainbow(){
+    const w = canvas.clientWidth, cx = w/2, baseY = 110, step = 10;
+    const colors = ['#f94144','#f8961e','#f9c74f','#90be6d','#577590','#5e60ce','#6930c3'];
+    ctx.lineWidth = 6;
+    for (let i=0;i<colors.length;i++){ ctx.beginPath(); ctx.strokeStyle = colors[i]; ctx.arc(cx, baseY, 60+i*step, Math.PI, 2*Math.PI); ctx.stroke(); }
+  }
+  function drawGround(){
+    const w = canvas.clientWidth, h = canvas.clientHeight, gy = world.groundY();
+    const hour = new Date().getHours(), isNight = (hour>=19||hour<6);
+    const sky = ctx.createLinearGradient(0,0,0,h);
+    sky.addColorStop(0, isNight? '#1e1e2f' : '#99d5f5');
+    sky.addColorStop(1, isNight? '#0f1320' : '#cfe9ff');
+    ctx.fillStyle = sky; ctx.fillRect(0,0,w,h);
+    ctx.fillStyle = '#3a3a3a'; ctx.fillRect(0,gy,w,h-gy);
+    ctx.fillStyle = '#2a2a2a'; ctx.fillRect(0,gy-2,w,2);
+  }
+
+  function drawPlayer(){
+    // cuerpo principal (color brillante) + borde blanco para destacar sobre el suelo
+    ctx.fillStyle = '#ffffff'; // borde
+    ctx.fillRect(player.x-2, player.y-2, player.w+4, player.h+4);
+    ctx.fillStyle = player.color;
+    ctx.fillRect(player.x, player.y, player.w, player.h);
+    // ojo
+    ctx.fillStyle = '#0a0a0a'; ctx.fillRect(player.x+player.w-10, player.y+8, 6, 6);
+    // patitas
+    ctx.fillStyle = '#0a0a0a';
+    const legY = player.y + player.h - 6;
+    ctx.fillRect(player.x+4, legY, 10, 6);
+    ctx.fillRect(player.x+player.w-14, legY, 10, 6);
+    // colita
+    ctx.fillRect(player.x-8, player.y+player.h-12, 8, 6);
+    // sombra
+    ctx.globalAlpha = .25; ctx.fillStyle = '#000'; ctx.beginPath(); ctx.ellipse(player.x+player.w/2, world.groundY()+4, 18, 6, 0, 0, Math.PI*2); ctx.fill(); ctx.globalAlpha = 1;
+  }
+
+  function spawnObstacle(){
+    const gy = world.groundY();
+    const type = chance(0.7)? 'cactus':'rock';
+    if (type==='cactus'){ const w = rand(18,26), h = rand(28,40); obstacles.push({x: canvas.clientWidth+20, y: gy-h, w, h, t:'c'}); }
+    else { const s = rand(18,24); obstacles.push({x: canvas.clientWidth+20, y: gy-s, w:s, h:s, t:'r'}); }
+  }
+  function spawnBird(){
+    const gy = world.groundY(), y = gy - rand(80, 130);
+    birds.push({x: canvas.clientWidth+20, y, w: 36, h: 22, fl:0, flT:0});
+  }
+  function spawnStar(){ const gy = world.groundY(); stars.push({x: canvas.clientWidth+20, y: gy - rand(120, 160), w:18, h:18}); }
+  function spawnHeart(){ const gy = world.groundY(); hearts.push({x: canvas.clientWidth+20, y: gy - rand(100, 150), w:18, h:18}); }
+
+  let af = null, last=0;
+  function loop(ts=0){
+    if (!state.running || state.over || state.paused) return;
+    af = requestAnimationFrame(loop);
+    const dt = (ts-last)||16; last=ts; state.t += dt;
+
+    fitCanvas();
+    drawGround();
+    updateWeather();
+    drawWeather();
+
+    // physics
+    player.vy += state.gravity;
+    player.y += player.vy;
+    const gy = world.groundY();
+    if (player.y > gy - player.h){ player.y = gy - player.h; player.vy = 0; }
+
+    // spawn (más espaciado y lento en modo relax)
+    const base = state.relax ? 950 : 700;
+    if (state.t > state.nextSpawn){ spawnObstacle(); state.nextSpawn = state.t + rand(base, base+500) - state.speed*15; }
+    if (state.t > state.nextBird && state.score>250){ spawnBird(); state.nextBird = state.t + rand(2000, 3000); }
+    if (state.t > state.nextStar && chance(.02)){ spawnStar(); state.nextStar = state.t + rand(5000, 8000); }
+    if (state.t > state.nextHeart && chance(.01)){ spawnHeart(); state.nextHeart = state.t + rand(9000, 13000); }
+
+    // move & draw
+    const spd = state.speed * (state.relax? 0.85 : 1.1);
+    for (let i=obstacles.length-1;i>=0;i--){
+      const o = obstacles[i]; o.x -= spd;
+      ctx.fillStyle = o.t==='c'? '#2aa546' : '#50723c';
+      ctx.fillRect(o.x, o.y, o.w, o.h);
+      if (o.x+o.w<0){ obstacles.splice(i,1); state.score+=5; snd.point(); }
+      else if (coll(player,o)){ if (state.life>0){ state.life-=1; pingMsg('💚 Vida usada'); snd.hit(); obstacles.splice(i,1);} else { gameOver(); return; } }
+    }
+
+    ctx.fillStyle = '#333';
+    for (let i=birds.length-1;i>=0;i--){
+      const b = birds[i]; b.x -= spd*1.1; b.flT += dt/1000; if (b.flT>.14){ b.flT=0; b.fl=(b.fl+1)%2; }
+      ctx.fillRect(b.x, b.y, b.w, b.h);
+      if (b.fl===0){ ctx.fillRect(b.x+6, b.y-8, 24, 8); } else { ctx.fillRect(b.x+6, b.y+b.h, 24, 8); }
+      if (b.x+b.w<0){ birds.splice(i,1); state.score+=7; snd.point(); }
+      else if (coll(player,b)){ if (state.life>0){ state.life-=1; pingMsg('💚 Vida usada'); snd.hit(); birds.splice(i,1);} else { gameOver(); return; } }
+    }
+
+    for (let i=stars.length-1;i>=0;i--){
+      const s = stars[i]; s.x -= spd;
+      drawStar(s.x+9, s.y+9, 9, 4, 2);
+      if (s.x+s.w<0) stars.splice(i,1);
+      else if (coll(player,s)){ state.score+=100; snd.star(); stars.splice(i,1); pingMsg('⭐ ¡+100 puntos!'); }
+    }
+
+    for (let i=hearts.length-1;i>=0;i--){
+      const h = hearts[i]; h.x -= spd;
+      drawHeart(h.x, h.y, 18);
+      if (h.x+h.w<0) hearts.splice(i,1);
+      else if (coll(player,h)){ state.life = clamp(state.life+1, 0, 2); hearts.splice(i,1); pingMsg('💚 Vida extra'); snd.star(); }
+    }
+
+    // dificultad más suave y limitada
+    if (state.score % 200 === 0) state.speed = clamp(state.speed + 0.03, 3.2, 9);
+
+    state.hiscore = Math.max(state.hiscore, state.score);
+    scoreEl.textContent = `Puntos ${String(state.score).padStart(4,'0')} · Récord ${String(state.hiscore).padStart(4,'0')}`;
+
+    if (state.score>0 && state.score % 500 === 0){ pingMsg(quotes[(state.score/500)%quotes.length]); }
+
+    drawPlayer();
+  }
+
+  function drawStar(cx, cy, spikes, outerR, innerR){
+    ctx.save(); ctx.beginPath(); ctx.translate(cx,cy); ctx.moveTo(0,-outerR);
+    for (let i=0;i<spikes;i++){ ctx.rotate(Math.PI/spikes); ctx.lineTo(0,-innerR); ctx.rotate(Math.PI/spikes); ctx.lineTo(0,-outerR); }
+    ctx.closePath(); ctx.fillStyle = 'rgba(255,230,80,.95)'; ctx.fill(); ctx.restore();
+  }
+  function drawHeart(x,y,size){
+    ctx.save(); ctx.translate(x,y); ctx.fillStyle = '#ff6b6b';
+    ctx.beginPath(); const s = size/18;
+    ctx.moveTo(9*s, 16*s);
+    ctx.bezierCurveTo(9*s, 16*s, 0*s, 10*s, 0*s, 6*s);
+    ctx.bezierCurveTo(0*s, 3*s, 3*s, 0*s, 6*s, 0*s);
+    ctx.bezierCurveTo(8*s, 0*s, 9*s, 2*s, 9*s, 3*s);
+    ctx.bezierCurveTo(9*s, 2*s, 10*s, 0*s, 12*s, 0*s);
+    ctx.bezierCurveTo(15*s, 0*s, 18*s, 3*s, 18*s, 6*s);
+    ctx.bezierCurveTo(18*s, 10*s, 9*s, 16*s, 9*s, 16*s);
+    ctx.fill(); ctx.restore();
+  }
+
+  function startGame(){ if (!state.running){ state.running = true; state.paused = false; startOverlay.style.display='none'; if (actx && actx.state==='suspended') actx.resume().catch(()=>{}); loop(); } }
+  function gameOver(){
+    state.over = true; state.running=false; cancelAnimationFrame(af); snd.hit();
+    localStorage.setItem('dino_relax_hiscore', String(state.hiscore));
+    document.getElementById('finalStats').textContent = `Puntos ${state.score} · Récord ${state.hiscore}`;
+    overOverlay.style.display='flex';
+  }
+  function init(){
+    fitCanvas();
+    state.running=false; state.over=false; state.paused=false;
+    state.score=0; state.speed=3.2; state.t=0; state.life=1; state.relax=true;
+    obstacles.length=0; birds.length=0; stars.length=0; hearts.length=0;
+    state.particles.rain.length=0; state.particles.snow.length=0; state.particles.wind.length=0;
+    resetPlayer();
+    overOverlay.style.display='none'; startOverlay.style.display='flex';
+    scoreEl.textContent = `Puntos 0000 · Récord ${String(state.hiscore).padStart(4,'0')}`;
+    relaxBtn.textContent = '🌿 Modo Relax'; relaxBtn.setAttribute('aria-pressed','true');
+  }
+  init();
+  </script>
+</body>
+</html>
+<!-- """
+with open("/mnt/data/dino_relax_slow.html", "w", encoding="utf-8") as f:
+    f.write(html2)
+"/mnt/data/dino_relax_slow.html" -->
