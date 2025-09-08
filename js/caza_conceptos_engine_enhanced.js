@@ -188,10 +188,11 @@
           border: 1px solid rgba(255, 255, 255, 0.1);
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-        .summary-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 16px; }
+        .summary-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 16px; flex-direction: column; }
         .summary-title { margin: 0; font-size: 1.5rem; display: flex; gap: 0.75rem; align-items: center; }
+        .summary-title-btn { display:flex;align-items:center;gap:12px;justify-content:space-between;width:100%; }
         .author-tag { font-size: 1.1rem; background: #a3e635; color: #111827; border: none; border-radius: 6px; padding: 4px 10px; font-weight: 600; }
-        .close-btn { background: #1f2937; color: #e5e7eb; border: none; border-radius: 10px; padding: 8px 12px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; }
+        .close-btn { background: #1f2937; color: #e5e7eb; border: 1px solid gray; border-radius: 10px; padding: 8px 12px; cursor: pointer; transition: background-color 0.3s, transform 0.1s; font-size: .9rem; width: auto;}
         .close-btn:hover { background-color: #374151; transform: scale(1.02); }
         .summary-body { margin-top: 14px; }
         .section-title { margin: 0.25rem 0 0.5rem 0; font-size: 1.2rem; color: #9ca3af; }
@@ -201,11 +202,13 @@
       </style>
       <div class="summary-card">
         <div class="summary-header">
+         <div class="summary-title-btn">
+               <span id="summary-author" class="author-tag">${CFG.author || 'Aristóteles'}</span>
+               <button id="summary-close" class="close-btn">Cerrar</button>
+         </div>
           <h3 class="summary-title">
-            <span id="summary-author" class="author-tag">${CFG.author || 'Aristóteles'}</span>
             📚 Resumen de conceptos
           </h3>
-          <button id="summary-close" class="close-btn">Cerrar</button>
         </div>
         <div class="summary-body">
           <h4 class="section-title">Palabras clave</h4>
