@@ -217,7 +217,8 @@ setupModalContent() {
             const overlay = document.createElement('div');
             overlay.id = 'modal-reading-overlay';
             overlay.style.cssText = `
-                position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7);
+                position: fixed; inset: 0; 
+                background: rgba(245, 245, 13, 0.1);
                 z-index: 998; display: none;
             `;
             document.body.appendChild(overlay);
