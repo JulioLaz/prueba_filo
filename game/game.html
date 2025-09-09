@@ -1,10 +1,10 @@
-<!-- # Dino Relax - Versión Mejorada: vidas ilimitadas, spawn rápido y más diversión -->
+<!-- # Dino Relax - Versión Completa con Sprites -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Dino Relax — Versión Completa</title>
+  <title>Dino Relax — Versión con Sprites</title>
   <style>
     :root{
       --bg:#0e0f14; --bg-2:#101624; --panel:#0f1522; --text:#e8f0ff; --muted:#9fb0c2; --accent:#70e0a1;
@@ -24,7 +24,7 @@
     .btn:active{transform:translateY(1px)}
     .btn.danger{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.3)}
     #gameArea{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    canvas{display:block;width:100%;height:60vh;touch-action:none;background:#87ceeb}
+    canvas{display:block;width:100%;height:60vh;touch-action:none;background:#4a6b8a}
     .hud{position:absolute;inset:0;pointer-events:none;display:flex;align-items:flex-start;justify-content:space-between;padding:10px;z-index:1;flex-wrap:wrap}
     .hud-item{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);margin:2px}
     .hud-left{display:flex;flex-direction:column;gap:6px}
@@ -37,10 +37,8 @@
     .overlay p{margin:0;color:var(--muted)}
     .overlay .cta{pointer-events:auto}
     .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:10px 14px;border-radius:999px}
-    .tips{display:flex;flex-direction:column;gap:8px;color:#cfe6ff;max-width:560px}
-    .tips b{color:#fff}
-    .msg{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:10px;font-size:14px;color:#def7ff;pointer-events:none;z-index:10}
     .back-btn{position:absolute;top:10px;right:10px;pointer-events:auto;z-index:20}
+    .msg{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:10px;font-size:14px;color:#def7ff;pointer-events:none;z-index:10}
     @media (max-width:520px){
       canvas{height:68vh}
       .controls{font-size:12px}
@@ -88,7 +86,7 @@
       <div id="startOverlay" class="overlay">
         <button id="homeBtn2" class="btn danger back-btn">🏠 Volver al Inicio</button>
         <h1>Juego de relajación</h1>
-        <p>Tocá la pantalla o presioná <b>Espacio</b> para saltar. Esta versión es <b>más lenta</b> y el Dino es claro sobre el suelo.</p>
+        <p>Tocá la pantalla o presioná <b>Espacio</b> para saltar. Esquivá cactus, piedras y águilas.</p>
         <div class="pill">🎯 Objetivo: disfrutá, sumá puntos y alcanzá el <b>arcoíris</b> 🌈</div>
         <div class="pill">💎 Coleccioná corazones para tener hasta <b>10 vidas</b></div>
         <div class="pill">⏰ El juego vuelve automáticamente al inicio en <b>5 minutos</b></div>
@@ -108,13 +106,12 @@
   </div>
 
   <script>
-  console.log('🦖 Dino Relax - Versión Mejorada iniciando...');
+  console.log('🦖 Dino Relax - Versión con Sprites iniciando...');
 
   // Variables globales para manejo del tiempo
   let gameStartTime = 0;
   let gameTime = 0;
-  let autoReturnTimer = null;
-  const MAX_GAME_TIME = 5 * 60 * 1000; // 5 minutos en milisegundos
+  const MAX_GAME_TIME = 5 * 60 * 1000; // 5 minutos
 
   // Audio
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -137,19 +134,54 @@
     warning:()=>tone(400,.5,'triangle',.04)
   };
 
-  // Canvas
+  // Canvas y Sprites
   const canvas = document.getElementById('game');
   const ctx = canvas.getContext('2d');
-  let dinoImage = null;
   
-  // Intentar cargar el sprite del dino
-  function loadDinoSprite(){
-    const img = new Image();
-    img.onload = () => { dinoImage = img; console.log('🎨 Sprite de dino cargado'); };
-    img.onerror = () => { console.log('⚠️ No se pudo cargar sprites/dino-red.png, usando dino dibujado'); };
-    img.src = 'sprites/dino-red.png';
+  // SPRITES COMPLETOS
+  const sprites = {
+    dino: null,
+    eagleOpen: null,
+    eagleClosed: null,
+    cactus: null,
+    rock: null
+  };
+  
+  // Cargar todos los sprites
+  function loadAllSprites(){
+    console.log('🎨 Cargando sprites...');
+    
+    // Dino
+    const dinoImg = new Image();
+    dinoImg.onload = () => { sprites.dino = dinoImg; console.log('✅ Dino cargado'); };
+    dinoImg.onerror = () => { console.log('⚠️ sprites/dino-red.png no encontrado'); };
+    dinoImg.src = 'sprites/dino-red.png';
+    
+    // Águila alas extendidas
+    const eagleOpenImg = new Image();
+    eagleOpenImg.onload = () => { sprites.eagleOpen = eagleOpenImg; console.log('✅ Águila alas extendidas cargada'); };
+    eagleOpenImg.onerror = () => { console.log('⚠️ sprites/eagle-open.png no encontrado'); };
+    eagleOpenImg.src = 'sprites/eagle-open.png';
+    
+    // Águila alas cerradas
+    const eagleClosedImg = new Image();
+    eagleClosedImg.onload = () => { sprites.eagleClosed = eagleClosedImg; console.log('✅ Águila alas cerradas cargada'); };
+    eagleClosedImg.onerror = () => { console.log('⚠️ sprites/eagle-closed.png no encontrado'); };
+    eagleClosedImg.src = 'sprites/eagle-closed.png';
+    
+    // Cactus
+    const cactusImg = new Image();
+    cactusImg.onload = () => { sprites.cactus = cactusImg; console.log('✅ Cactus cargado'); };
+    cactusImg.onerror = () => { console.log('⚠️ sprites/cactus.png no encontrado'); };
+    cactusImg.src = 'sprites/cactus.png';
+    
+    // Piedra
+    const rockImg = new Image();
+    rockImg.onload = () => { sprites.rock = rockImg; console.log('✅ Piedra cargada'); };
+    rockImg.onerror = () => { console.log('⚠️ sprites/rock.png no encontrado'); };
+    rockImg.src = 'sprites/rock.png';
   }
-  loadDinoSprite();
+  loadAllSprites();
 
   function fitCanvas(){
     const dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -159,15 +191,15 @@
   }
   window.addEventListener('resize', fitCanvas);
 
-  // State - VALORES INICIALES CORREGIDOS
+  // State - VALORES CORREGIDOS
   const state = {
     running:false, paused:false, over:false,
     score:0, hiscore: Number(localStorage.getItem('dino_relax_hiscore')||0),
     speed: 3.2, gravity: 0.85, jump: -17,
     t:0, weather:'sun', life:2, relax:true, // EMPEZAR CON 2 VIDAS
     particles:{rain:[], snow:[], wind:[], sparkles:[]},
-    // TIEMPOS DE SPAWN INICIALES MÁS RÁPIDOS
-    nextSpawn:800, nextBird:2500, nextStar:2000, nextHeart:4000
+    // TIEMPOS DE SPAWN INICIALES RÁPIDOS
+    nextSpawn:600, nextBird:2000, nextStar:1800, nextHeart:4000
   };
   const world = { groundY: ()=> canvas.clientHeight - 52 };
 
@@ -193,14 +225,12 @@
       gameTime = Date.now() - gameStartTime;
       updateTimerDisplay();
       
-      // Verificar si se acerca el tiempo límite
       const remaining = MAX_GAME_TIME - gameTime;
-      if (remaining <= 60000 && remaining > 59000) { // 1 minuto restante
+      if (remaining <= 60000 && remaining > 59000) {
         snd.warning();
         pingMsg('⚠️ ¡Último minuto! El juego volverá al inicio pronto', 3000);
       }
       
-      // Auto regreso al index
       if (gameTime >= MAX_GAME_TIME) {
         autoReturnToIndex();
       }
@@ -218,7 +248,7 @@
     const timerEl = document.getElementById('timer');
     const remaining = MAX_GAME_TIME - gameTime;
     
-    if (remaining <= 60000) { // último minuto
+    if (remaining <= 60000) {
       timerEl.className = 'hud-item timer warning-time';
       timerEl.textContent = `⚠️ ${formatTime(remaining)}`;
     } else {
@@ -231,9 +261,7 @@
     try {
       window.location.href = '../index.html';
     } catch(e) {
-      // Si no puede navegar, mostrar mensaje
       alert('¡Tiempo de juego terminado! Regresando al inicio...');
-      console.log('Auto-regreso activado después de 5 minutos');
     }
   }
 
@@ -243,19 +271,17 @@
         window.location.href = '../index.html';
       } catch(e) {
         alert('Navegando al inicio...');
-        console.log('Regreso manual al inicio');
       }
     }
   }
 
   // SISTEMA DE VIDAS CORREGIDO - MÁXIMO 10 VIDAS
   function updateLivesDisplay(){
-    const maxShow = Math.min(8, Math.max(5, state.life + 2));
+    const maxShow = Math.min(8, Math.max(5, state.life + 1));
     const hearts = '❤️'.repeat(Math.max(0, state.life));
     const emptyHearts = state.life < maxShow ? '🤍'.repeat(Math.max(0, maxShow - state.life)) : '';
     const livesEl = document.getElementById('lives');
     livesEl.textContent = `${hearts}${emptyHearts} Vidas: ${state.life}`;
-    console.log(`💖 Vidas actualizadas: ${state.life}`);
   }
 
   // Input
@@ -327,9 +353,7 @@
     '🌺 "Cada error es una oportunidad de aprender algo nuevo."',
     '⭐ "Tu única competencia eres tú mismo de ayer."',
     '🦋 "Los grandes logros requieren grandes sueños."',
-    '🌙 "La paciencia es la clave de la sabiduría."',
-    '🔥 "Cada día es una nueva oportunidad para brillar."',
-    '💪 "Tu potencial es infinito, solo necesitas creer en ti."'
+    '🌙 "La paciencia es la clave de la sabiduría."'
   ];
   
   function pingMsg(txt, ms=1800){ 
@@ -342,10 +366,10 @@
   function updateWeather(){
     const s = state.score;
     if (s >= 2200) state.weather = 'rainbow';
-    else if (s >= 1700) state.weather = 'storm';
-    else if (s >= 1200) state.weather = 'snow';
-    else if (s >= 700) state.weather = 'rain';
-    else if (s >= 350) state.weather = 'wind';
+    else if (s >= 1300) state.weather = 'storm';
+    else if (s >= 1000) state.weather = 'snow';
+    else if (s >= 600) state.weather = 'rain';
+    else if (s >= 300) state.weather = 'wind';
     else state.weather = 'sun';
   }
   
@@ -354,15 +378,14 @@
     const P = state.particles;
     
     // PARTÍCULAS BRILLANTES SIEMPRE PRESENTES
-    if (P.sparkles.length < 15) P.sparkles.push({
+    if (P.sparkles.length < 12) P.sparkles.push({
       x:rand(0,w), y:rand(0,h), 
-      size:rand(1,3), alpha:rand(0.3,0.8), 
-      vx:rand(-0.5,0.5), vy:rand(-0.3,0.3),
-      life:rand(3000,6000), birth:Date.now()
+      size:rand(1,2), alpha:rand(0.2,0.6), 
+      vx:rand(-0.3,0.3), vy:rand(-0.2,0.2),
+      life:rand(4000,7000), birth:Date.now()
     });
     
-    // Dibujar partículas brillantes
-    ctx.fillStyle='rgba(255,255,255,0.8)'; 
+    ctx.fillStyle='rgba(255,255,255,0.4)'; 
     for (let i=P.sparkles.length-1; i>=0; i--) {
       const p = P.sparkles[i];
       const age = Date.now() - p.birth;
@@ -382,38 +405,38 @@
     ctx.globalAlpha = 1;
     
     if (state.weather==='rain'){ 
-      if (P.rain.length<120) P.rain.push({x:rand(0,w), y:rand(-h,0), s:rand(3,6)});
-      ctx.fillStyle='rgba(173,216,230,.8)'; 
+      if (P.rain.length<80) P.rain.push({x:rand(0,w), y:rand(-h,0), s:rand(2,4)});
+      ctx.fillStyle='rgba(173,216,230,.5)'; 
       for (const p of P.rain){ 
-        ctx.fillRect(p.x,p.y,2,10); 
+        ctx.fillRect(p.x,p.y,1,8); 
         p.y+=p.s; 
-        if(p.y>h){p.y=rand(-80,0); p.x=rand(0,w);} 
+        if(p.y>h){p.y=rand(-60,0); p.x=rand(0,w);} 
       } 
     }
     else if (state.weather==='snow'){ 
-      if (P.snow.length<90) P.snow.push({x:rand(0,w), y:rand(-h,0), r:rand(1.6,2.8), s:rand(.5,1)});
+      if (P.snow.length<60) P.snow.push({x:rand(0,w), y:rand(-h,0), r:rand(1,2), s:rand(.3,.8)});
       ctx.fillStyle='#fff'; 
       for (const p of P.snow){ 
         ctx.beginPath(); 
         ctx.arc(p.x,p.y,p.r,0,Math.PI*2); 
         ctx.fill(); 
         p.y+=p.s; 
-        p.x+=Math.sin(p.y*.02)*.3; 
-        if(p.y>h){p.y=rand(-40,0); p.x=rand(0,w);} 
+        p.x+=Math.sin(p.y*.015)*.2; 
+        if(p.y>h){p.y=rand(-30,0); p.x=rand(0,w);} 
       } 
     }
     else if (state.weather==='wind'){ 
-      if (P.wind.length<50) P.wind.push({x:rand(-40,0), y:rand(0,h), s:rand(2.2,4)});
-      ctx.fillStyle='rgba(255,255,255,.25)'; 
+      if (P.wind.length<30) P.wind.push({x:rand(-30,0), y:rand(0,h), s:rand(1.5,3)});
+      ctx.fillStyle='rgba(255,255,255,.2)'; 
       for (const p of P.wind){ 
-        ctx.fillRect(p.x,p.y,16,2); 
+        ctx.fillRect(p.x,p.y,12,1); 
         p.x+=p.s; 
-        if(p.x>w+40){p.x=-40; p.y=rand(0,h);} 
+        if(p.x>w+30){p.x=-30; p.y=rand(0,h);} 
       } 
     }
     else if (state.weather==='storm'){ 
-      if (Math.random()<0.01){ 
-        ctx.fillStyle='rgba(255,255,255,.8)'; 
+      if (Math.random()<0.008){ 
+        ctx.fillStyle='rgba(255,255,255,.6)'; 
         ctx.fillRect(0,0,w,h);
       } 
     }
@@ -423,13 +446,13 @@
   }
   
   function drawRainbow(){
-    const w = canvas.clientWidth, cx = w/2, baseY = 110, step = 10;
+    const w = canvas.clientWidth, cx = w/2, baseY = 100, step = 8;
     const colors = ['#f94144','#f8961e','#f9c74f','#90be6d','#577590','#5e60ce','#6930c3'];
-    ctx.lineWidth = 6;
+    ctx.lineWidth = 5;
     for (let i=0;i<colors.length;i++){ 
       ctx.beginPath(); 
       ctx.strokeStyle = colors[i]; 
-      ctx.arc(cx, baseY, 60+i*step, Math.PI, 2*Math.PI); 
+      ctx.arc(cx, baseY, 50+i*step, Math.PI, 2*Math.PI); 
       ctx.stroke(); 
     }
   }
@@ -438,91 +461,75 @@
     const w = canvas.clientWidth, h = canvas.clientHeight, gy = world.groundY();
     const hour = new Date().getHours(), isNight = (hour>=19||hour<6);
     const sky = ctx.createLinearGradient(0,0,0,h);
-    sky.addColorStop(0, isNight? '#1e1e2f' : '#3a5a7a');
-    sky.addColorStop(1, isNight? '#0f1320' : '#5a7a90');
+    // CIELO MÁS OSCURO
+    sky.addColorStop(0, isNight? '#1a1a2a' : '#3a5a7a');
+    sky.addColorStop(1, isNight? '#0a0a15' : '#5a7a90');
     ctx.fillStyle = sky; ctx.fillRect(0,0,w,h);
+    // SUELO MÁS OSCURO
     ctx.fillStyle = '#2a2a2a'; ctx.fillRect(0,gy,w,h-gy);
     ctx.fillStyle = '#1a1a1a'; ctx.fillRect(0,gy-2,w,2);
   }
 
-  function drawCloud(x, y) {
-    ctx.save();
-    ctx.globalAlpha = 0.7;
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(x, y, 20, 0, Math.PI * 2);
-    ctx.arc(x + 25, y, 25, 0, Math.PI * 2);
-    ctx.arc(x + 50, y, 20, 0, Math.PI * 2);
-    ctx.arc(x + 15, y - 15, 18, 0, Math.PI * 2);
-    ctx.arc(x + 35, y - 15, 18, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
-  }
-
+  // FUNCIÓN DRAW PLAYER CON SPRITE TRANSPARENTE
   function drawPlayer(){
-    // Si tenemos el sprite, usarlo manteniendo transparencia
-    if (dinoImage && dinoImage.complete) {
-      // Dibujar el sprite SIN borde blanco para mantener transparencia
-      ctx.drawImage(dinoImage, player.x, player.y, player.w, player.h);
+    if (sprites.dino && sprites.dino.complete) {
+      // Usar sprite del dino SIN borde blanco (transparente)
+      ctx.drawImage(sprites.dino, player.x, player.y, player.w, player.h);
     } else {
-      // Dino dibujado (versión original con borde blanco para visibilidad)
-      ctx.fillStyle = '#ffffff'; // borde solo para dino dibujado
+      // Fallback: dino dibujado con borde blanco
+      ctx.fillStyle = '#ffffff'; 
       ctx.fillRect(player.x-2, player.y-2, player.w+4, player.h+4);
       ctx.fillStyle = player.color;
       ctx.fillRect(player.x, player.y, player.w, player.h);
       
-      // ojo
       ctx.fillStyle = '#0a0a0a'; 
       ctx.fillRect(player.x+player.w-10, player.y+8, 6, 6);
       
-      // patitas
-      ctx.fillStyle = '#0a0a0a';
       const legY = player.y + player.h - 6;
       ctx.fillRect(player.x+4, legY, 10, 6);
       ctx.fillRect(player.x+player.w-14, legY, 10, 6);
       
-      // colita
       ctx.fillRect(player.x-8, player.y+player.h-12, 8, 6);
     }
     
-    // sombra (siempre presente para ambas versiones)
-    ctx.globalAlpha = .25; 
+    // Sombra siempre presente
+    ctx.globalAlpha = .2; 
     ctx.fillStyle = '#000'; 
     ctx.beginPath(); 
-    ctx.ellipse(player.x+player.w/2, world.groundY()+4, 18, 6, 0, 0, Math.PI*2); 
+    ctx.ellipse(player.x+player.w/2, world.groundY()+4, 16, 5, 0, 0, Math.PI*2); 
     ctx.fill(); 
     ctx.globalAlpha = 1;
   }
 
+  // SPAWN OBSTÁCULOS CON SPRITES
   function spawnObstacle(){
     const gy = world.groundY();
-    const type = chance(0.7)? 'cactus':'rock';
+    const type = chance(0.6)? 'cactus':'rock';
     if (type==='cactus'){ 
-      const w = rand(18,26), h = rand(28,40); 
-      obstacles.push({x: canvas.clientWidth+20, y: gy-h, w, h, t:'c'}); 
+      const w = rand(20,28), h = rand(30,45); 
+      obstacles.push({x: canvas.clientWidth+20, y: gy-h, w, h, t:'cactus'}); 
     } else { 
-      const s = rand(18,24); 
-      obstacles.push({x: canvas.clientWidth+20, y: gy-s, w:s, h:s, t:'r'}); 
+      const s = rand(20,26); 
+      obstacles.push({x: canvas.clientWidth+20, y: gy-s, w:s, h:s, t:'rock'}); 
     }
-    console.log('🌵 Obstáculo creado');
+    console.log('🌵 Obstáculo creado:', type);
   }
   
+  // SPAWN ÁGUILAS
   function spawnBird(){
-    const gy = world.groundY(), y = gy - rand(80, 130);
-    birds.push({x: canvas.clientWidth+20, y, w: 36, h: 22, fl:0, flT:0});
-    console.log('🐦 Pájaro creado');
+    const gy = world.groundY(), y = gy - rand(70, 120);
+    birds.push({x: canvas.clientWidth+20, y, w: 45, h: 32, fl:0, flT:0});
+    console.log('🦅 Águila creada');
   }
   
   function spawnStar(){ 
     const gy = world.groundY(); 
-    stars.push({x: canvas.clientWidth+20, y: gy - rand(120, 160), w:18, h:18}); 
-    console.log('⭐ Estrella creada');
+    stars.push({x: canvas.clientWidth+20, y: gy - rand(100, 140), w:16, h:16}); 
   }
   
   function spawnHeart(){ 
     const gy = world.groundY(); 
-    hearts.push({x: canvas.clientWidth+20, y: gy - rand(100, 150), w:18, h:18}); 
-    console.log('💖 Corazón creado');
+    hearts.push({x: canvas.clientWidth+20, y: gy - rand(80, 130), w:16, h:16}); 
   }
 
   let af = null, last=0;
@@ -537,56 +544,56 @@
     updateWeather();
     drawWeather();
 
-    // physics
+    // Physics
     player.vy += state.gravity;
     player.y += player.vy;
     const gy = world.groundY();
     if (player.y > gy - player.h){ player.y = gy - player.h; player.vy = 0; }
 
-    // SPAWN MEJORADO Y MÁS DINÁMICO
-    const baseObstacle = state.relax ? 700 : 500;
-    const obstacleVariation = state.relax ? 300 : 200;
+    // SPAWN MEJORADO
+    const baseObstacle = state.relax ? 1000 : 800;
+    const obstacleVariation = state.relax ? 500 : 400;
     
     if (state.t > state.nextSpawn){ 
       spawnObstacle(); 
-      state.nextSpawn = state.t + rand(baseObstacle, baseObstacle + obstacleVariation) - state.speed*8; 
+      state.nextSpawn = state.t + rand(baseObstacle, baseObstacle + obstacleVariation) - state.speed*10; 
     }
     
-    // Pájaros aparecen más seguido después de cierto puntaje
-    const birdFreq = state.score > 100 ? 1500 : 2200;
-    if (state.t > state.nextBird && state.score > 30){ 
+    const birdFreq = state.score > 80 ? 1800 : 2700;
+    if (state.t > state.nextBird && state.score > 20){ 
       spawnBird(); 
-      state.nextBird = state.t + rand(birdFreq, birdFreq + 600); 
+      state.nextBird = state.t + rand(birdFreq, birdFreq + 700); 
     }
     
-    // Estrellas más frecuentes y consistentes
     if (state.t > state.nextStar){ 
-      if (chance(state.score > 200 ? 0.4 : 0.25)) spawnStar(); 
-      state.nextStar = state.t + rand(3000, 5000); 
+      if (chance(state.score > 150 ? 0.4 : 0.25)) spawnStar(); 
+      state.nextStar = state.t + rand(3500, 5500); 
     }
     
-    // Corazones con frecuencia balanceada según las vidas actuales
     if (state.t > state.nextHeart){ 
-      let heartChance = 0.15; // Base
-      if (state.life < 3) heartChance = 0.6;
-      else if (state.life < 6) heartChance = 0.35;
-      else if (state.life < 8) heartChance = 0.2;
-      
+      let heartChance = state.life < 3 ? 0.6 : (state.life < 6 ? 0.35 : 0.2);
       if (chance(heartChance)) spawnHeart(); 
-      state.nextHeart = state.t + rand(6000, 10000); 
-    }
-    
-    // Bonus: nubes ocasionales para variedad visual
-    if (Math.random() < 0.0008) {
-      drawCloud(rand(canvas.clientWidth, canvas.clientWidth + 100), rand(50, 150));
+      state.nextHeart = state.t + rand(7000, 11000); 
     }
 
-    // move & draw
-    const spd = state.speed * (state.relax? 0.85 : 1.1);
+    const spd = state.speed * (state.relax? 0.8 : 1.0);
+    
+    // DIBUJAR OBSTÁCULOS CON SPRITES
     for (let i=obstacles.length-1;i>=0;i--){
-      const o = obstacles[i]; o.x -= spd;
-      ctx.fillStyle = o.t==='c'? '#2aa546' : '#50723c';
-      ctx.fillRect(o.x, o.y, o.w, o.h);
+      const o = obstacles[i]; 
+      o.x -= spd;
+      
+      // Usar sprites si están disponibles
+      if (o.t === 'cactus' && sprites.cactus && sprites.cactus.complete) {
+        ctx.drawImage(sprites.cactus, o.x, o.y, o.w, o.h);
+      } else if (o.t === 'rock' && sprites.rock && sprites.rock.complete) {
+        ctx.drawImage(sprites.rock, o.x, o.y, o.w, o.h);
+      } else {
+        // Fallback dibujado
+        ctx.fillStyle = o.t==='cactus'? '#2aa546' : '#50723c';
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+      }
+      
       if (o.x+o.w<0){ 
         obstacles.splice(i,1); 
         state.score+=5; 
@@ -605,21 +612,31 @@
       }
     }
 
-    ctx.fillStyle = '#333';
+    // DIBUJAR ÁGUILAS CON SPRITES
     for (let i=birds.length-1;i>=0;i--){
       const b = birds[i]; 
       b.x -= spd*1.1; 
       b.flT += dt/1000; 
-      if (b.flT>.14){ b.flT=0; b.fl=(b.fl+1)%2; }
-      ctx.fillRect(b.x, b.y, b.w, b.h);
-      if (b.fl===0){ 
-        ctx.fillRect(b.x+6, b.y-8, 24, 8); 
-      } else { 
-        ctx.fillRect(b.x+6, b.y+b.h, 24, 8); 
+      if (b.flT>.4){ b.flT=0; b.fl=(b.fl+1)%2; }
+      
+      // Usar sprites de águila si están disponibles
+      if (sprites.eagleOpen && sprites.eagleClosed && sprites.eagleOpen.complete && sprites.eagleClosed.complete) {
+        const eagleSprite = b.fl === 0 ? sprites.eagleOpen : sprites.eagleClosed;
+        ctx.drawImage(eagleSprite, b.x, b.y, b.w, b.h);
+      } else {
+        // Fallback dibujado
+        ctx.fillStyle = '#654321';
+        ctx.fillRect(b.x, b.y, b.w, b.h);
+        if (b.fl===0){ 
+          ctx.fillRect(b.x+8, b.y-10, 28, 10); 
+        } else { 
+          ctx.fillRect(b.x+8, b.y+b.h, 28, 10); 
+        }
       }
+      
       if (b.x+b.w<0){ 
         birds.splice(i,1); 
-        state.score+=7; 
+        state.score+=8; 
         snd.point(); 
       } else if (coll(player,b)){ 
         if (state.life>0){ 
@@ -635,21 +652,23 @@
       }
     }
 
+    // Estrellas
     for (let i=stars.length-1;i>=0;i--){
       const s = stars[i]; s.x -= spd;
-      drawStar(s.x+9, s.y+9, 9, 4, 2);
+      drawStar(s.x+8, s.y+8, 8, 3, 1.5);
       if (s.x+s.w<0) stars.splice(i,1);
       else if (coll(player,s)){ 
-        state.score+=100; 
+        state.score+=50; 
         snd.star(); 
         stars.splice(i,1); 
-        pingMsg('⭐ ¡+100 puntos!'); 
+        pingMsg('⭐ ¡+50 puntos!'); 
       }
     }
 
+    // Corazones
     for (let i=hearts.length-1;i>=0;i--){
       const h = hearts[i]; h.x -= spd;
-      drawHeart(h.x, h.y, 18);
+      drawHeart(h.x, h.y, 16);
       if (h.x+h.w<0) hearts.splice(i,1);
       else if (coll(player,h)){ 
         const oldLives = state.life;
@@ -662,22 +681,24 @@
       }
     }
 
-    // dificultad más suave y limitada
-    if (state.score % 200 === 0) state.speed = clamp(state.speed + 0.03, 3.2, 9);
+    // Dificultad gradual
+    if (state.score % 150 === 0 && state.score > 0) {
+      state.speed = clamp(state.speed + 0.02, 3.2, 8);
+    }
 
     state.hiscore = Math.max(state.hiscore, state.score);
     scoreEl.textContent = `Puntos ${String(state.score).padStart(4,'0')} · Récord ${String(state.hiscore).padStart(4,'0')}`;
 
-    // Frases motivacionales cada 300 puntos
-    if (state.score>0 && state.score % 300 === 0){ 
-      const quoteIndex = (Math.floor(state.score/300)-1) % quotes.length;
+    // Frases motivacionales
+    if (state.score>0 && state.score % 250 === 0){ 
+      const quoteIndex = (Math.floor(state.score/250)-1) % quotes.length;
       pingMsg(quotes[quoteIndex], 2500); 
     }
     
-    // Mensajes especiales por vidas acumuladas
-    if (state.life === 5 && state.score % 100 === 0) {
+    // Mensajes especiales por vidas
+    if (state.life === 5 && state.score % 80 === 0) {
       pingMsg('🛡️ ¡Tienes 5 vidas! ¡Eres invencible!', 2000);
-    } else if (state.life >= 8 && state.score % 150 === 0) {
+    } else if (state.life >= 8 && state.score % 120 === 0) {
       pingMsg('👑 ¡Maestro coleccionista de vidas!', 2000);
     }
 
@@ -696,7 +717,7 @@
       ctx.lineTo(0,-outerR); 
     }
     ctx.closePath(); 
-    ctx.fillStyle = 'rgba(255,230,80,.95)'; 
+    ctx.fillStyle = 'rgba(255,220,60,.9)'; 
     ctx.fill(); 
     ctx.restore();
   }
@@ -704,16 +725,16 @@
   function drawHeart(x,y,size){
     ctx.save(); 
     ctx.translate(x,y); 
-    ctx.fillStyle = '#ff6b6b';
+    ctx.fillStyle = '#ff4757';
     ctx.beginPath(); 
-    const s = size/18;
-    ctx.moveTo(9*s, 16*s);
-    ctx.bezierCurveTo(9*s, 16*s, 0*s, 10*s, 0*s, 6*s);
-    ctx.bezierCurveTo(0*s, 3*s, 3*s, 0*s, 6*s, 0*s);
-    ctx.bezierCurveTo(8*s, 0*s, 9*s, 2*s, 9*s, 3*s);
-    ctx.bezierCurveTo(9*s, 2*s, 10*s, 0*s, 12*s, 0*s);
-    ctx.bezierCurveTo(15*s, 0*s, 18*s, 3*s, 18*s, 6*s);
-    ctx.bezierCurveTo(18*s, 10*s, 9*s, 16*s, 9*s, 16*s);
+    const s = size/16;
+    ctx.moveTo(8*s, 14*s);
+    ctx.bezierCurveTo(8*s, 14*s, 0*s, 8*s, 0*s, 5*s);
+    ctx.bezierCurveTo(0*s, 2*s, 3*s, 0*s, 5*s, 0*s);
+    ctx.bezierCurveTo(7*s, 0*s, 8*s, 2*s, 8*s, 3*s);
+    ctx.bezierCurveTo(8*s, 2*s, 9*s, 0*s, 11*s, 0*s);
+    ctx.bezierCurveTo(13*s, 0*s, 16*s, 2*s, 16*s, 5*s);
+    ctx.bezierCurveTo(16*s, 8*s, 8*s, 14*s, 8*s, 14*s);
     ctx.fill(); 
     ctx.restore();
   }
@@ -748,7 +769,7 @@
     console.log('🔄 Reiniciando juego...');
     fitCanvas();
     
-    // REINICIO COMPLETO DE STATE
+    // REINICIO COMPLETO
     state.running=false; 
     state.over=false; 
     state.paused=false;
@@ -758,13 +779,12 @@
     state.life=2; // EMPEZAR CON 2 VIDAS
     state.relax=true;
     
-    // TIEMPOS DE SPAWN INICIALES RÁPIDOS
-    state.nextSpawn = 800;  // Primer obstáculo en menos de 1 segundo
-    state.nextBird = 2500;
-    state.nextStar = 2000;
+    // TIEMPOS DE SPAWN RÁPIDOS
+    state.nextSpawn = 800;   // Primer obstáculo muy rápido
+    state.nextBird = 2000;
+    state.nextStar = 1800;
     state.nextHeart = 4000;
     
-    // Limpiar arrays
     obstacles.length=0; 
     birds.length=0; 
     stars.length=0; 
@@ -787,16 +807,15 @@
     relaxBtn.textContent = '🌿 Modo Relax'; 
     relaxBtn.setAttribute('aria-pressed','true');
     
-    console.log('✅ Juego reiniciado - Primer obstáculo en', state.nextSpawn, 'ms');
+    console.log('✅ Juego reiniciado - Primer obstáculo en 600ms');
   }
   
-  // Mostrar mensaje de bienvenida con instrucciones mejoradas
   setTimeout(() => {
-    pingMsg('🎮 ¡Bienvenido! Presiona H para volver al inicio en cualquier momento', 3000);
-  }, 1000);
+    pingMsg('🎮 ¡Sprites activados! Coloca tus imágenes en sprites/', 3000);
+  }, 1500);
   
   init();
-  console.log('🦖 Dino Relax cargado completamente');
+  console.log('🦖 Dino Relax con Sprites cargado');
   </script>
 </body>
 </html>
