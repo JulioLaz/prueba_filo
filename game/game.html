@@ -229,7 +229,7 @@
 
   function autoReturnToIndex(){
     try {
-      window.location.href = 'index.html';
+      window.location.href = '../index.html';
     } catch(e) {
       // Si no puede navegar, mostrar mensaje
       alert('¡Tiempo de juego terminado! Regresando al inicio...');
@@ -240,7 +240,7 @@
   function goHome(){
     if (confirm('¿Quieres volver al inicio?')) {
       try {
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
       } catch(e) {
         alert('Navegando al inicio...');
         console.log('Regreso manual al inicio');
