@@ -34,7 +34,7 @@
   const SND_WRONG = "sound/negative_beep.mp3";
   const SND_LEVEL_DONE = "sound/fin_parrafo.mp3";   
   const SND_GAME_DONE = "sound/fin_caza.mp3";
-  const SND_CONCEPT_READ = "sound/concept_completed.mp3";
+  const SND_CONCEPT_READ = "sound/celebration.mp3";
 
   // UI refs
   const paragraphEl = document.getElementById("paragraph");

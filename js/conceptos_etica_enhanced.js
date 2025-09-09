@@ -88,8 +88,8 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "conciencia-moral", priority: 9, meaning: "Juicio interior sobre el bien y el mal en la situación concreta; exige formación y veracidad." }
       ],
       corollary: [
-        "Los dilemas no siempre admiten solución única; sí exigen <em>buenas razones</em>.",
-        "La deliberación ética busca <em>proporcionalidad</em>, <em>respeto</em> y <em>consistencia</em>."
+        "Los dilemas no siempre admiten solución única; sí exigen buenas razones.",
+        "La deliberación ética busca proporcionalidad, respeto y consistencia."
       ]
     },
     {
@@ -100,14 +100,14 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Riesgos, responsabilidades y diseño de salvaguardas éticas.",
-      advanceAfter: 9,
+      advanceAfter: 8,
       concepts: [
-        { term: "inteligencia-artificial", priority: 9, meaning: "Sistemas que ejecutan tareas cognitivas (predicción, clasificación, decisión). Pueden escalar sesgos y afectar derechos." },
-        { term: "dilema-algoritmico", priority: 9, meaning: "Conflicto cuando un modelo <em>opaco</em> decide sobre vidas (crédito, justicia, salud). Urge transparencia, auditoría y reparación." },
+        { term: "IA", priority: 8, meaning: "inteligencia-artificial: Sistemas que ejecutan tareas cognitivas (predicción, clasificación, decisión). Pueden escalar sesgos y afectar derechos." },
+        { term: "dilema-algoritmico", priority: 8, meaning: "Conflicto cuando un modelo <em>opaco</em> decide sobre vidas (crédito, justicia, salud). Urge transparencia, auditoría y reparación." },
         { term: "discriminación", priority: 8, meaning: "Trato desigual injustificado hacia personas o grupos. En IA surge por datos sesgados o metas mal definidas." },
         { term: "vehículos-autónomos", priority: 7, meaning: "Sistemas de conducción sin intervención humana. Exigen reglas de seguridad, responsabilidad y priorización de riesgos." },
         { term: "dilema-moral-tecnológico", priority: 7, meaning: "Situaciones donde una máquina debe elegir entre daños inevitables; obliga a codificar principios morales." },
-        { term: "programación-ética", priority: 9, meaning: "Diseño con <em>principios</em>: privacidad por defecto, explicabilidad, no discriminación, trazabilidad y mecanismos de apelación." },
+      //   { term: "programación-ética", priority: 9, meaning: "Diseño con <em>principios</em>: privacidad por defecto, explicabilidad, no discriminación, trazabilidad y mecanismos de apelación." },
         { term: "eficiencia-económica", priority: 6, meaning: "Maximizar beneficios/recursos. Si es fin único, puede ignorar derechos o impactos sociales." },
         { term: "bienestar-social", priority: 7, meaning: "Calidad de vida colectiva: salud, educación, trabajo digno, cohesión. Métrica clave junto al crecimiento." },
         { term: "dilema-laboral", priority: 6, meaning: "Tensión entre automatización y empleo. Respuestas: reconversión, renta básica parcial, políticas de transición justa." }
