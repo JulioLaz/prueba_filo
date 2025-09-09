@@ -240,7 +240,7 @@ const AVAILABLE_THEMES = [
     timeEstimate: 240,
     prerequisites: [],
     color: "#264befff",
-    contentFile: "game.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    contentFile: "game/game.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
     useModularConfig: true,
     type: 'intermedio'
     }
@@ -470,7 +470,7 @@ function createThemeCard(theme) {
             console.log(`🎯 Navegando al tema: ${theme.id}`);
             
             // Si es un proyecto, ir directo al HTML del proyecto
-            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+            if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
                 window.location.href = theme.contentFile;
                 console.log(`🎯 Navegando en: ${theme.contentFile}`);
             } else {
