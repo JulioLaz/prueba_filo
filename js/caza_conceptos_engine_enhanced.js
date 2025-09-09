@@ -497,7 +497,228 @@
       .replace(/>/g, '&gt;');
   }
 
-  function showLevelCompleted(level, { isLastLevel = false } = {}) {
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// 1. AGREGAR NUEVA CONSTANTE PARA AUTO-CERRAR MODAL
+// Agregar esta línea junto a las otras constantes de delay (línea ~28)
+const LEVEL_COMPLETED_AUTO_CLOSE_MS = 4000; // 4 segundos para leer el contenido
+
+// 2. VARIABLE PARA CONTROLAR EL TEMPORIZADOR
+let levelCompletedTimer = null;
+
+// 3. MODIFICAR LA FUNCIÓN showLevelCompleted
+function showLevelCompleted(level, { isLastLevel = false } = {}) {
+  // Limpiar temporizador anterior si existe
+  if (levelCompletedTimer) {
+    clearTimeout(levelCompletedTimer);
+    levelCompletedTimer = null;
+  }
+
+  const corollary = Array.isArray(level.corollary) ? level.corollary : [];
+
+  if (isLastLevel) {
+    play(SND_GAME_DONE);
+  } else {
+    play(SND_LEVEL_DONE);
+  }
+
+  meaningTitle.textContent = "¡Nivel superado!";
+  let html = `<p>🎉 Cazaste todos los conceptos clave. Podés avanzar.</p>`;
+  
+  if (corollary.length > 0) {
+    const list = corollary.map(fr => `<li>${escapeHtml(fr)}</li>`).join("");
+    html += `
+      <div class="corollary-box">
+        <h4>Frases clave del texto</h4>
+        <ul class="corollary-list">${list}</ul>
+      </div>`;
+  }
+
+  // NUEVA LÍNEA: Agregar indicador visual de auto-cerrado
+  html += `
+    <div class="auto-close-indicator" id="auto-close-progress">
+      <div class="auto-close-text">Se cerrará automáticamente en <span id="countdown">4</span>s</div>
+      <div class="auto-close-bar">
+        <div class="auto-close-fill" id="auto-close-fill"></div>
+      </div>
+    </div>`;
+
+  meaningBody.innerHTML = html;
+  meaningSheet.classList.add("open");
+
+  // NUEVA FUNCIONALIDAD: Habilitar botón cerrar inmediatamente
+  const closeButton = document.getElementById('close-meaning');
+  if (closeButton) {
+    closeButton.disabled = false;
+    closeButton.style.opacity = '1';
+    closeButton.title = 'Cerrar modal';
+  }
+
+  updateNavButtons(level, { isLastLevel });
+
+  // NUEVA FUNCIONALIDAD: Iniciar countdown visual
+  startAutoCloseCountdown();
+
+  // NUEVA FUNCIONALIDAD: Auto-cerrar después del delay
+  levelCompletedTimer = setTimeout(() => {
+    console.log('🔄 Auto-cerrando modal de nivel completado');
+    closeMeaningModal();
+    levelCompletedTimer = null;
+  }, LEVEL_COMPLETED_AUTO_CLOSE_MS);
+
+  if (isLastLevel) {
+    setTimeout(() => {
+      showSummaryDialog(CFG);
+    }, SUMMARY_DIALOG_DELAY_MS);
+  }
+}
+
+// 4. NUEVA FUNCIÓN: Countdown visual
+function startAutoCloseCountdown() {
+  const countdownEl = document.getElementById('countdown');
+  const fillEl = document.getElementById('auto-close-fill');
+  
+  if (!countdownEl || !fillEl) return;
+
+  let timeLeft = 4; // segundos
+  const interval = 100; // actualizar cada 100ms
+  const totalSteps = LEVEL_COMPLETED_AUTO_CLOSE_MS / interval;
+  let currentStep = 0;
+
+  const countdownInterval = setInterval(() => {
+    currentStep++;
+    
+    // Actualizar barra de progreso
+    const progress = (currentStep / totalSteps) * 100;
+    fillEl.style.width = `${progress}%`;
+    
+    // Actualizar contador cada segundo
+    const newTimeLeft = Math.ceil((totalSteps - currentStep) * interval / 1000);
+    if (newTimeLeft !== timeLeft) {
+      timeLeft = newTimeLeft;
+      countdownEl.textContent = timeLeft;
+    }
+    
+    // Limpiar cuando termine
+    if (currentStep >= totalSteps) {
+      clearInterval(countdownInterval);
+    }
+  }, interval);
+
+  // Limpiar intervalo si se cierra manualmente
+  setTimeout(() => {
+    clearInterval(countdownInterval);
+  }, LEVEL_COMPLETED_AUTO_CLOSE_MS + 500);
+}
+
+// 5. MODIFICAR closeMeaningModal PARA LIMPIAR TEMPORIZADOR
+function closeMeaningModal() {
+  // Limpiar temporizador de auto-cerrado
+  if (levelCompletedTimer) {
+    clearTimeout(levelCompletedTimer);
+    levelCompletedTimer = null;
+    console.log('⏹️ Cancelado auto-cerrado de modal (cerrado manualmente)');
+  }
+
+  meaningSheet.classList.remove("open");
+  
+  // Limpiar sistema ReadAloud
+  if (currentReadAloudModal) {
+    currentReadAloudModal.destroy();
+    currentReadAloudModal = null;
+  }
+}
+
+// 6. ESTILOS CSS PARA EL INDICADOR DE AUTO-CERRADO
+// Agregar estos estilos al final de la función addEnhancedStyles()
+function addEnhancedStyles() {
+  const styles = document.createElement('style');
+  styles.textContent = `
+    /* ... estilos existentes ... */
+
+    /* NUEVOS ESTILOS PARA AUTO-CERRADO */
+    .auto-close-indicator {
+      margin: 16px 0;
+      padding: 12px;
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #93c5fd;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .auto-close-text {
+      font-size: 0.9rem;
+      color: #1e40af;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .auto-close-bar {
+      width: 100%;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .auto-close-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* Animación de pulso para el countdown */
+    .auto-close-text span {
+      display: inline-block;
+      animation: countdownPulse 1s infinite;
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    @keyframes countdownPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Hover para cancelar auto-cerrado */
+    .meaning-sheet:hover .auto-close-indicator {
+      opacity: 0.7;
+    }
+  `;
+  document.head.appendChild(styles);
+}
+
+// 7. OPCIONAL: PAUSAR AUTO-CERRADO AL HACER HOVER
+// Agregar event listeners para pausar/reanudar en hover
+function setupModalHoverPause() {
+  meaningSheet.addEventListener('mouseenter', () => {
+    if (levelCompletedTimer) {
+      console.log('⏸️ Pausando auto-cerrado (mouse over modal)');
+      clearTimeout(levelCompletedTimer);
+      levelCompletedTimer = null;
+      
+      // Opcional: Mostrar mensaje de pausa
+      const indicator = document.getElementById('auto-close-progress');
+      if (indicator) {
+        indicator.innerHTML = `
+          <div class="auto-close-text">Auto-cerrado pausado - Haz clic fuera para reanudar</div>
+          <div class="auto-close-bar"><div class="auto-close-fill" style="width: 100%; background: #f59e0b;"></div></div>
+        `;
+      }
+    }
+  });
+}
+
+// INTEGRACIÓN: Llamar setupModalHoverPause() al final de la inicialización
+console.log("🚀 Iniciando juego mejorado con auto-cerrado de modales...");
+addEnhancedStyles();
+setupModalHoverPause(); // NUEVA LÍNEA
+renderLevel();
+
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  function showLevelCompleted_000(level, { isLastLevel = false } = {}) {
     const corollary = Array.isArray(level.corollary) ? level.corollary : [];
 
     if (isLastLevel) {

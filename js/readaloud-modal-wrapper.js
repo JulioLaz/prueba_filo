@@ -116,60 +116,59 @@ setupModalContent() {
             </div>
         `;
     }
-
-
-
     this.applyModalStyles();
 }
 
 
 
-        setupModalContent_000() {
-            const meaningTitle = this.modalElement.querySelector('#meaning-title');
-            const meaningBody = this.modalElement.querySelector('#meaning-body');
+        // setupModalContent_000() {
+        //     const meaningTitle = this.modalElement.querySelector('#meaning-title');
+        //     const meaningBody = this.modalElement.querySelector('#meaning-body');
             
-            if (meaningTitle) {
-                meaningTitle.innerHTML = `
-                    <div class="concept-title">
-                        <span class="concept-icon">📖</span>
-                        <span class="concept-term">${this.escapeHtml(this.concept.term)}</span>
-                        <span class="concept-badge">Lectura Obligatoria</span>
-                    </div>
-                `;
-            }
+        //     if (meaningTitle) {
+        //         meaningTitle.innerHTML = `
+        //             <div class="concept-title">
+        //                 <span class="concept-icon">📖</span>
+        //                 <span class="concept-term">${this.escapeHtml(this.concept.term)}</span>
+        //                 <span class="concept-badge">Lectura Obligatoria</span>
+        //             </div>
+        //         `;
+        //     }
 
-            if (meaningBody) {
-                meaningBody.innerHTML = `
-                    <div class="concept-content">
-                        <div class="readaloud-text" id="modal-readaloud-content">
-                            ${this.escapeHtml(this.concept.meaning)}
-                        </div>
+        //     if (meaningBody) {
+        //         meaningBody.innerHTML = `
+        //             <div class="concept-content">
+        //                 <div class="readaloud-text" id="modal-readaloud-content">
+        //                     ${this.escapeHtml(this.concept.meaning)}
+        //                 </div>
                         
-                        <div class="reading-controls">
-                            <div class="reading-progress">
-                                <div class="progress-bar-reading">
-                                    <div class="progress-fill-reading" id="modal-progress-fill"></div>
-                                </div>
-                                <div class="progress-text-reading" id="modal-progress-text">0% leído</div>
-                            </div>
+        //                 <div class="reading-controls">
+        //                     <div class="reading-progress">
+        //                         <div class="progress-bar-reading">
+        //                             <div class="progress-fill-reading" id="modal-progress-fill"></div>
+        //                         </div>
+        //                         <div class="progress-text-reading" id="modal-progress-text">0% leído</div>
+        //                     </div>
                             
-                            <button class="mic-button" id="modal-mic-button">
-                                <span class="mic-icon">🎤</span>
-                                <span class="mic-text">Comenzar Lectura</span>
-                            </button>
+        //                     <button class="mic-button" id="modal-mic-button">
+        //                         <span class="mic-icon">🎤</span>
+        //                         <span class="mic-text">Comenzar Lectura</span>
+        //                     </button>
                             
-                        </div>
-                    </div>
-                `;
-            }
+        //                 </div>
+        //             </div>
+        //         `;
+        //     }
 
-            this.applyModalStyles();
-        }
+        //     this.applyModalStyles();
+        // }
 
         setupControls() {
             const closeButton = this.modalElement.querySelector('#close-meaning');
             if (closeButton) {
+                // closeButton.disabled = false;
                 closeButton.disabled = true;
+                // closeButton.style.opacity = '0.1';
                 closeButton.style.opacity = '0.5';
                 closeButton.title = 'Completa la lectura para continuar';
             }
@@ -603,7 +602,7 @@ setupModalContent() {
                 // Agregar al final de los estilos existentes:
                 .modal-actions { display: flex; gap: 8px; margin: 12px 0;}
                 .back-button, .skip-button {   flex: 1;   padding: 10px;   border: none;   border-radius: 6px;   font-size: 0.9rem;   font-weight: 600;   cursor: pointer;   display: flex;   align-items: center;   justify-content: center;   gap: 6px;
-                        display:none;transition: all 0.3s ease;margin:0 5px }
+                      transition: all 0.3s ease;margin:0 5px }
                 .back-button { background: #6b7280; color: white}
                 .back-button:hover { background: #4b5563; }
                 .skip-button { background: #f59e0b;     color: white; }
