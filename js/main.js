@@ -235,13 +235,12 @@ const AVAILABLE_THEMES = [
     description: "Saltando obstáculos en este juego simple pero adictivo.",
     icon: "🎮",
     gradient: "linear-gradient(135deg, #280a02ff 0%, #d0e833ff 50%, #19e6edff 100%)",
-    difficulty: "PROYECTO_TRIMESTRAL",
+    difficulty: "GAME",
     questions: 0,
     timeEstimate: 240,
     prerequisites: [],
-    //   prerequisites: ["cassirer","sartre","etica","etica_aristoteles","etica_kant"],
     color: "#264befff",
-    contentFile: "../game.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    contentFile: "game.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
     useModularConfig: true,
     type: 'intermedio'
     }
