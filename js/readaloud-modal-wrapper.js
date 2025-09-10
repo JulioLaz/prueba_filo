@@ -602,7 +602,7 @@ setupModalContent() {
                 // Agregar al final de los estilos existentes:
                 .modal-actions { display: flex; gap: 8px; margin: 12px 0;}
                 .back-button, .skip-button {   flex: 1;   padding: 10px;   border: none;   border-radius: 6px;   font-size: 0.9rem;   font-weight: 600;   cursor: pointer;   display: flex;   align-items: center;   justify-content: center;   gap: 6px;
-                      transition: all 0.3s ease;margin:0 5px }
+                      display: none;transition: all 0.3s ease;margin:0 5px }
                 .back-button { background: #6b7280; color: white}
                 .back-button:hover { background: #4b5563; }
                 .skip-button { background: #f59e0b;     color: white; }

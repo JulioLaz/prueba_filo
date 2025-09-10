@@ -235,7 +235,8 @@ const AVAILABLE_THEMES = [
     description: "Saltando obstáculos en este juego simple pero adictivo.",
     icon: "🎮",
     gradient: "linear-gradient(135deg, #280a02ff 0%, #d0e833ff 50%, #19e6edff 100%)",
-    difficulty: "GAME",
+    difficulty: "PROYECTO_TRIMESTRAL",
+    // difficulty: "GAME",
     questions: 0,
     timeEstimate: 240,
     prerequisites: [],
@@ -470,7 +471,8 @@ function createThemeCard(theme) {
             console.log(`🎯 Navegando al tema: ${theme.id}`);
             
             // Si es un proyecto, ir directo al HTML del proyecto
-            if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
+            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+            // if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
                 window.location.href = theme.contentFile;
                 console.log(`🎯 Navegando en: ${theme.contentFile}`);
             } else {
