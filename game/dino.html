@@ -266,14 +266,15 @@
     }
   }
 
-  function goHome(){
-    if (confirm('¿Quieres volver al inicio?')) {
-      try {
-        window.location.href = 'index.html';
-      } catch(e) {
-        alert('Navegando al inicio...');
-      }
-    }
+  function goHome(){ //  const homeBtn = document.getElementById('homeBtn');
+
+  window.location.href = '../index.html';
+    // if (confirm('¿Quieres volver al inicio?')) {
+    //   try {
+    //   } catch(e) {
+    //     alert('Navegando al inicio...');
+    //   }
+    // }
   }
 
   // SISTEMA DE VIDAS CORREGIDO - MÁXIMO 10 VIDAS

@@ -90,7 +90,7 @@ const AVAILABLE_THEMES = [
         timeEstimate: 10,
         prerequisites: [],
         color: '#667eea',
-        contentFile: 'themes/utilitarismo/content.html.html'
+        contentFile: 'themes/utilitarismo/content.html'
     },
     {
         id: 'pragmatismo',
@@ -230,18 +230,33 @@ const AVAILABLE_THEMES = [
     type: 'intermedio'
     },
     {
-    id: "game",
-    title: "Relax",
+    id: "dino",
+    title: "Dinosaurio",
     description: "Saltando obstáculos en este juego simple pero adictivo.",
     icon: "🎮",
     gradient: "linear-gradient(135deg, #280a02ff 0%, #d0e833ff 50%, #19e6edff 100%)",
-    difficulty: "PROYECTO_TRIMESTRAL",
+    difficulty: "GAME",
     // difficulty: "GAME",
     questions: 0,
     timeEstimate: 240,
     prerequisites: [],
     color: "#264befff",
-    contentFile: "game/game.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    contentFile: "game/dino.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
+    useModularConfig: true,
+    type: 'intermedio'
+    },
+    {
+    id: "game",
+    title: "Sudoku - El Juego de los Números",
+    description: "Completa con los numeros que faltan!",
+    icon: "🎮",
+    gradient: "linear-gradient(135deg, #f04515ff 0%, #d0e833ff 50%, #4c5addff 100%)",
+    difficulty: "GAME",
+    questions: 0,
+    timeEstimate: 240,
+    prerequisites: [],
+    color: "#c37a36ff",
+    contentFile: "game/sudoku.html", //C:\JulioPrograma\prueba_filo\prueba_filo\projects\project_t2.html
     useModularConfig: true,
     type: 'intermedio'
     }
@@ -409,7 +424,7 @@ function createThemeCard(theme) {
     let dificultadFormateada = theme.difficulty;
     let style_difficulty = '';
 
-    if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL') {
+    if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL' && dificultadFormateada !== 'GAME') {
         dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
 
         if (dificultadFormateada == 'basico' || dificultadFormateada == 'UNIDAD I') {
@@ -421,9 +436,12 @@ function createThemeCard(theme) {
         else if (dificultadFormateada == 'avanzado' || dificultadFormateada == 'UNIDAD III') {
             style_difficulty = 'avanzado';
         }
-    } else {
+    } else if(dificultadFormateada === 'PROYECTO_TRIMESTRAL' ){
         dificultadFormateada = 'PROYECTO';
         style_difficulty = 'PROYECTO';
+    } else if(dificultadFormateada === 'GAME' ){
+        dificultadFormateada = 'GAME';
+        style_difficulty = 'game';
     }
 
 
@@ -467,20 +485,36 @@ function createThemeCard(theme) {
     // }
     // Event listener para navegación
     if (isUnlocked) {
-        card.addEventListener('click', () => {
-            console.log(`🎯 Navegando al tema: ${theme.id}`);
+    card.addEventListener('click', () => {
+        console.log(`🎯 Navegando al tema: ${theme.id}`);
+
+        const isProyecto = theme.difficulty === 'PROYECTO_TRIMESTRAL';
+        const isGame     = theme.difficulty === 'GAME';
+
+        if (isProyecto || isGame) {
+        window.location.href = theme.contentFile;   // ✅ ahora GAME abre su HTML
+        console.log(`➡️ Abriendo: ${theme.contentFile}`);
+        } else {
+        window.location.href = `tema.html?tema=${theme.id}`;
+        }
+    });
+    }
+
+    // if (isUnlocked) {
+    //     card.addEventListener('click', () => {
+    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
             
-            // Si es un proyecto, ir directo al HTML del proyecto
-            if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
-            // if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
-                window.location.href = theme.contentFile;
-                console.log(`🎯 Navegando en: ${theme.contentFile}`);
-            } else {
-                // Temas normales van al hub de actividades
-                window.location.href = `tema.html?tema=${theme.id}`;
-            }
-        });
-    }    
+    //         // Si es un proyecto, ir directo al HTML del proyecto
+    //         if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
+    //         // if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
+    //             window.location.href = theme.contentFile;
+    //             console.log(`🎯 Navegando en: ${theme.contentFile}`);
+    //         } else {
+    //             // Temas normales van al hub de actividades
+    //             window.location.href = `tema.html?tema=${theme.id}`;
+    //         }
+    //     });
+    // }    
     else {
         card.addEventListener('click', () => {
             const prereqNames = theme.prerequisites.map(id => 

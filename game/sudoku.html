@@ -364,6 +364,10 @@
                 font-size: 16px;
             }
         }
+
+    .btn.danger{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.3)}
+
+
     </style>
 </head>
 <body>
@@ -372,6 +376,8 @@
     <div class="header">
         <h1>🧩 Sudoku Educativo 🧩</h1>
         <p>¡Ejercita tu mente mientras te diviertes!</p>
+        <button id="homeBtn" class="btn danger">🏠 Inicio</button>
+
     </div>
 
     <div class="game-container">
@@ -1068,6 +1074,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             new SudokuEducativo();
         });
+
+    function goHome(){ //  const homeBtn = document.getElementById('homeBtn');
+
+        // if (confirm('¿Quieres volver al inicio?')) {
+        // try {
+            window.location.href = '../index.html';
+        // } catch(e) {
+        //     alert('Navegando al inicio...');
+        // }
+        // }
+    }
+    const homeBtn = document.getElementById('homeBtn');
+    homeBtn.onclick = goHome;
+
     </script>
 </body>
 </html>
