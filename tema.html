@@ -230,6 +230,44 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .short-video .video-info p {
   font-size: 12px;          /* Info más compacta */
 }
+
+/* Forzar visibilidad del video */
+#videoContainer {
+  min-height: 400px !important;
+}
+
+#videoFrameSlot {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 400px !important;
+}
+
+#videoFrameSlot iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 400px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Para el layout horizontal cuando se aplica */
+.video-container-wrapper {
+  min-height: 400px !important;
+}
+
+.video-container-wrapper #videoContainer {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#clozeRoot .cloze-item{margin:14px 0; padding:12px; background:#0f1629; border:1px solid #1f2a4a; border-radius:12px}
+#clozeRoot input[type="text"]{min-width:92px; padding:6px 8px; border-radius:8px; border:1px solid #32406a; background:#0b1220; color:#eaf0ff}
+#clozeRoot .ok{border-color:#10b981} 
+#clozeRoot .err{border-color:#ef4444}
+#clozeRoot .actions{display:flex; gap:8px; margin-top:12px}
+#clozeRoot .muted{color:#7b88a8; font-size:12px}
+
+
 </style>
 
 </head>
@@ -257,19 +295,19 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     </section>
 
     <section class="grid" aria-label="Actividades disponibles">
-      <article class="card">
-        <div class="card-icon">📝 Cuestionario</div>
-        <!-- <h3>Quiz</h3> -->
-        <p>Poné a prueba lo que sabés.</p>
-        <div class="status">
-          <small id="statusQuiz">—</small>
-          <button class="btn btn-primary" id="goQuiz">Abrir</button>
-        </div>
-      </article>
+      
+            <article class="card">
+              <div class="card-icon">📖 Material de estudio</div>
+              <!-- <h3>Material de estudio</h3> -->
+              <p>Resumen por conceptos, ejemplos y palabras clave.</p>
+              <div class="status">
+                <small id="statusMaterial">—</small>
+                <button class="btn btn-primary" id="goMaterial">Abrir</button>
+              </div>
+            </article>
 
       <article class="card">
         <div class="card-icon">🔎 Caza de conceptos</div>
-        <!-- <h3>Caza de conceptos</h3> -->
         <p>Detectá conceptos en el texto y practicá definiciones.</p>
         <div class="status">
           <small id="statusCaza">—</small>
@@ -287,16 +325,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         </div>
       </article>
 
-      <article class="card">
-        <div class="card-icon">📖 Material de estudio</div>
-        <!-- <h3>Material de estudio</h3> -->
-        <p>Resumen por conceptos, ejemplos y palabras clave.</p>
-        <div class="status">
-          <small id="statusMaterial">—</small>
-          <button class="btn btn-primary" id="goMaterial">Abrir</button>
-        </div>
-      </article>
-
     <article class="card">
       <div class="card-icon">🧩 Crucigrama</div>
       <!-- <h3>Crucigrama</h3> -->
@@ -306,6 +334,17 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
         <button class="btn btn-primary" id="goCruci">Abrir</button>
       </div>
     </article>
+
+      <article class="card">
+        <div class="card-icon">📝 Cuestionario</div>
+        <!-- <h3>Quiz</h3> -->
+        <p>Poné a prueba lo que sabés.</p>
+        <div class="status">
+          <small id="statusQuiz">—</small>
+          <button class="btn btn-primary" id="goQuiz">Abrir</button>
+        </div>
+      </article>
+
 
       <article class="card">
         <div class="card-icon">🗺️ Mapa conceptual</div>
@@ -350,20 +389,35 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
    <div id="videoBackdrop" class="sheet-backdrop" style="display:none;">
      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
        <div class="sheet-header">
-         <div class="sheet-title" id="videoTitle">🎬 Video Explicativo: <span id="videoTopicTitle" style="color: rgb(102, 210, 243);"></span></div>
-         <button class="sheet-close" id="videoClose" aria-label="Cerrar">×</button>
-       </div>
-       <div class="sheet-body" id="videoBody" style="padding:0;">
-         <div class="video-info" style="display: none;">
-           <h3 id="videoTopicTitle">Cargando video...</h3>
-           <p id="videoSegmentInfo">Cargando información...</p>
-         </div>
-         <div class="video-container" id="videoContainer">
-           <!-- El iframe se inyecta aquí -->
-         </div>
-       </div>
-     </div>
-   </div>
+         <div class="sheet-title" id="videoTitle">🎬 Video Explicativo: <br></br><span id="videoTopicTitle" style="color: rgb(102, 210, 243);"></span></div>
+           <button class="btn" id="videoClozeBtn" style="display:none;">🧩 Cloze del video</button>
+           
+           <button class="sheet-close" id="videoClose" aria-label="Cerrar">×</button>
+          </div>
+          
+          
+          <div class="sheet-body" id="videoBody" style="padding:0;">
+            <!-- Estructura original que será transformada dinámicamente -->
+            <div class="video-info" style="display: none;">
+              <h3 id="videoTopicTitleInfo">Cargando video...</h3>
+              <p id="videoSegmentInfo">Cargando información...</p>
+            </div>
+            <div class="video-container" id="videoContainer">
+              <div id="videoFrameSlot"></div>
+            </div>
+            
+            <!-- Contenedor mejorado para cloze -->
+            <div id="clozeRoot" style="display:none; padding:16px 20px; border-top:1px solid #223059;">
+              <!-- El nuevo sistema renderizará aquí -->
+            </div>
+            
+            <!-- Nuevos elementos que el script de integración usará -->
+            <div id="clozeSection" style="display:none;">
+              <!-- Se populará dinámicamente -->
+            </div>
+          </div>
+        </div>
+      </div>
 
    <!-- Mapa conceptual (sheet modal) -->
 <div id="mapa-backdrop" class="sheet-backdrop" style="display:none;">
@@ -388,7 +442,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);
     let tema = url.searchParams.get('tema') || url.searchParams.get('theme');
-    // let tema = url.searchParams.get('tema') || url.searchParams.get('theme') || 'sartre';
     if (!url.searchParams.get('tema'))  url.searchParams.set('tema', tema);
     if (!url.searchParams.get('theme')) url.searchParams.set('theme', tema);
     if (location.search !== '?' + url.searchParams.toString()) {
@@ -405,633 +458,1496 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
     const tdata = TOPICS[tema] || {icon:'🕵🏼', name: tema, desc:'Explorá las actividades disponibles.'};
 
     function transformarTema(nombre) {
-      // Convierte a mayúsculas
       let nombreTransformado = nombre.toUpperCase();
-
-      // Reemplaza guiones bajos por " DE "
       nombreTransformado = nombreTransformado.replace(/_/g, ' DE ');
-
-      // Si el nombre original tenía solo una palabra, agrega "!"
-      if (!nombre.includes('_')) {
-        nombreTransformado;
-      }
-
       return nombreTransformado;
     }
 
-    // Uso
     const temaTransformado = transformarTema(tdata.name);
 
     document.getElementById('temaChip').textContent = 'Tema activo: ' + temaTransformado;
     document.getElementById('heroTitle').textContent = 'Explorá ' + temaTransformado+': ';
     document.getElementById('temaTitle').textContent = temaTransformado;
 
-    
     // Pintar cabecera
     document.getElementById('temaIcon').textContent = tdata.icon;
-    // document.getElementById('temaTitle').textContent = tdata.name;
-    // document.getElementById('temaChip').textContent  = 'Tema activo: ' + tema;
-    // document.getElementById('heroTitle').textContent = 'Explorá ' + tdata.name;
     document.getElementById('heroDesc').textContent  = tdata.desc + ' Elegí una actividad.';
 
     const expositorEl = document.getElementById('expositores');
 
-
-if (tdata.expositores) {
-  expositorEl.innerHTML = '<span class="label-strong">Expositores: </span>'+ tdata.expositores;
-} else if (tdata.biography) {
-  // expositorEl.innerHTML = '<strong>Biografía: </strong>' + tdata.biography;
-  expositorEl.innerHTML = '<span class="label-strong">Biografía: </span>' + tdata.biography;
-
-} else {
-  expositorEl.textContent = ''; // O podés ocultarlo si no hay contenido
-}
-
-    // document.getElementById('expositores').textContent  = tdata.expositores;
-
-    // ===== Estado guardado (para mostrar "micro-progreso") =====
-// ==== Estado guardado (helpers) ====
-const ns = (k)=>`tema.${tema}.${k}`;
-const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
-const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
-
-// Lee estados parciales
-function readSectionStates(){
-  console.log('🔍 Revisando almacenamiento para tema:', tema);
-  
-  // Listar todas las claves de sessionStorage relacionadas con este tema
-  for (let i = 0; i < sessionStorage.length; i++) {
-    const key = sessionStorage.key(i);
-    if (key && key.includes(tema)) {
-      console.log(`📦 ${key}:`, sessionStorage.getItem(key));
+    if (tdata.expositores) {
+      expositorEl.innerHTML = '<span class="label-strong">Expositores: </span>'+ tdata.expositores;
+    } else if (tdata.biography) {
+      expositorEl.innerHTML = '<span class="label-strong">Biografía: </span>' + tdata.biography;
+    } else {
+      expositorEl.textContent = '';
     }
-  }
 
-  const sQuiz = readJSON(ns('quiz'), { qIndex:0, score:0, total:10, completed:false });
-  console.log('📝 Quiz state:', sQuiz);
-  
-  const sCazaRaw = readJSON(ns('caza'), { total:0, found:0, completed:false });
-  console.log('🔎 Caza state (raw):', sCazaRaw);
-  
-  // Transformar datos de caza a formato esperado
-  const sCaza = {
-    paragraph: sCazaRaw.found || 0,
-    total: sCazaRaw.total || 0,
-    hits: sCazaRaw.found || 0,
-    completed: sCazaRaw.completed || false
-  };
-  console.log('🔎 Caza state (processed):', sCaza);
-  
-  const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
-  console.log('📖 Material state:', sMaterial);
-  
-  const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
-  console.log('🗺️ Mapa state:', sMapa);
+    // ===== Estado guardado (helpers) =====
+    const ns = (k)=>`tema.${tema}.${k}`;
+    const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
+    const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
-  // Calcular porcentajes con validación extra
-  const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
-  const cazaPct = (sCaza.total && sCaza.total > 0 && !isNaN(sCaza.paragraph)) ? pct(sCaza.paragraph, sCaza.total) : 0;
-  const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
-  const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
-                                 : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
-    // 🔧 Crucigrama
-  const sCruci = readJSON(ns('cruci'), { total:0, solved:0, score:0, completed:false });
-  const cruciPct = (sCruci.total && sCruci.total > 0) ? pct(sCruci.solved, sCruci.total) : 0;
+    // Lee estados parciales
+    function readSectionStates(){
+      console.log('🔍 Revisando almacenamiento para tema:', tema);
+      
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && key.includes(tema)) {
+          console.log(`📦 ${key}:`, sessionStorage.getItem(key));
+        }
+      }
 
-  // ⭐ NUEVO: Estado del video
-  const sVideo = readJSON(ns('video'), { watched:false, watchTime:0, completed:false });
-  const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 50 : 0);
+      const sQuiz = readJSON(ns('quiz'), { qIndex:0, score:0, total:10, completed:false });
+      console.log('📝 Quiz state:', sQuiz);
+      
+      const sCazaRaw = readJSON(ns('caza'), { total:0, found:0, completed:false });
+      console.log('🔎 Caza state (raw):', sCazaRaw);
+      
+      const sCaza = {
+        paragraph: sCazaRaw.found || 0,
+        total: sCazaRaw.total || 0,
+        hits: sCazaRaw.found || 0,
+        completed: sCazaRaw.completed || false
+      };
+      console.log('🔎 Caza state (processed):', sCaza);
+      
+      const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+      console.log('📖 Material state:', sMaterial);
+      
+      const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
+      console.log('🗺️ Mapa state:', sMapa);
 
-  console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct, cruciPct, videoPct });
+      const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
+      const cazaPct = (sCaza.total && sCaza.total > 0 && !isNaN(sCaza.paragraph)) ? pct(sCaza.paragraph, sCaza.total) : 0;
+      const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
+      const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
+                                     : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
+      
+      const sCruci = readJSON(ns('cruci'), { total:0, solved:0, score:0, completed:false });
+      const cruciPct = (sCruci.total && sCruci.total > 0) ? pct(sCruci.solved, sCruci.total) : 0;
 
-  const result = {
-    quiz: {
-      pct: quizPct,
-      text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`
-    },
-    caza: {
-      pct: cazaPct,
-      text: sCaza.completed ? `Completado · ${sCaza.hits}/${sCaza.total}` : `${sCaza.hits}/${sCaza.total} conceptos`
-    },
-    mat: {
-      pct: materialPct,
-      text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`
-    },
-    mapa: {
-      pct: mapaPct,
-      text: `${mapaPct}% explorado`
-    },
-    cruci: {
-      pct: cruciPct,
-      text: sCruci.total ? (
-        sCruci.completed ? `Completado · ${sCruci.solved}/${sCruci.total}` 
-                         : `${sCruci.solved}/${sCruci.total} palabras`
-      ) : 'Sin avances'
+      // ⭐ NUEVO: Estado del video
+      const sVideo = readJSON(ns('video'), { watched:false, watchTime:0, completed:false });
+      const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 50 : 0);
+
+      console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct, cruciPct, videoPct });
+
+      const result = {
+        quiz: {
+          pct: quizPct,
+          text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`
+        },
+        caza: {
+          pct: cazaPct,
+          text: sCaza.completed ? `Completado · ${sCaza.hits}/${sCaza.total}` : `${sCaza.hits}/${sCaza.total} conceptos`
+        },
+        mat: {
+          pct: materialPct,
+          text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`
+        },
+        mapa: {
+          pct: mapaPct,
+          text: `${mapaPct}% explorado`
+        },
+        cruci: {
+          pct: cruciPct,
+          text: sCruci.total ? (
+            sCruci.completed ? `Completado · ${sCruci.solved}/${sCruci.total}` 
+                             : `${sCruci.solved}/${sCruci.total} palabras`
+          ) : 'Sin avances'
+        }
+      };
+
+      if (hasVideo) {
+        result.video = {
+          pct: videoPct,
+          text: sVideo.completed ? 'Video completado' : (sVideo.watched ? 'En progreso' : hasVideo.duration + ' min')
+        };
+      }
+
+      return result;
     }
-  };
 
-  // ⭐ NUEVO: Solo agregar video si el tema lo tiene
-  if (hasVideo) {
-    result.video = {
-      pct: videoPct,
-      text: sVideo.completed ? 'Video completado' : (sVideo.watched ? 'En progreso' : hasVideo.duration + ' min')
-    };
-  }
+    // Pinta segmentos + global
+    function renderProgressUI(){
+      const s = readSectionStates();
 
-  return result;
-}
+      document.getElementById('statusQuiz').textContent     = s.quiz.text;
+      document.getElementById('statusCaza').textContent     = s.caza.text;
+      document.getElementById('statusMaterial').textContent = s.mat.text;
+      document.getElementById('statusMapa').textContent     = s.mapa.text;
+      document.getElementById('statusCruci').textContent = s.cruci.text;
 
-// Pinta segmentos + global
-function renderProgressUI(){
-  const s = readSectionStates();
+      if (hasVideo && s.video) {
+        document.getElementById('statusVideo').textContent = s.video.text;
+      }
 
-  // micro-textos bajo cada tarjeta (mantengo tu UI existente)
-  document.getElementById('statusQuiz').textContent     = s.quiz.text;
-  document.getElementById('statusCaza').textContent     = s.caza.text;
-  document.getElementById('statusMaterial').textContent = s.mat.text;
-  document.getElementById('statusMapa').textContent     = s.mapa.text;
-  document.getElementById('statusCruci').textContent = s.cruci.text;
+      const segments = document.getElementById('segments');
+      segments.innerHTML = '';
+      
+      const baseSegments = [
+        {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
+        {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
+        {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
+        {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
+        {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
+      ];
 
-  // ⭐ NUEVO: Solo actualizar status de video si existe
-  if (hasVideo && s.video) {
-    document.getElementById('statusVideo').textContent = s.video.text;
-  }
+      const allSegments = hasVideo ? [
+        {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
+        {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
+        {key:'video', label:'🎬 Video',       pct:s.video.pct, target:'goVideo'},
+        {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
+        {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
+        {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
+      ] : baseSegments;
 
-  // barra segmentada
-  const segments = document.getElementById('segments');
-  segments.innerHTML = '';
-  
-  // ⭐ MODIFICADO: Array base sin video
-  const baseSegments = [
-    {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
-    {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
-    {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
-    {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
-  ];
+      allSegments.forEach(seg=>{
+        const el = document.createElement('div');
+        el.className = 'seg clickable';
+        el.dataset.type = seg.key;
+        el.innerHTML = `<div class="fill" style="width:${seg.pct}%"></div><div class="label">${seg.label} · ${seg.pct}%</div>`;
+        el.addEventListener('click', ()=> document.getElementById(seg.target).click());
+        segments.appendChild(el);
+      });
 
-  // ⭐ NUEVO: Agregar video solo si existe
-  const allSegments = hasVideo ? [
-    {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
-    {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-    {key:'video', label:'🎬 Video',       pct:s.video.pct, target:'goVideo'},
-    {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
-    {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
-    {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
-  ] : baseSegments;
+      const parts = hasVideo ? [s.quiz.pct, s.caza.pct, s.video.pct, s.cruci.pct, s.mat.pct, s.mapa.pct]
+                             : [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
+      const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
+      document.getElementById('progressPct').textContent = globalPct + '%';
+      document.getElementById('progressBar').style.width = globalPct + '%';
+    }
 
-  allSegments.forEach(seg=>{
-    const el = document.createElement('div');
-    el.className = 'seg clickable';
-    el.dataset.type = seg.key;
-    el.innerHTML = `<div class="fill" style="width:${seg.pct}%"></div><div class="label">${seg.label} · ${seg.pct}%</div>`;
-    el.addEventListener('click', ()=> document.getElementById(seg.target).click());
-    segments.appendChild(el);
-  });
+    renderProgressUI();
 
-  // % global = promedio de todas las actividades (incluyendo video si existe)
-  const parts = hasVideo ? [s.quiz.pct, s.caza.pct, s.video.pct, s.cruci.pct, s.mat.pct, s.mapa.pct]
-                         : [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
-  const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
-  document.getElementById('progressPct').textContent = globalPct + '%';
-  document.getElementById('progressBar').style.width = globalPct + '%';
-}
-
-// Llamá una vez al cargar
-renderProgressUI();
-
-    // ===== Navegación (respeta subcarpeta de GitHub Pages) =====
+    // ===== Navegación =====
     const go = (path) => {
-      const p = new URL(path, location);     // base = URL actual
+      const p = new URL(path, location);
       p.searchParams.set('tema', tema);
-      p.searchParams.set('theme', tema);     // compat
+      p.searchParams.set('theme', tema);
       location.href = p.toString();
     };
+    
     document.getElementById('goQuiz').addEventListener('click',    ()=> go('quiz.html'));
     document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
 
-const sheetBackdrop = document.getElementById('sheetBackdrop');
-const sheetClose    = document.getElementById('sheetClose');
-const sheetBody     = document.getElementById('sheetBody');
+    // ===== Material de estudio =====
+    const sheetBackdrop = document.getElementById('sheetBackdrop');
+    const sheetClose    = document.getElementById('sheetClose');
+    const sheetBody     = document.getElementById('sheetBody');
 
-function bumpMaterialProgress(delta=1){
-  const key = ns('material');
-  const cur = readJSON(key, { sectionsViewed:[], total:8, completed:false });
-  const seen = new Set(cur.sectionsViewed || []);
-  // solo incrementamos con IDs sintéticos
-  const id = 'v' + (seen.size + 1);
-  if (seen.size < (cur.total||8)) seen.add(id);
-  const state = { sectionsViewed:[...seen], total:cur.total||8, completed: seen.size >= (cur.total||8) };
-  sessionStorage.setItem(key, JSON.stringify(state));
-  renderProgressUI();
-}
+    function bumpMaterialProgress(delta=1){
+      const key = ns('material');
+      const cur = readJSON(key, { sectionsViewed:[], total:8, completed:false });
+      const seen = new Set(cur.sectionsViewed || []);
+      const id = 'v' + (seen.size + 1);
+      if (seen.size < (cur.total||8)) seen.add(id);
+      const state = { sectionsViewed:[...seen], total:cur.total||8, completed: seen.size >= (cur.total||8) };
+      sessionStorage.setItem(key, JSON.stringify(state));
+      renderProgressUI();
+    }
 
-function openMaterialSheet(){
-  sheetBackdrop.style.display = 'block';
-  document.body.style.overflow = 'hidden';
+    function openMaterialSheet(){
+      sheetBackdrop.style.display = 'block';
+      document.body.style.overflow = 'hidden';
 
-  // const url = new URL(`content/${tema}.html`, location);
+      let contentPath = `themes/${tema}/content.html`;
+      const url = new URL(contentPath, location);
 
-  // Intentar cargar desde nueva estructura primero
-  let contentPath = `themes/${tema}/content.html`;
-  // Fallback a estructura legacy
-  const fallbackPath = `content/${tema}.html`;
-
-  const url = new URL(contentPath, location);
-
-
-  sheetBody.innerHTML = '';
-  const iframe = document.createElement('iframe');
-  iframe.className = 'sheet-iframe';
-  iframe.src = url.toString();
-  iframe.loading = 'lazy';
-  iframe.addEventListener('load', () => {
-    bumpMaterialProgress(1); // al menos "abrió"
-    try {
-      // Simple: si hace scroll dentro del iframe, contamos otra sección
-      const w = iframe.contentWindow;
-      let ticked = false;
-      w.addEventListener('scroll', () => {
-        if (ticked) return;
-        ticked = true;
+      sheetBody.innerHTML = '';
+      const iframe = document.createElement('iframe');
+      iframe.className = 'sheet-iframe';
+      iframe.src = url.toString();
+      iframe.loading = 'lazy';
+      iframe.addEventListener('load', () => {
         bumpMaterialProgress(1);
-        setTimeout(()=> ticked=false, 1500);
-      }, { passive:true });
-    } catch(e){}
-  });
-  sheetBody.appendChild(iframe);
-}
+        try {
+          const w = iframe.contentWindow;
+          let ticked = false;
+          w.addEventListener('scroll', () => {
+            if (ticked) return;
+            ticked = true;
+            bumpMaterialProgress(1);
+            setTimeout(()=> ticked=false, 1500);
+          }, { passive:true });
+        } catch(e){}
+      });
+      sheetBody.appendChild(iframe);
+    }
 
-function closeMaterialSheet(){
-  sheetBackdrop.style.display = 'none';
-  document.body.style.overflow = '';
-  sheetBody.innerHTML = '';
-}
+    function closeMaterialSheet(){
+      sheetBackdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      sheetBody.innerHTML = '';
+    }
 
-sheetBackdrop.addEventListener('click', (e)=>{ if(e.target===sheetBackdrop) closeMaterialSheet(); });
-sheetClose.addEventListener('click', closeMaterialSheet);
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMaterialSheet(); });
+    sheetBackdrop.addEventListener('click', (e)=>{ if(e.target===sheetBackdrop) closeMaterialSheet(); });
+    sheetClose.addEventListener('click', closeMaterialSheet);
 
-document.getElementById('goMaterial').addEventListener('click', openMaterialSheet);
+    document.getElementById('goMaterial').addEventListener('click', openMaterialSheet);
 
-// document.getElementById('goMapa').addEventListener('click', openMapaSheet);
-document.getElementById('goMapa').addEventListener('click', () => {
-  const url = new URL(`themes/${tema}/mapa.html`, location);
-  url.searchParams.set('tema', tema);
-  url.searchParams.set('theme', tema);
-  location.href = url.toString();
-});
+    // ===== Navegación a otras actividades =====
+    document.getElementById('goMapa').addEventListener('click', () => {
+      const url = new URL(`themes/${tema}/mapa.html`, location);
+      url.searchParams.set('tema', tema);
+      url.searchParams.set('theme', tema);
+      location.href = url.toString();
+    });
 
-document.getElementById('backToIndex').addEventListener('click', ()=> { location.href = new URL('index.html', location).toString(); });
+    document.getElementById('backToIndex').addEventListener('click', ()=> { 
+      location.href = new URL('index.html', location).toString(); 
+    });
 
-// document.getElementById('goCruci').addEventListener('click', ()=> go(`themes/${tema}/crossword.html`));
-document.getElementById('goCruci').addEventListener('click', ()=> {
-  const u = new URL('crossword.html', location);
-  u.searchParams.set('tema', tema); u.searchParams.set('theme', tema);
-  location.href = u.toString();
-});
+    document.getElementById('goCruci').addEventListener('click', ()=> {
+      const u = new URL('crossword.html', location);
+      u.searchParams.set('tema', tema); 
+      u.searchParams.set('theme', tema);
+      location.href = u.toString();
+    });
 
-// ⭐ NUEVO: Modal de Video
-const videoBackdrop = document.getElementById('videoBackdrop');
-const videoClose = document.getElementById('videoClose');
-const videoContainer = document.getElementById('videoContainer');
-const videoTopicTitle = document.getElementById('videoTopicTitle');
-const videoSegmentInfo = document.getElementById('videoSegmentInfo');
+    // ===== Variables para video modal =====
+    const videoBackdrop = document.getElementById('videoBackdrop');
+    const videoClose = document.getElementById('videoClose');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoTopicTitle = document.getElementById('videoTopicTitle');
+    const videoSegmentInfo = document.getElementById('videoSegmentInfo');
+    const videoSheet = document.querySelector('#videoBackdrop .sheet');
+    const videoFrameSlot = document.getElementById('videoFrameSlot');
 
-let videoIframe = null;
-let videoStartTime = null;
+    let videoIframe = null;
+    let videoStartTime = null;
+    let clozeVisible = false;
 
-// 1. REEMPLAZAR la función openVideoModal() completa con esta versión corregida:
-
+    // ===== FUNCIONES DE VIDEO MODAL MEJORADAS =====
+// Reemplaza tu función openVideoModal con esta versión que incluye más debugging
 function openVideoModal() {
-  if (!hasVideo) return;
+  console.log('🎬 [Debug] openVideoModal llamada');
+  console.log('hasVideo:', hasVideo);
+  
+  if (!hasVideo) {
+    console.error('❌ [Debug] No hay video configurado para tema:', tema);
+    return;
+  }
   
   const config = VIDEO_CONFIG[tema];
-  const isShort = config.type === 'short';
+  console.log('📹 [Debug] Config del video:', config);
   
+  if (!config) {
+    console.error('❌ [Debug] No se encontró configuración para:', tema);
+    return;
+  }
+  
+  const isShort = config.type === 'short';
+  console.log('🔍 [Debug] Es short:', isShort);
+  
+  // Verificar elementos del DOM
+  const elements = {
+    videoTopicTitle: document.getElementById('videoTopicTitle'),
+    videoSegmentInfo: document.getElementById('videoSegmentInfo'),
+    videoBackdrop: document.getElementById('videoBackdrop'),
+    videoContainer: document.getElementById('videoContainer'),
+    videoFrameSlot: document.getElementById('videoFrameSlot'),
+    videoSheet: document.querySelector('#videoBackdrop .sheet')
+  };
+  
+  console.log('🏗️ [Debug] Elementos del DOM:', elements);
+  
+  // Verificar si algún elemento falta
+  const missingElements = Object.entries(elements)
+    .filter(([name, element]) => !element)
+    .map(([name]) => name);
+  
+  if (missingElements.length > 0) {
+    console.error('❌ [Debug] Elementos faltantes:', missingElements);
+    alert('Error: Faltan elementos del DOM: ' + missingElements.join(', '));
+    return;
+  }
+  
+  console.log('✅ [Debug] Todos los elementos DOM encontrados');
+  
+  // Continuar con la lógica normal
   videoTopicTitle.textContent = config.title;
   videoSegmentInfo.textContent = `Segmento: ${Math.floor(config.startTime/60)}:${String(config.startTime%60).padStart(2,'0')} - ${Math.floor(config.endTime/60)}:${String(config.endTime%60).padStart(2,'0')} • Duración: ${config.duration} min`;
   
+  console.log('📝 [Debug] Títulos actualizados');
+  
+  // Aplicar layout horizontal
+  console.log('🎨 [Debug] Aplicando layout...');
+  try {
+    applyHorizontalLayout();
+    console.log('✅ [Debug] Layout aplicado');
+  } catch (error) {
+    console.error('❌ [Debug] Error en layout:', error);
+  }
+  
+  // Mostrar modal
+  console.log('🖼️ [Debug] Mostrando modal...');
   videoBackdrop.style.display = 'block';
   document.body.style.overflow = 'hidden';
   
-  // ⭐ CORRECCIÓN: Aplicar clases CSS para shorts
+  // Aplicar clases
   videoContainer.classList.toggle('short', isShort);
-  document.querySelector('.sheet').classList.toggle('short-video', isShort);
+  videoSheet.classList.toggle('short-video', isShort);
   
-  // ⭐ CORRECCIÓN: URL con velocidad 1.25x y mejor formato para shorts
+  console.log('🎭 [Debug] Clases aplicadas');
+  
+  // Crear URL del embed
   const embedUrl = `https://www.youtube.com/embed/${config.youtubeId}?` +
-    `start=${config.startTime}&` +
-    `end=${config.endTime}&` +
-    `autoplay=1&` +
-    `playsinline=1&` +               // ⭐ Mejor para móviles
-    `rel=0&` +                       // Sin videos relacionados
-    `modestbranding=1&` +            // Sin logo de YouTube prominente
-    `iv_load_policy=3&` +            // Sin anotaciones
-    `enablejsapi=1&` +               // API de JavaScript
-    `loop=1&` +                      // Loop al terminar
-    `playlist=${config.youtubeId}&` + // Playlist de 1 video para loop
-    `origin=${window.location.origin}`;
-  
+    `start=${config.startTime}&end=${config.endTime}&autoplay=1&playsinline=1&` +
+    `rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1&loop=1&` +
+    `playlist=${config.youtubeId}&origin=${window.location.origin}`;
+
+  console.log('🔗 [Debug] URL del embed:', embedUrl);
+
+  // Crear iframe
+  console.log('📺 [Debug] Creando iframe...');
   videoIframe = document.createElement('iframe');
   videoIframe.src = embedUrl;
-  videoIframe.style.width = '100%';
-  videoIframe.style.height = '100%';
+  videoIframe.style.cssText = 'width: 100%; height: 100%; border: 0;';
   videoIframe.setAttribute('allowfullscreen', '');
-  videoIframe.setAttribute('frameborder', '0');
   
-  videoContainer.innerHTML = '';
-  videoContainer.appendChild(videoIframe);
+  // Agregar iframe al DOM
+  const frameSlot = document.getElementById('videoFrameSlot');
+  if (!frameSlot) {
+    console.error('❌ [Debug] videoFrameSlot no encontrado después del layout');
+    return;
+  }
   
-  // ⭐ NUEVO: Intentar establecer velocidad 1.25x después de cargar
+  console.log('🎯 [Debug] Agregando iframe al DOM...');
+  frameSlot.innerHTML = '';
+  frameSlot.appendChild(videoIframe);
+  
+  console.log('✅ [Debug] Iframe agregado');
+  
+  // Event listener para verificar carga
   videoIframe.addEventListener('load', () => {
+    console.log('✅ [Debug] Iframe cargado exitosamente');
+    
+    // Configurar velocidad
     try {
-      // Para la velocidad, necesitamos esperar un poco y usar postMessage
       setTimeout(() => {
+        const message = { event: 'command', func: 'setPlaybackRate', args: [1.25] };
+        videoIframe.contentWindow?.postMessage(JSON.stringify(message), '*');
+        console.log('⚡ [Debug] Velocidad configurada a 1.25x');
+      }, 2000);
+    } catch(e) {
+      console.log('⚠️ [Debug] Error configurando velocidad:', e);
+    }
+  });
+  
+  videoIframe.addEventListener('error', (error) => {
+    console.error('❌ [Debug] Error cargando iframe:', error);
+  });
+  
+  // Marcar progreso
+  markVideoProgress(true, false);
+  videoStartTime = Date.now();
+  
+  console.log('📊 [Debug] Progreso marcado');
+  
+  // Auto-completar
+  const segmentDuration = (config.endTime - config.startTime) * 1000;
+  setTimeout(() => {
+    if (videoIframe && videoBackdrop.style.display === 'block') {
+      markVideoProgress(true, true);
+      console.log('✅ [Debug] Video auto-completado');
+    }
+  }, segmentDuration);
+  
+  // Inicializar cloze
+  console.log('🧩 [Debug] Inicializando cloze...');
+  try {
+    initializeClozeForVideo();
+    console.log('✅ [Debug] Cloze inicializado');
+  } catch (error) {
+    console.error('❌ [Debug] Error inicializando cloze:', error);
+  }
+  
+  console.log('🎉 [Debug] openVideoModal completado');
+}
+
+    function closeVideoModal() {
+      console.log('🔽 [Video] Cerrando modal');
+      
+      videoBackdrop.style.display = 'none';
+      document.body.style.overflow = '';
+      
+      // Limpiar clases CSS
+      videoContainer?.classList.remove('short');
+      videoSheet?.classList.remove('short-video', 'horizontal-layout');
+      
+      // Calcular tiempo de visualización
+      if (videoStartTime) {
+        const watchTime = Math.round((Date.now() - videoStartTime) / 1000);
+        const key = ns('video');
+        const current = readJSON(key, { watched: false, watchTime: 0, completed: false });
+        current.watchTime = Math.max(current.watchTime, watchTime);
+        sessionStorage.setItem(key, JSON.stringify(current));
+        videoStartTime = null;
+      }
+      
+      // 🆕 Restaurar layout original
+      restoreOriginalLayout();
+      
+      // Limpiar iframe
+      videoFrameSlot.innerHTML = '';
+      videoIframe = null;
+      
+      renderProgressUI();
+    }
+
+    function markVideoProgress(watched, completed) {
+      const key = ns('video');
+      const state = { watched, completed, watchTime: 0 };
+      sessionStorage.setItem(key, JSON.stringify(state));
+      renderProgressUI();
+    }
+
+    // ===== FUNCIONES DE LAYOUT HORIZONTAL =====
+    function applyHorizontalLayout() {
+      const sheet = document.querySelector('#videoBackdrop .sheet');
+      const videoBody = document.getElementById('videoBody');
+      
+      // Aplicar estilos para layout horizontal
+      sheet.classList.add('horizontal-layout');
+      
+      // Si ya se aplicó el layout, no hacer nada
+      if (videoBody.querySelector('.video-cloze-container')) return;
+      
+      console.log('🎨 [Layout] Aplicando layout horizontal');
+      
+      // Guardar contenido original
+      const videoInfo = videoBody.querySelector('.video-info');
+      const videoContainer = videoBody.querySelector('#videoContainer');
+      const clozeRoot = videoBody.querySelector('#clozeRoot');
+      
+      // Crear nueva estructura horizontal
+      videoBody.innerHTML = `
+        <div class="video-cloze-container video-only">
+          <div class="video-section">
+            <div class="video-info-wrapper"></div>
+            <div class="video-container-wrapper"></div>
+          </div>
+          <div class="cloze-section" id="clozeSection" style="display: none;">
+            <div class="cloze-header">
+              <h3>📝 Ejercicio de comprensión</h3>
+              <p>Completa mientras ves el video o al terminar</p>
+            </div>
+            <div class="cloze-content" id="clozeContent"></div>
+          </div>
+        </div>
+      `;
+      
+      // Restaurar elementos originales
+      if (videoInfo) {
+        videoBody.querySelector('.video-info-wrapper').appendChild(videoInfo);
+      }
+      if (videoContainer) {
+        videoBody.querySelector('.video-container-wrapper').appendChild(videoContainer);
+      }
+      
+      // Inyectar CSS dinámico
+      injectHorizontalLayoutCSS();
+      
+      // Configurar botón toggle
+      setupClozeToggle();
+    }
+
+    function restoreOriginalLayout() {
+      const videoBody = document.getElementById('videoBody');
+      const container = videoBody.querySelector('.video-cloze-container');
+      
+      if (!container) return;
+      
+      console.log('🔄 [Layout] Restaurando layout original');
+      
+      // Restaurar estructura original
+      videoBody.innerHTML = `
+        <div class="video-info" style="display: none;">
+          <h3 id="videoTopicTitleInfo">Cargando video...</h3>
+          <p id="videoSegmentInfo">Cargando información...</p>
+        </div>
+        <div class="video-container" id="videoContainer">
+          <div id="videoFrameSlot"></div>
+        </div>
+        <div id="clozeRoot" style="display:none; padding:16px 20px; border-top:1px solid #223059;"></div>
+        <div id="clozeSection" style="display:none;"></div>
+      `;
+      
+      // Remover CSS dinámico
+      const dynamicStyle = document.getElementById('horizontal-layout-css');
+      if (dynamicStyle) dynamicStyle.remove();
+    }
+
+    function injectHorizontalLayoutCSS() {
+      if (document.getElementById('horizontal-layout-css')) return;
+      
+      const style = document.createElement('style');
+      style.id = 'horizontal-layout-css';
+      style.textContent = `
+        .sheet.horizontal-layout {
+          width: min(1200px, 95vw) !important;
+          max-height: 90vh !important;
+        }
+        
+        .video-cloze-container {
+          display: flex;
+          height: calc(90vh - 56px);
+          min-height: 0;
+        }
+        
+        .video-section {
+          flex: 0 0 60%;
+          display: flex;
+          flex-direction: column;
+          border-right: 1px solid #223059;
+          min-height: 0;
+        }
+        
+        .video-info-wrapper {
+          flex: 0 0 auto;
+        }
+        
+        .video-container-wrapper {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #000;
+          min-height: 0;
+        }
+        
+        .cloze-section {
+          flex: 1;
+          display: none;
+          flex-direction: column;
+          background: linear-gradient(180deg, #0f1629, #0b1220);
+          min-height: 0;
+        }
+        
+        .cloze-section.visible {
+          display: flex;
+        }
+        
+        .cloze-header {
+          padding: 20px 24px 16px;
+          border-bottom: 1px solid #223059;
+          background: linear-gradient(135deg, rgba(107,124,255,.06), rgba(155,107,255,.03));
+          flex: 0 0 auto;
+        }
+        
+        .cloze-header h3 {
+          margin: 0 0 8px;
+          font-size: 18px;
+          color: #eaf0ff;
+        }
+        
+        .cloze-header p {
+          margin: 0;
+          font-size: 14px;
+          color: #7b88a8;
+        }
+        
+        .cloze-content {
+          flex: 1;
+          padding: 20px 24px;
+          overflow-y: auto;
+          min-height: 0;
+        }
+        
+        .video-cloze-container.video-only .video-section {
+          flex: 1;
+        }
+        
+        @media (max-width: 1000px) {
+          .video-cloze-container {
+            flex-direction: column;
+          }
+          
+          .video-section {
+            flex: 0 0 50%;
+            border-right: none;
+            border-bottom: 1px solid #223059;
+          }
+          
+          .cloze-section {
+            flex: 1;
+          }
+        }
+        
+        .cloze-content .cloze-item {
+          margin: 20px 0;
+          padding: 20px;
+          background: linear-gradient(135deg, #0f1629, #0b1220);
+          border: 1px solid #1f2a4a;
+          border-radius: 14px;
+          transition: all 0.3s ease;
+        }
+        
+        .cloze-content .cloze-item:hover {
+          border-color: #2a3763;
+          transform: translateY(-1px);
+        }
+        
+        .cloze-content .cloze-item.completed {
+          border-color: #10b981;
+          background: linear-gradient(135deg, #0f1629, rgba(16, 185, 129, 0.05));
+        }
+        
+        .cloze-content input[type="text"] {
+          min-width: 120px;
+          padding: 8px 12px;
+          margin: 0 2px;
+          background: #0b1220;
+          border: 1px solid #32406a;
+          border-radius: 6px;
+          color: #eaf0ff;
+          font-size: 14px;
+          transition: all 0.3s ease;
+        }
+        
+        .cloze-content input[type="text"]:focus {
+          outline: none;
+          border-color: #6b7cff;
+          box-shadow: 0 0 0 2px rgba(107,124,255,.2);
+        }
+        
+        .cloze-content .ok {
+          border-color: #10b981 !important;
+          background: rgba(16, 185, 129, 0.1) !important;
+        }
+        
+        .cloze-content .err {
+          border-color: #ef4444 !important;
+          background: rgba(239, 68, 68, 0.1) !important;
+        }
+        
+        .cloze-toggle-btn {
+          background: linear-gradient(90deg, #6b7cff, #9b6bff) !important;
+          color: white !important;
+        }
+        
+        .cloze-toggle-btn.active {
+          background: linear-gradient(90deg, #10b981, #059669) !important;
+        }
+      `;
+      
+      document.head.appendChild(style);
+    }
+
+    function setupClozeToggle() {
+      const toggleBtn = document.getElementById('videoClozeBtn');
+      if (!toggleBtn) return;
+      
+      // Actualizar botón
+      toggleBtn.textContent = '📝 Ejercicio';
+      toggleBtn.classList.add('cloze-toggle-btn');
+      
+      // Remover event listeners anteriores
+      toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+      const newToggleBtn = document.getElementById('videoClozeBtn');
+      
+      newToggleBtn.addEventListener('click', toggleClozeSection);
+    }
+
+    function toggleClozeSection() {
+      const section = document.getElementById('clozeSection');
+      const toggleBtn = document.getElementById('videoClozeBtn');
+      const container = document.querySelector('.video-cloze-container');
+      
+      if (clozeVisible) {
+        // Ocultar cloze
+        section.classList.remove('visible');
+        section.style.display = 'none';
+        
+        toggleBtn.textContent = '📝 Ejercicio';
+        toggleBtn.classList.remove('active');
+        
+        container?.classList.add('video-only');
+        
+        clozeVisible = false;
+        console.log('🔽 [Cloze] Ocultado');
+      } else {
+        // Mostrar cloze
+        section.style.display = 'flex';
+        section.classList.add('visible');
+        
+        toggleBtn.textContent = '🔼 Ocultar ejercicio';
+        toggleBtn.classList.add('active');
+        
+        container?.classList.remove('video-only');
+        
+        clozeVisible = true;
+        console.log('📝 [Cloze] Mostrado');
+        
+        // Cargar contenido si no existe
+        if (!section.querySelector('.cloze-item')) {
+          loadAndRenderCloze();
+        }
+      }
+    }
+
+    // ===== FUNCIONES DE CLOZE =====
+    const clozeKey = ns('cloze');
+    function readCloze(){ 
+      try { 
+        return JSON.parse(sessionStorage.getItem(clozeKey)) || { total:0, solved:0, completed:false }; 
+      } catch { 
+        return {total:0, solved:0, completed:false}; 
+      } 
+    }
+    function saveCloze(st){ 
+      sessionStorage.setItem(clozeKey, JSON.stringify(st)); 
+    }
+
+    async function loadClozeModule(){
+      const url = `themes/${tema}/cloze_test.js`;
+      try {
+        const mod = await import(/* @vite-ignore */ url);
+        if (mod?.default)   return mod.default;
+        if (mod?.CLOZE_TEST) return mod.CLOZE_TEST;
+        if (window.CLOZE_TEST) return window.CLOZE_TEST;
+      } catch (e) {
+        console.log('Import ESModule falló, uso fallback <script>:', e);
+      }
+      return new Promise((resolve) => {
+        const s = document.createElement('script');
+        s.src = url;
+        s.onload = () => resolve(window.CLOZE_TEST || null);
+        s.onerror = () => resolve(null);
+        document.head.appendChild(s);
+      });
+    }
+
+    async function initializeClozeForVideo() {
+      try {
+        const clozeData = await loadClozeModule();
+        const toggleBtn = document.getElementById('videoClozeBtn');
+        
+        if (clozeData && clozeData.items && clozeData.items.length > 0) {
+          console.log('✅ [Cloze] Datos encontrados:', clozeData.items.length, 'items');
+          toggleBtn.style.display = 'inline-block';
+        } else {
+          console.log('ℹ️ [Cloze] No hay datos para:', tema);
+          toggleBtn.style.display = 'none';
+        }
+      } catch (error) {
+        console.error('❌ [Cloze] Error:', error);
+        document.getElementById('videoClozeBtn').style.display = 'none';
+      }
+    }
+
+    async function loadAndRenderCloze() {
+      try {
+        const clozeData = await loadClozeModule();
+        if (clozeData) {
+          const container = document.getElementById('clozeContent');
+          renderImprovedCloze(container, clozeData);
+        }
+      } catch (error) {
+        console.error('❌ [Cloze] Error renderizando:', error);
+      }
+    }
+
+    // function renderImprovedCloze(container, setup) {
+    //   container.innerHTML = '';
+      
+    //   const items = setup.items || [];
+    //   if (items.length === 0) {
+    //     container.innerHTML = '<p style="color: #7b88a8; text-align: center; padding: 40px;">No hay ejercicios disponibles.</p>';
+    //     return;
+    //   }
+      
+    //   console.log('🎯 [Cloze] Renderizando', items.length, 'items');
+
+    //   // Estado del cloze
+    //   let state = readCloze();
+    //   if (!state.total || state.total !== items.length) {
+    //     state = { total: items.length, solved: 0, completed: false, hits: {} };
+    //   }
+
+    //   // Progreso general
+    //   const progressContainer = document.createElement('div');
+    //   progressContainer.innerHTML = `
+    //     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 16px; background: rgba(107,124,255,.06); border: 1px solid #223059; border-radius: 12px;">
+    //       <span style="font-weight: 600;">Progreso del ejercicio:</span>
+    //       <span id="cloze-progress-text">${state.solved}/${state.total} (${Math.round((state.solved/state.total)*100)}%)</span>
+    //     </div>
+    //     <div style="width: 100%; height: 8px; background: #0a1020; border-radius: 4px; overflow: hidden; border: 1px solid #1f2a4a; margin-bottom: 24px;">
+    //       <div id="cloze-progress-bar" style="height: 100%; width: ${(state.solved/state.total)*100}%; background: linear-gradient(90deg, #6b7cff, #9b6bff); transition: width 0.6s ease;"></div>
+    //     </div>
+    //   `;
+    //   container.appendChild(progressContainer);
+
+    //   // Función de normalización mejorada
+    //   const normalize = (str) => String(str || '')
+    //     .toLowerCase()
+    //     .normalize('NFD')
+    //     .replace(/[\u0300-\u036f]/g, '')
+    //     .replace(/[^\w\s]/g, ' ')
+    //     .replace(/\s+/g, ' ')
+    //     .trim();
+
+    //   // Validación inteligente básica
+    //   const validateAnswer = (userAnswer, acceptedAnswers) => {
+    //     const normalizedUser = normalize(userAnswer);
+    //     if (!normalizedUser) return false;
+
+    //     for (const accepted of acceptedAnswers) {
+    //       const normalizedAccepted = normalize(accepted);
+          
+    //       // Coincidencia exacta
+    //       if (normalizedUser === normalizedAccepted) return true;
+          
+    //       // Contención con al menos 75% de similitud
+    //       if (normalizedAccepted.includes(normalizedUser) || normalizedUser.includes(normalizedAccepted)) {
+    //         const shorter = Math.min(normalizedUser.length, normalizedAccepted.length);
+    //         const longer = Math.max(normalizedUser.length, normalizedAccepted.length);
+    //         if (shorter / longer > 0.75) return true;
+    //       }
+    //     }
+        
+    //     return false;
+    //   };
+
+    //   // Renderizar items
+    //   items.forEach((item, index) => {
+    //     const itemElement = document.createElement('div');
+    //     itemElement.className = 'cloze-item';
+    //     const itemId = item.id || `q${index + 1}`;
+        
+    //     if (state.hits[itemId]) {
+    //       itemElement.classList.add('completed');
+    //     }
+
+    //     // Parsear texto y crear inputs
+    //     const textContainer = document.createElement('div');
+    //     textContainer.style.cssText = 'line-height: 1.7; font-size: 15px; margin-bottom: 16px;';
+        
+    //     const inputs = [];
+    //     const regex = /\[\[([^\]]+)\]\]/g;
+    //     let lastIndex = 0;
+    //     let match;
+    //     let inputIndex = 0;
+
+    //     while ((match = regex.exec(item.text)) !== null) {
+    //       // Texto antes del placeholder
+    //       const beforeText = item.text.slice(lastIndex, match.index);
+    //       if (beforeText) textContainer.appendChild(document.createTextNode(beforeText));
+
+    //       // Input
+    //       const answers = match[1].split('|').map(a => a.trim());
+    //       const input = document.createElement('input');
+    //       input.type = 'text';
+    //       input.placeholder = `respuesta ${inputIndex + 1}`;
+    //       input.dataset.answers = JSON.stringify(answers);
+    //       input.dataset.itemId = itemId;
+          
+    //       inputs.push({ element: input, answers });
+    //       textContainer.appendChild(input);
+          
+    //       inputIndex++;
+    //       lastIndex = regex.lastIndex;
+    //     }
+
+    //     // Texto restante
+    //     const remainingText = item.text.slice(lastIndex);
+    //     if (remainingText) textContainer.appendChild(document.createTextNode(remainingText));
+
+    //     itemElement.appendChild(textContainer);
+
+    //     // Botones de acción
+    //     const actionsContainer = document.createElement('div');
+    //     actionsContainer.className = 'actions';
+    //     actionsContainer.style.cssText = 'display: flex; gap: 10px; margin-bottom: 12px;';
+        
+    //     const checkButton = document.createElement('button');
+    //     checkButton.className = 'btn';
+    //     checkButton.textContent = '✓ Verificar';
+    //     checkButton.style.cssText = 'background: linear-gradient(90deg, #6b7cff, #9b6bff); color: white; border: none;display: none';
+    //     // checkButton.style.cssText = 'background: linear-gradient(90deg, #6b7cff, #9b6bff); color: white; border: none;';
+        
+    //     const revealButton = document.createElement('button');
+    //     revealButton.className = 'btn';
+    //     revealButton.textContent = '👁️ Mostrar';
+        
+    //     actionsContainer.appendChild(checkButton);
+    //     actionsContainer.appendChild(revealButton);
+    //     itemElement.appendChild(actionsContainer);
+
+    //     // Contenedor de feedback
+    //     const feedbackContainer = document.createElement('div');
+    //     feedbackContainer.style.cssText = 'font-size: 13px; font-weight: 500; min-height: 18px;';
+    //     itemElement.appendChild(feedbackContainer);
+
+    //     // Función para verificar respuestas
+    //     const checkAnswers = () => {
+    //       let correctCount = 0;
+          
+    //       inputs.forEach(({ element, answers }) => {
+    //         const userAnswer = element.value.trim();
+    //         const isCorrect = validateAnswer(userAnswer, answers);
+            
+    //         element.classList.remove('ok', 'err');
+    //         if (userAnswer) {
+    //           element.classList.add(isCorrect ? 'ok' : 'err');
+    //           if (isCorrect) correctCount++;
+    //         }
+    //       });
+
+    //       const allCorrect = correctCount === inputs.length && inputs.length > 0;
+          
+    //       if (allCorrect && !state.hits[itemId]) {
+    //         state.hits[itemId] = true;
+    //         state.solved = Object.keys(state.hits).length;
+    //         state.completed = state.solved >= state.total;
+    //         saveCloze(state);
+            
+    //         itemElement.classList.add('completed');
+    //         feedbackContainer.innerHTML = `<span style="color: #10b981;">✅ ${item.feedbackOK || '¡Perfecto! Item completado'}</span>`;
+            
+    //         updateClozeProgress();
+    //         renderProgressUI();
+            
+    //         console.log('✅ [Cloze] Item completado:', itemId);
+    //       } else if (inputs.length > 0) {
+    //         const partial = correctCount > 0 ? ` (${correctCount}/${inputs.length} correctas)` : '';
+    //         feedbackContainer.innerHTML = `<span style="color: #ef4444;">❌ ${item.feedbackKO || 'Revisa tus respuestas'}${partial}</span>`;
+    //       }
+    //     };
+
+    //     // Event listeners
+    //     checkButton.addEventListener('click', checkAnswers);
+        
+    //     revealButton.addEventListener('click', () => {
+    //       inputs.forEach(({ element, answers }) => {
+    //         element.value = answers[0] || '';
+    //         element.classList.remove('err');
+    //         element.classList.add('ok');
+    //       });
+          
+    //       if (!state.hits[itemId]) {
+    //         state.hits[itemId] = true;
+    //         state.solved = Object.keys(state.hits).length;
+    //         state.completed = state.solved >= state.total;
+    //         saveCloze(state);
+    //         updateClozeProgress();
+    //         renderProgressUI();
+    //       }
+          
+    //       itemElement.classList.add('completed');
+    //       feedbackContainer.innerHTML = `<span style="color: #10b981;">👁️ Respuestas mostradas. ¡Continuá!</span>`;
+    //     });
+
+    //     // Auto-verificación con debounce
+    //     inputs.forEach(({ element }) => {
+    //       element.addEventListener('input', () => {
+    //         clearTimeout(element._autoCheckTimeout);
+    //         element._autoCheckTimeout = setTimeout(checkAnswers, 1000);
+    //       });
+          
+    //       element.addEventListener('keydown', (e) => {
+    //         if (e.key === 'Enter') {
+    //           e.preventDefault();
+    //           checkAnswers();
+    //         }
+    //       });
+    //     });
+
+    //     container.appendChild(itemElement);
+    //   });
+
+    //   // Función para actualizar progreso visual
+    //   function updateClozeProgress() {
+    //     const currentState = readCloze();
+    //     const progressText = document.getElementById('cloze-progress-text');
+    //     const progressBar = document.getElementById('cloze-progress-bar');
+        
+    //     if (progressText && progressBar) {
+    //       const percentage = Math.round((currentState.solved / currentState.total) * 100);
+    //       progressText.textContent = `${currentState.solved}/${currentState.total} (${percentage}%)`;
+    //       progressBar.style.width = `${percentage}%`;
+          
+    //       if (currentState.completed) {
+    //         progressText.innerHTML += ' <span style="color: #10b981;">🎉</span>';
+    //       }
+    //     }
+    //   }
+
+    //   console.log('✨ [Cloze] Renderizado completado');
+    // }
+// REEMPLAZAR la función renderImprovedCloze con esta versión que incluye pistas
+function renderImprovedCloze(container, setup) {
+  container.innerHTML = '';
+  
+  const items = setup.items || [];
+  if (items.length === 0) {
+    container.innerHTML = '<p style="color: #7b88a8; text-align: center; padding: 40px;">No hay ejercicios disponibles.</p>';
+    return;
+  }
+  
+  console.log('🎯 [Cloze] Renderizando', items.length, 'items con sistema de pistas');
+
+  // Estado del cloze
+  let state = readCloze();
+  if (!state.total || state.total !== items.length) {
+    state = { total: items.length, solved: 0, completed: false, hits: {}, hintLevels: {} };
+  }
+
+  // Inicializar hintLevels si no existe
+  if (!state.hintLevels) {
+    state.hintLevels = {};
+  }
+
+  // Progreso general
+  const progressContainer = document.createElement('div');
+  progressContainer.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 16px; background: rgba(107,124,255,.06); border: 1px solid #223059; border-radius: 12px;">
+      <span style="font-weight: 600;">Progreso del ejercicio:</span>
+      <span id="cloze-progress-text">${state.solved}/${state.total} (${Math.round((state.solved/state.total)*100)}%)</span>
+    </div>
+    <div style="width: 100%; height: 8px; background: #0a1020; border-radius: 4px; overflow: hidden; border: 1px solid #1f2a4a; margin-bottom: 24px;">
+      <div id="cloze-progress-bar" style="height: 100%; width: ${(state.solved/state.total)*100}%; background: linear-gradient(90deg, #6b7cff, #9b6bff); transition: width 0.6s ease;"></div>
+    </div>
+  `;
+  container.appendChild(progressContainer);
+
+  // Función de normalización mejorada
+  const normalize = (str) => String(str || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Validación inteligente básica
+  const validateAnswer = (userAnswer, acceptedAnswers) => {
+    const normalizedUser = normalize(userAnswer);
+    if (!normalizedUser) return false;
+
+    for (const accepted of acceptedAnswers) {
+      const normalizedAccepted = normalize(accepted);
+      
+      // Coincidencia exacta
+      if (normalizedUser === normalizedAccepted) return true;
+      
+      // Contención con al menos 75% de similitud
+      if (normalizedAccepted.includes(normalizedUser) || normalizedUser.includes(normalizedAccepted)) {
+        const shorter = Math.min(normalizedUser.length, normalizedAccepted.length);
+        const longer = Math.max(normalizedUser.length, normalizedAccepted.length);
+        if (shorter / longer > 0.75) return true;
+      }
+    }
+    
+    return false;
+  };
+
+  // Función para obtener pista
+  const getHint = (itemId) => {
+    const currentLevel = state.hintLevels[itemId] || 0;
+    if (setup.getHintForItem) {
+      return setup.getHintForItem(itemId, currentLevel);
+    }
+    return null;
+  };
+
+  // Función para ir al video en timestamp específico
+  const goToVideoSegment = (itemId) => {
+    // Si el modal de video no está abierto, abrirlo primero
+    if (videoBackdrop.style.display !== 'block') {
+      console.log('🎬 [Hint] Abriendo modal de video para mostrar segmento');
+      openVideoModal();
+      
+      // Esperar a que el video se cargue antes de hacer seek
+      setTimeout(() => {
+        seekToItemSegment(itemId);
+      }, 3000);
+    } else {
+      seekToItemSegment(itemId);
+    }
+  };
+
+  // Función para hacer seek al segmento específico
+  const seekToItemSegment = (itemId) => {
+    const item = items.find(i => i.id === itemId);
+    if (!item || !item.videoSegment) return;
+    
+    const config = VIDEO_CONFIG[tema];
+    if (!config) return;
+    
+    // Calcular tiempo absoluto en el video original
+    const absoluteTime = config.startTime + item.videoSegment.start;
+    
+    console.log(`🎯 [Hint] Navegando a ${absoluteTime}s para item ${itemId}`);
+    
+    // Intentar hacer seek usando YouTube API
+    if (videoIframe && videoIframe.contentWindow) {
+      try {
         const message = {
           event: 'command',
-          func: 'setPlaybackRate',
-          args: [1.25]
+          func: 'seekTo',
+          args: [absoluteTime, true]
         };
-        if (videoIframe.contentWindow) {
-          videoIframe.contentWindow.postMessage(JSON.stringify(message), '*');
+        videoIframe.contentWindow.postMessage(JSON.stringify(message), '*');
+      } catch (error) {
+        console.log('⚠️ [Hint] Error haciendo seek:', error);
+      }
+    }
+  };
+
+  // Renderizar items
+  items.forEach((item, index) => {
+    const itemElement = document.createElement('div');
+    itemElement.className = 'cloze-item';
+    const itemId = item.id || `q${index + 1}`;
+    
+    if (state.hits[itemId]) {
+      itemElement.classList.add('completed');
+    }
+
+    // Parsear texto y crear inputs
+    const textContainer = document.createElement('div');
+    textContainer.style.cssText = 'line-height: 1.7; font-size: 15px; margin-bottom: 16px;';
+    
+    const inputs = [];
+    const regex = /\[\[([^\]]+)\]\]/g;
+    let lastIndex = 0;
+    let match;
+    let inputIndex = 0;
+
+    while ((match = regex.exec(item.text)) !== null) {
+      // Texto antes del placeholder
+      const beforeText = item.text.slice(lastIndex, match.index);
+      if (beforeText) textContainer.appendChild(document.createTextNode(beforeText));
+
+      // Input
+      const answers = match[1].split('|').map(a => a.trim());
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = `respuesta ${inputIndex + 1}`;
+      input.dataset.answers = JSON.stringify(answers);
+      input.dataset.itemId = itemId;
+      
+      inputs.push({ element: input, answers });
+      textContainer.appendChild(input);
+      
+      inputIndex++;
+      lastIndex = regex.lastIndex;
+    }
+
+    // Texto restante
+    const remainingText = item.text.slice(lastIndex);
+    if (remainingText) textContainer.appendChild(document.createTextNode(remainingText));
+
+    itemElement.appendChild(textContainer);
+
+    // Botones de acción MEJORADOS
+    const actionsContainer = document.createElement('div');
+    actionsContainer.className = 'actions';
+    actionsContainer.style.cssText = 'display: flex; gap: 10px; margin-bottom: 12px;';
+    
+    // Botón de pista (reemplaza al botón "Mostrar")
+    const hintButton = document.createElement('button');
+    hintButton.className = 'btn';
+    hintButton.textContent = '💡 Pista';
+    hintButton.style.cssText = 'background: linear-gradient(90deg, #f59e0b, #fb923c); color: white; border: none;';
+    
+    // Botón para ir al video
+    const videoButton = document.createElement('button');
+    videoButton.className = 'btn';
+    videoButton.textContent = '🎬 Ver video';
+    videoButton.style.cssText = 'background: linear-gradient(90deg, #ef4444, #dc2626); color: white; border: none;';
+    
+    actionsContainer.appendChild(hintButton);
+    actionsContainer.appendChild(videoButton);
+    itemElement.appendChild(actionsContainer);
+
+    // Contenedor de feedback y pistas
+    const feedbackContainer = document.createElement('div');
+    feedbackContainer.style.cssText = 'font-size: 13px; font-weight: 500; min-height: 18px;';
+    itemElement.appendChild(feedbackContainer);
+
+    // Contenedor específico para pistas
+    const hintContainer = document.createElement('div');
+    hintContainer.className = 'hint-container';
+    hintContainer.style.cssText = 'margin-top: 8px; padding: 8px 12px; background: rgba(245,158,11,.1); border-left: 3px solid #f59e0b; border-radius: 4px; display: none;';
+    itemElement.appendChild(hintContainer);
+
+    // Función para verificar respuestas (sin cambios)
+    const checkAnswers = () => {
+      let correctCount = 0;
+      
+      inputs.forEach(({ element, answers }) => {
+        const userAnswer = element.value.trim();
+        const isCorrect = validateAnswer(userAnswer, answers);
+        
+        element.classList.remove('ok', 'err');
+        if (userAnswer) {
+          element.classList.add(isCorrect ? 'ok' : 'err');
+          if (isCorrect) correctCount++;
         }
-      }, 2000); // Esperamos 2 segundos para que cargue
-    } catch(e) {
-      console.log('No se pudo establecer velocidad 1.25x:', e);
-    }
+      });
+
+      const allCorrect = correctCount === inputs.length && inputs.length > 0;
+      
+      if (allCorrect && !state.hits[itemId]) {
+        state.hits[itemId] = true;
+        state.solved = Object.keys(state.hits).length;
+        state.completed = state.solved >= state.total;
+        saveCloze(state);
+        
+        itemElement.classList.add('completed');
+        feedbackContainer.innerHTML = `<span style="color: #10b981;">✅ ${item.feedbackOK || '¡Perfecto! Item completado'}</span>`;
+        
+        updateClozeProgress();
+        renderProgressUI();
+        
+        console.log('✅ [Cloze] Item completado:', itemId);
+      } else if (inputs.length > 0) {
+        const partial = correctCount > 0 ? ` (${correctCount}/${inputs.length} correctas)` : '';
+        feedbackContainer.innerHTML = `<span style="color: #ef4444;">❌ ${item.feedbackKO || 'Revisa tus respuestas'}${partial}</span>`;
+      }
+    };
+
+    // NUEVO: Event listener para botón de pista
+    hintButton.addEventListener('click', () => {
+      const currentLevel = state.hintLevels[itemId] || 0;
+      const hintData = getHint(itemId);
+      
+      if (hintData) {
+        // Mostrar la pista
+        hintContainer.innerHTML = `
+          <div style="color: #f59e0b; font-weight: 600; margin-bottom: 4px;">
+            Pista ${currentLevel + 1}:
+          </div>
+          <div style="color: #7b88a8;">
+            ${hintData.hint}
+          </div>
+        `;
+        hintContainer.style.display = 'block';
+        
+        // Incrementar nivel de pista
+        state.hintLevels[itemId] = currentLevel + 1;
+        saveCloze(state);
+        
+        // Cambiar texto del botón si hay más pistas
+        if (hintData.hasMore) {
+          hintButton.textContent = `💡 Pista ${currentLevel + 2}`;
+        } else {
+          hintButton.textContent = '💡 Sin más pistas';
+          hintButton.disabled = true;
+          hintButton.style.opacity = '0.5';
+        }
+        
+        console.log(`💡 [Cloze] Pista nivel ${currentLevel + 1} mostrada para ${itemId}`);
+      } else {
+        hintContainer.innerHTML = `
+          <div style="color: #7b88a8;">
+            No hay más pistas disponibles para este item.
+          </div>
+        `;
+        hintContainer.style.display = 'block';
+        hintButton.disabled = true;
+        hintButton.style.opacity = '0.5';
+      }
+    });
+
+    // NUEVO: Event listener para botón de video
+    videoButton.addEventListener('click', () => {
+      console.log(`🎬 [Cloze] Navegando al segmento de video para ${itemId}`);
+      goToVideoSegment(itemId);
+    });
+
+    // Auto-verificación con debounce (sin cambios)
+    inputs.forEach(({ element }) => {
+      element.addEventListener('input', () => {
+        clearTimeout(element._autoCheckTimeout);
+        element._autoCheckTimeout = setTimeout(checkAnswers, 1000);
+      });
+      
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkAnswers();
+        }
+      });
+    });
+
+    container.appendChild(itemElement);
   });
-  
-  // Marcar como "visto" inmediatamente
-  markVideoProgress(true, false);
-  
-  videoStartTime = Date.now();
-  
-  // Simular completado después del tiempo del segmento
-  const segmentDuration = (config.endTime - config.startTime) * 1000;
-  setTimeout(() => {
-    if (videoIframe && videoBackdrop.style.display === 'block') {
-      markVideoProgress(true, true);
+
+  // Función para actualizar progreso visual
+  function updateClozeProgress() {
+    const currentState = readCloze();
+    const progressText = document.getElementById('cloze-progress-text');
+    const progressBar = document.getElementById('cloze-progress-bar');
+    
+    if (progressText && progressBar) {
+      const percentage = Math.round((currentState.solved / currentState.total) * 100);
+      progressText.textContent = `${currentState.solved}/${currentState.total} (${percentage}%)`;
+      progressBar.style.width = `${percentage}%`;
+      
+      if (currentState.completed) {
+        progressText.innerHTML += ' <span style="color: #10b981;">🎉</span>';
+      }
     }
-  }, segmentDuration);
-}
-
-// ⭐ TAMBIÉN agregar esta función para limpiar las clases al cerrar:
-
-// 2. REEMPLAZAR la función closeVideoModal() con esta versión:
-
-function closeVideoModal() {
-  videoBackdrop.style.display = 'none';
-  document.body.style.overflow = '';
-  
-  // ⭐ CORRECCIÓN: Limpiar clases CSS de shorts
-  videoContainer.classList.remove('short');
-  document.querySelector('.sheet').classList.remove('short-video');
-  
-  // Calcular tiempo visto
-  if (videoStartTime) {
-    const watchTime = Math.round((Date.now() - videoStartTime) / 1000);
-    const key = ns('video');
-    const current = readJSON(key, { watched:false, watchTime:0, completed:false });
-    current.watchTime = Math.max(current.watchTime, watchTime);
-    sessionStorage.setItem(key, JSON.stringify(current));
-    videoStartTime = null;
   }
-  
-  // Limpiar iframe
-  videoContainer.innerHTML = '';
-  videoIframe = null;
-  
-  renderProgressUI();
+
+  console.log('✨ [Cloze] Renderizado completado con sistema de pistas');
 }
 
-
-function openVideoModal_00() {
-  if (!hasVideo) return;
-  
-  const config = VIDEO_CONFIG[tema];
-  const isShort = config.type === 'short';
-  
-  videoTopicTitle.textContent = config.title;
-  videoSegmentInfo.textContent = `Segmento: ${Math.floor(config.startTime/60)}:${String(config.startTime%60).padStart(2,'0')} - ${Math.floor(config.endTime/60)}:${String(config.endTime%60).padStart(2,'0')} • Duración: ${config.duration} min`;
-  
-  videoBackdrop.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  
-  // ⭐ NUEVO: Crear iframe con parámetros para evitar videos relacionados
-  const embedUrl = `https://www.youtube.com/embed/${config.youtubeId}?` +
-    `start=${config.startTime}&` +
-    `end=${config.endTime}&` +
-    `autoplay=1&` +
-    `rel=0&` +                    // Sin videos relacionados
-    `modestbranding=1&` +         // Sin logo de YouTube prominente
-    `iv_load_policy=3&` +         // Sin anotaciones
-    `enablejsapi=1&` +           // API de JavaScript
-    `loop=1&` +                  // ⭐ Loop al terminar
-    `playlist=${config.youtubeId}&` + // ⭐ Playlist de 1 video para que funcione el loop
-    `origin=${window.location.origin}`;
-  
-  videoIframe = document.createElement('iframe');
-  videoIframe.src = embedUrl;
-  videoIframe.style.width = '100%';
-  videoIframe.style.height = '100%';
-  videoIframe.setAttribute('allowfullscreen', '');
-  videoIframe.setAttribute('frameborder', '0');
-  
-  videoContainer.innerHTML = '';
-  videoContainer.appendChild(videoIframe);
-  
-  // Marcar como "visto" inmediatamente
-  markVideoProgress(true, false);
-  
-  videoStartTime = Date.now();
-  
-  // ⭐ NUEVO: Simular completado después del tiempo del segmento
-  const segmentDuration = (config.endTime - config.startTime) * 1000;
-  setTimeout(() => {
-    if (videoIframe && videoBackdrop.style.display === 'block') {
-      markVideoProgress(true, true);
+// NUEVA función para mejorar el readCloze y incluir hintLevels
+function readCloze() { 
+  try { 
+    const data = JSON.parse(sessionStorage.getItem(clozeKey));
+    if (!data) return { total:0, solved:0, completed:false, hits: {}, hintLevels: {} };
+    
+    // Asegurar que hintLevels existe
+    if (!data.hintLevels) {
+      data.hintLevels = {};
     }
-  }, segmentDuration);
+    
+    return data;
+  } catch { 
+    return {total:0, solved:0, completed:false, hits: {}, hintLevels: {}}; 
+  } 
 }
+    // ===== Event listeners para video =====
+    if (hasVideo) {
+      document.getElementById('goVideo').addEventListener('click', openVideoModal);
+      videoClose.addEventListener('click', closeVideoModal);
+      videoBackdrop.addEventListener('click', (e) => {
+        if (e.target === videoBackdrop) closeVideoModal();
+      });
+    }
 
-function closeVideoModal_00() {
-  videoBackdrop.style.display = 'none';
-  document.body.style.overflow = '';
-  
-  // Calcular tiempo visto
-  if (videoStartTime) {
-    const watchTime = Math.round((Date.now() - videoStartTime) / 1000);
-    const key = ns('video');
-    const current = readJSON(key, { watched:false, watchTime:0, completed:false });
-    current.watchTime = Math.max(current.watchTime, watchTime);
-    sessionStorage.setItem(key, JSON.stringify(current));
-    videoStartTime = null;
-  }
-  
-  // Limpiar iframe
-  videoContainer.innerHTML = '';
-  videoIframe = null;
-  
-  renderProgressUI();
-}
+    // ===== Actualizar progreso al volver =====
+    window.addEventListener('focus', () => {
+      renderProgressUI();
+    });
 
-function markVideoProgress(watched, completed) {
-  const key = ns('video');
-  const state = { watched, completed, watchTime: 0 };
-  sessionStorage.setItem(key, JSON.stringify(state));
-  renderProgressUI();
-}
-
-// ⭐ NUEVO: Event listeners para video (solo si tiene video)
-if (hasVideo) {
-  document.getElementById('goVideo').addEventListener('click', openVideoModal);
-  videoClose.addEventListener('click', closeVideoModal);
-  videoBackdrop.addEventListener('click', (e) => {
-    if (e.target === videoBackdrop) closeVideoModal();
-  });
-}
-
-// Actualizar progreso cuando vuelves de otras páginas
-window.addEventListener('focus', () => {
-  renderProgressUI();
-});
-
-    // Guardamos "última vez abierto" (opcional)
+    // ===== Guardar última vez abierto =====
     const recordsKey = ns('records');
     const rec = JSON.parse(localStorage.getItem(recordsKey) || '{}');
     rec.lastOpened = new Date().toISOString();
     localStorage.setItem(recordsKey, JSON.stringify(rec));
 
-// ====== Mapa conceptual (modal) ======
-const mapaBackdrop = document.getElementById('mapa-backdrop');
-const mapaBody     = document.getElementById('mapa-body');
-const mapaClose    = document.getElementById('mapa-close');
-const mapaToggle   = document.getElementById('mapa-toggle');
-const mapaAutor    = document.getElementById('mapa-autor');
+    // ===== Mapa conceptual (modal) =====
+    const mapaBackdrop = document.getElementById('mapa-backdrop');
+    const mapaBody     = document.getElementById('mapa-body');
+    const mapaClose    = document.getElementById('mapa-close');
+    const mapaToggle   = document.getElementById('mapa-toggle');
+    const mapaAutor    = document.getElementById('mapa-autor');
 
-function wireMapaInteractions(){
-  const tree = mapaBody.querySelector('.tree');
-  const hasChildren = (li)=> !!li.querySelector(':scope > ul');
+    function wireMapaInteractions(){
+      const tree = mapaBody.querySelector('.tree');
+      const hasChildren = (li)=> !!li.querySelector(':scope > ul');
 
-  for (const li of tree.querySelectorAll('li')){
-    const node = li.querySelector(':scope > .node');
-    if (!node) continue;
-    if (hasChildren(li)){
-      node.addEventListener('click', (e)=>{
-        if (e.target.closest('a,button,input,textarea,select')) return;
-        li.classList.toggle('collapsed');
-        markVisited(node);
+      for (const li of tree.querySelectorAll('li')){
+        const node = li.querySelector(':scope > .node');
+        if (!node) continue;
+        if (hasChildren(li)){
+          node.addEventListener('click', (e)=>{
+            if (e.target.closest('a,button,input,textarea,select')) return;
+            li.classList.toggle('collapsed');
+            markVisited(node);
+          });
+        } else {
+          const tgl = node.querySelector('.toggle'); if (tgl) tgl.style.visibility='hidden';
+          node.addEventListener('click', ()=> markVisited(node));
+        }
+      }
+    }
+
+    let mapaCollapsed = false;
+    function toggleAll(){
+      mapaCollapsed = !mapaCollapsed;
+      const lis = mapaBody.querySelectorAll('.tree li');
+      lis.forEach(li=>{
+        if (li.querySelector(':scope > ul')){
+          li.classList.toggle('collapsed', mapaCollapsed);
+        }
       });
-    } else {
-      const tgl = node.querySelector('.toggle'); if (tgl) tgl.style.visibility='hidden';
-      node.addEventListener('click', ()=> markVisited(node));
+      mapaToggle.textContent = mapaCollapsed ? 'Expandir todo' : 'Colapsar todo';
     }
-  }
-}
 
-let mapaCollapsed = false;
-function toggleAll(){
-  mapaCollapsed = !mapaCollapsed;
-  const lis = mapaBody.querySelectorAll('.tree li');
-  lis.forEach(li=>{
-    if (li.querySelector(':scope > ul')){
-      li.classList.toggle('collapsed', mapaCollapsed);
+    const mapaKey = `tema.${tema}.mapa`;
+    const NAMES = { sartre: 'Jean-Paul Sartre' };
+
+    function allTitles(){
+      return Array.from(mapaBody.querySelectorAll('.node .title')).map(el=>el.textContent.trim());
     }
-  });
-  mapaToggle.textContent = mapaCollapsed ? 'Expandir todo' : 'Colapsar todo';
-}
+    function readMapa(){
+      try{ return JSON.parse(sessionStorage.getItem(mapaKey)) || {}; }catch{ return {}; }
+    }
+    function saveMapa(state){
+      sessionStorage.setItem(mapaKey, JSON.stringify(state));
+    }
+    function markVisited(node){
+      const title = node.querySelector('.title')?.textContent?.trim();
+      if (!title) return;
+      const state = readMapa();
+      const set = new Set(state.nodesVisited || []);
+      set.add(title);
+      const total = allTitles().length || 1;
+      const progress = set.size / total;
+      saveMapa({nodesVisited:[...set], total, progress, completed: progress>=1});
+      renderProgressUI();
+    }
 
-/* === Progreso del mapa para el hub === */
-const mapaKey = `tema.${tema}.mapa`;
-const NAMES = { sartre: 'Jean-Paul Sartre' };
+    function openMapaSheet(){
+      mapaAutor.textContent = NAMES[tema] || tema;
 
-function allTitles(){
-  return Array.from(mapaBody.querySelectorAll('.node .title')).map(el=>el.textContent.trim());
-}
-function readMapa(){
-  try{ return JSON.parse(sessionStorage.getItem(mapaKey)) || {}; }catch{ return {}; }
-}
-function saveMapa(state){
-  sessionStorage.setItem(mapaKey, JSON.stringify(state));
-}
-function markVisited(node){
-  const title = node.querySelector('.title')?.textContent?.trim();
-  if (!title) return;
-  const state = readMapa();
-  const set = new Set(state.nodesVisited || []);
-  set.add(title);
-  const total = allTitles().length || 1;
-  const progress = set.size / total;
-  saveMapa({nodesVisited:[...set], total, progress, completed: progress>=1});
-  renderProgressUI(); // <- refresca la barra y los segmentos al instante
+      mapaBody.innerHTML = '';
+      let mapaPath = `themes/${tema}/mapa.html`;
+      const url = new URL(mapaPath, location);
+      url.searchParams.set('embed', '1');
+      
+      const ifr = document.createElement('iframe');
+      ifr.className = 'sheet-iframe';
+      ifr.src = url.toString();
+      ifr.onload = () => {
+        const d = ifr.contentDocument;
+        d.querySelector('.search')?.remove();
+        d.getElementById('closeBtn')?.remove();
+        d.getElementById('expandAll')?.classList.add('hidden');
+        d.getElementById('collapseAll')?.classList.add('hidden');
 
-}
+        let collapsed = false;
+        mapaToggle.textContent = 'Colapsar todo';
+        mapaToggle.onclick = () => {
+          collapsed = !collapsed;
+          (collapsed ? d.getElementById('collapseAll') : d.getElementById('expandAll'))?.click();
+          mapaToggle.textContent = collapsed ? 'Expandir todo' : 'Colapsar todo';
+        };
+      };
 
-// Abrir / Cerrar
+      mapaBody.appendChild(ifr);
+      mapaBackdrop.style.display='block';
+      document.body.style.overflow='hidden';
+    }
 
-function openMapaSheet(){
-  mapaAutor.textContent = NAMES[tema] || tema;
+    function closeMapaSheet(){
+      mapaBackdrop.style.display='none';
+      document.body.style.overflow='';
+      renderProgressUI();
+    }
 
-  mapaBody.innerHTML = ''; // limpiar
-  // const url = new URL(`content/${tema}_mapa_conceptual.html`, location);
-  // Nueva estructura modular
-  let mapaPath = `themes/${tema}/mapa.html`;
-  // Fallback a legacy
-  const fallbackMapaPath = `content/${tema}_mapa_conceptual.html`;
+    mapaToggle.addEventListener('click', toggleAll);
+    mapaClose.addEventListener('click', closeMapaSheet);
+    mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
 
-  const url = new URL(mapaPath, location);
-
-  url.searchParams.set('embed', '1'); // por si luego querés modo "embed"
-  
-  const ifr = document.createElement('iframe');
-  ifr.className = 'sheet-iframe';
-  ifr.src = url.toString();
-  ifr.onload = () => {
-    const d = ifr.contentDocument;
-
-    // Ocultar elementos que no querés en el modal
-    d.querySelector('.search')?.remove();
-    d.getElementById('closeBtn')?.remove();
-    // Si querés, también ocultá los dos botones internos y usá el del hub:
-    d.getElementById('expandAll')?.classList.add('hidden');
-    d.getElementById('collapseAll')?.classList.add('hidden');
-
-    // Nuestro botón único del hub controla el árbol del iframe
-    let collapsed = false;
-    mapaToggle.textContent = 'Colapsar todo';
-    mapaToggle.onclick = () => {
-      collapsed = !collapsed;
-      (collapsed ? d.getElementById('collapseAll') : d.getElementById('expandAll'))?.click();
-      mapaToggle.textContent = collapsed ? 'Expandir todo' : 'Colapsar todo';
-    };
-  };
-
-  mapaBody.appendChild(ifr);
-  mapaBackdrop.style.display='block';
-  document.body.style.overflow='hidden';
-}
-
-function closeMapaSheet(){
-  mapaBackdrop.style.display='none';
-  document.body.style.overflow='';
-  renderProgressUI(); // <- refresco final
-
-}
-
-mapaToggle.addEventListener('click', toggleAll);
-mapaClose.addEventListener('click', closeMapaSheet);
-mapaBackdrop.addEventListener('click', (e)=>{ if(e.target===mapaBackdrop) closeMapaSheet(); });
-
-// ⭐ MODIFICADO: ESC cierra todos los modales
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeMaterialSheet();
-    closeMapaSheet();
-    if (hasVideo) closeVideoModal(); // Solo si tiene video
-  }
-});
+    // ===== Cerrar todos los modales con ESC =====
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMaterialSheet();
+        closeMapaSheet();
+        if (hasVideo) closeVideoModal();
+      }
+    });
 </script>
-
 </body>
 </html>

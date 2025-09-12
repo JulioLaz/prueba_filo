@@ -86,8 +86,7 @@
       <div id="startOverlay" class="overlay">
         <button id="homeBtn2" class="btn danger back-btn">🏠 Volver al Inicio</button>
         <h1>Juego de relajación</h1>
-        <p>Tocá la pantalla o presioná <b>Espacio</b> para saltar. Esquivá obstáculos y águilas.</p>
-        <div class="pill">🎨 <b>Usa tus propios sprites</b> - coloca imágenes en sprites/</div>
+        <p>Tocá la pantalla o presioná <b>Espacio</b> para saltar. Esquivá cactus, piedras y águilas.</p>
         <div class="pill">🎯 Objetivo: disfrutá, sumá puntos y alcanzá el <b>arcoíris</b> 🌈</div>
         <div class="pill">💎 Coleccioná corazones para tener hasta <b>10 vidas</b></div>
         <div class="pill">⏰ El juego vuelve automáticamente al inicio en <b>5 minutos</b></div>
@@ -196,11 +195,11 @@
   const state = {
     running:false, paused:false, over:false,
     score:0, hiscore: Number(localStorage.getItem('dino_relax_hiscore')||0),
-    speed: 3, gravity: 0.65, jump: -18,
+    speed: 3.2, gravity: 0.85, jump: -17,
     t:0, weather:'sun', life:2, relax:true, // EMPEZAR CON 2 VIDAS
     particles:{rain:[], snow:[], wind:[], sparkles:[]},
     // TIEMPOS DE SPAWN INICIALES RÁPIDOS
-    nextSpawn:1600, nextBird:3500, nextStar:1800, nextHeart:4000
+    nextSpawn:600, nextBird:2000, nextStar:1800, nextHeart:4000
   };
   const world = { groundY: ()=> canvas.clientHeight - 52 };
 
@@ -260,7 +259,7 @@
 
   function autoReturnToIndex(){
     try {
-      window.location.href = 'index.html';
+      window.location.href = '../index.html';
     } catch(e) {
       alert('¡Tiempo de juego terminado! Regresando al inicio...');
     }
@@ -269,7 +268,7 @@
   function goHome(){
     if (confirm('¿Quieres volver al inicio?')) {
       try {
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
       } catch(e) {
         alert('Navegando al inicio...');
       }
@@ -367,10 +366,10 @@
   function updateWeather(){
     const s = state.score;
     if (s >= 2200) state.weather = 'rainbow';
-    else if (s >= 1700) state.weather = 'storm';
-    else if (s >= 1200) state.weather = 'snow';
-    else if (s >= 700) state.weather = 'rain';
-    else if (s >= 350) state.weather = 'wind';
+    else if (s >= 1300) state.weather = 'storm';
+    else if (s >= 1000) state.weather = 'snow';
+    else if (s >= 600) state.weather = 'rain';
+    else if (s >= 300) state.weather = 'wind';
     else state.weather = 'sun';
   }
   
@@ -428,7 +427,7 @@
     }
     else if (state.weather==='wind'){ 
       if (P.wind.length<30) P.wind.push({x:rand(-30,0), y:rand(0,h), s:rand(1.5,3)});
-      ctx.fillStyle='rgba(255,255,255,.7)'; 
+      ctx.fillStyle='rgba(255,255,255,.2)'; 
       for (const p of P.wind){ 
         ctx.fillRect(p.x,p.y,12,1); 
         p.x+=p.s; 
@@ -437,7 +436,7 @@
     }
     else if (state.weather==='storm'){ 
       if (Math.random()<0.008){ 
-        ctx.fillStyle='rgba(255,255,255,.9)'; 
+        ctx.fillStyle='rgba(255,255,255,.6)'; 
         ctx.fillRect(0,0,w,h);
       } 
     }
@@ -494,7 +493,7 @@
     }
     
     // Sombra siempre presente
-    ctx.globalAlpha = .3; 
+    ctx.globalAlpha = .2; 
     ctx.fillStyle = '#000'; 
     ctx.beginPath(); 
     ctx.ellipse(player.x+player.w/2, world.groundY()+4, 16, 5, 0, 0, Math.PI*2); 
@@ -525,12 +524,12 @@
   
   function spawnStar(){ 
     const gy = world.groundY(); 
-    stars.push({x: canvas.clientWidth+20, y: gy - rand(100, 170), w:16, h:16}); 
+    stars.push({x: canvas.clientWidth+20, y: gy - rand(100, 140), w:16, h:16}); 
   }
   
   function spawnHeart(){ 
     const gy = world.groundY(); 
-    hearts.push({x: canvas.clientWidth+20, y: gy - rand(80, 160), w:16, h:16}); 
+    hearts.push({x: canvas.clientWidth+20, y: gy - rand(80, 130), w:16, h:16}); 
   }
 
   let af = null, last=0;
@@ -553,17 +552,17 @@
 
     // SPAWN MEJORADO
     const baseObstacle = state.relax ? 1000 : 800;
-    const obstacleVariation = state.relax ? 600 : 500;
+    const obstacleVariation = state.relax ? 500 : 400;
     
     if (state.t > state.nextSpawn){ 
       spawnObstacle(); 
       state.nextSpawn = state.t + rand(baseObstacle, baseObstacle + obstacleVariation) - state.speed*10; 
     }
     
-    const birdFreq = state.score > 80 ? 2500 : 3500;
+    const birdFreq = state.score > 80 ? 1800 : 2700;
     if (state.t > state.nextBird && state.score > 20){ 
       spawnBird(); 
-      state.nextBird = state.t + rand(birdFreq, birdFreq + 1000); 
+      state.nextBird = state.t + rand(birdFreq, birdFreq + 700); 
     }
     
     if (state.t > state.nextStar){ 
@@ -777,13 +776,13 @@
     state.score=0; 
     state.speed=3.2; 
     state.t=0; 
-    state.life=5; // EMPEZAR CON 2 VIDAS
+    state.life=2; // EMPEZAR CON 2 VIDAS
     state.relax=true;
     
     // TIEMPOS DE SPAWN RÁPIDOS
-    state.nextSpawn = 1200;   // Primer obstáculo muy rápido
-    state.nextBird = 3500;
-    state.nextStar = 1000;
+    state.nextSpawn = 800;   // Primer obstáculo muy rápido
+    state.nextBird = 2000;
+    state.nextStar = 1800;
     state.nextHeart = 4000;
     
     obstacles.length=0; 
