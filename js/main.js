@@ -472,18 +472,6 @@ function createThemeCard(theme) {
         <div class="theme-progress"></div>
     `;
     
-    // Event listener para navegación
-
-    // if (isUnlocked) {
-    //     card.addEventListener('click', () => {
-    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
-    //         // window.location.href = `tema.html?theme=${theme.id}`;
-    //         window.location.href = `tema.html?tema=${theme.id}`;
-
-    //         // window.location.href = `quiz.html?theme=${theme.id}`;
-    //     });
-    // }
-    // Event listener para navegación
     if (isUnlocked) {
     card.addEventListener('click', () => {
         console.log(`🎯 Navegando al tema: ${theme.id}`);
@@ -499,22 +487,7 @@ function createThemeCard(theme) {
         }
     });
     }
-
-    // if (isUnlocked) {
-    //     card.addEventListener('click', () => {
-    //         console.log(`🎯 Navegando al tema: ${theme.id}`);
-            
-    //         // Si es un proyecto, ir directo al HTML del proyecto
-    //         if (theme.difficulty === 'PROYECTO_TRIMESTRAL') {
-    //         // if (theme.difficulty === 'PROYECTO_TRIMESTRAL' || 'GAME') {
-    //             window.location.href = theme.contentFile;
-    //             console.log(`🎯 Navegando en: ${theme.contentFile}`);
-    //         } else {
-    //             // Temas normales van al hub de actividades
-    //             window.location.href = `tema.html?tema=${theme.id}`;
-    //         }
-    //     });
-    // }    
+  
     else {
         card.addEventListener('click', () => {
             const prereqNames = theme.prerequisites.map(id => 

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Afiche — Antropología (modelo simple)</title>
+<style>
+  :root{
+    --bg:#0f1520; --paper:#101827; --ink:#eef3ff; --muted:#b9c6e2;
+    --accent:#4cc3ff; --ok:#7df1a8; --ko:#ff6b6b; --line:#1f2a40; --card:#121e33;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial}
+  .wrap{max-width:880px;margin:auto;padding:16px}
+  .top{
+    position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);
+    background:rgba(16,24,39,.7);padding:10px;border-bottom:1px solid var(--line);
+    display:flex;gap:8px;justify-content:space-between;
+  }
+  .btn{
+    background:linear-gradient(180deg,#1a2844,#12203a);border:1px solid var(--line);
+    color:var(--ink);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600
+  }
+  header{
+    padding:18px;background:linear-gradient(180deg,rgba(76,195,255,.1),transparent 35%),var(--paper);
+    border:1px solid var(--line);border-radius:20px;margin:14px 0 12px;
+  }
+  .badge{display:inline-block;background:rgba(76,195,255,.15);border:1px solid var(--line);
+    padding:6px 10px;border-radius:999px;font-size:.9rem;color:var(--ink)}
+  h1{margin:8px 0 4px;font-size:clamp(24px,5.4vw,40px);line-height:1.15}
+  .sub{color:var(--muted);margin:0 0 6px}
+  .bar{height:8px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#7aa7ff,var(--ok));opacity:.9}
+
+  /* Secciones */
+  .step{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin:10px 0;
+  }
+  .title{
+    display:flex;align-items:center;gap:10px;margin:0 0 8px;font-size:1.1rem
+  }
+  .num{
+    width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+    color:#0a1326;font-weight:800;background:var(--accent);
+  }
+  .hint{color:var(--muted);font-size:.95rem;margin:6px 0 0}
+  ul{margin:8px 0 0 20px}
+  li{margin:4px 0}
+  .grid{display:grid;gap:10px}
+  @media(min-width:760px){ .grid--2{grid-template-columns:1fr 1fr} }
+  .good{border-left:4px solid var(--ok);padding-left:10px}
+  .bad{border-left:4px solid var(--ko);padding-left:10px}
+  .chipbox{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chip{background:#0f1b31;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:#cfe0ff;font-size:.9rem}
+  .small{color:var(--muted);font-size:.92rem}
+  .footer{display:grid;gap:10px}
+  @media(min-width:760px){ .footer{grid-template-columns:1fr 220px} }
+  .qr{
+    border:1px dashed var(--line);border-radius:12px;display:grid;place-items:center;
+    color:var(--muted);padding:10px;min-height:160px;text-align:center
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  /* Print */
+  @media print{
+    .top{display:none}
+    .wrap{padding:0}
+    header,.step{page-break-inside:avoid}
+    a[href]:after{content:""}
+  }
+
+        /* Botones de acción */
+        .action-btn {
+           background: linear-gradient(45deg, #4caf50, #8bc34a);
+           color: white;
+           border: none;
+           padding: 8px 10px;
+           border-radius: 15px;
+           font-size: 16px;
+           font-weight: bold;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           margin: 10px 5px;
+        }
+
+        .action-btn:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .action-btn.secondary {
+           background: linear-gradient(45deg, #2196f3, #21cbf3);
+           padding: 12px 27px;
+        }
+
+</style>
+</head>
+<body>
+  <div class="top">
+
+                <button class="action-btn secondary" type="button"
+                        onclick="window.open('../index.html','_blank','noopener')"
+                        title="Abrir modelo de afiche en otra pestaña">
+                    salir
+                </button>
+
+    <button class="btn" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <span class="badge">Antropología Filosófica · Afiche modelo</span>
+      <h1>🤔 ¿Naturaleza humana o cultura?</h1>
+      <p class="sub">Explicación simple para presentar en clase (6 minutos)</p>
+      <div class="bar" aria-hidden="true"></div>
+    </header>
+
+    <!-- 1. Pregunta guía -->
+    <section class="step">
+      <h3 class="title"><span class="num">1</span>🧭 Pregunta guía (tema)</h3>
+      <p><strong>¿Existe una “naturaleza humana” fija o somos, sobre todo, producto de la cultura?</strong></p>
+      <p class="hint">Pista: una buena pregunta se puede debatir y pide “por qué / cómo / en qué medida”.</p>
+    </section>
+
+    <!-- 2. Hipótesis -->
+    <section class="step">
+      <h3 class="title"><span class="num">2</span>💡 Hipótesis (lo que defendemos)</h3>
+      <p><strong>La cultura organiza lo humano.</strong> Hay capacidades biológicas comunes, pero
+      <em>las normas y símbolos</em> de cada sociedad moldean deseos, identidad y conducta.</p>
+      <div class="chipbox">
+        <span class="chip">Cultura</span><span class="chip">Plasticidad</span><span class="chip">Universal/particular</span>
+        <span class="chip">Socialización</span><span class="chip">Significados</span>
+      </div>
+    </section>
+
+    <!-- 3. A favor / En contra / Síntesis -->
+    <section class="step">
+      <h3 class="title"><span class="num">3</span>⚖️ Ideas clave</h3>
+      <div class="grid grid--2">
+        <div class="good">
+          <p><strong>“Hay naturaleza humana” (a favor de la esencia)</strong></p>
+          <ul>
+            <li>Aristóteles: somos “animales políticos”; virtud → eudaimonía.</li>
+            <li>E. O. Wilson: cooperación/competencia con base evolutiva.</li>
+            <li>Chomsky: capacidad lingüística innata (universal).</li>
+          </ul>
+        </div>
+        <div class="bad">
+          <p><strong>“La cultura manda” (a favor de la variabilidad)</strong></p>
+          <ul>
+            <li>Boas: relativismo cultural; lo aprendido explica diferencias.</li>
+            <li>Mead: adolescencia en Samoa ≠ adolescencia industrial.</li>
+            <li>Geertz: “animal incompleto” que necesita significados.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="hint"><strong>Síntesis:</strong> la biología <em>habilita</em>; la cultura <em>orienta</em> (reglas, roles, recompensas).</p>
+    </section>
+
+    <!-- 4. Evidencias (con fuente) -->
+    <section class="step">
+      <h3 class="title"><span class="num">4</span>🔍 Evidencias (con fuente)</h3>
+      <ul>
+        <li>Ritos de paso y roles de género varían entre sociedades. <span class="small">[Mead / Boas]</span></li>
+        <li>Las normas se aprenden (escuela, familia, redes). <span class="small">[observación social]</span></li>
+        <li>Todos hablan (universal), pero cada lengua ordena distinto. <span class="small">[lingüística]</span></li>
+      </ul>
+      <p class="hint">Tip: agrega siempre la <em>fuente</em> (libro, clase, video) al pie.</p>
+    </section>
+
+    <!-- 5. Argumentos / Contraargumentos / Réplica -->
+    <section class="step">
+      <h3 class="title"><span class="num">5</span>🧠 Debate corto</h3>
+      <div class="grid grid--2">
+        <div>
+          <p><strong>Argumentos (a favor de la hipótesis)</strong></p>
+          <ul>
+            <li>Plasticidad: cambiamos según normas del contexto.</li>
+            <li>Los significados culturales orientan fines (Geertz).</li>
+            <li>Comparación entre pueblos muestra gran variación.</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Contraargumentos</strong></p>
+          <ul>
+            <li>“Si hay universales morales, hay esencia fija”.</li>
+            <li>“La competencia prueba naturaleza inmutable”.</li>
+            <li>“Lenguaje innato = moral innata”.</li>
+          </ul>
+          <p><strong>Réplica:</strong> universales mínimos ≠ contenidos idénticos;
+            biología habilita, cultura orienta; innatismo lingüístico no implica ética innata.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Caso + Conclusión -->
+    <section class="step">
+      <h3 class="title"><span class="num">6</span>📌 Caso + Conclusión</h3>
+      <p><strong>Caso:</strong> En Samoa la transición a la adultez es baja en conflicto y comunitaria;
+      en sociedades industriales, la adolescencia muestra más tensión. <em>La diferencia es cultural</em>
+      (parentesco, trabajo, expectativas).</p>
+      <p><strong>Conclusión:</strong> lo humano se realiza en clave cultural: las disposiciones biológicas se
+      vuelven biografías gracias a normas y símbolos compartidos.</p>
+    </section>
+
+    <!-- 7. Bibliografía + Equipo + QR -->
+    <section class="step">
+      <h3 class="title"><span class="num">7</span>📚 Bibliografía y equipo</h3>
+      <ul>
+        <li>Mead, <em>Adolescencia en Samoa</em>; Boas, <em>Antropología Cultural</em>.</li>
+        <li>Geertz, <em>La interpretación de las culturas</em> (cap. 1).</li>
+        <li>Wilson, <em>Sociobiology</em> (sel.); Chomsky, <em>Language and Mind</em> (sel.).</li>
+      </ul>
+      <p class="small"><strong>Equipo:</strong> 6º año · Prof. J. Lazarte · A. Díaz, M. Torres, L. Roldán ·
+      <strong>Exposición:</strong> 6′ (4′ presentación + 2′ preguntas)</p>
+      <div class="footer">
+        <div class="small">Sugerencia: añade un enlace o QR a un breve resumen (1 página o Padlet).</div>
+        <!-- <div class="qr">Coloca aquí tu QR o link corto</div> -->
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

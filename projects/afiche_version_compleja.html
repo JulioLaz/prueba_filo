@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Afiche · Antropología — Naturaleza humana vs. cultura</title>
+<style>
+  :root{
+    --bg:#0f1520; --paper:#0b111b; --ink:#e6eef7; --muted:#a9b7c8;
+    --accent:#4cc3ff; --accent2:#7df1a8; --danger:#ff6b6b; --line:#1e2a3a;
+    --chip:#172133; --chip-text:#cfe2f7;
+    --radius:18px; --shadow:0 8px 28px rgba(0,0,0,.35), 0 2px 10px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .sheet{
+    max-width:940px; margin:24px auto; padding:28px;
+    background:linear-gradient(180deg,rgba(76,195,255,.06),transparent 20%),
+               linear-gradient(0deg,rgba(125,241,168,.05),transparent 40%),
+               var(--paper);
+    border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow);
+  }
+  header{
+    display:grid; gap:12px; margin-bottom:14px;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(90deg, rgba(76,195,255,.15), rgba(125,241,168,.15));
+    border:1px solid var(--line); color:var(--ink); padding:6px 10px; border-radius:999px;
+    font-size:.9rem;
+  }
+  .title{font-size: clamp(26px, 4.5vw, 40px); line-height:1.15; margin:0}
+  .subtitle{margin:0; color:var(--muted); font-weight:500}
+  .bar{
+    height:10px; background:linear-gradient(90deg,var(--accent),var(--accent2));
+    border-radius:999px; margin-top:6px; opacity:.8;
+  }
+  .grid{
+    display:grid; gap:16px; grid-template-columns: 1fr; margin-top:18px;
+  }
+  @media (min-width:860px){
+    .grid{grid-template-columns: 0.9fr 1.1fr;}
+  }
+  .card{
+    background:rgba(15,21,32,.6); border:1px solid var(--line);
+    border-radius:var(--radius); padding:18px;
+  }
+  .card h3{margin:0 0 10px; font-size:1.1rem; letter-spacing:.2px}
+  .hypo{
+    border-left:4px solid var(--accent); background:linear-gradient(90deg,rgba(76,195,255,.12), transparent 55%);
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .chip{background:var(--chip); color:var(--chip-text); padding:6px 10px; border-radius:999px; font-size:.9rem; border:1px solid var(--line)}
+  .cols{display:grid; gap:12px}
+  @media (min-width:700px){ .cols{grid-template-columns:1fr 1fr 1fr;} }
+  .ok{border-left:4px solid var(--accent2)}
+  .ko{border-left:4px solid var(--danger)}
+  .rp{border-left:4px solid var(--accent)}
+  ul{margin:8px 0 0 18px}
+  li{margin:4px 0}
+  .evidence li::marker{color:var(--accent)}
+  .bibli li::marker{color:var(--muted)}
+  .footer{
+    display:grid; gap:12px; grid-template-columns: 1fr; margin-top:12px;
+  }
+  @media (min-width:860px){
+    .footer{grid-template-columns: 1fr 220px;}
+  }
+  .qr{
+    display:flex; align-items:center; justify-content:center; aspect-ratio:1/1;
+    border:1px dashed var(--line); border-radius:12px; color:var(--muted);
+    font-size:.9rem; text-align:center; padding:10px;
+  }
+  .small{color:var(--muted); font-size:.92rem}
+  .toolbar{
+    position:sticky; top:0; z-index:10; backdrop-filter: blur(6px);
+    background:rgba(11,17,27,.6); border-bottom:1px solid var(--line);
+    display:flex; gap:8px; justify-content:flex-end; padding:10px 14px;
+  }
+  .btn{
+    border:1px solid var(--line); background:linear-gradient(180deg,#172133,#101725);
+    color:var(--ink); padding:8px 12px; border-radius:10px; cursor:pointer;
+  }
+  .btn:hover{border-color:var(--accent)}
+  /* Print */
+  @media print{
+    body{background:white}
+    .toolbar{display:none}
+    .sheet{box-shadow:none; border:0; margin:0; max-width:none; border-radius:0}
+    a[href]:after{content:""}
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+  </div>
+
+  <main class="sheet" role="document" aria-label="Afiche antropología">
+    <header>
+      <span class="badge">Antropología Filosófica · Proyecto de cierre</span>
+      <h1 class="title"><!-- EDITAR -->¿Existe una “naturaleza humana” o somos producto de la cultura?</h1>
+      <p class="subtitle"><!-- EDITAR -->Entre lo biológico, lo histórico y lo simbólico</p>
+      <div class="bar" aria-hidden="true"></div>
+    </header>
+
+    <section class="grid">
+      <!-- Hipótesis -->
+      <article class="card hypo" aria-labelledby="h-h">
+        <h3 id="h-h">Hipótesis (tesis del equipo)</h3>
+        <p><!-- EDITAR -->
+          Aunque existen disposiciones biológicas compartidas, lo que llamamos “naturaleza humana”
+          se configura principalmente por la <strong>cultura</strong>: normas, símbolos y prácticas
+          que moldean motivaciones, identidades y formas de vida.
+        </p>
+        <div class="chips" aria-label="Palabras clave">
+          <span class="chip">Cultura</span><span class="chip">Plasticidad</span><span class="chip">Universal/particular</span>
+          <span class="chip">Socialización</span><span class="chip">Simbolismo</span>
+        </div>
+      </article>
+
+      <!-- Marco teórico -->
+      <article class="card" aria-labelledby="h-mt">
+        <h3 id="h-mt">Marco teórico mínimo</h3>
+        <div class="cols">
+          <div class="card ok">
+            <h4 style="margin:0 0 6px;">A favor “naturaleza humana”</h4>
+            <ul>
+              <li><!-- EDITAR -->Aristóteles: animal político; eudaimonía vía virtud/hábito.</li>
+              <li><!-- EDITAR -->E. O. Wilson (sociobiología): bases evolutivas de cooperación/competencia.</li>
+              <li><!-- EDITAR -->Chomsky: capacidad lingüística innata (universal).</li>
+            </ul>
+          </div>
+          <div class="card ko">
+            <h4 style="margin:0 0 6px;">En contra (primacía de cultura)</h4>
+            <ul>
+              <li><!-- EDITAR -->Franz Boas: relativismo cultural; variación aprendida.</li>
+              <li><!-- EDITAR -->Margaret Mead: adolescencia en Samoa (baja conflictividad por arreglos culturales).</li>
+              <li><!-- EDITAR -->Clifford Geertz: “animal incompleto” que necesita significados.</li>
+            </ul>
+          </div>
+          <div class="card rp">
+            <h4 style="margin:0 0 6px;">Punto de síntesis</h4>
+            <ul>
+              <li><!-- EDITAR -->Capacidades universales ≠ contenidos fijos: realizaciones culturales diversas.</li>
+              <li><!-- EDITAR -->La biología habilita; la cultura orienta (normas, recompensas, roles).</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Evidencia + Argumentación -->
+    <section class="grid" style="margin-top:8px">
+      <article class="card" aria-labelledby="h-ev">
+        <h3 id="h-ev">Evidencias breves</h3>
+        <ul class="evidence">
+          <li><!-- EDITAR -->Variación en roles de género y ritos de paso entre sociedades (Mead/Boas).</li>
+          <li><!-- EDITAR -->Aprendizaje social: normas internalizadas según medio (escuela/familia/redes).</li>
+          <li><!-- EDITAR -->Universalidad con variación: toda sociedad habla, pero organiza el mundo distinto.</li>
+        </ul>
+        <p class="small">Incluye la fuente (texto/video/clase) junto a cada evidencia en el afiche final.</p>
+      </article>
+
+      <article class="card" aria-labelledby="h-arg">
+        <h3 id="h-arg">Argumentos, contraargumentos y réplica</h3>
+        <div class="cols">
+          <div>
+            <h4 style="margin:0 0 6px;color:var(--accent2)">Argumentos (pro tesis)</h4>
+            <ul>
+              <li><!-- EDITAR -->Plasticidad conductual según normas del contexto.</li>
+              <li><!-- EDITAR -->Los significados culturales orientan deseos y fines (Geertz).</li>
+              <li><!-- EDITAR -->Evidencia comparativa de instituciones variables (parentesco, autoridad, matrimonio).</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 6px;color:var(--danger)">Contraargumentos</h4>
+            <ul>
+              <li><!-- EDITAR -->“Si hay universales morales, entonces hay esencia fija”.</li>
+              <li><!-- EDITAR -->“La competencia prueba una base biológica inmutable”.</li>
+              <li><!-- EDITAR -->“Lenguaje innato implica moral innata”.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="margin:0 0 6px;color:var(--accent)">Réplica del equipo</h4>
+            <ul>
+              <li><!-- EDITAR -->Universales mínimos ≠ contenidos idénticos.</li>
+              <li><!-- EDITAR -->Biología habilita; cultura orienta reglas y recompensas.</li>
+              <li><!-- EDITAR -->Innatismo lingüístico no implica ética innata (variabilidad histórica).</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Caso + Conclusión -->
+    <section class="grid" style="margin-top:8px">
+      <article class="card" aria-labelledby="h-caso">
+        <h3 id="h-caso">Estudio de caso</h3>
+        <p><!-- EDITAR -->
+          <strong>Ritos de paso:</strong> En Samoa (Mead), el pasaje a la adultez presenta baja conflictividad
+          y fuerte regulación comunitaria; en sociedades industriales, la adolescencia concentra tensión
+          identitaria y presión de rendimiento. La diferencia se explica por <em>arreglos culturales</em>
+          (parentesco, división del trabajo, expectativas).
+        </p>
+      </article>
+
+      <article class="card" aria-labelledby="h-conc">
+        <h3 id="h-conc">Conclusión</h3>
+        <p><!-- EDITAR -->
+          La evidencia sugiere que lo humano se realiza en clave cultural.
+          Más que una “naturaleza” cerrada, hay disposiciones abiertas que la cultura organiza
+          en biografías y sociedades concretas.
+        </p>
+      </article>
+    </section>
+
+    <!-- Bibliografía + Datos del equipo + QR -->
+    <section class="footer">
+      <article class="card" aria-labelledby="h-biblio">
+        <h3 id="h-biblio">Bibliografía breve</h3>
+        <ul class="bibli">
+          <li><!-- EDITAR -->Mead, M. <em>Adolescencia en Samoa</em>.</li>
+          <li><!-- EDITAR -->Boas, F. <em>Antropología Cultural</em> (sel.).</li>
+          <li><!-- EDITAR -->Geertz, C. <em>La interpretación de las culturas</em> (cap. 1).</li>
+          <li><!-- EDITAR -->Wilson, E. O. <em>Sociobiology</em> (sel.).</li>
+          <li><!-- EDITAR -->Chomsky, N. <em>Language and Mind</em> (sel.).</li>
+        </ul>
+        <hr style="border:none;border-top:1px solid var(--line);margin:12px 0">
+        <p class="small"><strong>Datos del equipo</strong> — <!-- EDITAR -->6º año · Antropología Filosófica · Prof. J. Lazarte · Integrantes: A. Díaz, M. Torres, L. Roldán · Exposición: 6′ (4′ + 2′)</p>
+      </article>
+      <aside class="qr">
+        <!-- EDITAR -->Coloca aquí un código QR o un link corto al resumen (opcional).
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // (Opcional) podrías setear dinámicamente la fecha o inyectar datos aquí.
+    // Mantengo el JS mínimo para asegurar compatibilidad con tu flujo de impresión.
+  </script>
+</body>
+</html>
