@@ -32,10 +32,18 @@
   <div class="header-actions">
     <!-- Panel usuario (visible si logged) -->
     <div id="userPanel" class="user-panel" style="display:none">
+    <div class="user-info">
+        <div class="avatar" id="userAvatar"></div>
+        <span class="hello">👋 Hola, <strong id="userName"></strong></span>
+    </div>
+    <button id="logoutBtn" class="btn ghost">Salir</button>
+    </div>
+
+    <!-- <div id="userPanel" class="user-panel" style="display:none">
       <div class="avatar" id="userAvatar"></div>
       <span class="hello">Hola, <strong id="userName"></strong></span>
       <button id="logoutBtn" class="btn ghost">Salir</button>
-    </div>
+    </div> -->
 
     <!-- Botones cuando NO está logueado -->
     <div id="authButtons">
