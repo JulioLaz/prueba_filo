@@ -26,10 +26,64 @@
 
 <body>
     <div class="container">
+
         <header class="main-header">
+        <!-- Acciones arriba a la derecha -->
+        <div class="header-actions">
+            <!-- Panel usuario (visible si logged) -->
+            <div id="userPanel" class="user-panel" style="display:none">
+            <span class="hello">👋 Hola, <strong id="userName"></strong></span>
+            <button id="logoutBtn" class="btn ghost">Salir</button>
+            </div>
+
+            <!-- Botón para abrir modal (cuando NO está logueado) -->
+            <button id="openAuth" class="btn primary">Ingresar / Registrarse</button>
+        </div>
+
+        <h1>🎓 Filosofía</h1>
+        <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
+        </header>
+
+        <!-- Modal de autenticación -->
+        <div id="authModal" class="modal">
+        <div class="modal-content auth-modal">
+            <div class="modal-header">
+            <h2>Acceso</h2>
+            <span class="close" id="closeAuth">&times;</span>
+            </div>
+
+            <div class="modal-body auth-body">
+            <div class="auth-columns">
+                <!-- Login -->
+                <section class="auth-card">
+                <h3>Ingresar</h3>
+                <form id="loginForm" class="auth-form">
+                    <input id="loginEmail" type="email" autocomplete="email" placeholder="Email" required>
+                    <input id="loginPass" type="password" autocomplete="current-password" placeholder="Contraseña" required>
+                    <button class="btn primary full">Ingresar</button>
+                </form>
+                </section>
+
+                <!-- Registro -->
+                <section class="auth-card">
+                <h3>Crear cuenta</h3>
+                <form id="regForm" class="auth-form">
+                    <input id="regName" placeholder="Nombre (opcional)">
+                    <input id="regClass" placeholder="Curso (ej: 4toA)" value="4toA">
+                    <input id="regEmail" type="email" autocomplete="email" placeholder="Email" required>
+                    <input id="regPass" type="password" autocomplete="new-password" placeholder="Contraseña" required>
+                    <button class="btn success full">Registrarme</button>
+                </form>
+                </section>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- <header class="main-header">
             <h1>🎓 Filosofía</h1>
             <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
-        </header>
+        </header> -->
 
         <div class="stats-container" id="stats-container" style="display: none;">
             <div class="stat-card">
