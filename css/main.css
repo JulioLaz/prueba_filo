@@ -685,3 +685,28 @@ body::before {
   .auth-columns{ grid-template-columns: 1fr; }
   .header-actions{ top: 10px; right: 10px; }
 }
+
+
+/*  emojis */
+
+/* Grilla de emojis */
+#emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+#emojiGrid .emoji-cell{
+  font-size: 26px;
+  line-height: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+#emojiGrid .emoji-cell:hover{
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
