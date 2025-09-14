@@ -131,9 +131,178 @@
             <!-- <a href="https://github.com/JulioLaz/prueba_filo" target="_blank" rel="noopener">Código fuente</a> -->
         </div>
     </footer>
-
-
     <script src="js/main.js"></script>
+
+<!-- login -->
+ <!-- Panel usuario (se muestra si logged) -->
+<div id="userPanel" style="display:none">
+  👋 Hola, <strong id="userName"></strong>
+  <button id="logoutBtn" class="action-btn secondary">Salir</button>
+</div>
+
+<!-- Botón para abrir modal -->
+<button id="openAuth" class="action-btn">Ingresar / Registrarse</button>
+
+<!-- Modal simple -->
+<div id="authModal" style="display:none">
+  <div class="card">
+    <h3>Acceso</h3>
+    <form id="loginForm">
+      <input id="loginEmail" placeholder="Email" required>
+      <input id="loginPass" type="password" placeholder="Contraseña" required>
+      <button>Ingresar</button>
+    </form>
+    <hr/>
+    <h4>Crear cuenta</h4>
+    <form id="regForm">
+      <input id="regName" placeholder="Nombre (opcional)">
+      <input id="regClass" placeholder="Curso (ej: 4toA)" value="4toA">
+      <input id="regEmail" placeholder="Email" required>
+      <input id="regPass" type="password" placeholder="Contraseña" required>
+      <button>Registrarme</button>
+    </form>
+    <button id="closeAuth">Cerrar</button>
+  </div>
+</div>
+
+<script type="module">
+import {
+  login, register, logout,
+} from "/prueba_filo/firebase.js";
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup,
+  setPersistence, browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const auth = getAuth();
+
+// Persistencia explícita (queda logueado tras recargar)
+await setPersistence(auth, browserLocalPersistence);
+
+// Helpers
+const $  = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const setBusy = (el, busy=true) => {
+  if (!el) return;
+  el.disabled = busy;
+  if (busy) el.dataset.busy = "1"; else delete el.dataset.busy;
+};
+const toast = (msg) => {
+  // reemplaza por tu UI; por ahora un alert limpio
+  console.warn(msg);
+  alert(msg);
+};
+
+// Mostrar/ocultar según login (se actualiza cuando firebase.js setea data-logged)
+const refreshAuthUI = () => {
+  const logged = document.documentElement.dataset.logged === "1";
+  $("#userPanel")?.style && ($("#userPanel").style.display = logged ? "block" : "none");
+  $("#openAuth")?.style && ($("#openAuth").style.display = logged ? "none" : "inline-block");
+};
+new MutationObserver(refreshAuthUI).observe(document.documentElement, { attributes:true, attributeFilter:["data-logged"] });
+refreshAuthUI();
+
+// Modal
+$("#openAuth")?.addEventListener("click", ()=> $("#authModal").style.display="block");
+$("#closeAuth")?.addEventListener("click", ()=> $("#authModal").style.display="none");
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") $("#authModal").style.display="none"; });
+$("#authModal")?.addEventListener("click", (e)=>{ if(e.target.id==="authModal") $("#authModal").style.display="none"; });
+
+// Login
+$("#loginForm")?.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const btn = $("#loginForm button[type=submit]");
+  try {
+    setBusy(btn, true);
+    const email = $("#loginEmail").value.trim();
+    const pass  = $("#loginPass").value;
+    await login(email, pass);
+    $("#authModal").style.display="none";
+  } catch (err) {
+    toast(err?.message || "No se pudo iniciar sesión");
+  } finally {
+    setBusy(btn, false);
+  }
+});
+
+// Registro
+$("#regForm")?.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const btn = $("#regForm button[type=submit]");
+  try {
+    setBusy(btn, true);
+    const name  = $("#regName").value.trim();
+    const clas  = $("#regClass").value.trim() || "4toA";
+    const email = $("#regEmail").value.trim();
+    const pass  = $("#regPass").value;
+    await register(email, pass, name, clas);
+    $("#authModal").style.display="none";
+  } catch (err) {
+    toast(err?.message || "No se pudo registrar");
+  } finally {
+    setBusy(btn, false);
+  }
+});
+
+// Google (opcional: agrega un botón con id="googleBtn" si lo querés usar)
+$("#googleBtn")?.addEventListener("click", async ()=>{
+  const btn = $("#googleBtn");
+  try {
+    setBusy(btn, true);
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+    $("#authModal").style.display="none";
+  } catch (err) {
+    // Muchos errores de Google son por dominio no autorizado en Auth → Configuración → Dominios
+    toast(err?.message || "No se pudo ingresar con Google");
+  } finally {
+    setBusy(btn, false);
+  }
+});
+
+// Salir
+$("#logoutBtn")?.addEventListener("click", async ()=>{
+  try { await logout(); } catch(e){ /* no-op */ }
+});
+</script>
+
+
+<!-- <script type="module">
+import { login, register, logout } from "/prueba_filo/firebase.js";
+
+// Mostrar/ocultar según login
+const $ = s => document.querySelector(s);
+const showByLoginState = () => {
+  const logged = document.documentElement.dataset.logged === "1";
+  $("#userPanel").style.display = logged ? "block" : "none";
+  $("#openAuth").style.display = logged ? "none" : "inline-block";
+};
+new MutationObserver(showByLoginState).observe(document.documentElement, { attributes:true, attributeFilter:["data-logged"] });
+showByLoginState();
+
+// Modal
+$("#openAuth").onclick = ()=> $("#authModal").style.display="block";
+$("#closeAuth").onclick = ()=> $("#authModal").style.display="none";
+
+// Login
+$("#loginForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  await login($("#loginEmail").value, $("#loginPass").value);
+  $("#authModal").style.display="none";
+});
+
+// Registro
+$("#regForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  await register($("#regEmail").value, $("#regPass").value, $("#regName").value, $("#regClass").value);
+  $("#authModal").style.display="none";
+});
+
+// Salir
+$("#logoutBtn").onclick = ()=> logout();
+</script> -->
+
+
 </body>
 
 </html>
