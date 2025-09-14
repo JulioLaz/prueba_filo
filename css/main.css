@@ -710,3 +710,22 @@ body::before {
   transform: translateY(-1px);
   box-shadow: var(--shadow-medium);
 }
+
+/* avatar */
+/* Avatar circular */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2); /* fallback si son iniciales */
+}
+.avatar.initials {
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+}
