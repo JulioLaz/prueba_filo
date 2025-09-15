@@ -732,12 +732,17 @@ body::before {
 
 /* Contenedor de panel de usuario */
 .user-panel {
-  display: flex;
-  justify-content: space-between; /* avatar+nombre a la izq, botón a la der */
+  display: flex;              /* siempre flex */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 8px;
+  /* margin-top: 8px; */
 }
+
+.hidden {
+  display: none !important;   /* cuando querés ocultar */
+}
+
 
 /* Avatar + texto alineados */
 .user-info {

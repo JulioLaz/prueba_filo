@@ -31,7 +31,8 @@
   <!-- Acciones arriba a la derecha -->
   <div class="header-actions">
     <!-- Panel usuario (visible si logged) -->
-    <div id="userPanel" class="user-panel" style="display:none">
+    <div id="userPanel" class="user-panel hidden">
+    <!-- <div id="userPanel" class="user-panel " style="display:none"> -->
     <div class="user-info">
         <div class="avatar" id="userAvatar"></div>
         <span class="hello">👋 Hola, <strong id="userName"></strong></span>
@@ -86,7 +87,7 @@
     <div class="modal-body auth-body">
       <form id="regForm" class="auth-form">
         <input id="regName" placeholder="Nombre (opcional)">
-        <input id="regClass" placeholder="Curso (ej: 4toA)" value="4toA">
+        <input id="regClass" placeholder="Curso (ej: 4toA)" value="6toA">
         <input id="regEmail" type="email" autocomplete="email" placeholder="Email" required>
         <input id="regPass" type="password" autocomplete="new-password" placeholder="Contraseña" required>
         <button class="btn success full">Crear cuenta</button>
@@ -402,10 +403,16 @@ const auth = getAuth();
 await setPersistence(auth, browserLocalPersistence);
 
 // Helpers
+// Helpers
 const $ = (s)=>document.querySelector(s);
-const show = (el)=> el && (el.style.display = "block");
-const hide = (el)=> el && (el.style.display = "none");
+const show = (el)=> el && el.classList.remove("hidden");
+const hide = (el)=> el && el.classList.add("hidden");
 const toast = (m)=> alert(m);
+
+// const $ = (s)=>document.querySelector(s);
+// const show = (el)=> el && (el.style.display = "block");
+// const hide = (el)=> el && (el.style.display = "none");
+// const toast = (m)=> alert(m);
 
 // ==== Toggle UI por sesión (se actualiza cuando firebase.js setea data-logged)
 const refreshAuthUI = ()=>{
