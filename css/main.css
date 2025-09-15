@@ -642,6 +642,8 @@ body::before {
 }
 .btn.ghost{
   background: transparent; color: var(--text-secondary);
+  margin-left: 5px;
+
 }
 .btn.full{ width: 100%; }
 
@@ -684,7 +686,9 @@ body::before {
 /* Responsive: una columna en móviles */
 @media (max-width: 680px){
   .auth-columns{ grid-template-columns: 1fr; }
-  .header-actions{ top: 10px; right: 10px; width: 95%;}
+  .header-actions{ top: 10px; right: 10px; width: 95%;
+    display: flex; justify-content: center;  
+}
 }
 
 
