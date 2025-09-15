@@ -84,30 +84,13 @@
       <span class="close" data-close="#registerModal">&times;</span>
     </div>
     <div class="modal-body auth-body">
-        <form id="regForm" class="auth-form">
-        <input id="regFirst" placeholder="Nombre(s)" required>
-        <input id="regLast"  placeholder="Apellido(s)" required>
-
-        <label class="hint">Fecha de nacimiento</label>
-        <input id="regBirth" type="date" required>
-
-        <input id="regClass" placeholder="Curso (ej: 6to A)" value="6to A" required>
-
-        <input id="regNick"  placeholder="Nombre de fantasía (nickname)" required>
-
-        <input id="regEmail" type="email" autocomplete="email" placeholder="Email" required>
-        <input id="regPass"  type="password" autocomplete="new-password" placeholder="Contraseña" required>
-
-        <button class="btn success full">Crear cuenta</button>
-        </form>
-
-      <!-- <form id="regForm" class="auth-form">
+      <form id="regForm" class="auth-form">
         <input id="regName" placeholder="Nombre (opcional)">
         <input id="regClass" placeholder="Curso (ej: 4toA)" value="6to A">
         <input id="regEmail" type="email" autocomplete="email" placeholder="Email" required>
         <input id="regPass" type="password" autocomplete="new-password" placeholder="Contraseña" required>
         <button class="btn success full">Crear cuenta</button>
-      </form> -->
+      </form>
       <p class="hint">¿Ya tenés cuenta?
         <a href="#" id="goToLogin">Ingresar</a>
       </p>
@@ -406,11 +389,13 @@ $("#regForm").addEventListener("submit", async (e)=>{
 $("#logoutBtn").onclick = ()=> logout();
 </script> -->
 
-<!-- <script type="module">
+<script type="module">
 import { login, register, logout, db } from "/prueba_filo/firebase.js";
-import { getAuth, setPersistence, browserLocalPersistence
+import {
+  getAuth, setPersistence, browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { doc, getDoc, updateDoc
+import {
+  doc, getDoc, updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const auth = getAuth();
@@ -530,146 +515,6 @@ async function lockAvatar(uid, type, value){
 }
 
 // ==== Logout
-$("#logoutBtn")?.addEventListener("click", async ()=>{ try{ await logout(); }catch{} });
-</script> -->
-
-<script type="module">
-import { login, register, logout, db } from "./firebase.js";
-import { getAuth, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { doc, getDoc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-const auth = getAuth();
-await setPersistence(auth, browserLocalPersistence);
-
-// ===== Helpers (usan clases, no element.style) =====
-const $ = (s)=>document.querySelector(s);
-const show = (el)=> el && el.classList.remove("hidden");
-const hide = (el)=> el && el.classList.add("hidden");
-const toast = (m)=> alert(m);
-const norm = (s)=> (s||"").trim().replace(/\s+/g," ");
-
-// Toggle UI por sesión (se actualiza cuando firebase.js setea data-logged)
-const refreshAuthUI = ()=>{
-  const logged = document.documentElement.dataset.logged === "1";
-  if (logged) { show($("#userPanel")); hide($("#authButtons")); }
-  else       { hide($("#userPanel")); show($("#authButtons")); }
-};
-new MutationObserver(refreshAuthUI).observe(document.documentElement,{attributes:true,attributeFilter:["data-logged"]});
-refreshAuthUI();
-
-// ===== Abrir/Cerrar modales =====
-$("#openLogin")?.addEventListener("click", ()=> { show($("#loginModal"));  hide($("#registerModal")); });
-$("#openRegister")?.addEventListener("click", ()=> { show($("#registerModal")); hide($("#loginModal")); });
-
-$("#goToRegister")?.addEventListener("click", (e)=>{ e.preventDefault(); hide($("#loginModal"));    show($("#registerModal")); });
-$("#goToLogin")?.addEventListener("click",    (e)=>{ e.preventDefault(); hide($("#registerModal")); show($("#loginModal")); });
-
-document.addEventListener("click",(e)=>{
-  const t = e.target;
-  if (t.matches(".close") && t.dataset.close) hide($(t.dataset.close));
-  if (t.classList.contains("modal") && !t.querySelector(":scope .modal-content:hover")) hide(t);
-});
-document.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ hide($("#loginModal")); hide($("#registerModal")); hide($("#avatarModal")); }});
-
-// ===== Login =====
-$("#loginForm")?.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  try{
-    const email = $("#loginEmail").value.trim();
-    const pass  = $("#loginPass").value;
-    await login(email, pass);
-    hide($("#loginModal"));
-  }catch(err){ toast(err?.message || "No se pudo iniciar sesión"); }
-});
-
-// ===== Registro (perfil extendido) + Avatar único =====
-$("#regForm")?.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  try{
-    // Campos extendidos
-    const first = norm($("#regFirst").value);
-    const last  = norm($("#regLast").value);
-    const birth = $("#regBirth").value;                  // YYYY-MM-DD
-    const clas  = norm($("#regClass").value) || "6to A";
-    const nick  = norm($("#regNick").value);
-    const email = $("#regEmail").value.trim();
-    const pass  = $("#regPass").value;
-
-    if (!first || !last || !birth || !nick) {
-      toast("Completá Nombre, Apellido, Fecha de nacimiento y Nickname.");
-      return;
-    }
-
-    // Crea cuenta y setea displayName = "Nombre Apellido"
-    const user = await register(email, pass, `${first} ${last}`, clas);
-
-    // Guarda/actualiza el perfil en users/{uid}
-    await setDoc(doc(db, "users", user.uid), {
-      firstName: first,
-      lastName:  last,
-      birthDate: birth,
-      classroomId: clas,
-      nickname:  nick,
-      displayName: `${first} ${last}`.trim(),
-      updatedAt: serverTimestamp()
-    }, { merge: true });
-
-    // Cierra registro y abre selector de avatar si aún no tiene
-    const uref = doc(db, "users", user.uid);
-    const snap = await getDoc(uref);
-    const hasAvatar = snap.exists() && (snap.data().avatarType === "emoji" || snap.data().avatarType === "initials");
-
-    hide($("#registerModal"));
-    if (!hasAvatar) {
-      buildEmojiGrid();
-      show($("#avatarModal"));
-    }
-  }catch(err){ toast(err?.message || "No se pudo registrar"); }
-});
-
-// ===== Avatar: iniciales o emoji (elección única) =====
-$("#chooseInitials")?.addEventListener("click", async ()=>{
-  try{
-    const user = auth.currentUser;
-    if (!user) throw new Error("No autenticado");
-    await lockAvatar(user.uid, "initials", null);
-    hide($("#avatarModal"));
-  }catch(err){ toast(err?.message || "No se pudo guardar el avatar"); }
-});
-
-// Grilla de emojis
-function buildEmojiGrid(){
-  const EMOJIS = "🐶 🐱 🦊 🐻 🐼 🐨 🐯 🦁 🐵 🐸 🐷 🐮 🐰 🦉 🐢 🐙 🦋 🐳 🐬 🦄 🐝 🐞 🦕 🦖 🦜 🦩 🦚 🦥 🦘".split(" ");
-  const grid = $("#emojiGrid");
-  grid.innerHTML = EMOJIS.map(e=>`<button class="emoji-cell" data-emoji="${e}" aria-label="Elegir ${e}">${e}</button>`).join("");
-  grid.querySelectorAll(".emoji-cell").forEach(btn=>{
-    btn.addEventListener("click", async ()=>{
-      try{
-        const emoji = btn.dataset.emoji;
-        const user = auth.currentUser;
-        if (!user) throw new Error("No autenticado");
-        await lockAvatar(user.uid, "emoji", emoji);
-        hide($("#avatarModal"));
-      }catch(err){ toast(err?.message || "No se pudo guardar el avatar"); }
-    });
-  });
-}
-
-// Escribe avatar una sola vez: si ya existe avatarType en el doc, no lo cambia
-async function lockAvatar(uid, type, value){
-  const ref = doc(db, "users", uid);
-  const snap = await getDoc(ref);
-  if (!snap.exists()){
-    // si por timing aún no existe, lo creamos con los campos mínimos
-    await setDoc(ref, { avatarType: type, avatarValue: value }, { merge: true });
-    return;
-  }
-  const data = snap.data() || {};
-  if (data.avatarType){ throw new Error("El avatar ya fue elegido y no se puede cambiar."); }
-  await updateDoc(ref, { avatarType: type, avatarValue: value });
-}
-
-// ===== Logout =====
 $("#logoutBtn")?.addEventListener("click", async ()=>{ try{ await logout(); }catch{} });
 </script>
 
