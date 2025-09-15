@@ -642,8 +642,7 @@ body::before {
 }
 .btn.ghost{
   background: transparent; color: var(--text-secondary);
-  margin-left: 5px;
-
+  margin-left: 8px;
 }
 .btn.full{ width: 100%; }
 
@@ -728,7 +727,7 @@ body::before {
   font-size: 37px;
   font-weight: 700;
   color: #fff;
-  margin-right: 8px;
+  /* margin-right: 8px; */
   background: linear-gradient(135deg, #667eea, #764ba2); /* fallback si son iniciales */
 }
 .avatar.initials {
@@ -769,3 +768,5 @@ body::before {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
 }
+
+.hidden { display: none !important; }
