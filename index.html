@@ -18,10 +18,210 @@
     <!-- Favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
-    <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>"> -->
 
     <title>🎓 Cuestionarios de Filosofía</title>
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Estilos adicionales para el formulario ampliado -->
+    <style>
+    /* Estilos para el formulario ampliado */
+    .form-section {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .form-section-title {
+      margin: 0 0 16px 0;
+      font-size: 16px;
+      color: #e6ecff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #32406a;
+      border-radius: 10px;
+      background: #0b1220;
+      color: #eaf0ff;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #6b7cff;
+      box-shadow: 0 0 0 2px rgba(107, 124, 255, 0.2);
+    }
+
+    .form-input.error {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .form-input.success {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .form-help {
+      color: #7b88a8;
+      font-size: 12px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    #edadDisplay {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(107, 124, 255, 0.1);
+      border: 1px solid rgba(107, 124, 255, 0.3);
+      border-radius: 10px;
+      font-weight: 600;
+      color: #9fb0ff;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #c7d2ff;
+    }
+
+    .checkbox-container input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkmark {
+      width: 20px;
+      height: 20px;
+      background: #0b1220;
+      border: 2px solid #32406a;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .checkbox-container input:checked + .checkmark {
+      background: #6b7cff;
+      border-color: #6b7cff;
+    }
+
+    .checkbox-container input:checked + .checkmark::after {
+      content: "✓";
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 20px;
+      color: #7b88a8;
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(107, 124, 255, 0.2);
+      border-top: 3px solid #6b7cff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-display {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 16px;
+      color: #fca5a5;
+      font-size: 13px;
+    }
+
+    .error-display ul {
+      margin: 8px 0 0 16px;
+      padding: 0;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Botón de acceso administrativo */
+    .admin-access {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .admin-btn {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border: 1px solid #475569;
+      color: #94a3b8;
+      padding: 12px;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-btn:hover {
+      background: linear-gradient(135deg, #334155, #475569);
+      color: #e2e8f0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .admin-btn::after {
+      content: "👨‍💼";
+      font-size: 20px;
+    }
+    </style>
 </head>
 
 <body>
@@ -38,12 +238,6 @@
     </div>
     <button id="logoutBtn" class="btn ghost">Salir</button>
     </div>
-
-    <!-- <div id="userPanel" class="user-panel" style="display:none">
-      <div class="avatar" id="userAvatar"></div>
-      <span class="hello">Hola, <strong id="userName"></strong></span>
-      <button id="logoutBtn" class="btn ghost">Salir</button>
-    </div> -->
 
     <!-- Botones cuando NO está logueado -->
     <div id="authButtons">
@@ -76,22 +270,117 @@
   </div>
 </div>
 
-<!-- MODAL: Registrarse -->
+<!-- MODAL: Registrarse AMPLIADO -->
 <div id="registerModal" class="modal" style="display:none">
   <div class="modal-content auth-modal">
     <div class="modal-header">
-      <h2>Registrarse</h2>
+      <h2>📚 Crear Cuenta de Estudiante</h2>
       <span class="close" data-close="#registerModal">&times;</span>
     </div>
     <div class="modal-body auth-body">
       <form id="regForm" class="auth-form">
-        <input id="regName" placeholder="Nombre (opcional)">
-        <input id="regClass" placeholder="Curso (ej: 4toA)" value="6to A">
-        <input id="regEmail" type="email" autocomplete="email" placeholder="Email" required>
-        <input id="regPass" type="password" autocomplete="new-password" placeholder="Contraseña" required>
-        <button class="btn success full">Crear cuenta</button>
+        
+        <!-- Datos Personales -->
+        <div class="form-section">
+          <h3 class="form-section-title">👤 Datos Personales</h3>
+          
+          <div class="form-row">
+            <input id="regNombres" 
+                   type="text" 
+                   placeholder="Nombres *" 
+                   required 
+                   autocomplete="given-name"
+                   class="form-input">
+            <input id="regApellidos" 
+                   type="text" 
+                   placeholder="Apellidos *" 
+                   required 
+                   autocomplete="family-name"
+                   class="form-input">
+          </div>
+
+          <div class="form-row">
+            <input id="regFechaNac" 
+                   type="date" 
+                   required 
+                   class="form-input"
+                   max="2012-12-31"
+                   min="1998-01-01">
+            <span class="form-help" id="edadDisplay">Edad: --</span>
+          </div>
+
+          <input id="regNickname" 
+                 type="text" 
+                 placeholder="Nombre de fantasía para el juego *" 
+                 required 
+                 maxlength="20"
+                 class="form-input"
+                 autocomplete="username">
+          <small class="form-help">Este será tu nombre en el juego. Solo letras, números y espacios.</small>
+        </div>
+
+        <!-- Datos Académicos -->
+        <div class="form-section">
+          <h3 class="form-section-title">🏫 Datos Académicos</h3>
+          
+          <select id="regCurso" required class="form-input">
+            <option value="">Selecciona tu curso</option>
+            <option value="6to A" selected>6to A</option>
+            <option value="6to B">6to B</option>
+            <option value="6to C">6to C</option>
+            <option value="5to A">5to A</option>
+            <option value="5to B">5to B</option>
+          </select>
+        </div>
+
+        <!-- Datos de Acceso -->
+        <div class="form-section">
+          <h3 class="form-section-title">🔐 Datos de Acceso</h3>
+          
+          <input id="regEmail" 
+                 type="email" 
+                 placeholder="Email del estudiante *" 
+                 required 
+                 autocomplete="email"
+                 class="form-input">
+          <small class="form-help">Usa un email que puedas recordar fácilmente</small>
+
+          <input id="regPass" 
+                 type="password" 
+                 placeholder="Contraseña *" 
+                 required 
+                 minlength="6"
+                 autocomplete="new-password"
+                 class="form-input">
+          <small class="form-help">Mínimo 6 caracteres</small>
+        </div>
+
+        <!-- Términos y Condiciones -->
+        <div class="form-section">
+          <label class="checkbox-container">
+            <input type="checkbox" id="regTerms" required>
+            <span class="checkmark"></span>
+            Acepto que mis datos serán utilizados únicamente con fines educativos
+          </label>
+        </div>
+
+        <!-- Botón de Registro -->
+        <button type="submit" class="btn success full" id="regSubmitBtn">
+          ✨ Crear Mi Cuenta
+        </button>
+        
+        <!-- Loading state -->
+        <div id="regLoading" class="loading-state" style="display:none">
+          <div class="loading-spinner"></div>
+          <p>Creando tu cuenta...</p>
+        </div>
+
+        <!-- Error display -->
+        <div id="regErrors" class="error-display" style="display:none"></div>
+        
       </form>
-      <p class="hint">¿Ya tenés cuenta?
+      
+      <p class="hint">¿Ya tienes cuenta?
         <a href="#" id="goToLogin">Ingresar</a>
       </p>
     </div>
@@ -112,12 +401,6 @@
   </div>
 </div>
 
-
-        <!-- <header class="main-header">
-            <h1>🎓 Filosofía</h1>
-            <p class="subtitle">Explora los grandes temas del pensamiento humano</p>
-        </header> -->
-
         <div class="stats-container" id="stats-container" style="display: none;">
             <div class="stat-card">
                 <span class="stat-number" id="total-completed">0</span>
@@ -134,7 +417,6 @@
         </div>
 
         <div class="search-container">
-            <!-- <div class="search-container" style="display: none;"> -->
             <input type="text" id="search-input" placeholder="🔍 Buscar temas..." class="search-input">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Todos</button>
@@ -142,9 +424,6 @@
                 <button class="filter-btn" data-filter="UNIDAD_II">Unidad II</button>
                 <button class="filter-btn" data-filter="UNIDAD_III">Unidad III</button>
                 <button class="filter-btn" data-filter="GAME">GAME</button>
-                <!-- <button class="filter-btn" data-filter="basico">Basico</button> -->
-                <!-- <button class="filter-btn" data-filter="intermedio">Intermedio</button> -->
-                <!-- <button class="filter-btn" data-filter="avanzado">Avanzado</button> -->
             </div>
         </div>
 
@@ -173,7 +452,6 @@
                 <h3>👤 Autor y derechos</h3>
                 <p><strong>Autor:</strong> Julio Alberto Lazarte —
                     <a href="mailto:julioalbertolazarte00@gmail.com">julioalbertolazarte00@gmail.com</a> ·
-                    <!-- <a href="https://github.com/JulioLaz" target="_blank" rel="noopener">GitHub</a> · -->
                     <a href="https://cv-lazarte-julio.web.app/" target="_blank" rel="noopener">Sitio</a>
                 </p>
                 <p>
@@ -209,188 +487,31 @@
         </div>
     </div>
 
+    <!-- Acceso administrativo (solo visible para admin) -->
+    <div id="adminAccess" class="admin-access" style="display:none">
+        <a href="admin/index.html" class="admin-btn" title="Panel Administrativo"></a>
+    </div>
+
     <footer id="app-footer" class="footer">
         <div class="footer-inner">
             <span>© <span data-year-range>2023–<span data-year></span></span> Julio Alberto Lazarte</span>
             <span class="sep">•</span>
             <span>App de Filosofía (web)</span>
-            <!-- <span class="sep">•</span> -->
-            <!-- <a href="https://github.com/JulioLaz/prueba_filo" target="_blank" rel="noopener">Código fuente</a> -->
         </div>
     </footer>
+    
     <script src="js/main.js"></script>
 
-<!-- login -->
- <!-- Panel usuario (se muestra si logged) -->
-<!-- <div id="userPanel" style="display:none">
-  👋 Hola, <strong id="userName"></strong>
-  <button id="logoutBtn" class="action-btn secondary">Salir</button>
-</div> -->
-
-<!-- Botón para abrir modal -->
-<!-- <button id="openAuth" class="action-btn">Ingresar / Registrarse</button> -->
-
-<!-- Modal simple -->
-<!-- <div id="authModal" style="display:none">
-  <div class="card">
-    <h3>Acceso</h3>
-    <form id="loginForm">
-      <input id="loginEmail" placeholder="Email" required>
-      <input id="loginPass" type="password" placeholder="Contraseña" required>
-      <button>Ingresar</button>
-    </form>
-    <hr/>
-    <h4>Crear cuenta</h4>
-    <form id="regForm">
-      <input id="regName" placeholder="Nombre (opcional)">
-      <input id="regClass" placeholder="Curso (ej: 4toA)" value="4toA">
-      <input id="regEmail" placeholder="Email" required>
-      <input id="regPass" type="password" placeholder="Contraseña" required>
-      <button>Registrarme</button>
-    </form>
-    <button id="closeAuth">Cerrar</button>
-  </div>
-</div> -->
-
-<!-- <script type="module">
-import {
-  login, register, logout,
-} from "/prueba_filo/firebase.js";
-import {
-  getAuth, GoogleAuthProvider, signInWithPopup,
-  setPersistence, browserLocalPersistence
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-
-const auth = getAuth();
-
-// Persistencia explícita (queda logueado tras recargar)
-await setPersistence(auth, browserLocalPersistence);
-
-// Helpers
-const $  = (s) => document.querySelector(s);
-const $$ = (s) => Array.from(document.querySelectorAll(s));
-const setBusy = (el, busy=true) => {
-  if (!el) return;
-  el.disabled = busy;
-  if (busy) el.dataset.busy = "1"; else delete el.dataset.busy;
-};
-const toast = (msg) => {
-  // reemplaza por tu UI; por ahora un alert limpio
-  console.warn(msg);
-  alert(msg);
-};
-
-// Mostrar/ocultar según login (se actualiza cuando firebase.js setea data-logged)
-const refreshAuthUI = () => {
-  const logged = document.documentElement.dataset.logged === "1";
-  $("#userPanel")?.style && ($("#userPanel").style.display = logged ? "block" : "none");
-  $("#openAuth")?.style && ($("#openAuth").style.display = logged ? "none" : "inline-block");
-};
-new MutationObserver(refreshAuthUI).observe(document.documentElement, { attributes:true, attributeFilter:["data-logged"] });
-refreshAuthUI();
-
-// Modal
-$("#openAuth")?.addEventListener("click", ()=> $("#authModal").style.display="block");
-$("#closeAuth")?.addEventListener("click", ()=> $("#authModal").style.display="none");
-document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") $("#authModal").style.display="none"; });
-$("#authModal")?.addEventListener("click", (e)=>{ if(e.target.id==="authModal") $("#authModal").style.display="none"; });
-
-// Login
-$("#loginForm")?.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  const btn = $("#loginForm button[type=submit]");
-  try {
-    setBusy(btn, true);
-    const email = $("#loginEmail").value.trim();
-    const pass  = $("#loginPass").value;
-    await login(email, pass);
-    $("#authModal").style.display="none";
-  } catch (err) {
-    toast(err?.message || "No se pudo iniciar sesión");
-  } finally {
-    setBusy(btn, false);
-  }
-});
-
-// Registro
-$("#regForm")?.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  const btn = $("#regForm button[type=submit]");
-  try {
-    setBusy(btn, true);
-    const name  = $("#regName").value.trim();
-    const clas  = $("#regClass").value.trim() || "4toA";
-    const email = $("#regEmail").value.trim();
-    const pass  = $("#regPass").value;
-    await register(email, pass, name, clas);
-    $("#authModal").style.display="none";
-  } catch (err) {
-    toast(err?.message || "No se pudo registrar");
-  } finally {
-    setBusy(btn, false);
-  }
-});
-
-// Google (opcional: agrega un botón con id="googleBtn" si lo querés usar)
-$("#googleBtn")?.addEventListener("click", async ()=>{
-  const btn = $("#googleBtn");
-  try {
-    setBusy(btn, true);
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    $("#authModal").style.display="none";
-  } catch (err) {
-    // Muchos errores de Google son por dominio no autorizado en Auth → Configuración → Dominios
-    toast(err?.message || "No se pudo ingresar con Google");
-  } finally {
-    setBusy(btn, false);
-  }
-});
-
-// Salir
-$("#logoutBtn")?.addEventListener("click", async ()=>{
-  try { await logout(); } catch(e){ /* no-op */ }
-});
-</script> -->
-
-
-<!-- <script type="module">
-import { login, register, logout } from "/prueba_filo/firebase.js";
-
-// Mostrar/ocultar según login
-const $ = s => document.querySelector(s);
-const showByLoginState = () => {
-  const logged = document.documentElement.dataset.logged === "1";
-  $("#userPanel").style.display = logged ? "block" : "none";
-  $("#openAuth").style.display = logged ? "none" : "inline-block";
-};
-new MutationObserver(showByLoginState).observe(document.documentElement, { attributes:true, attributeFilter:["data-logged"] });
-showByLoginState();
-
-// Modal
-$("#openAuth").onclick = ()=> $("#authModal").style.display="block";
-$("#closeAuth").onclick = ()=> $("#authModal").style.display="none";
-
-// Login
-$("#loginForm").addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  await login($("#loginEmail").value, $("#loginPass").value);
-  $("#authModal").style.display="none";
-});
-
-// Registro
-$("#regForm").addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  await register($("#regEmail").value, $("#regPass").value, $("#regName").value, $("#regClass").value);
-  $("#authModal").style.display="none";
-});
-
-// Salir
-$("#logoutBtn").onclick = ()=> logout();
-</script> -->
-
 <script type="module">
-import { login, register, logout, db } from "/prueba_filo/firebase.js";
+import { 
+  login, 
+  logout, 
+  registerStudent, 
+  lockAvatar, 
+  isCurrentUserAdmin,
+  migrateLocalProgressToFirebase,
+  db 
+} from "/prueba_filo/firebase.js";
 import {
   getAuth, setPersistence, browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
@@ -398,126 +519,341 @@ import {
   doc, getDoc, updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+console.log("🚀 Inicializando aplicación con Firebase ampliado...");
+
 const auth = getAuth();
 await setPersistence(auth, browserLocalPersistence);
 
-// Helpers
-const $ = (s)=>document.querySelector(s);
-// const show = (el)=> el;
-const show = (el)=> el && (el.style.display = "flex");
-const hide = (el)=> el && (el.style.display = "none");
-const toast = (m)=> alert(m);
+// ========================================
+// HELPERS Y UTILIDADES
+// ========================================
+const $ = (s) => document.querySelector(s);
+const show = (el) => el && (el.style.display = "flex");
+const hide = (el) => el && (el.style.display = "none");
+const toast = (m) => alert(m);
 
-// ==== Toggle UI por sesión (se actualiza cuando firebase.js setea data-logged)
-const refreshAuthUI = ()=>{
+function calculateAge(birthDate) {
+  const today = new Date();
+  const birth = new Date(birthDate);
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  
+  return age;
+}
+
+function validateNickname(nickname) {
+  if (nickname.length < 3) return "Mínimo 3 caracteres";
+  if (nickname.length > 20) return "Máximo 20 caracteres";
+  if (!/^[a-zA-Z0-9_áéíóúñü ]+$/.test(nickname)) {
+    return "Solo letras, números, espacios y guiones bajos";
+  }
+  return null;
+}
+
+// ========================================
+// GESTIÓN DE UI DE AUTENTICACIÓN
+// ========================================
+const refreshAuthUI = async () => {
   const logged = document.documentElement.dataset.logged === "1";
+  
   if (logged) {
     show($("#userPanel"));
     hide($("#authButtons"));
+    
+    // Mostrar botón de admin si es administrador
+    const isAdmin = await isCurrentUserAdmin();
+    if (isAdmin) {
+      show($("#adminAccess"));
+    }
+    
+    // Migrar datos locales si es necesario (solo una vez por sesión)
+    if (!sessionStorage.getItem('migrated')) {
+      await migrateLocalProgressToFirebase();
+      sessionStorage.setItem('migrated', 'true');
+    }
+    
   } else {
     hide($("#userPanel"));
+    hide($("#adminAccess"));
     show($("#authButtons"));
   }
 };
-new MutationObserver(refreshAuthUI).observe(document.documentElement,{attributes:true,attributeFilter:["data-logged"]});
+
+new MutationObserver(refreshAuthUI).observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ["data-logged"]
+});
 refreshAuthUI();
 
-// ==== Abrir/Cerrar modales
-$("#openLogin")?.addEventListener("click", ()=> { show($("#loginModal")); hide($("#registerModal")); });
-$("#openRegister")?.addEventListener("click", ()=> { show($("#registerModal")); hide($("#loginModal")); });
+// ========================================
+// GESTIÓN DE MODALES
+// ========================================
+$("#openLogin")?.addEventListener("click", () => { 
+  show($("#loginModal")); 
+  hide($("#registerModal")); 
+});
 
-$("#goToRegister")?.addEventListener("click", (e)=>{ e.preventDefault(); hide($("#loginModal")); show($("#registerModal")); });
-$("#goToLogin")?.addEventListener("click", (e)=>{ e.preventDefault(); hide($("#registerModal")); show($("#loginModal")); });
+$("#openRegister")?.addEventListener("click", () => { 
+  show($("#registerModal")); 
+  hide($("#loginModal")); 
+});
 
-document.addEventListener("click",(e)=>{
+$("#goToRegister")?.addEventListener("click", (e) => { 
+  e.preventDefault(); 
+  hide($("#loginModal")); 
+  show($("#registerModal")); 
+});
+
+$("#goToLogin")?.addEventListener("click", (e) => { 
+  e.preventDefault(); 
+  hide($("#registerModal")); 
+  show($("#loginModal")); 
+});
+
+document.addEventListener("click", (e) => {
   const t = e.target;
   if (t.matches(".close") && t.dataset.close) hide($(t.dataset.close));
   if (t.classList.contains("modal") && !t.querySelector(":scope .modal-content:hover")) hide(t);
 });
-document.addEventListener("keydown",(e)=>{ if(e.key==="Escape"){ hide($("#loginModal")); hide($("#registerModal")); hide($("#avatarModal")); }});
 
-// ==== Login
-$("#loginForm")?.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  try{
-    const email = $("#loginEmail").value.trim();
-    const pass  = $("#loginPass").value;
-    await login(email, pass);
-    hide($("#loginModal"));
-  }catch(err){ toast(err?.message || "No se pudo iniciar sesión"); }
+document.addEventListener("keydown", (e) => { 
+  if (e.key === "Escape") { 
+    hide($("#loginModal")); 
+    hide($("#registerModal")); 
+    hide($("#avatarModal")); 
+  }
 });
 
-// ==== Registro + Avatar (elección única)
-$("#regForm")?.addEventListener("submit", async (e)=>{
+// ========================================
+// LOGIN
+// ========================================
+$("#loginForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  try{
-    const name  = $("#regName").value.trim();
-    const clas  = $("#regClass").value.trim() || "4toA";
+  try {
+    const email = $("#loginEmail").value.trim();
+    const pass = $("#loginPass").value;
+    await login(email, pass);
+    hide($("#loginModal"));
+    console.log("✅ Login exitoso");
+  } catch (err) { 
+    console.error("Error en login:", err);
+    toast(err?.message || "No se pudo iniciar sesión"); 
+  }
+});
+
+// ========================================
+// REGISTRO AMPLIADO
+// ========================================
+const regForm = $("#regForm");
+const fechaNacInput = $("#regFechaNac");
+const edadDisplay = $("#edadDisplay");
+const nicknameInput = $("#regNickname");
+const submitBtn = $("#regSubmitBtn");
+const loadingState = $("#regLoading");
+const errorDisplay = $("#regErrors");
+
+function showError(message) {
+  errorDisplay.innerHTML = typeof message === 'string' 
+    ? `<strong>Error:</strong> ${message}`
+    : `<strong>Errores encontrados:</strong><ul>${message.map(err => `<li>${err}</li>`).join('')}</ul>`;
+  errorDisplay.style.display = 'block';
+}
+
+function hideError() {
+  errorDisplay.style.display = 'none';
+}
+
+function setLoading(loading) {
+  if (loading) {
+    submitBtn.style.display = 'none';
+    loadingState.style.display = 'block';
+    regForm.querySelectorAll('input, select').forEach(el => el.disabled = true);
+  } else {
+    submitBtn.style.display = 'block';
+    loadingState.style.display = 'none';
+    regForm.querySelectorAll('input, select').forEach(el => el.disabled = false);
+  }
+}
+
+// Validación en tiempo real - Edad
+fechaNacInput?.addEventListener('change', (e) => {
+  if (e.target.value) {
+    const edad = calculateAge(e.target.value);
+    edadDisplay.textContent = `Edad: ${edad} años`;
+    
+    if (edad < 12 || edad > 25) {
+      edadDisplay.style.color = '#ef4444';
+      e.target.classList.add('error');
+    } else {
+      edadDisplay.style.color = '#10b981';
+      e.target.classList.remove('error');
+      e.target.classList.add('success');
+    }
+  } else {
+    edadDisplay.textContent = 'Edad: --';
+    e.target.classList.remove('error', 'success');
+  }
+});
+
+// Validación en tiempo real - Nickname
+nicknameInput?.addEventListener('input', (e) => {
+  const error = validateNickname(e.target.value);
+  const helpText = e.target.nextElementSibling;
+  
+  if (error) {
+    e.target.classList.add('error');
+    e.target.classList.remove('success');
+    helpText.textContent = error;
+    helpText.style.color = '#ef4444';
+  } else {
+    e.target.classList.remove('error');
+    e.target.classList.add('success');
+    helpText.textContent = 'Este será tu nombre en el juego. Solo letras, números y espacios.';
+    helpText.style.color = '#7b88a8';
+  }
+});
+
+// Limpiar errores cuando el usuario empiece a escribir
+regForm?.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    if (errorDisplay && errorDisplay.style.display !== 'none') {
+      hideError();
+    }
+  });
+});
+
+// Submit del formulario de registro
+regForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  hideError();
+  setLoading(true);
+
+  try {
+    // Recopilar datos del formulario
+    const formData = {
+      nombres: $("#regNombres").value.trim(),
+      apellidos: $("#regApellidos").value.trim(),
+      fechaNacimiento: $("#regFechaNac").value,
+      nickname: $("#regNickname").value.trim(),
+      curso: $("#regCurso").value
+    };
+
     const email = $("#regEmail").value.trim();
-    const pass  = $("#regPass").value;
+    const password = $("#regPass").value;
 
-    const user = await register(email, pass, name, clas);
+    console.log("📝 Intentando registrar estudiante:", { email, ...formData });
 
-    // Si el usuario ya tuviera avatar definido (por algún motivo), no abrir modal
-    const uref = doc(db, "users", user.uid);
-    const snap = await getDoc(uref);
-    const hasAvatar = snap.exists() && (snap.data().avatarType === "emoji" || snap.data().avatarType === "initials");
+    // Registrar estudiante con la nueva función
+    const user = await registerStudent(email, password, formData);
+
+    console.log("✅ Estudiante registrado exitosamente:", user.uid);
 
     hide($("#registerModal"));
+
+    // Verificar si ya tiene avatar
+    const uref = doc(db, "usuarios", user.uid);
+    const snap = await getDoc(uref);
+    const hasAvatar = snap.exists() && snap.data().avatarType;
+
     if (!hasAvatar) {
-      // Abrir selector de avatar (única vez)
+      // Abrir selector de avatar
       buildEmojiGrid();
       show($("#avatarModal"));
     }
-  }catch(err){ toast(err?.message || "No se pudo registrar"); }
+    
+  } catch (error) {
+    console.error("Error en registro:", error);
+    
+    if (error.message.includes("Datos inválidos:")) {
+      const errorList = error.message.replace("Datos inválidos:\n", "").split('\n');
+      showError(errorList);
+    } else {
+      // Errores de Firebase
+      let friendlyMessage = error.message;
+      if (error.code === 'auth/email-already-in-use') {
+        friendlyMessage = 'Este email ya está registrado. Intenta con otro email o inicia sesión.';
+      } else if (error.code === 'auth/weak-password') {
+        friendlyMessage = 'La contraseña es muy débil. Usa al menos 6 caracteres.';
+      } else if (error.code === 'auth/invalid-email') {
+        friendlyMessage = 'El formato del email no es válido.';
+      }
+      
+      showError(friendlyMessage);
+    }
+  } finally {
+    setLoading(false);
+  }
 });
 
-// ==== Avatar: iniciales o emoji (una sola vez)
-$("#chooseInitials")?.addEventListener("click", async ()=>{
-  try{
+// ========================================
+// GESTIÓN DE AVATARES
+// ========================================
+$("#chooseInitials")?.addEventListener("click", async () => {
+  try {
     const user = auth.currentUser;
     if (!user) throw new Error("No autenticado");
-    await lockAvatar(user.uid, "initials", null);
+    await lockAvatar("initials", null);
     hide($("#avatarModal"));
-  }catch(err){ toast(err?.message || "No se pudo guardar el avatar"); }
+  } catch (err) { 
+    toast(err?.message || "No se pudo guardar el avatar"); 
+  }
 });
 
-// Construye la grilla de emojis y agrega listeners
-function buildEmojiGrid(){
+function buildEmojiGrid() {
   const EMOJIS = "🐶 🐱 🦊 🐻 🐼 🐨 🐯 🦁 🐵 🐸 🐷 🐮 🐰 🦉 🐢 🐙 🦋 🐳 🐬 🦄 🐝 🐞 🦕 🦖 🦜 🦩 🦚 🦥 🦘".split(" ");
   const grid = $("#emojiGrid");
-  grid.innerHTML = EMOJIS.map(e=>`<button class="emoji-cell" data-emoji="${e}" aria-label="Elegir ${e}">${e}</button>`).join("");
-  grid.querySelectorAll(".emoji-cell").forEach(btn=>{
-    btn.addEventListener("click", async ()=>{
-      try{
+  if (!grid) return;
+  
+  grid.innerHTML = EMOJIS.map(e => 
+    `<button class="emoji-cell" data-emoji="${e}" aria-label="Elegir ${e}">${e}</button>`
+  ).join("");
+  
+  grid.querySelectorAll(".emoji-cell").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      try {
         const emoji = btn.dataset.emoji;
         const user = auth.currentUser;
         if (!user) throw new Error("No autenticado");
-        await lockAvatar(user.uid, "emoji", emoji);
+        await lockAvatar("emoji", emoji);
         hide($("#avatarModal"));
-      }catch(err){ toast(err?.message || "No se pudo guardar el avatar"); }
+      } catch (err) { 
+        toast(err?.message || "No se pudo guardar el avatar"); 
+      }
     });
   });
 }
 
-// Escribe avatar una sola vez: si ya existe avatarType en el doc, no lo cambia
-async function lockAvatar(uid, type, value){
-  const ref = doc(db, "users", uid);
-  const snap = await getDoc(ref);
-  if (!snap.exists()){
-    // Si por timing aún no existe, evitamos sobrescribir luego
-    await updateDoc(ref, { avatarType: type, avatarValue: value });
-    return;
+// ========================================
+// LOGOUT
+// ========================================
+$("#logoutBtn")?.addEventListener("click", async () => { 
+  try { 
+    await logout();
+    console.log("✅ Logout exitoso");
+  } catch(e) { 
+    console.error("Error en logout:", e);
   }
-  const data = snap.data() || {};
-  if (data.avatarType){ throw new Error("El avatar ya fue elegido y no se puede cambiar."); }
-  await updateDoc(ref, { avatarType: type, avatarValue: value });
-}
+});
 
-// ==== Logout
-$("#logoutBtn")?.addEventListener("click", async ()=>{ try{ await logout(); }catch{} });
+// ========================================
+// INICIALIZACIÓN
+// ========================================
+console.log("✨ Sistema de autenticación ampliado inicializado correctamente");
+
+// Año automático en el footer
+(function () {
+  const y = new Date().getFullYear();
+  document.querySelectorAll('[data-year]').forEach(el => el.textContent = y);
+  document.querySelectorAll('[data-year-range]').forEach(el => {
+    const since = (el.getAttribute('data-since') || '2023').trim();
+    el.innerHTML = `${since}–<span data-year>${y}</span>`;
+  });
+})();
 </script>
-
 
 </body>
 
