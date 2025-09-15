@@ -330,6 +330,7 @@
             <option value="6to C">6to C</option>
             <option value="5to A">5to A</option>
             <option value="5to B">5to B</option>
+            <option value="Docente">Docente/Profesor</option>
           </select>
         </div>
 
@@ -699,7 +700,27 @@ fechaNacInput?.addEventListener('change', (e) => {
   }
 });
 
-// Validación en tiempo real - Nickname
+// Validación en tiempo real - Email (detectar admin automáticamente)
+document.getElementById('regEmail')?.addEventListener('input', (e) => {
+  const email = e.target.value.trim().toLowerCase();
+  const cursoSelect = document.getElementById('regCurso');
+  const nicknameInput = document.getElementById('regNickname');
+  
+  // Si es el email del admin, ajustar automáticamente
+  if (email === 'julioalbertolazarte00@gmail.com') {
+    // Cambiar a curso "Docente" automáticamente
+    cursoSelect.value = 'Docente';
+    
+    // Sugerir nickname de profesor si está vacío
+    if (!nicknameInput.value) {
+      nicknameInput.value = 'Profesor Julio';
+      nicknameInput.dispatchEvent(new Event('input')); // Trigger validación
+    }
+    
+    // Mostrar mensaje informativo
+    console.log('🎓 Modo admin detectado automáticamente');
+  }
+});
 nicknameInput?.addEventListener('input', (e) => {
   const error = validateNickname(e.target.value);
   const helpText = e.target.nextElementSibling;
