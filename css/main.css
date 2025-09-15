@@ -684,7 +684,7 @@ body::before {
 /* Responsive: una columna en móviles */
 @media (max-width: 680px){
   .auth-columns{ grid-template-columns: 1fr; }
-  .header-actions{ top: 10px; right: 10px; }
+  .header-actions{ top: 10px; right: 10px; width: 95%;}
 }
 
 
