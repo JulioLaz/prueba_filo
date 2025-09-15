@@ -614,6 +614,7 @@ body::before {
 /* ===== Header: acciones arriba a la derecha ===== */
 .main-header { position: relative; padding-right: 16px; }
 .header-actions{
+  width: 95%;
   position: absolute; top: 12px; right: 16px;
   display: flex; align-items: center; gap: 10px;
 }
@@ -753,8 +754,8 @@ body::before {
 
 /* Avatar */
 .user-info .avatar {
-  width: 36px;
-  height: 36px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   display: flex;
   align-items: center;
