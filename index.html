@@ -403,8 +403,8 @@ await setPersistence(auth, browserLocalPersistence);
 
 // Helpers
 const $ = (s)=>document.querySelector(s);
-const show = (el)=> el;
-// const show = (el)=> el && (el.style.display = "block");
+// const show = (el)=> el;
+const show = (el)=> el && (el.style.display = "flex");
 const hide = (el)=> el && (el.style.display = "none");
 const toast = (m)=> alert(m);
 
