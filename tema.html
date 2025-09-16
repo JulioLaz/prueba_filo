@@ -2397,7 +2397,7 @@ async function saveCompletedActivity(activityType, data) {
   const user = auth.currentUser;
   if (!user || !tema) return;
 
-  const isCompleted = data.percentage >= 100 || data.completed;
+  const isCompleted = data.percentage >= 80 || data.completed;
   
   if (!isCompleted) {
     console.log(`⏸️ ${activityType} no completada (${data.percentage}%), no se guarda`);
