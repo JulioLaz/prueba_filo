@@ -32,52 +32,27 @@
     /* Estilos mejorados para destacado gradual */
     .highlighted-concept {
       background: linear-gradient(120deg, #fef3c7 0%, #fcd34d 100%);
-      padding: 2px 4px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-weight: bold;
-      color: black;
+      padding: 2px 4px; border-radius: 4px; transition: all 0.3s ease; cursor: pointer; font-weight: bold; color: black;
     }
-
     .highlighted-concept:hover {
-      background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%);
-      transform: scale(1.05);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%); transform: scale(1.05); box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-
-    .hidden-concept {
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .hidden-concept:hover {
-      background: rgba(251, 191, 36, 0.2);
-      border-radius: 3px;
-    }
+    .hidden-concept { cursor: pointer; transition: background 0.3s ease; }
+    .hidden-concept:hover { background: rgba(251, 191, 36, 0.2); border-radius: 3px; }
 
     /* Efectos de celebración mejorados */
     .token.correct {
       background: linear-gradient(120deg, #dcfce7 0%, #bbf7d0 100%) !important;
-      color: #166534 !important;
-      font-weight: bold;
-      animation: correctPulse 0.6s ease-out;
+      color: #166534 !important; font-weight: bold; animation: correctPulse 0.6s ease-out;
     }
-
-    @keyframes correctPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); background: #10b981; color: white; }
-      100% { transform: scale(1); }
-    }
+    @keyframes correctPulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); background: #10b981; color: white; } 100% { transform: scale(1); } }
 
     /* Modal de lectura mejorado */
     .meaning-sheet {
       position:fixed; left:0; right:0; bottom:0; background:#969e35;
       border-top-left-radius:16px; border-top-right-radius:16px;
       box-shadow:0 -8px 32px rgba(0,0,0,.15); padding:14px 14px 18px; transform:translateY(100%);
-      transition: transform .25s ease; z-index:50;
-      max-height: 80vh;
-      overflow-y: auto;
+      transition: transform .25s ease; z-index:50; max-height: 80vh; overflow-y: auto;
     }
     .meaning-sheet.open { transform:translateY(0); margin:0 16px }
     .sheet-handle { width:36px; height:4px; background:#4e4508; border-radius:999px; margin:0 auto 10px; }
@@ -88,136 +63,61 @@
 
     /* Indicador de estado Firebase */
     .firebase-status {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      z-index: 1000;
-      opacity: 0.8;
-      transition: all 0.3s ease;
+      position: fixed; top: 10px; right: 10px; padding: 4px 8px; border-radius: 6px;
+      font-size: 0.8rem; font-weight: 600; z-index: 1000; opacity: 0.8; transition: all 0.3s ease;
     }
-    
-    .firebase-status.connected {
-      background: #10b981;
-      color: white;
-    }
-    
-    .firebase-status.disconnected {
-      background: #ef4444;
-      color: white;
-    }
-    
-    .firebase-status.saving {
-      background: #f59e0b;
-      color: white;
-      animation: pulse 1s infinite;
-    }
+    .firebase-status.connected { background: #10b981; color: white; }
+    .firebase-status.disconnected { background: #ef4444; color: white; }
+    .firebase-status.saving { background: #f59e0b; color: white; animation: pulse 1s infinite; }
+    .firebase-status:hover { opacity: 1; transform: scale(1.05); }
 
-    .firebase-status:hover {
-      opacity: 1;
-      transform: scale(1.05);
+    /* Indicador de carga */
+    .loading-indicator {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 9999; display: none; text-align: center;
     }
+    .loading-indicator.show { display: block; }
 
     /* Cooldown overlay mejorado */
-    .cooldown {
-      position:fixed; inset:0; background:rgba(0,0,0,.05);
-      display:none; z-index:40;
-    }
-    .cooldown.on { 
-      display:flex; 
-      align-items: center; 
-      justify-content: center;
-      background: rgba(0,0,0,0.3);
-    }
-
-    .cooldown-message {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: 600;
-      color: #374151;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
+    .cooldown { position:fixed; inset:0; background:rgba(0,0,0,.05); display:none; z-index:40; }
+    .cooldown.on { display:flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+    .cooldown-message { background: white; padding: 20px; border-radius: 12px; text-align: center; font-weight: 600; color: #374151; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
     /* Progreso visual mejorado */
-    .progress-line {
-      position: relative;
-      overflow: visible;
-    }
-
-    .progress-fill {
-      position: relative;
-      background: linear-gradient(90deg, #10b981, #059669);
-      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-    }
-
+    .progress-line { position: relative; overflow: visible; }
+    .progress-fill { position: relative; background: linear-gradient(90deg, #10b981, #059669); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3); }
     .progress-fill::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2s infinite;
+      content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 2s infinite;
     }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
     /* Responsive mejorado */
     @media (max-width: 640px) {
-      .hunt-header {
-        padding: 8px 12px;
-      }
-      
-      .meta {
-        justify-content: center;
-        gap: 6px;
-      }
-      
-      .chip {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-      }
-      
-      .hunt-container {
-        padding: 12px;
-      }
-      
-      .meaning-sheet {
-        margin: 0 8px;
-      }
-      
-      .meaning-sheet.open {
-        margin: 0 8px;
-      }
-      
-      .firebase-status {
-        top: 5px;
-        right: 5px;
-        font-size: 0.7rem;
-        padding: 3px 6px;
-      }
+      .hunt-header { padding: 8px 12px; }
+      .meta { justify-content: center; gap: 6px; }
+      .chip { padding: 4px 8px; font-size: 0.8rem; }
+      .hunt-container { padding: 12px; }
+      .meaning-sheet { margin: 0 8px; }
+      .meaning-sheet.open { margin: 0 8px; }
+      .firebase-status { top: 5px; right: 5px; font-size: 0.7rem; padding: 3px 6px; }
     }
   </style>
 </head>
 <body>
   <!-- Indicador de estado Firebase -->
-  <div class="firebase-status disconnected" id="firebase-status">
-    🔥 Desconectado
+  <div class="firebase-status disconnected" id="firebase-status">🔥 Cargando...</div>
+
+  <!-- Indicador de carga -->
+  <div class="loading-indicator" id="loading-indicator">
+    <div>📊 Cargando configuración...</div>
+    <div style="margin-top:8px;font-size:0.9rem;opacity:0.7;">Por favor espera</div>
   </div>
 
   <header class="quiz-header">
     <div class="quiz-nav">
       <button id="back-btn" class="nav-btn">Volver</button>
-
       <div class="theme-info">
         <span class="theme-icon">🔎</span>
         <span class="theme-title">Caza de conceptos</span>
@@ -235,16 +135,8 @@
       <div class="chip"><span class="icon">📖</span><strong id="reading-mode">Lectura Activa</strong></div>
     </div>
     <div class="lives" aria-label="Vidas">
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
-      <span class="life alive">❤️</span>
+      <span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span>
+      <span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span><span class="life alive">❤️</span>
     </div>
   </div>
   <div class="progress-line">
@@ -252,7 +144,7 @@
   </div>
 
   <main class="hunt-container">
-    <div id="paragraph" class="hunt-paragraph" aria-live="polite"></div>
+    <div id="paragraph" class="hunt-paragraph" aria-live="polite">Cargando contenido...</div>
     <div class="mini" id="hint-slot"></div>
     <div class="hunt-controls">
       <button id="prev-btn" class="secondary-btn">⬅ Anterior</button>
@@ -283,7 +175,7 @@
   </div>
 
   <!-- ====================================== -->
-  <!-- 🔥 SCRIPTS FIREBASE (ORDEN IMPORTANTE) -->
+  <!-- 🔥 SCRIPTS FIREBASE (ORDEN CORREGIDO) -->
   <!-- ====================================== -->
 
   <!-- 1. Configuración del tema -->
@@ -300,7 +192,7 @@
       window.location.href = `tema.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
     });
 
-    // Inicializar indicador de dificultad
+    // Indicador de dificultad
     function updateDifficultyIndicator(level) {
       const container = document.getElementById('difficulty-dots');
       const totalLevels = 8;
@@ -318,7 +210,6 @@
       }
       container.innerHTML = html;
     }
-
     window.updateDifficultyIndicator = updateDifficultyIndicator;
 
     // Firebase Status Indicator
@@ -344,38 +235,91 @@
           break;
       }
     }
-
     window.updateFirebaseStatus = updateFirebaseStatus;
+
+    // Loading indicator
+    function showLoadingIndicator(show, message = 'Cargando...') {
+      const indicator = document.getElementById('loading-indicator');
+      if (indicator) {
+        indicator.classList.toggle('show', show);
+        if (show && message) {
+          indicator.querySelector('div').textContent = message;
+        }
+      }
+    }
+    window.showLoadingIndicator = showLoadingIndicator;
   </script>
 
-  <!-- 2. Cargar configuración del tema -->
+  <!-- 2. Cargar configuración del tema (CORREGIDO) -->
   <script>
     console.log('🔧 Cargando configuración del tema...');
+    
     (function() {
       const params = new URLSearchParams(location.search);
       const tema = params.get('tema') || params.get('theme') || 'aristoteles';
       console.log('🎯 Tema detectado:', tema);
       
-      // Cargar configuración
-      const script = document.createElement('script');
-      script.src = `themes/${tema}/conceptos.js`;
-      script.onload = () => {
-        console.log('✅ Configuración cargada desde themes/' + tema + '/conceptos.js');
-        if (window.CONCEPT_HUNT_CONFIG) {
-          console.log('📊 Conceptos totales:', window.CONCEPT_HUNT_CONFIG.levels.reduce((acc, lv) => acc + (lv.concepts?.length || 0), 0));
+      showLoadingIndicator(true, 'Cargando configuración del tema...');
+      
+      // CORREGIDO: Buscar primero conceptos.js, luego fallbacks
+      const rutasConfiguracion = [
+        `themes/${tema}/conceptos.js`,           // PRIMERA OPCIÓN - tu archivo actual
+        `js/conceptos.js`,                       // Fallback 1
+        `js/caza_conceptos_${tema}.js`,         // Fallback 2  
+        `themes/${tema}/conceptos_enhanced.js`   // Fallback 3
+      ];
+      
+      let rutaIndex = 0;
+      
+      function cargarSiguienteRuta() {
+        if (rutaIndex >= rutasConfiguracion.length) {
+          console.error('❌ No se pudo cargar configuración desde ninguna ruta');
+          showLoadingIndicator(false);
+          alert('Error: No se pudo cargar la configuración del tema. Verifica que existe themes/aristoteles/conceptos.js');
+          return;
         }
-      };
-      script.onerror = () => {
-        console.warn('⚠️ Fallback a configuración estándar');
-        const fallbackScript = document.createElement('script');
-        fallbackScript.src = `js/conceptos.js`;
-        fallbackScript.onload = () => console.log('✅ Configuración cargada desde fallback');
-        fallbackScript.onerror = () => {
-          console.error('❌ No se pudo cargar configuración');
+        
+        const ruta = rutasConfiguracion[rutaIndex];
+        console.log(`🔄 Intentando cargar desde: ${ruta}`);
+        
+        const script = document.createElement('script');
+        script.src = ruta;
+        
+        script.onload = () => {
+          console.log(`✅ Configuración cargada desde: ${ruta}`);
+          
+          if (window.CONCEPT_HUNT_CONFIG) {
+            const totalConceptos = window.CONCEPT_HUNT_CONFIG.levels?.reduce(
+              (acc, lv) => acc + (lv.concepts?.length || 0), 0
+            ) || 0;
+            
+            console.log(`📊 Configuración validada: ${totalConceptos} conceptos totales`);
+            console.log(`👤 Autor: ${window.CONCEPT_HUNT_CONFIG.author || 'No especificado'}`);
+            
+            showLoadingIndicator(false);
+            
+            // Disparar evento de configuración cargada
+            window.dispatchEvent(new CustomEvent('config-loaded', { 
+              detail: { tema, totalConceptos, ruta } 
+            }));
+          } else {
+            console.warn(`⚠️ Archivo cargado pero CONCEPT_HUNT_CONFIG no definida en: ${ruta}`);
+            rutaIndex++;
+            cargarSiguienteRuta();
+          }
         };
-        document.head.appendChild(fallbackScript);
-      };
-      document.head.appendChild(script);
+        
+        script.onerror = () => {
+          console.warn(`❌ No se pudo cargar: ${ruta}`);
+          rutaIndex++;
+          cargarSiguienteRuta();
+        };
+        
+        document.head.appendChild(script);
+      }
+      
+      // Iniciar carga
+      cargarSiguienteRuta();
     })();
   </script>
 
@@ -385,108 +329,139 @@
   <!-- 4. Wrapper ReadAloud para modales -->
   <script src="js/readaloud-modal-wrapper.js"></script>
   
-  <!-- 5. 🔥 SISTEMA DE PUNTUACIÓN FIREBASE (NUEVO) -->
+  <!-- 5. 🔥 SISTEMA DE PUNTUACIÓN FIREBASE -->
   <script type="module" src="js/caza-conceptos-score.js"></script>
   
-  <!-- 6. Motor integrado con Firebase (NUEVO) -->
+  <!-- 6. Motor integrado con Firebase (MEJORADO) -->
   <script>
     // Cargar motor DESPUÉS de que se carguen las dependencias
     (function() {
-      let dependenciesLoaded = 0;
-      const totalDependencies = 3; // ReadAloud + Modal + Firebase Score
+      let dependenciesLoaded = {
+        readAloud: false,
+        modal: false,
+        firebase: false,
+        config: false
+      };
       
-      function checkDependencies() {
-        dependenciesLoaded++;
-        console.log(`📊 Dependencias cargadas: ${dependenciesLoaded}/${totalDependencies}`);
+      function checkAllDependencies() {
+        const allLoaded = Object.values(dependenciesLoaded).every(loaded => loaded);
+        const configExists = window.CONCEPT_HUNT_CONFIG;
         
-        if (dependenciesLoaded >= totalDependencies && window.CONCEPT_HUNT_CONFIG) {
-          console.log('🚀 Iniciando motor Firebase...');
-          
-          // Actualizar indicador de Firebase
-          if (typeof window.saveCazaProgress === 'function') {
-            window.updateFirebaseStatus('connected');
-          }
-          
-          const engineScript = document.createElement('script');
-          engineScript.src = 'js/caza-conceptos-engine-firebase.js';
-          engineScript.onload = () => {
-            console.log('✅ Motor Firebase iniciado correctamente');
-            
-            // Configurar diagnóstico automático
-            setTimeout(() => {
-              if (window.checkCazaFirebaseStatus) {
-                console.log('🔍 Ejecutando diagnóstico automático...');
-                window.checkCazaFirebaseStatus();
-              }
-            }, 2000);
-          };
-          engineScript.onerror = () => {
-            console.warn('⚠️ Error cargando motor Firebase, usando fallback');
-            window.updateFirebaseStatus('disconnected');
-            
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'js/caza_conceptos_engine_enhanced.js';
-            document.head.appendChild(fallbackScript);
-          };
-          document.head.appendChild(engineScript);
+        console.log('📊 Estado dependencias:', dependenciesLoaded);
+        console.log('📊 Config existe:', !!configExists);
+        
+        if (allLoaded && configExists) {
+          console.log('🚀 Todas las dependencias cargadas, iniciando motor Firebase...');
+          iniciarMotorFirebase();
         }
+      }
+      
+      function iniciarMotorFirebase() {
+        showLoadingIndicator(true, 'Iniciando motor Firebase...');
+        
+        // Actualizar indicador de Firebase
+        if (typeof window.saveCazaProgress === 'function') {
+          updateFirebaseStatus('connected');
+        } else {
+          updateFirebaseStatus('disconnected');
+        }
+        
+        const engineScript = document.createElement('script');
+        engineScript.src = 'js/caza-conceptos-engine-firebase.js';
+        
+        engineScript.onload = () => {
+          console.log('✅ Motor Firebase iniciado correctamente');
+          showLoadingIndicator(false);
+          
+          // Diagnóstico automático
+          setTimeout(() => {
+            if (window.checkCazaFirebaseStatus) {
+              console.log('🔍 Ejecutando diagnóstico automático...');
+              window.checkCazaFirebaseStatus();
+            }
+          }, 2000);
+        };
+        
+        engineScript.onerror = () => {
+          console.warn('⚠️ Error cargando motor Firebase, usando fallback');
+          updateFirebaseStatus('disconnected');
+          showLoadingIndicator(false);
+          
+          // Fallback a motor estándar
+          const fallbackScript = document.createElement('script');
+          fallbackScript.src = 'js/caza_conceptos_engine_enhanced.js';
+          fallbackScript.onload = () => console.log('✅ Motor estándar cargado como fallback');
+          fallbackScript.onerror = () => {
+            const lastScript = document.createElement('script');
+            lastScript.src = 'js/caza_conceptos_engine.js';
+            lastScript.onload = () => console.log('✅ Motor básico cargado como último fallback');
+            document.head.appendChild(lastScript);
+          };
+          document.head.appendChild(fallbackScript);
+        };
+        
+        document.head.appendChild(engineScript);
       }
       
       // Verificar ReadAloud
       if (window.ReadAloudSystemModular) {
-        checkDependencies();
+        dependenciesLoaded.readAloud = true;
       } else {
         const readAloudCheck = setInterval(() => {
           if (window.ReadAloudSystemModular) {
             clearInterval(readAloudCheck);
-            checkDependencies();
+            dependenciesLoaded.readAloud = true;
+            checkAllDependencies();
           }
         }, 100);
+        
+        setTimeout(() => clearInterval(readAloudCheck), 10000);
       }
       
       // Verificar Modal wrapper
       if (window.ReadAloudModalSystem) {
-        checkDependencies();
+        dependenciesLoaded.modal = true;
       } else {
         const modalCheck = setInterval(() => {
           if (window.ReadAloudModalSystem) {
             clearInterval(modalCheck);
-            checkDependencies();
+            dependenciesLoaded.modal = true;
+            checkAllDependencies();
           }
         }, 100);
+        
+        setTimeout(() => clearInterval(modalCheck), 10000);
       }
       
-      // Verificar Firebase Score (esperamos que se cargue como módulo)
+      // Verificar Firebase Score
       setTimeout(() => {
-        if (typeof window.saveCazaProgress === 'function') {
-          checkDependencies();
-        } else {
-          const firebaseCheck = setInterval(() => {
-            if (typeof window.saveCazaProgress === 'function') {
-              clearInterval(firebaseCheck);
-              checkDependencies();
-            }
-          }, 100);
-          
-          // Timeout de seguridad
-          setTimeout(() => {
+        const firebaseCheck = setInterval(() => {
+          if (typeof window.saveCazaProgress === 'function') {
             clearInterval(firebaseCheck);
-            console.warn('⚠️ Timeout esperando Firebase Score, continuando...');
-            checkDependencies();
-          }, 5000);
-        }
+            dependenciesLoaded.firebase = true;
+            checkAllDependencies();
+          }
+        }, 100);
+        
+        setTimeout(() => {
+          clearInterval(firebaseCheck);
+          console.warn('⚠️ Timeout esperando Firebase Score, continuando...');
+          dependenciesLoaded.firebase = true;
+          checkAllDependencies();
+        }, 8000);
       }, 500);
       
-      // Verificar configuración
-      if (window.CONCEPT_HUNT_CONFIG) {
-        // Ya está cargada, no hacer nada más
-      } else {
-        const configCheck = setInterval(() => {
-          if (window.CONCEPT_HUNT_CONFIG) {
-            clearInterval(configCheck);
-          }
-        }, 100);
-      }
+      // Escuchar evento de configuración cargada
+      window.addEventListener('config-loaded', (event) => {
+        console.log('📋 Configuración cargada:', event.detail);
+        dependenciesLoaded.config = true;
+        checkAllDependencies();
+      });
+      
+      // Verificación inicial de dependencias ya cargadas
+      setTimeout(() => {
+        checkAllDependencies();
+      }, 1000);
     })();
   </script>
 
@@ -502,6 +477,15 @@
       console.log(`  Firebase: ${typeof window.saveCazaProgress === 'function' ? '✅' : '❌'}`);
       console.log(`  Config: ${!!window.CONCEPT_HUNT_CONFIG ? '✅' : '❌'}`);
       console.log(`  Motor: ${typeof window.checkCazaFirebaseStatus === 'function' ? '✅' : '❌'}`);
+      
+      if (window.CONCEPT_HUNT_CONFIG) {
+        const totalConceptos = window.CONCEPT_HUNT_CONFIG.levels?.reduce(
+          (acc, lv) => acc + (lv.concepts?.length || 0), 0
+        ) || 0;
+        console.log(`📊 Total conceptos: ${totalConceptos}`);
+        console.log(`📚 Niveles: ${window.CONCEPT_HUNT_CONFIG.levels?.length || 0}`);
+        console.log(`👤 Autor: ${window.CONCEPT_HUNT_CONFIG.author || 'No especificado'}`);
+      }
       
       console.log('\n2️⃣ VERIFICANDO FIREBASE:');
       if (typeof window.checkCazaFirebaseIntegration === 'function') {
@@ -530,16 +514,16 @@
     if (location.search.includes('debug=true')) {
       setTimeout(() => {
         window.diagnosticoCazaCompleto();
-      }, 3000);
+      }, 5000);
     }
 
     // Listener para actualizaciones de Firebase
     window.addEventListener('caza-progress-updated', (event) => {
       console.log('📊 Evento de progreso detectado:', event.detail);
-      window.updateFirebaseStatus('saving');
+      updateFirebaseStatus('saving');
       
       setTimeout(() => {
-        window.updateFirebaseStatus('connected');
+        updateFirebaseStatus('connected');
       }, 2000);
     });
 
