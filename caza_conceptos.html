@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no" />
-  <title>🔎 Caza de Conceptos - Versión Mejorada</title>
+  <title>🔎 Caza de Conceptos - Versión Firebase</title>
   <link rel="stylesheet" href="css/quiz.css" />
   <style>
     /* Estilos existentes mantenidos */
@@ -29,7 +29,7 @@
     .shake { animation: shake .2s linear 2; }
     @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} 100%{transform:translateX(0)} }
 
-    /* Nuevos estilos para destacado gradual */
+    /* Estilos mejorados para destacado gradual */
     .highlighted-concept {
       background: linear-gradient(120deg, #fef3c7 0%, #fcd34d 100%);
       padding: 2px 4px;
@@ -86,44 +86,39 @@
     .sheet-actions { display:flex; justify-content:flex-end; margin-top:10px }
     .ghost-btn { background:transparent; border:1px solid #e5e7eb; padding:8px 12px; border-radius:10px }
 
-    /* Indicador de lectura requerida */
-    .reading-required-badge {
-      background: linear-gradient(135deg, #dc2626, #ef4444);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
-    }
-
-    /* Nivel de párrafo completado */
-    .level-completed {
-      border: 2px solid #10b981;
-      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .level-completed::after {
-      content: "✅ Completado";
-      position: absolute;
+    /* Indicador de estado Firebase */
+    .firebase-status {
+      position: fixed;
       top: 10px;
       right: 10px;
-      background: #10b981;
-      color: white;
       padding: 4px 8px;
-      border-radius: 12px;
+      border-radius: 6px;
       font-size: 0.8rem;
       font-weight: 600;
+      z-index: 1000;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+    
+    .firebase-status.connected {
+      background: #10b981;
+      color: white;
+    }
+    
+    .firebase-status.disconnected {
+      background: #ef4444;
+      color: white;
+    }
+    
+    .firebase-status.saving {
+      background: #f59e0b;
+      color: white;
+      animation: pulse 1s infinite;
+    }
+
+    .firebase-status:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     /* Cooldown overlay mejorado */
@@ -176,24 +171,6 @@
       100% { transform: translateX(100%); }
     }
 
-    /* Mejoras de accesibilidad */
-    .token[aria-describedby] {
-      outline: 2px solid #3b82f6;
-      outline-offset: 1px;
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
     /* Responsive mejorado */
     @media (max-width: 640px) {
       .hunt-header {
@@ -221,10 +198,22 @@
       .meaning-sheet.open {
         margin: 0 8px;
       }
+      
+      .firebase-status {
+        top: 5px;
+        right: 5px;
+        font-size: 0.7rem;
+        padding: 3px 6px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Indicador de estado Firebase -->
+  <div class="firebase-status disconnected" id="firebase-status">
+    🔥 Desconectado
+  </div>
+
   <header class="quiz-header">
     <div class="quiz-nav">
       <button id="back-btn" class="nav-btn">Volver</button>
@@ -232,7 +221,7 @@
       <div class="theme-info">
         <span class="theme-icon">🔎</span>
         <span class="theme-title">Caza de conceptos</span>
-        <!-- <span class="version-badge" style="background:#dc2626;color:white;padding:2px 6px;border-radius:8px;font-size:0.7rem;">MEJORADA</span> -->
+        <span class="version-badge" style="background:#10b981;color:white;padding:2px 6px;border-radius:8px;font-size:0.7rem;">FIREBASE</span>
       </div>
       <button id="mute-btn" class="nav-btn" aria-label="Silenciar efectos">🔊</button>
     </div>
@@ -278,11 +267,9 @@
   <!-- Modal de significado con lectura obligatoria -->
   <section id="meaning-sheet" class="meaning-sheet" role="dialog" aria-modal="true" aria-live="polite">
     <div class="sheet-handle"></div>
-    <!-- <div class="reading-required-badge">📖 Lectura Obligatoria</div> -->
     <div class="meaning-title" id="meaning-title">Concepto</div>
     <div class="meaning-body" id="meaning-body">Definición contextual…</div>
     <div class="sheet-actions">
-    <!-- <div class="sheet-actions" style="display: none;"> -->
       <button id="close-meaning" class="ghost-btn" disabled title="Completa la lectura para continuar">Cerrar</button>
     </div>
   </section>
@@ -295,9 +282,13 @@
     </div>
   </div>
 
-  <!-- Scripts de configuración del tema -->
+  <!-- ====================================== -->
+  <!-- 🔥 SCRIPTS FIREBASE (ORDEN IMPORTANTE) -->
+  <!-- ====================================== -->
+
+  <!-- 1. Configuración del tema -->
   <script>
-    console.log('🎯 Cargando Caza de Conceptos Mejorada...');
+    console.log('🎯 Cargando Caza de Conceptos con Firebase...');
     
     const q = new URLSearchParams(location.search);
     const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'aristoteles';
@@ -312,7 +303,7 @@
     // Inicializar indicador de dificultad
     function updateDifficultyIndicator(level) {
       const container = document.getElementById('difficulty-dots');
-      const totalLevels = 8; // Ajustar según la configuración
+      const totalLevels = 8;
       const currentLevel = level + 1;
       
       let html = '';
@@ -328,27 +319,48 @@
       container.innerHTML = html;
     }
 
-    // Exponer función para el engine
     window.updateDifficultyIndicator = updateDifficultyIndicator;
+
+    // Firebase Status Indicator
+    function updateFirebaseStatus(status) {
+      const indicator = document.getElementById('firebase-status');
+      if (!indicator) return;
+      
+      indicator.classList.remove('connected', 'disconnected', 'saving');
+      
+      switch (status) {
+        case 'connected':
+          indicator.classList.add('connected');
+          indicator.textContent = '🔥 Conectado';
+          break;
+        case 'saving':
+          indicator.classList.add('saving');
+          indicator.textContent = '🔥 Guardando...';
+          break;
+        case 'disconnected':
+        default:
+          indicator.classList.add('disconnected');
+          indicator.textContent = '🔥 Desconectado';
+          break;
+      }
+    }
+
+    window.updateFirebaseStatus = updateFirebaseStatus;
   </script>
 
-  <!-- Scripts necesarios para html2canvas (si se usa) -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
-  <!-- Cargar configuración del tema -->
+  <!-- 2. Cargar configuración del tema -->
   <script>
-    console.log('🔧 Cargando configuración mejorada...');
+    console.log('🔧 Cargando configuración del tema...');
     (function() {
       const params = new URLSearchParams(location.search);
       const tema = params.get('tema') || params.get('theme') || 'aristoteles';
       console.log('🎯 Tema detectado:', tema);
       
-      // Cargar configuración mejorada
+      // Cargar configuración
       const script = document.createElement('script');
-      script.src = `themes/${tema}/conceptos_enhanced.js`;
+      script.src = `themes/${tema}/conceptos.js`;
       script.onload = () => {
-        console.log('✅ Configuración mejorada cargada desde themes/' + tema + '/conceptos_enhanced.js');
-        // Verificar que la configuración se haya cargado
+        console.log('✅ Configuración cargada desde themes/' + tema + '/conceptos.js');
         if (window.CONCEPT_HUNT_CONFIG) {
           console.log('📊 Conceptos totales:', window.CONCEPT_HUNT_CONFIG.levels.reduce((acc, lv) => acc + (lv.concepts?.length || 0), 0));
         }
@@ -356,14 +368,10 @@
       script.onerror = () => {
         console.warn('⚠️ Fallback a configuración estándar');
         const fallbackScript = document.createElement('script');
-        fallbackScript.src = `js/conceptos_${tema}_enhanced.js`;
-        fallbackScript.onload = () => console.log('✅ Configuración mejorada cargada desde fallback');
+        fallbackScript.src = `js/conceptos.js`;
+        fallbackScript.onload = () => console.log('✅ Configuración cargada desde fallback');
         fallbackScript.onerror = () => {
-          console.error('❌ No se pudo cargar configuración mejorada');
-          // Último fallback a configuración original
-          const originalScript = document.createElement('script');
-          originalScript.src = `js/caza_conceptos_${tema}.js`;
-          document.head.appendChild(originalScript);
+          console.error('❌ No se pudo cargar configuración');
         };
         document.head.appendChild(fallbackScript);
       };
@@ -371,37 +379,60 @@
     })();
   </script>
 
-  <!-- Cargar sistema ReadAloud base (SIN MODIFICAR) -->
+  <!-- 3. Sistema ReadAloud base -->
   <script src="js/readaloud-system.js"></script>
   
-  <!-- Cargar wrapper de ReadAloud para modales -->
+  <!-- 4. Wrapper ReadAloud para modales -->
   <script src="js/readaloud-modal-wrapper.js"></script>
   
-  <!-- Cargar engine mejorado -->
+  <!-- 5. 🔥 SISTEMA DE PUNTUACIÓN FIREBASE (NUEVO) -->
+  <script type="module" src="js/caza-conceptos-score.js"></script>
+  
+  <!-- 6. Motor integrado con Firebase (NUEVO) -->
   <script>
-    // Cargar engine DESPUÉS de que se carguen las dependencias
+    // Cargar motor DESPUÉS de que se carguen las dependencias
     (function() {
       let dependenciesLoaded = 0;
-      const totalDependencies = 2; // ReadAloud + configuración
+      const totalDependencies = 3; // ReadAloud + Modal + Firebase Score
       
       function checkDependencies() {
         dependenciesLoaded++;
+        console.log(`📊 Dependencias cargadas: ${dependenciesLoaded}/${totalDependencies}`);
+        
         if (dependenciesLoaded >= totalDependencies && window.CONCEPT_HUNT_CONFIG) {
-          console.log('🚀 Iniciando engine mejorado...');
+          console.log('🚀 Iniciando motor Firebase...');
+          
+          // Actualizar indicador de Firebase
+          if (typeof window.saveCazaProgress === 'function') {
+            window.updateFirebaseStatus('connected');
+          }
+          
           const engineScript = document.createElement('script');
-          engineScript.src = 'js/caza_conceptos_engine_enhanced.js';
-          engineScript.onload = () => console.log('✅ Engine mejorado iniciado correctamente');
+          engineScript.src = 'js/caza-conceptos-engine-firebase.js';
+          engineScript.onload = () => {
+            console.log('✅ Motor Firebase iniciado correctamente');
+            
+            // Configurar diagnóstico automático
+            setTimeout(() => {
+              if (window.checkCazaFirebaseStatus) {
+                console.log('🔍 Ejecutando diagnóstico automático...');
+                window.checkCazaFirebaseStatus();
+              }
+            }, 2000);
+          };
           engineScript.onerror = () => {
-            console.warn('⚠️ Fallback a engine estándar');
+            console.warn('⚠️ Error cargando motor Firebase, usando fallback');
+            window.updateFirebaseStatus('disconnected');
+            
             const fallbackScript = document.createElement('script');
-            fallbackScript.src = 'js/caza_conceptos_engine.js';
+            fallbackScript.src = 'js/caza_conceptos_engine_enhanced.js';
             document.head.appendChild(fallbackScript);
           };
           document.head.appendChild(engineScript);
         }
       }
       
-      // Verificar cuando ReadAloud esté listo
+      // Verificar ReadAloud
       if (window.ReadAloudSystemModular) {
         checkDependencies();
       } else {
@@ -413,18 +444,107 @@
         }, 100);
       }
       
-      // Verificar cuando la configuración esté lista
-      if (window.CONCEPT_HUNT_CONFIG) {
+      // Verificar Modal wrapper
+      if (window.ReadAloudModalSystem) {
         checkDependencies();
       } else {
-        const configCheck = setInterval(() => {
-          if (window.CONCEPT_HUNT_CONFIG) {
-            clearInterval(configCheck);
+        const modalCheck = setInterval(() => {
+          if (window.ReadAloudModalSystem) {
+            clearInterval(modalCheck);
             checkDependencies();
           }
         }, 100);
       }
+      
+      // Verificar Firebase Score (esperamos que se cargue como módulo)
+      setTimeout(() => {
+        if (typeof window.saveCazaProgress === 'function') {
+          checkDependencies();
+        } else {
+          const firebaseCheck = setInterval(() => {
+            if (typeof window.saveCazaProgress === 'function') {
+              clearInterval(firebaseCheck);
+              checkDependencies();
+            }
+          }, 100);
+          
+          // Timeout de seguridad
+          setTimeout(() => {
+            clearInterval(firebaseCheck);
+            console.warn('⚠️ Timeout esperando Firebase Score, continuando...');
+            checkDependencies();
+          }, 5000);
+        }
+      }, 500);
+      
+      // Verificar configuración
+      if (window.CONCEPT_HUNT_CONFIG) {
+        // Ya está cargada, no hacer nada más
+      } else {
+        const configCheck = setInterval(() => {
+          if (window.CONCEPT_HUNT_CONFIG) {
+            clearInterval(configCheck);
+          }
+        }, 100);
+      }
     })();
+  </script>
+
+  <!-- 7. Scripts de diagnóstico y debug -->
+  <script>
+    // Funciones de diagnóstico globales
+    window.diagnosticoCazaCompleto = () => {
+      console.log('\n🔧 === DIAGNÓSTICO COMPLETO CAZA DE CONCEPTOS ===\n');
+      
+      console.log('1️⃣ VERIFICANDO DEPENDENCIAS:');
+      console.log(`  ReadAloud: ${typeof window.ReadAloudSystemModular === 'function' ? '✅' : '❌'}`);
+      console.log(`  Modal: ${typeof window.ReadAloudModalSystem === 'function' ? '✅' : '❌'}`);
+      console.log(`  Firebase: ${typeof window.saveCazaProgress === 'function' ? '✅' : '❌'}`);
+      console.log(`  Config: ${!!window.CONCEPT_HUNT_CONFIG ? '✅' : '❌'}`);
+      console.log(`  Motor: ${typeof window.checkCazaFirebaseStatus === 'function' ? '✅' : '❌'}`);
+      
+      console.log('\n2️⃣ VERIFICANDO FIREBASE:');
+      if (typeof window.checkCazaFirebaseIntegration === 'function') {
+        window.checkCazaFirebaseIntegration();
+      } else {
+        console.log('  ❌ checkCazaFirebaseIntegration no disponible');
+      }
+      
+      console.log('\n3️⃣ VERIFICANDO MOTOR:');
+      if (typeof window.checkCazaFirebaseStatus === 'function') {
+        window.checkCazaFirebaseStatus();
+      } else {
+        console.log('  ❌ checkCazaFirebaseStatus no disponible');
+      }
+      
+      console.log('\n4️⃣ COMANDOS DISPONIBLES:');
+      console.log('  - diagnosticoCazaCompleto()');
+      console.log('  - checkCazaFirebaseIntegration()');
+      console.log('  - checkCazaFirebaseStatus()');
+      console.log('  - forceCazaSave()');
+      
+      console.log('\n✅ Diagnóstico completo finalizado');
+    };
+
+    // Auto-ejecutar diagnóstico si hay parámetro
+    if (location.search.includes('debug=true')) {
+      setTimeout(() => {
+        window.diagnosticoCazaCompleto();
+      }, 3000);
+    }
+
+    // Listener para actualizaciones de Firebase
+    window.addEventListener('caza-progress-updated', (event) => {
+      console.log('📊 Evento de progreso detectado:', event.detail);
+      window.updateFirebaseStatus('saving');
+      
+      setTimeout(() => {
+        window.updateFirebaseStatus('connected');
+      }, 2000);
+    });
+
+    console.log('🎮 Caza de conceptos con Firebase inicializada');
+    console.log('🔧 Ejecuta diagnosticoCazaCompleto() para verificar el sistema');
   </script>
 </body>
 </html>
