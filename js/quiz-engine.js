@@ -1036,19 +1036,24 @@ async function main() {
 // Iniciar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', main);
 
-// ========================================
-// 🔥 INTEGRACIÓN FIREBASE PARA QUIZ ENGINE
-// ========================================
-// Agregar este código al FINAL del quiz-engine.js
 
-console.log('🔥 Iniciando integración Firebase para Quiz...');
+// #########################################################################
+// integracion de resultados con el hub del tema
+// #########################################################################
+
+// ========================================
+// 🔥 INTEGRACIÓN FIREBASE PARA QUIZ ENGINE - VERSIÓN CORREGIDA
+// ========================================
+// REEMPLAZAR COMPLETAMENTE la sección de integración Firebase
+
+console.log('🔥 Iniciando integración Firebase para Quiz (v2 - sin recursión)...');
 
 // ====================================
 // FUNCIONES DE GUARDADO FIREBASE
 // ====================================
 
 /**
- * Guarda progreso del quiz en Firebase (función mejorada)
+ * Guarda progreso del quiz en Firebase
  * @param {number} currentQuestion - Pregunta actual (índice + 1)
  * @param {number} totalQuestions - Total de preguntas
  * @param {number} score - Puntaje actual
@@ -1084,47 +1089,44 @@ function getElapsedTimeInSeconds() {
 }
 
 // ====================================
-// OVERRIDE DE FUNCIONES EXISTENTES
+// EXTENSIÓN DE FUNCIONES (SIN OVERRIDE)
 // ====================================
 
-// 🔄 Reemplazar updateProgress() existente
-const originalUpdateProgress = window.updateProgress || updateProgress;
+// 🔄 Extender updateProgress sin reemplazarla
+const originalUpdateProgressCode = updateProgress.toString();
 
-function updateProgress() {
+// Hook en updateProgress para agregar Firebase
+const originalUpdateProgress = updateProgress;
+updateProgress = function() {
   // Ejecutar lógica original
-  if (originalUpdateProgress) {
-    originalUpdateProgress();
-  }
+  originalUpdateProgress.call(this);
 
-  // 🔥 NUEVO: Guardar progreso parcial en Firebase
+  // 🔥 AGREGAR: Guardar progreso parcial en Firebase
   if (currentTheme && currentTheme.questions) {
     const totalQuestions = currentTheme.questions.length;
     const currentQuestionForSave = Math.min(currentQuestionIndex + 1, totalQuestions);
     const timeSpent = getElapsedTimeInSeconds();
     
-    // Guardar progreso parcial solo cada 2 preguntas para no saturar
-    if (currentQuestionIndex % 2 === 0 || currentQuestionIndex === totalQuestions - 1) {
+    // Guardar progreso parcial cada 3 preguntas para no saturar Firebase
+    if (currentQuestionIndex % 3 === 0 || currentQuestionIndex === totalQuestions - 1) {
       setTimeout(() => {
         saveQuizProgressToFirebase(currentQuestionForSave, totalQuestions, score, timeSpent);
-      }, 100);
+      }, 200);
     }
   }
 
-  console.log(`📊 Progreso actualizado: ${currentQuestionIndex + 1}/${currentTheme?.questions?.length || 0} - Score: ${score}`);
-}
+  console.log(`📊 [Firebase] Progreso: ${currentQuestionIndex + 1}/${currentTheme?.questions?.length || 0} - Score: ${score}`);
+};
 
-// 🔄 Reemplazar saveProgress() existente
-const originalSaveProgress = window.saveProgress || saveProgress;
-
-function saveProgress(percentage, timeMs) {
-  console.log('💾 Guardando progreso final del quiz...');
+// 🔄 Extender saveProgress sin reemplazarla  
+const originalSaveProgress = saveProgress;
+saveProgress = function(percentage, timeMs) {
+  console.log('💾 [Firebase] Guardando progreso final del quiz...');
   
   // Ejecutar guardado original (localStorage)
-  if (originalSaveProgress) {
-    originalSaveProgress(percentage, timeMs);
-  }
+  originalSaveProgress.call(this, percentage, timeMs);
 
-  // 🔥 NUEVO: Guardar en Firebase
+  // 🔥 AGREGAR: Guardar en Firebase
   if (currentTheme && currentTheme.questions) {
     const totalQuestions = currentTheme.questions.length;
     const timeSpentSeconds = Math.round(timeMs / 1000);
@@ -1147,9 +1149,9 @@ function saveProgress(percentage, timeMs) {
             console.log('🔄 Forzando sincronización post-quiz...');
             window.forceSync();
           }
-        }, 2000);
+        }, 1500);
       }
-    }, 500);
+    }, 800);
   }
 
   // 🔥 Actualizar el hub con datos finales
@@ -1161,7 +1163,29 @@ function saveProgress(percentage, timeMs) {
     lastUpdated: new Date().toISOString(),
     savedToFirebase: true
   });
-}
+};
+
+// 🔄 Extender initializeQuiz sin reemplazarla
+const originalInitializeQuiz = initializeQuiz;
+initializeQuiz = function() {
+  console.log('🎯 [Firebase] Extendiendo inicialización del quiz...');
+  
+  // Ejecutar inicialización original
+  originalInitializeQuiz.call(this);
+  
+  // Verificar integración después de inicializar
+  setTimeout(() => {
+    checkFirebaseIntegration();
+    
+    // Guardar estado inicial
+    if (currentTheme) {
+      const timeSpent = getElapsedTimeInSeconds();
+      setTimeout(() => {
+        saveQuizProgressToFirebase(1, currentTheme.questions.length, 0, timeSpent);
+      }, 1000);
+    }
+  }, 1500);
+};
 
 // ====================================
 // FUNCIONES DE DIAGNÓSTICO
@@ -1219,35 +1243,6 @@ async function forceQuizSave() {
 }
 
 // ====================================
-// HOOK DE INICIALIZACIÓN
-// ====================================
-
-/**
- * Hook para cuando el quiz se inicializa
- */
-const originalInitializeQuiz = window.initializeQuiz || initializeQuiz;
-
-function initializeQuiz() {
-  console.log('🎯 Inicializando quiz con integración Firebase...');
-  
-  // Ejecutar inicialización original
-  if (originalInitializeQuiz) {
-    originalInitializeQuiz();
-  }
-  
-  // Verificar integración después de inicializar
-  setTimeout(() => {
-    checkFirebaseIntegration();
-    
-    // Guardar estado inicial
-    if (currentTheme) {
-      const timeSpent = getElapsedTimeInSeconds();
-      saveQuizProgressToFirebase(1, currentTheme.questions.length, 0, timeSpent);
-    }
-  }, 1000);
-}
-
-// ====================================
 // SOPORTE PARA DEPURACIÓN
 // ====================================
 
@@ -1257,7 +1252,7 @@ window.forceQuizSave = forceQuizSave;
 
 // Log de integración completada
 setTimeout(() => {
-  console.log('🔥 Integración Firebase del Quiz completada');
+  console.log('🔥 Integración Firebase del Quiz completada (v2)');
   console.log('🛠️  Funciones de debug disponibles:');
   console.log('   - checkFirebaseIntegration()');
   console.log('   - forceQuizSave()');
@@ -1266,9 +1261,9 @@ setTimeout(() => {
   if (typeof window.saveQuizProgress === 'function') {
     console.log('✅ Sistema Firebase detectado correctamente');
   } else {
-    console.warn('⚠️ Sistema Firebase no detectado - verificar carga de tema.html');
+    console.warn('⚠️ Sistema Firebase no detectado - Funciona sin Firebase');
   }
-}, 2000);
+}, 3000);
 
 // ====================================
 // MANEJO DE ERRORES MEJORADO
@@ -1282,4 +1277,4 @@ window.addEventListener('unhandledrejection', (event) => {
   }
 });
 
-console.log('🎮 Integración Firebase para Quiz Engine lista');
+console.log('🎮 Integración Firebase para Quiz Engine lista (sin recursión)');
