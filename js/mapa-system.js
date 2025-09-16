@@ -456,3 +456,225 @@
     }
 
 })();
+
+// ========================================
+// 🔥 INTEGRACIÓN FIREBASE PARA MAPA-SYSTEM.JS
+// ========================================
+// AGREGAR AL FINAL del archivo mapa-system.js
+
+// Extender la clase MapaSystemModular con capacidades Firebase
+(function() {
+    'use strict';
+
+    console.log('🔥 Iniciando integración Firebase para Mapa System...');
+
+    // Extensión de la clase original
+    const OriginalMapaSystemModular = window.MapaSystemModular;
+
+    class MapaSystemModularWithFirebase extends OriginalMapaSystemModular {
+        constructor() {
+            super();
+            this.firebaseEnabled = false;
+            this.checkFirebaseAvailability();
+        }
+
+        // Verificar si Firebase está disponible
+        checkFirebaseAvailability() {
+            // Buscar funciones Firebase en diferentes contextos
+            const contexts = [window, window.parent, window.top];
+            
+            for (const ctx of contexts) {
+                try {
+                    if (ctx.saveMapaProgress && typeof ctx.saveMapaProgress === 'function') {
+                        this.firebaseEnabled = true;
+                        this.firebaseContext = ctx;
+                        console.log('✅ [Mapa] Firebase disponible');
+                        return;
+                    }
+                } catch (e) {
+                    // Ignorar errores de acceso cross-origin
+                }
+            }
+
+            console.log('⚠️ [Mapa] Firebase no disponible, usando solo sessionStorage');
+        }
+
+        // Override de saveMapProgress con integración Firebase
+        saveMapProgress() {
+            const key = `tema.${this.config.tema}.mapa`;
+            
+            const state = {
+                nodesVisited: Array.from(this.visitedNodes),
+                total: this.totalNodes,
+                progress: this.visitedNodes.size / this.totalNodes,
+                completed: this.visitedNodes.size >= this.totalNodes,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('[Mapa] Guardando progreso:', state);
+
+            // Guardar en sessionStorage (siempre)
+            sessionStorage.setItem(key, JSON.stringify(state));
+
+            // Intentar guardar en Firebase si está disponible
+            if (this.firebaseEnabled) {
+                this.saveToFirebase(state);
+            } else {
+                // Fallback: intentar comunicación con tema.html
+                this.fallbackCommunication(state);
+            }
+        }
+
+        // Guardar en Firebase
+        async saveToFirebase(state) {
+            try {
+                const percentage = Math.round(state.progress * 100);
+                const timeSpent = this.calculateTimeSpent();
+
+                console.log(`💾 [Mapa] Guardando en Firebase: ${percentage}% - ${state.nodesVisited.length}/${state.total} nodos`);
+
+                await this.firebaseContext.saveMapaProgress(
+                    state.nodesVisited.length,
+                    state.total,
+                    timeSpent
+                );
+
+                console.log('✅ [Mapa] Guardado en Firebase exitosamente');
+
+                // Opcional: forzar sincronización
+                setTimeout(() => {
+                    if (this.firebaseContext.forceSync) {
+                        console.log('🔄 [Mapa] Forzando sincronización...');
+                        this.firebaseContext.forceSync();
+                    }
+                }, 1000);
+
+            } catch (error) {
+                console.error('❌ [Mapa] Error guardando en Firebase:', error);
+                // Continuar con funcionamiento normal sin Firebase
+            }
+        }
+
+        // Calcular tiempo aproximado gastado
+        calculateTimeSpent() {
+            if (!this.startTime) this.startTime = Date.now();
+            return Math.round((Date.now() - this.startTime) / 1000);
+        }
+
+        // Fallback: comunicación con tema.html
+        fallbackCommunication(state) {
+            try {
+                // PostMessage para iframe/popup
+                window.parent.postMessage({ 
+                    type: 'mapa-progress', 
+                    data: state,
+                    tema: this.config.tema 
+                }, '*');
+
+                // Custom event para misma ventana
+                window.dispatchEvent(new CustomEvent('mapa-progress-updated', {
+                    detail: { state, tema: this.config.tema }
+                }));
+
+                console.log('📡 [Mapa] Comunicación fallback enviada');
+            } catch (error) {
+                console.warn('⚠️ [Mapa] Error en comunicación fallback:', error);
+            }
+        }
+
+        // Override de initializeSystem para inicializar tiempo
+        initializeSystem() {
+            super.initializeSystem();
+            this.startTime = Date.now();
+            
+            // Verificar Firebase después de un momento
+            setTimeout(() => {
+                this.recheckFirebase();
+            }, 2000);
+        }
+
+        // Re-verificar Firebase (por si se carga tarde)
+        recheckFirebase() {
+            if (!this.firebaseEnabled) {
+                this.checkFirebaseAvailability();
+                if (this.firebaseEnabled) {
+                    console.log('🔄 [Mapa] Firebase detectado tardíamente');
+                    // Guardar estado actual si hay progreso
+                    if (this.visitedNodes.size > 0) {
+                        this.saveMapProgress();
+                    }
+                }
+            }
+        }
+
+        // Método público para verificar integración
+        checkFirebaseIntegration() {
+            console.log('🔍 === DIAGNÓSTICO FIREBASE MAPA ===');
+            
+            const checks = {
+                'firebaseEnabled': this.firebaseEnabled,
+                'tema activo': this.config.tema,
+                'nodos visitados': this.visitedNodes.size,
+                'total nodos': this.totalNodes,
+                'progreso': `${Math.round((this.visitedNodes.size/this.totalNodes)*100)}%`
+            };
+
+            if (this.firebaseEnabled && this.firebaseContext) {
+                checks['saveMapaProgress'] = typeof this.firebaseContext.saveMapaProgress === 'function';
+                checks['forceSync'] = typeof this.firebaseContext.forceSync === 'function';
+            }
+            
+            Object.entries(checks).forEach(([key, value]) => {
+                console.log(`  ${key}: ${typeof value === 'boolean' ? (value ? '✅' : '❌') : '📊'} ${value}`);
+            });
+        }
+
+        // Método para forzar guardado manual
+        async forceMapSave() {
+            console.log('🔧 [Mapa] Forzando guardado manual...');
+            
+            if (this.visitedNodes.size === 0) {
+                console.log('ℹ️ [Mapa] No hay progreso que guardar');
+                return false;
+            }
+
+            this.saveMapProgress();
+            return true;
+        }
+    }
+
+    // Reemplazar la clase global
+    window.MapaSystemModular = MapaSystemModularWithFirebase;
+
+    // Exponer funciones de diagnóstico globalmente
+    window.checkMapFirebaseIntegration = function() {
+        if (window.mapaSystemInstance && window.mapaSystemInstance.checkFirebaseIntegration) {
+            window.mapaSystemInstance.checkFirebaseIntegration();
+        } else {
+            console.log('❌ [Mapa] No hay instancia activa del sistema');
+        }
+    };
+
+    window.forceMapSave = function() {
+        if (window.mapaSystemInstance && window.mapaSystemInstance.forceMapSave) {
+            return window.mapaSystemInstance.forceMapSave();
+        } else {
+            console.log('❌ [Mapa] No hay instancia activa del sistema');
+            return false;
+        }
+    };
+
+    // Auto-crear instancia si existe configuración
+    if (window.MapaSystemConfig) {
+        setTimeout(() => {
+            window.mapaSystemInstance = new MapaSystemModularWithFirebase();
+            console.log('🗺️ [Mapa] Instancia con Firebase creada automáticamente');
+        }, 100);
+    }
+
+    console.log('🎮 Integración Firebase para Mapa System completada');
+    console.log('🛠️  Funciones de debug disponibles:');
+    console.log('   - checkMapFirebaseIntegration()');
+    console.log('   - forceMapSave()');
+
+})();

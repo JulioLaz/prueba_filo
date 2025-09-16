@@ -295,6 +295,46 @@
     </details>
   </main>
 
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+<script type="module">
+import { saveProgress } from "/prueba_filo/firebase.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const auth = getAuth();
+
+// Función para que el mapa pueda guardar en Firebase
+window.saveMapaProgress = async (nodesVisited, totalNodes, timeSpent = 0) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.warn('⚠️ No hay usuario autenticado');
+    return false;
+  }
+
+  const percentage = Math.round((nodesVisited / totalNodes) * 100);
+  const tema = new URLSearchParams(location.search).get('tema') || 
+               window.MapaSystemConfig?.tema || 'sartre';
+  
+  try {
+    await saveProgress({
+      moduleId: tema,
+      lessonId: 'mapa',
+      status: percentage >= 100 ? "completed" : percentage >= 80 ? "approved" : "in_progress",
+      score: percentage,
+      seconds: timeSpent
+    });
+    
+    console.log(`✅ Mapa guardado en Firebase: ${percentage}%`);
+    return true;
+  } catch (error) {
+    console.error('❌ Error guardando mapa:', error);
+    return false;
+  }
+};
+
+console.log('🗺️ Sistema Firebase disponible para mapa');
+</script>
+
+
   <!-- 🚀 SISTEMA MODULAR - Solo esta línea hace toda la magia -->
   <script src="../../js/mapa-system.js"></script>
 </body>
