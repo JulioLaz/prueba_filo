@@ -210,7 +210,49 @@
   })();
 </script>
 
+<!-- AGREGAR ESTAS LÍNEAS AL QUIZ.HTML -->
+<script type="module" src="/prueba_filo/firebase.js"></script>
+
+<script type="module">
+import { saveProgress } from "/prueba_filo/firebase.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const auth = getAuth();
+
+// Función para que el quiz pueda guardar en Firebase
+window.saveQuizProgress = async (currentQuestion, totalQuestions, score, timeSpent = 0) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.warn('⚠️ No hay usuario autenticado');
+    return false;
+  }
+
+  const percentage = Math.round((score / totalQuestions) * 100);
+  const tema = new URLSearchParams(location.search).get('tema') || 'sartre';
+  
+  try {
+    await saveProgress({
+      moduleId: tema,
+      lessonId: 'quiz',
+      status: percentage >= 100 ? "completed" : percentage >= 80 ? "approved" : "in_progress",
+      score: percentage,
+      seconds: timeSpent
+    });
+    
+    console.log(`✅ Quiz guardado en Firebase: ${percentage}%`);
+    return true;
+  } catch (error) {
+    console.error('❌ Error guardando quiz:', error);
+    return false;
+  }
+};
+
+console.log('🔥 Sistema Firebase disponible para quiz');
+</script>
+
+<!-- DESPUÉS va el quiz-engine -->
 <script src="js/quiz-engine.js"></script>
+<!-- <script src="js/quiz-engine.js"></script> -->
 
 </body>
 </html>
