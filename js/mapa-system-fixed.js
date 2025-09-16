@@ -1,21 +1,21 @@
 /* ========================================
- * 🗺️ MAPA-SYSTEM-FIXED.JS
- * Versión corregida con mejor manejo de eventos
+ * 🗺️ MAPA-SYSTEM-COMPLETE.JS
+ * Versión completa con árbol funcionando + juego de matching
  * ======================================== */
 
 (function() {
     'use strict';
 
-    console.log('🚀 Cargando sistema de mapas corregido...');
+    console.log('🚀 Cargando sistema de mapas completo...');
 
-    // Configuración por defecto mejorada
+    // Configuración por defecto
     const DEFAULT_CONFIG = {
         tema: 'filosofia',
         soundsPath: '../../sound/',
         redirectTo: '../../tema.html',
         gameEnabled: true,
         autoTrackProgress: true,
-        debugMode: true, // Activar logs detallados
+        debugMode: true,
         celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆'],
         gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆'],
         sounds: {
@@ -29,7 +29,7 @@
         gameData: []
     };
 
-    class MapaSystemFixed {
+    class MapaSystemComplete {
         constructor() {
             this.config = { 
                 ...DEFAULT_CONFIG, 
@@ -48,18 +48,19 @@
             this.correctCount = 0;
             this.errorCount = 0;
             this.matchedPairs = new Set();
+            this.gameInitialized = false;
             
             // Flags de control
             this.initialized = false;
             this.eventListenersAttached = false;
             
-            this.debugLog(`Iniciando sistema para tema: ${this.config.tema}`);
+            this.debugLog(`Iniciando sistema completo para tema: ${this.config.tema}`);
             this.init();
         }
 
         debugLog(message, ...args) {
             if (this.config.debugMode) {
-                console.log(`[MapaFixed] ${message}`, ...args);
+                console.log(`[MapaComplete] ${message}`, ...args);
             }
         }
 
@@ -69,20 +70,18 @@
                     this.initializeSystem();
                 });
             } else {
-                // DOM ya está listo, inicializar inmediatamente
                 this.initializeSystem();
             }
         }
 
         initializeSystem() {
             if (this.initialized) {
-                this.debugLog('Sistema ya inicializado, omitiendo...');
+                this.debugLog('Sistema ya inicializado');
                 return;
             }
 
-            this.debugLog('Inicializando sistema...');
+            this.debugLog('Inicializando sistema completo...');
             
-            // Esperar un momento para que todos los elementos estén disponibles
             setTimeout(() => {
                 this.setupTree();
                 this.setupNavigation();
@@ -90,43 +89,37 @@
                 this.loadProgress();
                 this.initialized = true;
                 
-                console.log(`✅ [MapaFixed] Sistema inicializado correctamente para ${this.config.tema}`);
-                this.debugLog(`Nodos totales encontrados: ${this.totalNodes}`);
+                console.log(`✅ [MapaComplete] Sistema completo inicializado para ${this.config.tema}`);
+                this.debugLog(`Nodos: ${this.totalNodes}, Juego: ${this.config.gameEnabled}, Datos: ${this.config.gameData.length}`);
             }, 100);
         }
 
-        // === SISTEMA DE ÁRBOL MEJORADO ===
+        // === SISTEMA DE ÁRBOL (funcional) ===
         setupTree() {
             const tree = document.querySelector('.tree');
             if (!tree) {
-                console.error('[MapaFixed] ❌ No se encontró árbol conceptual');
+                console.error('[MapaComplete] ❌ No se encontró árbol conceptual');
                 return;
             }
 
             this.debugLog('Configurando árbol conceptual...');
             
-            // Contar nodos totales
             this.totalNodes = tree.querySelectorAll('.node[data-title]').length;
             this.debugLog(`Total de nodos detectados: ${this.totalNodes}`);
 
-            // Colapsar todo inicialmente con mejor lógica
             this.collapseAllNodesImproved();
-            
-            // Remover listeners existentes y agregar nuevos
             this.attachTreeEventListeners(tree);
         }
 
         collapseAllNodesImproved() {
             const allLis = document.querySelectorAll('.tree li');
             let collapsed = 0;
-            let hiddenToggles = 0;
 
             allLis.forEach(li => {
                 const childUl = li.querySelector(':scope > ul');
                 const toggle = li.querySelector(':scope > .node .toggle');
                 
                 if (childUl) {
-                    // Tiene hijos, debe ser colapsable
                     li.classList.add('collapsed');
                     collapsed++;
                     
@@ -135,133 +128,83 @@
                         toggle.setAttribute('aria-expanded', 'false');
                     }
                 } else {
-                    // No tiene hijos, ocultar toggle
                     if (toggle) {
                         toggle.style.visibility = 'hidden';
-                        hiddenToggles++;
                     }
                 }
             });
 
-            this.debugLog(`Nodos colapsados: ${collapsed}, Toggles ocultos: ${hiddenToggles}`);
+            this.debugLog(`Nodos colapsados: ${collapsed}`);
         }
 
         attachTreeEventListeners(tree) {
-            if (this.eventListenersAttached) {
-                this.debugLog('Event listeners ya están adjuntos');
-                return;
-            }
+            if (this.eventListenersAttached) return;
 
-            // Usar delegación de eventos mejorada
             tree.addEventListener('click', (e) => {
                 this.handleTreeClickImproved(e);
             }, { passive: false });
 
-            // También escuchar eventos de teclado para accesibilidad
-            tree.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    this.handleTreeClickImproved(e);
-                }
-            });
-
             this.eventListenersAttached = true;
-            this.debugLog('Event listeners adjuntos correctamente');
+            this.debugLog('Event listeners del árbol adjuntos');
         }
 
         handleTreeClickImproved(e) {
-            this.debugLog('Click detectado:', e.target);
-
             const node = e.target.closest('.node');
-            if (!node) {
-                this.debugLog('Click no fue en un nodo válido');
-                return;
-            }
+            if (!node) return;
 
-            // Siempre marcar como visitado
             this.markNodeAsVisited(node);
             
-            // Verificar si fue click en toggle
             const toggle = e.target.closest('.toggle');
-            if (!toggle) {
-                this.debugLog('Click no fue en toggle');
-                return;
-            }
+            if (!toggle) return;
 
             e.preventDefault();
             e.stopPropagation();
 
-            this.debugLog('Click en toggle detectado');
-            
             const parentLi = node.closest('li');
-            if (!parentLi) {
-                this.debugLog('No se encontró li padre');
-                return;
-            }
+            if (!parentLi) return;
 
             const childUl = parentLi.querySelector(':scope > ul');
-            if (!childUl) {
-                this.debugLog('No hay ul hijo para expandir');
-                return;
-            }
+            if (!childUl) return;
 
-            // Alternar estado
             const wasCollapsed = parentLi.classList.contains('collapsed');
             parentLi.classList.toggle('collapsed');
             const isNowCollapsed = parentLi.classList.contains('collapsed');
 
-            // Actualizar aria-expanded
             toggle.setAttribute('aria-expanded', !isNowCollapsed);
 
-            // Reproducir sonido
             if (isNowCollapsed) {
                 this.playSound('collapse');
             } else {
                 this.playSound('expand');
             }
 
-            this.debugLog(`Estado cambiado: ${wasCollapsed ? 'colapsado' : 'expandido'} → ${isNowCollapsed ? 'colapsado' : 'expandido'}`);
-            
-            // Verificar que el cambio sea visible
-            setTimeout(() => {
-                const display = getComputedStyle(childUl).display;
-                this.debugLog(`Visibilidad del ul hijo: ${display}`);
-            }, 50);
+            this.debugLog(`Estado: ${wasCollapsed ? 'colapsado' : 'expandido'} → ${isNowCollapsed ? 'colapsado' : 'expandido'}`);
         }
 
         markNodeAsVisited(node) {
             const title = node.dataset.title || node.querySelector('.title')?.textContent?.trim();
-            if (!title) {
-                this.debugLog('Nodo sin título válido');
-                return;
-            }
-
-            if (this.visitedNodes.has(title)) {
-                this.debugLog(`Nodo ya visitado: "${title}"`);
-                return;
-            }
+            if (!title || this.visitedNodes.has(title)) return;
 
             this.visitedNodes.add(title);
             node.classList.add('visited');
             
             this.playSound('nodeVisit');
             
-            console.log(`✅ [MapaFixed] Nodo visitado: "${title}" (${this.visitedNodes.size}/${this.totalNodes})`);
+            console.log(`✅ [MapaComplete] Nodo visitado: "${title}" (${this.visitedNodes.size}/${this.totalNodes})`);
             
             if (this.config.autoTrackProgress) {
                 this.saveMapProgress();
             }
 
-            // Animación de celebración mejorada
             const emoji = this.config.celebrationEmojis[Math.floor(Math.random() * this.config.celebrationEmojis.length)];
-            this.showCelebrationEmojiImproved(node, emoji);
+            this.showCelebrationEmoji(node, emoji);
         }
 
-        showCelebrationEmojiImproved(element, emoji) {
+        showCelebrationEmoji(element, emoji) {
             const explosion = document.createElement('div');
             explosion.className = 'emoji-explosion';
             explosion.textContent = emoji;
             
-            // Posicionamiento mejorado
             explosion.style.cssText = `
                 position: absolute;
                 left: 50%;
@@ -272,21 +215,15 @@
                 font-size: 2rem;
             `;
 
-            // Asegurar que el elemento padre tenga posición relativa
             if (getComputedStyle(element).position === 'static') {
                 element.style.position = 'relative';
             }
 
             element.appendChild(explosion);
-
-            // Remover después de la animación
-            setTimeout(() => {
-                if (explosion.parentNode) {
-                    explosion.parentNode.removeChild(explosion);
-                }
-            }, 800);
+            setTimeout(() => explosion.remove(), 800);
         }
 
+        // === SISTEMA DE GUARDADO ===
         saveMapProgress() {
             const key = `tema.${this.config.tema}.mapa`;
             
@@ -298,20 +235,12 @@
                 timestamp: new Date().toISOString()
             };
 
-            this.debugLog('Guardando progreso:', state);
-
-            // Guardar en sessionStorage
             sessionStorage.setItem(key, JSON.stringify(state));
-
-            // Intentar Firebase si está disponible
             this.saveToFirebaseIfAvailable(state);
-
-            // Comunicación con tema.html
             this.notifyParent(state);
         }
 
         saveToFirebaseIfAvailable(state) {
-            // Verificar si Firebase está disponible
             const contexts = [window, window.parent, window.top];
             
             for (const ctx of contexts) {
@@ -335,26 +264,21 @@
                     // Ignorar errores cross-origin
                 }
             }
-
-            this.debugLog('ℹ️ Firebase no disponible, usando solo sessionStorage');
         }
 
         notifyParent(state) {
             try {
-                // PostMessage para iframe/popup
                 window.parent.postMessage({ 
                     type: 'mapa-progress', 
                     data: state,
                     tema: this.config.tema 
                 }, '*');
 
-                // Custom event para misma ventana
                 window.dispatchEvent(new CustomEvent('mapa-progress-updated', {
                     detail: { state, tema: this.config.tema }
                 }));
-
             } catch (error) {
-                this.debugLog('Error en comunicación con parent:', error);
+                this.debugLog('Error en comunicación:', error);
             }
         }
 
@@ -378,16 +302,14 @@
                     }
                 });
 
-                this.debugLog(`Progreso cargado: ${restored}/${this.totalNodes} nodos restaurados`);
+                this.debugLog(`Progreso cargado: ${restored}/${this.totalNodes} nodos`);
             } catch (e) {
-                console.warn('[MapaFixed] Error cargando progreso:', e);
+                console.warn('[MapaComplete] Error cargando progreso:', e);
             }
         }
 
         // === NAVEGACIÓN ===
         setupNavigation() {
-            this.debugLog('Configurando navegación...');
-
             const backButton = document.getElementById('backToTema');
             if (backButton) {
                 backButton.addEventListener('click', () => {
@@ -395,7 +317,6 @@
                     const tema = params.get('tema') || params.get('theme') || this.config.tema;
                     const temaUrl = new URL(this.config.redirectTo, location);
                     temaUrl.searchParams.set('tema', tema);
-                    temaUrl.searchParams.set('theme', tema);
                     location.href = temaUrl.toString();
                 });
             }
@@ -403,37 +324,209 @@
             const expandButton = document.getElementById('expandAll');
             if (expandButton) {
                 expandButton.style.display = 'inline-block';
-                expandButton.addEventListener('click', () => {
-                    this.expandAll();
-                });
+                expandButton.addEventListener('click', () => this.expandAll());
             }
 
             const collapseButton = document.getElementById('collapseAll');
             if (collapseButton) {
                 collapseButton.style.display = 'inline-block';
-                collapseButton.addEventListener('click', () => {
-                    this.collapseAll();
-                });
+                collapseButton.addEventListener('click', () => this.collapseAll());
             }
         }
 
-        // === JUEGO DE MATCHING (simplificado para enfocarnos en el árbol) ===
+        // === JUEGO DE MATCHING COMPLETO ===
         setupGame() {
             if (!this.config.gameEnabled || !this.config.gameData.length) {
                 this.debugLog('Juego deshabilitado o sin datos');
                 return;
             }
 
+            this.debugLog(`Configurando juego con ${this.config.gameData.length} pares`);
+
             const startButton = document.getElementById('startGame');
+            const closeButton = document.getElementById('closeGame');
+            const overlay = document.getElementById('gameOverlay');
+
             if (startButton) {
                 startButton.addEventListener('click', () => this.initGame());
-                this.debugLog('Botón de juego configurado');
             }
+
+            if (closeButton) {
+                closeButton.addEventListener('click', () => this.closeGame());
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === e.currentTarget) {
+                        this.closeGame();
+                    }
+                });
+            }
+
+            this.debugLog('Botones del juego configurados');
         }
 
         initGame() {
-            this.debugLog('Inicializando juego... (implementación simplificada)');
-            // Implementación del juego aquí si es necesario
+            this.debugLog('Inicializando juego completo...');
+
+            const termsGrid = document.getElementById('termsGrid');
+            const definitionsGrid = document.getElementById('definitionsGrid');
+            const gameOverlay = document.getElementById('gameOverlay');
+            
+            if (!termsGrid || !definitionsGrid || !gameOverlay) {
+                console.warn('[MapaComplete] Elementos del juego no encontrados');
+                return;
+            }
+            
+            // Reset estado
+            this.selectedTerm = null;
+            this.correctCount = 0;
+            this.errorCount = 0;
+            this.matchedPairs.clear();
+            
+            // Shuffle datos
+            const shuffledTerms = this.shuffle([...this.config.gameData]);
+            const shuffledDefs = this.shuffle([...this.config.gameData]);
+            
+            // Render grids
+            termsGrid.innerHTML = shuffledTerms.map((item, idx) => 
+                `<div class="card" data-term="${item.term}" data-type="term" data-idx="${idx}">${item.term}</div>`
+            ).join('');
+            
+            definitionsGrid.innerHTML = shuffledDefs.map((item, idx) => 
+                `<div class="card" data-term="${item.term}" data-type="definition" data-idx="${idx}">${item.definition}</div>`
+            ).join('');
+
+            this.updateGameStats();
+            gameOverlay.style.display = 'flex';
+            
+            // Event listener para cartas (remover previos)
+            if (this.gameInitialized) {
+                gameOverlay.removeEventListener('click', this.gameClickHandler);
+            }
+            
+            this.gameClickHandler = (e) => this.handleCardClick(e);
+            gameOverlay.addEventListener('click', this.gameClickHandler);
+            this.gameInitialized = true;
+            
+            console.log(`🎮 [MapaComplete] Juego iniciado con ${this.config.gameData.length} pares`);
+        }
+
+        handleCardClick(e) {
+            const card = e.target.closest('.card');
+            if (!card || card.classList.contains('matched')) return;
+
+            this.debugLog('Click en carta:', card.dataset.term, card.dataset.type);
+
+            if (card.dataset.type === 'term') {
+                // Seleccionar término
+                document.querySelectorAll('.card[data-type="term"].selected').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                this.selectedTerm = card.dataset.term;
+                this.debugLog('Término seleccionado:', this.selectedTerm);
+                
+            } else if (card.dataset.type === 'definition' && this.selectedTerm) {
+                // Verificar definición
+                if (card.dataset.term === this.selectedTerm) {
+                    this.handleCorrectMatch(card);
+                } else {
+                    this.handleIncorrectMatch(card);
+                }
+                this.updateGameStats();
+            }
+        }
+
+        handleCorrectMatch(card) {
+            this.correctCount++;
+            this.matchedPairs.add(this.selectedTerm);
+            this.playSound('correct');
+            
+            const termCard = document.querySelector(`[data-term="${this.selectedTerm}"][data-type="term"]`);
+            if (termCard) {
+                termCard.classList.add('matched');
+                termCard.classList.remove('selected');
+            }
+            card.classList.add('matched');
+            
+            const emoji = this.config.gameEmojis[Math.floor(Math.random() * this.config.gameEmojis.length)];
+            this.showCelebrationEmoji(card, emoji);
+            if (termCard) {
+                this.showCelebrationEmoji(termCard, emoji);
+            }
+            
+            this.selectedTerm = null;
+            
+            this.debugLog(`Respuesta correcta! Progreso: ${this.matchedPairs.size}/${this.config.gameData.length}`);
+            
+            if (this.matchedPairs.size === this.config.gameData.length) {
+                setTimeout(() => {
+                    this.playSound('gameComplete');
+                    this.showGameComplete();
+                }, 800);
+            }
+        }
+
+        handleIncorrectMatch(card) {
+            this.errorCount++;
+            this.playSound('wrong');
+            
+            card.classList.add('wrong');
+            setTimeout(() => card.classList.remove('wrong'), 300);
+            
+            const selectedTermCard = document.querySelector(`[data-term="${this.selectedTerm}"][data-type="term"]`);
+            if (selectedTermCard) {
+                selectedTermCard.classList.remove('selected');
+            }
+            
+            this.selectedTerm = null;
+            this.debugLog('Respuesta incorrecta');
+        }
+
+        updateGameStats() {
+            const correctEl = document.getElementById('correctCount');
+            const errorEl = document.getElementById('errorCount');
+            const currentEl = document.getElementById('currentProgress');
+            const totalEl = document.getElementById('totalPairs');
+            const progressEl = document.getElementById('gameProgress');
+
+            if (correctEl) correctEl.textContent = this.correctCount;
+            if (errorEl) errorEl.textContent = this.errorCount;
+            if (currentEl) currentEl.textContent = this.matchedPairs.size;
+            if (totalEl) totalEl.textContent = this.config.gameData.length;
+            
+            if (progressEl) {
+                const progressPercent = (this.matchedPairs.size / this.config.gameData.length) * 100;
+                progressEl.style.width = progressPercent + '%';
+            }
+        }
+
+        showGameComplete() {
+            const celebration = document.getElementById('celebration');
+            if (celebration) {
+                celebration.style.display = 'block';
+            }
+            
+            // Guardar progreso del juego
+            const key = `tema.${this.config.tema}.matching`;
+            const state = {
+                completed: true,
+                correctCount: this.correctCount,
+                errorCount: this.errorCount,
+                timestamp: new Date().toISOString()
+            };
+            sessionStorage.setItem(key, JSON.stringify(state));
+            
+            console.log('🏆 [MapaComplete] Juego completado:', state);
+        }
+
+        closeGame() {
+            const overlay = document.getElementById('gameOverlay');
+            const celebration = document.getElementById('celebration');
+            
+            if (overlay) overlay.style.display = 'none';
+            if (celebration) celebration.style.display = 'none';
+            
+            this.debugLog('Juego cerrado');
         }
 
         // === UTILIDADES ===
@@ -484,35 +577,43 @@
             };
         }
 
-        // Método de diagnóstico
+        getGameStats() {
+            return {
+                correctCount: this.correctCount,
+                errorCount: this.errorCount,
+                matchedPairs: this.matchedPairs.size,
+                totalPairs: this.config.gameData.length,
+                completed: this.matchedPairs.size === this.config.gameData.length
+            };
+        }
+
+        // Diagnóstico
         diagnosticar() {
-            console.log('\n🔍 === DIAGNÓSTICO DEL SISTEMA ===');
+            console.log('\n🔍 === DIAGNÓSTICO DEL SISTEMA COMPLETO ===');
             
             const tree = document.querySelector('.tree');
-            const allLis = tree?.querySelectorAll('li') || [];
-            const collapsedLis = tree?.querySelectorAll('li.collapsed') || [];
-            const toggles = tree?.querySelectorAll('.toggle') || [];
+            const gameOverlay = document.getElementById('gameOverlay');
+            const termsGrid = document.getElementById('termsGrid');
             
-            console.log(`📊 Árbol encontrado: ${!!tree}`);
-            console.log(`📊 Total <li>: ${allLis.length}`);
-            console.log(`📊 <li> colapsados: ${collapsedLis.length}`);
-            console.log(`📊 Toggles: ${toggles.length}`);
+            console.log(`📊 Árbol: ${!!tree}`);
+            console.log(`📊 Overlay del juego: ${!!gameOverlay}`);
+            console.log(`📊 Grid de términos: ${!!termsGrid}`);
             console.log(`📊 Nodos visitados: ${this.visitedNodes.size}/${this.totalNodes}`);
-            console.log(`📊 Progreso: ${Math.round((this.visitedNodes.size/this.totalNodes)*100)}%`);
-            console.log(`📊 Event listeners: ${this.eventListenersAttached}`);
+            console.log(`📊 Datos del juego: ${this.config.gameData.length} pares`);
+            console.log(`📊 Juego habilitado: ${this.config.gameEnabled}`);
             console.log(`📊 Sistema inicializado: ${this.initialized}`);
+            console.log(`📊 Event listeners: ${this.eventListenersAttached}`);
         }
     }
 
     // Reemplazar sistema anterior
-    window.MapaSystemFixed = MapaSystemFixed;
+    window.MapaSystemComplete = MapaSystemComplete;
     
-    // Auto-inicializar si existe configuración
+    // Auto-inicializar
     if (window.MapaSystemConfig) {
-        console.log('🔄 Creando instancia corregida del sistema de mapas...');
-        window.mapaSystemInstance = new MapaSystemFixed();
+        console.log('🔄 Creando instancia completa del sistema de mapas...');
+        window.mapaSystemInstance = new MapaSystemComplete();
         
-        // Exponer función de diagnóstico
         window.diagnosticarSistema = () => {
             if (window.mapaSystemInstance) {
                 window.mapaSystemInstance.diagnosticar();
@@ -520,7 +621,7 @@
         };
     }
 
-    console.log('✅ Sistema de mapas corregido cargado');
-    console.log('🛠️ Función de diagnóstico: diagnosticarSistema()');
+    console.log('✅ Sistema de mapas completo cargado (árbol + juego)');
+    console.log('🛠️ Funciones: diagnosticarSistema()');
 
 })();
