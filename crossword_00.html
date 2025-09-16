@@ -31,16 +31,6 @@
     }
     .btn-back:hover{background:#1a2544;border-color:#3b4a73;transform:translateY(-1px)}
 
-    /* Indicador Firebase */
-    .firebase-status {
-      position: fixed; top: 10px; right: 10px; padding: 4px 8px; border-radius: 6px;
-      font-size: 0.8rem; font-weight: 600; z-index: 1000; opacity: 0.8; transition: all 0.3s ease;
-    }
-    .firebase-status.connected { background: #10b981; color: white; }
-    .firebase-status.disconnected { background: #ef4444; color: white; }
-    .firebase-status.saving { background: #f59e0b; color: white; animation: pulse 1s infinite; }
-    .firebase-status:hover { opacity: 1; transform: scale(1.05); }
-
     .hud{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
     .pill{background:#0f182e;border:1px solid var(--line);padding:10px 12px;border-radius:999px;color:#cfe2ff}
     .switch{display:inline-flex;align-items:center;gap:8px}
@@ -51,6 +41,7 @@
     #grid{display:grid;gap:4px;place-content:center;margin-bottom:14px}
 
     .cell{
+      /* width:min(46px,8.8vw);height:min(46px,8.8vw); */
       display:grid;place-items:center;border:1px solid #1f2a4a;
       background:var(--cell);border-radius:8px;font-weight:800;font-size:18px;
       color:#cfe2ff;user-select:none;transition:all 0.2s ease;
@@ -179,14 +170,10 @@
       .visual-input{gap:2px}
       .letter-slot{width:32px;height:32px;font-size:16px}
       .modal-content{margin:20px;padding:24px}
-      .firebase-status{top:5px;right:5px;font-size:0.7rem;padding:3px 6px}
     }
   </style>
 </head>
 <body>
-  <!-- Indicador de estado Firebase -->
-  <div class="firebase-status disconnected" id="firebase-status">🔥 Cargando...</div>
-
   <div class="wrap">
     <header>
       <div class="title-section">
@@ -262,250 +249,87 @@
     </div>
   </div>
 
-  <!-- ====================================== -->
-  <!-- 🔥 SCRIPTS CON FIREBASE (NUEVO ORDEN) -->
-  <!-- ====================================== -->
-
-  <!-- 1. Configuración básica -->
-  <script>
-    console.log('🧩 Iniciando crucigrama con Firebase...');
-    
-    // Obtener tema desde URL
-    const params = new URLSearchParams(location.search);
-    const tema = params.get('tema') || params.get('theme') || 'etica_aristoteles';
-    
-    console.log('🎯 Tema detectado:', tema);
-    
-    // Marcar tiempo de inicio
-    window.crosswordStartTime = Date.now();
-    
-    // Firebase Status Indicator
-    function updateFirebaseStatus(status) {
-      const indicator = document.getElementById('firebase-status');
-      if (!indicator) return;
-      
-      indicator.classList.remove('connected', 'disconnected', 'saving');
-      
-      switch (status) {
-        case 'connected':
-          indicator.classList.add('connected');
-          indicator.textContent = '🔥 Conectado';
-          break;
-        case 'saving':
-          indicator.classList.add('saving');
-          indicator.textContent = '🔥 Guardando...';
-          break;
-        case 'disconnected':
-        default:
-          indicator.classList.add('disconnected');
-          indicator.textContent = '🔥 Desconectado';
-          break;
-      }
-    }
-    window.updateFirebaseStatus = updateFirebaseStatus;
-    
-    // Configurar botones de navegación
-    const backBtn = document.getElementById('backBtn');
-    const backToThemeBtn = document.getElementById('backToThemeBtn');
-    const backUrl = `tema.html?tema=${tema}&theme=${tema}`;
-    
-    backBtn.href = backUrl;
-    backToThemeBtn.addEventListener('click', () => location.href = backUrl);
-    
-    // Actualizar UI inicial
-    document.getElementById('temaChip').textContent = `Tema: ${tema}`;
-    document.getElementById('temaChip').style.display = 'inline-grid';
-    document.getElementById('title').textContent = 'Cargando...';
-  </script>
-
-  <!-- 2. 🔥 SISTEMA DE PUNTUACIÓN FIREBASE (NUEVO) -->
-  <script type="module" src="js/crossword-score.js"></script>
-
-  <!-- 3. Motor del crucigrama original -->
+  <!-- Cargar motor del crucigrama -->
   <script src="js/crossword_engine.js"></script>
   
-  <!-- 4. Lógica principal mejorada -->
+  <!-- Lógica principal -->
   <script>
-    (async function initCrosswordWithFirebase() {
-      console.log('🚀 Inicializando crucigrama con Firebase...');
+    (async function initCrossword() {
+      console.log('🚀 Inicializando crucigrama mejorado...');
       const startTime = performance.now();
       
-      // Esperar a que Firebase Score se cargue
-      let dependenciesLoaded = {
-        firebaseScore: false,
-        crosswordEngine: false,
-        config: false
-      };
+      // Obtener tema desde URL
+      const params = new URLSearchParams(location.search);
+      const tema = params.get('tema') || params.get('theme') || 'etica';
       
-      function checkDependencies() {
-        const allLoaded = Object.values(dependenciesLoaded).every(loaded => loaded);
-        console.log('📊 Estado dependencias:', dependenciesLoaded);
+      console.log(`📚 Tema seleccionado: ${tema}`);
+      
+      // Configurar botón de vuelta
+      const backBtn = document.getElementById('backBtn');
+      const backToThemeBtn = document.getElementById('backToThemeBtn');
+      const backUrl = `tema.html?tema=${tema}&theme=${tema}`;
+      
+      backBtn.href = backUrl;
+      backToThemeBtn.addEventListener('click', () => location.href = backUrl);
+      
+      // Actualizar UI inicial
+      document.getElementById('temaChip').textContent = `Tema: ${tema}`;
+      document.getElementById('title').textContent = 'Cargando...';
+      
+      try {
+        // Cargar configuración del tema
+        const configPath = `themes/${tema}/crossword_config.js`;
+        console.log(`📋 Cargando configuración desde: ${configPath}`);
         
-        if (allLoaded) {
-          console.log('✅ Todas las dependencias cargadas, iniciando crucigrama...');
-          initializeCrossword();
-        }
-      }
-      
-      // Verificar Firebase Score
-      const checkFirebaseScore = setInterval(() => {
-        if (typeof window.saveCrosswordProgress === 'function') {
-          clearInterval(checkFirebaseScore);
-          dependenciesLoaded.firebaseScore = true;
-          updateFirebaseStatus('connected');
-          console.log('✅ Firebase Score cargado');
-          checkDependencies();
-        }
-      }, 100);
-      
-      // Timeout para Firebase Score
-      setTimeout(() => {
-        clearInterval(checkFirebaseScore);
-        if (!dependenciesLoaded.firebaseScore) {
-          console.warn('⚠️ Timeout esperando Firebase Score, continuando...');
-          dependenciesLoaded.firebaseScore = true;
-          updateFirebaseStatus('disconnected');
-          checkDependencies();
-        }
-      }, 5000);
-      
-      // Verificar CrosswordEngine
-      const checkEngine = setInterval(() => {
-        if (window.CrosswordEngine) {
-          clearInterval(checkEngine);
-          dependenciesLoaded.crosswordEngine = true;
-          console.log('✅ CrosswordEngine cargado');
+        const script = document.createElement('script');
+        script.src = configPath;
+        
+        script.onload = () => {
+          console.log('✅ Configuración cargada');
           
-          // Mejorar motor con Firebase si está disponible
-          if (typeof window.enhanceCrosswordEngine === 'function') {
-            window.enhanceCrosswordEngine();
+          if (!window.CROSSWORD_CONFIG) {
+            throw new Error('CROSSWORD_CONFIG no encontrado en ' + configPath);
           }
           
-          checkDependencies();
-        }
-      }, 100);
-      
-      // Timeout para CrosswordEngine
-      setTimeout(() => {
-        clearInterval(checkEngine);
-        if (!dependenciesLoaded.crosswordEngine) {
-          console.error('❌ Timeout esperando CrosswordEngine');
-          alert('Error: No se pudo cargar el motor del crucigrama');
-        }
-      }, 10000);
-      
-      async function initializeCrossword() {
-        try {
-          // Cargar configuración del tema
-          const configPath = `themes/${tema}/crossword_config.js`;
-          console.log(`📋 Cargando configuración desde: ${configPath}`);
+          console.log('⚙️ Configuración:', window.CROSSWORD_CONFIG);
           
-          const script = document.createElement('script');
-          script.src = configPath;
+          // Actualizar título
+          document.getElementById('title').textContent = window.CROSSWORD_CONFIG.title || 'Crucigrama';
           
-          script.onload = () => {
-            console.log('✅ Configuración cargada');
+          // Iniciar el motor del crucigrama con UI mejorada
+          if (window.CrosswordEngine && window.CrosswordEngine.start) {
+            window.CrosswordEngine.start(window.CROSSWORD_CONFIG, { 
+              tema,
+              useModernUI: true
+            });
             
-            if (!window.CROSSWORD_CONFIG) {
-              throw new Error('CROSSWORD_CONFIG no encontrado en ' + configPath);
-            }
-            
-            console.log('⚙️ Configuración:', window.CROSSWORD_CONFIG);
-            dependenciesLoaded.config = true;
-            
-            // Actualizar título
-            document.getElementById('title').textContent = window.CROSSWORD_CONFIG.title || 'Crucigrama';
-            
-            // Iniciar el motor del crucigrama
-            if (window.CrosswordEngine && window.CrosswordEngine.start) {
-              window.CrosswordEngine.start(window.CROSSWORD_CONFIG, { 
-                tema,
-                useModernUI: true,
-                withFirebase: true
-              });
-              
-              const totalTime = performance.now() - startTime;
-              console.log(`🎯 Crucigrama con Firebase iniciado en ${totalTime.toFixed(2)}ms`);
-              
-              // Ejecutar diagnóstico
-              setTimeout(() => {
-                if (typeof window.checkCrosswordFirebaseIntegration === 'function') {
-                  console.log('🔍 Ejecutando diagnóstico Firebase...');
-                  window.checkCrosswordFirebaseIntegration();
-                }
-              }, 2000);
-              
-            } else {
-              throw new Error('CrosswordEngine no disponible');
-            }
-          };
+            const totalTime = performance.now() - startTime;
+            console.log(`🎯 Crucigrama iniciado exitosamente en ${totalTime.toFixed(2)}ms`);
+          } else {
+            throw new Error('CrosswordEngine no disponible');
+          }
+        };
+        
+        script.onerror = () => {
+          const error = `No se pudo cargar la configuración desde: ${configPath}`;
+          console.error('❌', error);
           
-          script.onerror = () => {
-            const error = `No se pudo cargar la configuración desde: ${configPath}`;
-            console.error('❌', error);
-            
-            document.getElementById('title').textContent = 'Error';
-            document.getElementById('questionText').textContent = 
-              `Error: No se encontró la configuración para el tema "${tema}". ` +
-              `Verifica que existe el archivo: ${configPath}`;
-            document.getElementById('inputSection').classList.add('show');
-            updateFirebaseStatus('disconnected');
-          };
-          
-          document.head.appendChild(script);
-          
-        } catch (error) {
-          console.error('❌ Error fatal:', error);
           document.getElementById('title').textContent = 'Error';
-          document.getElementById('questionText').textContent = `Error: ${error.message}`;
+          document.getElementById('questionText').textContent = 
+            `Error: No se encontró la configuración para el tema "${tema}". ` +
+            `Verifica que existe el archivo: ${configPath}`;
           document.getElementById('inputSection').classList.add('show');
-          updateFirebaseStatus('disconnected');
-        }
+        };
+        
+        document.head.appendChild(script);
+        
+      } catch (error) {
+        console.error('❌ Error fatal:', error);
+        document.getElementById('title').textContent = 'Error';
+        document.getElementById('questionText').textContent = `Error: ${error.message}`;
+        document.getElementById('inputSection').classList.add('show');
       }
     })();
-
-    // Diagnóstico completo
-    window.diagnosticoCrucigramaCompleto = () => {
-      console.log('\n🔧 === DIAGNÓSTICO COMPLETO CRUCIGRAMA ===\n');
-      
-      console.log('1️⃣ VERIFICANDO DEPENDENCIAS:');
-      console.log(`  CrosswordEngine: ${typeof window.CrosswordEngine === 'object' ? '✅' : '❌'}`);
-      console.log(`  Firebase Score: ${typeof window.saveCrosswordProgress === 'function' ? '✅' : '❌'}`);
-      console.log(`  Config: ${!!window.CROSSWORD_CONFIG ? '✅' : '❌'}`);
-      console.log(`  Motor mejorado: ${typeof window.enhanceCrosswordEngine === 'function' ? '✅' : '❌'}`);
-      
-      console.log('\n2️⃣ VERIFICANDO FIREBASE:');
-      if (typeof window.checkCrosswordFirebaseIntegration === 'function') {
-        window.checkCrosswordFirebaseIntegration();
-      } else {
-        console.log('  ❌ checkCrosswordFirebaseIntegration no disponible');
-      }
-      
-      console.log('\n3️⃣ COMANDOS DISPONIBLES:');
-      console.log('  - diagnosticoCrucigramaCompleto()');
-      console.log('  - checkCrosswordFirebaseIntegration()');
-      console.log('  - forceCrosswordSave()');
-      console.log('  - debugCrosswordIntegration()');
-      
-      console.log('\n✅ Diagnóstico completo finalizado');
-    };
-
-    // Listener para eventos de Firebase
-    window.addEventListener('crossword-progress-updated', (event) => {
-      console.log('📊 Evento de progreso crucigrama:', event.detail);
-      updateFirebaseStatus('saving');
-      
-      setTimeout(() => {
-        updateFirebaseStatus('connected');
-      }, 2000);
-    });
-
-    // Auto-ejecutar diagnóstico si hay parámetro debug
-    if (location.search.includes('debug=true')) {
-      setTimeout(() => {
-        window.diagnosticoCrucigramaCompleto();
-      }, 5000);
-    }
 
     // Manejo de errores globales
     window.addEventListener('error', (e) => {
@@ -518,9 +342,6 @@
         e.preventDefault();
       }
     });
-
-    console.log('🎮 Crucigrama con Firebase inicializado');
-    console.log('🔧 Ejecuta diagnosticoCrucigramaCompleto() para verificar el sistema');
   </script>
 </body>
 </html>
