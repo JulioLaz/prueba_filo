@@ -2234,7 +2234,7 @@ import {
   where, 
   getDocs,
   getAuth 
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { db } from "/prueba_filo/firebase.js";
 
 // ====================================
@@ -2242,7 +2242,7 @@ import { db } from "/prueba_filo/firebase.js";
 // ====================================
 
 const auth = getAuth();
-const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+// const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
 
 console.log(`🎯 Inicializando sistema de sincronización para tema: ${tema}`);
 
