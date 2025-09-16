@@ -2162,6 +2162,24 @@ function migrateCurrentProgress() {
         } else if (activityType === 'caza' && data.found !== undefined) {
           percentage = Math.round((data.found / (data.total || 1)) * 100);
           completed = data.completed || false;
+        } else if (activityType === 'quiz' && data.qIndex !== undefined) {
+          percentage = Math.round((data.qIndex / (data.total || 1)) * 100);
+          completed = data.completed || percentage >= 100;
+        } else if (activityType === 'cruci' && data.solved !== undefined) {
+          percentage = Math.round((data.solved / (data.total || 1)) * 100);
+          completed = data.completed || false;
+        } else if (activityType === 'cross' && data.solved !== undefined) {
+          percentage = Math.round((data.solved / (data.total || 1)) * 100);
+          completed = data.completed || false;
+        } else if (activityType === 'mapa' && data.progress !== undefined) {
+          percentage = Math.round(data.progress * 100);
+          completed = data.completed || percentage >= 90;
+        } else if (activityType === 'video' && data.watchTime !== undefined) {
+          // Para video, asumir duración total si no está especificada
+          const totalDuration = data.totalDuration || 600; // 10 min default
+          percentage = Math.round((data.watchTime / totalDuration) * 100);
+          percentage = Math.min(percentage, 100); // Cap al 100%
+          completed = data.completed || percentage >= 80;
         } else if (data.percentage !== undefined) {
           percentage = data.percentage;
           completed = data.completed || false;
