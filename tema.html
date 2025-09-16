@@ -1953,9 +1953,8 @@ function readCloze() {
 <!-- Importa tu lógica de Firebase -->
 <script type="module" src="/prueba_filo/firebase.js"></script>
 
-<!-- Agregar al final de tema.html, antes del último </script> -->
 
-<script type="module">
+<!-- <script type="module">
 import { saveProgress } from "/prueba_filo/firebase.js";
 
 // ====================================
@@ -2224,6 +2223,438 @@ window.checkProgressStatus = () => {
 
 console.log("🎮 Sistema de tracking de progreso inicializado");
 console.log("📝 Usa checkProgressStatus() para verificar el estado");
+
+</script> -->
+
+<script type="module">
+import { saveProgress } from "/prueba_filo/firebase.js";
+import { 
+  collection, 
+  query, 
+  where, 
+  getDocs,
+  getAuth 
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { db } from "/prueba_filo/firebase.js";
+
+// ====================================
+// CONFIGURACIÓN INICIAL
+// ====================================
+
+const auth = getAuth();
+const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+
+console.log(`🎯 Inicializando sistema de sincronización para tema: ${tema}`);
+
+// ====================================
+// CARGAR PROGRESO DESDE FIREBASE
+// ====================================
+
+async function loadProgressFromFirebase() {
+  const user = auth.currentUser;
+  if (!user || !tema) {
+    console.log("⚠️ No hay usuario autenticado o tema activo");
+    return {};
+  }
+
+  console.log(`📥 Cargando progreso de Firebase para: ${user.uid} - ${tema}`);
+
+  try {
+    const progressQuery = query(
+      collection(db, "progreso_temas"),
+      where("uid", "==", user.uid),
+      where("moduleId", "==", tema)
+    );
+
+    const snapshot = await getDocs(progressQuery);
+    const firebaseProgress = {};
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const activityType = data.lessonId;
+      
+      // Solo considerar actividades completadas al 100%
+      const isCompleted = data.status === "completed" || 
+                         data.score >= 100 || 
+                         (data.score >= 90 && activityType === 'mapa');
+
+      if (isCompleted) {
+        firebaseProgress[activityType] = {
+          percentage: 100,
+          completed: true,
+          score: data.score,
+          timeSpent: data.timeSpentSeconds || 0,
+          lastUpdated: data.updatedAt,
+          fromFirebase: true
+        };
+        
+        console.log(`✅ Actividad completada: ${activityType} - ${data.score}%`);
+      } else {
+        console.log(`⏸️ Actividad parcial ignorada: ${activityType} - ${data.score}%`);
+      }
+    });
+
+    return firebaseProgress;
+
+  } catch (error) {
+    console.error("❌ Error cargando progreso de Firebase:", error);
+    return {};
+  }
+}
+
+// ====================================
+// SINCRONIZAR UI CON FIREBASE
+// ====================================
+
+function updateUIWithFirebaseProgress(firebaseProgress) {
+  console.log("🎨 Actualizando UI con progreso de Firebase...");
+
+  const activities = ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'];
+  const segments = document.querySelectorAll('.seg[data-type]');
+  
+  // Resetear todas las actividades a 0%
+  segments.forEach(seg => {
+    const activityType = seg.dataset.type;
+    if (!activities.includes(activityType)) return;
+
+    const firebaseData = firebaseProgress[activityType];
+    const percentage = firebaseData ? 100 : 0;
+    const completed = firebaseData ? true : false;
+
+    // Actualizar elemento visual
+    const fillElement = seg.querySelector('.fill');
+    const labelElement = seg.querySelector('.label');
+    
+    if (fillElement) {
+      fillElement.style.width = `${percentage}%`;
+    }
+    
+    if (labelElement) {
+      const activityName = labelElement.textContent.split(' ·')[0];
+      labelElement.textContent = `${activityName} · ${percentage}%`;
+    }
+
+    // Clase visual para completados
+    if (completed) {
+      seg.classList.add('completed');
+    } else {
+      seg.classList.remove('completed');
+    }
+
+    // Actualizar sessionStorage
+    const sessionKey = `tema.${tema}.${activityType}`;
+    const sessionData = {
+      percentage,
+      completed,
+      syncedFromFirebase: true,
+      lastSync: new Date().toISOString()
+    };
+
+    if (firebaseData) {
+      sessionData.score = firebaseData.score;
+      sessionData.timeSpent = firebaseData.timeSpent;
+    }
+
+    sessionStorage.setItem(sessionKey, JSON.stringify(sessionData));
+    
+    console.log(`🔄 ${activityType}: ${percentage}% ${completed ? '✅' : '⭕'}`);
+  });
+
+  // Actualizar progreso global
+  updateGlobalProgress(firebaseProgress);
+}
+
+// ====================================
+// ACTUALIZAR PROGRESO GLOBAL
+// ====================================
+
+function updateGlobalProgress(firebaseProgress) {
+  const completedActivities = Object.keys(firebaseProgress).length;
+  const totalActivities = 6;
+  const globalPercentage = Math.round((completedActivities / totalActivities) * 100);
+
+  const progressBar = document.getElementById('progressBar');
+  const progressPct = document.getElementById('progressPct');
+
+  if (progressBar) {
+    progressBar.style.width = `${globalPercentage}%`;
+  }
+
+  if (progressPct) {
+    progressPct.textContent = `${globalPercentage}%`;
+  }
+
+  console.log(`📊 Progreso global: ${completedActivities}/${totalActivities} (${globalPercentage}%)`);
+}
+
+// ====================================
+// GUARDAR ACTIVIDAD COMPLETADA
+// ====================================
+
+async function saveCompletedActivity(activityType, data) {
+  const user = auth.currentUser;
+  if (!user || !tema) return;
+
+  const isCompleted = data.percentage >= 100 || data.completed;
+  
+  if (!isCompleted) {
+    console.log(`⏸️ ${activityType} no completada (${data.percentage}%), no se guarda`);
+    return;
+  }
+
+  try {
+    await saveProgress({
+      moduleId: tema,
+      lessonId: activityType,
+      status: "completed",
+      score: 100,
+      seconds: data.timeSpent || 0
+    });
+
+    console.log(`✅ Actividad completada guardada: ${activityType}`);
+    
+    // Recargar y actualizar UI
+    const syncedProgress = await loadProgressFromFirebase();
+    updateUIWithFirebaseProgress(syncedProgress);
+
+  } catch (error) {
+    console.error("❌ Error guardando actividad:", error);
+  }
+}
+
+// ====================================
+// FUNCIONES PÚBLICAS PARA COMPLETAR ACTIVIDADES
+// ====================================
+
+window.completeQuiz = async (score, timeSpent) => {
+  await saveCompletedActivity('quiz', { 
+    percentage: 100, 
+    completed: true, 
+    score, 
+    timeSpent 
+  });
+};
+
+window.completeCaza = async (timeSpent = 0) => {
+  await saveCompletedActivity('caza', { 
+    percentage: 100, 
+    completed: true, 
+    timeSpent 
+  });
+};
+
+window.completeVideo = async (timeSpent = 0) => {
+  await saveCompletedActivity('video', { 
+    percentage: 100, 
+    completed: true, 
+    timeSpent 
+  });
+};
+
+window.completeCrucigrama = async (timeSpent = 0) => {
+  await saveCompletedActivity('cruci', { 
+    percentage: 100, 
+    completed: true, 
+    timeSpent 
+  });
+};
+
+window.completeMaterial = async (timeSpent = 0) => {
+  await saveCompletedActivity('material', { 
+    percentage: 100, 
+    completed: true, 
+    timeSpent 
+  });
+};
+
+window.completeMapa = async (timeSpent = 0) => {
+  await saveCompletedActivity('mapa', { 
+    percentage: 100, 
+    completed: true, 
+    timeSpent 
+  });
+};
+
+// ====================================
+// OVERRIDE DE FUNCIONES EXISTENTES
+// ====================================
+
+// Override bumpMaterialProgress para detectar cuando se completa
+const originalBumpMaterialProgress = window.bumpMaterialProgress;
+window.bumpMaterialProgress = function(delta = 1) {
+  if (originalBumpMaterialProgress) {
+    originalBumpMaterialProgress(delta);
+  }
+  
+  // Verificar si se completó el material
+  setTimeout(async () => {
+    const key = `tema.${tema}.material`;
+    const current = JSON.parse(sessionStorage.getItem(key) || '{"sectionsViewed":[], "total":8}');
+    const percentage = Math.round((current.sectionsViewed.length / current.total) * 100);
+    
+    if (percentage >= 100) {
+      console.log("🎯 Material completado, guardando en Firebase...");
+      await completeMaterial(current.sectionsViewed.length * 30);
+    }
+  }, 500);
+};
+
+// ====================================
+// MIGRACIÓN DE DATOS EXISTENTES
+// ====================================
+
+async function migrateCompletedActivities() {
+  console.log("🔄 Verificando actividades completadas para migrar...");
+  
+  const progressKeys = Object.keys(sessionStorage).filter(key => 
+    key.startsWith(`tema.${tema}.`) && !key.includes('records')
+  );
+  
+  for (const key of progressKeys) {
+    try {
+      const data = JSON.parse(sessionStorage.getItem(key));
+      const activityType = key.split('.').pop();
+      
+      if (data && !data.syncedFromFirebase) {
+        let percentage = 0;
+        let completed = false;
+        
+        // Calcular porcentaje según tipo de actividad
+        if (activityType === 'caza' && data.found !== undefined) {
+          percentage = Math.round((data.found / (data.total || 1)) * 100);
+          completed = data.completed || percentage >= 100;
+        } else if (activityType === 'quiz' && data.qIndex !== undefined) {
+          percentage = Math.round((data.qIndex / (data.total || 1)) * 100);
+          completed = data.completed || percentage >= 100;
+        } else if (activityType === 'cruci' && data.solved !== undefined) {
+          percentage = Math.round((data.solved / (data.total || 1)) * 100);
+          completed = data.completed || percentage >= 100;
+        } else if (activityType === 'cross' && data.solved !== undefined) {
+          percentage = Math.round((data.solved / (data.total || 1)) * 100);
+          completed = data.completed || percentage >= 100;
+        } else if (activityType === 'mapa' && data.progress !== undefined) {
+          percentage = Math.round(data.progress * 100);
+          completed = data.completed || percentage >= 90;
+        } else if (activityType === 'material' && data.sectionsViewed) {
+          percentage = Math.round((data.sectionsViewed.length / (data.total || 8)) * 100);
+          completed = percentage >= 100;
+        } else if (activityType === 'video' && data.watchTime !== undefined) {
+          completed = data.completed || false;
+          percentage = completed ? 100 : 0;
+        }
+        
+        // Solo migrar si está completada
+        if (completed) {
+          console.log(`🎯 Migrando actividad completada: ${activityType}`);
+          await saveCompletedActivity(activityType, {
+            percentage: 100,
+            completed: true,
+            timeSpent: data.timeSpentSec || data.seconds || 0
+          });
+        } else {
+          console.log(`⏸️ ${activityType} parcial (${percentage}%), no se migra`);
+        }
+      }
+    } catch (error) {
+      console.warn(`⚠️ Error procesando ${key}:`, error);
+    }
+  }
+}
+
+// ====================================
+// FUNCIONES DE DIAGNÓSTICO
+// ====================================
+
+window.checkSyncStatus = async () => {
+  console.log("🔍 Estado de sincronización:");
+  
+  const firebaseProgress = await loadProgressFromFirebase();
+  
+  console.log("📊 Actividades completadas en Firebase:");
+  Object.entries(firebaseProgress).forEach(([activity, data]) => {
+    const date = data.lastUpdated?.seconds ? 
+      new Date(data.lastUpdated.seconds * 1000).toLocaleString() : 
+      'Fecha desconocida';
+    console.log(`  ${activity}: ✅ 100% (${date})`);
+  });
+  
+  console.log("📱 Estado actual en sessionStorage:");
+  Object.keys(sessionStorage).forEach(key => {
+    if (key.includes(tema)) {
+      const data = JSON.parse(sessionStorage.getItem(key));
+      const activity = key.split('.').pop();
+      console.log(`  ${activity}: ${data.percentage || 0}% ${data.syncedFromFirebase ? '✅' : '⭕'}`);
+    }
+  });
+};
+
+window.forceSync = async () => {
+  console.log("🔄 Forzando sincronización...");
+  await initializeSync();
+};
+
+// ====================================
+// INICIALIZACIÓN
+// ====================================
+
+async function initializeSync() {
+  if (!auth.currentUser) {
+    console.log("⏳ Esperando autenticación...");
+    return new Promise((resolve) => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          unsubscribe();
+          initializeSync().then(resolve);
+        }
+      });
+    });
+  }
+
+  console.log("🚀 Iniciando sincronización completa...");
+  
+  try {
+    // 1. Migrar actividades completadas existentes
+    await migrateCompletedActivities();
+    
+    // 2. Cargar progreso desde Firebase
+    const firebaseProgress = await loadProgressFromFirebase();
+    
+    // 3. Actualizar UI
+    updateUIWithFirebaseProgress(firebaseProgress);
+    
+    console.log("✅ Sincronización completada");
+    
+  } catch (error) {
+    console.error("❌ Error en inicialización:", error);
+  }
+}
+
+// ====================================
+// AUTO-INICIALIZACIÓN
+// ====================================
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeSync);
+} else {
+  initializeSync();
+}
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    setTimeout(initializeSync, 1000);
+  }
+});
+
+console.log("🎮 Sistema completo de sincronización Firebase inicializado");
+console.log("📝 Funciones disponibles:");
+console.log("   - completeQuiz(score, timeSpent)");
+console.log("   - completeCaza(timeSpent)");
+console.log("   - completeVideo(timeSpent)");
+console.log("   - completeCrucigrama(timeSpent)");
+console.log("   - completeMaterial(timeSpent)");
+console.log("   - completeMapa(timeSpent)");
+console.log("   - checkSyncStatus()");
+console.log("   - forceSync()");
 
 </script>
 
