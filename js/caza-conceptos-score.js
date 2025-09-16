@@ -36,7 +36,8 @@ window.saveCazaProgress = async (conceptsFound, totalConcepts, timeSpent = 0, fo
     
     await saveProgress({
       moduleId: tema,
-      lessonId: 'caza_conceptos',
+      lessonId: 'caza',
+      // lessonId: 'caza_conceptos',
       status: percentage >= 100 ? "completed" : percentage >= 80 ? "approved" : "in_progress",
       score: percentage,
       seconds: timeSpent,

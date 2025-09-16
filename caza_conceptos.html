@@ -183,7 +183,8 @@
     console.log('🎯 Cargando Caza de Conceptos con Firebase...');
     
     const q = new URLSearchParams(location.search);
-    const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'aristoteles';
+    // const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'aristoteles';
+    const tema = q.get('tema') || sessionStorage.getItem('tema_actual') || 'etica_aristoteles';
     sessionStorage.setItem('tema_actual', tema);
     localStorage.setItem('tema_actual', tema);
 
