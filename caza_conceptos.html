@@ -358,9 +358,9 @@
       
       // Cargar configuración
       const script = document.createElement('script');
-      script.src = `themes/${tema}/conceptos_enhanced.js`;
+      script.src = `themes/${tema}/conceptos.js`;
       script.onload = () => {
-        console.log('✅ Configuración cargada desde themes/' + tema + '/conceptos_enhanced.js');
+        console.log('✅ Configuración cargada desde themes/' + tema + '/conceptos.js');
         if (window.CONCEPT_HUNT_CONFIG) {
           console.log('📊 Conceptos totales:', window.CONCEPT_HUNT_CONFIG.levels.reduce((acc, lv) => acc + (lv.concepts?.length || 0), 0));
         }
