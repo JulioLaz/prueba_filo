@@ -1953,6 +1953,261 @@ function readCloze() {
 <!-- Importa tu lógica de Firebase -->
 <script type="module" src="/prueba_filo/firebase.js"></script>
 
+<!-- Agregar al final de tema.html, antes del último </script> -->
+
+<script type="module">
+import { saveProgress } from "/prueba_filo/firebase.js";
+
+// ====================================
+// SISTEMA DE TRACKING DE PROGRESO
+// ====================================
+
+// const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+
+console.log(`🎯 Inicializando tracking para tema: ${tema}`);
+
+// Función universal para guardar progreso en Firebase + SessionStorage
+async function saveProgressUniversal(activityType, data) {
+  if (!tema) return;
+  
+  console.log(`💾 Guardando progreso: ${tema} - ${activityType}`, data);
+  
+  try {
+    // Guardar en Firebase
+    await saveProgress({
+      moduleId: tema,
+      lessonId: activityType,
+      status: data.completed ? "completed" : "in_progress", 
+      score: data.percentage || data.score || 0,
+      seconds: data.timeSpent || 0
+    });
+    
+    // Mantener sessionStorage para compatibilidad
+    const sessionKey = `tema.${tema}.${activityType}`;
+    sessionStorage.setItem(sessionKey, JSON.stringify({
+      ...data,
+      savedToFirebase: true,
+      lastUpdated: new Date().toISOString()
+    }));
+    
+    console.log(`✅ Progreso guardado: ${activityType} - ${data.percentage || 0}%`);
+    
+  } catch (error) {
+    console.error(`❌ Error guardando progreso:`, error);
+  }
+}
+
+// ====================================
+// OVERRIDE DE FUNCIONES EXISTENTES
+// ====================================
+
+// Override la función bumpMaterialProgress existente
+const originalBumpMaterialProgress = window.bumpMaterialProgress;
+window.bumpMaterialProgress = function(delta = 1) {
+  // Ejecutar función original
+  if (originalBumpMaterialProgress) {
+    originalBumpMaterialProgress(delta);
+  }
+  
+  // Obtener estado actual del material
+  const key = `tema.${tema}.material`;
+  const current = JSON.parse(sessionStorage.getItem(key) || '{"sectionsViewed":[], "total":8}');
+  const percentage = Math.round((current.sectionsViewed.length / current.total) * 100);
+  
+  // Guardar en Firebase
+  saveProgressUniversal('material', {
+    sectionsViewed: current.sectionsViewed.length,
+    total: current.total,
+    percentage,
+    completed: percentage >= 100,
+    timeSpent: delta * 30 // 30 segundos por sección estimado
+  });
+};
+
+// Interceptar clicks en segmentos para tracking automático
+document.addEventListener('click', async (e) => {
+  if (e.target.closest('.seg.clickable')) {
+    const seg = e.target.closest('.seg');
+    const activityType = seg.dataset.type;
+    
+    console.log(`🖱️ Click detectado en actividad: ${activityType}`);
+    
+    // Esperar a que se actualice el progreso y luego guardarlo
+    setTimeout(() => {
+      const label = seg.querySelector('.label')?.textContent;
+      const percentageMatch = label?.match(/(\d+)%/);
+      
+      if (percentageMatch) {
+        const percentage = parseInt(percentageMatch[1]);
+        
+        saveProgressUniversal(activityType, {
+          percentage,
+          completed: percentage >= 100,
+          timeSpent: 60, // 1 minuto estimado por click
+          triggeredBy: 'click'
+        });
+      }
+    }, 500);
+  }
+});
+
+// ====================================
+// TRACKING ESPECÍFICO POR ACTIVIDAD
+// ====================================
+
+// Función para material de estudio
+window.trackMaterial = async (sectionsViewed, totalSections, timeSpent = 0) => {
+  const percentage = Math.round((sectionsViewed / totalSections) * 100);
+  
+  await saveProgressUniversal('material', {
+    sectionsViewed,
+    totalSections,
+    percentage,
+    completed: percentage >= 100,
+    timeSpent
+  });
+};
+
+// Función para caza de conceptos  
+window.trackCaza = async (conceptsFound, totalConcepts, timeSpent = 0) => {
+  const percentage = Math.round((conceptsFound / totalConcepts) * 100);
+  
+  await saveProgressUniversal('caza', {
+    conceptsFound,
+    totalConcepts, 
+    percentage,
+    completed: percentage >= 100,
+    timeSpent
+  });
+};
+
+// Función para quiz
+window.trackQuiz = async (currentQuestion, totalQuestions, score, timeSpent = 0) => {
+  const percentage = Math.round((currentQuestion / totalQuestions) * 100);
+  
+  await saveProgressUniversal('quiz', {
+    currentQuestion,
+    totalQuestions,
+    score: Math.round(score),
+    percentage,
+    completed: currentQuestion >= totalQuestions,
+    timeSpent
+  });
+};
+
+// Función para crucigrama
+window.trackCrucigrama = async (wordsCompleted, totalWords, timeSpent = 0) => {
+  const percentage = Math.round((wordsCompleted / totalWords) * 100);
+  
+  await saveProgressUniversal('cruci', {
+    wordsCompleted,
+    totalWords,
+    percentage,
+    completed: percentage >= 100,
+    timeSpent
+  });
+};
+
+// Función para mapa conceptual
+window.trackMapa = async (nodesVisited, totalNodes, timeSpent = 0) => {
+  const percentage = Math.round((nodesVisited / totalNodes) * 100);
+  
+  await saveProgressUniversal('mapa', {
+    nodesVisited,
+    totalNodes,
+    percentage,
+    completed: percentage >= 90, // 90% para considerar completo
+    timeSpent
+  });
+};
+
+// Función para video
+window.trackVideo = async (watchTime, totalDuration, completed = false) => {
+  const percentage = completed ? 100 : Math.round((watchTime / totalDuration) * 100);
+  
+  await saveProgressUniversal('video', {
+    watchTime,
+    totalDuration,
+    percentage,
+    completed,
+    timeSpent: watchTime
+  });
+};
+
+// ====================================
+// MIGRACIÓN AUTOMÁTICA AL CARGAR
+// ====================================
+
+function migrateCurrentProgress() {
+  console.log("🔄 Migrando progreso actual a Firebase...");
+  
+  // Buscar progreso actual en sessionStorage para este tema
+  const progressKeys = Object.keys(sessionStorage).filter(key => 
+    key.startsWith(`tema.${tema}.`) && !key.includes('records')
+  );
+  
+  progressKeys.forEach(async (key) => {
+    try {
+      const data = JSON.parse(sessionStorage.getItem(key));
+      const activityType = key.split('.').pop();
+      
+      if (data && !data.savedToFirebase) {
+        // Determinar porcentaje según tipo de actividad
+        let percentage = 0;
+        let completed = false;
+        
+        if (activityType === 'material' && data.sectionsViewed) {
+          percentage = Math.round((data.sectionsViewed.length / (data.total || 8)) * 100);
+          completed = percentage >= 100;
+        } else if (activityType === 'caza' && data.found !== undefined) {
+          percentage = Math.round((data.found / (data.total || 1)) * 100);
+          completed = data.completed || false;
+        } else if (data.percentage !== undefined) {
+          percentage = data.percentage;
+          completed = data.completed || false;
+        }
+        
+        await saveProgressUniversal(activityType, {
+          ...data,
+          percentage,
+          completed,
+          timeSpent: data.timeSpentSec || data.seconds || 0,
+          migrated: true
+        });
+        
+        console.log(`✅ Migrado: ${activityType} - ${percentage}%`);
+      }
+    } catch (error) {
+      console.warn(`⚠️ Error migrando ${key}:`, error);
+    }
+  });
+}
+
+// ====================================
+// INICIALIZACIÓN
+// ====================================
+
+// Migrar progreso existente
+setTimeout(migrateCurrentProgress, 1000);
+
+// Función de utilidad para verificar estado
+window.checkProgressStatus = () => {
+  console.log("📊 Estado actual del progreso:");
+  
+  const progressKeys = Object.keys(sessionStorage).filter(key => 
+    key.startsWith(`tema.${tema}.`)
+  );
+  
+  progressKeys.forEach(key => {
+    const data = JSON.parse(sessionStorage.getItem(key) || '{}');
+    console.log(`${key}: ${data.percentage || 0}% - Firebase: ${data.savedToFirebase ? '✅' : '❌'}`);
+  });
+};
+
+console.log("🎮 Sistema de tracking de progreso inicializado");
+console.log("📝 Usa checkProgressStatus() para verificar el estado");
+
+</script>
 
 </body>
 </html>
