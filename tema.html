@@ -2750,5 +2750,71 @@ console.log("   - forceSync()");
 
 </script>
 
+<!-- crucigrama -->
+
+<script>
+// Script de redirección automática para crucigrama
+(function() {
+  console.log('🔍 Configurando redirección automática para crucigrama...');
+  
+  window.irACrucigrama = function(tema = null) {
+    const temaActual = tema || 
+                      new URLSearchParams(window.location.search).get('tema') || 
+                      'etica_aristoteles';
+    
+    const crosswordUrl = `crossword.html?tema=${temaActual}&theme=${temaActual}`;
+    console.log(`🎮 Navegando a crucigrama: ${crosswordUrl}`);
+    window.location.href = crosswordUrl;
+  };
+  
+  // Configurar botones automáticamente
+  function setupCrosswordButtons() {
+    const selectors = [
+      'a[href*="crossword"]',
+      'button[data-activity="crossword"]', 
+      'button[data-lesson="cruci"]',
+      '.crucigrama-btn'
+    ];
+    
+    let foundButtons = 0;
+    
+    selectors.forEach(selector => {
+      const buttons = document.querySelectorAll(selector);
+      buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          irACrucigrama();
+        });
+        foundButtons++;
+      });
+    });
+    
+    // Buscar por texto también
+    const allButtons = document.querySelectorAll('button, a, .btn');
+    allButtons.forEach(button => {
+      const text = button.textContent.toLowerCase();
+      if (text.includes('crucigrama') || text.includes('crossword')) {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          irACrucigrama();
+        });
+        foundButtons++;
+      }
+    });
+    
+    console.log(`✅ Configurados ${foundButtons} botones para crucigrama`);
+  }
+  
+  // Inicializar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCrosswordButtons);
+  } else {
+    setTimeout(setupCrosswordButtons, 100);
+  }
+})();
+</script>
+
+
+
 </body>
 </html>

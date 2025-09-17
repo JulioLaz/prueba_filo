@@ -522,5 +522,54 @@
     console.log('🎮 Crucigrama con Firebase inicializado');
     console.log('🔧 Ejecuta diagnosticoCrucigramaCompleto() para verificar el sistema');
   </script>
+
+<!-- correccion de carga del crucigrama -->
+
+<script>
+// Script de navegación de vuelta
+(function() {
+  console.log('🔙 Configurando navegación de vuelta a tema...');
+  
+  window.regresarATema = function() {
+    const tema = new URLSearchParams(window.location.search).get('tema') || 'etica_aristoteles';
+    const backUrl = `tema.html?tema=${tema}&theme=${tema}`;
+    
+    // Guardar progreso antes de salir
+    if (typeof window.forceCrosswordSave === 'function') {
+      try {
+        window.forceCrosswordSave();
+      } catch (e) {}
+    }
+    
+    window.location.href = backUrl;
+  };
+  
+  // Configurar botones de vuelta
+  function setupBackButtons() {
+    const backSelectors = ['#backBtn', '#backToThemeBtn', '.btn-back'];
+    
+    backSelectors.forEach(selector => {
+      const buttons = document.querySelectorAll(selector);
+      buttons.forEach(button => {
+        if (button.tagName === 'A') {
+          button.href = '#';
+        }
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          regresarATema();
+        });
+      });
+    });
+  }
+  
+  // Inicializar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupBackButtons);
+  } else {
+    setTimeout(setupBackButtons, 100);
+  }
+})();
+</script>
+
 </body>
 </html>
