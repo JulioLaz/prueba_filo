@@ -269,7 +269,7 @@
 
       // ⭐ NUEVO: Estado del video
       const sVideo = readJSON(ns('video'), { watched:false, watchTime:0, completed:false });
-      const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 50 : 0);
+      const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 30 : 0);
 
       console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct, cruciPct, videoPct });
 
