@@ -255,3 +255,39 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 #clozeRoot .err{border-color:#ef4444}
 #clozeRoot .actions{display:flex; gap:8px; margin-top:12px}
 #clozeRoot .muted{color:#7b88a8; font-size:12px}
+
+.admin-access {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .admin-btn {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border: 1px solid #475569;
+      color: #94a3b8;
+      padding: 12px;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-btn:hover {
+      background: linear-gradient(135deg, #334155, #475569);
+      color: #e2e8f0;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .admin-btn::after {
+      /* content: "👨‍💼"; */
+      font-size: 20px;
+    }
