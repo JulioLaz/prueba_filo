@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Jerárquico - Filosofía Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .controls-section {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .table-container {
+            overflow-x: auto;
+            padding: 30px;
+            max-height: 70vh;
+        }
+
+        .progress-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Headers jerárquicos */
+        .progress-table th.main-theme {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 15px 8px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            border-right: 2px solid #fff;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .progress-table th.sub-activity {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 11px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 15;
+        }
+
+        .progress-table th.student-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 700;
+            width: 200px;
+            position: sticky;
+            left: 0;
+            top: 0;
+            z-index: 25;
+            border-right: 3px solid #fff;
+        }
+
+        .progress-table td {
+            padding: 8px 4px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            position: relative;
+            min-width: 70px;
+        }
+
+        .progress-table td.student-cell {
+            text-align: left;
+            font-weight: 600;
+            background: #f8f9fa;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            border-right: 3px solid #dee2e6;
+            width: 200px;
+            min-width: 200px;
+        }
+
+        .progress-table tbody tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .progress-table tbody tr:hover td.student-cell {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Diferentes estilos para sub-actividades */
+        .progress-table td.general-progress {
+            background: rgba(102, 126, 234, 0.1);
+            border-right: 2px solid #667eea;
+            font-weight: 600;
+        }
+
+        .progress-cell {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 10px;
+            min-width: 45px;
+            white-space: nowrap;
+        }
+
+        /* Colores por porcentaje */
+        .progress-0 { background: #ffebee; color: #c62828; }
+        .progress-25 { background: #fff3e0; color: #ef6c00; }
+        .progress-50 { background: #fff9c4; color: #f57f17; }
+        .progress-75 { background: #e8f5e8; color: #388e3c; }
+        .progress-100 { background: #e3f2fd; color: #1976d2; }
+
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+
+        .student-course {
+            font-size: 11px;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .execution-time {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Tooltip para actividades */
+        .activity-tooltip {
+            position: relative;
+        }
+
+        .activity-tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        /* Separadores visuales entre temas */
+        .theme-separator {
+            border-right: 3px solid #667eea !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>📊 Dashboard Jerárquico</h1>
+            <p>Progreso por temas y actividades específicas</p>
+        </header>
+
+        <div class="controls-section">
+            <div>
+                <button id="loadDataBtn" class="btn">🔄 Cargar Datos</button>
+                <button id="exportBtn" class="btn">📤 Exportar CSV</button>
+                <button id="toggleViewBtn" class="btn">🔀 Vista Compacta</button>
+            </div>
+            
+            <div class="status-indicators">
+                <div class="status-item">
+                    <span>👥</span>
+                    <span id="studentCount">0</span> Estudiantes
+                </div>
+                <div class="status-item">
+                    <span>📚</span>
+                    <span id="themeCount">0</span> Temas
+                </div>
+                <div class="status-item">
+                    <span>⚡</span>
+                    <span id="activityCount">0</span> Actividades
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table class="progress-table" id="progressTable" style="display: none;">
+                <thead id="tableHead">
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+            
+            <div class="no-data" id="noDataMessage">
+                <p>🎯 Dashboard jerárquico listo</p>
+                <p>Haz clic en "Cargar Datos" para ver progreso detallado por temas y actividades</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Cargando datos jerárquicos...</h3>
+            <p id="loadingProgress">Analizando estructura...</p>
+        </div>
+    </div>
+
+    <div class="execution-time" id="executionTime" style="display: none;">
+        ⏱️ Tiempo: 0.000s
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import {
+            getFirestore,
+            collection,
+            query,
+            where,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8GSBbszBeBIVG3C56xfC5yao_1m2UPcQ",
+            authDomain: "filosofia-quiz-prod.firebaseapp.com",
+            databaseURL: "https://filosofia-quiz-prod-default-rtdb.firebaseio.com",
+            projectId: "filosofia-quiz-prod",
+            storageBucket: "filosofia-quiz-prod.firebasestorage.app",
+            messagingSenderId: "344375832179",
+            appId: "1:344375832179:web:db1ea9ab343fd90b0b4406",
+            measurementId: "G-GJ1XNPC80C"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Variables globales
+        let studentsData = [];
+        let progressData = [];
+        let themeStructure = new Map(); // tema -> actividades
+        let startTime = Date.now();
+        let compactView = false;
+
+        // Elementos DOM
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const executionTime = document.getElementById('executionTime');
+        const loadDataBtn = document.getElementById('loadDataBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const toggleViewBtn = document.getElementById('toggleViewBtn');
+        const studentCount = document.getElementById('studentCount');
+        const themeCount = document.getElementById('themeCount');
+        const activityCount = document.getElementById('activityCount');
+        const tableHead = document.getElementById('tableHead');
+        const tableBody = document.getElementById('tableBody');
+        const noDataMessage = document.getElementById('noDataMessage');
+        const loadingProgress = document.getElementById('loadingProgress');
+
+        function updateExecutionTime() {
+            const elapsed = ((Date.now() - startTime) / 1000).toFixed(3);
+            executionTime.textContent = `⏱️ Tiempo: ${elapsed}s`;
+            executionTime.style.display = 'block';
+        }
+
+        function calculateProgressPercentage(progressRecord) {
+            if (!progressRecord) return 0;
+            if (progressRecord.status === 'completed') return 100;
+            if (progressRecord.score > 0) return Math.min(progressRecord.score, 100);
+            if (progressRecord.timeSpentSeconds > 30) return 25;
+            return 0;
+        }
+
+        function getProgressClass(percentage) {
+            if (percentage === 0) return 'progress-0';
+            if (percentage <= 25) return 'progress-25';
+            if (percentage <= 50) return 'progress-50';
+            if (percentage <= 75) return 'progress-75';
+            return 'progress-100';
+        }
+
+        function analyzeThemeStructure(progressData) {
+            console.log('🔍 Analizando estructura jerárquica...');
+            
+            themeStructure.clear();
+            
+            progressData.forEach(record => {
+                const { moduleId, lessonId } = record;
+                
+                if (moduleId) {
+                    if (!themeStructure.has(moduleId)) {
+                        themeStructure.set(moduleId, new Set());
+                    }
+                    
+                    if (lessonId) {
+                        themeStructure.get(moduleId).add(lessonId);
+                    }
+                }
+            });
+
+            // Convertir Sets a Arrays ordenados
+            for (let [theme, activities] of themeStructure) {
+                themeStructure.set(theme, Array.from(activities).sort());
+            }
+
+            console.log('📋 Estructura detectada:', Object.fromEntries(themeStructure));
+            return themeStructure;
+        }
+
+        function createHierarchicalHeaders() {
+            console.log('🏗️ Creando headers jerárquicos...');
+            
+            tableHead.innerHTML = '';
+            
+            // Primera fila: temas principales
+            const mainHeaderRow = document.createElement('tr');
+            
+            // Celda de estudiante (rowspan para ambas filas)
+            const studentHeaderCell = document.createElement('th');
+            studentHeaderCell.className = 'student-header';
+            studentHeaderCell.textContent = 'Estudiante';
+            studentHeaderCell.rowSpan = 2;
+            mainHeaderRow.appendChild(studentHeaderCell);
+            
+            // Celdas de temas principales
+            for (let [theme, activities] of themeStructure) {
+                const themeHeader = document.createElement('th');
+                themeHeader.className = 'main-theme theme-separator';
+                themeHeader.textContent = theme.replace(/_/g, ' ').toUpperCase();
+                
+                // Calcular colspan: general + actividades específicas
+                const colspan = 1 + activities.length;
+                themeHeader.colSpan = colspan;
+                
+                mainHeaderRow.appendChild(themeHeader);
+            }
+            
+            tableHead.appendChild(mainHeaderRow);
+            
+            // Segunda fila: actividades específicas
+            const subHeaderRow = document.createElement('tr');
+            
+            for (let [theme, activities] of themeStructure) {
+                // Columna general del tema
+                const generalHeader = document.createElement('th');
+                generalHeader.className = 'sub-activity';
+                generalHeader.textContent = 'GENERAL';
+                generalHeader.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                subHeaderRow.appendChild(generalHeader);
+                
+                // Columnas de actividades específicas
+                activities.forEach((activity, index) => {
+                    const activityHeader = document.createElement('th');
+                    activityHeader.className = 'sub-activity';
+                    activityHeader.textContent = activity.toUpperCase();
+                    
+                    // Marcar la última columna del tema
+                    if (index === activities.length - 1) {
+                        activityHeader.classList.add('theme-separator');
+                    }
+                    
+                    subHeaderRow.appendChild(activityHeader);
+                });
+            }
+            
+            tableHead.appendChild(subHeaderRow);
+        }
+
+        function generateHierarchicalTable() {
+            console.log('📊 Generando tabla jerárquica...');
+            
+            if (studentsData.length === 0) {
+                noDataMessage.style.display = 'block';
+                document.getElementById('progressTable').style.display = 'none';
+                return;
+            }
+
+            // Crear headers
+            createHierarchicalHeaders();
+            
+            // Limpiar body
+            tableBody.innerHTML = '';
+            
+            // Crear filas de estudiantes
+            studentsData.forEach(student => {
+                const row = document.createElement('tr');
+                
+                // Celda de estudiante
+                const studentCell = document.createElement('td');
+                studentCell.className = 'student-cell';
+                studentCell.innerHTML = `
+                    <div class="student-info">
+                        <div class="student-name">${student.nombres || ''} ${student.apellidos || ''}</div>
+                        <div class="student-course">${student.curso || 'Sin curso'}</div>
+                    </div>
+                `;
+                row.appendChild(studentCell);
+                
+                // Celdas por tema y actividades
+                for (let [theme, activities] of themeStructure) {
+                    // Progreso general del tema
+                    const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
+                    const generalCell = document.createElement('td');
+                    generalCell.className = 'general-progress activity-tooltip';
+                    generalCell.setAttribute('data-tooltip', `Progreso general de ${theme}`);
+                    generalCell.innerHTML = `
+                        <span class="progress-cell ${getProgressClass(generalProgress)}">
+                            ${generalProgress}%
+                        </span>
+                    `;
+                    row.appendChild(generalCell);
+                    
+                    // Actividades específicas
+                    activities.forEach((activity, index) => {
+                        const progressRecord = progressData.find(p => 
+                            p.uid === student.id && 
+                            p.moduleId === theme && 
+                            p.lessonId === activity
+                        );
+                        
+                        const percentage = calculateProgressPercentage(progressRecord);
+                        const activityCell = document.createElement('td');
+                        activityCell.className = 'activity-tooltip';
+                        
+                        // Marcar separador de tema
+                        if (index === activities.length - 1) {
+                            activityCell.classList.add('theme-separator');
+                        }
+                        
+                        let tooltipText = `${theme} - ${activity}`;
+                        if (progressRecord) {
+                            tooltipText += `\nEstado: ${progressRecord.status || 'En progreso'}`;
+                            tooltipText += `\nScore: ${progressRecord.score || 0}`;
+                            tooltipText += `\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
+                        } else {
+                            tooltipText += '\nSin progreso';
+                        }
+                        
+                        activityCell.setAttribute('data-tooltip', tooltipText);
+                        activityCell.innerHTML = `
+                            <span class="progress-cell ${getProgressClass(percentage)}">
+                                ${percentage}%
+                            </span>
+                        `;
+                        
+                        row.appendChild(activityCell);
+                    });
+                }
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Mostrar tabla y actualizar contadores
+            document.getElementById('progressTable').style.display = 'table';
+            noDataMessage.style.display = 'none';
+            
+            studentCount.textContent = studentsData.length;
+            themeCount.textContent = themeStructure.size;
+            
+            let totalActivities = 0;
+            for (let activities of themeStructure.values()) {
+                totalActivities += activities.length;
+            }
+            activityCount.textContent = totalActivities;
+            
+            console.log('✅ Tabla jerárquica generada');
+        }
+
+        function calculateGeneralThemeProgress(studentId, theme, activities) {
+            if (activities.length === 0) return 0;
+            
+            let totalProgress = 0;
+            let validActivities = 0;
+            
+            activities.forEach(activity => {
+                const progressRecord = progressData.find(p => 
+                    p.uid === studentId && 
+                    p.moduleId === theme && 
+                    p.lessonId === activity
+                );
+                
+                const progress = calculateProgressPercentage(progressRecord);
+                totalProgress += progress;
+                validActivities++;
+            });
+            
+            return validActivities > 0 ? Math.round(totalProgress / validActivities) : 0;
+        }
+
+        function exportHierarchicalCSV() {
+            console.log('💾 Exportando CSV jerárquico...');
+            
+            const csvData = [];
+            
+            // Headers CSV
+            const headers = ['Estudiante', 'Curso'];
+            for (let [theme, activities] of themeStructure) {
+                headers.push(`${theme}_GENERAL`);
+                activities.forEach(activity => {
+                    headers.push(`${theme}_${activity}`);
+                });
+            }
+            csvData.push(headers.join(','));
+            
+            // Datos de estudiantes
+            studentsData.forEach(student => {
+                const row = [
+                    `"${student.nombres || ''} ${student.apellidos || ''}"`,
+                    `"${student.curso || 'Sin curso'}"`
+                ];
+                
+                for (let [theme, activities] of themeStructure) {
+                    // Progreso general
+                    const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
+                    row.push(generalProgress);
+                    
+                    // Actividades específicas
+                    activities.forEach(activity => {
+                        const progressRecord = progressData.find(p => 
+                            p.uid === student.id && 
+                            p.moduleId === theme && 
+                            p.lessonId === activity
+                        );
+                        row.push(calculateProgressPercentage(progressRecord));
+                    });
+                }
+                
+                csvData.push(row.join(','));
+            });
+
+            // Descargar
+            const csvContent = csvData.join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `progreso_jerarquico_${new Date().toISOString().split('T')[0]}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            console.log('✅ CSV jerárquico exportado');
+        }
+
+        async function loadHierarchicalData() {
+            startTime = Date.now();
+            loadingOverlay.style.display = 'flex';
+            loadDataBtn.disabled = true;
+
+            try {
+                console.log('🚀 Cargando datos jerárquicos...');
+                
+                loadingProgress.textContent = 'Cargando estudiantes...';
+                
+                // Cargar estudiantes
+                const studentsQuery = query(
+                    collection(db, "users"),
+                    where("role", "==", "student")
+                );
+                
+                const studentsSnapshot = await getDocs(studentsQuery);
+                studentsData = studentsSnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                
+                // Ordenar por apellido
+                studentsData.sort((a, b) => (a.apellidos || '').localeCompare(b.apellidos || ''));
+                
+                console.log(`✅ ${studentsData.length} estudiantes cargados`);
+                
+                loadingProgress.textContent = 'Cargando progreso y analizando estructura...';
+                
+                // Cargar progreso
+                const progressQuery = query(collection(db, "progreso_temas"));
+                const progressSnapshot = await getDocs(progressQuery);
+                progressData = progressSnapshot.docs.map(doc => doc.data());
+                
+                console.log(`✅ ${progressData.length} registros de progreso cargados`);
+                
+                // Analizar estructura jerárquica
+                analyzeThemeStructure(progressData);
+                
+                // Generar tabla jerárquica
+                generateHierarchicalTable();
+                
+                console.log('🎉 Dashboard jerárquico cargado');
+
+            } catch (error) {
+                console.error('❌ Error cargando datos:', error);
+                alert(`Error: ${error.message}`);
+                
+                noDataMessage.innerHTML = `
+                    <p>❌ Error cargando datos jerárquicos</p>
+                    <p>${error.message}</p>
+                `;
+                noDataMessage.style.display = 'block';
+
+            } finally {
+                loadingOverlay.style.display = 'none';
+                loadDataBtn.disabled = false;
+                updateExecutionTime();
+            }
+        }
+
+        function toggleCompactView() {
+            compactView = !compactView;
+            const table = document.getElementById('progressTable');
+            
+            if (compactView) {
+                table.style.fontSize = '10px';
+                toggleViewBtn.textContent = '🔀 Vista Normal';
+            } else {
+                table.style.fontSize = '12px';
+                toggleViewBtn.textContent = '🔀 Vista Compacta';
+            }
+        }
+
+        // Event listeners
+        loadDataBtn.addEventListener('click', loadHierarchicalData);
+        exportBtn.addEventListener('click', exportHierarchicalCSV);
+        toggleViewBtn.addEventListener('click', toggleCompactView);
+
+        // Auth check
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log(`👤 Usuario autenticado: ${user.email}`);
+            } else {
+                alert('Debes iniciar sesión para usar el dashboard');
+            }
+        });
+
+        setInterval(updateExecutionTime, 1000);
+    </script>
+</body>
+</html>

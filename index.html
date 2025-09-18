@@ -227,6 +227,60 @@
             </div>
         </div>
 
+<!-- inicio de dashboard de progreso alumnos solo para admin -->
+<!-- PASO 2: Agregar esta tarjeta después de .search-container y antes de .themes-grid -->
+<div id="adminDashboardCard" class="admin-dashboard-card">
+  <div class="admin-card-header">
+    <h3 class="admin-card-title">
+      📊 Dashboard
+      <span class="admin-card-badge">Admin</span>
+    </h3>
+  </div>
+
+  <div class="admin-controls">
+    <button id="adminLoadBtn" class="admin-btn-small">🔄 Cargar</button>
+    <select id="adminThemeSelect" class="admin-select">
+      <option value="">Todos los temas</option>
+    </select>
+  </div>
+
+  <div class="admin-stats">
+    <div class="admin-stat">
+      <span class="admin-stat-number" id="adminStudentCount">-</span>
+      <div class="admin-stat-label">Alumnos</div>
+    </div>
+    <div class="admin-stat">
+      <span class="admin-stat-number" id="adminThemeCount">-</span>
+      <div class="admin-stat-label">Temas</div>
+    </div>
+  </div>
+
+  <div id="adminTableContainer" class="admin-table-mini" style="display: none;">
+    <table>
+      <thead>
+        <tr id="adminTableHeaders">
+          <th>Estudiante</th>
+        </tr>
+      </thead>
+      <tbody id="adminTableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="adminLoading" class="admin-loading" style="display: none;">
+    <div class="admin-spinner"></div>
+    <div>Cargando datos...</div>
+  </div>
+
+  <div id="adminError" class="admin-error" style="display: none;"></div>
+
+  <div class="admin-actions">
+    <button id="adminOpenFullBtn" class="admin-btn-primary">📈 Dashboard Completo</button>
+  </div>
+</div>
+
+<!-- fin de dashboard de progreso alumnos solo para admin -->
+
         <div class="themes-grid" id="themes-grid">
             <!-- Los temas se cargarán dinámicamente aquí -->
         </div>
@@ -674,6 +728,266 @@ console.log("✨ Sistema de autenticación ampliado inicializado correctamente")
   });
 })();
 </script>
+
+<!-- PASO 3: Agregar este script antes del cierre de </body> -->
+<script type="module">
+import { 
+  isCurrentUserAdmin,
+  db 
+} from "/prueba_filo/firebase.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import {
+  collection,
+  query,
+  where,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+console.log("📱 Inicializando tarjeta dashboard admin móvil...");
+
+const auth = getAuth();
+
+// Variables globales
+let adminStudentsData = [];
+let adminProgressData = [];
+let adminThemeStructure = new Map();
+let selectedTheme = '';
+
+// Elementos DOM
+const adminCard = document.getElementById('adminDashboardCard');
+const adminLoadBtn = document.getElementById('adminLoadBtn');
+const adminThemeSelect = document.getElementById('adminThemeSelect');
+const adminStudentCount = document.getElementById('adminStudentCount');
+const adminThemeCount = document.getElementById('adminThemeCount');
+const adminTableContainer = document.getElementById('adminTableContainer');
+const adminTableHeaders = document.getElementById('adminTableHeaders');
+const adminTableBody = document.getElementById('adminTableBody');
+const adminLoading = document.getElementById('adminLoading');
+const adminError = document.getElementById('adminError');
+const adminOpenFullBtn = document.getElementById('adminOpenFullBtn');
+
+// Funciones de utilidad
+function showAdminLoading(show) {
+  adminLoading.style.display = show ? 'block' : 'none';
+  adminLoadBtn.disabled = show;
+}
+
+function showAdminError(message) {
+  adminError.textContent = message;
+  adminError.style.display = 'block';
+}
+
+function hideAdminError() {
+  adminError.style.display = 'none';
+}
+
+function calculateProgressPercentage(progressRecord) {
+  if (!progressRecord) return 0;
+  if (progressRecord.status === 'completed') return 100;
+  if (progressRecord.score > 0) return Math.min(progressRecord.score, 100);
+  if (progressRecord.timeSpentSeconds > 30) return 25;
+  return 0;
+}
+
+function getProgressClassMini(percentage) {
+  if (percentage === 0) return 'progress-mini-0';
+  if (percentage <= 25) return 'progress-mini-25';
+  if (percentage <= 50) return 'progress-mini-50';
+  if (percentage <= 75) return 'progress-mini-75';
+  return 'progress-mini-100';
+}
+
+function analyzeAdminThemeStructure(progressData) {
+  adminThemeStructure.clear();
+  
+  progressData.forEach(record => {
+    const { moduleId, lessonId } = record;
+    
+    if (moduleId) {
+      if (!adminThemeStructure.has(moduleId)) {
+        adminThemeStructure.set(moduleId, new Set());
+      }
+      
+      if (lessonId) {
+        adminThemeStructure.get(moduleId).add(lessonId);
+      }
+    }
+  });
+
+  // Convertir Sets a Arrays ordenados
+  for (let [theme, activities] of adminThemeStructure) {
+    adminThemeStructure.set(theme, Array.from(activities).sort());
+  }
+
+  // Poblar selector de temas
+  adminThemeSelect.innerHTML = '<option value="">Todos los temas</option>';
+  for (let theme of adminThemeStructure.keys()) {
+    const option = document.createElement('option');
+    option.value = theme;
+    option.textContent = theme.replace(/_/g, ' ').toUpperCase();
+    adminThemeSelect.appendChild(option);
+  }
+}
+
+function generateAdminMiniTable() {
+  // Filtrar por tema seleccionado
+  const themesToShow = selectedTheme ? [selectedTheme] : Array.from(adminThemeStructure.keys());
+  
+  if (themesToShow.length === 0 || adminStudentsData.length === 0) {
+    adminTableContainer.style.display = 'none';
+    return;
+  }
+
+  // Crear headers
+  adminTableHeaders.innerHTML = '<th>Estudiante</th>';
+  themesToShow.forEach(theme => {
+    const th = document.createElement('th');
+    th.textContent = theme.replace(/_/g, ' ').toUpperCase();
+    th.style.minWidth = '60px';
+    adminTableHeaders.appendChild(th);
+  });
+
+  // Crear filas (máximo 5 estudiantes para vista móvil)
+  adminTableBody.innerHTML = '';
+  const studentsToShow = adminStudentsData.slice(0, 5);
+  
+  studentsToShow.forEach(student => {
+    const row = document.createElement('tr');
+    
+    // Celda estudiante
+    const studentCell = document.createElement('td');
+    studentCell.innerHTML = `
+      <div style="font-weight: 600; font-size: 11px; line-height: 1.2;">
+        ${(student.nombres || '').split(' ')[0]} ${(student.apellidos || '').split(' ')[0]}
+      </div>
+      <div style="font-size: 9px; opacity: 0.8;">${student.curso || ''}</div>
+    `;
+    row.appendChild(studentCell);
+    
+    // Celdas de temas
+    themesToShow.forEach(theme => {
+      const activities = adminThemeStructure.get(theme) || [];
+      const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
+      
+      const cell = document.createElement('td');
+      cell.innerHTML = `
+        <span class="admin-progress-mini ${getProgressClassMini(generalProgress)}">
+          ${generalProgress}%
+        </span>
+      `;
+      cell.style.textAlign = 'center';
+      row.appendChild(cell);
+    });
+    
+    adminTableBody.appendChild(row);
+  });
+
+  adminTableContainer.style.display = 'block';
+}
+
+function calculateGeneralThemeProgress(studentId, theme, activities) {
+  if (activities.length === 0) return 0;
+  
+  let totalProgress = 0;
+  let validActivities = 0;
+  
+  activities.forEach(activity => {
+    const progressRecord = adminProgressData.find(p => 
+      p.uid === studentId && 
+      p.moduleId === theme && 
+      p.lessonId === activity
+    );
+    
+    const progress = calculateProgressPercentage(progressRecord);
+    totalProgress += progress;
+    validActivities++;
+  });
+  
+  return validActivities > 0 ? Math.round(totalProgress / validActivities) : 0;
+}
+
+async function loadAdminData() {
+  showAdminLoading(true);
+  hideAdminError();
+  
+  try {
+    console.log('📱 Cargando datos admin móvil...');
+    
+    // Verificar permisos
+    if (!await isCurrentUserAdmin()) {
+      throw new Error('Acceso denegado');
+    }
+    
+    // Cargar estudiantes
+    const studentsQuery = query(
+      collection(db, "users"),
+      where("role", "==", "student")
+    );
+    
+    const studentsSnapshot = await getDocs(studentsQuery);
+    adminStudentsData = studentsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    
+    // Ordenar por apellido
+    adminStudentsData.sort((a, b) => (a.apellidos || '').localeCompare(b.apellidos || ''));
+    
+    // Cargar progreso
+    const progressQuery = query(collection(db, "progreso_temas"));
+    const progressSnapshot = await getDocs(progressQuery);
+    adminProgressData = progressSnapshot.docs.map(doc => doc.data());
+    
+    // Analizar estructura
+    analyzeAdminThemeStructure(adminProgressData);
+    
+    // Actualizar estadísticas
+    adminStudentCount.textContent = adminStudentsData.length;
+    adminThemeCount.textContent = adminThemeStructure.size;
+    
+    // Generar tabla
+    generateAdminMiniTable();
+    
+    console.log('✅ Datos admin móvil cargados');
+    
+  } catch (error) {
+    console.error('❌ Error cargando datos admin:', error);
+    showAdminError(error.message);
+  } finally {
+    showAdminLoading(false);
+  }
+}
+
+function openFullDashboard() {
+  // Abrir dashboard completo en nueva ventana
+  window.open('dashboard_jerarquico.html', '_blank', 'width=1400,height=900');
+}
+
+// Event listeners
+adminLoadBtn?.addEventListener('click', loadAdminData);
+adminOpenFullBtn?.addEventListener('click', openFullDashboard);
+
+adminThemeSelect?.addEventListener('change', (e) => {
+  selectedTheme = e.target.value;
+  generateAdminMiniTable();
+});
+
+// Mostrar/ocultar tarjeta según permisos de admin
+onAuthStateChanged(auth, async (user) => {
+  if (user && await isCurrentUserAdmin()) {
+    console.log('👤 Admin detectado - mostrando tarjeta dashboard');
+    adminCard.style.display = 'block';
+  } else {
+    adminCard.style.display = 'none';
+  }
+});
+
+console.log('✅ Tarjeta dashboard admin móvil inicializada');
+</script>
+
 
 </body>
 
