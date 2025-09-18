@@ -2585,6 +2585,59 @@ console.log('   - testVideoClozeIntegration() - Test completo');
 console.log('   - resetVideoClozeProgress() - Resetear progreso');
 </script>
 
+<!-- nombre de usuario -->
+ <script type="module">
+  import { db, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const auth = getAuth();
+
+  // Mini helper
+  const $ = (s)=>document.querySelector(s);
+
+  onAuthStateChanged(auth, async (user) => {
+    const userNameEl = $("#userName");
+    if (!user) {
+      // no logueado → oculto el botón/label y dejo todo seguro
+      if (userNameEl) userNameEl.textContent = "👤 Invitado";
+      // Si preferís bloquear el acceso directo sin login, descomentá:
+      // location.href = "index.html";
+      return;
+    }
+
+    try {
+      // 1) Intentar leer Firestore (usuarios/{uid}) para tomar el nickname
+      const ref = doc(db, "usuarios", user.uid);
+      const snap = await getDoc(ref);
+      let nickname = null;
+
+      if (snap.exists()) {
+        const data = snap.data();
+        nickname = data?.nickname || data?.nombres || data?.apellidos;
+      }
+
+      // 2) Fallbacks: displayName o parte del email
+      if (!nickname) {
+        nickname = user.displayName || (user.email ? user.email.split("@")[0] : "Alumno");
+      }
+
+      if (userNameEl) userNameEl.textContent = nickname;
+
+      // (Opcional) Si querés mostrar algo distinto para admin:
+      // const isAdmin = await isCurrentUserAdmin();
+      // if (isAdmin) {
+      //   userNameEl.title = "Admin";
+      //   userNameEl.classList.add("is-admin");
+      // }
+
+    } catch (e) {
+      console.error("No se pudo cargar nickname:", e);
+      if (userNameEl) userNameEl.textContent = "Alumno";
+    }
+  });
+</script>
+
 
 </body>
 </html>
