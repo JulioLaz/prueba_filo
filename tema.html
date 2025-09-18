@@ -26,7 +26,7 @@
 
       <!-- revisar logo flotante del nombre -->
       <div  class="admin-access">
-        <div class="avatar admin-btn" id="temaChip"></div>
+        <div class="avatar admin-btn" id="userName"></div>
       </div>
 
 
@@ -2584,6 +2584,22 @@ console.log('🛠️ Funciones de utilidad cargadas:');
 console.log('   - testVideoClozeIntegration() - Test completo');
 console.log('   - resetVideoClozeProgress() - Resetear progreso');
 </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const storedName = sessionStorage.getItem("user.nickname");
+    const userNameDiv = document.getElementById("userName");
+    
+    if (storedName) {
+      userNameDiv.textContent = storedName;
+    } else {
+      userNameDiv.textContent = "👤 Invitado";
+    }
+  });
+</script>
+
+
+
 
 </body>
 </html>
