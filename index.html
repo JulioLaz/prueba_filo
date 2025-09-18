@@ -228,6 +228,7 @@
         </div>
 
 <!-- inicio de dashboard de progreso alumnos solo para admin -->
+
 <!-- PASO 2: Agregar esta tarjeta después de .search-container y antes de .themes-grid -->
 <div id="adminDashboardCard" class="admin-dashboard-card">
   <div class="admin-card-header">
@@ -729,6 +730,7 @@ console.log("✨ Sistema de autenticación ampliado inicializado correctamente")
 })();
 </script>
 
+<!-- SCRIPT PARA DASHBOARD DE PROGRESS -->
 <!-- PASO 3: Agregar este script antes del cierre de </body> -->
 <script type="module">
 import { 
@@ -841,51 +843,140 @@ function generateAdminMiniTable() {
     return;
   }
 
-  // Crear headers
-  adminTableHeaders.innerHTML = '<th>Estudiante</th>';
+  // Crear headers jerárquicos
+  adminTableHeaders.innerHTML = '';
+  
+  // Header principal de estudiante
+  const studentHeader = document.createElement('th');
+  studentHeader.textContent = 'Estudiante';
+  studentHeader.style.minWidth = '80px';
+  studentHeader.style.position = 'sticky';
+  studentHeader.style.left = '0';
+  studentHeader.style.background = '#667eea';
+  studentHeader.style.zIndex = '10';
+  adminTableHeaders.appendChild(studentHeader);
+  
+  // Headers por tema y actividades
   themesToShow.forEach(theme => {
-    const th = document.createElement('th');
-    th.textContent = theme.replace(/_/g, ' ').toUpperCase();
-    th.style.minWidth = '60px';
-    adminTableHeaders.appendChild(th);
+    const activities = adminThemeStructure.get(theme) || [];
+    
+    // Header del tema principal (General)
+    const themeHeader = document.createElement('th');
+    themeHeader.innerHTML = `
+      <div style="font-size: 10px; font-weight: 700; margin-bottom: 2px;">
+        ${theme.replace(/_/g, ' ').toUpperCase()}
+      </div>
+      <div style="font-size: 8px; opacity: 0.8;">GENERAL</div>
+    `;
+    themeHeader.style.minWidth = '50px';
+    themeHeader.style.textAlign = 'center';
+    themeHeader.style.background = 'rgba(255,255,255,0.1)';
+    themeHeader.style.borderRight = '2px solid rgba(255,255,255,0.3)';
+    adminTableHeaders.appendChild(themeHeader);
+    
+    // Headers de actividades específicas
+    activities.forEach((activity, index) => {
+      const activityHeader = document.createElement('th');
+      activityHeader.innerHTML = `
+        <div style="font-size: 8px; font-weight: 500; writing-mode: vertical-rl; text-orientation: mixed;">
+          ${activity.toUpperCase()}
+        </div>
+      `;
+      activityHeader.style.minWidth = '35px';
+      activityHeader.style.textAlign = 'center';
+      activityHeader.style.padding = '4px 2px';
+      
+      // Separador visual entre temas
+      if (index === activities.length - 1) {
+        activityHeader.style.borderRight = '2px solid rgba(255,255,255,0.3)';
+      }
+      
+      adminTableHeaders.appendChild(activityHeader);
+    });
   });
 
-  // Crear filas (máximo 5 estudiantes para vista móvil)
+  // Crear filas (máximo 4 estudiantes para dar espacio a más columnas)
   adminTableBody.innerHTML = '';
-  const studentsToShow = adminStudentsData.slice(0, 5);
+  const studentsToShow = adminStudentsData.slice(0, 4);
   
   studentsToShow.forEach(student => {
     const row = document.createElement('tr');
     
-    // Celda estudiante
+    // Celda estudiante (sticky)
     const studentCell = document.createElement('td');
     studentCell.innerHTML = `
-      <div style="font-weight: 600; font-size: 11px; line-height: 1.2;">
+      <div style="font-weight: 600; font-size: 10px; line-height: 1.1;">
         ${(student.nombres || '').split(' ')[0]} ${(student.apellidos || '').split(' ')[0]}
       </div>
-      <div style="font-size: 9px; opacity: 0.8;">${student.curso || ''}</div>
+      <div style="font-size: 8px; opacity: 0.7;">${student.curso || ''}</div>
     `;
+    studentCell.style.position = 'sticky';
+    studentCell.style.left = '0';
+    studentCell.style.background = 'rgba(255,255,255,0.1)';
+    studentCell.style.zIndex = '5';
+    studentCell.style.minWidth = '80px';
     row.appendChild(studentCell);
     
-    // Celdas de temas
+    // Celdas por tema y actividades
     themesToShow.forEach(theme => {
       const activities = adminThemeStructure.get(theme) || [];
-      const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
       
-      const cell = document.createElement('td');
-      cell.innerHTML = `
+      // Celda general del tema
+      const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
+      const generalCell = document.createElement('td');
+      generalCell.innerHTML = `
         <span class="admin-progress-mini ${getProgressClassMini(generalProgress)}">
           ${generalProgress}%
         </span>
       `;
-      cell.style.textAlign = 'center';
-      row.appendChild(cell);
+      generalCell.style.textAlign = 'center';
+      generalCell.style.background = 'rgba(255,255,255,0.05)';
+      generalCell.style.borderRight = '2px solid rgba(255,255,255,0.2)';
+      generalCell.style.fontWeight = '600';
+      row.appendChild(generalCell);
+      
+      // Celdas de actividades específicas
+      activities.forEach((activity, index) => {
+        const progressRecord = adminProgressData.find(p => 
+          p.uid === student.id && 
+          p.moduleId === theme && 
+          p.lessonId === activity
+        );
+        
+        const percentage = calculateProgressPercentage(progressRecord);
+        const activityCell = document.createElement('td');
+        activityCell.innerHTML = `
+          <span class="admin-progress-mini ${getProgressClassMini(percentage)}" style="font-size: 9px; min-width: 30px;">
+            ${percentage}%
+          </span>
+        `;
+        activityCell.style.textAlign = 'center';
+        activityCell.style.padding = '2px 1px';
+        
+        // Tooltip con información
+        if (progressRecord) {
+          activityCell.title = `${theme} - ${activity}\nEstado: ${progressRecord.status || 'En progreso'}\nScore: ${progressRecord.score || 0}\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
+        } else {
+          activityCell.title = `${theme} - ${activity}\nSin progreso`;
+        }
+        
+        // Separador visual entre temas
+        if (index === activities.length - 1) {
+          activityCell.style.borderRight = '2px solid rgba(255,255,255,0.2)';
+        }
+        
+        row.appendChild(activityCell);
+      });
     });
     
     adminTableBody.appendChild(row);
   });
 
   adminTableContainer.style.display = 'block';
+  
+  // Ajustar scroll horizontal para la tabla
+  adminTableContainer.style.overflowX = 'auto';
+  adminTableContainer.style.overflowY = 'auto';
 }
 
 function calculateGeneralThemeProgress(studentId, theme, activities) {
