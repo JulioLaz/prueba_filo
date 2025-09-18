@@ -34,7 +34,13 @@
     <div class="user-info">
         <div class="avatar" id="userAvatar"></div>
         <span class="hello">Hola, <strong id="userName"></strong></span>
-    </div>
+      </div>
+      <!-- revisar logo flotante del nombre -->
+      <div  class="admin-access">
+        <div class="avatar admin-btn" id="userAvatar"></div>
+      </div>
+
+
     <button id="logoutBtn" class="btn ghost">Salir</button>
     </div>
 
@@ -275,7 +281,7 @@
 
   <div id="adminError" class="admin-error" style="display: none;"></div>
 
-  <div class="admin-actions">
+  <div class="admin-actions" style="display: none;">
     <button id="adminOpenFullBtn" class="admin-btn-primary">📈 Dashboard Completo</button>
   </div>
 </div>
@@ -344,7 +350,7 @@
 
     <!-- Acceso administrativo (solo visible para admin) -->
     <div id="adminAccess" class="admin-access" style="display:none">
-        <a href="admin/index.html" class="admin-btn" title="Panel Administrativo"></a>
+        <a href="index.html" class="admin-btn" title="Panel Administrativo"></a>
     </div>
 
     <footer id="app-footer" class="footer">
