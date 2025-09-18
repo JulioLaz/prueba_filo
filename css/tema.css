@@ -258,7 +258,7 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
 .admin-access {
       position: fixed;
-      bottom: 20px;
+      /* bottom: 20px; */
       right: 20px;
       z-index: 999;
     }
@@ -278,6 +278,9 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       transition: all 0.3s ease;
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-size: 22px;
+      font-weight: 500;
+
     }
 
     .admin-btn:hover {
