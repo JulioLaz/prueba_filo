@@ -897,7 +897,8 @@ function generateAdminMiniTable() {
 
   // Crear filas (máximo 4 estudiantes para dar espacio a más columnas)
   adminTableBody.innerHTML = '';
-  const studentsToShow = adminStudentsData.slice(0, 4);
+  const studentsToShow = adminStudentsData;
+  // const studentsToShow = adminStudentsData.slice(0, 4);
   
   studentsToShow.forEach(student => {
     const row = document.createElement('tr');
