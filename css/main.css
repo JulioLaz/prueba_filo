@@ -1199,9 +1199,9 @@ body::before {
     border-radius: 12px;
   }
   
-  .admin-controls {
+  /* .admin-controls {
     flex-direction: column;
-  }
+  } */
   
   .admin-btn-small, .admin-select {
     min-width: auto;
