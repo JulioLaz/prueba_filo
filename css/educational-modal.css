@@ -427,31 +427,76 @@
 @media (max-width: 640px) {
   .modal-container {
     width: 95vw;
-    margin: 20px;
+    max-width: 95vw;
+    margin: 10px;
+    max-height: 90vh;
   }
   
-  .modal-header, .modal-content, .modal-actions {
+  .modal-header, .modal-content {
     padding: 20px;
   }
   
+  .modal-actions {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
   .modal-title {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+  
+  .modal-subtitle {
+    font-size: 13px;
   }
   
   .intro-text, .conclusion-text {
     font-size: 14px;
+    line-height: 1.5;
   }
   
   .stats-preview {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .btn-game, .btn-secondary, .btn-exit {
+    width: 100%;
+    min-width: auto;
+    padding: 14px 20px;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+  }
+  
+  .btn-exit {
+    order: 3;
+  }
+  
+  .btn-secondary {
+    order: 2;
   }
   
   .btn-game {
-    min-width: auto;
-    width: 100%;
+    order: 1;
   }
   
-  .modal-actions {
-    flex-direction: column;
+  .modal-content {
+    max-height: 60vh;
+    padding-bottom: 16px;
+  }
+  
+  .section-title {
+    font-size: 16px;
+  }
+  
+  .keywords {
+    gap: 6px;
+  }
+  
+  .keyword {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 }
