@@ -16,7 +16,7 @@ console.log('📚 Cargando sistema de modal educativo...');
             <p class="modal-subtitle" id="modalSubtitle" style="display: none">Preparando contenido educativo</p>
           </div>
           
-          <div class="modal-content">
+          <div class="modal-content-crossword">
             <div class="intro-section animate-in">
               <div class="section-title">
                 📖 Introducción

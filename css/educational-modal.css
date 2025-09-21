@@ -110,7 +110,7 @@
 }
 
 /* Contenido del modal */
-.modal-content {
+.modal-content-crossword {
   padding: 32px;
   max-height: 50vh;
   overflow-y: auto;
@@ -118,15 +118,15 @@
   scrollbar-color: var(--brand) transparent;
 }
 
-.modal-content::-webkit-scrollbar {
+.modal-content-crossword::-webkit-scrollbar {
   width: 6px;
 }
 
-.modal-content::-webkit-scrollbar-track {
+.modal-content-crossword::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.modal-content::-webkit-scrollbar-thumb {
+.modal-content-crossword::-webkit-scrollbar-thumb {
   background: var(--brand);
   border-radius: 3px;
 }
@@ -432,7 +432,7 @@
     max-height: 90vh;
   }
   
-  .modal-header, .modal-content {
+  .modal-header, .modal-content-crossword {
     padding: 20px;
   }
   
@@ -482,7 +482,7 @@
     order: 1;
   }
   
-  .modal-content {
+  .modal-content-crossword {
     max-height: 60vh;
     padding-bottom: 16px;
   }
