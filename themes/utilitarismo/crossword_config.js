@@ -463,152 +463,202 @@
 // }
 
 // crossword_config.js (versión corregida y compatible con Firebase)
-console.log('🎯 Iniciando carga de configuración del crucigrama de Utilitarismo...');
+
+console.log('📋 Iniciando carga de configuración del crucigrama de Utilitarismo...');
 const configStartTime = performance.now();
 
-window.CROSSWORD_CONFIG = {
-  title: "Utilitarismo de John Stuart Mill - La Mayor Felicidad para el Mayor Número",
-  central: "FELICIDAD", // 9 letras (ideal 6-8, válido 3-12)
-  entries: [
-    {
-      answer: "FILOSOFIA",
-      clue: "Disciplina que estudia los principios fundamentales de la moral y la búsqueda del bien",
-      crossIndex: 0
+try {
+  window.CROSSWORD_CONFIG = {
+    title: "Utilitarismo de John Stuart Mill - La Mayor Felicidad para el Mayor Número",
+    
+    // Palabra central vertical (se normaliza automáticamente)
+    central: "UTILES",
+    
+    // Palabras horizontales que cruzan con la central
+    // crossIndex indica qué letra de la central usar (0-5 para UTILES)
+    entries: [
+      {
+        answer: "BENTHAM",
+        clue: "Filósofo fundador del utilitarismo clásico y creador del cálculo hedonístico",
+        crossIndex: 0 // Cruce en la 'U' de UTILES
+      },
+      {
+        answer: "ETICA",
+        clue: "Rama de la filosofía que estudia la moralidad de las acciones humanas",
+        crossIndex: 1 // Cruce en la 'T' de UTILES
+      },
+      {
+        answer: "BIENESTAR",
+        clue: "Estado de satisfacción y felicidad que busca maximizar el utilitarismo",
+        crossIndex: 2 // Cruce en la 'I' de UTILES
+      },
+      {
+        answer: "MILL",
+        clue: "John Stuart, filósofo que refinó el utilitarismo distinguiendo placeres superiores",
+        crossIndex: 3 // Cruce en la 'L' de UTILES
+      },
+      {
+        answer: "PLACER",
+        clue: "Sensación positiva que el utilitarismo considera como bien fundamental",
+        crossIndex: 4 // Cruce en la 'E' de UTILES
+      },
+      {
+        answer: "SOCIAL",
+        clue: "Ámbito donde se aplican los principios utilitaristas para el bien común",
+        crossIndex: 5 // Cruce en la 'S' de UTILES
+      }
+    ],
+    
+    // Texto para el prompt de respuesta
+    promptText: "Escribe la palabra completa (sin espacios ni acentos):",
+    
+    // Configuración de sonidos (rutas relativas desde crossword.html)
+    sounds: {
+      correct: "sound/collect_points.mp3",
+      wrong: "sound/negative_beep.mp3", 
+      complete: "sound/fin_caza.mp3"
     },
-    {
-      answer: "ETICA",
-      clue: "Rama de la filosofía que estudia lo correcto e incorrecto en el comportamiento humano",
-      crossIndex: 1
+    
+    // Opciones del juego
+    options: {
+      showHints: true,
+      autoSelectNext: true,
+      allowSkip: false,
+      caseSensitive: false,
+      showProgressBar: true,
+      enableTimer: true
     },
-    {
-      answer: "LIBERTAD",
-      clue: "Capacidad de actuar según la propia voluntad, defendida por Mill en su famosa obra",
-      crossIndex: 2
+    
+    // Información educativa adicional
+    educational: {
+      introduction: "El utilitarismo evalúa la moralidad de las acciones por sus consecuencias: busca la mayor felicidad para el mayor número de personas.",
+      conclusion: "Mill refinó el utilitarismo distinguiendo entre placeres superiores e inferiores, y defendiendo la libertad individual como base del progreso social.",
+      keyWords: ["utilitarismo", "mill", "bentham", "felicidad", "consecuencias", "bienestar"]
     },
-    {
-      answer: "IMPARCIAL",
-      clue: "Actitud de evaluar las consecuencias sin favorecer a ninguna persona en particular",
-      crossIndex: 3
-    },
-    {
-      answer: "CONSECUENCIAS",
-      clue: "Resultados de nuestras acciones que determinan si son moralmente correctas",
-      crossIndex: 4
-    },
-    {
-      answer: "INTELECTUAL",
-      clue: "Tipo de placer superior que distingue a los humanos de otros animales",
-      crossIndex: 5
-    },
-    {
-      answer: "DECISION",
-      clue: "Acto de elegir entre alternativas evaluando cuál maximiza el bienestar general",
-      crossIndex: 6
-    },
-    {
-      answer: "ALTRUISMO",
-      clue: "Preocupación genuina por el bienestar de otros, no solo por el propio",
-      crossIndex: 7
-    },
-    {
-      answer: "DOLOR",
-      clue: "Lo opuesto a la felicidad que el utilitarismo busca minimizar en el mundo",
-      crossIndex: 8
+    
+    // Metadatos para debug
+    metadata: {
+      version: "2.0_utilitarismo_secundaria",
+      created: new Date().toISOString(),
+      theme: "utilitarismo-mill-secundaria",
+      totalWords: 6,
+      difficulty: "intermediate",
+      targetAudience: "estudiantes-secundaria",
+      educationalLevel: "15-18 años"
     }
-  ],
-  promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-  sounds: {
-    correct: "sound/collect_points.mp3",
-    wrong: "sound/negative_beep.mp3",
-    complete: "sound/fin_caza.mp3"
-  },
-  options: {
-    showHints: true,
-    autoSelectNext: true,
-    allowSkip: false,
-    caseSensitive: false,
-    showProgressBar: true,
-    enableTimer: true
-  },
-  educational: {
-    introduction: "El utilitarismo evalúa la moralidad por sus consecuencias: busca la mayor felicidad para el mayor número.",
-    conclusion: "Mill distinguió entre placeres superiores e inferiores y defendió la imparcialidad como base de una sociedad justa.",
-    keyWords: ["utilitarismo", "felicidad", "consecuencias", "imparcialidad", "altruismo", "libertad"]
-  },
-  metadata: {
-    version: "2.0_tema_secundaria",
-    created: new Date().toISOString(),
-    theme: "utilitarismo-mill-secundaria",
-    totalWords: 9,
-    difficulty: "intermediate",
-    targetAudience: "estudiantes-secundaria",
-    educationalLevel: "15-18 años"
-  }
-};
+  };
 
-// === Validación estándar mínima (solo estructura base) ===
-(function validateCrosswordConfig(config){
+  // Validación mejorada de la configuración
+  const config = window.CROSSWORD_CONFIG;
   const errors = [];
   const warnings = [];
-
-  // Título
+  
+  console.log('🔍 Validando configuración del crucigrama...');
+  
+  // Validar campos obligatorios
   if (!config.title || config.title.trim().length === 0) {
     errors.push("Título vacío o inválido");
   }
-
-  // Palabra central
+  
   if (!config.central || config.central.trim().length < 3) {
     errors.push("Palabra central debe tener al menos 3 letras");
+  } else if (config.central.length > 12) {
+    warnings.push("Palabra central muy larga, podría afectar el diseño");
   }
-
-  // Entradas
-  if (!Array.isArray(config.entries) || config.entries.length === 0) {
-    errors.push("Debe haber al menos una entrada");
-  } else {
-    // Reglas del crucigrama educativo
-    if (config.central && config.entries.length !== config.central.length) {
-      warnings.push(`Se recomiendan ${config.central.length} entradas (1 por letra de "${config.central}"). Actual: ${config.entries.length}`);
+  
+  if (!config.entries || !Array.isArray(config.entries) || config.entries.length === 0) {
+    errors.push("Debe haber al menos una palabra horizontal");
+  }
+  
+  // Validar cada entrada con más detalle
+  const usedCrossIndices = new Set();
+  config.entries.forEach((entry, index) => {
+    if (!entry.answer || entry.answer.trim().length === 0) {
+      errors.push(`Entrada ${index + 1}: respuesta vacía`);
+    } else if (entry.answer.trim().length < 3) {
+      warnings.push(`Entrada ${index + 1}: respuesta muy corta`);
     }
-
-    const used = new Set();
-    config.entries.forEach((e, i) => {
-      if (!e.answer || e.answer.trim().length < 5 || e.answer.trim().length > 12) {
-        errors.push(`Entrada ${i + 1}: longitud de "answer" fuera de 5–12`);
-      }
-      if (!e.clue || e.clue.trim().length < 15 || e.clue.trim().length > 300) {
-        errors.push(`Entrada ${i + 1}: "clue" debe tener entre 15 y 300 caracteres`);
-      }
-      if (typeof e.crossIndex !== "number" || e.crossIndex < 0 || (config.central && e.crossIndex >= config.central.length)) {
-        errors.push(`Entrada ${i + 1}: "crossIndex" fuera de rango`);
+    
+    if (!entry.clue || entry.clue.trim().length < 10) {
+      errors.push(`Entrada ${index + 1}: pista muy corta (mínimo 10 caracteres)`);
+    } else if (entry.clue.trim().length > 150) {
+      warnings.push(`Entrada ${index + 1}: pista muy larga, podría no caber en pantalla`);
+    }
+    
+    if (typeof entry.crossIndex === 'number') {
+      if (entry.crossIndex < 0 || entry.crossIndex >= config.central.length) {
+        errors.push(`Entrada ${index + 1}: crossIndex fuera de rango (0-${config.central.length - 1})`);
+      } else if (usedCrossIndices.has(entry.crossIndex)) {
+        errors.push(`Entrada ${index + 1}: crossIndex ${entry.crossIndex} ya utilizado`);
       } else {
-        if (used.has(e.crossIndex)) {
-          errors.push(`Entrada ${i + 1}: "crossIndex" ${e.crossIndex} repetido`);
-        }
-        used.add(e.crossIndex);
+        usedCrossIndices.add(entry.crossIndex);
       }
-      // Debe contener la letra correspondiente de la central
-      if (config.central && typeof e.crossIndex === "number" && e.answer) {
-        const letter = config.central[e.crossIndex].toUpperCase();
-        if (!e.answer.toUpperCase().includes(letter)) {
-          errors.push(`Entrada ${i + 1}: "${e.answer}" no contiene la letra "${letter}" para el cruce`);
-        }
-      }
-    });
-
-    // Deben usarse exactamente todas las posiciones de la central
-    if (config.central && used.size !== config.central.length) {
-      warnings.push(`Se recomienda utilizar todas las posiciones 0..${config.central.length - 1}. Usadas: ${[...used].sort().join(", ")}`);
     }
+  });
+  
+  // Mostrar warnings si existen
+  if (warnings.length > 0) {
+    console.warn('⚠️ Advertencias en la configuración:');
+    warnings.forEach(warning => console.warn(`  - ${warning}`));
   }
-
-  // Resultado en consola
-  if (warnings.length) {
-    console.warn("⚠️ Advertencias de configuración:", warnings);
+  
+  // Mostrar errores si existen
+  if (errors.length > 0) {
+    console.error('❌ Errores en la configuración:');
+    errors.forEach(error => console.error(`  - ${error}`));
+    throw new Error(`Configuración inválida: ${errors.length} errores encontrados`);
   }
-  if (errors.length) {
-    console.error("❌ Errores de configuración:", errors);
-  }
-
+  
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
-})(window.CROSSWORD_CONFIG);
+  console.log(`📊 Resumen: "${config.title}"`);
+  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
+  console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
+  
+  // Estadísticas adicionales
+  const avgClueLength = config.entries.reduce((sum, entry) => sum + entry.clue.length, 0) / config.entries.length;
+  const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
+  
+  console.log(`📈 Estadísticas:`);
+  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📝 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
+  
+  // Log para debug (solo en desarrollo)
+  if (location.hostname === 'localhost' || location.search.includes('debug=1')) {
+    console.log('🔍 Configuración completa:', config);
+    console.table(config.entries.map(entry => ({
+      Respuesta: entry.answer,
+      Longitud: entry.answer.length,
+      Cruce: entry.crossIndex,
+      Letra: config.central[entry.crossIndex]
+    })));
+  }
+
+} catch (error) {
+  console.error('❌ Error cargando configuración del crucigrama:', error);
+  
+  // Configuración de fallback mínima para evitar crashes
+  window.CROSSWORD_CONFIG = {
+    title: "Error en configuración",
+    central: "ERROR",
+    entries: [
+      {
+        answer: "PROBLEMA",
+        clue: "Error en la configuración del crucigrama",
+        crossIndex: 0
+      }
+    ],
+    promptText: "Error en configuración:",
+    sounds: {},
+    options: {},
+    metadata: {
+      version: "fallback",
+      error: true
+    }
+  };
+  
+  console.log('🔄 Configuración de emergencia cargada');
+  // Re-lanzar el error para que el sistema lo maneje
+  throw error;
+}
