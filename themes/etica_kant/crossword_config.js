@@ -481,9 +481,9 @@ try {
         crossIndex: 1 // Cruce en la 'U' de BUENAS
       },
       {
-        answer: "DEBER",
-        clue: "Obligación moral que surge de la razón práctica y que define la acción ética según Kant",
-        crossIndex: 2 // Cruce en la 'E' de BUENAS
+      answer: "DEBER",
+      clue: "Obligación moral que surge de la razón práctica y que define la acción ética según Kant",
+      crossIndex: 2 // Cruce en la 'E' de BUENAS
       },
       {
         answer: "AUTONOMIA",
