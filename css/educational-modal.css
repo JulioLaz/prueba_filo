@@ -218,7 +218,8 @@
 }
 
 .btn-exit {
-  backgroucnd: transparent;
+  /* backgroucnd: transparent; */
+  background-color: linear-gradient(45deg, var(--brand), var(--brand2));
   color: #faf8f8;
   border: 2px solid #faf8f8;
   padding: 12px 20px;
