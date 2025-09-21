@@ -61,8 +61,8 @@ console.log('📚 Cargando sistema de modal educativo...');
             <button class="btn-secondary" onclick="EducationalModal.skip()" style="display:none">
               Saltar introducción
             </button>
-            <button class="btn-game" onclick="EducationalModal.start()">
-            <p style="font-size:16px">🎮</p>
+            <button class="btn-game" onclick="EducationalModal.start()" style="padding: 0 0 10px 0;">
+            <p style="font-size:26px; margin: 0 0 5px 0;">🎮</p>
               ¡Comenzar!
             </button>
           </div>
