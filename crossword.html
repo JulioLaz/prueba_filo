@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>Crucigrama</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+  <link rel="stylesheet" href="css/educational-modal.css">
   <style>
     :root{
       --bg:#0b1220; --panel:#0f172a; --ink:#eaf0ff; --muted:#9fb0ff;
@@ -704,6 +705,21 @@ console.log('💡 Basado en la función manual que funciona correctamente');
 <!-- correccion de carga del crucigrama -->
 
 <script>
+
+// Conectar modal educativo con motor del crucigrama
+window.addEventListener('startCrosswordFromModal', function(event) {
+  // El modal ya cerró, ahora iniciar el crucigrama normal
+  if (window.CrosswordEngine && window.CROSSWORD_CONFIG) {
+    const tema = new URLSearchParams(location.search).get('tema') || 'default';
+    
+    window.CrosswordEngine.start(window.CROSSWORD_CONFIG, {
+      tema: tema,
+      useModernUI: true,
+      withFirebase: true
+    });
+  }
+});
+
 // Script de navegación de vuelta
 (function() {
   console.log('🔙 Configurando navegación de vuelta a tema...');
@@ -748,6 +764,8 @@ console.log('💡 Basado en la función manual que funciona correctamente');
   }
 })();
 </script>
+
+<script src="js/educational-modal.js"></script>
 
 </body>
 </html>
