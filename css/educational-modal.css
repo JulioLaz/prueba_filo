@@ -243,7 +243,8 @@
   background: linear-gradient(135deg, var(--ok) 0%, #059669 100%);
   color: white;
   border: none;
-  padding: 16px 32px;
+  padding-bottom: 10px;
+  /* padding: 16px 32px; */
   border-radius: 12px;
   font-size: 16px;
   font-weight: 700;
@@ -465,7 +466,9 @@
   .btn-game, .btn-secondary, .btn-exit {
     width: 100%;
     min-width: auto;
-    padding: 14px 20px;
+    padding-bottom: 10px;
+
+    /* padding: 14px 20px; */
     font-size: 10px;
     text-align: center;
     display: block;
