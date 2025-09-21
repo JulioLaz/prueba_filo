@@ -214,6 +214,29 @@
   display: flex;
   gap: 16px;
   justify-content: center;
+  align-items: center;
+}
+
+.btn-exit {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-exit:hover {
+  color: white;
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  transform: translateY(-1px);
 }
 
 .btn-game {
@@ -362,6 +385,41 @@
   100% {
     transform: translateY(-100px) rotate(360deg);
     opacity: 0;
+  }
+}
+
+/* Botón de información permanente en la interfaz */
+.info-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.info-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
+.info-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive para el botón */
+@media (max-width: 640px) {
+  .info-button {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 }
 
