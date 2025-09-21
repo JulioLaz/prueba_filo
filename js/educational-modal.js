@@ -55,6 +55,9 @@ console.log('📚 Cargando sistema de modal educativo...');
           </div>
           
           <div class="modal-actions">
+            <button class="btn-exit" onclick="EducationalModal.exit()">
+              ← Salir
+            </button>
             <button class="btn-secondary" onclick="EducationalModal.skip()">
               Saltar introducción
             </button>
@@ -71,7 +74,31 @@ console.log('📚 Cargando sistema de modal educativo...');
     console.log('✅ Modal educativo creado dinámicamente');
   }
 
-  // Crear partículas flotantes
+  // Crear botón de información permanente en la interfaz
+  function createInfoButton() {
+    // Verificar si ya existe
+    if (document.getElementById('infoButton')) return;
+    
+    const infoButton = document.createElement('button');
+    infoButton.id = 'infoButton';
+    infoButton.className = 'info-button';
+    infoButton.innerHTML = '📚 Info';
+    infoButton.title = 'Ver información educativa del tema';
+    infoButton.onclick = () => EducationalModal.show();
+    
+    // Insertar en el HUD existente
+    const hud = document.querySelector('.hud');
+    if (hud) {
+      hud.appendChild(infoButton);
+      console.log('✅ Botón de información agregado al HUD');
+    } else {
+      // Fallback: agregar al header si no hay HUD
+      const header = document.querySelector('header .header-actions');
+      if (header) {
+        header.insertBefore(infoButton, header.firstChild);
+      }
+    }
+  }
   function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
@@ -260,6 +287,30 @@ console.log('📚 Cargando sistema de modal educativo...');
       }
     },
 
+    // Salir completamente (volver al tema)
+    exit: function() {
+      console.log('🚪 Saliendo del crucigrama desde modal educativo');
+      this.hide();
+      
+      // Obtener tema actual y regresar
+      const params = new URLSearchParams(window.location.search);
+      const tema = params.get('tema') || params.get('theme') || 'default';
+      const backUrl = `tema.html?tema=${tema}&theme=${tema}`;
+      
+      // Guardar progreso si existe antes de salir
+      if (typeof window.forceCrosswordSave === 'function') {
+        try {
+          window.forceCrosswordSave();
+        } catch (e) {
+          console.warn('Error guardando progreso al salir:', e);
+        }
+      }
+      
+      setTimeout(() => {
+        window.location.href = backUrl;
+      }, 300);
+    },
+
     // Saltar introducción
     skip: function() {
       console.log('⏭️ Saltando introducción educativa');
@@ -288,11 +339,21 @@ console.log('📚 Cargando sistema de modal educativo...');
       // Esperar un momento para que la configuración se cargue
       setTimeout(() => {
         if (window.CROSSWORD_CONFIG) {
-          this.show();
+          // Crear botón de info permanente si hay contenido educativo
+          if (window.CROSSWORD_CONFIG.educational?.introduction) {
+            createInfoButton();
+            this.show();
+          }
         } else {
           console.warn('⚠️ CROSSWORD_CONFIG no disponible para modal educativo');
         }
       }, 500);
+    },
+
+    // Mostrar modal manualmente (desde botón de info)
+    showInfo: function() {
+      console.log('📚 Mostrando información educativa desde botón');
+      this.show();
     }
   };
 
