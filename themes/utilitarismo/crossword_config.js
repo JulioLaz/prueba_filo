@@ -472,40 +472,40 @@ try {
     title: "Utilitarismo de John Stuart Mill - La Mayor Felicidad para el Mayor Número",
     
     // Palabra central vertical (se normaliza automáticamente)
-    central: "UTILES",
+    central: "PLACER",
     
     // Palabras horizontales que cruzan con la central
-    // crossIndex indica qué letra de la central usar (0-5 para UTILES)
+    // crossIndex indica qué letra de la central usar (0-5 para PLACER)
     entries: [
       {
+        answer: "PRINCIPIO",
+        clue: "Regla fundamental del utilitarismo: la mayor felicidad para el mayor número",
+        crossIndex: 0 // Cruce en la 'P' de PLACER
+      },
+      {
+        answer: "LIBERTAD",
+        clue: "Valor defendido por Mill en su obra sobre la libertad individual",
+        crossIndex: 1 // Cruce en la 'L' de PLACER
+      },
+      {
+        answer: "CALCULO",
+        clue: "Método para evaluar placeres y dolores propuesto por Bentham",
+        crossIndex: 2 // Cruce en la 'A' de PLACER
+      },
+      {
+        answer: "ACCIONES",
+        clue: "Lo que evalúa el utilitarismo según sus consecuencias morales",
+        crossIndex: 3 // Cruce en la 'C' de PLACER
+      },
+      {
         answer: "BENTHAM",
-        clue: "Filósofo fundador del utilitarismo clásico y creador del cálculo hedonístico",
-        crossIndex: 0 // Cruce en la 'U' de UTILES
+        clue: "Jeremy, filósofo fundador del utilitarismo clásico y del cálculo hedonístico",
+        crossIndex: 4 // Cruce en la 'E' de PLACER
       },
       {
-        answer: "ETICA",
-        clue: "Rama de la filosofía que estudia la moralidad de las acciones humanas",
-        crossIndex: 1 // Cruce en la 'T' de UTILES
-      },
-      {
-        answer: "BIENESTAR",
-        clue: "Estado de satisfacción y felicidad que busca maximizar el utilitarismo",
-        crossIndex: 2 // Cruce en la 'I' de UTILES
-      },
-      {
-        answer: "MILL",
-        clue: "John Stuart, filósofo que refinó el utilitarismo distinguiendo placeres superiores",
-        crossIndex: 3 // Cruce en la 'L' de UTILES
-      },
-      {
-        answer: "PLACER",
-        clue: "Sensación positiva que el utilitarismo considera como bien fundamental",
-        crossIndex: 4 // Cruce en la 'E' de UTILES
-      },
-      {
-        answer: "SOCIAL",
-        clue: "Ámbito donde se aplican los principios utilitaristas para el bien común",
-        crossIndex: 5 // Cruce en la 'S' de UTILES
+        answer: "SUPERIOR",
+        clue: "Tipo de placer intelectual que Mill consideraba más valioso que el físico",
+        crossIndex: 5 // Cruce en la 'R' de PLACER
       }
     ],
     
