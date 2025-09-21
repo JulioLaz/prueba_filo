@@ -218,9 +218,9 @@
 }
 
 .btn-exit {
-  background: transparent;
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  backgroucnd: transparent;
+  color: #faf8f8;
+  border: 2px solid #faf8f8;
   padding: 12px 20px;
   border-radius: 10px;
   font-size: 14px;
@@ -467,8 +467,8 @@
     width: 100%;
     min-width: auto;
     padding-bottom: 10px;
-    height:6.6em;
-    font-size: 10px;
+    height:5em;
+    font-size: 15px;
     text-align: center;
     display: block;
   }
