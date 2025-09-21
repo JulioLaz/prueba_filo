@@ -62,7 +62,7 @@ console.log('📚 Cargando sistema de modal educativo...');
               Saltar introducción
             </button>
             <button class="btn-game" onclick="EducationalModal.start()">
-              🎮 ¡Comenzar crucigrama!
+              🎮 ¡Comenzar!
             </button>
           </div>
         </div>
