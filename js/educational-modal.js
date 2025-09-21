@@ -55,14 +55,15 @@ console.log('📚 Cargando sistema de modal educativo...');
           </div>
           
           <div class="modal-actions">
-            <button class="btn-exit" onclick="EducationalModal.exit()">
-              ← Salir
+            <button class="btn-exit" onclick="EducationalModal.exit()" >
+              Actividades
             </button>
-            <button class="btn-secondary" onclick="EducationalModal.skip()">
+            <button class="btn-secondary" onclick="EducationalModal.skip()" style="display:none">
               Saltar introducción
             </button>
             <button class="btn-game" onclick="EducationalModal.start()">
-              🎮 ¡Comenzar!
+            <p style="font-size:16px">🎮</p>
+              ¡Comenzar!
             </button>
           </div>
         </div>
