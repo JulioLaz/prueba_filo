@@ -13,7 +13,7 @@ console.log('📚 Cargando sistema de modal educativo...');
           <div class="modal-header">
             <span class="modal-icon" id="modalIcon">🧠</span>
             <h2 class="modal-title" id="modalTitle">Cargando tema...</h2>
-            <p class="modal-subtitle" id="modalSubtitle">Preparando contenido educativo</p>
+            <p class="modal-subtitle" id="modalSubtitle" style="display: none">Preparando contenido educativo</p>
           </div>
           
           <div class="modal-content">
