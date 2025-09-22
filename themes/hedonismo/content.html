@@ -3,9 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hedonismo: El Placer como Fundamento de la Vida (Estudio Progresivo)</title>
+  <title>Hedonismo (Epicuro) — Lectura guiada</title>
   <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
 
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    // Configuración específica para Hedonismo / Epicureísmo
+    window.ReadAloudSystemConfig = {
+      tema: 'Hedonismo (Epicuro)',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=hedonismo',
+      celebrationEmojis: ['✨','🧘','🍇','📜','🌿','🏛️','⭐','🏆'],
+
+      // Sinónimos y equivalencias útiles para reconocimiento
+      synonymMap: {
+        'epicuro': ['epicúreo','epicureo','epicureísmo','epicureismo'],
+        'hedonismo': ['placerismo','busqueda de placer'],
+        'ataraxia': ['imperturbabilidad','serenidad','calma'],
+        'autarquia': ['autosuficiencia','independencia'],
+        'eudaimonia': ['felicidad','bienestar','florecimiento'],
+        'dioses': ['divinidades','deidades'],
+        'muerte': ['morir','fin de la vida'],
+        'deseos': ['ansias','apetitos'],
+        'placer': ['goce','satisfaccion','deleite'],
+        'dolor': ['sufrimiento','pena','afliccion']
+      }
+    };
+  </script>
 </head>
 <body>
   <main class="material-dark">
@@ -20,626 +49,494 @@
     </div>
 
     <h1>🌸 HEDONISMO: El Placer como Fundamento de la Vida</h1>
-    <p><em>Del griego <strong>"hedone"</strong> (placer) — Una filosofía que busca la felicidad a través del placer, pero ¿qué tipo de placer? Descubre las diferencias entre el hedonismo vulgar y el refinado de Epicuro.</em></p>
+    <p><em>Del griego <strong>hedoné</strong> (placer). ¿Toda felicidad consiste en placer? Con Epicuro, el hedonismo se vuelve <strong>prudente</strong>: menos exceso, más <strong>serenidad</strong>.</em></p>
 
     <!-- 1. Definición fundamental -->
     <div class="study-section active" data-section="definicion">
-      <div class="highlight-box">
-        <h3>🎯 ¿Qué es el Hedonismo?</h3>
-        <p>El <strong>hedonismo</strong> es una corriente filosófica que considera el <strong>placer</strong> como el único y verdadero bien, y busca la <strong>felicidad</strong> mediante la supresión del dolor y las penas.</p>
-        <blockquote><em>Idea central: Todo lo que el ser humano hace debe orientarse hacia el placer, pues ahí se encuentra el sentido de la vida.</em></blockquote>
-        <p>Sin embargo, el término <strong>"placer"</strong> es ambiguo y puede interpretarse de múltiples maneras, lo que genera diferentes tipos de hedonismo.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎯 ¿Qué es el Hedonismo?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El <strong>hedonismo</strong> sostiene que el <strong>placer</strong> es el bien fundamental y que la <strong>felicidad</strong> consiste en evitar el <em>dolor</em> y cultivar gozos estables. La palabra placer es <em>ambigua</em>: según cómo la entendamos, el hedonismo será vulgar o refinado.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Idea central: placer como bien.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Verificación de comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Verificación de comprensión</h4><p>Clave de la definición:</p></div>
+        <div class="question"><p>¿Qué entiende el hedonismo por bien fundamental?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El hedonismo busca la felicidad a través del placer y evita el dolor</div>
-          <div class="option">El hedonismo rechaza completamente los placeres</div>
-          <div class="option">El hedonismo solo se enfoca en el sufrimiento</div>
-          <div class="option">El placer no tiene importancia en el hedonismo</div>
+          <div class="option" data-correct="true">El placer como fundamento de la felicidad</div>
+          <div class="option">El sufrimiento como camino único</div>
+          <div class="option">La fama por encima de todo</div>
+          <div class="option">El azar sin orientación</div>
         </div>
       </div>
     </div>
 
-    <!-- 2. Problema de ambigüedad -->
+    <!-- 2. Ambigüedad del placer -->
     <div class="study-section" data-section="ambiguedad">
-      <div class="highlight-box">
-        <h3>🤔 El Problema de la Ambigüedad del Placer</h3>
-        <p>Dependiendo de cómo se defina el <strong>placer</strong>, una doctrina será hedonista o no. Existen diferentes interpretaciones:</p>
-        <ul>
-          <li>💪 <strong>Placer físico inmediato</strong>: Satisfacer sin límites todas las necesidades corporales</li>
-          <li>⚖️ <strong>Placer moderado</strong>: Satisfacer necesidades de forma equilibrada para alcanzar bienestar</li>
-          <li>🌍 <strong>Placer social</strong>: Encontrar satisfacción siendo útil a la sociedad y al bienestar común</li>
-          <li>🧠 <strong>Placer intelectual</strong>: Disfrutar del conocimiento, la contemplación y el desarrollo mental</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤔 El problema de la ambigüedad del placer</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Placer</strong> puede significar estímulo físico inmediato, bienestar estable, gozo intelectual o utilidad social. Distinguir <em>calidades</em> de placer evita confundir el hedonismo prudente con la mera <strong>satisfacción impulsiva</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Importa la calidad del placer.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔍 Check rápido</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔍 Verificación</h4><p>Sobre el término "placer"</p></div>
+        <div class="question"><p>¿Por qué la ambigüedad es un problema?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El concepto de "placer" puede interpretarse de múltiples formas</div>
-          <div class="option">Solo existe un tipo de placer válido</div>
-          <div class="option">El placer siempre es algo negativo</div>
-          <div class="option">La ambigüedad no afecta al hedonismo</div>
+          <div class="option" data-correct="true">Porque hay distintos tipos y calidades de placer</div>
+          <div class="option">Porque placer siempre significa lo mismo</div>
+          <div class="option">Porque niega todo goce</div>
+          <div class="option">Porque impide pensar</div>
         </div>
       </div>
     </div>
 
     <!-- 3. Tipos de hedonismo -->
     <div class="study-section" data-section="tipos-hedonismo">
-      <div class="highlight-box">
-        <h3>📊 Dos Formas Principales del Hedonismo</h3>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Enfoque</th>
-              <th>Características</th>
-              <th>Ejemplo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Tipo"><strong>🔥 HEDONISMO ABSOLUTO</strong></td>
-              <td data-label="Enfoque">Placer sensible o inferior</td>
-              <td data-label="Características">Gratificación inmediata de los sentidos físicos</td>
-              <td data-label="Ejemplo">Comer, beber, placeres sexuales sin moderación</td>
-            </tr>
-            <tr>
-              <td data-label="Tipo"><strong>🌟 HEDONISMO MITIGADO (Eudemonismo)</strong></td>
-              <td data-label="Enfoque">Placer espiritual o superior</td>
-              <td data-label="Características">Placeres intelectuales, contemplativos y duraderos</td>
-              <td data-label="Ejemplo">Filosofía, arte, amistad, conocimiento</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📊 Dos formas principales</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Hedonismo absoluto</strong>: persigue estímulos sensibles inmediatos sin moderación. <strong>Hedonismo mitigado</strong> o <em>eudemonista</em>: privilegia placeres más altos —amistad, conocimiento, arte— por su <em>duración</em> y <em>estabilidad</em>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Diferencia: duración y elevación.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎨 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🎨 Comprensión</h4><p>Compara enfoques</p></div>
+        <div class="question"><p>¿Qué privilegia el hedonismo mitigado?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El hedonismo mitigado se enfoca en placeres espirituales e intelectuales</div>
-          <div class="option">El hedonismo absoluto busca placeres duraderos</div>
-          <div class="option">No hay diferencia entre los dos tipos</div>
-          <div class="option">Ambos tipos rechazan el placer físico</div>
+          <div class="option" data-correct="true">Placeres duraderos e intelectuales</div>
+          <div class="option">Excesos momentáneos</div>
+          <div class="option">Dolor como fin</div>
+          <div class="option">Solo riqueza material</div>
         </div>
       </div>
     </div>
 
     <!-- 4. Críticas religiosas -->
     <div class="study-section" data-section="criticas-religiosas">
-      <div class="highlight-box">
-        <h3>⛪ Críticas Religiosas al Hedonismo</h3>
-        <p>Las tradiciones religiosas, especialmente la fe católica, se oponen al hedonismo por considerar que:</p>
-        <ul>
-          <li>❌ <strong>Destruye valores espirituales</strong> al priorizar lo material sobre lo trascendente</li>
-          <li>❌ <strong>Es una posición inmoral</strong> que puede llevar al egoísmo y la irresponsabilidad</li>
-          <li>❌ <strong>Antepone los sentidos al plan divino</strong> de amor y servicio a otros</li>
-          <li>⚠️ <strong>Puede generar adicciones</strong> y comportamientos autodestructivos</li>
-        </ul>
-        <p><em>Sin embargo, no todos los hedonistas buscan placeres destructivos. Algunos, como Epicuro, proponían un hedonismo responsable.</em></p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⛪ Críticas religiosas al hedonismo</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Varias tradiciones temen que la primacía del placer <strong>degrade</strong> valores espirituales y fomente <em>egoísmo</em> o <em>adicciones</em>. El hedonismo de Epicuro, en cambio, propone <strong>moderación</strong>, amistad y serenidad como bien superior.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Diferenciar exceso vs. prudencia.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔎 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔎 Verificación</h4><p>Sobre la crítica</p></div>
+        <div class="question"><p>¿Qué teme la crítica religiosa?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Las críticas religiosas se enfocan en los posibles aspectos destructivos del hedonismo</div>
-          <div class="option">Todas las religiones apoyan el hedonismo</div>
-          <div class="option">El hedonismo siempre es compatible con la religión</div>
-          <div class="option">No existe conflicto entre hedonismo y espiritualidad</div>
+          <div class="option" data-correct="true">Que el placer sin moderación destruya bienes superiores</div>
+          <div class="option">Que Epicuro niegue toda amistad</div>
+          <div class="option">Que la serenidad sea imposible</div>
+          <div class="option">Que el dolor sea valioso</div>
         </div>
       </div>
     </div>
 
     <!-- 5. Epicuro biografía -->
     <div class="study-section" data-section="epicuro-biografia">
-      <div class="highlight-box">
-        <h3>🏛️ Epicuro de Samos: El Fundador del Hedonismo Filosófico</h3>
-        <ul>
-          <li>📅 <strong>Vida:</strong> 341-270 a.C. (vivió 71 años)</li>
-          <li>🏛️ <strong>Lugar:</strong> Enseñó en Atenas, la capital filosófica de Grecia</li>
-          <li>🌿 <strong>Escuela:</strong> Fundó "el Jardín" hacia el año 306 a.C.</li>
-          <li>👥 <strong>Innovación social:</strong> Su escuela incluía mujeres y esclavos, algo revolucionario para la época</li>
-          <li>🤝 <strong>Valores centrales:</strong> Cultivaba especialmente la amistad como base de la vida buena</li>
-          <li>📚 <strong>Obra:</strong> Escribió más de 300 obras, aunque solo conservamos fragmentos</li>
-        </ul>
-        <p><strong>¿Sabías que...?</strong> El Jardín de Epicuro funcionó ininterrumpidamente por más de 600 años, lo que muestra la durabilidad de sus ideas.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏛️ Epicuro de Samos: vida y escuela</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Epicuro (341–270 a. C.) enseñó en Atenas y fundó <strong>el Jardín</strong>, comunidad que valoró la <strong>amistad</strong> e integró mujeres y esclavos. Su influencia perduró por siglos gracias a un ideal de vida sencilla y placentera.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 El Jardín como comunidad.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📖 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📖 Check</h4><p>Datos clave</p></div>
+        <div class="question"><p>¿Qué rasgo social distinguió al Jardín?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Epicuro fundó "el Jardín" e incluía mujeres en su escuela</div>
-          <div class="option">Epicuro vivió en Roma</div>
-          <div class="option">El Jardín solo admitía hombres nobles</div>
-          <div class="option">Epicuro no valoraba la amistad</div>
+          <div class="option" data-correct="true">Incluía mujeres y esclavos</div>
+          <div class="option">Solo admitía nobles</div>
+          <div class="option">Fue una escuela militar</div>
+          <div class="option">Prohibía la amistad</div>
         </div>
       </div>
     </div>
 
-    <!-- 6. Malentendidos sobre Epicuro -->
+    <!-- 6. Malentendidos -->
     <div class="study-section" data-section="malentendidos">
-      <div class="highlight-box">
-        <h3>🔍 Malentendidos Históricos sobre Epicuro</h3>
-        <p>La visión de Epicuro sobre el placer <strong>no es comúnmente comprendida</strong>:</p>
-        <ul>
-          <li>📚 <strong>Historiadores medievales:</strong> Lo representaban como un licencioso que promovía el vicio</li>
-          <li>📖 <strong>Algunos historiadores modernos:</strong> Lo describen como un asceta que rechazaba los placeres</li>
-          <li>⚡ <strong>La realidad:</strong> Su filosofía es más sofisticada que ambas interpretaciones extremas</li>
-          <li>🎯 <strong>Su verdadera posición:</strong> Buscaba una vida de continuo placer, pero <em>calculado e inteligente</em></li>
-        </ul>
-        <blockquote><em>"No es posible vivir placenteramente sin vivir con prudencia, belleza y justicia."</em> - Epicuro</blockquote>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔍 Malentendidos históricos</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Epicuro fue caricaturizado como <em>licencioso</em> o como <em>asceta</em>. En realidad, su propuesta es <strong>sofisticada</strong>: una vida de placer <em>continuo</em> y <em>calculado</em>, inseparable de prudencia, belleza y justicia.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Ni vicio ni ascetismo extremos.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧩 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧩 Comprensión</h4><p>Sobre la distorsión</p></div>
+        <div class="question"><p>¿Cómo resume la posición real de Epicuro?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Epicuro ha sido malinterpretado tanto como libertino como asceta</div>
-          <div class="option">Epicuro realmente promovía el libertinaje</div>
-          <div class="option">Epicuro era completamente ascético</div>
-          <div class="option">No hay controversia sobre las ideas de Epicuro</div>
+          <div class="option" data-correct="true">Placer continuo, calculado y prudente</div>
+          <div class="option">Libertinaje sin límites</div>
+          <div class="option">Ascetismo total</div>
+          <div class="option">Desprecio por la belleza</div>
         </div>
       </div>
     </div>
 
     <!-- 7. Filosofía epicúrea del placer -->
     <div class="study-section" data-section="filosofia-epicurea">
-      <div class="highlight-box">
-        <h3>💎 La Filosofía Epicúrea del Placer</h3>
-        <h4>🎯 La Vida de Continuo Placer</h4>
-        <p>Epicuro defendía <strong>una vida de continuo placer</strong> como clave para la felicidad. Su gran perspicacia consistía en identificar el <strong>límite</strong> de nuestra habilidad para experimentar el placer.</p>
-        <p><strong>Descubrimiento clave:</strong> A partir de cierto nivel, el placer no puede incrementar en <em>intensidad</em>, pero sí puede <em>variar</em> continuamente en sensaciones que sostienen ese pináculo.</p>
-        <p>Esto lo llevó al concepto de <strong>Ataraxia</strong> = "Imperturbabilidad" (estado mental de máxima serenidad)</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💎 Filosofía epicúrea del placer</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Buscamos una <strong>vida</strong> de placer, no un pico interminable de intensidad. El placer tiene <em>límite de intensidad</em>, pero puede <strong>variar</strong> en formas que sostienen la satisfacción: contemplación, amistad, descanso, diálogo.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Calidad > cantidad.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Check</h4><p>Sobre la intensidad</p></div>
+        <div class="question"><p>¿Por qué no se busca intensidad infinita?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El placer tiene un límite de intensidad pero puede variar en tipos</div>
-          <div class="option">El placer puede intensificarse infinitamente</div>
-          <div class="option">Epicuro rechazaba la vida placentera</div>
-          <div class="option">La ataraxia significa "máximo placer físico"</div>
+          <div class="option" data-correct="true">Porque hay un límite y valoran variaciones serenas</div>
+          <div class="option">Porque el placer es malo</div>
+          <div class="option">Porque el dolor es superior</div>
+          <div class="option">Porque solo importa el lujo</div>
         </div>
       </div>
     </div>
 
     <!-- 8. Ataraxia -->
     <div class="study-section" data-section="ataraxia">
-      <div class="highlight-box">
-        <h3>🧘 ATARAXIA: El Estado Ideal</h3>
-        <p><strong>Ataraxia</strong> (del griego: "sin perturbación") es el estado de:</p>
-        <ul>
-          <li>🧘 <strong>Imperturbabilidad mental</strong>: tranquilidad ante los eventos externos</li>
-          <li>🕊️ <strong>Serenidad emocional</strong>: no dejarse arrastrar por pasiones destructivas</li>
-          <li>⚖️ <strong>Equilibrio interior</strong>: mantener la paz mental en cualquier circunstancia</li>
-          <li>🎯 <strong>Lucidez</strong>: capacidad de pensar claramente sin interferencias emocionales</li>
-        </ul>
-        <p><strong>¿Cómo se alcanza?</strong> Eliminando los <em>dos grandes temores</em> que perturban al ser humano.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧘 Ataraxia: estado ideal</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Ataraxia</strong> es imperturbabilidad mental: serenidad, equilibrio y lucidez frente a lo que ocurre. No suprime las emociones; <em>ordena</em> los deseos para evitar la ansiedad que destruye el placer.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Calma activa.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔄 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔄 Verificación</h4><p>Define el ideal</p></div>
+        <div class="question"><p>¿Qué caracteriza la ataraxia?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La ataraxia es un estado de imperturbabilidad y serenidad mental</div>
-          <div class="option">La ataraxia significa maximum placer sensorial</div>
-          <div class="option">La ataraxia es imposible de alcanzar</div>
-          <div class="option">La ataraxia requiere eliminar todas las emociones</div>
+          <div class="option" data-correct="true">Imperturbabilidad y serenidad mental</div>
+          <div class="option">Excitación constante</div>
+          <div class="option">Ausencia de amistad</div>
+          <div class="option">Búsqueda de fama</div>
         </div>
       </div>
     </div>
 
-    <!-- 9. Placer como ausencia de dolor -->
+    <!-- 9. Placer = ausencia de dolor -->
     <div class="study-section" data-section="placer-ausencia-dolor">
-      <div class="highlight-box">
-        <h3>➕ Placer = Ausencia de Dolor</h3>
-        <p><strong>Ecuación fundamental epicúrea:</strong></p>
-        <blockquote><strong>Presencia del placer = Ausencia de dolor o aflicción</strong></blockquote>
-        <p>Esto incluye la eliminación de:</p>
-        <ul>
-          <li>🍽️ <strong>Hambre y sed</strong>: necesidades básicas del cuerpo</li>
-          <li>💕 <strong>Tensión sexual</strong>: deseos corporales naturales</li>
-          <li>😴 <strong>Aburrimiento</strong>: vacío existencial y mental</li>
-          <li>😰 <strong>Ansiedad</strong>: preocupaciones por el futuro</li>
-          <li>😨 <strong>Miedo</strong>: terror a los dioses o a la muerte</li>
-          <li>🤕 <strong>Cualquier tipo de aflicción</strong>: física, mental o emocional</li>
-        </ul>
-        <p><em>Idea radical: El estado "neutro" (sin dolor) ya es placentero por sí mismo.</em></p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>➕ Placer = ausencia de dolor</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Epicuro, placer significa <strong>no sufrir</strong>: sin hambre ni sed, sin ansiedad ni miedo, sin aflicción del cuerpo o del alma. El estado "neutro" ya es valioso: es <strong>bienestar</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Placer como ausencia de malestar.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🎯 Check</h4><p>Define placer</p></div>
+        <div class="question"><p>¿Cómo define Epicuro el placer?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Para Epicuro, el placer se define como ausencia de dolor y aflicción</div>
-          <div class="option">El placer siempre requiere sensaciones intensas</div>
-          <div class="option">El dolor y el placer son la misma cosa</div>
-          <div class="option">La ausencia de dolor no tiene valor</div>
+          <div class="option" data-correct="true">Como ausencia de dolor y aflicción</div>
+          <div class="option">Como euforia perpetua</div>
+          <div class="option">Como riqueza material</div>
+          <div class="option">Como fama pública</div>
         </div>
       </div>
     </div>
 
-    <!-- 10. Placeres sensuales como medios -->
+    <!-- 10. Placeres sensuales: medios -->
     <div class="study-section" data-section="placeres-sensuales">
-      <div class="highlight-box">
-        <h3>🍎 Los Placeres Sensuales como Medios, no Fines</h3>
-        <p>Epicuro <strong>NO rechazaba</strong> los placeres sensuales, pero los veía de manera específica:</p>
-        <blockquote><strong>Epicuro escribió:</strong> <em>"Yo no sé cómo puedo concebir lo bueno, si elimino los placeres del gusto, y elimino los placeres del amor, y elimino los placeres del oído, y elimino las emociones placenteras causadas por la visión de una hermosa forma"</em></blockquote>
-        <p><strong>Pero hay una distinción crucial:</strong></p>
-        <ul>
-          <li>✅ <strong>Los placeres sensuales son estimulantes y buenos</strong></li>
-          <li>🎯 <strong>Pero son solo un MEDIO para perseguir la satisfacción</strong></li>
-          <li>❌ <strong>NO son un fin en sí mismos</strong></li>
-          <li>⚠️ <strong>Considerarlos como fin último nos conduciría a la ansiedad de la adicción</strong></li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🍎 Placeres sensuales: medios, no fines</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Epicuro no rechaza los sentidos: <strong>gusto, amor, música, belleza</strong> enriquecen la vida. Pero convertirlos en <em>fin último</em> genera <strong>ansiedad</strong> y <strong>adicción</strong>. Son <em>medios</em> que deben servir a la serenidad.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Medio vs. fin.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧩 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧩 Comprensión</h4><p>Ubica los sentidos</p></div>
+        <div class="question"><p>¿Qué lugar ocupan los placeres sensuales?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los placeres sensuales son medios válidos, no fines últimos</div>
-          <div class="option">Epicuro rechazaba completamente los placeres físicos</div>
-          <div class="option">Los placeres sensuales deben ser el objetivo final</div>
-          <div class="option">No hay diferencia entre medio y fin en el placer</div>
+          <div class="option" data-correct="true">Son medios válidos subordinados a la serenidad</div>
+          <div class="option">Son el fin último</div>
+          <div class="option">Deben suprimirse siempre</div>
+          <div class="option">Importan más que la prudencia</div>
         </div>
       </div>
     </div>
 
     <!-- 11. Dos grandes temores -->
     <div class="study-section" data-section="dos-temores">
-      <div class="highlight-box">
-        <h3>😱 Eliminando los Dos Grandes Temores</h3>
-        <p>Epicuro identificó dos temores fundamentales que impiden la felicidad:</p>
-        
-        <h4>👻 1. El Temor a los Dioses</h4>
-        <p><strong>Solución epicúrea:</strong></p>
-        <ul>
-          <li>✅ <strong>Los dioses SÍ existen</strong> (Epicuro no era ateo)</li>
-          <li>🌙 <strong>Pero viven en perfecta felicidad</strong> en espacios intermedios</li>
-          <li>😶 <strong>Son indiferentes a los destinos humanos</strong> (no interfieren)</li>
-          <li>🆓 <strong>Por tanto, no debemos temerlos ni buscar su favor</strong></li>
-        </ul>
-
-        <h4>💀 2. El Temor a la Muerte</h4>
-        <p><strong>Razonamiento epicúreo:</strong></p>
-        <ul>
-          <li>🌟 <strong>Mientras vivimos:</strong> No poseemos sensación de la muerte</li>
-          <li>💀 <strong>Ya estando muertos:</strong> No sentimos sensaciones</li>
-          <li>❌ <strong>Conclusión:</strong> La muerte nunca puede ser experimentada como sufrimiento</li>
-          <li>🎯 <strong>Famosa frase:</strong> <em>"La muerte no es nada para nosotros"</em></li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>😱 Dos grandes temores: dioses y muerte</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Epicuro afirma que los <strong>dioses</strong> existen pero viven felices y <em>no intervienen</em> en asuntos humanos: no hay por qué temerlos. Sobre la <strong>muerte</strong>: mientras vivimos no la sentimos; cuando llega, ya no sentimos. Conclusión: <strong>no es nada para nosotros</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Quitar miedos = ganar serenidad.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">💭 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>💭 Check</h4><p>Eliminar temores</p></div>
+        <div class="question"><p>¿Qué implica la tesis sobre los dioses?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Epicuro creía que los dioses existen pero no intervienen en asuntos humanos</div>
-          <div class="option">Epicuro era ateo y negaba la existencia de dioses</div>
-          <div class="option">Los dioses constantemente juzgan nuestras acciones</div>
-          <div class="option">La muerte debe ser temida porque es dolorosa</div>
+          <div class="option" data-correct="true">Que no debemos temer su juicio ni buscar su favor</div>
+          <div class="option">Que controlan cada evento</div>
+          <div class="option">Que Epicuro es ateo</div>
+          <div class="option">Que la religión es inútil</div>
         </div>
       </div>
     </div>
 
     <!-- 12. Autarquía y Ataraxia -->
     <div class="study-section" data-section="autarquia-ataraxia">
-      <div class="highlight-box">
-        <h3>🏛️ Autarquía y Ataraxia: El Camino a la Felicidad</h3>
-        <p><strong>Secuencia hacia la felicidad epicúrea:</strong></p>
-        <ol>
-          <li><strong>🏆 Autarquía</strong> (autosuficiencia, independencia emocional)</li>
-          <li><strong>↓</strong></li>
-          <li><strong>🧘 Ataraxia</strong> (imperturbabilidad, serenidad mental)</li>
-          <li><strong>↓</strong></li>
-          <li><strong>😊 Felicidad</strong> (ausencia de temor ante dolor, pena, preocupación)</li>
-        </ol>
-
-        <h4>🎓 El Papel de la Sabiduría</h4>
-        <p>Para alcanzar la sabiduría es necesario:</p>
-        <ul>
-          <li>🚫 <strong>Eliminar</strong> los obstáculos que se anteponen a la felicidad</li>
-          <li>🌱 <strong>Cultivar</strong> lo que contribuye a aumentarla</li>
-          <li>🤝 <strong>Especialmente:</strong> Cultivar la amistad genuina</li>
-          <li>📚 <strong>Estudiar filosofía</strong> para comprender la naturaleza de las cosas</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏛️ Autarquía → Ataraxia → Felicidad</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>autarquía</strong> es autosuficiencia razonable: depender menos de caprichos externos. Ella conduce a <strong>ataraxia</strong>, y ésta a la <strong>felicidad</strong>. La <strong>sabiduría</strong> elimina obstáculos y cultiva lo que sostiene la serenidad, especialmente la <strong>amistad</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Secuencia práctica.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧭 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧭 Verificación</h4><p>Camino a la felicidad</p></div>
+        <div class="question"><p>¿Cuál es la secuencia propuesta?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La autarquía (independencia) lleva a la ataraxia (serenidad) y luego a la felicidad</div>
-          <div class="option">La felicidad no requiere autosuficiencia</div>
-          <div class="option">La ataraxia impide la felicidad</div>
-          <div class="option">La sabiduría es irrelevante para la felicidad</div>
+          <div class="option" data-correct="true">Autarquía → Ataraxia → Felicidad</div>
+          <div class="option">Riqueza → Fama → Felicidad</div>
+          <div class="option">Dolor → Sacrificio → Felicidad</div>
+          <div class="option">Aislamiento → Poder → Felicidad</div>
         </div>
       </div>
     </div>
 
     <!-- 13. Hedonismo refinado vs vulgar -->
     <div class="study-section" data-section="refinado-vulgar">
-      <div class="highlight-box">
-        <h3>🎯 El Hedonismo Refinado vs. Vulgar</h3>
-        
-        <h4>🌟 Hedonismo epicúreo auténtico (REFINADO)</h4>
-        <ul>
-          <li>🧠 <strong>No es ausencia de sensaciones</strong></li>
-          <li>✨ <strong>Es posesión de sensaciones que conllevan vida dichosa</strong></li>
-          <li>📚 <strong>Reduce la felicidad al placer, pero no al material</strong></li>
-          <li>🕊️ <strong>Busca un placer duradero de índole espiritual</strong></li>
-          <li>💎 <strong>Es más efectivo que el placer puramente material</strong></li>
-          <li>🎨 <strong>Incluye belleza, arte, filosofía, amistad</strong></li>
-        </ul>
-
-        <h4>🔥 Hedonismo vulgar (DISTORSIÓN)</h4>
-        <ul>
-          <li>⚡ <strong>Búsqueda compulsiva de placer inmediato</strong></li>
-          <li>💸 <strong>Sin consideración de consecuencias</strong></li>
-          <li>🍷 <strong>Adicciones y excesos</strong></li>
-          <li>😵 <strong>Genera más dolor que placer a largo plazo</strong></li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎯 Refinado vs. vulgar</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El hedonismo <strong>refinado</strong> busca placeres de <em>alta calidad</em> y duración (belleza, amistad, filosofía). El hedonismo <strong>vulgar</strong> gira en torno a la compulsión por estímulos y suele producir más <strong>dolor</strong> que gozo.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Calidad y estabilidad.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔬 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔬 Check</h4><p>Contraste clave</p></div>
+        <div class="question"><p>¿Qué distingue al refinado del vulgar?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El hedonismo refinado busca placeres duraderos y espirituales</div>
-          <div class="option">El hedonismo vulgar es superior al refinado</div>
-          <div class="option">No hay diferencia entre ambos tipos</div>
-          <div class="option">El hedonismo epicúreo es puramente material</div>
+          <div class="option" data-correct="true">La búsqueda de placeres duraderos y espirituales</div>
+          <div class="option">La obsesión por intensidades inmediatas</div>
+          <div class="option">El desprecio por la amistad</div>
+          <div class="option">La indiferencia por la serenidad</div>
         </div>
       </div>
     </div>
 
-    <!-- 14. Conociendo las necesidades -->
+    <!-- 14. Conocer necesidades y deseos -->
     <div class="study-section" data-section="necesidades-humanas">
-      <div class="highlight-box">
-        <h3>📚 Conociendo las Necesidades Humanas</h3>
-        
-        <h4>🧭 Principio de autolimitación</h4>
-        <p>Debemos conocer las <strong>necesidades elementales del ser humano</strong> para:</p>
-        <ul>
-          <li>✅ <strong>Suplir</strong> lo que realmente necesitamos</li>
-          <li>❌ <strong>No generar esfuerzo e inquietud</strong> alcanzando lo inalcanzable</li>
-          <li>🎯 <strong>Evitar</strong> la ansiedad de desear lo que está fuera de nuestro alcance</li>
-        </ul>
-
-        <h4>🔄 Clasificación epicúrea de deseos</h4>
-        <ul>
-          <li>🍞 <strong>Deseos naturales y necesarios:</strong> Comida, refugio, amistad → SATISFACER</li>
-          <li>💕 <strong>Deseos naturales no necesarios:</strong> Lujo, sexo elaborado → MODERAR</li>
-          <li>👑 <strong>Deseos vanos:</strong> Inmortalidad, fama eterna → ELIMINAR</li>
-        </ul>
-
-        <p><strong>La filosofía epicúrea NO suprime los gustos de los sentidos, sino que:</strong></p>
-        <ul>
-          <li>📋 Los <strong>ordena</strong> según su importancia real</li>
-          <li>⚖️ Los <strong>subordina</strong> al bienestar físico y espiritual</li>
-          <li>🎯 Los <strong>evalúa</strong> según contribuyan a la serenidad</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📚 Conocer necesidades y ordenar deseos</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Epicuro distingue <strong>deseos naturales y necesarios</strong> (comida simple, refugio, amistad), <strong>naturales no necesarios</strong> (lujos) y <strong>vanos</strong> (fama eterna). Satisfacer los primeros, moderar los segundos, eliminar los terceros.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Clasificar para decidir.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Comprensión</h4><p>Gestión del deseo</p></div>
+        <div class="question"><p>¿Qué hacer con los deseos vanos?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Epicuro clasificaba los deseos para saber cuáles satisfacer y cuáles moderar</div>
-          <div class="option">Todos los deseos deben ser eliminados</div>
-          <div class="option">Todos los deseos deben ser satisfechos sin límite</div>
-          <div class="option">La clasificación de deseos es irrelevante</div>
+          <div class="option" data-correct="true">Eliminarlos: generan inquietud y ansiedad</div>
+          <div class="option">Satisfacerlos primero</div>
+          <div class="option">Ignorarlos sin criterio</div>
+          <div class="option">Confundirlos con necesidades</div>
         </div>
       </div>
     </div>
 
-    <!-- 15. Aplicaciones prácticas modernas -->
+    <!-- 15. Aplicaciones modernas -->
     <div class="study-section" data-section="aplicaciones-modernas">
-      <div class="highlight-box">
-        <h3>📱 Aplicaciones del Hedonismo Epicúreo en la Vida Moderna</h3>
-        
-        <h4>🎯 En las redes sociales</h4>
-        <ul>
-          <li>✅ <strong>Usar</strong> para conectar genuinamente con amigos</li>
-          <li>❌ <strong>Evitar</strong> la búsqueda obsesiva de likes y validación</li>
-          <li>🧘 <strong>Mantener</strong> ataraxia ante comentarios negativos</li>
-        </ul>
-
-        <h4>📚 En los estudios</h4>
-        <ul>
-          <li>🎯 <strong>Encontrar</strong> placer genuino en el aprendizaje</li>
-          <li>⚖️ <strong>Equilibrar</strong> estudio intenso con descanso reparador</li>
-          <li>🤝 <strong>Formar</strong> grupos de estudio basados en amistad real</li>
-        </ul>
-
-        <h4>🛍️ En el consumo</h4>
-        <ul>
-          <li>🍞 <strong>Distinguir</strong> necesidades reales de deseos creados por la publicidad</li>
-          <li>💰 <strong>Evitar</strong> la trampa del "retail therapy"</li>
-          <li>🌱 <strong>Buscar</strong> satisfacción en experiencias, no solo en cosas</li>
-        </ul>
-
-        <h4>💕 En las relaciones</h4>
-        <ul>
-          <li>🤝 <strong>Cultivar</strong> amistades profundas basadas en afecto genuino</li>
-          <li>❌ <strong>Evitar</strong> relaciones superficiales basadas solo en beneficio</li>
-          <li>🕊️ <strong>Mantener</strong> serenidad en conflictos interpersonales</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📱 Aplicaciones epicúreas hoy</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En <strong>redes</strong>, conectar con amigos sin obsesión por la validación. En <strong>estudio</strong>, disfrutar aprender equilibrando descanso. En <strong>consumo</strong>, distinguir necesidades de publicidad. En <strong>relaciones</strong>, cultivar amistades profundas y serenos desacuerdos.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Serenidad aplicable.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔧 Check práctico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔧 Check práctico</h4><p>Traerlo al presente</p></div>
+        <div class="question"><p>¿Cómo aplicar el hedonismo prudente?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El hedonismo epicúreo puede aplicarse a situaciones modernas como redes sociales y consumo</div>
-          <div class="option">Las ideas de Epicuro no tienen relevancia actual</div>
-          <div class="option">La vida moderna impide aplicar el hedonismo</div>
-          <div class="option">Solo se puede ser epicúreo en la antigua Grecia</div>
+          <div class="option" data-correct="true">Priorizando amistades, aprendizaje y consumo consciente</div>
+          <div class="option">Buscando solo estímulos fuertes</div>
+          <div class="option">Evitando toda red social</div>
+          <div class="option">Valorizando la ansiedad</div>
         </div>
       </div>
     </div>
 
     <!-- 16. Síntesis y legado -->
     <div class="study-section" data-section="sintesis-legado">
-      <div class="highlight-box">
-        <h3>🌟 Síntesis y Legado del Hedonismo Epicúreo</h3>
-        
-        <h4>🎯 Ideas centrales</h4>
-        <ul>
-          <li>🎨 <strong>La calidad importa más que la cantidad</strong> en los placeres</li>
-          <li>🧘 <strong>La serenidad es superior a la excitación</strong> constante</li>
-          <li>⚖️ <strong>El autocontrol es compatible con el placer</strong> genuino</li>
-          <li>🤝 <strong>Las relaciones humanas son fundamentales</strong> para la felicidad</li>
-          <li>🌱 <strong>El crecimiento personal requiere límites</strong> y sabiduría</li>
-          <li>🎭 <strong>La filosofía puede ser terapéutica</strong> para el alma</li>
-        </ul>
-
-        <h4>🔄 Influencia histórica</h4>
-        <ul>
-          <li>🏛️ <strong>Mundo mediterráneo antiguo:</strong> Ganó innumerables adherentes por 7 siglos</li>
-          <li>⛪ <strong>Edad Media:</strong> Fue perseguido y malinterpretado por el cristianismo</li>
-          <li>🔄 <strong>Renacimiento:</strong> Redescubrimiento de textos epicúreos</li>
-          <li>🧠 <strong>Modernidad:</strong> Influencia en utilitarismo y psicología del bienestar</li>
-          <li>💊 <strong>Actualidad:</strong> Terapias de mindfulness y gestión del estrés</li>
-        </ul>
-
-        <h4>🤔 Preguntas para reflexión</h4>
-        <ul>
-          <li>¿Qué placeres en tu vida son realmente duraderos y cuáles son solo momentáneos?</li>
-          <li>¿Cómo podrías aplicar la ataraxia en situaciones estresantes?</li>
-          <li>¿Cuáles de tus deseos son "naturales y necesarios" y cuáles son "vanos"?</li>
-          <li>¿Qué papel juega la amistad genuina en tu búsqueda de la felicidad?</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 Síntesis y legado del epicureísmo</h3>
+          <div class="reading-progress"><div class="progress-bar-reading"><div class="progress-fill-reading"></div></div><span class="progress-text-reading">0% leído</span></div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>calidad</strong> pesa más que la cantidad de placeres. La <strong>serenidad</strong> supera a la excitación. El <strong>autocontrol</strong> es compatible con gozar. La <strong>amistad</strong> y la filosofía sostienen el bienestar. El legado epicúreo influye en <em>utilitarismo</em> y en prácticas modernas de <strong>mindfulness</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Cierre integrador.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">✅ Cierre</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>✅ Cierre</h4><p>Conclusión</p></div>
+        <div class="question"><p>¿Qué permanece del hedonismo epicúreo?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El hedonismo epicúreo sigue siendo relevante para el bienestar humano actual</div>
-          <div class="option">El epicureísmo desapareció completamente en la historia</div>
-          <div class="option">La ataraxia es imposible de alcanzar hoy en día</div>
-          <div class="option">Los placeres de calidad no importan en la vida moderna</div>
+          <div class="option" data-correct="true">Su enfoque prudente del placer y la serenidad</div>
+          <div class="option">La defensa de excesos</div>
+          <div class="option">El desprecio por la amistad</div>
+          <div class="option">La búsqueda de fama eterna</div>
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- <script>
-   // ▶ Ruta base de sonidos (si usás /sound/ en la raíz del proyecto)
-   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
-
-   class ProgressiveStudy {
-      constructor() {
-        this.currentSection = 0;
-        this.totalSections = document.querySelectorAll('.study-section').length;
-        this.completedSections = new Set();
-        this.init();
-      }
-      init() {
-        // activar primera sección
-        const sections = document.querySelectorAll('.study-section');
-        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
-        this.setupEventListeners();
-        this.showComprehensionCheck();
-        this.updateProgress();
-      }
-      setupEventListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-          option.addEventListener('click', (e) => this.handleOptionClick(e));
-        });
-      }
-      showComprehensionCheck() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        if (!currentSectionEl) return;
-        const checkEl = currentSectionEl.querySelector('.comprehension-check');
-        if (checkEl) {
-          setTimeout(() => { checkEl.classList.add('show'); }, 5000); // tiempo de lectura
-        }
-      }
-      handleOptionClick(e) {
-        const option = e.target;
-        const checkContainer = option.closest('.comprehension-check');
-        const allOptions = checkContainer.querySelectorAll('.option');
-        // deshabilitar mientras se procesa
-        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-
-        if (option.dataset.correct === 'true') {
-          option.classList.add('correct');
-          this.playSound('success');
-          this.showCelebration('🎉');
-          setTimeout(() => {
-            this.markSectionCompleted();
-            this.moveToNextSection();
-          }, 1200);
-        } else {
-          option.classList.add('incorrect');
-          this.playSound('error');
-          setTimeout(() => {
-            // Reset opciones y reintento
-            allOptions.forEach(opt => {
-              opt.classList.remove('correct','incorrect');
-              opt.style.pointerEvents = 'auto';
-            });
-            this.shuffleOptions(checkContainer);
-          }, 900);
-        }
-      }
-      shuffleOptions(container) {
-        const options = Array.from(container.querySelectorAll('.option'));
-        const parent = options[0].parentNode;
-        for (let i = options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [options[i], options[j]] = [options[j], options[i]];
-        }
-        options.forEach(option => parent.appendChild(option));
-      }
-      markSectionCompleted() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        currentSectionEl.classList.add('completed');
-        currentSectionEl.classList.remove('active');
-        this.completedSections.add(this.currentSection);
-        this.updateProgress();
-      }
-      moveToNextSection() {
-        this.currentSection++;
-        const sections = document.querySelectorAll('.study-section');
-        if (this.currentSection < this.totalSections) {
-          const nextSectionEl = sections[this.currentSection];
-          nextSectionEl.classList.add('active');
-          setTimeout(() => {
-            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
-            setTimeout(() => { window.scrollBy(0, -80); }, 800);
-          }, 300);
-          setTimeout(() => { this.showComprehensionCheck(); }, 800);
-        } else {
-          this.showCompletion();
-        }
-      }
-      updateProgress() {
-        const progressFill = document.getElementById('progress-fill');
-        const progressCounter = document.getElementById('progress-counter');
-        const percentage = (this.completedSections.size / this.totalSections) * 100;
-        progressFill.style.width = `${percentage}%`;
-        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
-      }
-      showCelebration(emoji) {
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration';
-        celebration.textContent = emoji;
-        document.body.appendChild(celebration);
-        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
-      }
-      showCompletion() {
-        this.showCelebration('🎊');
-        setTimeout(() => {
-          alert('¡Excelente! Completaste el estudio sobre Hedonismo. Ya podés pasar a las actividades y al quiz.');
-        }, 800);
-      }
-
-      // ▶ Reproductor de sonido
-      async playSound(type) {
-        try {
-          const files = {
-            success: 'collect_points.mp3',
-            error: 'negative_beep.mp3',
-            show_question: 'show_question.mp3',
-            timer_warning: 'timer_warning.mp3',
-            timer_danger: 'timer_danger.mp3'
-          };
-          const file = files[type] || 'collect_points.mp3';
-          const audio = new Audio(SOUND_BASE + file);
-          audio.volume = 0.7;
-          audio.preload = 'auto';
-          const p = audio.play();
-          if (p !== undefined) await p;
-        } catch (err) {
-          console.warn('No se pudo reproducir sonido:', err);
-        }
-      }
-    }
-    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
-  </script> -->
-
-  <!-- 🚀 SISTEMA MODULAR - Solo esta línea hace toda la magia -->
+  <!-- 🚀 SISTEMA MODULAR - Igual que en etica_aristoteles -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 
