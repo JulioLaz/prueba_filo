@@ -353,7 +353,7 @@ const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Hedonismo Filosófico - El Placer como Fundamento de la Vida",
+    title: "Hedonismo Filosófico: El Placer como Fundamento de la Vida",
     
     // Palabra central vertical (se normaliza automáticamente)
     central: "PLACER",
