@@ -88,7 +88,7 @@
 
 .modal-icon {
   font-size: 48px;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
   display: block;
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
 }
@@ -314,7 +314,7 @@
   background: rgba(107, 124, 255, 0.1);
   border: 1px solid rgba(107, 124, 255, 0.3);
   border-radius: 8px;
-  padding: 12px;
+  padding: 5px 18px;
   text-align: center;
 }
 
@@ -436,7 +436,7 @@
   }
   
   .modal-header, .modal-content-crossword {
-    padding: 20px;
+    padding: 15px;
   }
   
   .modal-actions {
