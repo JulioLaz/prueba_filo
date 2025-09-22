@@ -1317,7 +1317,7 @@ function renderImprovedCloze(container, setup) {
       progressBar.style.width = `${percentage}%`;
       
       if (currentState.completed) {
-        Celebration.show({ activity:'video', topic:tema, emojis:['🌟','🏆','🎉'] });
+        // Celebration.show({ activity:'video', topic:tema, emojis:['🌟','🏆','🎉'] });
         progressText.innerHTML += ' <span style="color: #10b981;">🎉</span>';
       }
     }
@@ -2069,581 +2069,622 @@ console.log("   - forceSync()");
 })();
 </script>
 
-<!-- CLOZE TEST A FIREBASE -->
-
-<!-- // ====================================
-// 🎬 INTEGRACIÓN FIREBASE - VIDEO + CLOZE TEST
-// Para agregar al final de tema.html, después del script de Firebase
-// ==================================== -->
 
 <script type="module">
-console.log('🎬 Inicializando integración Video + Cloze con Firebase...');
-
 // ====================================
-// CONFIGURACIÓN ESPECÍFICA DEL VIDEO + CLOZE
-// ====================================
-
-const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
-
-// Pesos para calcular el progreso total
-const VIDEO_WEIGHT = 0.3;  // 30% ver el video
-const CLOZE_WEIGHT = 0.7;  // 70% completar cloze test
-
-console.log(`🎯 Configuración: Video ${VIDEO_WEIGHT * 100}% + Cloze ${CLOZE_WEIGHT * 100}%`);
-
-// ====================================
-// FUNCIONES DE PROGRESO DEL CLOZE
+// 🎬 INTEGRACIÓN SIMPLIFICADA: VIDEO + CLOZE
+// Reemplaza todo el código de video/cloze existente en tema.html
 // ====================================
 
-/**
- * Lee el estado actual del cloze test
- */
-function getCurrentClozeProgress() {
-  const clozeKey = `tema.${tema}.cloze`;
-  try {
-    const data = JSON.parse(sessionStorage.getItem(clozeKey) || '{}');
-    return {
-      total: data.total || 0,
-      solved: data.solved || 0,
-      completed: data.completed || false,
-      percentage: data.total > 0 ? Math.round((data.solved / data.total) * 100) : 0,
-      hits: data.hits || {},
-      hintLevels: data.hintLevels || {}
-    };
-  } catch (e) {
-    console.warn('⚠️ Error leyendo progreso cloze:', e);
-    return { total: 0, solved: 0, completed: false, percentage: 0, hits: {}, hintLevels: {} };
+// ====================================
+// 🎬 CONFIGURACIÓN INICIAL DE TARJETA DE VIDEO
+// ====================================
+
+function setupVideoCard() {
+  const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+  
+  if (!tema) {
+    console.warn('⚠️ No se pudo determinar el tema activo');
+    return false;
+  }
+
+  // Verificar si hay configuración de video para este tema
+  const hasVideo = window.VIDEO_CONFIG && window.VIDEO_CONFIG[tema];
+  const videoCard = document.getElementById('videoCard');
+  
+  console.log(`🎬 Verificando video para tema: ${tema}`);
+  console.log(`📹 Configuración encontrada:`, hasVideo ? 'SÍ' : 'NO');
+  
+  if (!videoCard) {
+    console.error('❌ Elemento videoCard no encontrado en el DOM');
+    return false;
+  }
+
+  if (hasVideo) {
+    // Mostrar tarjeta de video
+    videoCard.style.display = 'flex';
+    console.log('✅ Tarjeta de video mostrada');
+    
+    // Configurar estado inicial
+    const statusVideo = document.getElementById('statusVideo');
+    if (statusVideo) {
+      const config = window.VIDEO_CONFIG[tema];
+      statusVideo.textContent = config.duration + ' min';
+    }
+    
+    return true;
+  } else {
+    // Ocultar tarjeta de video
+    videoCard.style.display = 'none';
+    console.log('ℹ️ No hay video configurado, tarjeta ocultada');
+    return false;
   }
 }
 
-/**
- * Lee el estado actual del video
- */
-function getCurrentVideoProgress() {
-  const videoKey = `tema.${tema}.video`;
+// Importar el módulo de video y cloze
+async function loadVideoClozeModule() {
   try {
-    const data = JSON.parse(sessionStorage.getItem(videoKey) || '{}');
-    return {
-      watched: data.watched || false,
-      watchTime: data.watchTime || 0,
-      completed: data.completed || false,
-      percentage: data.completed ? 100 : (data.watched ? 30 : 0)
-    };
-  } catch (e) {
-    console.warn('⚠️ Error leyendo progreso video:', e);
-    return { watched: false, watchTime: 0, completed: false, percentage: 0 };
+    await import('/prueba_filo/js/cloze_&_video-config.js');
+    console.log('📦 Módulo VideoClozeModule importado correctamente');
+    return true;
+  } catch (error) {
+    console.error('❌ Error importando VideoClozeModule:', error);
+    return false;
   }
 }
 
-/**
- * Calcula el progreso combinado video + cloze
- */
-function calculateCombinedProgress() {
-  const videoProgress = getCurrentVideoProgress();
-  const clozeProgress = getCurrentClozeProgress();
+async function initializeVideoClozeIntegration() {
+  console.log('🚀 Iniciando integración VideoCloze...');
   
-  const videoScore = videoProgress.percentage;
-  const clozeScore = clozeProgress.percentage;
+  // Primero configurar la tarjeta de video
+  const hasVideoCard = setupVideoCard();
   
-  // Progreso combinado ponderado
-  const combinedPercentage = Math.round(
-    (videoScore * VIDEO_WEIGHT) + (clozeScore * CLOZE_WEIGHT)
-  );
+  if (!hasVideoCard) {
+    console.log('⏭️ No hay video configurado, saltando inicialización del módulo');
+    return;
+  }
+
+  // Cargar módulo solo si hay video
+  const moduleLoaded = await loadVideoClozeModule();
+  if (!moduleLoaded) {
+    console.error('❌ No se pudo cargar el módulo VideoCloze');
+    return;
+  }
+
+  // Esperar a que el módulo esté disponible
+  let attempts = 0;
+  while (!window.VideoClozeModule && attempts < 10) {
+    console.log('⏳ Esperando a que VideoClozeModule esté disponible...');
+    await new Promise(resolve => setTimeout(resolve, 500));
+    attempts++;
+  }
+
+  if (!window.VideoClozeModule) {
+    console.error('❌ VideoClozeModule no disponible después de esperar');
+    return;
+  }
+
+  const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+
+  // Inicializar el módulo
+  try {
+    const success = await window.VideoClozeModule.initialize(tema);
+    
+    if (success) {
+      console.log('✅ VideoClozeModule inicializado correctamente');
+      
+      // Configurar API global para compatibilidad
+      setupGlobalCompatibilityAPI(tema);
+      
+      // Configurar progreso mejorado
+      setupEnhancedProgressTracking(tema);
+      
+      // Configurar el botón de video
+      setupVideoButton();
+      
+    } else {
+      console.warn('⚠️ Error inicializando VideoClozeModule');
+    }
+    
+  } catch (error) {
+    console.error('❌ Error en inicialización:', error);
+  }
+}
+
+// ====================================
+// 🔘 CONFIGURACIÓN DEL BOTÓN DE VIDEO
+// ====================================
+
+function setupVideoButton() {
+  const goVideoBtn = document.getElementById('goVideo');
   
-  const result = {
-    videoPercentage: videoScore,
-    clozePercentage: clozeScore,
-    combinedPercentage: combinedPercentage,
-    videoCompleted: videoProgress.completed,
-    clozeCompleted: clozeProgress.completed,
-    totalCompleted: videoProgress.completed && clozeProgress.completed,
-    totalTimeSpent: Math.max(videoProgress.watchTime || 0, 180), // mínimo 3 minutos
-    clozeItems: {
-      total: clozeProgress.total,
-      solved: clozeProgress.solved,
-      hintsUsed: Object.keys(clozeProgress.hintLevels || {}).length
+  if (!goVideoBtn) {
+    console.error('❌ Botón goVideo no encontrado');
+    return;
+  }
+
+  // Limpiar event listeners anteriores
+  const newGoVideoBtn = goVideoBtn.cloneNode(true);
+  goVideoBtn.parentNode.replaceChild(newGoVideoBtn, goVideoBtn);
+  
+  // Configurar nuevo event listener
+  newGoVideoBtn.addEventListener('click', () => {
+    console.log('🎬 Botón de video clickeado');
+    
+    if (window.VideoClozeModule && window.VideoClozeModule.getAPI) {
+      const api = window.VideoClozeModule.getAPI();
+      api.openModal();
+    } else {
+      console.error('❌ VideoClozeModule API no disponible');
+    }
+  });
+  
+  console.log('🔘 Botón de video configurado correctamente');
+}
+
+// ====================================
+// 🔧 API DE COMPATIBILIDAD GLOBAL
+// ====================================
+
+function setupGlobalCompatibilityAPI(tema) {
+  const api = window.VideoClozeModule.getAPI();
+  
+  // Mantener compatibilidad con funciones existentes
+  window.openVideoModal = api.openModal;
+  window.closeVideoModal = api.closeModal;
+  window.checkVideoClozeStatus = api.checkStatus;
+  window.forceSaveVideoCloze = api.forceSave;
+  window.resetVideoClozeProgress = api.reset;
+  
+  // Nuevas funciones específicas
+  window.getVideoClozeProgress = api.getProgress;
+  window.isVideoModalOpen = api.isModalOpen;
+  
+  // Override de funciones de progreso para usar nueva ponderación
+  const originalMarkVideoProgress = window.markVideoProgress;
+  window.markVideoProgress = function(watched, completed) {
+    if (originalMarkVideoProgress) {
+      originalMarkVideoProgress(watched, completed);
+    }
+    
+    // Usar el nuevo sistema de guardado
+    setTimeout(() => {
+      api.saveProgress();
+    }, 100);
+  };
+  
+  console.log('🔗 API de compatibilidad configurada');
+}
+
+// ====================================
+// 📊 SISTEMA DE PROGRESO MEJORADO
+// ====================================
+
+function setupEnhancedProgressTracking(tema) {
+  // Constantes específicas para video+cloze
+  const VIDEO_WEIGHT = 0.1;  // 10%
+  const CLOZE_WEIGHT = 0.9;  // 90%
+  const MIN_CLOZE_FOR_APPROVAL = 80; // 80% mínimo en cloze
+  
+  console.log(`📊 Progreso mejorado: ${VIDEO_WEIGHT * 100}% Video + ${CLOZE_WEIGHT * 100}% Cloze`);
+  
+  // Funciones específicas para Firebase
+  window.saveVideoClozeToFirebase = async function() {
+    try {
+      const progress = window.VideoClozeModule.getAPI().getProgress();
+      
+      if (typeof window.saveVideoProgress === 'function') {
+        const success = await window.saveVideoProgress(
+          progress.totalTimeSpent,
+          600, // duración estimada
+          progress.totalCompleted
+        );
+        
+        if (success) {
+          console.log(`✅ Progreso guardado en Firebase: ${progress.combinedPercentage}%`);
+          
+          // Mostrar estado en consola
+          console.log(`📈 Detalles: Video ${progress.videoPercentage}% + Cloze ${progress.clozePercentage}%`);
+          console.log(`🎯 Puede aprobar: ${progress.canPass ? 'SÍ' : 'NO'}`);
+          console.log(`⚠️ Requiere cloze (${MIN_CLOZE_FOR_APPROVAL}%+): ${progress.requiresCloze ? 'SÍ' : 'NO'}`);
+          
+          return true;
+        }
+      }
+      
+      return false;
+    } catch (error) {
+      console.error('❌ Error guardando en Firebase:', error);
+      return false;
     }
   };
   
-  console.log(`📊 Progreso combinado: Video ${videoScore}% + Cloze ${clozeScore}% = ${combinedPercentage}%`);
-  
-  return result;
-}
-
-// ====================================
-// FUNCIÓN PRINCIPAL DE GUARDADO
-// ====================================
-
-/**
- * Guarda el progreso combinado en Firebase
- */
-async function saveCombinedVideoProgress() {
-  if (typeof window.saveVideoProgress !== 'function') {
-    console.warn('⚠️ Función saveVideoProgress no disponible');
-    return false;
-  }
-  
-  const progress = calculateCombinedProgress();
-  
-  try {
-    console.log(`💾 Guardando progreso combinado: ${progress.combinedPercentage}%`);
+  // Función para verificar requisitos de aprobación
+  window.checkVideoApprovalRequirements = function() {
+    const progress = window.VideoClozeModule.getAPI().getProgress();
     
-    const success = await window.saveVideoProgress(
-      progress.totalTimeSpent,
-      600, // duración total estimada (10 minutos)
-      progress.totalCompleted
-    );
+    console.log('🔍 === REQUISITOS DE APROBACIÓN ===');
+    console.log(`📊 Progreso total: ${progress.combinedPercentage}%`);
+    console.log(`🎬 Video (10%): ${progress.videoPercentage}%`);
+    console.log(`🧩 Cloze (90%): ${progress.clozePercentage}%`);
+    console.log(`✅ Cloze suficiente (≥${MIN_CLOZE_FOR_APPROVAL}%): ${progress.clozePercentage >= MIN_CLOZE_FOR_APPROVAL ? 'SÍ' : 'NO'}`);
+    console.log(`🏆 Puede aprobar: ${progress.canPass ? 'SÍ' : 'NO'}`);
     
-    if (success) {
-      // También actualizar el estado de video en sessionStorage
-      const videoKey = `tema.${tema}.video`;
-      const currentVideo = JSON.parse(sessionStorage.getItem(videoKey) || '{}');
-      
-      const updatedVideo = {
-        ...currentVideo,
-        percentage: progress.combinedPercentage,
-        watched: progress.videoPercentage > 0,
-        completed: progress.totalCompleted,
-        watchTime: progress.totalTimeSpent,
-        clozeCompleted: progress.clozeCompleted,
-        lastSync: new Date().toISOString(),
-        syncedWithFirebase: true
-      };
-      
-      sessionStorage.setItem(videoKey, JSON.stringify(updatedVideo));
-      
-      console.log(`✅ Progreso combinado guardado: ${progress.combinedPercentage}%`);
-      
-      // Forzar actualización de la UI
-      if (typeof window.forceSync === 'function') {
-        setTimeout(() => window.forceSync(), 1000);
-      }
-      
-      return true;
+    if (!progress.canPass) {
+      console.log(`⚠️ FALTA: Cloze debe estar al ${MIN_CLOZE_FOR_APPROVAL}% o más`);
+      console.log(`📝 Progreso cloze actual: ${progress.clozePercentage}%`);
+      console.log(`🎯 Necesita: ${MIN_CLOZE_FOR_APPROVAL - progress.clozePercentage}% más en cloze`);
     }
     
-    return false;
+    return {
+      canPass: progress.canPass,
+      needsCloze: progress.requiresCloze,
+      clozeProgress: progress.clozePercentage,
+      minimumRequired: MIN_CLOZE_FOR_APPROVAL,
+      missingCloze: Math.max(0, MIN_CLOZE_FOR_APPROVAL - progress.clozePercentage)
+    };
+  };
+  
+  // Auto-guardado mejorado con celebraciones
+  let lastSavedPercentage = 0;
+  
+  window.autoSaveVideoClozeProgress = async function() {
+    const progress = window.VideoClozeModule.getAPI().getProgress();
     
-  } catch (error) {
-    console.error('❌ Error guardando progreso combinado:', error);
-    return false;
+    // Solo guardar si hay cambios significativos
+    if (Math.abs(progress.combinedPercentage - lastSavedPercentage) >= 5) {
+      console.log(`💾 Auto-guardado: ${lastSavedPercentage}% → ${progress.combinedPercentage}%`);
+      
+      const saved = await window.saveVideoClozeToFirebase();
+      if (saved) {
+        lastSavedPercentage = progress.combinedPercentage;
+        
+        // Verificar celebraciones especiales
+        if (progress.canPass && !window._videoApprovalCelebrated) {
+          window._videoApprovalCelebrated = true;
+          celebrateVideoApproval();
+        }
+      }
+    }
+  };
+  
+  // Celebración especial para aprobación
+  function celebrateVideoApproval() {
+    console.log('🎉 ¡ACTIVIDAD APROBADA! (Cloze completado)');
+    
+    if (typeof window.Celebration?.show === 'function') {
+      window.Celebration.show({
+        activity: 'video-approved',
+        topic: tema,
+        emojis: ['🎓', '✅', '🏆', '🌟', '💪'],
+        duration: 4000,
+        intensity: 'high'
+      });
+    }
   }
+  
+  // Configurar auto-guardado cada 30 segundos
+  setInterval(() => {
+    window.autoSaveVideoClozeProgress();
+  }, 30000);
+  
+  console.log('📈 Sistema de progreso mejorado configurado');
 }
 
 // ====================================
-// INTERCEPTAR CAMBIOS EN EL CLOZE TEST
+// 🎮 FUNCIONES DE UTILIDAD Y DEBUG
 // ====================================
 
-/**
- * Wrapper mejorado para saveCloze original
- */
-function setupClozeTracking() {
-  // Buscar la función saveCloze original
-  const originalSaveCloze = window.saveCloze;
+// Función de diagnóstico completo
+window.debugVideoClozeModule = function() {
+  console.log('🔧 === DEBUG VIDEO + CLOZE MODULE ===');
   
-  if (typeof originalSaveCloze === 'function') {
-    console.log('🔧 Mejorando función saveCloze existente...');
-    
-    window.saveCloze = function(state) {
-      // Ejecutar función original
-      originalSaveCloze(state);
-      
-      // Calcular y guardar progreso en Firebase
-      console.log(`🧩 Cloze actualizado: ${state.solved || 0}/${state.total || 0} items`);
-      
-      // Esperar un momento para que se actualice el estado
-      setTimeout(() => {
-        saveCombinedVideoProgress();
-      }, 100);
-    };
-    
-    console.log('✅ Función saveCloze mejorada');
-  } else {
-    console.log('ℹ️ Función saveCloze no encontrada, creando wrapper...');
-    
-    // Crear función de guardado si no existe
-    window.saveCloze = function(state) {
-      const clozeKey = `tema.${tema}.cloze`;
-      sessionStorage.setItem(clozeKey, JSON.stringify(state));
-      
-      console.log(`🧩 Cloze guardado: ${state.solved || 0}/${state.total || 0} items`);
-      
-      setTimeout(() => {
-        saveCombinedVideoProgress();
-      }, 100);
-    };
+  const tema = sessionStorage.getItem('tema.active');
+  console.log(`📚 Tema activo: ${tema}`);
+  
+  const hasVideo = window.VIDEO_CONFIG && window.VIDEO_CONFIG[tema];
+  console.log(`🎬 Tiene video: ${hasVideo ? 'SÍ' : 'NO'}`);
+  
+  if (hasVideo) {
+    console.log(`📹 Config video:`, window.VIDEO_CONFIG[tema]);
   }
-}
-
-// ====================================
-// INTERCEPTAR PROGRESO DEL VIDEO
-// ====================================
-
-/**
- * Mejorar markVideoProgress existente
- */
-function setupVideoTracking() {
-  const originalMarkVideoProgress = window.markVideoProgress;
   
-  if (typeof originalMarkVideoProgress === 'function') {
-    console.log('🔧 Mejorando función markVideoProgress...');
-    
-    window.markVideoProgress = function(watched, completed) {
-      // Ejecutar función original
-      originalMarkVideoProgress(watched, completed);
+  const moduleLoaded = !!window.VideoClozeModule;
+  console.log(`📦 Módulo cargado: ${moduleLoaded ? 'SÍ' : 'NO'}`);
+  
+  if (moduleLoaded) {
+    try {
+      const progress = window.VideoClozeModule.getAPI().getProgress();
+      console.log(`📊 Progreso actual:`, progress);
       
-      console.log(`🎬 Video progreso: watched=${watched}, completed=${completed}`);
-      
-      // Calcular y guardar progreso combinado
-      setTimeout(() => {
-        saveCombinedVideoProgress();
-      }, 100);
-    };
-    
-    console.log('✅ Función markVideoProgress mejorada');
+      const requirements = window.checkVideoApprovalRequirements();
+      console.log(`✅ Requisitos:`, requirements);
+    } catch (error) {
+      console.error('❌ Error obteniendo progreso:', error);
+    }
   }
-}
-
-// ====================================
-// FUNCIONES DE DIAGNÓSTICO Y UTILIDAD
-// ====================================
-
-/**
- * Función para verificar el estado del video + cloze
- */
-window.checkVideoClozeStatus = function() {
-  console.log('🔍 === ESTADO VIDEO + CLOZE ===');
   
-  const progress = calculateCombinedProgress();
+  // Verificar elementos DOM
+  const elements = [
+    'videoBackdrop',
+    'videoContainer', 
+    'videoClozeBtn',
+    'clozeSection',
+    'goVideo'
+  ];
   
-  console.log(`🎬 Video:`);
-  console.log(`   📊 Progreso: ${progress.videoPercentage}%`);
-  console.log(`   ✅ Completado: ${progress.videoCompleted ? 'Sí' : 'No'}`);
+  console.log('🖼️ Elementos DOM:');
+  elements.forEach(id => {
+    const element = document.getElementById(id);
+    console.log(`   ${id}: ${element ? '✅' : '❌'}`);
+  });
   
-  console.log(`🧩 Cloze Test:`);
-  console.log(`   📊 Progreso: ${progress.clozePercentage}%`);
-  console.log(`   📝 Items: ${progress.clozeItems.solved}/${progress.clozeItems.total}`);
-  console.log(`   💡 Pistas usadas: ${progress.clozeItems.hintsUsed}`);
-  console.log(`   ✅ Completado: ${progress.clozeCompleted ? 'Sí' : 'No'}`);
-  
-  console.log(`📈 Combinado:`);
-  console.log(`   🎯 Progreso total: ${progress.combinedPercentage}%`);
-  console.log(`   ⏱️ Tiempo estimado: ${progress.totalTimeSpent}s`);
-  console.log(`   🏆 Todo completado: ${progress.totalCompleted ? 'Sí' : 'No'}`);
-  
-  return progress;
+  console.log('🎯 Funciones disponibles:');
+  console.log('   - checkVideoClozeStatus()');
+  console.log('   - checkVideoApprovalRequirements()');
+  console.log('   - saveVideoClozeToFirebase()');
+  console.log('   - forceSaveVideoCloze()');
+  console.log('   - resetVideoClozeProgress()');
+  console.log('   - debugVideoClozeModule()');
 };
 
-/**
- * Función para forzar guardado del progreso actual
- */
-window.forceSaveVideoCloze = async function() {
-  console.log('🔄 Forzando guardado de progreso video + cloze...');
+// Función para simular progreso (testing)
+window.simulateVideoClozeProgress = function(videoPercent = 100, clozePercent = 90) {
+  console.log(`🎭 Simulando: Video ${videoPercent}%, Cloze ${clozePercent}%`);
   
-  const success = await saveCombinedVideoProgress();
-  if (success) {
-    console.log('✅ Progreso forzado guardado exitosamente');
-  } else {
-    console.log('❌ Error forzando guardado');
-  }
+  const tema = sessionStorage.getItem('tema.active');
   
-  return success;
-};
-
-/**
- * Función para simular progreso (testing)
- */
-window.simulateVideoClozeProgress = function(videoWatched = true, clozeItems = 5) {
-  console.log(`🎭 Simulando progreso: video=${videoWatched}, cloze=${clozeItems} items`);
+  // Simular video
+  const videoKey = `tema.${tema}.video`;
+  const videoState = {
+    watched: videoPercent > 0,
+    completed: videoPercent >= 100,
+    watchTime: Math.round(videoPercent * 6), // ~6 min máximo
+    percentage: videoPercent
+  };
+  sessionStorage.setItem(videoKey, JSON.stringify(videoState));
   
-  // Simular progreso de video
-  if (videoWatched && typeof window.markVideoProgress === 'function') {
-    window.markVideoProgress(true, videoWatched === 'completed');
-  }
-  
-  // Simular progreso de cloze
+  // Simular cloze
   const clozeKey = `tema.${tema}.cloze`;
-  const mockClozeState = {
-    total: 10,
-    solved: Math.min(clozeItems, 10),
-    completed: clozeItems >= 10,
+  const totalItems = 10;
+  const solvedItems = Math.round((clozePercent / 100) * totalItems);
+  
+  const clozeState = {
+    total: totalItems,
+    solved: solvedItems,
+    completed: clozePercent >= 100,
     hits: {},
-    hintLevels: {}
+    hintLevels: {},
+    celebrationLevel: Math.floor(clozePercent / 25) * 25
   };
   
   // Crear hits simulados
-  for (let i = 1; i <= clozeItems; i++) {
-    mockClozeState.hits[`a${i}`] = true;
+  for (let i = 1; i <= solvedItems; i++) {
+    clozeState.hits[`a${i}`] = true;
   }
   
-  sessionStorage.setItem(clozeKey, JSON.stringify(mockClozeState));
+  sessionStorage.setItem(clozeKey, JSON.stringify(clozeState));
   
-  console.log('🎬 Estado simulado creado, ejecutando guardado...');
+  console.log('🎬 Estados simulados creados');
+  
+  // Actualizar UI y guardar
   setTimeout(() => {
-    saveCombinedVideoProgress();
+    if (typeof window.renderProgressUI === 'function') {
+      window.renderProgressUI();
+    }
+    window.saveVideoClozeToFirebase();
   }, 500);
 };
 
 // ====================================
-// INICIALIZACIÓN
+// 🚀 AUTO-INICIALIZACIÓN Y DEBUG
 // ====================================
 
-/**
- * Inicializar el sistema de tracking
- */
-function initializeVideoClozeTracking() {
-  console.log('🚀 Inicializando tracking video + cloze...');
+// Función de inicialización principal con debug
+async function initializeVideoSystem() {
+  console.log('🎬 === INICIANDO SISTEMA DE VIDEO ===');
   
-  // Configurar interceptores
-  setupClozeTracking();
-  setupVideoTracking();
+  // Debug inicial
+  const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+  console.log(`📚 Tema detectado: ${tema}`);
   
-  // Verificar estado inicial
-  const initialProgress = calculateCombinedProgress();
-  console.log(`📊 Progreso inicial: ${initialProgress.combinedPercentage}%`);
-  
-  // Si hay progreso previo, sincronizar con Firebase
-  if (initialProgress.combinedPercentage > 0) {
-    console.log('🔄 Sincronizando progreso existente...');
-    setTimeout(() => {
-      saveCombinedVideoProgress();
-    }, 2000);
+  // Verificar VIDEO_CONFIG
+  console.log(`📹 VIDEO_CONFIG disponible:`, !!window.VIDEO_CONFIG);
+  if (window.VIDEO_CONFIG) {
+    console.log(`📹 Configuración para ${tema}:`, window.VIDEO_CONFIG[tema]);
   }
   
-  console.log('✅ Sistema de tracking video + cloze inicializado');
-  console.log('🛠️ Funciones disponibles:');
-  console.log('   - checkVideoClozeStatus()');
-  console.log('   - forceSaveVideoCloze()'); 
-  console.log('   - simulateVideoClozeProgress(videoState, clozeItems)');
-}
-
-// ====================================
-// EVENTOS Y AUTO-INICIALIZACIÓN
-// ====================================
-
-// Escuchar cuando se cierre el modal de video
-document.addEventListener('DOMContentLoaded', function() {
-  const videoBackdrop = document.getElementById('videoBackdrop');
-  const videoClose = document.getElementById('videoClose');
+  // Verificar elementos DOM
+  const videoCard = document.getElementById('videoCard');
+  const goVideoBtn = document.getElementById('goVideo');
+  console.log(`🎯 videoCard encontrado:`, !!videoCard);
+  console.log(`🔘 goVideo encontrado:`, !!goVideoBtn);
   
-  if (videoBackdrop && videoClose) {
-    // Interceptar cierre del modal para guardar progreso
-    videoClose.addEventListener('click', function() {
-      console.log('🎬 Modal de video cerrado, guardando progreso final...');
-      setTimeout(() => {
-        saveCombinedVideoProgress();
-      }, 500);
-    });
-    
-    // También interceptar clic en backdrop
-    videoBackdrop.addEventListener('click', function(e) {
-      if (e.target === videoBackdrop) {
-        console.log('🎬 Modal cerrado por backdrop, guardando progreso...');
-        setTimeout(() => {
-          saveCombinedVideoProgress();
-        }, 500);
-      }
-    });
-  }
-});
-
-// Auto-guardar periódico cuando el modal está abierto
-let autoSaveInterval = null;
-
-function startAutoSave() {
-  if (autoSaveInterval) return;
-  
-  console.log('⏰ Iniciando auto-guardado cada 30 segundos...');
-  autoSaveInterval = setInterval(() => {
-    const videoModal = document.getElementById('videoBackdrop');
-    if (videoModal && videoModal.style.display !== 'none') {
-      console.log('💾 Auto-guardado de progreso...');
-      saveCombinedVideoProgress();
-    }
-  }, 30000); // cada 30 segundos
-}
-
-function stopAutoSave() {
-  if (autoSaveInterval) {
-    console.log('⏹️ Deteniendo auto-guardado...');
-    clearInterval(autoSaveInterval);
-    autoSaveInterval = null;
+  // Intentar inicialización
+  try {
+    await initializeVideoClozeIntegration();
+    console.log('✅ Sistema de video inicializado correctamente');
+  } catch (error) {
+    console.error('❌ Error en inicialización del sistema:', error);
   }
 }
 
-// Event listeners para el modal de video
-const videoBackdrop = document.getElementById('videoBackdrop');
-if (videoBackdrop) {
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      if (mutation.attributeName === 'style') {
-        const isVisible = videoBackdrop.style.display !== 'none';
-        if (isVisible) {
-          startAutoSave();
-        } else {
-          stopAutoSave();
-          // Guardado final al cerrar
-          setTimeout(() => {
-            saveCombinedVideoProgress();
-          }, 1000);
-        }
-      }
-    });
-  });
-  
-  observer.observe(videoBackdrop, { attributes: true });
-}
-
-// ====================================
-// INICIALIZACIÓN INMEDIATA
-// ====================================
-
-// Inicializar cuando el DOM esté listo
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeVideoClozeTracking);
-} else {
-  // Si ya está cargado, inicializar inmediatamente
-  setTimeout(initializeVideoClozeTracking, 1000);
-}
-
-// También inicializar cuando el usuario esté autenticado
-if (typeof window.auth !== 'undefined') {
-  window.auth.onAuthStateChanged((user) => {
-    if (user) {
-      setTimeout(initializeVideoClozeTracking, 1500);
-    }
-  });
-}
-
-console.log('🎮 Integración Firebase Video + Cloze Test cargada');
-console.log('📈 Ponderación: 30% Video + 70% Cloze = 100% Progreso');
-
-</script>
-
-<!-- // ====================================
-// 🔧 FUNCIONES ADICIONALES DE UTILIDAD
-// ==================================== -->
-
-<script>
-// Función para verificar integración completa
-window.testVideoClozeIntegration = function() {
-  console.log('🧪 === TEST DE INTEGRACIÓN VIDEO + CLOZE ===');
-  
-  console.log('1️⃣ Verificando funciones base...');
-  const functions = [
-    'saveCloze',
-    'markVideoProgress', 
-    'saveVideoProgress',
-    'checkVideoClozeStatus',
-    'forceSaveVideoCloze'
-  ];
-  
-  functions.forEach(fn => {
-    const exists = typeof window[fn] === 'function';
-    console.log(`   ${exists ? '✅' : '❌'} ${fn}: ${exists ? 'OK' : 'NO ENCONTRADA'}`);
-  });
-  
-  console.log('2️⃣ Verificando elementos DOM...');
-  const elements = [
-    'videoBackdrop',
-    'videoContainer', 
-    'clozeSection',
-    'videoClozeBtn'
-  ];
-  
-  elements.forEach(id => {
-    const exists = !!document.getElementById(id);
-    console.log(`   ${exists ? '✅' : '❌'} #${id}: ${exists ? 'ENCONTRADO' : 'NO ENCONTRADO'}`);
-  });
-  
-  console.log('3️⃣ Verificando progreso actual...');
-  const progress = window.checkVideoClozeStatus();
-  
-  console.log('4️⃣ Simulando guardado...');
-  window.forceSaveVideoCloze();
-  
-  console.log('✅ Test de integración completado');
+// Función para forzar reinicialización
+window.forceReinitializeVideo = function() {
+  console.log('🔄 Forzando reinicialización del sistema de video...');
+  initializeVideoSystem();
 };
 
-// Función para resetear progreso (desarrollo/testing)
-window.resetVideoClozeProgress = function() {
-  const confirmReset = confirm('¿Estás seguro de que quieres resetear todo el progreso de video + cloze?');
-  if (!confirmReset) return;
-  
-  console.log('🔄 Reseteando progreso video + cloze...');
+// Función de debug completo
+window.debugVideoSystem = function() {
+  console.log('🔧 === DEBUG COMPLETO DEL SISTEMA DE VIDEO ===');
   
   const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
-  const keys = [
-    `tema.${tema}.video`,
-    `tema.${tema}.cloze`
-  ];
+  console.log(`📚 Tema: ${tema}`);
   
-  keys.forEach(key => {
-    sessionStorage.removeItem(key);
-    console.log(`🗑️ Eliminado: ${key}`);
+  // Verificar VIDEO_CONFIG
+  const hasVideoConfig = window.VIDEO_CONFIG && window.VIDEO_CONFIG[tema];
+  console.log(`📹 VIDEO_CONFIG[${tema}]:`, hasVideoConfig ? window.VIDEO_CONFIG[tema] : 'NO ENCONTRADO');
+  
+  // Verificar elementos DOM
+  const elements = {
+    videoCard: document.getElementById('videoCard'),
+    goVideo: document.getElementById('goVideo'),
+    statusVideo: document.getElementById('statusVideo'),
+    videoBackdrop: document.getElementById('videoBackdrop'),
+    videoClozeBtn: document.getElementById('videoClozeBtn')
+  };
+  
+  console.log('🖼️ Elementos DOM:');
+  Object.entries(elements).forEach(([name, element]) => {
+    const exists = !!element;
+    const visible = element ? (element.style.display !== 'none') : false;
+    console.log(`   ${name}: ${exists ? '✅' : '❌'} ${exists ? (visible ? '(Visible)' : '(Oculto)') : ''}`);
   });
   
-  console.log('✅ Progreso reseteado. Recarga la página para ver los cambios.');
+  // Verificar módulo
+  const moduleLoaded = !!window.VideoClozeModule;
+  console.log(`📦 VideoClozeModule: ${moduleLoaded ? '✅' : '❌'}`);
+  
+  if (moduleLoaded) {
+    try {
+      const api = window.VideoClozeModule.getAPI();
+      console.log(`🔗 API disponible: ${!!api ? '✅' : '❌'}`);
+      
+      if (api) {
+        const progress = api.getProgress();
+        console.log(`📊 Progreso actual:`, progress);
+      }
+    } catch (error) {
+      console.error('❌ Error accediendo al módulo:', error);
+    }
+  }
+  
+  // Recomendaciones
+  console.log('💡 Para solucionar problemas:');
+  console.log('   1. Verificar que VIDEO_CONFIG tenga el tema');
+  console.log('   2. Asegurar que videoCard existe en el HTML');
+  console.log('   3. Ejecutar forceReinitializeVideo()');
 };
 
-console.log('🛠️ Funciones de utilidad cargadas:');
-console.log('   - testVideoClozeIntegration() - Test completo');
-console.log('   - resetVideoClozeProgress() - Resetear progreso');
-</script>
-
-<!-- nombre de usuario -->
- <script type="module">
-  import { db, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-  const auth = getAuth();
-
-  // Mini helper
-  const $ = (s)=>document.querySelector(s);
-
-  onAuthStateChanged(auth, async (user) => {
-    const userNameEl = $("#userName");
-    if (!user) {
-      // no logueado → oculto el botón/label y dejo todo seguro
-      if (userNameEl) userNameEl.textContent = "👤 Invitado";
-      // Si preferís bloquear el acceso directo sin login, descomentá:
-      // location.href = "index.html";
+// Inicialización inteligente con múltiples intentos
+function smartInitialization() {
+  let attempts = 0;
+  const maxAttempts = 5;
+  
+  const tryInitialize = async () => {
+    attempts++;
+    console.log(`🎯 Intento de inicialización ${attempts}/${maxAttempts}`);
+    
+    // Verificar precondiciones
+    const hasVideoConfig = !!window.VIDEO_CONFIG;
+    const hasVideoCard = !!document.getElementById('videoCard');
+    
+    if (!hasVideoConfig) {
+      console.log('⏳ Esperando VIDEO_CONFIG...');
+      if (attempts < maxAttempts) {
+        setTimeout(tryInitialize, 1000);
+      } else {
+        console.error('❌ VIDEO_CONFIG no disponible después de múltiples intentos');
+      }
       return;
     }
-
-    try {
-      // 1) Intentar leer Firestore (usuarios/{uid}) para tomar el nickname
-      const ref = doc(db, "usuarios", user.uid);
-      const snap = await getDoc(ref);
-      let nickname = null;
-
-      if (snap.exists()) {
-        const data = snap.data();
-        nickname = data?.nickname || data?.nombres || data?.apellidos;
+    
+    if (!hasVideoCard) {
+      console.log('⏳ Esperando videoCard en DOM...');
+      if (attempts < maxAttempts) {
+        setTimeout(tryInitialize, 1000);
+      } else {
+        console.error('❌ videoCard no disponible después de múltiples intentos');
       }
-
-      // 2) Fallbacks: displayName o parte del email
-      if (!nickname) {
-        nickname = user.displayName || (user.email ? user.email.split("@")[0] : "Alumno");
-      }
-
-      if (userNameEl) userNameEl.textContent = nickname;
-
-      // (Opcional) Si querés mostrar algo distinto para admin:
-      // const isAdmin = await isCurrentUserAdmin();
-      // if (isAdmin) {
-      //   userNameEl.title = "Admin";
-      //   userNameEl.classList.add("is-admin");
-      // }
-
-    } catch (e) {
-      console.error("No se pudo cargar nickname:", e);
-      if (userNameEl) userNameEl.textContent = "Alumno";
+      return;
     }
-  });
-</script>
+    
+    // Todo listo, inicializar
+    console.log('🚀 Condiciones cumplidas, iniciando sistema...');
+    await initializeVideoSystem();
+  };
+  
+  // Primer intento inmediato
+  tryInitialize();
+}
 
+// Auto-inicialización cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('📄 DOM cargado, iniciando sistema de video...');
+    setTimeout(smartInitialization, 500);
+  });
+} else {
+  // Si ya está cargado
+  console.log('📄 DOM ya está listo, iniciando sistema de video...');
+  setTimeout(smartInitialization, 100);
+}
+
+// También intentar cuando cambien los scripts
+window.addEventListener('load', () => {
+  console.log('🌐 Window load event, verificando sistema de video...');
+  setTimeout(() => {
+    // Solo reinicializar si no está funcionando
+    const videoCard = document.getElementById('videoCard');
+    const tema = sessionStorage.getItem('tema.active') || new URLSearchParams(location.search).get('tema');
+    const hasVideo = window.VIDEO_CONFIG && window.VIDEO_CONFIG[tema];
+    
+    if (hasVideo && videoCard && videoCard.style.display === 'none') {
+      console.log('🔄 Sistema no inicializado correctamente, reintentando...');
+      smartInitialization();
+    }
+  }, 1000);
+});
+
+console.log('🎮 Integración VideoCloze para tema.html cargada');
+console.log('🎯 Nueva ponderación: 10% Video + 90% Cloze');
+console.log('📚 Cloze es OBLIGATORIO (≥80%) para aprobar');
+console.log('🔧 Funciones de debug disponibles:');
+console.log('   - debugVideoSystem() - Diagnóstico completo');
+console.log('   - forceReinitializeVideo() - Forzar reinicialización');
+console.log('   - debugVideoClozeModule() - Debug del módulo');
+
+// ====================================
+// 📱 RESPONSIVE Y ACCESSIBILITY
+// ====================================
+
+// Mejorar experiencia en móviles
+function setupMobileOptimizations() {
+  // Detectar dispositivo móvil
+  const isMobile = window.innerWidth <= 768;
+  
+  if (isMobile) {
+    console.log('📱 Aplicando optimizaciones móviles...');
+    
+    // Ajustar layout para móvil cuando se abra el modal
+    const originalOpenModal = window.openVideoModal;
+    if (originalOpenModal) {
+      window.openVideoModal = function() {
+        originalOpenModal();
+        
+        // Ajustes específicos para móvil
+        setTimeout(() => {
+          const sheet = document.querySelector('#videoBackdrop .sheet');
+          if (sheet && isMobile) {
+            sheet.style.width = '100vw';
+            sheet.style.height = '100vh';
+            sheet.style.maxWidth = 'none';
+            sheet.style.maxHeight = 'none';
+            sheet.style.borderRadius = '0';
+          }
+        }, 100);
+      };
+    }
+  }
+}
+
+// Configurar al cargar
+document.addEventListener('DOMContentLoaded', setupMobileOptimizations);
+
+// También al redimensionar
+window.addEventListener('resize', setupMobileOptimizations);
+</script>
 
 </body>
 </html>
