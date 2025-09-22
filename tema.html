@@ -745,6 +745,8 @@ function openVideoModal() {
           display: flex;
           height: calc(90vh - 56px);
           min-height: 0;
+          flex-direction: column;
+
         }
         
         .video-section {
@@ -802,11 +804,11 @@ function openVideoModal() {
         .cloze-content {
           flex: 1;
           padding: 20px 24px;
-          overflow-y: auto;
+          // overflow-y: auto;
           min-height: 0;
         }
         
-        .video-cloze-container.video-only .video-section {
+        ..video-only .video-section {
           flex: 1;
         }
         
@@ -847,14 +849,15 @@ function openVideoModal() {
         
         .cloze-content input[type="text"] {
           min-width: 120px;
-          padding: 8px 12px;
-          margin: 0 2px;
+          padding: 4px;
+          margin: 2px;
           background: #0b1220;
           border: 1px solid #32406a;
           border-radius: 6px;
           color: #eaf0ff;
           font-size: 14px;
           transition: all 0.3s ease;
+          width: 8rem;
         }
         
         .cloze-content input[type="text"]:focus {

@@ -69,7 +69,7 @@
   .sheet-title{ font-weight:700 }
   .sheet-close{ appearance:none; background:transparent; border:0; color:#c7d2ff; font-size:24px; line-height:1; cursor:pointer; padding:6px 10px; border-radius:8px }
   .sheet-close:hover{ background:#1b2544 }
-  .sheet-body{ padding:0; overflow:hidden; max-height:calc(88vh - 56px) }
+  .sheet-body{ padding:0; max-height:calc(88vh - 56px);overflow-y: auto; }
   .sheet-iframe{ border:0; width:100%; height:calc(88vh - 56px) }
 
 /* === Sheet base (ya lo usás para Material) === */

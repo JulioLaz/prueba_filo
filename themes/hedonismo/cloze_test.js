@@ -4,7 +4,7 @@ window.CLOZE_TEST = {
   items: [
     {
       id: "a1",
-      text: "El hedonismo es una [[filosofía|doctrina]] que propone como [[bien máximo|fin supremo]] el [[placer]].",
+      text: "El hedonismo es una [[filosofía|doctrina]] que propone como [[bien máximo|fin supremo|fin|bien]] el [[placer]].",
       feedbackOK: "Correcto. El hedonismo define el placer como bien/fin supremo.",
       feedbackKO: "Recuerda: es una doctrina que toma el placer como valor central.",
       videoHints: [
@@ -16,7 +16,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a2",
-      text: "No debe confundirse con un [[arrojo indiscriminado|impulso irreflexivo|abuso]] hacia los [[vicios|excesos|placeres]].",
+      text: "No debe confundirse con un [[arrojo indiscriminado|arrojo|impulso irreflexivo|abuso]] hacia los [[vicios|excesos|placeres]].",
       feedbackOK: "Bien. Desmonta el prejuicio 'vicio = hedonismo'.",
       feedbackKO: "Pista: advierte contra identificarlo con 'vicio sin conciencia'.",
       videoHints: [
@@ -28,7 +28,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a3",
-      text: "Existen distintos tipos de placeres: algunos [[físicos|corporales|sensibles]] y otros [[intelectuales|mentales|espirituales]].",
+      text: "Existen distintos tipos de placeres: algunos [[físicos|fisicos|corporales|sensibles]] y otros [[intelectuales|mentales|espirituales]].",
       feedbackOK: "Exacto. Distingue placeres físicos e intelectuales.",
       feedbackKO: "Recuerda: el video contrasta lo corporal con lo intelectual.",
       videoHints: [
