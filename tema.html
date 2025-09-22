@@ -184,6 +184,7 @@
 
 <!-- INSERTA JSON CON DATOS DE LAS TARJETAS EN TOPICS Y DE LOS VIDEOS EN VIDEO_CONFIG -->
 <script src="temas_data.js"></script>
+  <script src="../../js/celebration.js" defer></script>  
 
 <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
@@ -1316,6 +1317,7 @@ function renderImprovedCloze(container, setup) {
       progressBar.style.width = `${percentage}%`;
       
       if (currentState.completed) {
+        Celebration.show({ activity:'video', topic:tema, emojis:['🌟','🏆','🎉'] });
         progressText.innerHTML += ' <span style="color: #10b981;">🎉</span>';
       }
     }
@@ -2125,7 +2127,7 @@ function getCurrentVideoProgress() {
       watched: data.watched || false,
       watchTime: data.watchTime || 0,
       completed: data.completed || false,
-      percentage: data.completed ? 100 : (data.watched ? 50 : 0)
+      percentage: data.completed ? 100 : (data.watched ? 30 : 0)
     };
   } catch (e) {
     console.warn('⚠️ Error leyendo progreso video:', e);
