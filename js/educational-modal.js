@@ -55,7 +55,7 @@ console.log('📚 Cargando sistema de modal educativo...');
           </div>
           
           <div class="modal-actions">
-            <button class="btn-exit" onclick="EducationalModal.exit()" >
+            <button class="btn-exit" onclick="EducationalModal.exit()" style="display: none;" >
               Actividades
             </button>
             <button class="btn-secondary" onclick="EducationalModal.skip()" style="display:none">
