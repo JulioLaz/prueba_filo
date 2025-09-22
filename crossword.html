@@ -18,15 +18,15 @@
     .wrap{max-width:980px;margin:0 auto;padding:18px}
 
     /* Header mejorado */
-    header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px;gap:14px}
-    .title-section{display:flex;align-items:center;gap:12px}
+    header{display:flex;align-items:center;justify-content:space-between;flex-direction: row;gap:14px; margin-top: 16px;}
+    .title-section{display:flex;align-items:center;gap:12px;}
     h1{margin:0;font-size:22px}
     .tag{display:inline-grid;place-items:center;padding:8px 12px;border-radius:12px;background:#0e162c;border:1px solid var(--line);color:#cfe2ff}
-    .header-actions{display:flex;align-items:center;gap:10px}
+    .header-actions{display:flex;align-items:center;gap:10px;flex-direction: column;}
     
     .btn-back{
       display:flex;align-items:center;gap:8px;
-      background:#142038;border:1px solid var(--line);color:#cfe2ff;
+      background:#142038;border:1px solid #656975;color:#cfe2ff;
       padding:10px 16px;border-radius:10px;text-decoration:none;
       font-weight:600;transition:all 0.2s;cursor:pointer;
     }
@@ -42,17 +42,17 @@
     .firebase-status.saving { background: #f59e0b; color: white; animation: pulse 1s infinite; }
     .firebase-status:hover { opacity: 1; transform: scale(1.05); }
 
-    .hud{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .hud{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;justify-content: space-between;}
     .pill{background:#0f182e;border:1px solid var(--line);padding:10px 12px;border-radius:999px;color:#cfe2ff}
     .switch{display:inline-flex;align-items:center;gap:8px}
-    .switch button{background:#1a2445;border:1px solid var(--line);color:#cfe2ff;padding:8px 10px;border-radius:10px;cursor:pointer;transition:all 0.2s}
+    .switch button{background:#1a2445;border:1px solid var(--line);color:#cfe2ff;border-radius:10px;cursor:pointer;transition:all 0.2s}
     .switch button:hover{background:#233052;border-color:#3b4a73}
 
     .board{background:linear-gradient(180deg,#0f1629,#0a1020);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
     #grid{display:grid;gap:4px;place-content:center;margin-bottom:14px}
 
     .cell{
-      display:grid;place-items:center;border:1px solid #1f2a4a;
+      display:grid;place-items:center;border:1px solid #8e929f;
       background:var(--cell);border-radius:8px;font-weight:800;font-size:18px;
       color:#cfe2ff;user-select:none;transition:all 0.2s ease;
       position:relative;
@@ -175,7 +175,7 @@
       .cell{font-size:16px}
       .wrap{padding:12px}
       .hud{gap:8px}
-      .pill{padding:8px 10px;font-size:14px}
+      .pill{padding:9px 7px;font-size:14px}
       .header-actions{justify-content:flex-end}
       .visual-input{gap:2px}
       .letter-slot{width:32px;height:32px;font-size:16px}
@@ -191,14 +191,15 @@
   <div class="wrap">
     <header>
       <div class="title-section">
-        <h1>🧩 <span id="title">Cargando...</span></h1>
+        <h2>🧩 <span id="title">Cargando...</span></h2>
         <span class="tag" id="temaChip" style="display: none;">—</span>
       </div>
       <div class="header-actions">
         <a href="#" class="btn-back" id="backBtn">
-          <!-- <span>←</span> -->
-          <span>Actividades</span>
+          <span>Salir</span>
         </a>
+
+
       </div>
     </header>
 
@@ -353,7 +354,8 @@ console.log('🧩 Iniciando crucigrama con inicialización corregida...');
   
   if (temaChip) {
     temaChip.textContent = `Tema: ${tema}`;
-    temaChip.style.display = 'inline-grid';
+    temaChip.style.display = 'none';
+    // temaChip.style.display = 'inline-grid';
   }
   
   if (titleEl) {

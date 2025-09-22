@@ -462,7 +462,7 @@ const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Ética Kantiana - El Deber como Fundamento Moral",
+    title: "Ética Kantiana: El Deber como Fundamento Moral",
     
     // Palabra central vertical (se normaliza automáticamente)
     central: "BUENAS",

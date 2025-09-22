@@ -473,7 +473,7 @@ const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Pragmatismo Americano - Lo Verdadero es lo Práctico",
+    title: "Pragmatismo Americano: Lo Verdadero es lo Práctico",
     
     // Palabra central vertical (se normaliza automáticamente)
     central: "METODO",

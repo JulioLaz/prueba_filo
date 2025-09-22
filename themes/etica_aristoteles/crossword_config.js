@@ -3,7 +3,7 @@ const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Ética de Aristóteles - Conceptos Fundamentales",
+    title: "Ética de Aristóteles: Conceptos Fundamentales",
     
     // Palabra central vertical (se normaliza automáticamente)
     central: "VIRTUD",

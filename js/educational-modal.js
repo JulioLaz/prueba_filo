@@ -82,13 +82,15 @@ console.log('📚 Cargando sistema de modal educativo...');
     
     const infoButton = document.createElement('button');
     infoButton.id = 'infoButton';
-    infoButton.className = 'info-button';
+    infoButton.className = 'btn-back';
+   //  infoButton.className = 'info-button';
     infoButton.innerHTML = '📚 Info';
     infoButton.title = 'Ver información educativa del tema';
     infoButton.onclick = () => EducationalModal.show();
     
-    // Insertar en el HUD existente
-    const hud = document.querySelector('.hud');
+    // Insertar en el HUD existente o mejor lugar en la clase header-actions
+   //  const hud = document.querySelector('.hud');
+    const hud = document.querySelector('.header-actions');
     if (hud) {
       hud.appendChild(infoButton);
       console.log('✅ Botón de información agregado al HUD');
