@@ -1,16 +1,14 @@
 // ========================================
-// 🗺️ MAPA-SYSTEM-SCORE.JS v3.1
-// Con protección de score máximo histórico
+// 🗺️ MAPA-SYSTEM-SCORE.JS v3.0
+// Sistema con guardado INMEDIATO y celebraciones mejoradas
 // ========================================
 
 import { saveProgress } from "/prueba_filo/firebase.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-console.log('🗺️ Sistema v3.1: Protección de score máximo');
+console.log('🗺️ Sistema v3.0: Guardado inmediato + Celebraciones mejoradas');
 
 const auth = getAuth();
-const db = getFirestore();
 
 // ====================================
 // CONFIGURACIÓN
@@ -38,7 +36,6 @@ let systemState = {
   game: { correct: 0, total: 0, percentage: 0, completed: false },
   overallStatus: SCORING_CONFIG.states.LOCKED,
   finalScore: 0,
-  historicalMaxScore: 0, // NUEVO: Score máximo histórico de Firebase
   lastSave: null,
   milestonesReached: {
     mapComplete: false,
@@ -87,60 +84,13 @@ function getActiveTema() {
 }
 
 // ====================================
-// CARGA DE SCORE HISTÓRICO
-// ====================================
-
-async function loadHistoricalScore() {
-  const user = auth.currentUser;
-  if (!user) {
-    console.log('⚠️ Sin usuario - score histórico = 0');
-    return 0;
-  }
-  
-  const tema = getActiveTema();
-  const progressId = `${user.uid}_${tema}_mapa`;
-  
-  try {
-    console.log('📥 Cargando score histórico de Firebase...');
-    const progressRef = doc(db, "progreso_temas", progressId);
-    const progressSnap = await getDoc(progressRef);
-    
-    if (progressSnap.exists()) {
-      const data = progressSnap.data();
-      const historicalScore = data.score || 0;
-      console.log(`✅ Score histórico encontrado: ${historicalScore}%`);
-      return historicalScore;
-    } else {
-      console.log('ℹ️ No hay score histórico (primera vez)');
-      return 0;
-    }
-  } catch (error) {
-    console.error('❌ Error cargando score histórico:', error);
-    return 0;
-  }
-}
-
-// ====================================
-// GUARDADO INTELIGENTE EN FIREBASE
+// GUARDADO INMEDIATO EN FIREBASE
 // ====================================
 
 async function saveToFirebaseNow(reason = '') {
   const user = auth.currentUser;
   if (!user) {
     console.warn('⚠️ No hay usuario - guardado omitido');
-    return false;
-  }
-  
-  const currentScore = systemState.finalScore;
-  const historicalScore = systemState.historicalMaxScore;
-  
-  // PROTECCIÓN: Solo guardar si es MEJOR que el histórico
-  if (currentScore <= historicalScore) {
-    console.log(`\n🛡️ === GUARDADO OMITIDO ===`);
-    console.log(`Score actual: ${currentScore}%`);
-    console.log(`Score histórico: ${historicalScore}%`);
-    console.log(`Razón: El nuevo score NO es mejor que el histórico`);
-    console.log(`========================\n`);
     return false;
   }
   
@@ -157,12 +107,9 @@ async function saveToFirebaseNow(reason = '') {
   }
   
   try {
-    console.log(`\n💾 === GUARDANDO NUEVO RÉCORD (${reason}) ===`);
+    console.log(`\n💾 === GUARDANDO INMEDIATAMENTE (${reason}) ===`);
     console.log(`⏰ Timestamp: ${new Date().toLocaleTimeString()}`);
-    console.log(`📊 COMPARACIÓN:`);
-    console.log(`   Histórico: ${historicalScore}%`);
-    console.log(`   Nuevo: ${currentScore}% ⬆️ (+${currentScore - historicalScore}%)`);
-    console.log(`📊 DESGLOSE:`);
+    console.log(`📊 Score Final: ${systemState.finalScore}%`);
     console.log(`   📖 Mapa: ${Math.round(systemState.map.percentage * 100)}% (${systemState.map.visited}/${systemState.map.total}) × 30% = ${Math.round(systemState.map.percentage * 30)}%`);
     console.log(`   🎮 Juego: ${Math.round(systemState.game.percentage * 100)}% (${systemState.game.correct}/${systemState.game.total}) × 70% = ${Math.round(systemState.game.percentage * 70)}%`);
     console.log(`   📝 Estado: ${status}`);
@@ -172,19 +119,13 @@ async function saveToFirebaseNow(reason = '') {
       moduleId: tema,
       lessonId: 'mapa',
       status: status,
-      score: currentScore,
+      score: systemState.finalScore,
       seconds: totalTime
     });
     
-    // Actualizar el histórico local
-    systemState.historicalMaxScore = currentScore;
     systemState.lastSave = new Date().toISOString();
-    
-    console.log(`✅ NUEVO RÉCORD GUARDADO: ${currentScore}%`);
+    console.log(`✅ GUARDADO EXITOSO en Firebase`);
     console.log(`===========================================\n`);
-    
-    // Actualizar UI para mostrar el nuevo récord
-    updateHistoricalScoreDisplay();
     
     return true;
     
@@ -207,26 +148,25 @@ function updateMapProgress(visited, total) {
   systemState.map.percentage = total > 0 ? visited / total : 0;
   systemState.map.completed = systemState.map.percentage >= SCORING_CONFIG.requiredMapCompletion;
   
-  console.log(`📖 Mapa: ${visited}/${total} (${Math.round(systemState.map.percentage * 100)}%)`);
+  console.log(`📖 Mapa actualizado: ${visited}/${total} (${Math.round(systemState.map.percentage * 100)}%)`);
   
+  // Si se acaba de completar el mapa por primera vez
   if (!wasCompleted && systemState.map.completed && !systemState.milestonesReached.mapComplete) {
     systemState.milestonesReached.mapComplete = true;
-    console.log('🎉 MAPA 100% COMPLETADO');
+    console.log('🎉 MAPA COMPLETADO AL 100%');
     unlockGame();
     updateSystemState();
     
-    saveToFirebaseNow('Mapa 100%').then(success => {
+    // GUARDAR INMEDIATAMENTE
+    saveToFirebaseNow('Mapa 100% completado').then(success => {
       if (success) {
-        showMapCompletedCelebration();
-      } else {
-        // No es récord, mostrar celebración simple
         showMapCompletedCelebration();
       }
     });
   } else if (Math.abs(systemState.map.percentage - oldPercentage) > 0.01) {
     updateSystemState();
-    // Intentar guardar (solo si es mejor)
-    saveToFirebaseNow('Progreso mapa');
+    // Guardar progreso parcial
+    saveToFirebaseNow('Progreso del mapa');
   }
 }
 
@@ -238,33 +178,39 @@ function updateGameProgress(correct, total) {
   systemState.game.percentage = total > 0 ? correct / total : 0;
   systemState.game.completed = systemState.game.percentage >= SCORING_CONFIG.requiredGameCompletion;
   
-  console.log(`🎮 Juego: ${correct}/${total} (${Math.round(systemState.game.percentage * 100)}%)`);
+  console.log(`🎮 Juego actualizado: ${correct}/${total} (${Math.round(systemState.game.percentage * 100)}%)`);
   
   updateSystemState();
   
-  // Celebrar al 80%
+  // Celebrar al alcanzar 80%
   if (systemState.game.percentage >= 0.8 && !systemState.milestonesReached.game80) {
     systemState.milestonesReached.game80 = true;
-    console.log('🎯 JUEGO 80% - APROBADO');
+    console.log('🎯 JUEGO: 80% ALCANZADO - ACTIVIDAD APROBADA');
     
-    saveToFirebaseNow('Juego 80% - Aprobado').then(success => {
-      showApprovedCelebration(success);
+    // GUARDAR INMEDIATAMENTE
+    saveToFirebaseNow('Juego 80% - Actividad Aprobada').then(success => {
+      if (success) {
+        showApprovedCelebration();
+      }
     });
   }
   
-  // Celebrar al 100%
+  // Celebrar al alcanzar 100%
   if (systemState.game.percentage >= 1.0 && !systemState.milestonesReached.game100) {
     systemState.milestonesReached.game100 = true;
-    console.log('🏆 JUEGO 100% - EXCELENTE');
+    console.log('🏆 JUEGO: 100% COMPLETADO - PERFECTO');
     
-    saveToFirebaseNow('Juego 100% - Excelente').then(success => {
-      showExcellentCelebration(success);
+    // GUARDAR INMEDIATAMENTE
+    saveToFirebaseNow('Juego 100% - Completado').then(success => {
+      if (success) {
+        showExcellentCelebration();
+      }
     });
   }
   
-  // Si no es milestone, intentar guardar
+  // Si no es milestone, guardar de todas formas
   if (Math.abs(systemState.game.percentage - oldPercentage) > 0.01) {
-    saveToFirebaseNow('Progreso juego');
+    saveToFirebaseNow('Progreso del juego');
   }
 }
 
@@ -276,11 +222,11 @@ function updateSystemState() {
   systemState.overallStatus = determineStatus();
   
   if (previousStatus !== systemState.overallStatus) {
-    console.log(`🔄 Estado: ${previousStatus} → ${systemState.overallStatus}`);
+    console.log(`🔄 Estado cambió: ${previousStatus} → ${systemState.overallStatus}`);
   }
   
   if (previousScore !== systemState.finalScore) {
-    console.log(`🎯 Score: ${previousScore}% → ${systemState.finalScore}%`);
+    console.log(`🎯 Score cambió: ${previousScore}% → ${systemState.finalScore}%`);
   }
   
   updateProgressUI();
@@ -288,7 +234,7 @@ function updateSystemState() {
 }
 
 // ====================================
-// CELEBRACIONES CON INDICADOR DE RÉCORD
+// CELEBRACIONES MEJORADAS
 // ====================================
 
 function showMapCompletedCelebration() {
@@ -346,88 +292,60 @@ function showMapCompletedCelebration() {
   document.body.appendChild(modal);
 }
 
-function showApprovedCelebration(isNewRecord) {
-  const recordBadge = isNewRecord ? `
-    <div style="
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: #FFD700;
-      color: #333;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      animation: pulse 1s infinite;
-    ">
-      🆕 NUEVO RÉCORD
-    </div>
-  ` : '';
-  
+function showApprovedCelebration() {
   const modal = document.createElement('div');
   modal.innerHTML = `
-    <div style="position: relative;">
-      ${recordBadge}
-      <div style="
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-        color: white;
-        padding: 40px;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        z-index: 10001;
-        text-align: center;
-        max-width: 500px;
-        animation: zoomBounce 0.5s ease;
-      ">
-        <div style="font-size: 72px; margin-bottom: 16px; animation: pulse 1s infinite;">🎯</div>
-        <h2 style="margin: 0 0 12px 0; font-size: 28px;">¡Actividad Aprobada!</h2>
-        <p style="margin: 0 0 20px 0; font-size: 16px;">
-          ${isNewRecord ? '¡Superaste tu mejor puntaje!' : 'Alcanzaste el 80% requerido'}
-        </p>
-        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-          <div style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">Tu calificación:</div>
-          <div style="font-size: 36px; font-weight: 700; margin-bottom: 12px;">${systemState.finalScore}%</div>
-          <div style="display: flex; gap: 20px; justify-content: center; font-size: 14px;">
-            <div>📖 Mapa: ${Math.round(systemState.map.percentage * 100)}%</div>
-            <div>🎮 Juego: ${Math.round(systemState.game.percentage * 100)}%</div>
-          </div>
-          ${isNewRecord ? `
-            <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.3); border-radius: 6px;">
-              <div style="font-size: 13px; margin-bottom: 4px;">☁️ Guardando tu nueva nota...</div>
-              <div style="background: rgba(255,255,255,0.5); height: 4px; border-radius: 2px; overflow: hidden;">
-                <div style="background: white; height: 100%; width: 100%; animation: slideProgress 1.5s ease;"></div>
-              </div>
-              <div style="font-size: 13px; margin-top: 8px; font-weight: 600;">✓ Nota guardada correctamente</div>
-            </div>
-          ` : `
-            <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.2); border-radius: 6px;">
-              <div style="font-size: 13px;">Tu récord anterior: ${systemState.historicalMaxScore}%</div>
-              <div style="font-size: 12px; margin-top: 4px; opacity: 0.9;">Seguí jugando para superarlo</div>
-            </div>
-          `}
+    <div style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+      color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 10001;
+      text-align: center;
+      max-width: 500px;
+      animation: zoomBounce 0.5s ease;
+    ">
+      <div style="font-size: 72px; margin-bottom: 16px; animation: pulse 1s infinite;">🎯</div>
+      <h2 style="margin: 0 0 12px 0; font-size: 28px;">¡Actividad Aprobada!</h2>
+      <p style="margin: 0 0 20px 0; font-size: 16px;">
+        Alcanzaste el 80% requerido en el juego de conceptos
+      </p>
+      <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="font-size: 14px; margin-bottom: 8px; opacity: 0.9;">Tu calificación:</div>
+        <div style="font-size: 36px; font-weight: 700; margin-bottom: 12px;">${systemState.finalScore}%</div>
+        <div style="display: flex; gap: 20px; justify-content: center; font-size: 14px;">
+          <div>📖 Mapa: ${Math.round(systemState.map.percentage * 100)}%</div>
+          <div>🎮 Juego: ${Math.round(systemState.game.percentage * 100)}%</div>
         </div>
-        <p style="font-size: 14px; margin-bottom: 16px; opacity: 0.9;">
-          💡 ¿Querés llegar al 100%? ¡Seguí jugando!
-        </p>
-        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-          background: white;
-          color: #FF9800;
-          border: none;
-          padding: 12px 32px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-weight: 700;
-          font-size: 16px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        ">
-          ¡Entendido!
-        </button>
+        <div style="margin-top: 16px; padding: 12px; background: rgba(255,255,255,0.3); border-radius: 6px;">
+          <div style="font-size: 13px; margin-bottom: 4px;">☁️ Registrando tu nota...</div>
+          <div style="background: rgba(255,255,255,0.5); height: 4px; border-radius: 2px; overflow: hidden;">
+            <div style="background: white; height: 100%; width: 100%; animation: slideProgress 1.5s ease;"></div>
+          </div>
+          <div style="font-size: 13px; margin-top: 8px; font-weight: 600;">✓ Nota registrada correctamente</div>
+        </div>
       </div>
+      <p style="font-size: 14px; margin-bottom: 16px; opacity: 0.9;">
+        💡 ¿Querés llegar al 100%? ¡Seguí jugando!
+      </p>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: white;
+        color: #FF9800;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      ">
+        ¡Entendido!
+      </button>
     </div>
     <div style="
       position: fixed;
@@ -443,92 +361,61 @@ function showApprovedCelebration(isNewRecord) {
   document.body.appendChild(modal);
 }
 
-function showExcellentCelebration(isNewRecord) {
-  const recordBadge = isNewRecord ? `
-    <div style="
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      background: #FFD700;
-      color: #333;
-      padding: 8px 16px;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      animation: pulse 1s infinite;
-      z-index: 1;
-    ">
-      🆕 NUEVO RÉCORD
-    </div>
-  ` : '';
-  
+function showExcellentCelebration() {
   const modal = document.createElement('div');
   modal.innerHTML = `
-    <div style="position: relative;">
-      ${recordBadge}
-      <div style="
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-        z-index: 10001;
-        text-align: center;
-        max-width: 550px;
-        animation: zoomBounce 0.6s ease;
-      ">
-        <div style="font-size: 96px; margin-bottom: 20px; animation: rotate3d 2s ease;">🏆</div>
-        <h2 style="margin: 0 0 16px 0; font-size: 32px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-          ${isNewRecord ? '¡Nuevo Récord Personal!' : '¡Excelente Trabajo!'}
-        </h2>
-        <p style="margin: 0 0 24px 0; font-size: 18px;">
-          ¡Completaste la actividad al 100%!
-        </p>
-        <div style="background: rgba(255,255,255,0.25); padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
-          <div style="font-size: 16px; margin-bottom: 12px; opacity: 0.95;">Tu calificación final:</div>
-          <div style="font-size: 48px; font-weight: 700; margin-bottom: 16px; text-shadow: 0 2px 8px rgba(0,0,0,0.2);">${systemState.finalScore}%</div>
-          <div style="display: flex; gap: 30px; justify-content: center; font-size: 16px; margin-bottom: 20px;">
-            <div>📖 Mapa: ${Math.round(systemState.map.percentage * 100)}%</div>
-            <div>🎮 Juego: ${Math.round(systemState.game.percentage * 100)}%</div>
+    <div style="
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      z-index: 10001;
+      text-align: center;
+      max-width: 550px;
+      animation: zoomBounce 0.6s ease;
+    ">
+      <div style="font-size: 96px; margin-bottom: 20px; animation: rotate3d 2s ease;">🏆</div>
+      <h2 style="margin: 0 0 16px 0; font-size: 32px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">¡Excelente Trabajo!</h2>
+      <p style="margin: 0 0 24px 0; font-size: 18px;">
+        ¡Completaste la actividad al 100%!
+      </p>
+      <div style="background: rgba(255,255,255,0.25); padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+        <div style="font-size: 16px; margin-bottom: 12px; opacity: 0.95;">Tu calificación final:</div>
+        <div style="font-size: 48px; font-weight: 700; margin-bottom: 16px; text-shadow: 0 2px 8px rgba(0,0,0,0.2);">${systemState.finalScore}%</div>
+        <div style="display: flex; gap: 30px; justify-content: center; font-size: 16px; margin-bottom: 20px;">
+          <div>📖 Mapa: ${Math.round(systemState.map.percentage * 100)}%</div>
+          <div>🎮 Juego: ${Math.round(systemState.game.percentage * 100)}%</div>
+        </div>
+        <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.3); border-radius: 8px;">
+          <div style="font-size: 15px; margin-bottom: 6px;">☁️ Guardando tu calificación...</div>
+          <div style="background: rgba(255,255,255,0.5); height: 6px; border-radius: 3px; overflow: hidden; margin: 8px 0;">
+            <div style="background: white; height: 100%; width: 100%; animation: slideProgress 2s ease;"></div>
           </div>
-          ${isNewRecord ? `
-            <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.3); border-radius: 8px;">
-              <div style="font-size: 15px; margin-bottom: 6px;">☁️ Guardando tu récord...</div>
-              <div style="background: rgba(255,255,255,0.5); height: 6px; border-radius: 3px; overflow: hidden; margin: 8px 0;">
-                <div style="background: white; height: 100%; width: 100%; animation: slideProgress 2s ease;"></div>
-              </div>
-              <div style="font-size: 15px; margin-top: 10px; font-weight: 700;">✓ Récord guardado exitosamente</div>
-              <div style="font-size: 13px; margin-top: 6px; opacity: 0.9;">Tu mejor nota está registrada</div>
-            </div>
-          ` : `
-            <div style="margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.2); border-radius: 8px;">
-              <div style="font-size: 14px; margin-bottom: 6px;">Tu récord se mantiene:</div>
-              <div style="font-size: 20px; font-weight: 700;">${systemState.historicalMaxScore}%</div>
-            </div>
-          `}
+          <div style="font-size: 15px; margin-top: 10px; font-weight: 700;">✓ Calificación registrada exitosamente</div>
+          <div style="font-size: 13px; margin-top: 6px; opacity: 0.9;">Tu nota está disponible en el sistema</div>
         </div>
-        <div style="font-size: 16px; margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.2); border-radius: 8px;">
-          🌟 ¡Dominás completamente este tema!
-        </div>
-        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-          background: white;
-          color: #667eea;
-          border: none;
-          padding: 14px 40px;
-          border-radius: 10px;
-          cursor: pointer;
-          font-weight: 700;
-          font-size: 18px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        ">
-          ¡Genial!
-        </button>
       </div>
+      <div style="font-size: 16px; margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.2); border-radius: 8px;">
+        🌟 ¡Dominás completamente este tema!
+      </div>
+      <button onclick="this.parentElement.parentElement.remove()" style="
+        background: white;
+        color: #667eea;
+        border: none;
+        padding: 14px 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 18px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      ">
+        ¡Genial!
+      </button>
     </div>
     <div style="
       position: fixed;
@@ -542,170 +429,6 @@ function showExcellentCelebration(isNewRecord) {
   `;
   
   document.body.appendChild(modal);
-}
-
-// ====================================
-// UI
-// ====================================
-
-function createProgressUI() {
-  if (document.getElementById('scoring-panel')) return;
-  
-  const panel = document.createElement('div');
-  panel.id = 'scoring-panel';
-  panel.innerHTML = `
-    <div style="
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: rgba(255, 255, 255, 0.98);
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      border-left: 4px solid #667eea;
-      z-index: 9999;
-      min-width: 300px;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 14px;
-    ">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <div style="font-weight: 600; color: #333;">📊 Tu Progreso</div>
-        <button id="minimize-panel" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 0;">▼</button>
-      </div>
-      
-      <div id="panel-content">
-        <div style="margin-bottom: 10px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-            <span style="font-size: 13px;">📖 Mapa</span>
-            <span id="map-percent" style="font-weight: 600;">0%</span>
-          </div>
-          <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden;">
-            <div id="map-bar" style="background: linear-gradient(90deg, #4CAF50, #45a049); height: 100%; width: 0%; transition: width 0.4s;"></div>
-          </div>
-          <div style="font-size: 11px; color: #666; margin-top: 3px;">Completa 100% para jugar</div>
-        </div>
-        
-        <div style="margin-bottom: 10px;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-            <span style="font-size: 13px;">🎮 Juego</span>
-            <span id="game-percent" style="font-weight: 600;">0%</span>
-          </div>
-          <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden;">
-            <div id="game-bar" style="background: linear-gradient(90deg, #FF9800, #F57C00); height: 100%; width: 0%; transition: width 0.4s;"></div>
-          </div>
-          <div style="font-size: 11px; color: #666; margin-top: 3px;">Mínimo 80% para aprobar</div>
-        </div>
-        
-        <div style="border-top: 2px solid #e0e0e0; padding-top: 10px; margin-top: 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-weight: 600;">🎯 Actual</span>
-            <span id="final-score" style="font-size: 18px; font-weight: 700; color: #667eea;">0%</span>
-          </div>
-          <div id="historical-score-display" style="
-            font-size: 11px;
-            margin-top: 4px;
-            padding: 4px 8px;
-            background: #FFF9E6;
-            border: 1px solid #FFD700;
-            border-radius: 4px;
-            text-align: center;
-            color: #333;
-            display: none;
-          ">
-            🏆 Tu récord: <span id="historical-score-value" style="font-weight: 600;">0%</span>
-          </div>
-          <div id="status-text" style="font-size: 11px; margin-top: 4px; padding: 4px 8px; border-radius: 4px; text-align: center; font-weight: 500;"></div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(panel);
-  
-  const minimizeBtn = panel.querySelector('#minimize-panel');
-  const content = panel.querySelector('#panel-content');
-  let isMinimized = false;
-  
-  minimizeBtn.addEventListener('click', () => {
-    isMinimized = !isMinimized;
-    content.style.display = isMinimized ? 'none' : 'block';
-    minimizeBtn.textContent = isMinimized ? '▲' : '▼';
-  });
-}
-
-function updateProgressUI() {
-  const elements = {
-    mapBar: document.getElementById('map-bar'),
-    gameBar: document.getElementById('game-bar'),
-    mapPercent: document.getElementById('map-percent'),
-    gamePercent: document.getElementById('game-percent'),
-    finalScore: document.getElementById('final-score'),
-    statusText: document.getElementById('status-text')
-  };
-  
-  if (!elements.mapBar) return;
-  
-  elements.mapBar.style.width = `${systemState.map.percentage * 100}%`;
-  elements.gameBar.style.width = `${systemState.game.percentage * 100}%`;
-  elements.mapPercent.textContent = `${Math.round(systemState.map.percentage * 100)}%`;
-  elements.gamePercent.textContent = `${Math.round(systemState.game.percentage * 100)}%`;
-  elements.finalScore.textContent = `${systemState.finalScore}%`;
-  
-  let statusMessage, statusColor;
-  switch (systemState.overallStatus) {
-    case SCORING_CONFIG.states.LOCKED:
-      statusMessage = '🔒 Completa el mapa';
-      statusColor = '#ff6b6b';
-      break;
-    case SCORING_CONFIG.states.UNLOCKED:
-      statusMessage = '🎮 Jugá para aprobar';
-      statusColor = '#FF9800';
-      break;
-    case SCORING_CONFIG.states.APPROVED:
-      statusMessage = '✅ Aprobado';
-      statusColor = '#4CAF50';
-      break;
-    case SCORING_CONFIG.states.EXCELLENT:
-      statusMessage = '🏆 Excelente';
-      statusColor = '#667eea';
-      break;
-  }
-  
-  elements.statusText.textContent = statusMessage;
-  elements.statusText.style.background = statusColor + '22';
-  elements.statusText.style.color = statusColor;
-  elements.statusText.style.border = `1px solid ${statusColor}`;
-  
-  updateGameButtonState();
-}
-
-function updateHistoricalScoreDisplay() {
-  const historicalDisplay = document.getElementById('historical-score-display');
-  const historicalValue = document.getElementById('historical-score-value');
-  
-  if (historicalDisplay && systemState.historicalMaxScore > 0) {
-    historicalDisplay.style.display = 'block';
-    historicalValue.textContent = `${systemState.historicalMaxScore}%`;
-  }
-}
-
-function updateGameButtonState() {
-  const startButton = document.getElementById('startGame');
-  if (!startButton) return;
-  
-  if (isGameUnlocked()) {
-    startButton.disabled = false;
-    startButton.textContent = '🎮 Jugar';
-    startButton.style.background = '#4CAF50';
-    startButton.style.cursor = 'pointer';
-    startButton.style.opacity = '1';
-  } else {
-    startButton.disabled = true;
-    startButton.textContent = `🔒 ${Math.round(systemState.map.percentage * 100)}%`;
-    startButton.style.background = '#ccc';
-    startButton.style.cursor = 'not-allowed';
-    startButton.style.opacity = '0.6';
-  }
 }
 
 // ====================================
@@ -792,14 +515,155 @@ function showGameLockedMessage() {
 window.saveMapaProgress = async (nodesVisited, totalNodes, timeSpent = 0) => {
   console.log(`📞 saveMapaProgress: ${nodesVisited}/${totalNodes}`);
   updateMapProgress(nodesVisited, totalNodes);
-  return true;
+  return true; // Ya se guardó en updateMapProgress
 };
 
 window.saveGameProgress = async (correct, total) => {
   console.log(`📞 saveGameProgress: ${correct}/${total}`);
   updateGameProgress(correct, total);
-  return true;
+  return true; // Ya se guardó en updateGameProgress
 };
+
+// ====================================
+// UI
+// ====================================
+
+function createProgressUI() {
+  if (document.getElementById('scoring-panel')) return;
+  
+  const panel = document.createElement('div');
+  panel.id = 'scoring-panel';
+  panel.innerHTML = `
+    <div style="
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      border-left: 4px solid #667eea;
+      z-index: 9999;
+      min-width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+    ">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div style="font-weight: 600; color: #333;">📊 Tu Progreso</div>
+        <button id="minimize-panel" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 0;">▼</button>
+      </div>
+      
+      <div id="panel-content">
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="font-size: 13px;">📖 Mapa</span>
+            <span id="map-percent" style="font-weight: 600;">0%</span>
+          </div>
+          <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden;">
+            <div id="map-bar" style="background: linear-gradient(90deg, #4CAF50, #45a049); height: 100%; width: 0%; transition: width 0.4s;"></div>
+          </div>
+          <div style="font-size: 11px; color: #666; margin-top: 3px;">Completa 100% para jugar</div>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="font-size: 13px;">🎮 Juego</span>
+            <span id="game-percent" style="font-weight: 600;">0%</span>
+          </div>
+          <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden;">
+            <div id="game-bar" style="background: linear-gradient(90deg, #FF9800, #F57C00); height: 100%; width: 0%; transition: width 0.4s;"></div>
+          </div>
+          <div style="font-size: 11px; color: #666; margin-top: 3px;">Mínimo 80% para aprobar</div>
+        </div>
+        
+        <div style="border-top: 2px solid #e0e0e0; padding-top: 10px; margin-top: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 600;">🎯 Calificación</span>
+            <span id="final-score" style="font-size: 18px; font-weight: 700; color: #667eea;">0%</span>
+          </div>
+          <div id="status-text" style="font-size: 11px; margin-top: 4px; padding: 4px 8px; border-radius: 4px; text-align: center; font-weight: 500;"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(panel);
+  
+  const minimizeBtn = panel.querySelector('#minimize-panel');
+  const content = panel.querySelector('#panel-content');
+  let isMinimized = false;
+  
+  minimizeBtn.addEventListener('click', () => {
+    isMinimized = !isMinimized;
+    content.style.display = isMinimized ? 'none' : 'block';
+    minimizeBtn.textContent = isMinimized ? '▲' : '▼';
+  });
+}
+
+function updateProgressUI() {
+  const elements = {
+    mapBar: document.getElementById('map-bar'),
+    gameBar: document.getElementById('game-bar'),
+    mapPercent: document.getElementById('map-percent'),
+    gamePercent: document.getElementById('game-percent'),
+    finalScore: document.getElementById('final-score'),
+    statusText: document.getElementById('status-text')
+  };
+  
+  if (!elements.mapBar) return;
+  
+  elements.mapBar.style.width = `${systemState.map.percentage * 100}%`;
+  elements.gameBar.style.width = `${systemState.game.percentage * 100}%`;
+  elements.mapPercent.textContent = `${Math.round(systemState.map.percentage * 100)}%`;
+  elements.gamePercent.textContent = `${Math.round(systemState.game.percentage * 100)}%`;
+  elements.finalScore.textContent = `${systemState.finalScore}%`;
+  
+  let statusMessage, statusColor;
+  switch (systemState.overallStatus) {
+    case SCORING_CONFIG.states.LOCKED:
+      statusMessage = '🔒 Completa el mapa';
+      statusColor = '#ff6b6b';
+      break;
+    case SCORING_CONFIG.states.UNLOCKED:
+      statusMessage = '🎮 Jugá para aprobar';
+      statusColor = '#FF9800';
+      break;
+    case SCORING_CONFIG.states.APPROVED:
+      statusMessage = '✅ Aprobado';
+      statusColor = '#4CAF50';
+      break;
+    case SCORING_CONFIG.states.EXCELLENT:
+      statusMessage = '🏆 Excelente';
+      statusColor = '#667eea';
+      break;
+  }
+  
+  elements.statusText.textContent = statusMessage;
+  elements.statusText.style.background = statusColor + '22';
+  elements.statusText.style.color = statusColor;
+  elements.statusText.style.border = `1px solid ${statusColor}`;
+  
+  updateGameButtonState();
+}
+
+function updateGameButtonState() {
+  const startButton = document.getElementById('startGame');
+  if (!startButton) return;
+  
+  if (isGameUnlocked()) {
+    startButton.disabled = false;
+    startButton.textContent = '🎮 Jugar';
+    startButton.style.background = '#4CAF50';
+    startButton.style.cursor = 'pointer';
+    startButton.style.opacity = '1';
+  } else {
+    startButton.disabled = true;
+    startButton.textContent = `🔒 ${Math.round(systemState.map.percentage * 100)}%`;
+    startButton.style.background = '#ccc';
+    startButton.style.cursor = 'not-allowed';
+    startButton.style.opacity = '0.6';
+  }
+}
 
 // ====================================
 // PERSISTENCIA
@@ -817,12 +681,9 @@ function loadFromSession() {
   try {
     const saved = sessionStorage.getItem(`tema.${tema}.scoring`);
     if (saved) {
-      const data = JSON.parse(saved);
-      // No restaurar progreso de mapa/juego, solo el histórico
-      systemState.historicalMaxScore = data.historicalMaxScore || systemState.historicalMaxScore;
-      console.log('📂 Histórico cargado de sesión');
+      systemState = { ...systemState, ...JSON.parse(saved) };
+      console.log('📂 Estado cargado');
       updateProgressUI();
-      updateHistoricalScoreDisplay();
     }
   } catch (e) {}
 }
@@ -861,6 +722,11 @@ function integrateWithMapSystem() {
         }
       };
       
+      const initProg = sys.getProgress();
+      if (initProg) {
+        updateMapProgress(initProg.visitedNodes.length, initProg.totalNodes);
+      }
+      
       console.log('✅ Integrado');
     } else {
       setTimeout(checkSystem, 100);
@@ -875,9 +741,9 @@ function integrateWithMapSystem() {
 
 window.checkMapaFirebaseIntegration = () => {
   console.log('\n🔍 DIAGNÓSTICO');
-  console.log('Estado actual:', systemState);
-  console.log(`Score histórico: ${systemState.historicalMaxScore}%`);
+  console.log('Estado:', systemState);
   console.log('Usuario:', auth.currentUser?.email);
+  console.log('Tema:', getActiveTema());
 };
 
 window.forceMapaSave = async () => {
@@ -893,7 +759,6 @@ window.resetScoringSystem = () => {
     game: { correct: 0, total: 0, percentage: 0, completed: false },
     overallStatus: SCORING_CONFIG.states.LOCKED,
     finalScore: 0,
-    historicalMaxScore: 0,
     lastSave: null,
     milestonesReached: { mapComplete: false, game80: false, game100: false }
   };
@@ -905,21 +770,15 @@ window.resetScoringSystem = () => {
 // INIT
 // ====================================
 
-async function initializeScoringSystem() {
+function initializeScoringSystem() {
   if (systemState.initialized) return;
   
-  console.log('\n🚀 Sistema v3.1: Protección de récord');
+  console.log('\n🚀 Sistema v3.0');
   console.log(`Tema: ${getActiveTema()}`);
-  
-  // Cargar score histórico de Firebase
-  systemState.historicalMaxScore = await loadHistoricalScore();
   
   createProgressUI();
   loadFromSession();
   integrateWithMapSystem();
-  
-  // Mostrar récord si existe
-  updateHistoricalScoreDisplay();
   
   auth.onAuthStateChanged((user) => {
     if (user) console.log(`👤 Usuario: ${user.email}`);
@@ -935,7 +794,7 @@ if (document.readyState === 'loading') {
   setTimeout(initializeScoringSystem, 500);
 }
 
-// Estilos
+// Estilos de animación
 const style = document.createElement('style');
 style.textContent = `
   @keyframes zoomBounce {
@@ -962,4 +821,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('✅ Sistema v3.1 cargado');
+console.log('✅ Sistema v3.0 cargado');
