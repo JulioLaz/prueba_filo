@@ -555,21 +555,20 @@ function createProgressUI() {
   panel.id = 'scoring-panel';
   panel.innerHTML = `
     <div style="
-      position: fixed;
-      top: 10px;
-      right: 10px;
+      position: relative;
+      top: 15px;
       background: rgba(255, 255, 255, 0.98);
       padding: 5px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(234, 172, 55, 0.15);
       border-left: 4px solid #667eea;
-      z-index: 9999;
+      z-index: 100;
       min-width: 300px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 14px;
     ">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <div style="font-weight: 600; color: #333;">📊</div>
+        <div style="font-weight: 600; color: #333;">📊 Progreso</div>
         <button id="minimize-panel" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 0; color: #d28d15ff">▼</button>
       </div>
       
@@ -620,7 +619,13 @@ function createProgressUI() {
     </div>
   `;
   
-  document.body.appendChild(panel);
+//   document.body.appendChild(panel);
+  const subtitle = document.querySelector('.sub');
+if (subtitle) {
+  subtitle.insertAdjacentElement('afterend', panel);
+} else {
+  document.body.appendChild(panel); // fallback
+}
   
   const minimizeBtn = panel.querySelector('#minimize-panel');
   const content = panel.querySelector('#panel-content');
