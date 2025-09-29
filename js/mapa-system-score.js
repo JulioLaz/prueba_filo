@@ -557,11 +557,11 @@ function createProgressUI() {
     <div style="
       position: fixed;
       top: 10px;
-      left: 10px;
+      right: 10px;
       background: rgba(255, 255, 255, 0.98);
-      padding: 15px;
+      padding: 5px;
       border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(234, 172, 55, 0.15);
       border-left: 4px solid #667eea;
       z-index: 9999;
       min-width: 300px;
@@ -569,8 +569,8 @@ function createProgressUI() {
       font-size: 14px;
     ">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <div style="font-weight: 600; color: #333;">📊 Tu Progreso</div>
-        <button id="minimize-panel" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 0;">▼</button>
+        <div style="font-weight: 600; color: #333;">📊</div>
+        <button id="minimize-panel" style="background: none; border: none; font-size: 18px; cursor: pointer; padding: 0; color: #d28d15ff">▼</button>
       </div>
       
       <div id="panel-content">
