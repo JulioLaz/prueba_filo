@@ -7,50 +7,6 @@
   <title>Hedonismo Filosófico · Mapa Conceptual Interactivo</title>
   <link rel="stylesheet" href="../../css/mapa.css">
   
-  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
-  <script>
-    // Configuración específica para Hedonismo Filosófico
-    window.MapaSystemConfig = {
-      tema: 'hedonismo',
-      redirectTo: '../../tema.html',
-      soundsPath: '../../sound/',
-      gameEnabled: true,
-      autoTrackProgress: true,
-      
-      // Datos del juego de matching (15 pares)
-      gameData: [
-        { term: "Hedonismo", definition: "Corriente filosófica que considera el placer como fundamento de una vida plena." },
-        { term: "Ataraxia", definition: "Estado de imperturbabilidad y serenidad mental libre de ansiedades." },
-        { term: "Epicuro", definition: "Fundador del hedonismo filosófico (341-270 a.C.) y creador de 'el Jardín'." },
-        { term: "Autarquía", definition: "Autosuficiencia emocional que permite mantener la felicidad independientemente." },
-        { term: "Hedonismo Refinado", definition: "Búsqueda de placeres duraderos y espirituales como filosofía y amistad." },
-        { term: "Hedonismo Vulgar", definition: "Búsqueda compulsiva de placer inmediato sin considerar consecuencias." },
-        { term: "El Jardín", definition: "Escuela filosófica de Epicuro que incluía mujeres y funcionó 600 años." },
-        { term: "Deseos Naturales Necesarios", definition: "Necesidades básicas como comida, refugio y amistad que deben satisfacerse." },
-        { term: "Deseos Vanos", definition: "Deseos imposibles como inmortalidad o fama eterna que deben eliminarse." },
-        { term: "Ausencia de Dolor", definition: "Principio epicúreo: el verdadero placer es la ausencia de sufrimiento." },
-        { term: "Los Dos Temores", definition: "Miedo a los dioses y miedo a la muerte que Epicuro buscaba eliminar." },
-        { term: "Eudemonismo", definition: "Forma mitigada del hedonismo enfocada en placeres espirituales superiores." },
-        { term: "Filosofía Terapéutica", definition: "Concepción epicúrea de la filosofía como medicina para el alma." },
-        { term: "Placeres como Medios", definition: "Los placeres físicos son válidos pero solo como medios, no fines últimos." },
-        { term: "Continuo Placer", definition: "Ideal epicúreo de mantener un estado constante de bienestar y serenidad." }
-      ],
-      
-      // Configuración de sonidos
-      sounds: {
-        nodeVisit: 'collect_points.mp3',
-        expand: 'show_question.mp3',
-        collapse: 'timer_warning.mp3',
-        correct: 'correct_answer.mp3',
-        wrong: 'negative_beep.mp3',
-        gameComplete: 'fin_caza.mp3'
-      },
-      
-      // Emojis de celebración
-      celebrationEmojis: ['🌸', '✨', '🌟', '💫', '🎯', '🏆', '🌺'],
-      gameEmojis: ['🎉', '🌸', '✨', '🌟', '💫', '🎯', '🚀', '🏆', '🌺']
-    };
-  </script>
 </head>
 <body>
   <header class="appbar">
@@ -184,24 +140,24 @@
     </section>
 
     <details class="panel" open>
-      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <summary>🎯 Palabras Clave <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
       <div class="content">
         <div class="terms">
-          <article class="term"><h4>Hedonismo</h4><p>Corriente filosófica que considera el placer como fundamento de una vida plena.</p></article>
+          <article class="term"><h4>Hedonismo</h4><p>Corriente filosófica que considera el placer como el fundamento de una vida plena.</p></article>
           <article class="term"><h4>Ataraxia</h4><p>Estado de imperturbabilidad y serenidad mental libre de ansiedades.</p></article>
           <article class="term"><h4>Epicuro</h4><p>Fundador del hedonismo filosófico (341-270 a.C.) y creador de "el Jardín".</p></article>
           <article class="term"><h4>Autarquía</h4><p>Autosuficiencia emocional que permite mantener la felicidad independientemente.</p></article>
-          <article class="term"><h4>Hedonismo Refinado</h4><p>Búsqueda de placeres duraderos y espirituales como filosofía y amistad.</p></article>
+          <article class="term"><h4>Hedonismo Refinado</h4><p>Búsqueda de placeres duraderos y espirituales como la filosofía y la amistad.</p></article>
           <article class="term"><h4>Hedonismo Vulgar</h4><p>Búsqueda compulsiva de placer inmediato sin considerar consecuencias.</p></article>
-          <article class="term"><h4>El Jardín</h4><p>Escuela filosófica de Epicuro que incluía mujeres y funcionó 600 años.</p></article>
+          <article class="term"><h4>El Jardín</h4><p>Escuela filosófica de Epicuro que incluía mujeres y funcionó por 600 años.</p></article>
           <article class="term"><h4>Deseos Naturales Necesarios</h4><p>Necesidades básicas como comida, refugio y amistad que deben satisfacerse.</p></article>
-          <article class="term"><h4>Deseos Vanos</h4><p>Deseos imposibles como inmortalidad o fama eterna que deben eliminarse.</p></article>
-          <article class="term"><h4>Ausencia de Dolor</h4><p>Principio epicúreo: el verdadero placer es la ausencia de sufrimiento.</p></article>
-          <article class="term"><h4>Los Dos Temores</h4><p>Miedo a los dioses y miedo a la muerte que Epicuro buscaba eliminar.</p></article>
+          <article class="term"><h4>Deseos Vanos</h4><p>Deseos imposibles como la inmortalidad o fama eterna que deben eliminarse.</p></article>
+          <article class="term"><h4>Placer como Ausencia de Dolor</h4><p>Principio epicúreo: el verdadero placer es la ausencia de sufrimiento físico y mental.</p></article>
+          <article class="term"><h4>Los Dos Temores</h4><p>Miedo a los dioses y miedo a la muerte que Epicuro buscaba eliminar racionalmente.</p></article>
           <article class="term"><h4>Eudemonismo</h4><p>Forma mitigada del hedonismo enfocada en placeres espirituales superiores.</p></article>
           <article class="term"><h4>Filosofía Terapéutica</h4><p>Concepción epicúrea de la filosofía como medicina para el alma.</p></article>
-          <article class="term"><h4>Placeres como Medios</h4><p>Los placeres físicos son válidos pero solo como medios, no fines últimos.</p></article>
-          <article class="term"><h4>Continuo Placer</h4><p>Ideal epicúreo de mantener un estado constante de bienestar y serenidad.</p></article>
+          <article class="term"><h4>Placeres Sensuales como Medios</h4><p>Los placeres físicos son válidos pero solo como medios, no como fines últimos.</p></article>
+          <article class="term"><h4>Vida de Continuo Placer</h4><p>Ideal epicúreo de mantener un estado constante de bienestar y serenidad.</p></article>
         </div>
       </div>
     </details>
@@ -251,12 +207,285 @@
           <li><strong>Los dos temores:</strong> ¿Estoy actuando desde el miedo irracional a la muerte o al juicio?</li>
           <li><strong>Amistad:</strong> ¿Cómo cultivo relaciones genuinas que aporten a mi bienestar y al de otros?</li>
         </ul>
+        <p><strong>Mantra epicúreo:</strong> <em>"Busco placeres que nutran mi alma, cultivo la serenidad, elimino temores irracionales y valoro las amistades genuinas."</em></p>
       </div>
     </details>
   </main>
 
-  <!-- Scripts del sistema de mapas -->
-  <script type="module" src="../../js/mapa-system-score.js"></script>
-  <script src="../../js/mapa-system-fixed.js"></script>
+  <script>
+    // === SONIDOS ===
+    const playSound = (filename) => {
+      try {
+        const audio = new Audio(`../../sound/${filename}`);
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+      } catch {}
+    };
+
+    // === TRACKING DE PROGRESO ===
+    let visitedNodes = new Set();
+    let totalNodes = 0;
+
+    function saveMapProgress() {
+      const params = new URLSearchParams(location.search);
+      const tema = params.get('tema') || params.get('theme') || 'hedonismo';
+      const key = `tema.${tema}.mapa`;
+      
+      const state = {
+        nodesVisited: Array.from(visitedNodes),
+        total: totalNodes,
+        progress: visitedNodes.size / totalNodes,
+        completed: visitedNodes.size >= totalNodes
+      };
+
+      console.log('💾 Guardando progreso del mapa:', state);
+      sessionStorage.setItem(key, JSON.stringify(state));
+      
+      // Disparar evento para que tema.html se actualice si está abierto
+      window.parent.postMessage({ type: 'mapa-progress', data: state }, '*');
+    }
+
+    function markNodeAsVisited(node) {
+      const title = node.dataset.title || node.querySelector('.title')?.textContent?.trim();
+      if (!title || visitedNodes.has(title)) return;
+
+      visitedNodes.add(title);
+      node.classList.add('visited');
+      
+      // Sonido de exploración
+      playSound('collect_points.mp3');
+      
+      console.log(`🌟 Nodo visitado: "${title}" (${visitedNodes.size}/${totalNodes})`);
+      saveMapProgress();
+
+      // Animación de celebración
+      const emoji = ['🌸', '✨', '🌟', '💫'][Math.floor(Math.random() * 4)];
+      showCelebrationEmoji(node, emoji);
+    }
+
+    function showCelebrationEmoji(element, emoji) {
+      const explosion = document.createElement('div');
+      explosion.className = 'emoji-explosion';
+      explosion.textContent = emoji;
+      explosion.style.left = '50%';
+      explosion.style.top = '10px';
+      element.style.position = 'relative';
+      element.appendChild(explosion);
+      setTimeout(() => explosion.remove(), 800);
+    }
+
+    // === CONTROLES DEL ÁRBOL ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const tree = document.querySelector('.tree');
+      if (!tree) return;
+      
+      // Contar nodos totales
+      totalNodes = tree.querySelectorAll('.node[data-title]').length;
+      console.log('📊 Total de nodos en el mapa:', totalNodes);
+
+      // Colapsar TODO inicialmente
+      document.querySelectorAll('.tree li').forEach(li => {
+          if (li.querySelector(':scope > ul')) {
+              li.classList.add('collapsed');
+          } else {
+              const toggle = li.querySelector(':scope > .node .toggle');
+              if (toggle) toggle.style.visibility = 'hidden';
+          }
+      });
+      console.log('🌲 Árbol completamente colapsado al inicio');
+      
+      // Event listener para clicks en nodos
+      tree.addEventListener('click', (e) => {
+        const node = e.target.closest('.node');
+        if (!node) return;
+
+        // Marcar como visitado
+        markNodeAsVisited(node);
+        
+        const toggle = e.target.closest('.toggle');
+        if (!toggle) return;
+        
+        const parentLi = node.parentElement;
+        if (parentLi && parentLi.tagName === 'LI' && parentLi.querySelector(':scope > ul')) {
+            parentLi.classList.toggle('collapsed');
+            if (parentLi.classList.contains('collapsed')) {
+              playSound('timer_warning.mp3'); // Colapsar
+            } else {
+              playSound('show_question.mp3'); // Expandir
+            }
+        }
+      });
+
+      // Botón para volver al tema
+      document.getElementById('backToTema')?.addEventListener('click', () => {
+        const params = new URLSearchParams(location.search);
+        const tema = params.get('tema') || params.get('theme') || 'hedonismo';
+        const temaUrl = new URL('../../tema.html', location);
+        temaUrl.searchParams.set('tema', tema);
+        temaUrl.searchParams.set('theme', tema);
+        location.href = temaUrl.toString();
+      });
+
+      // Botones de expansión (ocultos pero funcionales)
+      document.getElementById('expandAll')?.addEventListener('click', () => {
+        document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
+      });
+
+      document.getElementById('collapseAll')?.addEventListener('click', () => {
+        document.querySelectorAll('.tree li').forEach(li => {
+          if (li.querySelector(':scope > ul') && !li.matches('.tree > ul > li')) {
+            li.classList.add('collapsed');
+          }
+        });
+      });
+    });
+
+    // === JUEGO DE MATCHING (15 pares) ===
+    const gameData = [
+      { term: "Hedonismo", definition: "Corriente filosófica que considera el placer como fundamento de una vida plena." },
+      { term: "Ataraxia", definition: "Estado de imperturbabilidad y serenidad mental libre de ansiedades." },
+      { term: "Epicuro", definition: "Fundador del hedonismo filosófico (341-270 a.C.) y creador de 'el Jardín'." },
+      { term: "Autarquía", definition: "Autosuficiencia emocional que permite mantener la felicidad independientemente." },
+      { term: "Hedonismo Refinado", definition: "Búsqueda de placeres duraderos y espirituales como filosofía y amistad." },
+      { term: "Hedonismo Vulgar", definition: "Búsqueda compulsiva de placer inmediato sin considerar consecuencias." },
+      { term: "El Jardín", definition: "Escuela filosófica de Epicuro que incluía mujeres y funcionó 600 años." },
+      { term: "Deseos Naturales Necesarios", definition: "Necesidades básicas como comida, refugio y amistad que deben satisfacerse." },
+      { term: "Deseos Vanos", definition: "Deseos imposibles como inmortalidad o fama eterna que deben eliminarse." },
+      { term: "Ausencia de Dolor", definition: "Principio epicúreo: el verdadero placer es la ausencia de sufrimiento." },
+      { term: "Los Dos Temores", definition: "Miedo a los dioses y miedo a la muerte que Epicuro buscaba eliminar." },
+      { term: "Eudemonismo", definition: "Forma mitigada del hedonismo enfocada en placeres espirituales superiores." },
+      { term: "Filosofía Terapéutica", definition: "Concepción epicúrea de la filosofía como medicina para el alma." },
+      { term: "Placeres como Medios", definition: "Los placeres físicos son válidos pero solo como medios, no fines últimos." },
+      { term: "Continuo Placer", definition: "Ideal epicúreo de mantener un estado constante de bienestar y serenidad." }
+    ];
+
+    let selectedTerm = null;
+    let correctCount = 0;
+    let errorCount = 0;
+    let matchedPairs = new Set();
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function initGame() {
+      const termsGrid = document.getElementById('termsGrid');
+      const definitionsGrid = document.getElementById('definitionsGrid');
+      const gameOverlay = document.getElementById('gameOverlay');
+      
+      // Reset
+      selectedTerm = null;
+      correctCount = 0;
+      errorCount = 0;
+      matchedPairs.clear();
+      
+      // Shuffle
+      const shuffledTerms = shuffle(gameData.map(item => ({...item, type: 'term'})));
+      const shuffledDefs = shuffle(gameData.map(item => ({...item, type: 'definition'})));
+      
+      // Render
+      termsGrid.innerHTML = shuffledTerms.map((item, idx) => 
+        `<div class="card" data-term="${item.term}" data-type="term" data-idx="${idx}">${item.term}</div>`
+      ).join('');
+      
+      definitionsGrid.innerHTML = shuffledDefs.map((item, idx) => 
+        `<div class="card" data-term="${item.term}" data-type="definition" data-idx="${idx}">${item.definition}</div>`
+      ).join('');
+
+      updateStats();
+      gameOverlay.style.display = 'flex';
+      
+      // Listeners
+      gameOverlay.addEventListener('click', handleCardClick);
+    }
+
+    function handleCardClick(e) {
+      const card = e.target.closest('.card');
+      if (!card || card.classList.contains('matched')) return;
+
+      if (card.dataset.type === 'term') {
+        document.querySelectorAll('.card[data-type="term"].selected').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedTerm = card.dataset.term;
+        
+      } else if (card.dataset.type === 'definition' && selectedTerm) {
+        if (card.dataset.term === selectedTerm) {
+          // Correcto
+          correctCount++;
+          matchedPairs.add(selectedTerm);
+          playSound('correct_answer.mp3');
+          
+          const termCard = document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`);
+          termCard.classList.add('matched');
+          card.classList.add('matched');
+          
+          const emojis = ['🌸', '✨', '🌟', '💫', '🎉', '🎯', '🚀', '🏆'];
+          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+          showCelebrationEmoji(card, emoji);
+          showCelebrationEmoji(termCard, emoji);
+          
+          selectedTerm = null;
+          termCard.classList.remove('selected');
+          
+          if (matchedPairs.size === gameData.length) {
+            setTimeout(() => {
+              playSound('fin_caza.mp3');
+              showGameComplete();
+            }, 800);
+          }
+          
+        } else {
+          // Incorrecto
+          errorCount++;
+          playSound('negative_beep.mp3');
+          card.classList.add('wrong');
+          setTimeout(() => card.classList.remove('wrong'), 300);
+          document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`)?.classList.remove('selected');
+          selectedTerm = null;
+        }
+        updateStats();
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('correctCount').textContent = correctCount;
+      document.getElementById('errorCount').textContent = errorCount;
+      document.getElementById('currentProgress').textContent = matchedPairs.size;
+      document.getElementById('totalPairs').textContent = gameData.length;
+      const progressPercent = (matchedPairs.size / gameData.length) * 100;
+      document.getElementById('gameProgress').style.width = progressPercent + '%';
+    }
+
+    function showGameComplete() {
+      document.getElementById('celebration').style.display = 'block';
+      const params = new URLSearchParams(location.search);
+      const tema = params.get('tema') || params.get('theme') || 'hedonismo';
+      const key = `tema.${tema}.matching`;
+      sessionStorage.setItem(key, JSON.stringify({
+        completed: true,
+        correctCount,
+        errorCount,
+        timestamp: new Date().toISOString()
+      }));
+    }
+
+    // Event listeners
+    document.getElementById('startGame')?.addEventListener('click', initGame);
+    document.getElementById('closeGame')?.addEventListener('click', () => {
+      document.getElementById('gameOverlay').style.display = 'none';
+      document.getElementById('celebration').style.display = 'none';
+    });
+    document.getElementById('gameOverlay')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('gameOverlay').style.display = 'none';
+        document.getElementById('celebration').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
