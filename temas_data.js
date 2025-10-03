@@ -130,13 +130,15 @@ const TOPICS = {
         duration: '2:38',
         // type: 'short'
       },
-      etica_kant: { // https://youtube.com/shorts/SD8kiCDupYc?si=_HISyvC6m5cmJH0i
-        youtubeId: 'SD8kiCDupYc',
+      etica_kant: { // https://www.youtube.com/watch?v=Lq0ZGcqn-Zg&t=155s
+      // etica_kant: { // https://youtube.com/shorts/SD8kiCDupYc?si=_HISyvC6m5cmJH0i
+        youtubeId: 'Lq0ZGcqn-Zg&t',
+        // youtubeId: 'SD8kiCDupYc',
         startTime: 1,
         endTime: 127,
         title: 'Etica de Kant',
         duration: '57',
-        type: 'short'
+        // type: 'short'
       },
       antropocentrismo: { // https://www.youtube.com/watch?v=xf96Q4NAdwY
         youtubeId: 'xf96Q4NAdwY',
