@@ -28,7 +28,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a3",
-      text: "Como teoría filosófica se desarrolló principalmente en [[Inglaterra|Reino Unido]] con [[Jeremy Bentham|Bentham]], [[James Mill]] y [[John Stuart Mill|J. S. Mill]].",
+      text: "Como teoría filosófica se desarrolló principalmente en [[Inglaterra|Reino Unido]] con [[Jeremy Bentham|Bentham]], [[James Mill]] y [[John Stuart Mill|J. S. Mill|Jhon Mill]].",
       feedbackOK: "Bien. Ubicaste el origen y a sus representantes clásicos.",
       feedbackKO: "Recuerda: tradición inglesa con Bentham y los Mill.",
       videoHints: [
@@ -76,7 +76,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a7",
-      text: "Así, una acción será [[buena]] si da [[mucho placer|alto placer]] a la [[mayor cantidad|mayor número|mayoría]] de personas [[posibles]].",
+      text: "Así, una acción será [[buena]] si da [[mucho placer|alto placer|placer]] a la [[mayor cantidad|mayor número|mayoría]] de personas [[posibles]].",
       feedbackOK: "Correcto. Regla práctica derivada del cálculo de Bentham.",
       feedbackKO: "Piensa: bondad = máximo placer agregado para la mayoría.",
       videoHints: [

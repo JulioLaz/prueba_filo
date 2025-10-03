@@ -119,7 +119,7 @@ const TOPICS = {
         startTime: 1,
         endTime: 127,
         title: 'Utilitarismo',
-        duration: '127',
+        duration: '2:07',
         // type: 'short'
       },
       pragmatismo: { // https://youtu.be/jHix800gjVQ?si=CXmquX1hq3CiA3fa
@@ -127,7 +127,7 @@ const TOPICS = {
         startTime: 1,
         endTime: 158,
         title: 'Pragmatismo',
-        duration: '158',
+        duration: '2:38',
         // type: 'short'
       },
       etica_kant: { // https://youtube.com/shorts/SD8kiCDupYc?si=_HISyvC6m5cmJH0i
