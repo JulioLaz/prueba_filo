@@ -7,49 +7,6 @@
   <title>Utilitarismo de John Stuart Mill · Mapa Conceptual Interactivo</title>
   <link rel="stylesheet" href="../../css/mapa.css">
 
-  <!-- 🔧 CONFIGURACIÓN DEL MAPA (mismo sistema que Aristóteles) -->
-  <script>
-    window.MapaSystemConfig = {
-      tema: 'utilitarismo',
-      redirectTo: '../../tema.html',
-      soundsPath: '../../sound/',
-      gameEnabled: true,
-      autoTrackProgress: true,
-
-      // Datos del juego de matching (15 pares)
-      gameData: [
-        { term: "Utilitarismo", definition: "Teoría ética que evalúa acciones por sus consecuencias, buscando maximizar felicidad general." },
-        { term: "Principio de la Mayor Felicidad", definition: "Las acciones son correctas si promueven felicidad, incorrectas si producen lo contrario." },
-        { term: "Placeres Superiores", definition: "Placeres intelectuales exclusivos de humanos: arte, filosofía, amistad, conocimiento." },
-        { term: "Placeres Inferiores", definition: "Placeres físicos compartidos con animales: comer, beber, gratificación sexual." },
-        { term: "Espectador Imparcial", definition: "Evaluar acciones sin dar peso especial a nuestros propios intereses." },
-        { term: "John Stuart Mill", definition: "Filósofo inglés (1806-1873) que refinó el utilitarismo y defendió la libertad." },
-        { term: "Utilitarismo del Acto", definition: "Evalúa cada acción individual por sus consecuencias específicas." },
-        { term: "Utilitarismo de la Regla", definition: "Sigue reglas morales que generalmente maximizan la felicidad." },
-        { term: "Consecuencialismo", definition: "Teorías éticas que juzgan la moralidad por los resultados de las acciones." },
-        { term: "Altruismo Racional", definition: "Preocupación genuina por el bienestar de otros basada en la razón." },
-        { term: "Análisis Costo-Beneficio", definition: "Método para evaluar políticas comparando costos y beneficios sociales." },
-        { term: "Problema de la Justicia", definition: "Crítica: el utilitarismo podría justificar injusticias si maximizan bienestar total." },
-        { term: "Demandingness", definition: "Crítica: el utilitarismo podría exigir sacrificios personales excesivos." },
-        { term: "Utilidad Marginal", definition: "Concepto económico: el valor adicional decrece con cada unidad extra." },
-        { term: "Ética Aplicada", definition: "Aplicación de principios morales a problemas prácticos específicos." }
-      ],
-
-      // Sonidos (opcional)
-      sounds: {
-        nodeVisit: 'collect_points.mp3',
-        expand: 'show_question.mp3',
-        collapse: 'timer_warning.mp3',
-        correct: 'correct_answer.mp3',
-        wrong: 'negative_beep.mp3',
-        gameComplete: 'fin_caza.mp3'
-      },
-
-      // Emojis
-      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '⚖️'],
-      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '⚖️']
-    };
-  </script>
 </head>
 <body>
   <header class="appbar">
@@ -189,7 +146,7 @@
               <div class="node" data-title="Legado e Influencia Actual">
                 <div class="toggle" role="button">▾</div>
                 <div class="title">Legado e Influencia Actual</div>
-                <div class="desc">Impacto permanente del utilitarismo en instituciones, empresas, tecnología y vida cotidiana.</div>
+                <div class="desc">Impact permanente del utilitarismo en instituciones, empresas, tecnología y vida cotidiana.</div>
               </div>
               <ul>
                 <li><div class="node" data-title="Políticas Públicas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Análisis Costo-Beneficio</div><div class="desc"><strong>Evaluación estándar</strong> de políticas gubernamentales en salud, educación y bienestar social.</div></div></li>
@@ -227,14 +184,14 @@
       </div>
     </details>
 
-    <!-- Overlay del juego de matching (administrado por mapa-system-*) -->
+    <!-- Overlay del juego de matching -->
     <div class="game-overlay" id="gameOverlay">
       <div class="game-board">
         <div class="game-header">
           <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
             <h2>🎯 Conecta conceptos con definiciones</h2>
             <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
-          </div>
+          </div>          
           <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
           <div class="game-stats">
             <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
@@ -278,9 +235,280 @@
     </details>
   </main>
 
-  <!-- Cargar el mismo motor que usa Aristóteles -->
-  <script type="module" src="../../js/mapa-system-score.js"> </script>
-  <script src="../../js/mapa-system-fixed.js"></script>
+  <script>
+    // === SONIDOS ===
+    const playSound = (filename) => {
+      try {
+        const audio = new Audio(`../../sound/${filename}`);
+        audio.volume = 0.3;
+        audio.play().catch(() => {});
+      } catch {}
+    };
+
+    // === TRACKING DE PROGRESO ===
+    let visitedNodes = new Set();
+    let totalNodes = 0;
+
+    function saveMapProgress() {
+      const params = new URLSearchParams(location.search);
+      const tema = params.get('tema') || params.get('theme') || 'utilitarismo';
+      const key = `tema.${tema}.mapa`;
+      
+      const state = {
+        nodesVisited: Array.from(visitedNodes),
+        total: totalNodes,
+        progress: visitedNodes.size / totalNodes,
+        completed: visitedNodes.size >= totalNodes
+      };
+
+      console.log('💾 Guardando progreso del mapa:', state);
+      sessionStorage.setItem(key, JSON.stringify(state));
+      
+      // Disparar evento para que tema.html se actualice si está abierto
+      window.parent.postMessage({ type: 'mapa-progress', data: state }, '*');
+    }
+
+    function markNodeAsVisited(node) {
+      const title = node.dataset.title || node.querySelector('.title')?.textContent?.trim();
+      if (!title || visitedNodes.has(title)) return;
+
+      visitedNodes.add(title);
+      node.classList.add('visited');
+      
+      // Sonido de exploración
+      playSound('collect_points.mp3');
+      
+      console.log(`🌟 Nodo visitado: "${title}" (${visitedNodes.size}/${totalNodes})`);
+      saveMapProgress();
+
+      // Animación de celebración
+      const emoji = ['🎯', '✨', '🌟', '💫'][Math.floor(Math.random() * 4)];
+      showCelebrationEmoji(node, emoji);
+    }
+
+    function showCelebrationEmoji(element, emoji) {
+      const explosion = document.createElement('div');
+      explosion.className = 'emoji-explosion';
+      explosion.textContent = emoji;
+      explosion.style.left = '50%';
+      explosion.style.top = '10px';
+      element.style.position = 'relative';
+      element.appendChild(explosion);
+      setTimeout(() => explosion.remove(), 800);
+    }
+
+    // === CONTROLES DEL ÁRBOL ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const tree = document.querySelector('.tree');
+      if (!tree) return;
+      
+      // Contar nodos totales
+      totalNodes = tree.querySelectorAll('.node[data-title]').length;
+      console.log('📊 Total de nodos en el mapa:', totalNodes);
+
+      // Colapsar TODO inicialmente
+      document.querySelectorAll('.tree li').forEach(li => {
+          if (li.querySelector(':scope > ul')) {
+              li.classList.add('collapsed');
+          } else {
+              const toggle = li.querySelector(':scope > .node .toggle');
+              if (toggle) toggle.style.visibility = 'hidden';
+          }
+      });
+      console.log('🌲 Árbol completamente colapsado al inicio');
+      
+      // Event listener para clicks en nodos
+      tree.addEventListener('click', (e) => {
+        const node = e.target.closest('.node');
+        if (!node) return;
+
+        // Marcar como visitado
+        markNodeAsVisited(node);
+        
+        const toggle = e.target.closest('.toggle');
+        if (!toggle) return;
+        
+        const parentLi = node.parentElement;
+        if (parentLi && parentLi.tagName === 'LI' && parentLi.querySelector(':scope > ul')) {
+            parentLi.classList.toggle('collapsed');
+            if (parentLi.classList.contains('collapsed')) {
+              playSound('timer_warning.mp3'); // Colapsar
+            } else {
+              playSound('show_question.mp3'); // Expandir
+            }
+        }
+      });
+
+      // Botón para volver al tema
+      document.getElementById('backToTema')?.addEventListener('click', () => {
+        const params = new URLSearchParams(location.search);
+        const tema = params.get('tema') || params.get('theme') || 'utilitarismo';
+        const temaUrl = new URL('../../tema.html', location);
+        temaUrl.searchParams.set('tema', tema);
+        temaUrl.searchParams.set('theme', tema);
+        location.href = temaUrl.toString();
+      });
+
+      // Botones de expansión (ocultos pero funcionales)
+      document.getElementById('expandAll')?.addEventListener('click', () => {
+        document.querySelectorAll('.tree li.collapsed').forEach(li => li.classList.remove('collapsed'));
+      });
+
+      document.getElementById('collapseAll')?.addEventListener('click', () => {
+        document.querySelectorAll('.tree li').forEach(li => {
+          if (li.querySelector(':scope > ul') && !li.matches('.tree > ul > li')) {
+            li.classList.add('collapsed');
+          }
+        });
+      });
+    });
+
+    // === JUEGO DE MATCHING (15 pares) ===
+    const gameData = [
+      { term: "Utilitarismo", definition: "Teoría ética que evalúa acciones por sus consecuencias, buscando maximizar felicidad." },
+      { term: "Mayor Felicidad", definition: "Principio: las acciones son correctas si promueven felicidad, incorrectas si no." },
+      { term: "Placeres Superiores", definition: "Placeres intelectuales exclusivos de humanos: arte, filosofía, amistad." },
+      { term: "Placeres Inferiores", definition: "Placeres físicos compartidos con animales: comer, beber, gratificación sexual." },
+      { term: "Espectador Imparcial", definition: "Evaluar acciones sin dar peso especial a nuestros propios intereses." },
+      { term: "John Stuart Mill", definition: "Filósofo inglés (1806-1873) que refinó el utilitarismo y defendió la libertad." },
+      { term: "Utilitarismo del Acto", definition: "Evalúa cada acción individual por sus consecuencias específicas." },
+      { term: "Utilitarismo de la Regla", definition: "Sigue reglas morales que generalmente maximizan la felicidad." },
+      { term: "Consecuencialismo", definition: "Teorías éticas que juzgan la moralidad por los resultados de las acciones." },
+      { term: "Altruismo Racional", definition: "Preocupación genuina por el bienestar de otros basada en la razón." },
+      { term: "Análisis Costo-Beneficio", definition: "Método para evaluar políticas comparando costos y beneficios sociales." },
+      { term: "Problema de la Justicia", definition: "Crítica: el utilitarismo podría justificar injusticias si maximizan bienestar." },
+      { term: "Demandingness", definition: "Crítica: el utilitarismo podría exigir sacrificios personales excesivos." },
+      { term: "Utilidad Marginal", definition: "Concepto económico: el valor adicional decrece con cada unidad extra." },
+      { term: "Ética Aplicada", definition: "Aplicación de principios morales a problemas prácticos específicos." }
+    ];
+
+    let selectedTerm = null;
+    let correctCount = 0;
+    let errorCount = 0;
+    let matchedPairs = new Set();
+
+    function shuffle(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function initGame() {
+      const termsGrid = document.getElementById('termsGrid');
+      const definitionsGrid = document.getElementById('definitionsGrid');
+      const gameOverlay = document.getElementById('gameOverlay');
+      
+      // Reset
+      selectedTerm = null;
+      correctCount = 0;
+      errorCount = 0;
+      matchedPairs.clear();
+      
+      // Shuffle
+      const shuffledTerms = shuffle(gameData.map(item => ({...item, type: 'term'})));
+      const shuffledDefs = shuffle(gameData.map(item => ({...item, type: 'definition'})));
+      
+      // Render
+      termsGrid.innerHTML = shuffledTerms.map((item, idx) => 
+        `<div class="card" data-term="${item.term}" data-type="term" data-idx="${idx}">${item.term}</div>`
+      ).join('');
+      
+      definitionsGrid.innerHTML = shuffledDefs.map((item, idx) => 
+        `<div class="card" data-term="${item.term}" data-type="definition" data-idx="${idx}">${item.definition}</div>`
+      ).join('');
+
+      updateStats();
+      gameOverlay.style.display = 'flex';
+      
+      // Listeners
+      gameOverlay.addEventListener('click', handleCardClick);
+    }
+
+    function handleCardClick(e) {
+      const card = e.target.closest('.card');
+      if (!card || card.classList.contains('matched')) return;
+
+      if (card.dataset.type === 'term') {
+        document.querySelectorAll('.card[data-type="term"].selected').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedTerm = card.dataset.term;
+        
+      } else if (card.dataset.type === 'definition' && selectedTerm) {
+        if (card.dataset.term === selectedTerm) {
+          // Correcto
+          correctCount++;
+          matchedPairs.add(selectedTerm);
+          playSound('correct_answer.mp3');
+          
+          const termCard = document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`);
+          termCard.classList.add('matched');
+          card.classList.add('matched');
+          
+          const emojis = ['🎯', '✨', '🌟', '💫', '🎉', '⚖️', '🚀', '🏆'];
+          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+          showCelebrationEmoji(card, emoji);
+          showCelebrationEmoji(termCard, emoji);
+          
+          selectedTerm = null;
+          termCard.classList.remove('selected');
+          
+          if (matchedPairs.size === gameData.length) {
+            setTimeout(() => {
+              playSound('fin_caza.mp3');
+              showGameComplete();
+            }, 800);
+          }
+          
+        } else {
+          // Incorrecto
+          errorCount++;
+          playSound('negative_beep.mp3');
+          card.classList.add('wrong');
+          setTimeout(() => card.classList.remove('wrong'), 300);
+          document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`)?.classList.remove('selected');
+          selectedTerm = null;
+        }
+        updateStats();
+      }
+    }
+
+    function updateStats() {
+      document.getElementById('correctCount').textContent = correctCount;
+      document.getElementById('errorCount').textContent = errorCount;
+      document.getElementById('currentProgress').textContent = matchedPairs.size;
+      document.getElementById('totalPairs').textContent = gameData.length;
+      const progressPercent = (matchedPairs.size / gameData.length) * 100;
+      document.getElementById('gameProgress').style.width = progressPercent + '%';
+    }
+
+    function showGameComplete() {
+      document.getElementById('celebration').style.display = 'block';
+      const params = new URLSearchParams(location.search);
+      const tema = params.get('tema') || params.get('theme') || 'utilitarismo';
+      const key = `tema.${tema}.matching`;
+      sessionStorage.setItem(key, JSON.stringify({
+        completed: true,
+        correctCount,
+        errorCount,
+        timestamp: new Date().toISOString()
+      }));
+    }
+
+    // Event listeners
+    document.getElementById('startGame')?.addEventListener('click', initGame);
+    document.getElementById('closeGame')?.addEventListener('click', () => {
+      document.getElementById('gameOverlay').style.display = 'none';
+      document.getElementById('celebration').style.display = 'none';
+    });
+    document.getElementById('gameOverlay')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('gameOverlay').style.display = 'none';
+        document.getElementById('celebration').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
-
