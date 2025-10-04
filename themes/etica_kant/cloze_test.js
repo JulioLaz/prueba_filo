@@ -4,7 +4,7 @@ window.CLOZE_TEST = {
   items: [
     {
       id: "k1",
-      text: "Para Kant, la moral no depende de las [[consecuencias|consecuencia]]s sino de la [[voluntad|intención]] que actúa conforme al [[deber|principio]].",
+      text: "Para Kant, la moral no depende de las [[consecuencias|consecuencia]] sino de la [[voluntad|intención]] que actúa conforme al [[deber|principio]].",
       feedbackOK: "Muy bien: volvemos a la importancia del deber sobre el resultado.",
       feedbackKO: "Piensa: no es el efecto lo que la hace moral, sino la voluntad conforme al deber.",
       videoHints: [
