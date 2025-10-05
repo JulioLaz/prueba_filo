@@ -1877,11 +1877,11 @@ window.saveMapaProgress = async (nodesVisited, totalNodes, timeSpent = 0) => {
 // ====================================
 
 // 🔄 Override bumpMaterialProgress
-const originalBumpMaterialProgress = window.bumpMaterialProgress;
-window.bumpMaterialProgress = function(delta = 1) {
-  if (originalBumpMaterialProgress) {
-    originalBumpMaterialProgress(delta);
-  }
+// const originalBumpMaterialProgress = window.bumpMaterialProgress;
+// window.bumpMaterialProgress = function(delta = 1) {
+//   if (originalBumpMaterialProgress) {
+//     originalBumpMaterialProgress(delta);
+//   }
   
   setTimeout(async () => {
     const key = `tema.${tema}.material`;
