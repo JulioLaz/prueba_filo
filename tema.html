@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Actividades</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍🏼</text></svg>">
-    <link rel="stylesheet" href="css/tema.css">
+  <link rel="stylesheet" href="css/tema.css">
 
 </head>
 
@@ -221,9 +221,107 @@
 })();
 </script>
 
+<!--inicio nuevo  -->
+<script>
+/* fix-console-hydrator.js — inyecta progreso de MATERIAL desde el log de Firebase */
+(function () {
+  if (window.__MAT_CONSOLE_HYDRATOR__) return;
+  window.__MAT_CONSOLE_HYDRATOR__ = true;
+
+  // === Helpers ===
+  const normalize = s => (s||'').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s]/g,' ').trim().replace(/\s+/g,'_');
+
+  function temaFromUrl() {
+    return (new URLSearchParams(location.search).get('tema') || '').trim();
+  }
+  const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' }; // añade más si hace falta
+
+  function getModuleId() {
+    const fromUrl = temaFromUrl();
+    const norm = normalize(fromUrl);
+    return sessionStorage.getItem('tema.moduleId') ||
+           window.ACTIVE_MODULE_ID ||
+           MAP[norm] || norm || fromUrl;
+  }
+
+  function totalSections() {
+    // usa lo que tengas en el parche; si no, 8 por defecto
+    try { if (window.MATERIAL_CONFIG?.TOTAL_SECTIONS > 0) return window.MATERIAL_CONFIG.TOTAL_SECTIONS; } catch {}
+    const cached = JSON.parse(sessionStorage.getItem(`tema.${getModuleId()}.material`)||'null');
+    if (cached && Number.isFinite(cached.total) && cached.total > 0) return cached.total;
+    return 8;
+  }
+
+  function setMaterialFromPct(pct) {
+    const total = totalSections();
+    const count = Math.max(0, Math.min(total, Math.round((pct/100)*total)));
+    const sectionsViewed = Array.from({length: count}, (_,i)=>`s${i}`);
+    const state = {
+      sectionsViewed, total,
+      completed: count >= total,
+      percentage: Math.round((count/total)*100),
+      lastUpdated: new Date().toISOString(),
+      readingSystemUsed: true,
+      syncedFromFirebase: true
+    };
+
+    const mod = getModuleId();
+    const tema = temaFromUrl();
+
+    // Escribimos en ambas claves para compat con UI vieja
+    sessionStorage.setItem(`tema.${mod}.material`, JSON.stringify(state));
+    sessionStorage.setItem(`tema.${tema}.material`, JSON.stringify(state));
+
+    // refresca UI si existe
+    if (typeof window.renderProgressUI === 'function') {
+      try { window.renderProgressUI(); } catch {}
+    }
+    // Log útil
+    console.info(`✅ MATERIAL hidratado: ${state.percentage}% (${count}/${total}) → tema.${mod}.material`);
+  }
+
+  // === Hook a console.log para capturar "📊 material: NN%" ===
+  const origLog = console.log;
+  console.log = function(...args){
+    try {
+      for (const a of args) {
+        const s = (typeof a === 'string') ? a : (a && a.message) || '';
+        if (!s) continue;
+        // solo actuamos para el TEMA ACTUAL, no otros
+        const thisTema = temaFromUrl();
+        const isThisTopicHeader = new RegExp(`Cargando progreso de Firebase: .* -\\s*${thisTema}\\b`, 'i');
+        if (isThisTopicHeader.test(s)) {
+          // marcamos una ventana de oportunidad para las líneas que siguen
+          window.__MAT_HYDRATOR_ARMED__ = true;
+        }
+
+        if (window.__MAT_HYDRATOR_ARMED__) {
+          const m = s.match(/📊\s*material:\s*(\d+)%/i);
+          if (m) {
+            const pct = parseInt(m[1], 10);
+            if (Number.isFinite(pct)) setMaterialFromPct(pct);
+            // desarma después de capturar material del tema actual
+            window.__MAT_HYDRATOR_ARMED__ = false;
+            break;
+          }
+        }
+      }
+    } catch(e) { /* no-op */ }
+    return origLog.apply(console, args);
+  };
+
+  console.info('🪝 Material console hydrator activo (filtrado por tema actual)');
+})();
+</script>
+
+
+<!-- fin nuevo  -->
+
 
 <script src="temas_data.js"></script>
-<script src="../../js/celebration.js" defer></script>  
+<!-- <script src="../../js/celebration.js" defer></script>   -->
 
 <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
