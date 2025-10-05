@@ -304,8 +304,8 @@ class MaterialFirebaseIntegration {
       
       // Crear lista de secciones vistas
       const sectionsViewed = [];
-      for (let i = 1; i <= progress.sectionsCompleted; i++) {
-        sectionsViewed.push(`v${i}`);
+      for (let i = 0; i <= progress.sectionsCompleted; i++) {
+        sectionsViewed.push(`s${i}`);
       }
       
       const materialData = {
