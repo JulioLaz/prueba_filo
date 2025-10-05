@@ -28,42 +28,44 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
   // ====================================
 
   // Helpers para unificar la clave
-  function normalizeToSnake(s) {
-    return (s || '')
-      .toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s]/g, ' ')
-      .trim()
-      .replace(/\s+/g, '_');
-  }
+function normalizeToSnake(s) {
+  return (s || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .trim()
+    .replace(/\s+/g, '_');
+}
 
-  // Mapeos cortos → moduleId reales (agregá los que uses)
-  const MODULE_MAP = {
-    utilitarismo: 'utilitarismo_de_stuart_mill',
-    // etica_aristoteles: 'etica_aristoteles' // (por defecto queda igual)
-  };
+const MODULE_MAP = {
+  utilitarismo: 'utilitarismo_de_stuart_mill',
+  // agrega otros mapeos si tus moduleId reales difieren del "tema"
+};
 
-  function getModuleId() {
-    const temaRaw = sessionStorage.getItem('tema.active') ||
-                    new URLSearchParams(location.search).get('tema') || '';
-    const temaNorm = normalizeToSnake(temaRaw);
-    return sessionStorage.getItem('tema.moduleId') ||
-          window.ACTIVE_MODULE_ID ||
-          MODULE_MAP[temaNorm] || temaNorm;
-  }
+function getTemaFromUrl() {
+  return new URLSearchParams(location.search).get('tema') || '';
+}
 
-  function getMaterialKey() {
-    return `tema.${getModuleId()}.material`;
-  }
+function getModuleId() {
+  const temaFromUrl = getTemaFromUrl();                // URL PRIMERO
+  const temaNorm    = normalizeToSnake(temaFromUrl);
+  return sessionStorage.getItem('tema.moduleId') ||
+         window.ACTIVE_MODULE_ID ||
+         MODULE_MAP[temaNorm] || temaNorm;
+}
 
+function getMaterialKey() {
+  return `tema.${getModuleId()}.material`;
+}
 
-  const MATERIAL_CONFIG = {
-    TOTAL_SECTIONS: 8, // Ajustar según el content.html específico
-    // STORAGE_KEY: `tema.${tema}.material`,
-    STORAGE_KEY: getMaterialKey(),
-    MIN_READING_TIME: 5000, // 5 segundos mínimo por sección (anti-trampa)
-    DEBUG: true // Cambiar a false en producción
-  };
+// En tu MATERIAL_CONFIG:
+const MATERIAL_CONFIG = {
+  TOTAL_SECTIONS: 8,
+  STORAGE_KEY: getMaterialKey(),     // ← ya NO uses `tema.${tema}.material`
+  MIN_READING_TIME: 5000,
+  DEBUG: true
+};
+
 
   // ====================================
   // 📊 FUNCIONES DE ESTADO
@@ -555,7 +557,7 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
     console.log('   - simulateMaterialProgress(n)');
 
 
-    
+
 // ====== HIDRATACIÓN ROBUSTA DESDE SESSION/FIREBASE ======
 (function hydrateMaterialFromAnyProgress() {
   // Aumentamos ventana a ~30s

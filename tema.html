@@ -185,33 +185,39 @@
 <!-- INSERTA JSON CON DATOS DE LAS TARJETAS EN TOPICS Y DE LOS VIDEOS EN VIDEO_CONFIG -->
 <script>
 (function(){
+  const qs = new URLSearchParams(location.search);
+  const temaFromUrl = (qs.get('tema') || '').trim();     // URL PRIMERO
+  const temaActive  = (sessionStorage.getItem('tema.active') || '').trim();
+
   // Normalizador
   const normalize = s => (s || '').toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s]/g, ' ')
     .trim().replace(/\s+/g, '_');
 
-  const qs = new URLSearchParams(location.search);
-  const temaRaw = sessionStorage.getItem('tema.active') || qs.get('tema') || '';
-  const temaNorm = normalize(temaRaw);
+  const temaNorm = normalize(temaFromUrl);
 
-  // Mapa corto → moduleId real (agrega más si hace falta)
+  // Mapa corto → moduleId real
   const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' };
   const moduleId = MAP[temaNorm] || temaNorm;
 
-  const sections = ['material','video','mapa','cruci','quiz','progress'];
+  // ⚠️ Fuerza coherencia: si tema.active ≠ URL, lo alineamos
+  if (temaFromUrl && temaActive !== temaFromUrl) {
+    sessionStorage.setItem('tema.active', temaFromUrl);
+  }
+  sessionStorage.setItem('tema.moduleId', moduleId);
 
+  // Copy-once del módulo correcto a la clave "vieja" por compat
+  const sections = ['material','video','mapa','cruci','quiz','progress'];
   sections.forEach(sec => {
     const newKey = `tema.${moduleId}.${sec}`;
-    const oldKey = `tema.${temaRaw}.${sec}`;
+    const oldKey = `tema.${temaFromUrl}.${sec}`;
     const newVal = sessionStorage.getItem(newKey);
     const oldVal = sessionStorage.getItem(oldKey);
-    if (newVal && !oldVal) {
-      sessionStorage.setItem(oldKey, newVal);
-    }
+    if (newVal && !oldVal) sessionStorage.setItem(oldKey, newVal);
   });
 
-  console.log('🔗 Bridge listo', {temaRaw, moduleId});
+  console.log('🔗 Bridge listo', {temaRaw: temaFromUrl, moduleId});
 })();
 </script>
 
