@@ -1747,11 +1747,18 @@ function updateSessionStorage(activityType, firebaseData) {
       const totalSections = 8;
       sessionData.sectionsViewed = [];
       sessionData.total = totalSections;
+
+        // ✅ CORRECTO (USAR ESTO):
       const sectionsCount = Math.round((firebaseData.percentage / 100) * totalSections);
-      for(let i = 1; i <= sectionsCount; i++) {
-        sessionData.sectionsViewed.push(`v${i}`);
+      for(let i = 0; i < sectionsCount; i++) {  // ← Cambiado: empieza en 0, no en 1
+        sessionData.sectionsViewed.push(`s${i}`);  // ← Cambiado: 's' en vez de 'v'
       }
-      break;
+
+      // const sectionsCount = Math.round((firebaseData.percentage / 100) * totalSections);
+      // for(let i = 1; i <= sectionsCount; i++) {
+      //   sessionData.sectionsViewed.push(`v${i}`);
+      // }
+      // break;
       
     case 'cruci':
       sessionData.solved = firebaseData.percentage >= 100 ? 10 : Math.round(firebaseData.percentage / 10);
@@ -3123,5 +3130,7 @@ console.log('🎯 Cloze OBLIGATORIO (≥80%) para aprobar');
 
 <script src="js/fix-material-listener.js"></script>
 <script src="js/fix-firebase-sync.js"></script> <!-- ✅ NUEVO -->
+<script src="js/fix-material-firebase-sync.js"></script>
+
 </body>
 </html>
