@@ -559,149 +559,129 @@ const MATERIAL_CONFIG = {
 
 
 // ====== HIDRATACIÓN ROBUSTA DESDE SESSION/FIREBASE ======
-(function hydrateMaterialFromAnyProgress() {
-  // Aumentamos ventana a ~30s
+// ====== HIDRATACIÓN FILTRADA AL TEMA ACTUAL ======
+(function hydrateMaterialForCurrentTopic() {
   let tries = 0;
-  const MAX_TRIES = 60;
-  const POLL_MS = 500;
+  const MAX_TRIES = 60;   // ~30s
+  const POLL_MS   = 500;
 
+  function readJSON(k){ try{ return JSON.parse(sessionStorage.getItem(k) || 'null'); }catch{return null;} }
+  function writeJSON(k,v){ sessionStorage.setItem(k, JSON.stringify(v)); }
+
+  function getTemaFromUrl() {
+    return new URLSearchParams(location.search).get('tema') || '';
+  }
   function normalizeToSnake(s) {
-    return (s || '')
-      .toLowerCase()
+    return (s || '').toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9\s]/g, ' ')
-      .trim()
-      .replace(/\s+/g, '_');
+      .trim().replace(/\s+/g, '_');
   }
+  const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' };
 
-  function getTemaRaw() {
-    return sessionStorage.getItem('tema.active') ||
-           new URLSearchParams(location.search).get('tema') || '';
-  }
-
-  // Si en algún lado ya definiste getModuleId(), úsal0.
   function getModuleId() {
-    const temaRaw = getTemaRaw();
-    const temaNorm = normalizeToSnake(temaRaw);
-    const MAP = {
-      utilitarismo: 'utilitarismo_de_stuart_mill',
-      // agrega mapeos si tu módulo real tiene un nombre distinto al de la URL
-      // etica_aristoteles: 'etica_aristoteles',
-    };
+    const temaFromUrl = getTemaFromUrl();
+    const temaNorm    = normalizeToSnake(temaFromUrl);
     return sessionStorage.getItem('tema.moduleId') ||
            window.ACTIVE_MODULE_ID ||
            MAP[temaNorm] || temaNorm;
   }
 
-  function readJSON(key) {
-    try { return JSON.parse(sessionStorage.getItem(key) || 'null'); }
-    catch { return null; }
-  }
-
-  function writeJSON(key, value) {
-    sessionStorage.setItem(key, JSON.stringify(value));
-  }
-
   function buildSectionsFromPct(pct, total) {
-    const count = Math.max(0, Math.min(total, Math.round((pct / 100) * total)));
-    const arr = [];
-    for (let i = 0; i < count; i++) arr.push(`s${i}`); // cero-based
+    const c = Math.max(0, Math.min(total, Math.round((pct / 100) * total)));
+    const arr = []; for (let i=0;i<c;i++) arr.push(`s${i}`);
     return arr;
   }
 
-  // Intenta extraer porcentaje/total “de cualquier forma razonable”.
-  function extractMaterialPctAndTotal(obj, keyName) {
+  function extractPct(obj, keyName) {
     if (!obj || typeof obj !== 'object') return null;
 
-    // Caso con nodo material
+    // material.{percentage|score|total}
     if (obj.material && typeof obj.material === 'object') {
       const m = obj.material;
       const pct =
         (Number.isFinite(m.percentage) && m.percentage) ||
         (Number.isFinite(m.score) && m.score) || null;
       if (pct != null) {
-        const total =
+        const tot =
           (Number.isFinite(m.total) && m.total) ||
-          (Number.isFinite(obj.total) && obj.total) || 8;
-        return { pct, total, source: `${keyName}#material` };
+          (Number.isFinite(obj.total) && obj.total) || null;
+        return { pct, total: tot, source: `${keyName}#material` };
       }
     }
 
-    // Caso top-level
+    // top-level {percentage|score|total} — lo aceptamos SOLO si la clave sugiere material
+    const looksLikeMaterial = /\.material$/.test(keyName) || /(^|[\.\-_])material($|[\.\-_])/i.test(keyName);
     const pctTop =
       (Number.isFinite(obj.percentage) && obj.percentage) ||
       (Number.isFinite(obj.score) && obj.score) || null;
-    if (pctTop != null) {
-      // Si el nombre de la clave sugiere que es de material, lo usamos
-      const looksLikeMaterial = /\.material$/.test(keyName) || /material/i.test(keyName);
-      const total =
+    if (pctTop != null && looksLikeMaterial) {
+      const tot =
         (Number.isFinite(obj.total) && obj.total) ||
-        (obj.material && Number.isFinite(obj.material.total) && obj.material.total) || 8;
-      return { pct: pctTop, total, source: `${keyName}${looksLikeMaterial ? '#guess-material' : '#top'}` };
+        (obj.material && Number.isFinite(obj.material.total) && obj.material.total) || null;
+      return { pct: pctTop, total: tot, source: `${keyName}#top-material` };
     }
-
-    // Algunos integradores guardan un árbol progress con subnodos
-    if (obj.progress && typeof obj.progress === 'object') {
-      const pm = obj.progress.material;
-      if (pm && typeof pm === 'object') {
-        const pct =
-          (Number.isFinite(pm.percentage) && pm.percentage) ||
-          (Number.isFinite(pm.score) && pm.score) || null;
-        if (pct != null) {
-          const total =
-            (Number.isFinite(pm.total) && pm.total) ||
-            (Number.isFinite(obj.total) && obj.total) || 8;
-          return { pct, total, source: `${keyName}#progress.material` };
-        }
-      }
-    }
-
     return null;
   }
 
   const timer = setInterval(() => {
-    tries += 1;
+    tries++;
 
-    const temaRaw = getTemaRaw();
-    const moduleId = getModuleId();
-    const materialKey = `tema.${moduleId}.material`;
+    const temaFromUrl = getTemaFromUrl();
+    const moduleId    = getModuleId();
 
-    // Estado actual para no retroceder
-    const current = readJSON(materialKey) || { sectionsViewed: [], total: 8, completed: false };
-    const currentPct = Number.isFinite(current.percentage) ? current.percentage : 0;
-    const currentTotal = Number.isFinite(current.total) && current.total > 0 ? current.total : 8;
+    const allowedPrefixes = [
+      `tema.${moduleId}.`,
+      `tema.${temaFromUrl}.`
+    ];
 
-    // Buscar el "mejor" candidato en TODO el sessionStorage
+    const materialKey   = `tema.${moduleId}.material`;
+    const current       = readJSON(materialKey) || { sectionsViewed: [], total: 8, completed: false };
+    const currentPct    = Number.isFinite(current.percentage) ? current.percentage : 0;
+    const currentTotal  = Number.isFinite(current.total) && current.total > 0 ? current.total : 8;
+
     let best = null;
 
-    for (let i = 0; i < sessionStorage.length; i++) {
+    for (let i=0;i<sessionStorage.length;i++){
       const k = sessionStorage.key(i);
-      // Ponderamos por prioridad:
-      // 2 = empieza con tema.<moduleId>, 1 = empieza con tema.<temaRaw>, 0 = otro
-      const pri = k.startsWith(`tema.${moduleId}`) ? 2 :
-                  (k.startsWith(`tema.${temaRaw}`) ? 1 : 0);
+      // ✅ FILTRO ESTRICTO: solo claves del tema actual
+      if (!allowedPrefixes.some(p => k.startsWith(p))) continue;
 
-      const val = readJSON(k);
-      if (!val) continue;
+      const v = readJSON(k);
+      if (!v) continue;
 
-      const info = extractMaterialPctAndTotal(val, k);
-      if (!info || info.pct == null) continue;
+      const info = extractPct(v, k);
+      if (!info) continue;
 
-      // Elegimos el de mayor prioridad y, a igual prioridad, mayor porcentaje
+      const pri =
+        k.startsWith(`tema.${moduleId}.`) ? 2 :
+        k.startsWith(`tema.${temaFromUrl}.`) ? 1 : 0;
+
       if (!best || pri > best.pri || (pri === best.pri && info.pct > best.pct)) {
-        best = { key: k, pri, pct: info.pct, total: info.total, source: info.source };
+        best = {
+          key: k,
+          pri,
+          pct: info.pct,
+          total: info.total,
+          source: info.source
+        };
       }
     }
 
     if (best && best.pct > currentPct) {
       const total = Number.isFinite(best.total) && best.total > 0 ? best.total : currentTotal;
-      const sectionsViewed = buildSectionsFromPct(best.pct, total);
+
+      // Anti-ruido: si total parece desfasado (ej. 10 cuando tu config tiene 8),
+      // preferimos el mayor entre currentTotal y best.total para no clavar 100% falsos.
+      const safeTotal = Math.max(currentTotal, total);
+
+      const sectionsViewed = buildSectionsFromPct(best.pct, safeTotal);
       const updated = {
         ...current,
-        total,
+        total: safeTotal,
         sectionsViewed,
-        percentage: Math.round((sectionsViewed.length / total) * 100),
-        completed: sectionsViewed.length >= total,
+        percentage: Math.round((sectionsViewed.length / safeTotal) * 100),
+        completed: sectionsViewed.length >= safeTotal,
         lastUpdated: new Date().toISOString(),
         readingSystemUsed: true,
         syncedFromFirebase: true
@@ -709,14 +689,12 @@ const MATERIAL_CONFIG = {
 
       writeJSON(materialKey, updated);
 
-      // Espejo para UI vieja si hace falta
-      const oldKey = `tema.${temaRaw}.material`;
-      if (!sessionStorage.getItem(oldKey)) {
-        writeJSON(oldKey, updated);
-      }
+      // Espejo para UI vieja del tema actual (NO de otros temas)
+      const oldKey = `tema.${temaFromUrl}.material`;
+      const oldVal = sessionStorage.getItem(oldKey);
+      if (!oldVal) writeJSON(oldKey, updated);
 
-      console.log(`💧 Hidratado material desde "${best.source}": ${updated.percentage}% (${sectionsViewed.length}/${total}) → ${materialKey}`);
-
+      console.log(`💧 Hidratado material desde "${best.source}": ${updated.percentage}% (${sectionsViewed.length}/${safeTotal}) → ${materialKey}`);
       if (typeof window.renderProgressUI === 'function') {
         try { window.renderProgressUI(); } catch {}
       }
@@ -726,14 +704,7 @@ const MATERIAL_CONFIG = {
 
     if (tries >= MAX_TRIES) {
       clearInterval(timer);
-      console.warn('⏹️ Hidratación: no se halló progreso visible en sessionStorage a tiempo.');
-      // Dump útil para ver qué hay
-      for (let i = 0; i < sessionStorage.length; i++) {
-        const k = sessionStorage.key(i);
-        if (k.startsWith('tema.')) {
-          console.log(k, sessionStorage.getItem(k));
-        }
-      }
+      console.warn('⏹️ Hidratación: no se halló progreso propio del tema a tiempo.');
     }
   }, POLL_MS);
 })();
