@@ -27,9 +27,41 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
   // 🎯 CONFIGURACIÓN
   // ====================================
 
+  // Helpers para unificar la clave
+  function normalizeToSnake(s) {
+    return (s || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .trim()
+      .replace(/\s+/g, '_');
+  }
+
+  // Mapa corto → moduleId real (agregá los que necesites)
+  const MODULE_MAP = {
+    utilitarismo: 'utilitarismo_de_stuart_mill',
+  };
+
+  function getMaterialKey() {
+    const temaRaw =
+      sessionStorage.getItem('tema.active') ||
+      new URLSearchParams(location.search).get('tema') ||
+      '';
+
+    const temaNorm = normalizeToSnake(temaRaw);
+    const moduleId =
+      sessionStorage.getItem('tema.moduleId') ||
+      window.ACTIVE_MODULE_ID ||
+      MODULE_MAP[temaNorm] ||
+      temaNorm;
+
+    return `tema.${moduleId}.material`;
+  }
+
   const MATERIAL_CONFIG = {
     TOTAL_SECTIONS: 8, // Ajustar según el content.html específico
-    STORAGE_KEY: `tema.${tema}.material`,
+    // STORAGE_KEY: `tema.${tema}.material`,
+    STORAGE_KEY: getMaterialKey(),
     MIN_READING_TIME: 5000, // 5 segundos mínimo por sección (anti-trampa)
     DEBUG: true // Cambiar a false en producción
   };

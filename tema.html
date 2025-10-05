@@ -183,8 +183,41 @@
 </div>
 
 <!-- INSERTA JSON CON DATOS DE LAS TARJETAS EN TOPICS Y DE LOS VIDEOS EN VIDEO_CONFIG -->
+<script>
+(function(){
+  // Normalizador
+  const normalize = s => (s || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .trim().replace(/\s+/g, '_');
+
+  const qs = new URLSearchParams(location.search);
+  const temaRaw = sessionStorage.getItem('tema.active') || qs.get('tema') || '';
+  const temaNorm = normalize(temaRaw);
+
+  // Mapa corto → moduleId real (agrega más si hace falta)
+  const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' };
+  const moduleId = MAP[temaNorm] || temaNorm;
+
+  const sections = ['material','video','mapa','cruci','quiz','progress'];
+
+  sections.forEach(sec => {
+    const newKey = `tema.${moduleId}.${sec}`;
+    const oldKey = `tema.${temaRaw}.${sec}`;
+    const newVal = sessionStorage.getItem(newKey);
+    const oldVal = sessionStorage.getItem(oldKey);
+    if (newVal && !oldVal) {
+      sessionStorage.setItem(oldKey, newVal);
+    }
+  });
+
+  console.log('🔗 Bridge listo', {temaRaw, moduleId});
+})();
+</script>
+
+
 <script src="temas_data.js"></script>
-  <script src="../../js/celebration.js" defer></script>  
+<script src="../../js/celebration.js" defer></script>  
 
 <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
