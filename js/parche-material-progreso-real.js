@@ -555,12 +555,41 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
     console.log('   - simulateMaterialProgress(n)');
 
 
-// ====== HIDRATACIÓN DESDE FIREBASE/SESSION AL TERMINAR SYNC ======
-(function hydrateMaterialFromProgress() {
-  // Intentaremos durante ~10s (20 * 500ms)
+    
+// ====== HIDRATACIÓN ROBUSTA DESDE SESSION/FIREBASE ======
+(function hydrateMaterialFromAnyProgress() {
+  // Aumentamos ventana a ~30s
   let tries = 0;
-  const MAX_TRIES = 20;
+  const MAX_TRIES = 60;
   const POLL_MS = 500;
+
+  function normalizeToSnake(s) {
+    return (s || '')
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .trim()
+      .replace(/\s+/g, '_');
+  }
+
+  function getTemaRaw() {
+    return sessionStorage.getItem('tema.active') ||
+           new URLSearchParams(location.search).get('tema') || '';
+  }
+
+  // Si en algún lado ya definiste getModuleId(), úsal0.
+  function getModuleId() {
+    const temaRaw = getTemaRaw();
+    const temaNorm = normalizeToSnake(temaRaw);
+    const MAP = {
+      utilitarismo: 'utilitarismo_de_stuart_mill',
+      // agrega mapeos si tu módulo real tiene un nombre distinto al de la URL
+      // etica_aristoteles: 'etica_aristoteles',
+    };
+    return sessionStorage.getItem('tema.moduleId') ||
+           window.ACTIVE_MODULE_ID ||
+           MAP[temaNorm] || temaNorm;
+  }
 
   function readJSON(key) {
     try { return JSON.parse(sessionStorage.getItem(key) || 'null'); }
@@ -571,16 +600,61 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
     sessionStorage.setItem(key, JSON.stringify(value));
   }
 
-  function getTemaRaw() {
-    return sessionStorage.getItem('tema.active') ||
-           new URLSearchParams(location.search).get('tema') || '';
-  }
-
   function buildSectionsFromPct(pct, total) {
     const count = Math.max(0, Math.min(total, Math.round((pct / 100) * total)));
     const arr = [];
     for (let i = 0; i < count; i++) arr.push(`s${i}`); // cero-based
     return arr;
+  }
+
+  // Intenta extraer porcentaje/total “de cualquier forma razonable”.
+  function extractMaterialPctAndTotal(obj, keyName) {
+    if (!obj || typeof obj !== 'object') return null;
+
+    // Caso con nodo material
+    if (obj.material && typeof obj.material === 'object') {
+      const m = obj.material;
+      const pct =
+        (Number.isFinite(m.percentage) && m.percentage) ||
+        (Number.isFinite(m.score) && m.score) || null;
+      if (pct != null) {
+        const total =
+          (Number.isFinite(m.total) && m.total) ||
+          (Number.isFinite(obj.total) && obj.total) || 8;
+        return { pct, total, source: `${keyName}#material` };
+      }
+    }
+
+    // Caso top-level
+    const pctTop =
+      (Number.isFinite(obj.percentage) && obj.percentage) ||
+      (Number.isFinite(obj.score) && obj.score) || null;
+    if (pctTop != null) {
+      // Si el nombre de la clave sugiere que es de material, lo usamos
+      const looksLikeMaterial = /\.material$/.test(keyName) || /material/i.test(keyName);
+      const total =
+        (Number.isFinite(obj.total) && obj.total) ||
+        (obj.material && Number.isFinite(obj.material.total) && obj.material.total) || 8;
+      return { pct: pctTop, total, source: `${keyName}${looksLikeMaterial ? '#guess-material' : '#top'}` };
+    }
+
+    // Algunos integradores guardan un árbol progress con subnodos
+    if (obj.progress && typeof obj.progress === 'object') {
+      const pm = obj.progress.material;
+      if (pm && typeof pm === 'object') {
+        const pct =
+          (Number.isFinite(pm.percentage) && pm.percentage) ||
+          (Number.isFinite(pm.score) && pm.score) || null;
+        if (pct != null) {
+          const total =
+            (Number.isFinite(pm.total) && pm.total) ||
+            (Number.isFinite(obj.total) && obj.total) || 8;
+          return { pct, total, source: `${keyName}#progress.material` };
+        }
+      }
+    }
+
+    return null;
   }
 
   const timer = setInterval(() => {
@@ -590,64 +664,56 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
     const moduleId = getModuleId();
     const materialKey = `tema.${moduleId}.material`;
 
-    // candidatos donde suele guardarse el "score/percentage" global o por lección
-    const progressCandidates = [
-      `tema.${moduleId}.progress`,
-      `tema.${temaRaw}.progress`,
-      `tema.${moduleId}.material`,   // por si algún script ya lo dejó seteado
-      `tema.${temaRaw}.material`
-    ];
-
-    // Estado actual de material (si existe)
+    // Estado actual para no retroceder
     const current = readJSON(materialKey) || { sectionsViewed: [], total: 8, completed: false };
     const currentPct = Number.isFinite(current.percentage) ? current.percentage : 0;
-    const totalSections = Number.isFinite(current.total) && current.total > 0 ? current.total : 8;
+    const currentTotal = Number.isFinite(current.total) && current.total > 0 ? current.total : 8;
 
-    // Buscar el mejor “pct” disponible en los candidatos
-    let bestPct = null;
-    let bestSource = null;
-    let bestTotal = totalSections;
+    // Buscar el "mejor" candidato en TODO el sessionStorage
+    let best = null;
 
-    for (const pk of progressCandidates) {
-      const v = readJSON(pk);
-      if (!v) continue;
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const k = sessionStorage.key(i);
+      // Ponderamos por prioridad:
+      // 2 = empieza con tema.<moduleId>, 1 = empieza con tema.<temaRaw>, 0 = otro
+      const pri = k.startsWith(`tema.${moduleId}`) ? 2 :
+                  (k.startsWith(`tema.${temaRaw}`) ? 1 : 0);
 
-      // Posibles campos de porcentaje/score
-      const pct =
-        (Number.isFinite(v.percentage) && v.percentage) ||
-        (Number.isFinite(v.score) && v.score) ||
-        (v.material && (v.material.percentage || v.material.score)) ||
-        null;
+      const val = readJSON(k);
+      if (!val) continue;
 
-      // Posible total explícito
-      const tot =
-        (Number.isFinite(v.total) && v.total) ||
-        (v.material && Number.isFinite(v.material.total) && v.material.total) ||
-        bestTotal;
+      const info = extractMaterialPctAndTotal(val, k);
+      if (!info || info.pct == null) continue;
 
-      if (pct != null && pct > (bestPct ?? -1)) {
-        bestPct = pct;
-        bestSource = pk;
-        bestTotal = Number.isFinite(tot) && tot > 0 ? tot : bestTotal;
+      // Elegimos el de mayor prioridad y, a igual prioridad, mayor porcentaje
+      if (!best || pri > best.pri || (pri === best.pri && info.pct > best.pct)) {
+        best = { key: k, pri, pct: info.pct, total: info.total, source: info.source };
       }
     }
 
-    if (bestPct != null && bestPct > currentPct) {
-      // Reconstruir sectionsViewed coherentes con el mejor porcentaje hallado
-      const sectionsViewed = buildSectionsFromPct(bestPct, bestTotal);
+    if (best && best.pct > currentPct) {
+      const total = Number.isFinite(best.total) && best.total > 0 ? best.total : currentTotal;
+      const sectionsViewed = buildSectionsFromPct(best.pct, total);
       const updated = {
         ...current,
-        total: bestTotal,
+        total,
         sectionsViewed,
-        percentage: Math.round((sectionsViewed.length / bestTotal) * 100),
-        completed: sectionsViewed.length >= bestTotal,
+        percentage: Math.round((sectionsViewed.length / total) * 100),
+        completed: sectionsViewed.length >= total,
         lastUpdated: new Date().toISOString(),
         readingSystemUsed: true,
         syncedFromFirebase: true
       };
 
       writeJSON(materialKey, updated);
-      console.log(`💧 Hidratado material desde "${bestSource}": ${updated.percentage}% (${sectionsViewed.length}/${bestTotal}) → ${materialKey}`);
+
+      // Espejo para UI vieja si hace falta
+      const oldKey = `tema.${temaRaw}.material`;
+      if (!sessionStorage.getItem(oldKey)) {
+        writeJSON(oldKey, updated);
+      }
+
+      console.log(`💧 Hidratado material desde "${best.source}": ${updated.percentage}% (${sectionsViewed.length}/${total}) → ${materialKey}`);
 
       if (typeof window.renderProgressUI === 'function') {
         try { window.renderProgressUI(); } catch {}
@@ -658,13 +724,21 @@ console.log('🔧 === PARCHE DE MATERIAL DE LECTURA INICIADO ===');
 
     if (tries >= MAX_TRIES) {
       clearInterval(timer);
-      console.warn('⏹️ Hidratación: no se halló progreso en los candidatos a tiempo');
+      console.warn('⏹️ Hidratación: no se halló progreso visible en sessionStorage a tiempo.');
+      // Dump útil para ver qué hay
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const k = sessionStorage.key(i);
+        if (k.startsWith('tema.')) {
+          console.log(k, sessionStorage.getItem(k));
+        }
+      }
     }
   }, POLL_MS);
 })();
 
 
 
+    // hasta aqui hidratacion
   }
 
   // Auto-inicialización
