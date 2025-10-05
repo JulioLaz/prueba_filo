@@ -387,8 +387,10 @@
     const sheetBackdrop = document.getElementById('sheetBackdrop');
     const sheetClose    = document.getElementById('sheetClose');
     const sheetBody     = document.getElementById('sheetBody');
-
-    function bumpMaterialProgress(delta=1){
+    
+    // fuera de uso /////////////////////////////////////////
+    // ⭐ PARCHE: Función mejorada para marcar progreso real en material de lectura
+    function bumpMaterialProgress00(delta=1){
       const key = ns('material');
       const cur = readJSON(key, { sectionsViewed:[], total:8, completed:false });
       const seen = new Set(cur.sectionsViewed || []);
@@ -399,7 +401,8 @@
       renderProgressUI();
     }
 
-    function openMaterialSheet(){
+    // fuera de uso /////////////////////////////////////////
+    function openMaterialSheet00(){
       sheetBackdrop.style.display = 'block';
       document.body.style.overflow = 'hidden';
 
@@ -3091,7 +3094,7 @@ console.log('🎯 Cloze OBLIGATORIO (≥80%) para aprobar');
 <script src="js/video-cloze-celebration-sound.js"></script>
 
 <!-- parche para material de lectura -->
- <script src="js/parche-tema-material.js"></script>
-
+<!-- ✅ PARCHE: Material de Lectura con Progreso Real -->
+<script src="js/parche-material-progreso-real.js"></script>
 </body>
 </html>

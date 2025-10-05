@@ -898,6 +898,20 @@
             
             this.completedSections.add(this.currentSectionIndex);
             
+              // ✅ AGREGAR: Notificar al padre
+            try {
+                window.parent.postMessage({
+                type: 'SECTION_COMPLETED',
+                sectionIndex: this.currentSectionIndex,
+                totalCompleted: this.completedSections.size,
+                timestamp: Date.now()
+                }, '*');
+                console.log(`📡 Notificación enviada: Sección ${this.currentSectionIndex}`);
+            } catch (error) {
+                console.warn('⚠️ No se pudo notificar al padre:', error);
+            }
+
+
             const currentSection = this.sections[this.currentSectionIndex];
             currentSection.classList.add('completed-section');
             currentSection.classList.remove('active');
@@ -951,6 +965,18 @@
         onAllSectionsCompleted() {
             console.log(`[ReadAloud] ¡Todas las secciones de ${this.config.tema} completadas!`);
             
+            // ✅ AGREGAR: Notificar al padre
+            try {
+                window.parent.postMessage({
+                type: 'ALL_SECTIONS_COMPLETED',
+                totalSections: this.sections.length,
+                timestamp: Date.now()
+                }, '*');
+                console.log('📡 Notificación enviada: Todas las secciones completadas');
+            } catch (error) {
+                console.warn('⚠️ No se pudo notificar al padre:', error);
+            }
+
             if (typeof Celebration !== 'undefined') {
                 this.playSound('celebration');
                 Celebration.celebrateStudyComplete(this.config.tema, {
