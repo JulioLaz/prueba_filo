@@ -402,7 +402,38 @@
     }
 
     // fuera de uso /////////////////////////////////////////
-    function openMaterialSheet00(){
+    // function openMaterialSheet00(){
+    //   sheetBackdrop.style.display = 'block';
+    //   document.body.style.overflow = 'hidden';
+
+    //   let contentPath = `themes/${tema}/content.html`;
+    //   const url = new URL(contentPath, location);
+
+    //   sheetBody.innerHTML = '';
+    //   const iframe = document.createElement('iframe');
+    //   iframe.className = 'sheet-iframe';
+    //   iframe.src = url.toString();
+    //   iframe.loading = 'lazy';
+    //   iframe.addEventListener('load', () => {
+    //     bumpMaterialProgress(1);
+    //     try {
+    //       const w = iframe.contentWindow;
+    //       let ticked = false;
+    //       w.addEventListener('scroll', () => {
+    //         if (ticked) return;
+    //         ticked = true;
+    //         bumpMaterialProgress(1);
+    //         setTimeout(()=> ticked=false, 1500);
+    //       }, { passive:true });
+    //     } catch(e){}
+    //   });
+    //   sheetBody.appendChild(iframe);
+    // }
+
+    // ✅ VERSIÓN CORREGIDA
+    function openMaterialSheet(){
+      console.log('📖 Abriendo material de lectura...');
+      
       sheetBackdrop.style.display = 'block';
       document.body.style.overflow = 'hidden';
 
@@ -414,19 +445,12 @@
       iframe.className = 'sheet-iframe';
       iframe.src = url.toString();
       iframe.loading = 'lazy';
+      
+      // ✅ NO incrementar progreso aquí - el parche lo maneja
       iframe.addEventListener('load', () => {
-        bumpMaterialProgress(1);
-        try {
-          const w = iframe.contentWindow;
-          let ticked = false;
-          w.addEventListener('scroll', () => {
-            if (ticked) return;
-            ticked = true;
-            bumpMaterialProgress(1);
-            setTimeout(()=> ticked=false, 1500);
-          }, { passive:true });
-        } catch(e){}
+        console.log('✅ Material cargado, esperando completación real...');
       });
+      
       sheetBody.appendChild(iframe);
     }
 
