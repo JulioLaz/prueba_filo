@@ -1883,18 +1883,18 @@ window.saveMapaProgress = async (nodesVisited, totalNodes, timeSpent = 0) => {
 //     originalBumpMaterialProgress(delta);
 //   }
   
-  setTimeout(async () => {
-    const key = `tema.${tema}.material`;
-    const current = JSON.parse(sessionStorage.getItem(key) || '{"sectionsViewed":[], "total":8}');
-    const sectionsViewed = current.sectionsViewed ? current.sectionsViewed.length : 0;
-    const totalSections = current.total || 8;
+//   setTimeout(async () => {
+//     const key = `tema.${tema}.material`;
+//     const current = JSON.parse(sessionStorage.getItem(key) || '{"sectionsViewed":[], "total":8}');
+//     const sectionsViewed = current.sectionsViewed ? current.sectionsViewed.length : 0;
+//     const totalSections = current.total || 8;
     
-    await saveMaterialProgress(sectionsViewed, totalSections, sectionsViewed * 30);
+//     await saveMaterialProgress(sectionsViewed, totalSections, sectionsViewed * 30);
     
-    // 🔄 Actualizar UI después de guardar
-    setTimeout(syncFromFirebase, 1000);
-  }, 500);
-};
+//     // 🔄 Actualizar UI después de guardar
+//     setTimeout(syncFromFirebase, 1000);
+//   }, 500);
+// };
 
 // ====================================
 // SINCRONIZACIÓN PRINCIPAL
