@@ -8,9 +8,11 @@
 
 console.log('📖 Cargando sistema de integración Material + Firebase v2.1...');
 
-import { saveProgress } from '../../js/firebase.js';
-import { auth } from '../../js/firebase.js';
-
+// import { saveProgress } from '../../js/firebase.js';
+// import { auth } from '../../js/firebase.js';
+// ✅ CORRECTO:
+import { saveProgress } from '/prueba_filo/firebase.js';
+import { auth } from '/prueba_filo/firebase.js';
 class MaterialFirebaseIntegration {
   constructor() {
     this.config = null;
