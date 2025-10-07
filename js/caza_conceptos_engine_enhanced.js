@@ -471,7 +471,7 @@
     // Cerrar modal automáticamente después de un delay
     setTimeout(() => {
       closeMeaningModal();
-    }, 2000);
+    }, 3500);
   }
 
   function closeMeaningModal() {

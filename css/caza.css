@@ -1,0 +1,116 @@
+/* Estilos existentes mantenidos */
+    .hunt-header { display:flex;flex-direction:column; align-items:center; justify-content:space-between; gap:8px; padding:10px 14px; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; }
+    .chip { padding:6px 10px; border-radius:999px; border:1px solid white; font-size:.9rem; }
+    .chip .icon { margin-right:6px; }
+    .lives { display:flex; gap:4px; }
+    .life { font-size:1.2rem; opacity:.5;color: black }
+    .life.alive { opacity:1 }
+    .progress-line { height:18px; border-radius:6px; background:#1d273c; overflow:hidden; margin:8px 14px; border:1px solid #c7d2fe; }
+    .progress-fill { height:100%; width:0%; background:#95d154; transition:width .35s ease; }
+
+    .hunt-container { padding: 14px; }
+    .hunt-paragraph {border:1px dashed #c7d2fe; border-radius:12px; padding:14px; line-height:1.75; text-align: justify;}
+    .hunt-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px;width: 100%;box-sizing: border-box; }
+.hunt-controls button {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+        font-size: .6rem;
+    padding: 15px 10px;
+}
+
+    .mini { font-size:.9rem; opacity:.8; margin-top:6px; min-height:1.2em; }
+
+    .token { padding:2px 3px; border-radius:6px; transition:background .15s, transform .1s; }
+    .token:hover { background:rgb(90, 99, 41) }
+    .token.correct { background:#0d672c }
+    .token.wrong { background:#df3030 }
+    .shake { animation: shake .2s linear 2; }
+    @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} 100%{transform:translateX(0)} }
+
+    /* Estilos mejorados para destacado gradual */
+    .highlighted-concept {
+      background: linear-gradient(120deg, #fef3c7 0%, #fcd34d 100%);
+      padding: 2px 4px; border-radius: 4px; transition: all 0.3s ease; cursor: pointer; font-weight: bold; color: black;
+    }
+    .highlighted-concept:hover {
+      background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%); transform: scale(1.05); box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .hidden-concept { cursor: pointer; transition: background 0.3s ease; }
+    .hidden-concept:hover { background: rgba(251, 191, 36, 0.2); border-radius: 3px; }
+
+    /* Efectos de celebración mejorados */
+    .token.correct {
+      background: linear-gradient(120deg, #dcfce7 0%, #bbf7d0 100%) !important;
+      color: #166534 !important; font-weight: bold; animation: correctPulse 0.6s ease-out;
+    }
+    @keyframes correctPulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); background: #10b981; color: white; } 100% { transform: scale(1); } }
+
+    /* Modal de lectura mejorado */
+    .meaning-sheet {
+      position:fixed; left:0; right:0; bottom:0; background:#969e35;
+      border-top-left-radius:16px; border-top-right-radius:16px;
+      box-shadow:0 -8px 32px rgba(0,0,0,.15); padding:14px 14px 18px; transform:translateY(100%);
+      transition: transform .25s ease; z-index:50; max-height: 80vh; overflow-y: auto;
+    }
+    .meaning-sheet.open { transform:translateY(0); margin:0 16px }
+    .sheet-handle { width:36px; height:4px; background:#4e4508; border-radius:999px; margin:0 auto 10px; }
+    .meaning-title { font-weight:700; margin-bottom:6px; font-size:1.3rem; }
+    .meaning-body { font-size:1rem; color:#374151; font-weight:500; }
+    .sheet-actions { display:flex; justify-content:flex-end; margin-top:10px }
+    .ghost-btn { background:transparent; border:1px solid #e5e7eb; padding:8px 12px; border-radius:10px }
+
+    /* Indicador de estado Firebase */
+    .firebase-status {
+      position: fixed; top: 10px; right: 10px; padding: 4px 8px; border-radius: 6px;
+      font-size: 0.5rem; font-weight: 600; z-index: 1000; opacity: 0.8; transition: all 0.3s ease;
+    }
+    .firebase-status.connected { background: #10b981; color: white; }
+    .firebase-status.disconnected { background: #ef4444; color: white; }
+    .firebase-status.saving { background: #f59e0b; color: white; animation: pulse 1s infinite; }
+    .firebase-status:hover { opacity: 1; transform: scale(1.05); }
+
+    /* Indicador de carga */
+    .loading-indicator {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 9999; display: none; text-align: center;
+    }
+    .loading-indicator.show { display: block; }
+
+    /* Cooldown overlay mejorado */
+    .cooldown { position:fixed; inset:0; background:rgba(0,0,0,.05); display:none; z-index:40; }
+    .cooldown.on { display:flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+    .cooldown-message { background: white; padding: 20px; border-radius: 12px; text-align: center; font-weight: 600; color: #374151; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+    /* Progreso visual mejorado */
+    .progress-line { position: relative; overflow: visible; }
+    .progress-fill { position: relative; background: linear-gradient(90deg, #10b981, #059669); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3); }
+    .progress-fill::after {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+    /* Responsive mejorado */
+    @media (max-width: 640px) {
+      .hunt-header { padding: 8px 12px; }
+      .meta { justify-content: center; gap: 6px; }
+      .chip { padding: 4px 8px; font-size: 0.8rem; }
+      .hunt-container { padding: 12px; }
+      .meaning-sheet { margin: 0 8px; }
+      .meaning-sheet.open { margin: 0 8px; }
+      .firebase-status { top: 5px; right: 5px; font-size: 0.7rem; padding: 3px 6px; }
+    }
+
+   .instructions-compact{
+        padding: 8px 15px;
+        margin-top: -5px;
+        font-size: 0.8rem;
+        text-align: center;
+        background-color: #f0f4f8; /* Un fondo suave */
+        color: #374151; /* Texto oscuro */
+        border-bottom: 1px solid #e5e7eb;
+        font-weight: 500;
+   }
