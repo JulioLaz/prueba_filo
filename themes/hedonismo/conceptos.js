@@ -12,10 +12,10 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Enfócate en la idea principal del hedonismo.",
       advanceAfter: 1,
       concepts: [
-        { term: "hedonismo", meaning: "Corriente filosófica que postula que el placer es el fin supremo y el único bien de la vida humana." },
-        { term: "placer", meaning: "Sensación agradable que guía la vida según el hedonismo. Puede ser de distintos tipos y calidades." },
-        { term: "bien", meaning: "Aquello que es valioso, deseable o moralmente correcto." },
-        { term: "dolor", meaning: "Sensación desagradable que se busca evitar. Es lo opuesto al placer." },
+        { term: "hedonismo", meaning: "El <strong>hedonismo</strong> es una corriente filosófica que postula que el placer es el fin supremo y el único bien de la vida humana." },
+        { term: "placer", meaning: "El <strong>placer</strong> e una sensación agradable que guía la vida según el hedonismo. Puede ser de distintos tipos y calidades." },
+        { term: "bien", meaning: "El <strong>bien</strong> para el hedonismo es aquello que es valioso, deseable o moralmente correcto." },
+        { term: "dolor", meaning: "El <strong>dolor</strong> para el hedonismo es una sensación desagradable que se busca evitar. Es lo opuesto al placer." },
       ],
       corollary: [
         "El placer es el bien supremo para el hedonismo.",
@@ -32,10 +32,10 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Busca los conceptos que definen el placer epicúreo.",
       advanceAfter: 1,
       concepts: [
-        { term: "ataraxia", meaning: "Estado de serenidad y paz mental. Es la ausencia de perturbaciones del alma." },
-        { term: "aponía", meaning: "Estado de ausencia de dolor físico. Es uno de los objetivos del hedonismo epicúreo." },
-        { term: "serenidad", meaning: "Tranquilidad, calma del espíritu." },
-        { term: "autocontrol", meaning: "La capacidad de moderar los propios deseos y pasiones para alcanzar la felicidad a largo plazo." },
+        { term: "ataraxia", meaning: "La <strong>ataraxia</strong>es un estado de serenidad y paz mental. Es la ausencia de perturbaciones del alma." },
+        { term: "aponía", meaning: "La <strong>aponía</strong> es un estado de ausencia de dolor físico. Es uno de los objetivos del hedonismo epicúreo." },
+        { term: "serenidad", meaning: "La <strong>serenidad</strong> es tranquilidad, es calma del espíritu." },
+        { term: "autocontrol", meaning: "El <strong>autocontrol</strong> es la capacidad de moderar los propios deseos y pasiones para alcanzar la felicidad a largo plazo." },
       ],
       corollary: [
         "Para Epicuro, la serenidad es el placer más alto.",
