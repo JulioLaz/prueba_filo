@@ -476,6 +476,9 @@
       currentReadAloudModal = null;
     }
 
+    // ➡️ AÑADIR CLASE PARA BLOQUEAR EL FONDO
+    document.body.classList.add("modal-open");
+
     meaningSheet.classList.add("open");
 
     currentReadAloudModal = new window.ReadAloudModalSystem(
@@ -511,7 +514,11 @@
     }
 
     meaningSheet.classList.remove("open");
+
+    // ➡️ REMOVER CLASE PARA DESBLOQUEAR EL FONDO
+    document.body.classList.remove("modal-open");
     
+
     if (currentReadAloudModal) {
       currentReadAloudModal.destroy();
       currentReadAloudModal = null;

@@ -114,3 +114,72 @@
         border-bottom: 1px solid #e5e7eb;
         font-weight: 500;
    }
+
+   /* -------------------------------------- */
+/* Reglas para el Overlay de Bloqueo (Modal) */
+/* -------------------------------------- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo semitransparente oscuro */
+    background-color: rgba(0, 0, 0, 0.4); 
+    z-index: 99; /* Debe estar justo debajo del modal (z-index: 100) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Efecto opcional: Blur (difuminado) en el fondo cuando el modal está activo */
+/* Se aplica a la etiqueta <body> para difuminar todo el contenido excepto el modal */
+body.modal-open > *:not(#meaning-sheet):not(.modal-overlay) {
+    filter: blur(4px);
+    pointer-events: none; /* Desactiva clics en el fondo */
+    user-select: none;
+}
+
+/* -------------------------------------- */
+/* Regla para mostrar el Overlay y el Modal */
+/* -------------------------------------- */
+
+body.modal-open .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+/* ESTO BLOQUEA TODO EL FONDO, PERO TAMBIÉN PUEDE AFECTAR AL MODAL SI ESTÁ MAL UBICADO */
+body.modal-open > *:not(#meaning-sheet):not(.modal-overlay) {
+    filter: blur(3px); 
+    pointer-events: none; /* <--- ¡ESTO BLOQUEA LA INTERACCIÓN DEL FONDO! */
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+/* Asegura que el MODAL esté en la capa superior y sea interactivo */
+#meaning-sheet {
+    z-index: 101; /* Capa más alta */
+    /* Asegura que los clics funcionen en el contenido del modal */
+    pointer-events: auto; 
+}
+
+/* Asegura que el OVERLAY esté justo debajo del modal */
+.modal-overlay {
+    /* ... otras propiedades ... */
+    z-index: 100; /* Debajo del modal */
+}
+
+/* ------------------------------------------------------------- */
+/* Regla de bloqueo del fondo (Esta es la que necesita ser revisada) */
+/* ------------------------------------------------------------- */
+
+/* Esta regla es correcta para difuminar y bloquear todo EXCEPTO el modal y el overlay.
+   El problema ocurre si tu botón de lectura está fuera del #meaning-sheet (lo cual no debería ser)
+   o si el #meaning-sheet no tiene un z-index más alto que el overlay.
+*/
+body.modal-open > *:not(#meaning-sheet):not(.modal-overlay) {
+    filter: blur(3px); 
+    pointer-events: none; 
+    user-select: none;
+    transition: filter 0.3s ease;
+}
