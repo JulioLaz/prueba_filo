@@ -875,6 +875,10 @@ body::before {
     
     .question-text {
         font-size: 1em;
+        margin-bottom: 1rem;
+        font-weight: 450;
+        color: #a0eea0;
+        text-align: center;
     }
     
     .help-content h3 {
