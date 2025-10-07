@@ -204,7 +204,7 @@
         <div class="summary-header">
          <div class="summary-title-btn">
                <span id="summary-author" class="author-tag">${CFG.author || 'Aristóteles'}</span>
-               <button id="summary-close" class="close-btn">Cerrar</button>
+               <button id="summary-close" class="close-btn">X</button>
          </div>
           <h3 class="summary-title">
             📚 Resumen de conceptos

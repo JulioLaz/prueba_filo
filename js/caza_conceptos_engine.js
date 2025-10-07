@@ -230,7 +230,7 @@ globalFound = new Set(existingProgress.foundConcepts || []);
 
           <button id="summary-close" style="
             background:#1f2937;color:#e5e7eb;border:none;border-radius:10px;padding:8px 12px;cursor:pointer;">
-            Cerrar
+            X
           </button>
         </div>
 
