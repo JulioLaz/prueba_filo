@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diálogo Filosófico - Selector</title>
+    <link rel="stylesheet" href="../../css/index_dialogo.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 Diálogos Filosóficos</h1>
+            <p>Conversa con los grandes pensadores de la historia</p>
+        </div>
+
+        <div class="filosofos-grid">
+            <!-- Aristóteles -->
+            <div class="filosofo-card" data-filosofo="aristoteles">
+                <div class="filosofo-avatar">🏛️</div>
+                <h2 class="filosofo-nombre">Aristóteles</h2>
+                <p class="filosofo-titulo">"El término medio virtuoso"</p>
+                <p class="filosofo-descripcion">
+                    Dialoga con el padre de la ética de la virtud. Aristóteles te guiará a descubrir 
+                    el justo medio entre los extremos y cómo alcanzar la eudaimonía (felicidad plena).
+                </p>
+
+                <div class="filosofo-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Estilo</div>
+                        <div class="stat-value">Moderado</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Duración</div>
+                        <div class="stat-value">~15 min</div>
+                    </div>
+                </div>
+
+                <div class="filosofo-virtudes">
+                    <div class="virtudes-title">🎯 Conceptos clave</div>
+                    <div class="virtudes-list">
+                        <span class="virtud-tag">Virtud</span>
+                        <span class="virtud-tag">Término Medio</span>
+                        <span class="virtud-tag">Eudaimonía</span>
+                        <span class="virtud-tag">Prudencia</span>
+                    </div>
+                </div>
+
+                <button class="btn-comenzar">Comenzar Diálogo</button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>📋 Cómo funciona</h2>
+            <ul>
+                <li>
+                    <span class="info-icon">💬</span>
+                    <span>Tendrás hasta <strong>10 intercambios</strong> con el filósofo</span>
+                </li>
+                <li>
+                    <span class="info-icon">🎯</span>
+                    <span>Responde con <strong>reflexión y profundidad</strong> (mínimo 30 caracteres)</span>
+                </li>
+                <li>
+                    <span class="info-icon">📊</span>
+                    <span>Necesitas <strong>80% de progreso</strong> para aprobar la actividad</span>
+                </li>
+                <li>
+                    <span class="info-icon">🏆</span>
+                    <span>Al finalizar, recibirás tu <strong>evaluación y badge filosófico</strong></span>
+                </li>
+                <li>
+                    <span class="info-icon">💾</span>
+                    <span>Tu progreso se guarda automáticamente en Firebase</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        console.log('🎭 Sistema de Diálogos Filosóficos iniciado');
+        console.log('⏱️ Tiempo de carga:', performance.now().toFixed(2), 'ms');
+
+        // Configuración de filósofos
+        const FILOSOFOS_CONFIG = {
+            aristoteles: {
+                id: 'aristoteles',
+                nombre: 'Aristóteles',
+                estilo: 'moderado',
+                maxIntercambios: 10,
+                minCaracteres: 30,
+                conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio']
+            }
+        };
+
+        // Event listeners para las cards
+        document.querySelectorAll('.filosofo-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const filosofoId = card.dataset.filosofo;
+                iniciarDialogo(filosofoId);
+            });
+        });
+
+        function iniciarDialogo(filosofoId) {
+            console.log(`🎯 Iniciando diálogo con: ${filosofoId}`);
+            
+            // Guardar configuración en sessionStorage
+            sessionStorage.setItem('dialogo_filosofo', filosofoId);
+            sessionStorage.setItem('dialogo_config', JSON.stringify(FILOSOFOS_CONFIG[filosofoId]));
+            sessionStorage.setItem('dialogo_inicio', Date.now());
+            
+            // Redirigir a la página de chat
+            window.location.href = `/dialogo/chat.html?filosofo=${filosofoId}`;
+        }
+
+        console.log('✅ Selector de filósofos listo');
+    </script>
+</body>
+</html>

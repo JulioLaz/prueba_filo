@@ -1,4 +1,5 @@
-.env*
+node_modules/
+*.local
 # Abrí functions/.gitignore y verificá que tenga:
 .env
 .env.*

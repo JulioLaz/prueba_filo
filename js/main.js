@@ -230,6 +230,21 @@ const AVAILABLE_THEMES = [
     type: 'intermedio'
     },
     {
+        id: 'dialogo_aristoteles',
+        title: 'Diálogo con Aristóteles',
+        description: 'Conversa con el maestro de la ética de la virtud sobre el término medio y la eudaimonía.',
+        icon: '🏛️',
+        gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
+        difficulty: 'GAME',
+        questions: 10,
+        timeEstimate: 15,
+        prerequisites: [],
+        // prerequisites: ['etica', 'etica_aristoteles'],
+        color: '#d4af37',
+        contentFile: 'dialogo/index.html',
+        type: 'dialogo'
+    },
+    {
     id: "dino",
     title: "Dinosaurio",
     description: "Saltando obstáculos en este juego simple pero adictivo.",
