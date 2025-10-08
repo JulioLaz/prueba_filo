@@ -107,6 +107,7 @@
             display: flex;
             flex-direction: column;
             background: #0f1229;
+            overflow: auto;
         }
 
         .chat-header {
