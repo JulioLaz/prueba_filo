@@ -92,13 +92,18 @@ function validarDatos(data) {
 // ═══════════════════════════════════════════════════════════════
 // 🚀 CLOUD FUNCTION PRINCIPAL
 // ═══════════════════════════════════════════════════════════════
-
 exports.chatFilosofo = onCall(
     {
-      region: "southamerica-east1", // Región más cercana a Argentina
-      cors: true,
+      region: "southamerica-east1", // ← Verificar que esté
+      cors: true,                   // ← Verificar que esté
     },
     async (request) => {
+// exports.chatFilosofo = onCall(
+//     {
+//       region: "southamerica-east1", // Región más cercana a Argentina
+//       cors: true,
+//     },
+    // async (request) => {
       const inicioTiempo = Date.now();
       const data = request.data;
       const auth = request.auth;
