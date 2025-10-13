@@ -824,8 +824,12 @@ function analyzeAdminThemeStructure(progressData) {
         adminThemeStructure.set(moduleId, new Set());
       }
       
+      // Si tiene lessonId, agregarlo como actividad
       if (lessonId) {
         adminThemeStructure.get(moduleId).add(lessonId);
+      } else {
+        // Si lessonId es null, agregar "general" como actividad única
+        adminThemeStructure.get(moduleId).add('_general');
       }
     }
   });
@@ -840,10 +844,47 @@ function analyzeAdminThemeStructure(progressData) {
   for (let theme of adminThemeStructure.keys()) {
     const option = document.createElement('option');
     option.value = theme;
-    option.textContent = theme.replace(/_/g, ' ').toUpperCase();
+    // Formatear nombres de temas para mejor legibilidad
+    let themeName = theme.replace(/_/g, ' ').toUpperCase();
+    if (theme.startsWith('dialogo_')) {
+      themeName = '💬 ' + themeName.replace('DIALOGO ', 'Diálogo ');
+    }
+    option.textContent = themeName;
     adminThemeSelect.appendChild(option);
   }
 }
+
+// function analyzeAdminThemeStructure(progressData) {
+//   adminThemeStructure.clear();
+  
+//   progressData.forEach(record => {
+//     const { moduleId, lessonId } = record;
+    
+//     if (moduleId) {
+//       if (!adminThemeStructure.has(moduleId)) {
+//         adminThemeStructure.set(moduleId, new Set());
+//       }
+      
+//       if (lessonId) {
+//         adminThemeStructure.get(moduleId).add(lessonId);
+//       }
+//     }
+//   });
+
+//   // Convertir Sets a Arrays ordenados
+//   for (let [theme, activities] of adminThemeStructure) {
+//     adminThemeStructure.set(theme, Array.from(activities).sort());
+//   }
+
+//   // Poblar selector de temas
+//   adminThemeSelect.innerHTML = '<option value="">Todos los temas</option>';
+//   for (let theme of adminThemeStructure.keys()) {
+//     const option = document.createElement('option');
+//     option.value = theme;
+//     option.textContent = theme.replace(/_/g, ' ').toUpperCase();
+//     adminThemeSelect.appendChild(option);
+//   }
+// }
 
 function generateAdminMiniTable() {
   // Filtrar por tema seleccionado
@@ -888,9 +929,13 @@ function generateAdminMiniTable() {
     // Headers de actividades específicas
     activities.forEach((activity, index) => {
       const activityHeader = document.createElement('th');
+      // Nombre apropiado para actividad general
+      const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+
+
       activityHeader.innerHTML = `
         <div style="font-size: 8px; font-weight: 500; writing-mode: vertical-rl; text-orientation: mixed;">
-          ${activity.toUpperCase()}
+          ${activityDisplayName}
         </div>
       `;
       activityHeader.style.minWidth = '35px';
@@ -948,15 +993,23 @@ function generateAdminMiniTable() {
       row.appendChild(generalCell);
       
       // Celdas de actividades específicas
+      // Celdas de actividades específicas
       activities.forEach((activity, index) => {
+        // Para actividades "general" (lessonId null), buscar con null
+        const lessonIdToFind = activity === '_general' ? null : activity;
+        
         const progressRecord = adminProgressData.find(p => 
           p.uid === student.id && 
           p.moduleId === theme && 
-          p.lessonId === activity
+          (activity === '_general' ? p.lessonId === null : p.lessonId === activity)
         );
         
         const percentage = calculateProgressPercentage(progressRecord);
         const activityCell = document.createElement('td');
+        
+        // Mostrar nombre apropiado para actividad general
+        const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+        
         activityCell.innerHTML = `
           <span class="admin-progress-mini ${getProgressClassMini(percentage)}" style="font-size: 9px; min-width: 30px;">
             ${percentage}%
@@ -967,9 +1020,9 @@ function generateAdminMiniTable() {
         
         // Tooltip con información
         if (progressRecord) {
-          activityCell.title = `${theme} - ${activity}\nEstado: ${progressRecord.status || 'En progreso'}\nScore: ${progressRecord.score || 0}\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
+          activityCell.title = `${theme} - ${activityDisplayName}\nEstado: ${progressRecord.status || 'En progreso'}\nScore: ${progressRecord.score || 0}\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
         } else {
-          activityCell.title = `${theme} - ${activity}\nSin progreso`;
+          activityCell.title = `${theme} - ${activityDisplayName}\nSin progreso`;
         }
         
         // Separador visual entre temas
@@ -979,7 +1032,41 @@ function generateAdminMiniTable() {
         
         row.appendChild(activityCell);
       });
-    });
+        });
+
+
+    //   activities.forEach((activity, index) => {
+    //     const progressRecord = adminProgressData.find(p => 
+    //       p.uid === student.id && 
+    //       p.moduleId === theme && 
+    //       p.lessonId === activity
+    //     );
+        
+    //     const percentage = calculateProgressPercentage(progressRecord);
+    //     const activityCell = document.createElement('td');
+    //     activityCell.innerHTML = `
+    //       <span class="admin-progress-mini ${getProgressClassMini(percentage)}" style="font-size: 9px; min-width: 30px;">
+    //         ${percentage}%
+    //       </span>
+    //     `;
+    //     activityCell.style.textAlign = 'center';
+    //     activityCell.style.padding = '2px 1px';
+        
+    //     // Tooltip con información
+    //     if (progressRecord) {
+    //       activityCell.title = `${theme} - ${activity}\nEstado: ${progressRecord.status || 'En progreso'}\nScore: ${progressRecord.score || 0}\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
+    //     } else {
+    //       activityCell.title = `${theme} - ${activity}\nSin progreso`;
+    //     }
+        
+    //     // Separador visual entre temas
+    //     if (index === activities.length - 1) {
+    //       activityCell.style.borderRight = '2px solid rgba(255,255,255,0.2)';
+    //     }
+        
+    //     row.appendChild(activityCell);
+    //   });
+    // });
     
     adminTableBody.appendChild(row);
   });
@@ -997,13 +1084,21 @@ function calculateGeneralThemeProgress(studentId, theme, activities) {
   let totalProgress = 0;
   let validActivities = 0;
   
+  // activities.forEach(activity => {
+  //   const progressRecord = adminProgressData.find(p => 
+  //     p.uid === studentId && 
+  //     p.moduleId === theme && 
+  //     p.lessonId === activity
+  //   );
   activities.forEach(activity => {
+    // Para actividades "general", buscar con lessonId null
     const progressRecord = adminProgressData.find(p => 
       p.uid === studentId && 
       p.moduleId === theme && 
-      p.lessonId === activity
+      (activity === '_general' ? p.lessonId === null : p.lessonId === activity)
     );
-    
+  
+
     const progress = calculateProgressPercentage(progressRecord);
     totalProgress += progress;
     validActivities++;
