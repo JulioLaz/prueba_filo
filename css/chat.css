@@ -168,6 +168,7 @@
         .mensaje-filosofo {
             align-self: flex-start;
             max-width: 100%;
+            text-align: justify;
         }
 
         .mensaje-alumno {
