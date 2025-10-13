@@ -150,7 +150,7 @@
         .mensajes-container {
             flex: 1;
             overflow-y: auto;
-            padding: 30px;
+            padding: 15px 10px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -240,6 +240,7 @@
             border-radius: 12px;
             line-height: 1.6;
             color: #e4e4e7;
+            text-align: justify;
         }
 
         .mensaje-filosofo .mensaje-texto {
@@ -994,17 +995,18 @@
         console.log('═══════════════════════════════════════════════════');
         const tiempoInicio = performance.now();
 
-        // ===============================================
-        // CONFIGURACIÓN
-        // ===============================================
-        const CONFIG = {
+         // ===============================================
+         // CONFIGURACIÓN
+         // ===============================================
+         const CONFIG = {
             filosofo: 'aristoteles',
             maxIntercambios: 10,
             minCaracteres: 30,
             maxHints: 3,
-            umbralAprobacion: 0.80,
-            conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
-        };
+            umbralAprobacion: 0.75,
+            // ¡Nuevos conceptos clave alineados con el prompt!
+            conceptosClave: ['virtud', 'areté', 'término medio', 'mesotés', 'eudaimonía', 'frónesis', 'prudencia', 'templanza', 'valentía', 'justicia', 'hábito', 'carácter'],
+         };
 
         // ===============================================
         // INICIALIZAR CLOUD FUNCTION CON REGIÓN
@@ -1223,8 +1225,8 @@
             const factores = {
                 intercambios: (estado.intercambios / CONFIG.maxIntercambios) * 0.4,
                 conceptos: (estado.conceptosDetectados.size / CONFIG.conceptosClave.length) * 0.3,
-                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.2,
-                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.1
+                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.15,
+                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.15
             };
 
             const progresoTotal = Object.values(factores).reduce((a, b) => a + b, 0);
@@ -1527,23 +1529,25 @@
             });
         }
 
-        // ===============================================
-        // INICIALIZACIÓN
-        // ===============================================
-        function iniciar() {
+
+         // ===============================================
+         // INICIALIZACIÓN
+         // ===============================================
+         function iniciar() {
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
-            // Mensaje de bienvenida
-            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
-            Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
-            Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
+            // Mensaje de bienvenida mejorado: Establece el tono y las expectativas (las 4 virtudes)
+            const bienvenida = `Χαῖρε (Jaíre)! Soy Aristóteles de Estagira.
+         Me complace dialogar sobre la virtud (areté) y el camino hacia la eudaimonía.
+         Mi propósito es que reflexiones sobre la **Justicia**, la **Templanza**, la **Valentía** y la **Frónesis** (prudencia) en tu vida.
+         Dime, **¿qué decisión difícil o qué hábito deseas mejorar en tu vida para alcanzar una mayor excelencia**?`;
             
             agregarMensaje('filosofo', bienvenida);
             elementos.inputMensaje.focus();
             
             const tiempoInicializacion = performance.now() - tiempoInicio;
             log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
-        }
+         }       
 
         // Iniciar cuando el DOM esté listo
         if (document.readyState === 'loading') {
