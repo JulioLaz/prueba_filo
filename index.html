@@ -798,10 +798,23 @@ function hideAdminError() {
 }
 
 function calculateProgressPercentage(progressRecord) {
+  // Si no hay registro, retornar 0 inmediatamente
   if (!progressRecord) return 0;
+  
+  // Si está completado, 100%
   if (progressRecord.status === 'completed') return 100;
-  if (progressRecord.score > 0) return Math.min(progressRecord.score, 100);
-  if (progressRecord.timeSpentSeconds > 30) return 25;
+  
+  // Si tiene score, usar ese valor (pero máximo 100)
+  if (progressRecord.score && progressRecord.score > 0) {
+    return Math.min(Math.round(progressRecord.score), 100);
+  }
+  
+  // Si tiene tiempo pero no score, dar crédito mínimo
+  if (progressRecord.timeSpentSeconds && progressRecord.timeSpentSeconds > 30) {
+    return 25;
+  }
+  
+  // Por defecto, 0%
   return 0;
 }
 
@@ -841,17 +854,49 @@ function analyzeAdminThemeStructure(progressData) {
 
   // Poblar selector de temas
   adminThemeSelect.innerHTML = '<option value="">Todos los temas</option>';
-  for (let theme of adminThemeStructure.keys()) {
+  
+  // Ordenar temas alfabéticamente
+  const sortedThemes = Array.from(adminThemeStructure.keys()).sort();
+  
+  for (let theme of sortedThemes) {
     const option = document.createElement('option');
     option.value = theme;
-    // Formatear nombres de temas para mejor legibilidad
-    let themeName = theme.replace(/_/g, ' ').toUpperCase();
-    if (theme.startsWith('dialogo_')) {
-      themeName = '💬 ' + themeName.replace('DIALOGO ', 'Diálogo ');
-    }
+    
+    // Formatear nombres de temas de forma inteligente
+    let themeName = formatThemeName(theme);
+    
     option.textContent = themeName;
     adminThemeSelect.appendChild(option);
   }
+}
+
+// Nueva función helper para formatear nombres
+function formatThemeName(themeId) {
+  // Casos especiales para diálogos
+  if (themeId.startsWith('dialogo_')) {
+    const filosofo = themeId.replace('dialogo_', '');
+    const filosofoCapitalized = filosofo.charAt(0).toUpperCase() + filosofo.slice(1);
+    return `💬 Diálogo con ${filosofoCapitalized}`;
+  }
+  
+  // Casos especiales conocidos
+  const specialCases = {
+    'etica_aristoteles': 'Ética de Aristóteles',
+    'etica_kant': 'Ética de Kant',
+    'hedonismo': 'Hedonismo',
+    'utilitarismo': 'Utilitarismo',
+    'pragmatismo': 'Pragmatismo',
+    'antropocentrismo': 'Antropocentrismo',
+    'cassirer': 'Ernst Cassirer',
+    'sartre': 'Jean-Paul Sartre'
+  };
+  
+  if (specialCases[themeId]) {
+    return specialCases[themeId];
+  }
+  
+  // Fallback: formato genérico
+  return themeId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
 // function analyzeAdminThemeStructure(progressData) {
