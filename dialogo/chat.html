@@ -4,9 +4,803 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diálogo con Aristóteles</title>
-    <link rel="stylesheet" href="../../css/chat.css" />
-    <link rel="stylesheet" href="/prueba_filo/css/chat.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #e4e4e7;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            display: grid;
+            grid-template-columns: 250px 1fr 280px;
+            height: 100vh;
+            gap: 0;
+        }
+
+        /* SIDEBAR IZQUIERDA */
+        .sidebar-left {
+            background: #1a1d3a;
+            border-right: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .filosofo-info {
+            text-align: center;
+        }
+
+        .filosofo-avatar-small {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .filosofo-info h3 {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .filosofo-info p {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+        }
+
+        .metodo-box {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .metodo-box h4 {
+            color: #ffd700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metodo-box p {
+            color: #d4d4d8;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .virtudes-box {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .virtudes-box h4 {
+            color: #ffd700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .virtud-item {
+            padding: 8px 0;
+            color: #d4d4d8;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .virtud-item:last-child {
+            border-bottom: none;
+        }
+
+        /* ÁREA CENTRAL DEL CHAT */
+        .chat-main {
+            display: flex;
+            flex-direction: column;
+            background: #0f1229;
+        }
+
+        .chat-header {
+            background: #1a1d3a;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            font-size: 1.3rem;
+            color: #ffd700;
+        }
+
+        .btn-salir {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-salir:hover {
+            background: rgba(239, 68, 68, 0.4);
+        }
+
+        .mensajes-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mensaje {
+            display: flex;
+            gap: 15px;
+            animation: messageSlide 0.4s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mensaje-filosofo {
+            align-self: flex-start;
+            max-width: 70%;
+        }
+
+        .mensaje-alumno {
+            align-self: flex-end;
+            max-width: 70%;
+            flex-direction: row-reverse;
+        }
+
+        .mensaje-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .mensaje-filosofo .mensaje-avatar {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .mensaje-alumno .mensaje-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .mensaje-contenido {
+            flex: 1;
+        }
+
+        .mensaje-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .mensaje-nombre {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .mensaje-filosofo .mensaje-nombre {
+            color: #ffd700;
+        }
+
+        .mensaje-alumno .mensaje-nombre {
+            color: #667eea;
+        }
+
+        .mensaje-tiempo {
+            font-size: 0.75rem;
+            color: #71717a;
+        }
+
+        .mensaje-texto {
+            background: rgba(30, 35, 60, 0.8);
+            padding: 15px 18px;
+            border-radius: 12px;
+            line-height: 1.6;
+            color: #e4e4e7;
+        }
+
+        .mensaje-filosofo .mensaje-texto {
+            border-left: 3px solid #ffd700;
+        }
+
+        .mensaje-alumno .mensaje-texto {
+            border-right: 3px solid #667eea;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(30, 35, 60, 0.6);
+            border-radius: 12px;
+            max-width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .input-container {
+            background: #1a1d3a;
+            border-top: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 20px 30px;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .input-area {
+            flex: 1;
+            background: #0f1229;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            color: #e4e4e7;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: none;
+            min-height: 60px;
+            max-height: 150px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-area:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .input-area::placeholder {
+            color: #71717a;
+        }
+
+        .btn-enviar {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            color: #0a0e27;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-enviar:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-enviar:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: #71717a;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .char-counter.warning {
+            color: #fbbf24;
+        }
+
+        .char-counter.error {
+            color: #ef4444;
+        }
+
+        /* SIDEBAR DERECHA - PROGRESO */
+        .sidebar-right {
+            background: #1a1d3a;
+            border-left: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .progreso-box {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .progreso-box h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .progreso-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(10, 14, 39, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progreso-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #ffd700 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .progreso-texto {
+            text-align: center;
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .intercambios-counter {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .intercambios-numero {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .intercambios-label {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-top: 5px;
+        }
+
+        .conceptos-detectados {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .conceptos-detectados h4 {
+            color: #ffd700;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .concepto-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            margin-bottom: 6px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 6px;
+        }
+
+        .concepto-check {
+            color: #10b981;
+            font-size: 1.2rem;
+        }
+
+        .concepto-nombre {
+            color: #d4d4d8;
+            font-size: 0.85rem;
+        }
+
+        .hints-box {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-hint {
+            width: 100%;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            border: 1px solid #667eea;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-hint:hover:not(:disabled) {
+            background: rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-hint:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .hints-restantes {
+            text-align: center;
+            margin-top: 10px;
+            color: #a1a1aa;
+            font-size: 0.85rem;
+        }
+
+        /* MODAL DE COMPLETADO */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1d3a;
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            animation: modalPop 0.5s ease;
+        }
+
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-resultado {
+            color: #d4d4d8;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .modal-stat {
+            background: rgba(10, 14, 39, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .modal-stat-value {
+            font-size: 1.8rem;
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        .modal-stat-label {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-top: 5px;
+        }
+
+        .btn-volver {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            color: #0a0e27;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .chat-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+
+            .sidebar-left {
+                display: none; /* Ocultamos por defecto */
+            }
+
+            .sidebar-right {
+                display: none; /* Ocultamos por defecto */
+            }
+
+            /* Header móvil con indicadores */
+            .chat-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .chat-title {
+                font-size: 1.1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .btn-salir {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Stats móvil - siempre visible */
+        .stats-mobile {
+            display: none;
+            background: #1a1d3a;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+            padding: 15px 20px;
+            gap: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-mobile {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .stats-mobile-row {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .stat-mobile {
+            flex: 1;
+            background: rgba(10, 14, 39, 0.8);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .stat-mobile-label {
+            font-size: 0.75rem;
+            color: #a1a1aa;
+            margin-bottom: 5px;
+        }
+
+        .stat-mobile-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .progreso-bar-mobile {
+            width: 100%;
+            height: 8px;
+            background: rgba(10, 14, 39, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progreso-fill-mobile {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #ffd700 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .progreso-texto-mobile {
+            font-size: 0.85rem;
+            color: #ffd700;
+            text-align: center;
+        }
+
+        /* Botones flotantes móvil */
+        .mobile-float-buttons {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-float-buttons {
+                display: flex;
+            }
+        }
+
+        .btn-float {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            border: none;
+            color: #0a0e27;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-float:active {
+            transform: scale(0.95);
+        }
+
+        /* Modal móvil para info adicional */
+        .modal-mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-mobile.active {
+            display: block;
+        }
+
+        .modal-mobile-content {
+            background: #1a1d3a;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .modal-mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .modal-mobile-title {
+            font-size: 1.3rem;
+            color: #ffd700;
+        }
+
+        .btn-close-modal {
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Scrollbar personalizada */
+        .mensajes-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .mensajes-container::-webkit-scrollbar-track {
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .mensajes-container::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.5);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="chat-container">
@@ -37,6 +831,33 @@
             <div class="chat-header">
                 <div class="chat-title">💬 Diálogo con Aristóteles</div>
                 <button class="btn-salir" id="btnSalir">Salir</button>
+            </div>
+
+            <!-- Stats móvil (solo visible en móvil) -->
+            <div class="stats-mobile">
+                <div class="stats-mobile-row">
+                    <div class="stat-mobile">
+                        <div class="stat-mobile-label">Progreso</div>
+                        <div class="progreso-bar-mobile">
+                            <div class="progreso-fill-mobile" id="progresoFillMobile"></div>
+                        </div>
+                        <div class="progreso-texto-mobile" id="progresoTextoMobile">0%</div>
+                    </div>
+                    <div class="stat-mobile">
+                        <div class="stat-mobile-label">Intercambios</div>
+                        <div class="stat-mobile-value" id="intercambiosNumeroMobile">0/10</div>
+                    </div>
+                </div>
+                <div class="stats-mobile-row">
+                    <div class="stat-mobile">
+                        <div class="stat-mobile-label">Conceptos</div>
+                        <div class="stat-mobile-value" id="conceptosCountMobile">0</div>
+                    </div>
+                    <div class="stat-mobile">
+                        <div class="stat-mobile-label">Pistas</div>
+                        <div class="stat-mobile-value" id="hintsCountMobile">3</div>
+                    </div>
+                </div>
             </div>
 
             <div class="mensajes-container" id="mensajesContainer">
@@ -108,6 +929,53 @@
         </div>
     </div>
 
+    <!-- BOTONES FLOTANTES MÓVIL -->
+    <div class="mobile-float-buttons">
+        <button class="btn-float" id="btnInfoMobile" title="Info del filósofo">🏛️</button>
+        <button class="btn-float" id="btnConceptosMobile" title="Conceptos detectados">🎯</button>
+        <button class="btn-float" id="btnHintMobile" title="Pedir pista">💡</button>
+    </div>
+
+    <!-- MODAL MÓVIL: Info del Filósofo -->
+    <div class="modal-mobile" id="modalInfoFilosofo">
+        <div class="modal-mobile-content">
+            <div class="modal-mobile-header">
+                <h3 class="modal-mobile-title">🏛️ Aristóteles</h3>
+                <button class="btn-close-modal" id="closeInfoModal">×</button>
+            </div>
+            <div class="filosofo-avatar-small" style="margin: 20px auto;">🏛️</div>
+            <p style="text-align: center; color: #a1a1aa; margin-bottom: 20px;">384-322 a.C.</p>
+            
+            <div class="metodo-box">
+                <h4>📚 Método</h4>
+                <p>Diálogo moderado orientado a la virtud y el término medio entre extremos.</p>
+            </div>
+            
+            <div class="virtudes-box" style="margin-top: 20px;">
+                <h4>⚖️ Virtudes Clave</h4>
+                <div class="virtud-item">• Prudencia (Frónesis)</div>
+                <div class="virtud-item">• Justicia</div>
+                <div class="virtud-item">• Valentía</div>
+                <div class="virtud-item">• Templanza</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MÓVIL: Conceptos Detectados -->
+    <div class="modal-mobile" id="modalConceptos">
+        <div class="modal-mobile-content">
+            <div class="modal-mobile-header">
+                <h3 class="modal-mobile-title">🎯 Conceptos Detectados</h3>
+                <button class="btn-close-modal" id="closeConceptosModal">×</button>
+            </div>
+            <div id="conceptosListaMobile">
+                <p style="color: #71717a; font-size: 0.9rem; text-align: center;">
+                    Los conceptos aparecerán al usarlos en tus respuestas
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { 
             saveProgress, 
@@ -175,7 +1043,21 @@
             modalResultado: document.getElementById('modalResultado'),
             statScore: document.getElementById('statScore'),
             statTiempo: document.getElementById('statTiempo'),
-            btnVolver: document.getElementById('btnVolver')
+            btnVolver: document.getElementById('btnVolver'),
+            // Elementos móviles
+            progresoFillMobile: document.getElementById('progresoFillMobile'),
+            progresoTextoMobile: document.getElementById('progresoTextoMobile'),
+            intercambiosNumeroMobile: document.getElementById('intercambiosNumeroMobile'),
+            conceptosCountMobile: document.getElementById('conceptosCountMobile'),
+            hintsCountMobile: document.getElementById('hintsCountMobile'),
+            btnInfoMobile: document.getElementById('btnInfoMobile'),
+            btnConceptosMobile: document.getElementById('btnConceptosMobile'),
+            btnHintMobile: document.getElementById('btnHintMobile'),
+            modalInfoFilosofo: document.getElementById('modalInfoFilosofo'),
+            modalConceptos: document.getElementById('modalConceptos'),
+            conceptosListaMobile: document.getElementById('conceptosListaMobile'),
+            closeInfoModal: document.getElementById('closeInfoModal'),
+            closeConceptosModal: document.getElementById('closeConceptosModal')
         };
 
         // ===============================================
@@ -369,14 +1251,36 @@
             const progreso = calcularProgreso();
             elementos.progresoFill.style.width = `${progreso}%`;
             elementos.progresoTexto.textContent = `${progreso}%`;
+            
+            // Progreso móvil
+            if (elementos.progresoFillMobile) {
+                elementos.progresoFillMobile.style.width = `${progreso}%`;
+                elementos.progresoTextoMobile.textContent = `${progreso}%`;
+            }
 
             // Intercambios
             elementos.intercambiosNumero.textContent = `${estado.intercambios}/${CONFIG.maxIntercambios}`;
+            if (elementos.intercambiosNumeroMobile) {
+                elementos.intercambiosNumeroMobile.textContent = `${estado.intercambios}/${CONFIG.maxIntercambios}`;
+            }
+
+            // Conceptos móvil
+            if (elementos.conceptosCountMobile) {
+                elementos.conceptosCountMobile.textContent = estado.conceptosDetectados.size;
+            }
 
             // Hints
             const hintsRestantes = CONFIG.maxHints - estado.hintsUsados;
             elementos.hintsRestantes.textContent = `${hintsRestantes} pistas disponibles`;
             elementos.btnHint.disabled = hintsRestantes === 0;
+            
+            if (elementos.hintsCountMobile) {
+                elementos.hintsCountMobile.textContent = hintsRestantes;
+            }
+            if (elementos.btnHintMobile) {
+                elementos.btnHintMobile.disabled = hintsRestantes === 0;
+                elementos.btnHintMobile.style.opacity = hintsRestantes === 0 ? '0.5' : '1';
+            }
 
             // Verificar si debe terminar
             if (estado.intercambios >= CONFIG.maxIntercambios) {
@@ -387,6 +1291,7 @@
         function actualizarConceptosUI() {
             if (estado.conceptosDetectados.size === 0) return;
 
+            // Desktop
             elementos.conceptosLista.innerHTML = '';
             estado.conceptosDetectados.forEach(concepto => {
                 const div = document.createElement('div');
@@ -397,6 +1302,25 @@
                 `;
                 elementos.conceptosLista.appendChild(div);
             });
+
+            // Móvil
+            if (elementos.conceptosListaMobile) {
+                elementos.conceptosListaMobile.innerHTML = '';
+                estado.conceptosDetectados.forEach(concepto => {
+                    const div = document.createElement('div');
+                    div.className = 'concepto-item';
+                    div.innerHTML = `
+                        <span class="concepto-check">✓</span>
+                        <span class="concepto-nombre">${concepto}</span>
+                    `;
+                    elementos.conceptosListaMobile.appendChild(div);
+                });
+            }
+
+            // Actualizar contador
+            if (elementos.conceptosCountMobile) {
+                elementos.conceptosCountMobile.textContent = estado.conceptosDetectados.size;
+            }
         }
 
         // ===============================================
@@ -487,6 +1411,58 @@
         });
 
         // ===============================================
+        // EVENTOS MÓVILES
+        // ===============================================
+        
+        // Botón info filósofo (móvil)
+        elementos.btnInfoMobile?.addEventListener('click', () => {
+            elementos.modalInfoFilosofo.classList.add('active');
+        });
+
+        elementos.closeInfoModal?.addEventListener('click', () => {
+            elementos.modalInfoFilosofo.classList.remove('active');
+        });
+
+        elementos.modalInfoFilosofo?.addEventListener('click', (e) => {
+            if (e.target === elementos.modalInfoFilosofo) {
+                elementos.modalInfoFilosofo.classList.remove('active');
+            }
+        });
+
+        // Botón conceptos (móvil)
+        elementos.btnConceptosMobile?.addEventListener('click', () => {
+            elementos.modalConceptos.classList.add('active');
+        });
+
+        elementos.closeConceptosModal?.addEventListener('click', () => {
+            elementos.modalConceptos.classList.remove('active');
+        });
+
+        elementos.modalConceptos?.addEventListener('click', (e) => {
+            if (e.target === elementos.modalConceptos) {
+                elementos.modalConceptos.classList.remove('active');
+            }
+        });
+
+        // Botón hint (móvil) - mismo comportamiento que desktop
+        elementos.btnHintMobile?.addEventListener('click', async () => {
+            if (estado.hintsUsados >= CONFIG.maxHints) return;
+            
+            estado.hintsUsados++;
+            log('💡', `Hint solicitado (${estado.hintsUsados}/${CONFIG.maxHints})`);
+            
+            const hints = [
+                "Piensa en cómo cada virtud es un punto medio entre dos extremos. Por ejemplo, la valentía está entre la cobardía y la temeridad.",
+                "La eudaimonía no es solo placer momentáneo, sino la realización plena de nuestro potencial humano a través de las virtudes.",
+                "La prudencia (frónesis) es clave: nos permite deliberar correctamente sobre qué acciones nos llevan al bien."
+            ];
+            
+            const hint = hints[Math.min(estado.hintsUsados - 1, hints.length - 1)];
+            agregarMensaje('filosofo', `💡 Pista ${estado.hintsUsados}: ${hint}`);
+            actualizarUI();
+        });
+
+        // ===============================================
         // FINALIZACIÓN Y GUARDADO
         // ===============================================
         async function finalizarDialogo() {
@@ -501,16 +1477,28 @@
             try {
                 const user = auth.currentUser;
                 if (user) {
+                    log('💾', 'Guardando en Firebase...', {
+                        moduleId: 'dialogo_aristoteles',
+                        score: scoreFinal,
+                        status: aprobado ? 'completed' : 'in_progress',
+                        seconds: Math.round(duracionMs / 1000)
+                    });
+
                     await saveProgress({
                         moduleId: 'dialogo_aristoteles',
+                        lessonId: null,
                         status: aprobado ? 'completed' : 'in_progress',
                         score: scoreFinal,
                         seconds: Math.round(duracionMs / 1000)
                     });
-                    log('💾', 'Progreso guardado en Firebase');
+                    
+                    log('✅', 'Progreso guardado en Firebase exitosamente');
+                } else {
+                    log('⚠️', 'Usuario no autenticado, no se guardó en Firebase');
                 }
             } catch (error) {
-                log('⚠️', 'Error guardando en Firebase:', error);
+                log('❌', 'Error guardando en Firebase:', error);
+                console.error('Detalles del error:', error);
             }
 
             // Mostrar modal de resultados

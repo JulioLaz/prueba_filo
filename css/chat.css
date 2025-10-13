@@ -596,7 +596,8 @@
 
             .sidebar-left,
             .sidebar-right {
-                display: none;
+                /* display: none; */
+                display: auto;
             }
         }
 

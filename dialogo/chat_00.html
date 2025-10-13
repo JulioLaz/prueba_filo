@@ -113,7 +113,6 @@
             saveProgress, 
             auth 
         } from '../firebase.js';
-
         import { 
             getFunctions, 
             httpsCallable 
@@ -127,30 +126,19 @@
         // ===============================================
         // CONFIGURACIÓN
         // ===============================================
-        // const CONFIG = {
-        //     filosofo: 'aristoteles',
-        //     maxIntercambios: 10,
-        //     minCaracteres: 30,
-        //     maxHints: 3,
-        //     umbralAprobacion: 0.80,
-        //     conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
-        //     apiUrl: 'https://openrouter.ai/api/v1/chat/completions',
-        //     // apiKey: import.meta.env.VITE_OPENROUTER_KEY, // ✅ Aquí se accede a la variable del .env
-        //     model: 'anthropic/claude-3-haiku' // Modelo gratuito
-        // };
-
-
         const CONFIG = {
-                filosofo: 'aristoteles',
-                maxIntercambios: 10,
-                minCaracteres: 30,
-                maxHints: 3,
-                umbralAprobacion: 0.80,
-                conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
-            };
+            filosofo: 'aristoteles',
+            maxIntercambios: 10,
+            minCaracteres: 30,
+            maxHints: 3,
+            umbralAprobacion: 0.80,
+            conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
+        };
 
-        // Inicializar Cloud Function
-        const functions = getFunctions();
+        // ===============================================
+        // INICIALIZAR CLOUD FUNCTION CON REGIÓN
+        // ===============================================
+        const functions = getFunctions(undefined, 'southamerica-east1');
         const chatFilosofo = httpsCallable(functions, 'chatFilosofo');
 
         // ===============================================
@@ -189,27 +177,6 @@
             statTiempo: document.getElementById('statTiempo'),
             btnVolver: document.getElementById('btnVolver')
         };
-
-        // ===============================================
-        // PROMPTS DEL SISTEMA
-        // ===============================================
-        const SISTEMA_PROMPT = `Eres Aristóteles, el filósofo griego maestro de la ética de la virtud. Tu misión es guiar al estudiante a través del método dialógico moderado para que descubra por sí mismo conceptos como:
-- La virtud como término medio entre dos extremos viciosos
-- La eudaimonía (felicidad plena) como fin último
-- La prudencia (frónesis) como virtud intelectual clave
-- El papel de los hábitos en la formación del carácter virtuoso
-
-REGLAS ESTRICTAS:
-1. Responde SIEMPRE en 2-4 oraciones máximo (50-80 palabras)
-2. Usa preguntas reflexivas que guíen su razonamiento
-3. Conecta sus respuestas con ejemplos prácticos de virtudes
-4. Cuando detectes contradicciones, señálalas con tacto
-5. Usa un tono moderado, sabio y pedagógico
-6. Incluye ocasionalmente términos griegos (eudaimonía, frónesis, arete)
-7. No des respuestas directas, guía con preguntas socráticas
-
-Ejemplo de tu estilo:
-"Comprendo tu punto sobre actuar con valentía. Pero dime, ¿acaso el valiente nunca siente miedo? ¿O quizás la valentía no es la ausencia de miedo, sino el justo medio entre la cobardía y la temeridad?"`;
 
         // ===============================================
         // FUNCIONES DE UTILIDAD
@@ -294,63 +261,14 @@ Ejemplo de tu estilo:
         }
 
         // ===============================================
-        // INTEGRACIÓN CON API DE IA
+        // INTEGRACIÓN CON CLOUD FUNCTION
         // ===============================================
-        // async function obtenerRespuestaIA(mensajeUsuario) {
-        //     log('🤖', 'Llamando a la API de OpenRouter...');
-        //     const tiempoLlamada = performance.now();
-
-        //     try {
-        //         // Construir historial de mensajes para contexto
-        //         const mensajesHistorial = estado.mensajes.map(m => ({
-        //             role: m.rol === 'filosofo' ? 'assistant' : 'user',
-        //             content: m.texto
-        //         }));
-
-        //         const response = await fetch(CONFIG.apiUrl, {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Authorization': `Bearer ${CONFIG.apiKey}`,
-        //                 'Content-Type': 'application/json',
-        //                 'HTTP-Referer': window.location.href
-        //             },
-        //             body: JSON.stringify({
-        //                 model: CONFIG.model,
-        //                 messages: [
-        //                     { role: 'system', content: SISTEMA_PROMPT },
-        //                     ...mensajesHistorial,
-        //                     { role: 'user', content: mensajeUsuario }
-        //                 ],
-        //                 max_tokens: 150,
-        //                 temperature: 0.7
-        //             })
-        //         });
-
-        //         if (!response.ok) {
-        //             throw new Error(`API Error: ${response.status}`);
-        //         }
-
-        //         const data = await response.json();
-        //         const respuesta = data.choices[0].message.content;
-                
-        //         const tiempoRespuesta = performance.now() - tiempoLlamada;
-        //         log('✅', `Respuesta recibida en ${tiempoRespuesta.toFixed(0)}ms`);
-                
-        //         return respuesta;
-
-        //     } catch (error) {
-        //         log('❌', 'Error en API:', error);
-                
-        //         // Fallback a respuesta simulada si falla la API
-        //         return obtenerRespuestaSimulada(mensajeUsuario);
-        //     }
-        // }
-
         async function obtenerRespuestaIA(mensajeUsuario) {
             log('🤖', 'Llamando a Cloud Function...');
             const tiempoLlamada = performance.now();
 
             try {
+                // Construir historial de mensajes para contexto
                 const mensajesHistorial = estado.mensajes.map(m => ({
                     role: m.rol === 'filosofo' ? 'assistant' : 'user',
                     content: m.texto
@@ -365,15 +283,25 @@ Ejemplo de tu estilo:
 
                 const tiempoRespuesta = performance.now() - tiempoLlamada;
                 log('✅', `Respuesta recibida en ${tiempoRespuesta.toFixed(0)}ms`);
+                log('📊', `Tokens: ${result.data.tokensUsados}, API: ${result.data.tiempoRespuestaMs}ms`);
                 
                 return result.data.respuesta;
 
             } catch (error) {
                 log('❌', 'Error en Cloud Function:', error);
+                
+                // Mensajes de error específicos
+                if (error.code === 'unauthenticated') {
+                    return "Por favor, inicia sesión para continuar el diálogo.";
+                } else if (error.code === 'invalid-argument') {
+                    return "Hubo un problema con tu mensaje. Intenta reformularlo.";
+                }
+                
+                // Fallback a respuesta simulada
+                log('⚠️', 'Usando respuesta simulada de emergencia');
                 return obtenerRespuestaSimulada(mensajeUsuario);
             }
         }
-
 
         function obtenerRespuestaSimulada(mensaje) {
             const respuestas = [
@@ -615,7 +543,7 @@ Ejemplo de tu estilo:
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
             // Mensaje de bienvenida
-            const bienvenida = `Χαῖρε! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
+            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
             Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
             Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
             
