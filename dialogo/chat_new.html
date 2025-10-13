@@ -114,6 +114,8 @@
             display: flex;
             flex-direction: column;
             background: #0f1229;
+            overflow: scroll;
+            height: 98%;
         }
 
         .chat-header {
@@ -148,7 +150,7 @@
         .mensajes-container {
             flex: 1;
             overflow-y: auto;
-            padding: 30px;
+            padding: 15px 10px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -173,7 +175,7 @@
 
         .mensaje-filosofo {
             align-self: flex-start;
-            max-width: 70%;
+            max-width: 100%;
         }
 
         .mensaje-alumno {
@@ -238,6 +240,7 @@
             border-radius: 12px;
             line-height: 1.6;
             color: #e4e4e7;
+            text-align: justify;
         }
 
         .mensaje-filosofo .mensaje-texto {
@@ -650,32 +653,28 @@
             display: flex;
             gap: 10px;
             justify-content: space-between;
+            flex-direction: column;
         }
 
         .stat-mobile {
             flex: 1;
             background: rgba(10, 14, 39, 0.8);
-            padding: 12px;
+            padding:3px 12px;
             border-radius: 10px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
         }
 
         .stat-mobile-label {
             font-size: 0.75rem;
             color: #a1a1aa;
-            margin-bottom: 5px;
-            white-space: nowrap;
+            /* margin-bottom: 5px; */
         }
 
         .stat-mobile-value {
             font-size: 1.3rem;
             font-weight: 700;
             color: #ffd700;
-            white-space: nowrap;
         }
 
         .progreso-bar-mobile {
@@ -684,16 +683,21 @@
             background: rgba(122, 126, 149, 0.8);
             border-radius: 10px;
             overflow: hidden;
-            margin: 0 8px;
+            margin:0 8px;
         }
 
         .progreso-fill-mobile {
-            display: block; /* ← CRÍTICO para que <span> respete width */
             height: 100%;
             background: linear-gradient(90deg, #d4af37 0%, #ffd700 100%);
             width: 0%;
             transition: width 0.5s ease;
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .progreso-texto-mobile {
+            font-size: 1rem;
+            color: #ffd700;
+            text-align: center;
         }
 
         /* Botones flotantes móvil */
@@ -717,13 +721,12 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            /* background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%); */
-            background: linear-gradient(135deg, #d4af37 0%, #b49c4e54 80%);
+            background: linear-gradient(135deg, #d4af37 0%, #b49c4e54 100%);
             border: none;
             color: #0a0e27;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 4px 12px rgba(222, 184, 57, 0.5);
             transition: transform 0.2s ease;
             display: flex;
             align-items: center;
@@ -830,27 +833,30 @@
         <!-- ÁREA CENTRAL -->
         <div class="chat-main">
             <div class="chat-header">
-                <div class="chat-title">💬 Diálogo con Aristóteles</div>
+               <!-- <span>💬</span> -->
+                <div class="chat-title">Diálogo con Aristóteles</div>
                 <button class="btn-salir" id="btnSalir">Salir</button>
             </div>
 
             <!-- Stats móvil (solo visible en móvil) -->
-            <div class="stats-mobile">
+            <div class="stats-mobile" style="display: flex;flex-direction: column;">
                 <div class="stats-mobile-row">
-                    <div class="stat-mobile" style="display: flex; flex-direction: row; align-items: center; flex: 2;">
-                        <div class="stat-mobile-label">Progreso</div>
+                    <div class="stat-mobile" style="display: flex;flex-direction: row; align-items: center;">
+                        <div class="stat-mobile-label" >Progreso</div>
                         <div class="progreso-bar-mobile">
-                            <span class="progreso-fill-mobile" id="progresoFillMobile"></span>
+                            <div class="progreso-fill-mobile" id="progresoFillMobile" style="display: block;"></div>
                         </div>
                         <div class="stat-mobile-value" id="progresoTextoMobile">0%</div>
+                        <!-- <div class="progreso-texto-mobile" id="progresoTextoMobile">0%</div> -->
                     </div>
-                </div>
-                <div class="stats-mobile-row">
+                  <div style="display: flex;gap: 8px;">
                     <div class="stat-mobile">
                         <div class="stat-mobile-label">Chats</div>
                         <div class="stat-mobile-value" id="intercambiosNumeroMobile">0/10</div>
                     </div>
-                    <div class="stat-mobile">
+                <!-- </div>
+                <div class="stats-mobile-row"> -->
+                    <div class="stat-mobile" >
                         <div class="stat-mobile-label">Conceptos</div>
                         <div class="stat-mobile-value" id="conceptosCountMobile">0</div>
                     </div>
@@ -858,6 +864,7 @@
                         <div class="stat-mobile-label">Pistas</div>
                         <div class="stat-mobile-value" id="hintsCountMobile">3</div>
                     </div>
+                  </div>
                 </div>
             </div>
 
@@ -906,39 +913,6 @@
             <div class="hints-box">
                 <button class="btn-hint" id="btnHint">💡 Pedir una pista</button>
                 <div class="hints-restantes" id="hintsRestantes">3 pistas disponibles</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE CONFIRMACIÓN DE SALIDA -->
-    <div class="modal-overlay" id="modalConfirmarSalida" style="display: none;">
-        <div class="modal-content" style="max-width: 400px;">
-            <div class="modal-header">
-                <h2 class="modal-title" style="color: #ffd700;">⚠️ ¿Salir del diálogo?</h2>
-            </div>
-            <div class="modal-body" style="text-align: center;">
-                <p style="color: #d4d4d8; line-height: 1.6; margin-bottom: 25px;">
-                    Si sales ahora, perderás el progreso actual de esta conversación. 
-                    Tu puntaje solo se guarda al completar los 10 intercambios.
-                </p>
-                <div class="modal-stats" style="gap: 10px; margin-bottom: 25px;">
-                    <div class="modal-stat" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444;">
-                        <div class="modal-stat-value" style="color: #ef4444;" id="progresoActualSalida">0%</div>
-                        <div class="modal-stat-label">Progreso Actual</div>
-                    </div>
-                    <div class="modal-stat" style="background: rgba(251, 191, 36, 0.1); border: 1px solid #fbbf24;">
-                        <div class="modal-stat-value" style="color: #fbbf24;" id="intercambiosActualSalida">0/10</div>
-                        <div class="modal-stat-label">Mensajes</div>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <button class="btn-volver" id="btnCancelarSalida" style="flex: 1; background: rgba(102, 126, 234, 0.2); color: #667eea; border: 2px solid #667eea;">
-                        Continuar Diálogo
-                    </button>
-                    <button class="btn-volver" id="btnConfirmarSalida" style="flex: 1; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 2px solid #ef4444;">
-                        Salir de Todas Formas
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -1025,17 +999,18 @@
         console.log('═══════════════════════════════════════════════════');
         const tiempoInicio = performance.now();
 
-        // ===============================================
-        // CONFIGURACIÓN
-        // ===============================================
-        const CONFIG = {
+         // ===============================================
+         // CONFIGURACIÓN
+         // ===============================================
+         const CONFIG = {
             filosofo: 'aristoteles',
             maxIntercambios: 10,
             minCaracteres: 30,
             maxHints: 3,
-            umbralAprobacion: 0.80,
-            conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
-        };
+            umbralAprobacion: 0.75,
+            // ¡Nuevos conceptos clave alineados con el prompt!
+            conceptosClave: ['virtud', 'areté', 'término medio', 'mesotés', 'eudaimonía', 'frónesis', 'prudencia', 'templanza', 'valentía', 'justicia', 'hábito', 'carácter'],
+         };
 
         // ===============================================
         // INICIALIZAR CLOUD FUNCTION CON REGIÓN
@@ -1091,13 +1066,7 @@
             modalConceptos: document.getElementById('modalConceptos'),
             conceptosListaMobile: document.getElementById('conceptosListaMobile'),
             closeInfoModal: document.getElementById('closeInfoModal'),
-            closeConceptosModal: document.getElementById('closeConceptosModal'),
-            // Modal de confirmación de salida
-            modalConfirmarSalida: document.getElementById('modalConfirmarSalida'),
-            btnConfirmarSalida: document.getElementById('btnConfirmarSalida'),
-            btnCancelarSalida: document.getElementById('btnCancelarSalida'),
-            progresoActualSalida: document.getElementById('progresoActualSalida'),
-            intercambiosActualSalida: document.getElementById('intercambiosActualSalida')
+            closeConceptosModal: document.getElementById('closeConceptosModal')
         };
 
         // ===============================================
@@ -1205,13 +1174,7 @@
 
                 const tiempoRespuesta = performance.now() - tiempoLlamada;
                 log('✅', `Respuesta recibida en ${tiempoRespuesta.toFixed(0)}ms`);
-                log('📊', `Tokens: ${result.data.tokensUsados} (respuesta: ${result.data.tokensRespuesta || 'N/A'})`);
-                
-                // Advertir si la respuesta fue truncada
-                if (result.data.finishReason === 'length') {
-                    log('⚠️', 'Respuesta truncada por límite de tokens');
-                    console.warn('La respuesta del filósofo se cortó. Esto se reportará para ajustar límites.');
-                }
+                log('📊', `Tokens: ${result.data.tokensUsados}, API: ${result.data.tiempoRespuestaMs}ms`);
                 
                 return result.data.respuesta;
 
@@ -1266,8 +1229,8 @@
             const factores = {
                 intercambios: (estado.intercambios / CONFIG.maxIntercambios) * 0.4,
                 conceptos: (estado.conceptosDetectados.size / CONFIG.conceptosClave.length) * 0.3,
-                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.2,
-                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.1
+                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.15,
+                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.15
             };
 
             const progresoTotal = Object.values(factores).reduce((a, b) => a + b, 0);
@@ -1392,13 +1355,6 @@
                     enviarMensaje();
                 }
             }
-            if (e.key === 'Escape') {
-                // Cerrar modal de confirmación si está abierto
-                if (elementos.modalConfirmarSalida.style.display === 'flex') {
-                    elementos.modalConfirmarSalida.classList.remove('active');
-                    elementos.modalConfirmarSalida.style.display = 'none';
-                }
-            }
         });
 
         elementos.btnEnviar.addEventListener('click', enviarMensaje);
@@ -1454,31 +1410,8 @@
         });
 
         elementos.btnSalir.addEventListener('click', () => {
-            // Mostrar progreso actual en el modal
-            const progresoActual = calcularProgreso();
-            elementos.progresoActualSalida.textContent = `${progresoActual}%`;
-            elementos.intercambiosActualSalida.textContent = `${estado.intercambios}/${CONFIG.maxIntercambios}`;
-            
-            // Mostrar modal de confirmación
-            elementos.modalConfirmarSalida.classList.add('active');
-            elementos.modalConfirmarSalida.style.display = 'flex';
-        });
-
-        elementos.btnCancelarSalida.addEventListener('click', () => {
-            elementos.modalConfirmarSalida.classList.remove('active');
-            elementos.modalConfirmarSalida.style.display = 'none';
-        });
-
-        elementos.btnConfirmarSalida.addEventListener('click', () => {
-            log('🚪', 'Usuario confirmó salida');
-            window.location.href = '../index.html';
-        });
-
-        // Cerrar modal al hacer click fuera
-        elementos.modalConfirmarSalida?.addEventListener('click', (e) => {
-            if (e.target === elementos.modalConfirmarSalida) {
-                elementos.modalConfirmarSalida.classList.remove('active');
-                elementos.modalConfirmarSalida.style.display = 'none';
+            if (confirm('¿Seguro que deseas salir? Se perderá tu progreso actual.')) {
+                window.location.href = '../index.html';
             }
         });
 
@@ -1600,23 +1533,25 @@
             });
         }
 
-        // ===============================================
-        // INICIALIZACIÓN
-        // ===============================================
-        function iniciar() {
+
+         // ===============================================
+         // INICIALIZACIÓN
+         // ===============================================
+         function iniciar() {
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
-            // Mensaje de bienvenida
-            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
-            Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
-            Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
+            // Mensaje de bienvenida mejorado: Usamos <strong> para asegurar la negrita en HTML.
+            const bienvenida = `Χαῖρε (Jaíre)! Soy Aristóteles de Estagira.
+         Me complace dialogar sobre la virtud (areté) y el camino hacia la eudaimonía.
+         Mi propósito es que reflexiones sobre la <strong>Justicia</strong>, la <strong>Templanza</strong>, la <strong>Valentía</strong> y la <strong>Frónesis</strong> (prudencia) en tu vida.
+         Dime, ¿qué decisión difícil o qué hábito deseas mejorar en tu vida para alcanzar una mayor excelencia?`;
             
             agregarMensaje('filosofo', bienvenida);
             elementos.inputMensaje.focus();
             
             const tiempoInicializacion = performance.now() - tiempoInicio;
             log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
-        }
+         }    
 
         // Iniciar cuando el DOM esté listo
         if (document.readyState === 'loading') {
