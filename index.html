@@ -1195,7 +1195,50 @@ async function loadAdminData() {
     generateAdminMiniTable();
     
     console.log('✅ Datos admin móvil cargados');
+
+// --------------------------------------------------
+// --------------------------------------------------
+    // ═══════════════════════════════════════
+    // 🔍 AGREGAR ESTO AQUÍ (para debugging)
+    // ═══════════════════════════════════════
     
+    // Exponer variables globalmente para debugging
+    window.DEBUG_ADMIN = {
+      students: adminStudentsData,
+      progress: adminProgressData,
+      themes: adminThemeStructure
+    };
+    
+    // Mostrar info detallada en consola
+    console.log('═══ DEBUG DASHBOARD ═══');
+    console.log('📊 Estudiantes:', adminStudentsData.length);
+    console.log('📚 Registros progreso:', adminProgressData.length);
+    console.log('🎯 Temas:', Array.from(adminThemeStructure.keys()));
+    
+    // Filtrar diálogos
+    const dialogos = adminProgressData.filter(p => p.moduleId === 'dialogo_aristoteles');
+    console.log('\n💬 Registros de dialogo_aristoteles:', dialogos.length);
+    
+    if (dialogos.length > 0) {
+      console.log('Detalle:');
+      dialogos.forEach(d => {
+        const estudiante = adminStudentsData.find(s => s.id === d.uid);
+        console.log(`  - ${estudiante?.nombres || 'Desconocido'}: ${d.score}% (${d.status})`);
+      });
+    } else {
+      console.warn('⚠️ No hay registros de diálogos en Firebase');
+    }
+    
+    // Mostrar etica_aristoteles para comparar
+    const eticaAristoteles = adminProgressData.filter(p => p.moduleId === 'etica_aristoteles');
+    console.log('\n📖 Registros de etica_aristoteles:', eticaAristoteles.length);
+    
+    console.log('═══════════════════════');
+
+
+// --------------------------------------------------
+// --------------------------------------------------
+
   } catch (error) {
     console.error('❌ Error cargando datos admin:', error);
     showAdminError(error.message);
