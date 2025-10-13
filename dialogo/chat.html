@@ -1536,18 +1536,18 @@
          function iniciar() {
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
-            // Mensaje de bienvenida mejorado: Establece el tono y las expectativas (las 4 virtudes)
+            // Mensaje de bienvenida mejorado: Usamos <strong> para asegurar la negrita en HTML.
             const bienvenida = `Χαῖρε (Jaíre)! Soy Aristóteles de Estagira.
          Me complace dialogar sobre la virtud (areté) y el camino hacia la eudaimonía.
-         Mi propósito es que reflexiones sobre la **Justicia**, la **Templanza**, la **Valentía** y la **Frónesis** (prudencia) en tu vida.
-         Dime, **¿qué decisión difícil o qué hábito deseas mejorar en tu vida para alcanzar una mayor excelencia**?`;
+         Mi propósito es que reflexiones sobre la <strong>Justicia</strong>, la <strong>Templanza</strong>, la <strong>Valentía</strong> y la <strong>Frónesis</strong> (prudencia) en tu vida.
+         Dime, ¿qué decisión difícil o qué hábito deseas mejorar en tu vida para alcanzar una mayor excelencia?`;
             
             agregarMensaje('filosofo', bienvenida);
             elementos.inputMensaje.focus();
             
             const tiempoInicializacion = performance.now() - tiempoInicio;
             log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
-         }       
+         }    
 
         // Iniciar cuando el DOM esté listo
         if (document.readyState === 'loading') {
