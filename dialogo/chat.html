@@ -1027,17 +1027,18 @@
         console.log('═══════════════════════════════════════════════════');
         const tiempoInicio = performance.now();
 
-        // ===============================================
-        // CONFIGURACIÓN
-        // ===============================================
-        const CONFIG = {
+         // ===============================================
+         // CONFIGURACIÓN
+         // ===============================================
+         const CONFIG = {
             filosofo: 'aristoteles',
             maxIntercambios: 10,
             minCaracteres: 30,
             maxHints: 3,
-            umbralAprobacion: 0.80,
-            conceptosClave: ['virtud', 'término medio', 'eudaimonía', 'prudencia', 'justo medio', 'felicidad', 'moderación'],
-        };
+            umbralAprobacion: 0.75,
+            // ¡Nuevos conceptos clave alineados con el prompt!
+            conceptosClave: ['virtud', 'areté', 'término medio', 'mesotés', 'eudaimonía', 'frónesis', 'prudencia', 'templanza', 'valentía', 'justicia', 'hábito', 'carácter'],
+         };
 
         // ===============================================
         // INICIALIZAR CLOUD FUNCTION CON REGIÓN
