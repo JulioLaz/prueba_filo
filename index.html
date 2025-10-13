@@ -842,7 +842,8 @@ function analyzeAdminThemeStructure(progressData) {
         adminThemeStructure.get(moduleId).add(lessonId);
       } else {
         // Si lessonId es null, agregar "general" como actividad única
-        adminThemeStructure.get(moduleId).add('_general');
+        // adminThemeStructure.get(moduleId).add('_general');
+        console.log(`⚠️ Tema ${moduleId} sin actividades específicas, se agrega "_general"`);
       }
     }
   });
@@ -975,7 +976,9 @@ function generateAdminMiniTable() {
     activities.forEach((activity, index) => {
       const activityHeader = document.createElement('th');
       // Nombre apropiado para actividad general
-      const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+      // const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+      const activityDisplayName = activity === 'dialogo' ? 'CONVERSACIÓN' : activity.toUpperCase();
+
 
 
       activityHeader.innerHTML = `
@@ -1053,8 +1056,9 @@ function generateAdminMiniTable() {
         const activityCell = document.createElement('td');
         
         // Mostrar nombre apropiado para actividad general
-        const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
-        
+        // const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+        // Cuando se muestra el nombre de la actividad
+        const activityDisplayName = activity === 'dialogo' ? 'CONVERSACIÓN' : activity.toUpperCase();
         activityCell.innerHTML = `
           <span class="admin-progress-mini ${getProgressClassMini(percentage)}" style="font-size: 9px; min-width: 30px;">
             ${percentage}%
