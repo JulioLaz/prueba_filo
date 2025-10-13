@@ -837,16 +837,17 @@
             </div>
 
             <!-- Stats móvil (solo visible en móvil) -->
-            <div class="stats-mobile">
+            <div class="stats-mobile" style="display: flex;flex-direction: column;">
                 <div class="stats-mobile-row">
-                    <div class="stat-mobile">
-                        <div class="stat-mobile-label">Progreso</div>
+                    <div class="stat-mobile" style="display: flex;flex-direction: row; flex-wrap: nowrap; width:100%;">
+                        <div class="stat-mobile-label" >Progreso</div>
                         <div class="progreso-bar-mobile">
-                            <div class="progreso-fill-mobile" id="progresoFillMobile"></div>
+                            <span class="progreso-fill-mobile" id="progresoFillMobile"></span>
                         </div>
                         <div class="stat-mobile-value" id="progresoTextoMobile">0%</div>
                         <!-- <div class="progreso-texto-mobile" id="progresoTextoMobile">0%</div> -->
                     </div>
+                  <div style="display: flex;;">
                     <div class="stat-mobile">
                         <div class="stat-mobile-label">Chats</div>
                         <div class="stat-mobile-value" id="intercambiosNumeroMobile">0/10</div>
@@ -861,6 +862,7 @@
                         <div class="stat-mobile-label">Pistas</div>
                         <div class="stat-mobile-value" id="hintsCountMobile">3</div>
                     </div>
+                  </div>
                 </div>
             </div>
 
