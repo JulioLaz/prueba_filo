@@ -450,7 +450,7 @@ function createThemeCard(theme) {
             break;
         // NUEVO CASO AÑADIDO: DIÁLOGO
         case 'DIÁLOGO':
-            dificultadFormateada = 'DIÁLOGO';
+            dificultadFormateada = 'DIALOGO';
             style_difficulty = 'dialogo'; // Usar una clase CSS específica si existe, sino 'game' o 'intermedio'
             break;
         default:
