@@ -803,7 +803,7 @@ function hideAdminError() {
   adminError.style.display = 'none';
 }
 
-function calculateProgressPercentage(progressRecord) {
+function calculateProgressPercentage00(progressRecord) {
   // Si no hay registro, retornar 0 inmediatamente
   if (!progressRecord) return 0;
   
@@ -832,7 +832,218 @@ function getProgressClassMini(percentage) {
   return 'progress-mini-100';
 }
 
+// ###############################################################
+
+// ═══════════════════════════════════════════════════════════════
+// 🔧 FIX 1: FILTRAR SOLO TEMAS VÁLIDOS
+// ═══════════════════════════════════════════════════════════════
+
+// AGREGAR al inicio del script, después de las variables globales (línea ~770)
+const TEMAS_VALIDOS = new Set([
+  'cassirer',
+  'sartre',
+  'etica',
+  'etica_aristoteles',
+  'hedonismo',
+  'utilitarismo',
+  'pragmatismo',
+  'etica_kant',
+  'antropocentrismo',
+  'epistemologia',
+  'logica',
+  'metafisica',
+  'estetica',
+  'filosofia-politica',
+  'proyecto_T2',
+  'proyecto_T3',
+  'dialogo_aristoteles',  // ✅ Este es el correcto
+  'dino',
+  'game'
+]);
+
+// Función para normalizar nombres inconsistentes en Firebase
+function normalizarModuleId(moduleId) {
+  const normalizaciones = {
+    'etica_de_aristoteles': 'etica_aristoteles',
+    'hedonismo_epicuro': 'hedonismo',
+    'utilitarismo_de_stuart_mill': 'utilitarismo'
+  };
+  
+  return normalizaciones[moduleId] || moduleId;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 🔧 FIX 2: MODIFICAR analyzeAdminThemeStructure (línea ~831)
+// ═══════════════════════════════════════════════════════════════
+
 function analyzeAdminThemeStructure(progressData) {
+  console.log('🔍 Analizando estructura jerárquica...');
+  
+  adminThemeStructure.clear();
+  
+  progressData.forEach(record => {
+    let { moduleId, lessonId } = record;
+    
+    // ✅ Normalizar moduleId inconsistente
+    moduleId = normalizarModuleId(moduleId);
+    
+    // ✅ Filtrar solo temas válidos
+    if (!TEMAS_VALIDOS.has(moduleId)) {
+      console.warn(`⚠️ Tema "${record.moduleId}" no está en configuración, ignorado`);
+      return;
+    }
+    
+    if (moduleId) {
+      if (!adminThemeStructure.has(moduleId)) {
+        adminThemeStructure.set(moduleId, new Set());
+      }
+      
+      if (lessonId) {
+        adminThemeStructure.get(moduleId).add(lessonId);
+      } else {
+        // Para diálogos sin lessonId, normalizar a 'dialogo'
+        if (moduleId.startsWith('dialogo_')) {
+          adminThemeStructure.get(moduleId).add('dialogo');
+          console.log(`🔄 Normalizando lessonId null → "dialogo" para ${moduleId}`);
+        } else {
+          adminThemeStructure.get(moduleId).add('_general');
+          console.warn(`⚠️ Tema ${moduleId} sin actividades específicas, se agrega "_general"`);
+        }
+      }
+    }
+  });
+
+  // Convertir Sets a Arrays ordenados
+  for (let [theme, activities] of adminThemeStructure) {
+    adminThemeStructure.set(theme, Array.from(activities).sort());
+  }
+
+  // Poblar selector de temas
+  adminThemeSelect.innerHTML = '<option value="">Todos los temas</option>';
+  
+  const sortedThemes = Array.from(adminThemeStructure.keys()).sort();
+  
+  for (let theme of sortedThemes) {
+    const option = document.createElement('option');
+    option.value = theme;
+    option.textContent = formatThemeName(theme);
+    adminThemeSelect.appendChild(option);
+  }
+  
+  console.log('📋 Estructura analizada:', Object.fromEntries(adminThemeStructure));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 🔧 FIX 3: MOSTRAR SCORE PARCIAL (no solo completed)
+// ═══════════════════════════════════════════════════════════════
+
+function calculateProgressPercentage(progressRecord) {
+  // Si no hay registro, retornar 0 inmediatamente
+  if (!progressRecord) return 0;
+  
+  // ✅ NUEVO: Priorizar el score si existe (sin importar status)
+  if (progressRecord.score && progressRecord.score > 0) {
+    return Math.min(Math.round(progressRecord.score), 100);
+  }
+  
+  // Si está completado pero sin score, 100%
+  if (progressRecord.status === 'completed') return 100;
+  
+  // Si tiene tiempo pero no score, dar crédito mínimo
+  if (progressRecord.timeSpentSeconds && progressRecord.timeSpentSeconds > 30) {
+    return 25;
+  }
+  
+  // Por defecto, 0%
+  return 0;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 🔧 FIX 4: NORMALIZAR EN BÚSQUEDAS
+// ═══════════════════════════════════════════════════════════════
+
+// REEMPLAZAR en generateAdminMiniTable (línea ~1044 aproximadamente)
+activities.forEach((activity, index) => {
+  const progressRecord = adminProgressData.find(p => {
+    // ✅ Normalizar moduleId antes de comparar
+    const moduleNormalizado = normalizarModuleId(p.moduleId);
+    
+    // Normalizar lessonId para diálogos
+    let lessonComparar = p.lessonId;
+    if (!lessonComparar && moduleNormalizado.startsWith('dialogo_')) {
+      lessonComparar = 'dialogo';
+    }
+    
+    return p.uid === student.id && 
+           moduleNormalizado === theme && 
+           lessonComparar === activity;
+  });
+  
+  const percentage = calculateProgressPercentage(progressRecord);
+  const activityCell = document.createElement('td');
+  
+  const activityDisplayName = activity === 'dialogo' 
+    ? 'CONVERSACIÓN' 
+    : (activity === '_general' ? 'GENERAL' : activity.toUpperCase());
+  
+  activityCell.innerHTML = `
+    <span class="admin-progress-mini ${getProgressClassMini(percentage)}" style="font-size: 9px; min-width: 30px;">
+      ${percentage}%
+    </span>
+  `;
+  activityCell.style.textAlign = 'center';
+  activityCell.style.padding = '2px 1px';
+  
+  if (progressRecord) {
+    activityCell.title = `${theme} - ${activityDisplayName}\nEstado: ${progressRecord.status || 'En progreso'}\nScore: ${progressRecord.score || 0}\nTiempo: ${Math.round((progressRecord.timeSpentSeconds || 0) / 60)}min`;
+  } else {
+    activityCell.title = `${theme} - ${activityDisplayName}\nSin progreso`;
+  }
+  
+  if (index === activities.length - 1) {
+    activityCell.style.borderRight = '2px solid rgba(255,255,255,0.2)';
+  }
+  
+  row.appendChild(activityCell);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// 🔧 FIX 5: NORMALIZAR EN PROGRESO GENERAL
+// ═══════════════════════════════════════════════════════════════
+
+function calculateGeneralThemeProgress(studentId, theme, activities) {
+  if (activities.length === 0) return 0;
+  
+  let totalProgress = 0;
+  let validActivities = 0;
+  
+  activities.forEach(activity => {
+    const progressRecord = adminProgressData.find(p => {
+      // ✅ Normalizar moduleId antes de comparar
+      const moduleNormalizado = normalizarModuleId(p.moduleId);
+      
+      // Normalizar lessonId para diálogos
+      let lessonComparar = p.lessonId;
+      if (!lessonComparar && moduleNormalizado.startsWith('dialogo_')) {
+        lessonComparar = 'dialogo';
+      }
+      
+      return p.uid === studentId && 
+             moduleNormalizado === theme && 
+             lessonComparar === activity;
+    });
+    
+    const progress = calculateProgressPercentage(progressRecord);
+    totalProgress += progress;
+    validActivities++;
+  });
+  
+  return validActivities > 0 ? Math.round(totalProgress / validActivities) : 0;
+}
+
+// ###############################################################
+
+function analyzeAdminThemeStructure00(progressData) {
   adminThemeStructure.clear();
   
   progressData.forEach(record => {
@@ -979,30 +1190,31 @@ function generateAdminMiniTable() {
     adminTableHeaders.appendChild(themeHeader);
     
     // Headers de actividades específicas
-    activities.forEach((activity, index) => {
-      const activityHeader = document.createElement('th');
-      // Nombre apropiado para actividad general
-      // const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
-      const activityDisplayName = activity === 'dialogo' ? 'CONVERSACIÓN' : activity.toUpperCase();
+    // activities.forEach((activity, index) => {
+    //   const activityHeader = document.createElement('th');
+    //   // Nombre apropiado para actividad general
+    //   // const activityDisplayName = activity === '_general' ? 'COMPLETO' : activity.toUpperCase();
+    //   const activityDisplayName = activity === 'dialogo' ? 'CONVERSACIÓN' : activity.toUpperCase();
 
 
 
-      activityHeader.innerHTML = `
-        <div style="font-size: 8px; font-weight: 500; writing-mode: vertical-rl; text-orientation: mixed;">
-          ${activityDisplayName}
-        </div>
-      `;
-      activityHeader.style.minWidth = '35px';
-      activityHeader.style.textAlign = 'center';
-      activityHeader.style.padding = '4px 2px';
+    //   activityHeader.innerHTML = `
+    //     <div style="font-size: 8px; font-weight: 500; writing-mode: vertical-rl; text-orientation: mixed;">
+    //       ${activityDisplayName}
+    //     </div>
+    //   `;
+    //   activityHeader.style.minWidth = '35px';
+    //   activityHeader.style.textAlign = 'center';
+    //   activityHeader.style.padding = '4px 2px';
       
-      // Separador visual entre temas
-      if (index === activities.length - 1) {
-        activityHeader.style.borderRight = '2px solid rgba(255,255,255,0.3)';
-      }
+    //   // Separador visual entre temas
+    //   if (index === activities.length - 1) {
+    //     activityHeader.style.borderRight = '2px solid rgba(255,255,255,0.3)';
+    //   }
       
-      adminTableHeaders.appendChild(activityHeader);
-    });
+    //   adminTableHeaders.appendChild(activityHeader);
+    // }
+  );
   });
 
   // Crear filas (máximo 4 estudiantes para dar espacio a más columnas)
@@ -1133,7 +1345,7 @@ function generateAdminMiniTable() {
   adminTableContainer.style.overflowY = 'auto';
 }
 
-function calculateGeneralThemeProgress(studentId, theme, activities) {
+function calculateGeneralThemeProgress00(studentId, theme, activities) {
   if (activities.length === 0) return 0;
   
   let totalProgress = 0;
