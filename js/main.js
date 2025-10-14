@@ -681,6 +681,12 @@ function initializeApp() {
     // Renderizar temas iniciales
     renderThemes();
     
+    // 🔧 Forzar que el filtro "Todos" se active visual y funcionalmente
+    currentFilter = 'all';
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+    updateThemeDisplay(); // fuerza mostrar todos los temas
+
     // Animación de entrada
     document.body.classList.add('fade-in');
     
