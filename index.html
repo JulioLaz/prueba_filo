@@ -876,7 +876,7 @@ function formatThemeName(themeId) {
   if (themeId.startsWith('dialogo_')) {
     const filosofo = themeId.replace('dialogo_', '');
     const filosofoCapitalized = filosofo.charAt(0).toUpperCase() + filosofo.slice(1);
-    return `💬 Diálogo con ${filosofoCapitalized}`;
+    return `Diálogo con ${filosofoCapitalized}`;
   }
   
   // Casos especiales conocidos
@@ -898,38 +898,6 @@ function formatThemeName(themeId) {
   // Fallback: formato genérico
   return themeId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
-
-// function analyzeAdminThemeStructure(progressData) {
-//   adminThemeStructure.clear();
-  
-//   progressData.forEach(record => {
-//     const { moduleId, lessonId } = record;
-    
-//     if (moduleId) {
-//       if (!adminThemeStructure.has(moduleId)) {
-//         adminThemeStructure.set(moduleId, new Set());
-//       }
-      
-//       if (lessonId) {
-//         adminThemeStructure.get(moduleId).add(lessonId);
-//       }
-//     }
-//   });
-
-//   // Convertir Sets a Arrays ordenados
-//   for (let [theme, activities] of adminThemeStructure) {
-//     adminThemeStructure.set(theme, Array.from(activities).sort());
-//   }
-
-//   // Poblar selector de temas
-//   adminThemeSelect.innerHTML = '<option value="">Todos los temas</option>';
-//   for (let theme of adminThemeStructure.keys()) {
-//     const option = document.createElement('option');
-//     option.value = theme;
-//     option.textContent = theme.replace(/_/g, ' ').toUpperCase();
-//     adminThemeSelect.appendChild(option);
-//   }
-// }
 
 function generateAdminMiniTable() {
   // Filtrar por tema seleccionado
