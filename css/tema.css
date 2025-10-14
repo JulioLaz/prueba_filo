@@ -59,7 +59,7 @@
   /* ----- Modal (lámina) ----- */
   .sheet-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.6); backdrop-filter:saturate(120%) blur(2px); z-index:1000 }
   .sheet{
-    position:fixed; left:50%; top:6%; transform:translateX(-50%);
+    position:fixed; left:50%; top:10px; transform:translateX(-50%);
     width:min(960px,92vw); max-height:88vh;
     background:#0e1426; border:1px solid #25305a; border-radius:18px;
     box-shadow:0 40px 120px rgba(0,0,0,.7);
