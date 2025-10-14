@@ -69,10 +69,6 @@
           Crear una cuenta
         </a>
       </p>
-
-      <!-- <p class="hint">¿No tenés cuenta?
-        <a href="#" id="goToRegister">Crear una cuenta</a>
-      </p> -->
     </div>
   </div>
 </div>
@@ -387,15 +383,11 @@ console.log("🚀 Inicializando aplicación con Firebase ampliado...");
 const auth = getAuth();
 await setPersistence(auth, browserLocalPersistence);
 
-
 // =======================================
 // enviar nombre a todo el sitio
 // Después de login o registro exitoso
 // sessionStorage.setItem("user.nickname", formData?.nickname || email.split("@")[0]);
 
-
-
-// =======================================
 
 // ========================================
 // HELPERS Y UTILIDADES
@@ -768,7 +760,7 @@ import {
 
 console.log("📱 Inicializando tarjeta dashboard admin móvil...");
 
-const auth = getAuth();
+// const auth = getAuth();
 
 // Variables globales
 let adminStudentsData = [];
