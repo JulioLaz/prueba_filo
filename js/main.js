@@ -439,55 +439,28 @@ function createThemeCard(theme) {
     let dificultadFormateada = theme.difficulty;
     let style_difficulty = '';
 
-    switch (theme.difficulty) {
-        case 'PROYECTO_TRIMESTRAL':
-            dificultadFormateada = 'PROYECTO';
-            style_difficulty = 'PROYECTO';
-            break;
-        case 'GAME':
-            dificultadFormateada = 'JUEGO'; // He cambiado 'GAME' a 'JUEGO' para consistencia en español
-            style_difficulty = 'game';
-            break;
-        // NUEVO CASO AÑADIDO: DIÁLOGO
-        case 'DIÁLOGO':
-            dificultadFormateada = 'DIALOGO';
-            style_difficulty = 'dialogo'; // Usar una clase CSS específica si existe, sino 'game' o 'intermedio'
-            break;
-        default:
-            // Manejo de Basico, Intermedio, Avanzado, Unidad I, etc.
-            dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
+    if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL' && dificultadFormateada !== 'GAME' && dificultadFormateada !== 'DIALOGO') {
+        dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
 
-            if (dificultadFormateada.includes('basico') || dificultadFormateada.includes('UNIDAD I')) {
-                style_difficulty = 'basico';
-            } else if (dificultadFormateada.includes('intermedio') || dificultadFormateda.includes('UNIDAD II')) {
-                style_difficulty = 'intermedio';
-            } else if (dificultadFormateada.includes('avanzado') || dificultadFormateada.includes('UNIDAD III')) {
-                style_difficulty = 'avanzado';
-            }
-            break;
+        if (dificultadFormateada == 'basico' || dificultadFormateada == 'UNIDAD I') {
+            style_difficulty = 'basico';
+        }
+        else if (dificultadFormateada == 'intermedio' || dificultadFormateada == 'UNIDAD II') {
+            style_difficulty = 'intermedio';
+        }
+        else if (dificultadFormateada == 'avanzado' || dificultadFormateada == 'UNIDAD III') {
+            style_difficulty = 'avanzado';
+        }
+    } else if(dificultadFormateada === 'PROYECTO_TRIMESTRAL' ){
+        dificultadFormateada = 'PROYECTO';
+        style_difficulty = 'PROYECTO';
+    } else if(dificultadFormateada === 'GAME' ){
+        dificultadFormateada = 'GAME';
+        style_difficulty = 'game';
+    } else if(dificultadFormateada === 'DIALOGO' ){
+        dificultadFormateada = 'DIÁLOGO';
+        style_difficulty = 'game';
     }
-    // --------------------------------------------------
-
-
-    // if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL' && dificultadFormateada !== 'GAME') {
-    //     dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
-
-    //     if (dificultadFormateada == 'basico' || dificultadFormateada == 'UNIDAD I') {
-    //         style_difficulty = 'basico';
-    //     }
-    //     else if (dificultadFormateada == 'intermedio' || dificultadFormateada == 'UNIDAD II') {
-    //         style_difficulty = 'intermedio';
-    //     }
-    //     else if (dificultadFormateada == 'avanzado' || dificultadFormateada == 'UNIDAD III') {
-    //         style_difficulty = 'avanzado';
-    //     }
-    // } else if(dificultadFormateada === 'PROYECTO_TRIMESTRAL' ){
-    //     dificultadFormateada = 'PROYECTO';
-    //     style_difficulty = 'PROYECTO';
-    // } else if(dificultadFormateada === 'GAME' ){
-    //     dificultadFormateada = 'GAME';
-    //     style_difficulty = 'game';
-    // }
 
 
     card.innerHTML = `
@@ -523,8 +496,9 @@ function createThemeCard(theme) {
 
         const isProyecto = theme.difficulty === 'PROYECTO_TRIMESTRAL';
         const isGame     = theme.difficulty === 'GAME';
+        const isDialogo     = theme.difficulty === 'DIALOGO';
 
-        if (isProyecto || isGame) {
+        if (isProyecto || isGame || isDialogo) {
         window.location.href = theme.contentFile;   // ✅ ahora GAME abre su HTML
         console.log(`➡️ Abriendo: ${theme.contentFile}`);
         } else {
