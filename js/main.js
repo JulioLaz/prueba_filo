@@ -640,10 +640,17 @@ function setupEventListeners() {
     });
     
     // Limpiar datos
-    clearDataBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        clearUserData();
-    });
+    // clearDataBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     clearUserData();
+    // });
+    // Limpiar datos (solo si el botón existe y está visible)
+    if (clearDataBtn) {
+        clearDataBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearUserData();
+        });
+    }
     
     // Atajo de teclado para búsqueda
     document.addEventListener('keydown', (e) => {
@@ -681,12 +688,6 @@ function initializeApp() {
     // Renderizar temas iniciales
     renderThemes();
     
-    // 🔧 Forzar que el filtro "Todos" se active visual y funcionalmente
-    currentFilter = 'all';
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-    updateThemeDisplay(); // fuerza mostrar todos los temas
-
     // Animación de entrada
     document.body.classList.add('fade-in');
     
@@ -752,10 +753,35 @@ function exportStats() {
 // ========================================
 
 // Verificar si el usuario regresa del cuestionario
+// document.addEventListener('DOMContentLoaded', () => {
+//     handleReturnFromQuiz();
+//     initializeApp();
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('📱 DOM completamente cargado');
     handleReturnFromQuiz();
-    initializeApp();
+    
+    // Esperar un frame para asegurar que todo esté listo
+    requestAnimationFrame(() => {
+        initializeApp();
+        console.log('✅ Temas renderizados inicialmente');
+    });
 });
+
+// Fallback: si DOMContentLoaded ya pasó
+if (document.readyState === 'loading') {
+    // DOM aún no cargó, esperar evento
+} else {
+    // DOM ya está listo, inicializar inmediatamente
+    console.log('⚡ Inicialización inmediata (DOM ya listo)');
+    requestAnimationFrame(() => {
+        handleReturnFromQuiz();
+        initializeApp();
+    });
+}
+
+// ========================================
 
 // Manejar errores globales
 window.addEventListener('error', (e) => {
