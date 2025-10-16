@@ -177,27 +177,64 @@ async function registrarSesion(uid, tipo, metadata = {}) {
 // ====================================
 // GESTIÓN DE PROGRESO POR TEMA
 // ====================================
+
+// ====================================
+// GUARDAR PROGRESO CON CONTROL DE BEST SCORE
+// ====================================
 async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
-  console.log(`💾 Guardando progreso: ${moduleId} para ${uid}`);
+  console.log(`🔄 Procesando progreso: ${moduleId} para ${uid}`);
   
   try {
     const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
     
+    // 📊 PASO 1: Leer el progreso anterior
+    const existingSnap = await getDoc(progressRef);
+    let previousScore = 0;
+    let previousAttempts = 0;
+    
+    if (existingSnap.exists()) {
+      const existingData = existingSnap.data();
+      previousScore = existingData.score || 0;
+      previousAttempts = existingData.attempts || 0;
+      console.log(`📈 Score anterior: ${previousScore}% | Intentos: ${previousAttempts}`);
+    }
+    
+    // 🎯 PASO 2: Determinar si actualizar (solo si el nuevo score es mejor)
+    const newScore = Math.min(score, 100); // Tope máximo 100%
+    const shouldUpdate = newScore > previousScore;
+    
+    if (!shouldUpdate) {
+      console.log(`⏸️  Score ${newScore}% no supera al anterior ${previousScore}%. NO se actualiza.`);
+      return; // Salir sin actualizar
+    }
+    
+    console.log(`✅ Nuevo mejor score: ${previousScore}% → ${newScore}%`);
+    
+    // 💾 PASO 3: Preparar datos del progreso
     const progressData = {
       uid,
       moduleId,
       lessonId,
       status,
-      score,
+      score: newScore,              // Solo actualizar si es mejor
+      bestScore: Math.max(newScore, previousScore), // Garantizar que es el máximo
+      attempts: previousAttempts + 1, // Incrementar contador
       timeSpentSeconds: seconds,
       updatedAt: serverTimestamp(),
-      metadata
+      metadata: {
+        ...metadata,
+        scoreDifference: newScore - previousScore,
+        updatedReason: shouldUpdate ? 'better_score' : 'skipped_lower_score'
+      }
     };
     
+    // 🔐 PASO 4: Guardar en Firebase
     await setDoc(progressRef, progressData, { merge: true });
     
-    // Actualizar estadísticas globales del usuario
+    console.log(`✅ Progreso guardado: ${progressId} | Score: ${newScore}% | Intento: ${progressData.attempts}`);
+    
+    // 📊 PASO 5: Actualizar estadísticas globales del usuario
     const userRef = doc(db, "users", uid);
     const userSnap = await getDoc(userRef);
     
@@ -209,15 +246,57 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
         'estadisticas.tiempoTotalSegundos': currentTotalTime + seconds,
         'estadisticas.ultimaActividad': serverTimestamp()
       });
+      
+      console.log(`⏱️  Tiempo total acumulado: ${currentTotalTime + seconds}s`);
     }
     
-    console.log(`✅ Progreso guardado: ${progressId}`);
-    
   } catch (error) {
-    console.error("Error guardando progreso:", error);
+    console.error("❌ Error guardando progreso:", error);
     throw error;
   }
 }
+
+// async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
+//   console.log(`💾 Guardando progreso: ${moduleId} para ${uid}`);
+  
+//   try {
+//     const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
+//     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
+    
+//     const progressData = {
+//       uid,
+//       moduleId,
+//       lessonId,
+//       status,
+//       score,
+//       timeSpentSeconds: seconds,
+//       updatedAt: serverTimestamp(),
+//       metadata
+//     };
+    
+//     await setDoc(progressRef, progressData, { merge: true });
+    
+//     // Actualizar estadísticas globales del usuario
+//     const userRef = doc(db, "users", uid);
+//     const userSnap = await getDoc(userRef);
+    
+//     if (userSnap.exists()) {
+//       const userData = userSnap.data();
+//       const currentTotalTime = userData.estadisticas?.tiempoTotalSegundos || 0;
+      
+//       await updateDoc(userRef, {
+//         'estadisticas.tiempoTotalSegundos': currentTotalTime + seconds,
+//         'estadisticas.ultimaActividad': serverTimestamp()
+//       });
+//     }
+    
+//     console.log(`✅ Progreso guardado: ${progressId}`);
+    
+//   } catch (error) {
+//     console.error("Error guardando progreso:", error);
+//     throw error;
+//   }
+// }
 
 // ====================================
 // OBTENER PROGRESO DE UN TEMA
@@ -354,10 +433,18 @@ export async function logout() {
   return signOut(auth);
 }
 
-// API PÚBLICA - GUARDAR PROGRESO (INTERFAZ SIMPLIFICADA)
+
+// ====================================
+// API PÚBLICA - GUARDAR PROGRESO (MEJORADA)
+// ====================================
 export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
   const user = auth.currentUser;
   if (!user) throw new Error("No autenticado");
+  
+  // Garantizar que score está entre 0 y 100
+  const validScore = Math.max(0, Math.min(score, 100));
+  
+  console.log(`🎯 Guardando progreso: ${moduleId} | Score: ${validScore}% | Tiempo: ${seconds}s`);
   
   // Guardar en Firebase
   await saveProgressToFirebase({
@@ -365,7 +452,7 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
     moduleId,
     lessonId,
     status,
-    score,
+    score: validScore,
     seconds,
     metadata: {
       timestamp: Date.now(),
@@ -373,21 +460,76 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
     }
   });
   
-  // Mantener compatibilidad con sistema anterior (temporal)
-  const id = `${user.uid}__${moduleId}${lessonId ? `__${lessonId}` : ""}`;
+  // Mantener compatibilidad con sessionStorage
   const sessionKey = `tema.${moduleId}.progress`;
-  
   try {
     sessionStorage.setItem(sessionKey, JSON.stringify({
       moduleId,
       lessonId,
       status,
-      score,
+      score: validScore,
       seconds,
       updatedAt: new Date().toISOString()
     }));
   } catch (error) {
-    console.warn("No se pudo guardar en sessionStorage:", error);
+    console.warn("⚠️  No se pudo guardar en sessionStorage:", error);
+  }
+}
+
+// API PÚBLICA - GUARDAR PROGRESO (INTERFAZ SIMPLIFICADA)
+// export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
+//   const user = auth.currentUser;
+//   if (!user) throw new Error("No autenticado");
+  
+//   // Guardar en Firebase
+//   await saveProgressToFirebase({
+//     uid: user.uid,
+//     moduleId,
+//     lessonId,
+//     status,
+//     score,
+//     seconds,
+//     metadata: {
+//       timestamp: Date.now(),
+//       url: window.location.href
+//     }
+//   });
+  
+//   // Mantener compatibilidad con sistema anterior (temporal)
+//   const id = `${user.uid}__${moduleId}${lessonId ? `__${lessonId}` : ""}`;
+//   const sessionKey = `tema.${moduleId}.progress`;
+  
+//   try {
+//     sessionStorage.setItem(sessionKey, JSON.stringify({
+//       moduleId,
+//       lessonId,
+//       status,
+//       score,
+//       seconds,
+//       updatedAt: new Date().toISOString()
+//     }));
+//   } catch (error) {
+//     console.warn("No se pudo guardar en sessionStorage:", error);
+//   }
+// }
+
+// ====================================
+// FUNCIÓN PARA CONSULTAR MEJOR SCORE
+// ====================================
+export async function getBestScore(uid, moduleId) {
+  try {
+    const progressRef = doc(db, "progreso_temas", `${uid}_${moduleId}`);
+    const progressSnap = await getDoc(progressRef);
+    
+    if (progressSnap.exists()) {
+      const data = progressSnap.data();
+      return data.bestScore || data.score || 0;
+    }
+    
+    return 0;
+  } catch (error) {
+    console.error("❌ Error obteniendo best score:", error);
+    return 0;
   }
 }
 
