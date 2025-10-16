@@ -3,3 +3,5 @@ node_modules/
 # Abrí functions/.gitignore y verificá que tenga:
 .env
 .env.*
+.env.local
+.env.*.local
