@@ -705,6 +705,12 @@ function openVideoModal() {
   videoContainer.classList.toggle('short', isShort);
   videoSheet.classList.toggle('short-video', isShort);
   
+  if (!isShort) {
+      videoSheet.classList.add('compact-pad');
+    } else {
+      videoSheet.classList.remove('compact-pad');
+    }
+
   console.log('🎭 [Debug] Clases aplicadas');
   
   // Crear URL del embed

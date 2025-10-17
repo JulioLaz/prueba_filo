@@ -185,7 +185,9 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 
 
 .video-info{
-  padding:20px;
+  /* padding:20px; */
+  padding-block: 10px;   /* antes: 20px */
+  padding-inline: 16px;  /* opcional */
   text-align:center;
   background:linear-gradient(135deg,rgba(107,124,255,.08), rgba(155,107,255,.05));
   border-bottom:1px solid #223059;
@@ -221,9 +223,9 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 }
 
 /* Forzar visibilidad del video */
-#videoContainer {
+/* #videoContainer {
   min-height: 400px !important;
-}
+} */
 
 #videoFrameSlot {
   width: 100% !important;
@@ -248,6 +250,48 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
   width: 100% !important;
   height: 100% !important;
 }
+
+/* nuevos estyles corregiendo video 16:9 */
+
+/* 1) Compactar la barra de info del video */
+.video-info{
+  padding-block: 10px;   /* antes: 20px */
+  padding-inline: 16px;  /* opcional */
+}
+
+/* 2) Solo 20px arriba/abajo alrededor del video, sin “aire” lateral extra */
+.video-container{
+  margin: 20px auto;     /* antes: 20px (todos los lados) */
+  /* si querés aún menos lateral: margin: 20px 0; */
+}
+
+/* 3) Evitar altura forzada que agrega espacio “vacío” */
+#videoContainer,
+#videoFrameSlot,
+#videoFrameSlot iframe,
+.video-container-wrapper{
+  min-height: unset !important;  /* antes: 400px */
+}
+
+/* Mantener proporción 16:9 sin altura fija */
+.video-container{ 
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+/* Si querés un piso suave, ponelo chico (opcional) */
+@media (max-width: 560px){
+  #videoContainer,
+  #videoFrameSlot,
+  #videoFrameSlot iframe,
+  .video-container-wrapper{
+    min-height: 240px !important; /* opcional */
+  }
+}
+
+
+/* ======================================= */
 
 #clozeRoot .cloze-item{margin:14px 0; padding:12px; background:#0f1629; border:1px solid #1f2a4a; border-radius:12px}
 #clozeRoot input[type="text"]{min-width:92px; padding:6px 8px; border-radius:8px; border:1px solid #32406a; background:#0b1220; color:#eaf0ff}
@@ -294,3 +338,11 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
       /* content: "👨‍💼"; */
       font-size: 20px;
     }
+
+    /* Aplica solo cuando NO es short */
+.sheet.compact-pad .video-info{ padding-block:10px }
+.sheet.compact-pad .video-container{ margin:20px auto }
+.sheet.compact-pad #videoContainer,
+.sheet.compact-pad #videoFrameSlot,
+.sheet.compact-pad #videoFrameSlot iframe,
+.sheet.compact-pad .video-container-wrapper{ min-height:unset !important }

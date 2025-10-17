@@ -10,13 +10,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA8GSBbszBeBIVG3C56xfC5yao_1m2UPcQ",
-  authDomain: "filosofia-quiz-prod.firebaseapp.com",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,  // ✅ DESDE .env
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   databaseURL: "https://filosofia-quiz-prod-default-rtdb.firebaseio.com",
-  projectId: "filosofia-quiz-prod",
-  storageBucket: "filosofia-quiz-prod.firebasestorage.app",
-  messagingSenderId: "344375832179",
-  appId: "1:344375832179:web:db1ea9ab343fd90b0b4406",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: "G-GJ1XNPC80C"
 };
 
