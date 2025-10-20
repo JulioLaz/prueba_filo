@@ -62,7 +62,10 @@
   let overallFoundCount = 0;
   let globalFound = new Set();
   let gameStartTime = Date.now();
-
+  // ===============================
+  let isLastConceptReadingPending = false;
+  let currentLevelForCompletion = null;
+  // ===============================
   console.log(`📈 Total de conceptos en el juego: ${TOTAL_CONCEPTS}`);
 
   // Leer progreso existente
@@ -498,7 +501,43 @@
     meaningSheet.classList.add("open");
   }
 
-  function onConceptReadingComplete(concept) {
+  // ★ REEMPLAZAR la función onConceptReadingComplete:
+function onConceptReadingComplete(concept) {
+  console.log('[CazaFirebase] Lectura completada para:', concept.term);
+  play(SND_CONCEPT_READ);
+  
+  // ★ NUEVO: Verificar si fue el último concepto
+  if (isLastConceptReadingPending) {
+    console.log(`🎉 [Lectura] ¡Último concepto leído! Mostrando resumen del párrafo...`);
+    
+    isLastConceptReadingPending = false;
+    
+    // Cerrar el modal de lectura después de un breve delay
+    setTimeout(() => {
+      closeMeaningModal();
+      
+      // Ahora mostrar el modal de nivel completado
+      setTimeout(() => {
+        const isLastLevel = idx >= (CFG.levels.length - 1);
+        showLevelCompleted(currentLevelForCompletion, { isLastLevel });
+        currentLevelForCompletion = null;
+        
+        if (isLastLevel) {
+          setTimeout(() => {
+            showSummaryDialog(CFG);
+          }, SUMMARY_DIALOG_DELAY_MS);
+        }
+      }, 500);
+    }, 1500);
+  } else {
+    // Concepto normal (no es el último)
+    setTimeout(() => {
+      closeMeaningModal();
+    }, 2000);
+  }
+}
+
+  function onConceptReadingComplete_00(concept) {
     console.log('[CazaFirebase] Lectura completada para:', concept.term);
     play(SND_CONCEPT_READ);
     
@@ -632,6 +671,55 @@
   }
 
   function onCorrect(token, level, keyNorm) {
+  if (token.classList.contains("correct")) return;
+  
+  token.classList.add("correct");
+  streak++;
+
+  const concept = level.concepts.find(c => normalize(c.term) === keyNorm);
+  if (concept) {
+    play(SND_CORRECT);
+    showMeaningWithReadAloud(concept);
+  }
+
+  foundSet.add(keyNorm);
+  updateHeader(level);
+  updateNavButtons(level);
+
+  // *** INTEGRACIÓN FIREBASE ***
+  const gkey = `${idx}:${keyNorm}`;
+  if (!globalFound.has(gkey)) {
+    globalFound.add(gkey);
+    overallFoundCount = Math.min(overallFoundCount + 1, TOTAL_CONCEPTS);
+    
+    console.log(`✅ [CazaFirebase] Nuevo concepto encontrado! Total: ${overallFoundCount}/${TOTAL_CONCEPTS}`);
+    
+    saveConceptProgressFirebase({
+      total: TOTAL_CONCEPTS,
+      found: overallFoundCount,
+      completed: (overallFoundCount >= TOTAL_CONCEPTS),
+      foundConcepts: Array.from(globalFound)
+    });
+  }
+
+  const total = level.concepts.length;
+  
+  // ★ NUEVO: Verificar si es el último concepto
+  if (foundSet.size >= total) {
+    console.log(`🎯 [Lectura] Último concepto encontrado. Esperando lectura...`);
+    
+    // Marcar que el último concepto requiere lectura
+    isLastConceptReadingPending = true;
+    currentLevelForCompletion = level;
+    
+    // ★ NO abrir automáticamente el modal. Esperar a que complete la lectura
+    // El modal de lectura ya está abierto desde showMeaningWithReadAloud(concept)
+    console.log(`📖 Por favor lee el último término para completar el párrafo`);
+  }
+}
+
+
+  function onCorrect_00(token, level, keyNorm) {
     if (token.classList.contains("correct")) return;
     
     token.classList.add("correct");
