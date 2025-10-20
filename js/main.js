@@ -103,7 +103,7 @@ const AVAILABLE_THEMES = [
         timeEstimate: 10,
         prerequisites: [],
         color: '#ff9500',
-        contentFile: 'content/pragmatismo.html'
+        contentFile: 'themes/pragmatismo/content.html'
     },
     {
     id: 'etica_kant',
@@ -116,7 +116,7 @@ const AVAILABLE_THEMES = [
     timeEstimate: 15,
     prerequisites: [],
     color: '#1d4ed8',
-    contentFile: 'content/etica_kant.html'
+    contentFile: 'themes/etica_kant/content.html'
     },
     {
         id: 'antropocentrismo',
@@ -130,7 +130,7 @@ const AVAILABLE_THEMES = [
         prerequisites: [],
         // prerequisites: ['etica'],
         color: '#d4af37',
-        contentFile: 'content/antropocentrismo.html'
+        contentFile: 'themes/antropocentrismo/content.html'
     },    
     {
         id: 'epistemologia',
