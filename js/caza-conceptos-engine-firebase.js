@@ -506,6 +506,14 @@ function onConceptReadingComplete(concept) {
   console.log('[CazaFirebase] Lectura completada para:', concept.term);
   play(SND_CONCEPT_READ);
   
+  // ★ GUARDAR PROGRESO INMEDIATAMENTE después de leer
+  saveConceptProgressFirebase({
+    total: TOTAL_CONCEPTS,
+    found: overallFoundCount,
+    completed: (overallFoundCount >= TOTAL_CONCEPTS),
+    foundConcepts: Array.from(globalFound)
+  });
+  
   // ★ NUEVO: Verificar si fue el último concepto
   if (isLastConceptReadingPending) {
     console.log(`🎉 [Lectura] ¡Último concepto leído! Mostrando resumen del párrafo...`);
