@@ -502,7 +502,7 @@
   }
 
   // ★ REEMPLAZAR la función onConceptReadingComplete:
-function onConceptReadingComplete(concept) {
+function onConceptReadingComplete_000(concept) {
   console.log('[CazaFirebase] Lectura completada para:', concept.term);
   play(SND_CONCEPT_READ);
   
@@ -545,7 +545,7 @@ function onConceptReadingComplete(concept) {
   }
 }
 
-  function onConceptReadingComplete_00(concept) {
+  function onConceptReadingComplete(concept) {
     console.log('[CazaFirebase] Lectura completada para:', concept.term);
     play(SND_CONCEPT_READ);
     
