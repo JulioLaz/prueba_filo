@@ -3,9 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ética Kantiana: El Deber como Fundamento Moral (Estudio Progresivo)</title>
+  <title>Ética Kantiana – Lectura guiada</title>
   <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
 
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    // Configuración específica para Ética Kantiana
+    window.ReadAloudSystemConfig = {
+      tema: 'Ética Kantiana',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 18,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=etica-kantiana',
+      celebrationEmojis: ['⚖️','🧠','💡','🎯','✨','🏆','📚','🌟'],
+
+      // Sinónimos y equivalencias útiles para reconocimiento
+      synonymMap: {
+        'kant': ['immanuel kant','kantiano','kantiana'],
+        'imperativo categórico': ['máxima','ley moral','deber'],
+        'deber': ['obligación','compromiso','responsabilidad moral'],
+        'dignidad': ['valor absoluto','valía intrínseca','humanidad'],
+        'autonomía': ['autodeterminación','libertad','autolegislación'],
+        'heteronomía': ['imposición','control externo','dependencia'],
+        'buena voluntad': ['intención pura','respeto al deber','voluntad moral'],
+        'razón práctica': ['razón moral','facultad ética','discernimiento'],
+        'fenómeno': ['apariencia','experiencia','mundo empírico'],
+        'noúmeno': ['cosa en sí','realidad verdadera','sustancia'],
+        'libertad': ['capacidad elegir','autodeterminación','espontaneidad'],
+        'inmortalidad': ['vida después muerte','eternidad','continuidad alma'],
+        'dios': ['divinidad','creador','ser supremo'],
+        'reino de los fines': ['comunidad moral','sociedad ideal','república de fines'],
+        'consecuencia': ['resultado','efecto','implicación'],
+        'universalizabilidad': ['universalidad','aplicable todos','ley universal']
+      }
+    };
+  </script>
 </head>
 <body>
   <main class="material-dark">
@@ -24,340 +59,296 @@
 
     <!-- 1. Introducción biográfica -->
     <div class="study-section active" data-section="biografia-kant">
-      <div class="highlight-box">
-        <h3>🏛️ Immanuel Kant: El Revolucionario de la Moral</h3>
-        <ul>
-          <li>📅 <strong>Vida:</strong> 1724-1804 (vivió 79 años en Königsberg, Prusia)</li>
-          <li>🏛️ <strong>Contexto:</strong> Época de la Ilustración, razón como guía del conocimiento</li>
-          <li>📚 <strong>Obra principal:</strong> "Crítica de la Razón Práctica" (1788)</li>
-          <li>🔄 <strong>Revolución copérnica:</strong> La moral no viene de fuera, la descubrimos con la razón</li>
-          <li>⚖️ <strong>Legado:</strong> Base de la ética moderna, derechos humanos y dignidad</li>
-          <li>🧠 <strong>Filosofía:</strong> Combinó racionalismo e idealismo trascendental</li>
-        </ul>
-        <blockquote><em>"Dos cosas llenan el ánimo de admiración: el cielo estrellado sobre mí y la ley moral dentro de mí."</em> - Kant</blockquote>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🛠️ Immanuel Kant: El Revolucionario de la Moral</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Immanuel Kant</strong> (1724-1804) vivió en Königsberg, Prusia, durante la Ilustración, una época en la que la <em>razón</em> se veía como la guía suprema del conocimiento. Kant revolucionó la filosofía moral con su obra "Crítica de la Razón Práctica" (1788). Su gran insight fue que la moral no viene impuesta desde fuera por autoridades o tradiciones, sino que la <strong>descubrimos con nuestra propia razón</strong>. Esta fue una revolución copernicana: así como Copérnico nos mostró que no estamos en el centro del universo, Kant mostró que la moral no es externa sino interna a nosotros. Su famosa frase lo resume perfectamente: <em>"Dos cosas llenan el ánimo de admiración: el cielo estrellado sobre mí y la ley moral dentro de mí."</em>
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Idea central: la moral la descubrimos con la razón, no la recibimos impuesta.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Verificación de comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Verificación de comprensión</h4><p>Clave de la biografía:</p></div>
+        <div class="question"><p>¿Cuál fue la revolucionaria idea de Kant sobre el origen de la moral?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Kant revolucionó la moral al centrarla en la razón y el deber</div>
-          <div class="option">Kant vivió en Francia durante la Revolución</div>
-          <div class="option">Para Kant, la moral viene impuesta desde fuera</div>
-          <div class="option">Su obra principal fue sobre estética</div>
+          <div class="option">La moral viene impuesta por la religión y la tradición</div>
+          <div class="option" data-correct="true">La moral la descubrimos mediante nuestra propia razón</div>
+          <div class="option">No existe una moral objetiva</div>
+          <div class="option">La moral es relativa a cada cultura</div>
         </div>
       </div>
     </div>
 
     <!-- 2. Ser natural vs. ser racional -->
     <div class="study-section" data-section="naturaleza-razon">
-      <div class="highlight-box">
-        <h3>🌍 Naturaleza vs. Razón: La Batalla Interna</h3>
-        <p>Kant nos ve como seres divididos en dos dimensiones:</p>
-        
-        <h4>🦁 Dimensión Natural</h4>
-        <ul>
-          <li>🍖 <strong>Instintos:</strong> Hambre, sed, supervivencia, reproducción</li>
-          <li>⚡ <strong>Impulsos:</strong> Seguimos nuestras necesidades corporales</li>
-          <li>🔗 <strong>Determinismo:</strong> Actuamos según causas naturales</li>
-          <li>🐾 <strong>Animal:</strong> Compartimos esto con otros seres vivos</li>
-        </ul>
-
-        <h4>🧠 Dimensión Racional</h4>
-        <ul>
-          <li>💭 <strong>Reflexión:</strong> Podemos pensar sobre nuestros actos</li>
-          <li>🆓 <strong>Libertad:</strong> Capacidad de elegir más allá del instinto</li>
-          <li>⚖️ <strong>Ley moral:</strong> Descubrimos principios universales</li>
-          <li>👑 <strong>Único:</strong> Solo los seres racionales tienen esto</li>
-        </ul>
-
-        <p><strong>Ejemplo:</strong> Tienes un examen. Tu instinto (pereza, nervios) dice "copia". Tu razón dice "estudia y sé honesto". La <strong>libertad</strong> kantiana es elegir actuar según la razón.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌊 Naturaleza vs. Razón: La Batalla Interna</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant nos ve como seres divididos en dos dimensiones que constantemente entran en conflicto. Por un lado, somos <strong>seres naturales</strong>: tenemos instintos, hambre, sed, deseos corporales, necesidades de supervivencia y reproducción. Estos impulsos nos empujan a actuar según nuestras necesidades más inmediatas. Por otro lado, somos <strong>seres racionales</strong>: podemos reflexionar sobre nuestros actos, evaluar principios, elegir actuar más allá del instinto. Esta es nuestra <em>libertad</em>. Imagina que tienes un examen importante. Tu instinto natural dice: "Tengo miedo, estoy nervioso, voy a copiar." Pero tu razón te dice: "Es tu deber estudiar y ser honesto." La verdadera libertad kantiana es la capacidad de elegir actuar según la razón, no solo según los impulsos naturales. Solo los seres racionales podemos experimentar esta libertad profunda.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Somos tanto naturaleza como razón; la libertad es elegir la razón.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔍 Check rápido</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📚 Verificación</h4><p>Sobre la dualidad humana</p></div>
+        <div class="question"><p>¿Qué es la verdadera libertad según Kant?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La razón nos permite ir más allá de nuestros instintos naturales</div>
-          <div class="option">Solo seguimos instintos, no podemos ser libres</div>
-          <div class="option">La dimensión natural es superior a la racional</div>
-          <div class="option">Los animales también tienen razón moral</div>
+          <div class="option">Hacer todo lo que nuestros instintos nos piden</div>
+          <div class="option" data-correct="true">Capacidad de elegir actuar según la razón, más allá del instinto</div>
+          <div class="option">Libertad significa no tener responsabilidades</div>
+          <div class="option">Solo los animales tienen libertad natural</div>
         </div>
       </div>
     </div>
 
     <!-- 3. El imperativo categórico - primera formulación -->
     <div class="study-section" data-section="imperativo-categorico-1">
-      <div class="highlight-box">
-        <h3>⚖️ El Imperativo Categórico: La Prueba Definitiva</h3>
-        <p>Este es el <strong>corazón</strong> de la ética kantiana. Para saber si una acción es moral, Kant propone una prueba simple y radical:</p>
-        
-        <blockquote>
-          <strong>"Actúa solo según aquella máxima que puedas querer que se convierta, al mismo tiempo, en ley universal."</strong>
-        </blockquote>
-
-        <p><strong>En lenguaje simple:</strong> Antes de hacer algo, pregúntate: <em>¿Qué pasaría si todo el mundo hiciera esto?</em></p>
-
-        <h4>📊 Ejemplos Prácticos</h4>
-        <ul>
-          <li><strong>🤥 Mentir:</strong> Si mientes para salir de un problema, ¿qué pasaría si todos mintieran? La confianza desaparecería y nadie te creería. Tu acción se autodestruye → <strong>INMORAL</strong></li>
-          <li><strong>🚫 No ayudar:</strong> Si no ayudas a quien lo necesita, ¿qué pasaría si nadie ayudara? La sociedad colapsaría y tú también necesitarás ayuda → <strong>INMORAL</strong></li>
-          <li><strong>📚 Estudiar:</strong> Si todos estudiaran, el mundo sería más educado y próspero → <strong>MORAL</strong></li>
-        </ul>
-
-        <p><strong>Característica clave:</strong> Es <strong>incondicional</strong>. No dice "si quieres tener amigos, no mientas" (imperativo hipotético). Dice "no mientas, punto".</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ El Imperativo Categórico: La Prueba Definitiva</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Este es el <strong>corazón</strong> de la ética kantiana: el imperativo categórico, una prueba universal para determinar si una acción es moral. Kant lo formula así: <em>"Actúa solo según aquella máxima que puedas querer que se convierta, al mismo tiempo, en ley universal."</em> En términos simples: antes de hacer algo, pregúntate <strong>¿qué pasaría si todo el mundo hiciera esto?</strong> Tomemos mentir para salir de un problema. Si todos mintieran cuando les conviene, la confianza desaparecería y nadie te creería a ti tampoco. Tu acción se <em>autodestruye</em> al universalizarse. Por lo tanto, mentir es <strong>inmoral</strong>. Ahora considera estudiar: si todos estudiaran, el mundo sería más educado y próspero. Esta máxima es <strong>universalizable</strong>, por lo tanto es <strong>moral</strong>. Lo crucial aquí es que el imperativo es <strong>incondicional</strong>. No dice "si quieres tener amigos, no mientas" (eso sería un imperativo hipotético). Dice simplemente "no mientas", punto. No hay excepciones.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La prueba: ¿puede esta acción convertirse en ley universal?</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🎯 Verificación</h4><p>Sobre el imperativo categórico</p></div>
+        <div class="question"><p>¿Cómo sabemos si una acción es moral según el imperativo categórico?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El imperativo categórico prueba si una acción puede ser ley universal</div>
-          <div class="option">Solo importa lo que yo quiera hacer, no los demás</div>
-          <div class="option">La moralidad depende de las circunstancias</div>
-          <div class="option">Es un imperativo hipotético con condiciones</div>
+          <div class="option">Si trae beneficio personal</div>
+          <div class="option" data-correct="true">Si puede universalizarse como ley para todos</div>
+          <div class="option">Si la mayoría la aprueba</div>
+          <div class="option">Si tiene buenas consecuencias</div>
         </div>
       </div>
     </div>
 
     <!-- 4. Segunda formulación del imperativo -->
     <div class="study-section" data-section="imperativo-categorico-2">
-      <div class="highlight-box">
-        <h3>👑 Segunda Formulación: La Dignidad Humana</h3>
-        <p>Kant nos da una segunda perspectiva, clave para entender la <strong>dignidad humana</strong>:</p>
-        
-        <blockquote>
-          <strong>"Obra de tal manera que uses a la humanidad, tanto en tu persona como en la de cualquier otro, siempre como un fin y nunca sólo como un medio."</strong>
-        </blockquote>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Concepto</th>
-              <th>Significado</th>
-              <th>Ejemplo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Concepto"><strong>🔧 Usar como MEDIO</strong></td>
-              <td data-label="Significado">Tratar como herramienta u objeto para tu fin</td>
-              <td data-label="Ejemplo">Un jefe que solo ve "recursos" para generar dinero</td>
-            </tr>
-            <tr>
-              <td data-label="Concepto"><strong>🎯 Tratar como FIN</strong></td>
-              <td data-label="Significado">Reconocer su valor intrínseco y autonomía</td>
-              <td data-label="Ejemplo">Respetar las decisiones y metas del otro</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>💎 Dignidad = Valor Absoluto</h4>
-        <p>Cada persona tiene un <strong>valor incalculable</strong>. No hay precio para la vida, el respeto o la libertad. Por eso usar a alguien es inherentemente inmoral.</p>
-
-        <p><strong>Aplicación moderna:</strong> Las redes sociales que te manipulan para vender tus datos, la publicidad engañosa, las relaciones tóxicas donde solo te buscan por conveniencia.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👤 Segunda Formulación: La Dignidad Humana</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant nos ofrece una segunda perspectiva del imperativo categórico, esta vez enfocada en la <strong>dignidad humana</strong>: <em>"Obra de tal manera que uses a la humanidad, tanto en tu persona como en la de cualquier otro, siempre como un fin y nunca solo como un medio."</em> Esta es una de las ideas más poderosas de la filosofía. Hay una diferencia crucial entre tratar a alguien como <strong>fin</strong> y tratarlo como <strong>medio</strong>. Usar a alguien como medio es tratarlo como herramienta u objeto para lograr tu fin personal. Imagina un jefe que ve a los empleados solo como "recursos" para generar dinero, sin consideración por su bienestar. Eso es usar como medio. Tratar a alguien como fin significa reconocer su <strong>valor intrínseco</strong> y su autonomía. Es respetarlo como persona, no como herramienta. Cada persona tiene <strong>dignidad absoluta</strong>, un valor incalculable que no tiene precio. Por eso manipular, explotar o engañar a otros es inherentemente inmoral. Las redes sociales que te manipulan para vender tus datos, las relaciones donde solo te buscan por conveniencia: todas violan este principio kantiano.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Cada persona es un fin en sí mismo, nunca solo un medio.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔎 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>💎 Verificación</h4><p>Sobre la dignidad</p></div>
+        <div class="question"><p>¿Qué significa tratar a una persona como un fin en sí mismo?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Cada persona debe ser tratada como fin en sí mismo, nunca solo como medio</div>
-          <div class="option">Es normal usar a otros como medios para nuestros fines</div>
-          <div class="option">Solo algunas personas tienen dignidad</div>
-          <div class="option">La dignidad depende del estatus social</div>
+          <div class="option">Usarla como herramienta para lograr nuestros objetivos</div>
+          <div class="option" data-correct="true">Reconocer su valor intrínseco y autonomía</div>
+          <div class="option">Considerarla un medio para nuestro beneficio</div>
+          <div class="option">Manipularla de forma inteligente</div>
         </div>
       </div>
     </div>
 
     <!-- 5. Buena voluntad -->
     <div class="study-section" data-section="buena-voluntad">
-      <div class="highlight-box">
-        <h3>💝 La Buena Voluntad: Lo Único Incondicionalmente Bueno</h3>
-        <p>Para Kant, solo hay una cosa en el mundo que es buena sin restricciones: la <strong>buena voluntad</strong>.</p>
-        
-        <ul>
-          <li>🧠 <strong>Inteligencia:</strong> Puede usarse para hacer el mal</li>
-          <li>💪 <strong>Fuerza:</strong> Puede servir para la opresión</li>
-          <li>💰 <strong>Riqueza:</strong> Puede corromper</li>
-          <li>🌟 <strong>Buena voluntad:</strong> Siempre es buena, incluso si falla</li>
-        </ul>
-
-        <p><strong>¿Qué es la buena voluntad?</strong> La disposición de actuar por <strong>respeto al deber moral</strong>, independientemente de las consecuencias o beneficios personales.</p>
-
-        <h4>💡 Ejemplo Ilustrativo</h4>
-        <p>Imagina dos personas que donan dinero a caridad:</p>
-        <ul>
-          <li><strong>Persona A:</strong> Dona porque cree que es su deber ayudar → <strong>Buena voluntad</strong></li>
-          <li><strong>Persona B:</strong> Dona para que otros la vean como generosa → <strong>No es buena voluntad</strong></li>
-        </ul>
-        <p>El resultado es el mismo, pero solo la primera actúa moralmente.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💖 La Buena Voluntad: Lo Único Incondicionalmente Bueno</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant hace una afirmación radical: solo hay <strong>una cosa en el mundo</strong> que es buena sin restricciones, sin condiciones. Es la <strong>buena voluntad</strong>. La inteligencia puede usarse para hacer el mal. La fuerza puede servir para la opresión. La riqueza puede corromper. La salud puede mal usarse. Pero la <strong>buena voluntad</strong> siempre es buena, incluso si falla, incluso si sus intenciones nobles no logran los resultados deseados. ¿Qué es exactamente la buena voluntad? Es la <strong>disposición de actuar por respeto al deber moral</strong>, independientemente de las consecuencias o beneficios personales. Considera dos personas donando dinero a caridad. La primera dona porque cree profundamente que es su deber ayudar a quien sufre: su acción brota de buena voluntad. La segunda dona solo para que otros la vean como generosa: su motivación es vanidad, no deber. El dinero es el mismo, el resultado es idéntico, pero solo la primera acción es genuinamente moral. Por eso para Kant, <strong>importa la intención, no el resultado</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Solo la buena voluntad (actuar por deber) es incondicionalmente buena.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📝 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔍 Verificación</h4><p>Sobre la buena voluntad</p></div>
+        <div class="question"><p>¿Qué es lo único incondicionalmente bueno para Kant?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La buena voluntad es actuar por respeto al deber moral</div>
-          <div class="option">La inteligencia es lo más valioso moralmente</div>
-          <div class="option">Solo importan los resultados, no las intenciones</div>
-          <div class="option">La buena voluntad depende del éxito de la acción</div>
+          <div class="option">La inteligencia</div>
+          <div class="option">La riqueza</div>
+          <div class="option" data-correct="true">La buena voluntad: actuar por respeto al deber moral</div>
+          <div class="option">El éxito y los buenos resultados</div>
         </div>
       </div>
     </div>
 
     <!-- 6. Deber vs interés -->
     <div class="study-section" data-section="deber-vs-interes">
-      <div class="highlight-box">
-        <h3>🤝 Deber vs. Interés: La Verdadera Intención</h3>
-        <p>Kant es implacable: la moralidad no está en el resultado, sino en la <strong>motivación</strong> de la acción.</p>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Tipo de Acción</th>
-              <th>Motivación</th>
-              <th>Ejemplo</th>
-              <th>Juicio Moral</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Tipo"><strong>⚖️ POR DEBER</strong></td>
-              <td data-label="Motivación">Respeto a la ley moral</td>
-              <td data-label="Ejemplo">Ayudar porque es tu deber, sin importar quién te vea</td>
-              <td data-label="Juicio"><strong>MORAL</strong></td>
-            </tr>
-            <tr>
-              <td data-label="Tipo"><strong>📏 CONFORME AL DEBER</strong></td>
-              <td data-label="Motivación">Interés personal</td>
-              <td data-label="Ejemplo">Ayudar para impresionar a alguien</td>
-              <td data-label="Juicio"><strong>LEGAL (no moral)</strong></td>
-            </tr>
-            <tr>
-              <td data-label="Tipo"><strong>❌ CONTRARIA AL DEBER</strong></td>
-              <td data-label="Motivación">Interés que viola la moral</td>
-              <td data-label="Ejemplo">Mentir para obtener beneficio</td>
-              <td data-label="Juicio"><strong>INMORAL</strong></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>🏪 El Ejemplo del Comerciante</h4>
-        <p>Un comerciante puede ser honesto por dos razones:</p>
-        <ul>
-          <li><strong>Por interés:</strong> Para no perder clientes → <strong>Legal</strong></li>
-          <li><strong>Por deber:</strong> Porque cree que es su deber ser honesto → <strong>Moral</strong></li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤝 Deber vs. Interés: La Verdadera Intención</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant es implacable en su distinción: la moralidad verdadera <strong>no está en el resultado</strong>, sino en la <strong>motivación</strong> de la acción. Existen tres posibilidades. Primero, actuar <strong>por deber</strong>: cuando tu motivación es el respeto a la ley moral, sin importar quién te vea o qué beneficio personal obtengas. Ayudas a alguien porque es tu deber, punto. Esto es <strong>genuinamente moral</strong>. Segundo, actuar <strong>conforme al deber</strong> pero impulsado por interés personal: ayudas para impresionar a alguien, para verte bien, para obtener reconocimiento. El resultado externo es idéntico, pero tu motivación es el interés personal, no el deber. Esto es <strong>legal pero no moral</strong>. Tercero, actuar <strong>contraria al deber</strong>: cuando tu interés viola la ley moral. Mentir para obtener beneficio. Explotar a otros. Robar. Esto es <strong>inmoral</strong>. Considera un comerciante honesto. Un comerciante que es honesto solo porque teme perder clientes actúa por interés. Un comerciante que es honesto porque cree genuinamente que es su deber, independientemente de las consecuencias financieras, actúa moralmente. La diferencia es la intención, la fuente interna de la acción.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Lo moral es actuar por deber, no por interés o consecuencias.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧩 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧩 Verificación</h4><p>Sobre la intención</p></div>
+        <div class="question"><p>¿Cuándo una acción es verdaderamente moral según Kant?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Una acción es moral solo cuando se hace por puro respeto al deber</div>
-          <div class="option">Da igual la motivación si el resultado es bueno</div>
-          <div class="option">Actuar por interés personal es siempre inmoral</div>
-          <div class="option">No hay diferencia entre legal y moral</div>
+          <div class="option">Cuando produce buenos resultados</div>
+          <div class="option">Cuando otros la aprueban</div>
+          <div class="option" data-correct="true">Cuando se realiza por puro respeto al deber moral</div>
+          <div class="option">Cuando nos beneficia personalmente</div>
         </div>
       </div>
     </div>
 
     <!-- 7. Autonomía moral -->
     <div class="study-section" data-section="autonomia-moral">
-      <div class="highlight-box">
-        <h3>🗽 Autonomía Moral: Legisladores de Nuestra Propia Ética</h3>
-        <p>Para Kant, los seres racionales somos <strong>autónomos</strong>: nos damos a nosotros mismos la ley moral.</p>
-
-        <h4>🆚 Autonomía vs. Heteronomía</h4>
-        <ul>
-          <li><strong>🗽 Autonomía:</strong> La ley moral viene de nuestra propia razón</li>
-          <li><strong>⛓️ Heteronomía:</strong> La ley moral viene de fuera (autoridad, tradición, miedo)</li>
-        </ul>
-
-        <p><strong>¿Por qué es importante?</strong></p>
-        <ul>
-          <li>🧠 <strong>Racionalidad:</strong> Solo así la moral es realmente racional</li>
-          <li>🌍 <strong>Universalidad:</strong> Todos los seres racionales llegan a las mismas conclusiones</li>
-          <li>👑 <strong>Dignidad:</strong> Somos "legisladores" en el reino de los fines</li>
-          <li>🆓 <strong>Libertad:</strong> La verdadera libertad es actuar según leyes que nos damos</li>
-        </ul>
-
-        <blockquote>
-          <em>"La autonomía de la voluntad es el único principio de todas las leyes morales."</em> - Kant
-        </blockquote>
-
-        <p><strong>Aplicación práctica:</strong> No sigues reglas morales porque te las imponen, sino porque tu razón reconoce que son correctas y universales.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🗽 Autonomía Moral: Legisladores de Nuestra Propia Ética</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Kant, los seres racionales somos fundamentalmente <strong>autónomos</strong>: nos damos a nosotros mismos la ley moral. La palabra autonomía viene del griego: "auto" (uno mismo) y "nomos" (ley). No seguimos reglas morales porque nos las imponen autoridades externas, religión o tradición. Nuestra razón <em>descubre</em> y <em>reconoce</em> que ciertos principios son moralmente correctos y universales. Esto contrasta radicalmente con lo que Kant llama <strong>heteronomía</strong>: cuando la ley moral viene de fuera, de una autoridad, de la presión social, del miedo. Un niño que no roba porque teme castigo actúa por heteronomía. Un adulto que no roba porque reconoce que es injusto, que violaría la dignidad del otro, que no puede universalizarse: ese actúa por autonomía. ¿Por qué es tan importante esto? Porque solo así la moral es realmente racional. Solo los seres racionales en libertad pueden ser morales. La autonomía moral es la base de la dignidad humana. Y es fundamental para la democracia: legislamos juntos leyes que nos damos colectivamente, reconociendo mutuamente nuestra dignidad.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Autonomía: nos damos la ley moral. Heteronomía: nos la imponen.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🎯 Verificación</h4><p>Sobre autonomía</p></div>
+        <div class="question"><p>¿Cuál es la diferencia entre autonomía y heteronomía moral?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los seres racionales se dan a sí mismos la ley moral</div>
-          <div class="option">La moral siempre viene impuesta desde fuera</div>
-          <div class="option">Solo algunas personas pueden ser autónomas</div>
-          <div class="option">La autonomía significa hacer lo que queramos</div>
+          <div class="option">No hay diferencia, son lo mismo</div>
+          <div class="option">La autonomía es solo una palabra filosófica</div>
+          <div class="option" data-correct="true">Autonomía: descubrimos la ley con nuestra razón. Heteronomía: nos la imponen</div>
+          <div class="option">La heteronomía es más importante que la autonomía</div>
         </div>
       </div>
     </div>
 
     <!-- 8. Postulados de la razón práctica -->
     <div class="study-section" data-section="postulados">
-      <div class="highlight-box">
-        <h3>🌟 Los Tres Postulados de la Razón Práctica</h3>
-        <p>Kant identifica tres "postulados" que la razón práctica debe asumir para que la moral tenga sentido:</p>
-
-        <h4>1. 🆓 Libertad</h4>
-        <ul>
-          <li><strong>Necesidad:</strong> Sin libertad, no hay responsabilidad moral</li>
-          <li><strong>Explicación:</strong> Debemos poder elegir entre bien y mal</li>
-          <li><strong>Implicación:</strong> Somos responsables de nuestras acciones</li>
-        </ul>
-
-        <h4>2. 👑 Inmortalidad del Alma</h4>
-        <ul>
-          <li><strong>Necesidad:</strong> La perfección moral requiere tiempo infinito</li>
-          <li><strong>Explicación:</strong> Nunca alcanzamos la santidad completa en una vida</li>
-          <li><strong>Implicación:</strong> El progreso moral continúa tras la muerte</li>
-        </ul>
-
-        <h4>3. 🙏 Existencia de Dios</h4>
-        <ul>
-          <li><strong>Necesidad:</strong> Debe existir armonía entre virtud y felicidad</li>
-          <li><strong>Explicación:</strong> En este mundo, ser virtuoso no garantiza felicidad</li>
-          <li><strong>Implicación:</strong> Dios asegura que la virtud sea recompensada</li>
-        </ul>
-
-        <p><strong>Importante:</strong> Estos no son <em>demostraciones</em> de su existencia, sino <em>condiciones necesarias</em> para la moralidad.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 Los Tres Postulados de la Razón Práctica</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant identifica tres "postulados" (suposiciones necesarias) que la razón práctica debe asumir para que la moral tenga sentido. <strong>Primero, la libertad</strong>: sin libertad no hay responsabilidad moral. Debemos ser capaces de elegir entre bien y mal. Si todo estuviera determinado por causas naturales, no podríamos ser responsables. Por eso postulamos nuestra libertad. <strong>Segundo, la inmortalidad del alma</strong>: la perfección moral requiere tiempo infinito. Nunca alcanzamos la santidad completa en una sola vida terrestre. Siempre hay más que perfeccionar. Por lo tanto, nuestro progreso moral debe continuar más allá de la muerte. <strong>Tercero, la existencia de Dios</strong>: en este mundo imperfecto, ser virtuoso no garantiza felicidad. Vemos a personas moralmente íntegras sufriendo, y a personas corruptas prosperando. Esto parece injusto. Entonces Kant postula que debe existir una armonía final entre virtud y felicidad, garantizada por Dios. Importante: estos no son <em>demostraciones</em> de su existencia, sino condiciones <strong>necesarias</strong> para que la moralidad sea inteligible.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Tres postulados: libertad, inmortalidad, Dios.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📚 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📖 Verificación</h4><p>Sobre postulados</p></div>
+        <div class="question"><p>¿Cuáles son los tres postulados kantianos?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los postulados son condiciones necesarias para que la moral tenga sentido</div>
-          <div class="option">Kant demuestra científicamente la existencia de Dios</div>
-          <div class="option">La moral no necesita estos supuestos</div>
-          <div class="option">Solo la libertad es necesaria para la ética</div>
+          <div class="option">Solo libertad e igualdad</div>
+          <div class="option" data-correct="true">Libertad, inmortalidad del alma, existencia de Dios</div>
+          <div class="option">Razón, emoción y volición</div>
+          <div class="option">Consecuencia, intención y resultado</div>
         </div>
       </div>
     </div>
 
     <!-- 9. Reino de los fines -->
     <div class="study-section" data-section="reino-fines">
-      <div class="highlight-box">
-        <h3>👑 El Reino de los Fines: La Sociedad Moral Ideal</h3>
-        <p>Kant imagina un <strong>"Reino de los Fines"</strong>: una comunidad ideal donde todos actúan moralmente.</p>
-
-        <h4>🏛️ Características del Reino de los Fines</h4>
-        <ul>
-          <li>👥 <strong>Todos son legisladores:</strong> Cada miembro crea las leyes morales</li>
-          <li>⚖️ <strong>Todos son súbditos:</strong> Cada miembro obedece las mismas leyes</li>
-          <li>🎯 <strong>Nadie es medio:</strong> Todos son tratados como fines en sí mismos</li>
-          <li>🌍 <strong>Leyes universales:</strong> Solo se aceptan máximas universalizables</li>
-          <li>💎 <strong>Dignidad:</strong> Cada persona tiene valor absoluto</li>
-        </ul>
-
-        <h4>🔗 Tercera Formulación del Imperativo</h4>
-        <blockquote>
-          <strong>"Actúa según las máximas de un miembro legislador universal en un posible reino de los fines."</strong>
-        </blockquote>
-
-        <p><strong>Aplicación práctica:</strong> Antes de actuar, pregúntate: "¿Esta acción ayudaría a construir una sociedad donde todos sean tratados con dignidad?"</p>
-
-        <p><strong>Ejemplo moderno:</strong> Una empresa que trata bien a empleados, clientes y comunidad, no solo por beneficios, sino porque reconoce el valor de cada persona.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👥 El Reino de los Fines: La Sociedad Moral Ideal</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant imagina un concepto poderoso: el <strong>"Reino de los Fines"</strong>, una comunidad ideal donde todos actúan moralmente. En este reino, cada miembro es a la vez <strong>legislador</strong> (crea las leyes morales universales con su razón) y <strong>súbdito</strong> (obedece las mismas leyes que todos). Nadie es solo un medio para otros; todos son tratados como fines en sí mismos. Solo se aceptan máximas que sean universalizables. Cada persona tiene dignidad absoluta. Este reino es un ideal, un horizonte regulativo. El mundo actual dista mucho de él. Pero es hacia donde deberían tender nuestras acciones. Kant formula su imperativo categórico de una tercera manera: <em>"Actúa según las máximas de un miembro legislador universal en un posible reino de los fines."</em> Antes de actuar, pregúntate: ¿esta acción ayudaría a construir una sociedad donde todos sean tratados con dignidad? Una empresa que trata bien a empleados, clientes y comunidad, que transparentemente busca el bien común además de ganancias, que reconoce el valor de cada persona: esa empresa participa en la construcción del reino de los fines.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Reino de los fines: comunidad donde todos son legisladores y sujetos.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧭 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧭 Verificación</h4><p>Sobre reino de los fines</p></div>
+        <div class="question"><p>¿Cuál es la característica principal del reino de los fines?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">En el reino de los fines, todos son legisladores y súbditos a la vez</div>
-          <div class="option">Solo algunos pueden ser legisladores morales</div>
-          <div class="option">El reino de los fines permite usar a otros como medios</div>
+          <div class="option">Solo algunos pueden ser legisladores</div>
+          <div class="option" data-correct="true">Todos son a la vez legisladores y súbditos; nadie es solo medio</div>
+          <div class="option">Alguien superior toma todas las decisiones</div>
           <div class="option">Es una descripción de la sociedad actual</div>
         </div>
       </div>
@@ -365,618 +356,306 @@
 
     <!-- 10. Imperativo hipotético vs categórico -->
     <div class="study-section" data-section="imperativos-comparacion">
-      <div class="highlight-box">
-        <h3>🔄 Imperativo Hipotético vs. Categórico</h3>
-        <p>Kant distingue dos tipos de imperativos (órdenes) que guían nuestras acciones:</p>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Aspecto</th>
-              <th>Imperativo Hipotético</th>
-              <th>Imperativo Categórico</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Aspecto"><strong>Estructura</strong></td>
-              <td data-label="Hipotético">"Si quieres X, entonces haz Y"</td>
-              <td data-label="Categórico">"Haz Y" (sin condiciones)</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Ejemplo</strong></td>
-              <td data-label="Hipotético">"Si quieres aprobar, estudia"</td>
-              <td data-label="Categórico">"No mientas"</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Validez</strong></td>
-              <td data-label="Hipotético">Depende de que quieras el fin</td>
-              <td data-label="Categórico">Válido para todos, siempre</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Ámbito</strong></td>
-              <td data-label="Hipotético">Habilidad, prudencia</td>
-              <td data-label="Categórico">Moralidad</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Libertad</strong></td>
-              <td data-label="Hipotético">Puedes rechazar el fin</td>
-              <td data-label="Categórico">No puedes rechazar el deber</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>⚡ ¿Por qué solo el categórico es moral?</h4>
-        <ul>
-          <li>🌍 <strong>Universalidad:</strong> Aplica a todos los seres racionales</li>
-          <li>⚖️ <strong>Incondicionalidad:</strong> No depende de deseos particulares</li>
-          <li>🎯 <strong>Objetividad:</strong> No es relativo a cada persona</li>
-          <li>👑 <strong>Dignidad:</strong> Respeta el valor absoluto de la razón</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 Imperativo Hipotético vs. Categórico</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Kant distingue dos tipos de imperativos que guían nuestras acciones. El <strong>imperativo hipotético</strong> tiene la forma: "Si quieres X, entonces haz Y". Si quieres aprobar, entonces estudia. Si quieres ser rico, entonces trabaja inteligentemente. Si deseas un cuerpo saludable, entonces ejercítate. Los imperativos hipotéticos son <strong>condicionales</strong>. Dependen de que realmente quieras el fin. Si no deseas aprobar, el imperativo no te obliga. Su validez es <strong>relativa a los deseos particulares</strong>. Pertenecen a los ámbitos de la habilidad y la prudencia. En contraste, el <strong>imperativo categórico</strong> es absolutamente incondicional. "No mientas." "Ayuda a quien sufre." "Respeta la dignidad de todos." No dice "si quieres X, entonces no mientas". Simplemente <em>ordena</em>. Su validez es <strong>universal y absoluta</strong> para todos los seres racionales, siempre. Solo el imperativo categórico es verdaderamente moral, porque la moralidad debe ser objetiva, universal, no relativizada a los deseos particulares de cada individuo.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Hipotético: condicional a fines. Categórico: incondicional y universal.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔬 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>⚔️ Verificación</h4><p>Sobre imperativos</p></div>
+        <div class="question"><p>¿Cuál es la diferencia clave entre ambos imperativos?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El imperativo categórico es incondicional y universal</div>
-          <div class="option">Los imperativos hipotéticos son más importantes moralmente</div>
-          <div class="option">Ambos tipos de imperativos son equivalentes</div>
-          <div class="option">El imperativo categórico depende de nuestros deseos</div>
+          <div class="option">No hay diferencia real</div>
+          <div class="option">El hipotético es más importante</div>
+          <div class="option" data-correct="true">El categórico es incondicional y universal; el hipotético es condicional</div>
+          <div class="option">El hipotético es moral y el categórico es solo prudencia</div>
         </div>
       </div>
     </div>
 
     <!-- 11. El dilema del asesino -->
     <div class="study-section" data-section="dilema-asesino">
-      <div class="highlight-box">
-        <h3>🔪 El Dilema del Asesino: ¿Rigidez Extrema?</h3>
-        <p>La crítica más famosa a Kant: ¿qué pasa cuando el deber choca con el sentido común?</p>
-
-        <h4>🎭 El Escenario</h4>
-        <p>Un amigo se esconde en tu casa escapando de un asesino. El asesino llega y pregunta: <em>"¿Está tu amigo aquí?"</em></p>
-
-        <h4>⚖️ El Dilema Kantiano</h4>
-        <ul>
-          <li><strong>🤥 Si mientes:</strong> Salvas a tu amigo, pero violas el imperativo categórico</li>
-          <li><strong>✅ Si dices la verdad:</strong> Cumples tu deber, pero tu amigo puede morir</li>
-        </ul>
-
-        <h4>🤔 Respuesta de Kant</h4>
-        <p>Kant diría: <strong>"Debes decir la verdad"</strong>. Su razonamiento:</p>
-        <ul>
-          <li>📏 <strong>Principio:</strong> No puedes hacer excepciones a la ley moral</li>
-          <li>🌍 <strong>Universalidad:</strong> Si todos mintieran "por buenas razones", la verdad perdería sentido</li>
-          <li>👑 <strong>Dignidad:</strong> No tienes derecho a decidir por otros basándote en predicciones</li>
-          <li>🎯 <strong>Responsabilidad:</strong> Eres responsable de mentir, no de las acciones del asesino</li>
-        </ul>
-
-        <h4>⚡ Críticas a Esta Posición</h4>
-        <ul>
-          <li>💔 <strong>Intuición moral:</strong> Va contra nuestro sentido de compasión</li>
-          <li>⚖️ <strong>Consecuencias:</strong> Ignora resultados obviamente terribles</li>
-          <li>🤲 <strong>Humanidad:</strong> Parece poner reglas por encima de vidas</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔪 El Dilema del Asesino: ¿Rigidez Extrema?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La crítica más famosa a Kant ilustra la tensión entre el principio categórico y la intuición moral común. El escenario: un amigo se esconde en tu casa escapando de un asesino. El asesino llama a la puerta y pregunta: <em>"¿Está tu amigo aquí?"</em> Dilemma kantiano: si mientes, salvas a tu amigo pero violas el imperativo categórico de veracidad. Si dices la verdad, cumples tu deber moral pero tu amigo puede morir. ¿Qué hace Kant? Sorprendentemente, dice que <strong>debes decir la verdad</strong>. Su razonamiento es riguroso: no puedes hacer excepciones a la ley moral. Si todos mintieran "por buenas razones", la verdad perdería todo significado. Además, no eres responsable de las acciones del asesino; solo de la tuya. Eres responsable de mentir, no de si el asesino mata. Esta posición parece contradecir la compasión común. Muchos filósofos han criticado esto como inhumanamente rígido. ¿Cómo puede la verdad ser más importante que una vida? Sin embargo, los defensores de Kant argumentan que su lógica es clara: si permitimos excepciones basadas en predicciones sobre qué podría pasar, cualquier crimen podría justificarse. Hemos visto sociedades donde esto ocurre: "era necesario hacer esto para evitar algo peor."
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La crítica principal: ¿es moralmente correcto priorizar una regla sobre una vida?</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">💭 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>💭 Verificación</h4><p>Sobre el dilema</p></div>
+        <div class="question"><p>¿Cuál es la respuesta de Kant al dilema del asesino?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Kant diría que hay que decir la verdad incluso al asesino</div>
-          <div class="option">Kant permitiría mentir para salvar vidas</div>
-          <div class="option">Este dilema no es relevante para la ética kantiana</div>
-          <div class="option">Kant no tenía una respuesta clara para este caso</div>
+          <div class="option">Que debes mentir para salvar vidas</div>
+          <div class="option" data-correct="true">Que debes decir la verdad sin excepción</div>
+          <div class="option">Que depende de las circunstancias</div>
+          <div class="option">Que hay una tercera opción</div>
         </div>
       </div>
     </div>
 
     <!-- 12. Críticas modernas -->
     <div class="study-section" data-section="criticas-modernas">
-      <div class="highlight-box">
-        <h3>⚠️ Críticas y Limitaciones de la Ética Kantiana</h3>
-        
-        <h4>1. 🏗️ Rigorismo Excesivo</h4>
-        <ul>
-          <li><strong>Problema:</strong> Las reglas morales parecen demasiado inflexibles</li>
-          <li><strong>Ejemplo:</strong> ¿Nunca se puede mentir, ni siquiera para evitar un genocidio?</li>
-          <li><strong>Crítica:</strong> La realidad moral es más compleja que reglas absolutas</li>
-        </ul>
-
-        <h4>2. 🎭 Formalismo Vacío</h4>
-        <ul>
-          <li><strong>Problema:</strong> El imperativo categórico no da contenido específico</li>
-          <li><strong>Ejemplo:</strong> ¿Cómo decidir entre dos deberes que parecen universalizables?</li>
-          <li><strong>Crítica:</strong> Necesitamos más que solo la forma para guiar acciones</li>
-        </ul>
-
-        <h4>3. 🌍 Universalidad Cuestionable</h4>
-        <ul>
-          <li><strong>Problema:</strong> ¿Realmente todos los seres racionales llegan a las mismas conclusiones?</li>
-          <li><strong>Ejemplo:</strong> Diferentes culturas tienen códigos morales distintos</li>
-          <li><strong>Crítica:</strong> La moral puede tener más relatividad cultural</li>
-        </ul>
-
-        <h4>4. 🤖 Deshumanización</h4>
-        <ul>
-          <li><strong>Problema:</strong> Ignora emociones, contexto y consecuencias</li>
-          <li><strong>Ejemplo:</strong> Amor, compasión y empatía parecen irrelevantes</li>
-          <li><strong>Crítica:</strong> Los humanos no son solo seres racionales puros</li>
-        </ul>
-
-        <h4>✅ Defensas Kantianas</h4>
-        <p>Los defensores de Kant argumentan:</p>
-        <ul>
-          <li>🎯 <strong>Claridad:</strong> Da criterios objetivos para la moralidad</li>
-          <li>👑 <strong>Dignidad:</strong> Protege el valor absoluto de la persona</li>
-          <li>⚖️ <strong>Justicia:</strong> Previene favoritismos y excepciones arbitrarias</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚠️ Críticas y Limitaciones de la Ética Kantiana</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La ética kantiana tiene varios críticos modernos. <strong>Primero, el rigorismo excesivo</strong>: las reglas morales parecen demasiado inflexibles. ¿Nunca se puede mentir, ni siquiera para evitar un genocidio? <strong>Segundo, el formalismo vacío</strong>: el imperativo categórico no da contenido específico. Solo proporciona la forma de universalizabilidad. ¿Cómo decidir entre dos deberes que parecen universalizables? <strong>Tercero, la universalidad cuestionable</strong>: ¿realmente todos los seres racionales llegamos a las mismas conclusiones morales? Diferentes culturas tienen códigos morales distintos. ¿Es la moral realmente universal o culturalmente relativa? <strong>Cuarto, la deshumanización</strong>: la ética kantiana ignora emociones, contexto y consecuencias. Amor, compasión, empatía parecen irrelevantes. ¿Pero no son estos centrales para la vida moral humana? Sin embargo, los defensores de Kant responden que su enfoque proporciona <strong>claridad objetiva</strong>, protege la <strong>dignidad absoluta</strong> de cada persona, y <strong>previene favoritismos arbitrarios</strong>. En un mundo de injusticia, precisamente necesitamos principios incondicionados que no se doblen a los intereses poderosos.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Tensión entre rigor moral y realidad humana compleja.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧩 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🤔 Verificación</h4><p>Sobre críticas</p></div>
+        <div class="question"><p>¿Cuál es una crítica importante a la ética kantiana?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La ética kantiana es criticada por ser demasiado rígida e ignorar consecuencias</div>
-          <div class="option">Kant no tiene críticos en la filosofía moderna</div>
-          <div class="option">Las emociones son centrales en la ética kantiana</div>
-          <div class="option">El imperativo categórico siempre da respuestas claras</div>
+          <div class="option">Que enfatiza demasiado las consecuencias</div>
+          <div class="option" data-correct="true">Que puede ser demasiado rígida e ignora contexto y compasión</div>
+          <div class="option">Que no tiene principios claros</div>
+          <div class="option">Que es relativista y subjetiva</div>
         </div>
       </div>
     </div>
 
     <!-- 13. Kant vs otras éticas -->
     <div class="study-section" data-section="kant-vs-otras-eticas">
-      <div class="highlight-box">
-        <h3>🥊 Kant vs. Otras Corrientes Éticas</h3>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Aspecto</th>
-              <th>Kant (Deontología)</th>
-              <th>Utilitarismo</th>
-              <th>Ética de Virtudes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Aspecto"><strong>Lo Fundamental</strong></td>
-              <td data-label="Kant">El deber y la intención</td>
-              <td data-label="Utilitarismo">Las consecuencias</td>
-              <td data-label="Virtudes">El carácter</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Pregunta Clave</strong></td>
-              <td data-label="Kant">¿Es mi deber hacerlo?</td>
-              <td data-label="Utilitarismo">¿Genera más felicidad?</td>
-              <td data-label="Virtudes">¿Qué haría una persona virtuosa?</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Universalidad</strong></td>
-              <td data-label="Kant">Absoluta - las reglas son universales</td>
-              <td data-label="Utilitarismo">Contextual - depende de consecuencias</td>
-              <td data-label="Virtudes">Cultural - varía entre comunidades</td>
-            </tr>
-            <tr>
-              <td data-label="Aspecto"><strong>Mentir para Salvar Vida</strong></td>
-              <td data-label="Kant">Prohibido - violaes el imperativo</td>
-              <td data-label="Utilitarismo">Permitido - salva más vidas</td>
-              <td data-label="Virtudes">Depende - ¿qué dice la prudencia?</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>🤝 Fortalezas de Cada Enfoque</h4>
-        <ul>
-          <li><strong>⚖️ Kant:</strong> Objetividad, universalidad, dignidad humana</li>
-          <li><strong>📊 Utilitarismo:</strong> Pragmatismo, consideración de consecuencias</li>
-          <li><strong>🏛️ Virtudes:</strong> Desarrollo del carácter, sabiduría práctica</li>
-        </ul>
-
-        <h4>🎯 Síntesis Moderna</h4>
-        <p>Muchos filósofos actuales integran elementos de las tres tradiciones, reconociendo que la moral humana es compleja y multifacética.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🥊 Kant vs. Otras Corrientes Éticas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La ética kantiana representa un enfoque distintivo comparada con otras tradiciones. El <strong>utilitarismo</strong> pregunta "¿qué genera la mayor felicidad para el mayor número?" e importan mucho las consecuencias. Kant dice que las consecuencias son irrelevantes para la moralidad; solo importa si la acción respeta el deber. La <strong>ética de virtudes</strong> aristotélica pregunta "¿qué haría una persona virtuosa?" y enfatiza el desarrollo del carácter. Kant enfatiza principios racionales universales sobre la virtud personal. La <strong>ética del cuidado</strong> moderna valora las emociones, relaciones y contexto. Kant las ve como motivaciones no morales. Sin embargo, todas estas tradiciones comparten algo: reconocen que la vida moral es compleja. Muchos filósofos contemporáneos integran elementos de varias tradiciones. Reconocen que la ética requiere racionalidad (Kant), consideración de consecuencias (utilitarismo), desarrollo del carácter (virtudes) y atención a relaciones y contextos. La pregunta no es cuál tradición es "correcta", sino cómo podemos aprender de todas mientras reconocemos sus limitaciones.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Kant: deber. Utilitarismo: consecuencias. Virtudes: carácter.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔄 VerificaciónGa</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📊 Verificación</h4><p>Comparación ética</p></div>
+        <div class="question"><p>¿Cuál es la diferencia fundamental entre Kant y el utilitarismo?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Kant se enfoca en el deber, el utilitarismo en consecuencias y las virtudes en carácter</div>
-          <div class="option">Todas las éticas llegan a las mismas conclusiones prácticas</div>
-          <div class="option">Solo la ética kantiana es racional</div>
-          <div class="option">El utilitarismo y Kant son idénticos en sus métodos</div>
+          <div class="option">No hay diferencia real</div>
+          <div class="option">Ambos valoran las consecuencias igualmente</div>
+          <div class="option" data-correct="true">Kant enfatiza el deber; utilitarismo enfatiza las consecuencias</div>
+          <div class="option">El utilitarismo es más riguroso que Kant</div>
         </div>
       </div>
     </div>
 
     <!-- 14. Aplicaciones en derechos humanos -->
     <div class="study-section" data-section="derechos-humanos">
-      <div class="highlight-box">
-        <h3>🌍 Kant y los Derechos Humanos Modernos</h3>
-        <p>Las ideas de Kant son la base filosófica de muchas declaraciones de derechos humanos.</p>
-
-        <h4>📜 Conexiones con Documentos Históricos</h4>
-        <ul>
-          <li><strong>📜 Declaración Universal de DDHH (1948):</strong> Artículo 1 sobre dignidad inherente</li>
-          <li><strong>🇺🇸 Constitución Estadounidense:</strong> Derechos inalienables</li>
-          <li><strong>🇩🇪 Ley Fundamental Alemana:</strong> "La dignidad humana es intangible"</li>
-          <li><strong>⚖️ Tribunales Internacionales:</strong> Crímenes contra la humanidad</li>
-        </ul>
-
-        <h4>💎 Principios Kantianos en Acción</h4>
-        <ul>
-          <li><strong>🚫 Prohibición de Tortura:</strong> Nunca usar personas solo como medios</li>
-          <li><strong>⚖️ Juicio Justo:</strong> Respeto a la autonomía y racionalidad</li>
-          <li><strong>🗳️ Democracia:</strong> Autolegislación colectiva</li>
-          <li><strong>📚 Educación:</strong> Desarrollo de la autonomía moral</li>
-          <li><strong>💼 Derechos Laborales:</strong> Trabajadores como fines, no solo medios</li>
-        </ul>
-
-        <h4>🌐 Aplicaciones Contemporáneas</h4>
-        <ul>
-          <li><strong>🤖 IA y Algoritmos:</strong> ¿Respetan la dignidad humana?</li>
-          <li><strong>🧬 Bioética:</strong> Experimentos médicos y consentimiento</li>
-          <li><strong>🌱 Medio Ambiente:</strong> Deberes hacia futuras generaciones</li>
-          <li><strong>💻 Privacidad Digital:</strong> ¿Nos usan las tech como medios?</li>
-        </ul>
-
-        <blockquote>
-          <em>"La idea de libertad está inseparablemente unida con el concepto del derecho."</em> - Kant
-        </blockquote>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌍 Kant y los Derechos Humanos Modernos</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Las ideas de Kant son la base filosófica de muchas declaraciones de derechos humanos modernas. La Declaración Universal de Derechos Humanos (1948), en su artículo primero, afirma: <em>"Todos los seres humanos nacen libres e iguales en dignidad y derechos."</em> Esto es pura filosofía kantiana. La Constitución Estadounidense reconoce "derechos inalienables". La Ley Fundamental Alemana comienza con: <em>"La dignidad humana es intangible."</em> Tribunales internacionales persiguen crímenes contra la humanidad basándose en el principio kantiano de que los humanos nunca son meros medios. Aplicaciones prácticas de principios kantianos: la prohibición de tortura, porque nunca se puede usar a una persona solo como medio. El derecho a juicio justo, respetando la autonomía y racionalidad del acusado. La democracia como autolegislación colectiva. La educación como desarrollo de la autonomía moral. Derechos laborales que reconocen que trabajadores son fines, no solo costos. Y en cuestiones contemporáneas: ¿respetan los algoritmos de inteligencia artificial nuestra dignidad? ¿Las compañías de redes sociales nos tratan como sujetos o como medios? ¿Respeta el uso de big data nuestra autonomía? Estas preguntas kantianas son más relevantes que nunca.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La dignidad humana kantiana fundamenta los derechos modernos.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Verificación</h4><p>Derechos humanos</p></div>
+        <div class="question"><p>¿Cuál es la base filosófica de los derechos humanos modernos?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Las ideas de Kant sobre dignidad influenciaron las declaraciones de derechos humanos</div>
-          <div class="option">Los derechos humanos no tienen base filosófica</div>
-          <div class="option">Kant se oponía a la democracia</div>
-          <div class="option">La bioética moderna ignora principios kantianos</div>
+          <div class="option">La tradición religiosa únicamente</div>
+          <div class="option" data-correct="true">El principio kantiano de dignidad humana e igualdad</div>
+          <div class="option">Las leyes del mercado</div>
+          <div class="option">La fuerza del estado</div>
         </div>
       </div>
     </div>
 
     <!-- 15. Ética empresarial kantiana -->
     <div class="study-section" data-section="etica-empresarial">
-      <div class="highlight-box">
-        <h3>🏢 Ética Empresarial desde Kant</h3>
-        
-        <h4>🎯 Aplicando el Imperativo Categórico en Negocios</h4>
-        
-        <p><strong>Pregunta central:</strong> ¿Qué pasaría si todas las empresas actuaran como la mía?</p>
-
-        <h4>✅ Prácticas Kantianas en Empresas</h4>
-        <ul>
-          <li><strong>📊 Transparencia:</strong> Información honesta sobre productos y servicios</li>
-          <li><strong>💰 Salarios Justos:</strong> Empleados como fines, no solo costos</li>
-          <li><strong>🌱 Sostenibilidad:</strong> Pensar en universalidad a largo plazo</li>
-          <li><strong>🤝 Contratos Éticos:</strong> Términos que respeten la autonomía</li>
-          <li><strong>🛡️ Seguridad:</strong> Proteger la dignidad de trabajadores y clientes</li>
-        </ul>
-
-        <h4>❌ Violaciones Kantianas Comunes</h4>
-        <ul>
-          <li><strong>🎯 Marketing Manipulativo:</strong> Usar psicología para explotar vulnerabilidades</li>
-          <li><strong>💸 Evasión Fiscal:</strong> ¿Universalizable? ¿Y si todos lo hicieran?</li>
-          <li><strong>🏭 Explotación Laboral:</strong> Tratar empleados solo como medios</li>
-          <li><strong>🤥 Publicidad Engañosa:</strong> Violación directa del deber de veracidad</li>
-          <li><strong>🌍 Daño Ambiental:</strong> ¿Universalizable contaminar?</li>
-        </ul>
-
-        <h4>💡 Casos de Estudio</h4>
-        <p><strong>Empresa Farmacéutica:</strong></p>
-        <ul>
-          <li><strong>❌ Visión kantiana:</strong> Subir precios de medicinas vitales para maximizar ganancias</li>
-          <li><strong>✅ Enfoque kantiano:</strong> Precios que permitan acceso digno a la salud</li>
-          <li><strong>🤔 Justificación:</strong> ¿Es universalizable que todas las farmacéuticas prioricen ganancias sobre vidas?</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏢 Ética Empresarial desde Kant</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aplicar la ética kantiana a los negocios es revolucionario. La pregunta central: ¿qué pasaría si todas las empresas actuaran como la mía? Una empresa farmacéutica sube precios de medicinas vitales para maximizar ganancias. Pregunta kantiana: ¿es universalizable que todas las farmacéuticas prioricen ganancias sobre vidas? No. Si todos hicieran esto, personas morirían que podrían salvarse. El imperativo categórico lo prohibe. En contraste, una empresa que busca precios justos que permitan acceso a medicinas, que transparentemente considera el bienestar de clientes además de ganancias: esa empresa actúa kantianamente. Prácticas kantianas en negocios: <strong>transparencia</strong> en productos y servicios. <strong>Salarios justos</strong> porque empleados son fines, no solo costos. <strong>Sostenibilidad</strong> pensando en universalidad a largo plazo. <strong>Contratos éticos</strong> que respetan autonomía. <strong>Seguridad</strong> de trabajadores y clientes. Violaciones kantianas comunes: marketing manipulativo que explota psicología humana. Evasión fiscal donde el empresario no quiere que otros hagan lo mismo. Explotación laboral. Publicidad engañosa. Daño ambiental deliberado. La ética kantiana demanda que los negocios reconozcan la dignidad de todas las personas afectadas: empleados, clientes, comunidad, futuras generaciones.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 ¿Qué pasaría si todas las empresas hicieran lo que hace la mía?</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔧 Check práctico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>💼 Verificación</h4><p>Ética empresarial</p></div>
+        <div class="question"><p>¿Cuál es el criterio kantiano para práctica empresarial ética?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La ética kantiana exige que las prácticas empresariales sean universalizables</div>
-          <div class="option">En los negocios no aplican principios morales</div>
-          <div class="option">Solo importan las ganancias, no la dignidad</div>
-          <div class="option">La transparencia es irrelevante en las empresas</div>
+          <div class="option">Maximizar ganancias por encima de todo</div>
+          <div class="option">Ignorar consecuencias negativas</div>
+          <div class="option" data-correct="true">Actuar según máximas que podría universalizarse para todas</div>
+          <div class="option">Hacer lo que la ley permite</div>
         </div>
       </div>
     </div>
 
     <!-- 16. Tecnología y kant -->
     <div class="study-section" data-section="tecnologia-kant">
-      <div class="highlight-box">
-        <h3>💻 Kant en la Era Digital</h3>
-        
-        <h4>🤖 Inteligencia Artificial y Dignidad</h4>
-        <p><strong>Pregunta kantiana:</strong> ¿Los algoritmos nos tratan como fines o como medios?</p>
-        
-        <ul>
-          <li><strong>📱 Redes Sociales:</strong> ¿Diseñadas para nuestro bienestar o para generar adicción?</li>
-          <li><strong>🛒 E-commerce:</strong> ¿Recomendaciones que nos ayudan o que manipulan?</li>
-          <li><strong>📊 Big Data:</strong> ¿Nuestros datos respetan nuestra autonomía?</li>
-          <li><strong>🚗 Coches Autónomos:</strong> ¿Cómo deben tomar decisiones morales?</li>
-        </ul>
-
-        <h4>🛡️ Privacidad Digital</h4>
-        <p><strong>Análisis kantiano:</strong> La privacidad es esencial para la autonomía moral</p>
-        <ul>
-          <li><strong>🔒 Consentimiento Informado:</strong> Decisiones realmente libres sobre nuestros datos</li>
-          <li><strong>🎯 Transparencia Algorítmica:</strong> Derecho a saber cómo nos evalúan</li>
-          <li><strong>⚖️ Control Personal:</strong> Autonomía sobre nuestra identidad digital</li>
-        </ul>
-
-        <h4>🌐 Redes Sociales y el Imperativo Categórico</h4>
-        <p><strong>Aplicación práctica:</strong></p>
-        <ul>
-          <li><strong>🤔 Antes de postear:</strong> ¿Qué pasaría si todos compartieran así?</li>
-          <li><strong>💬 Comentarios:</strong> ¿Trato al otro como persona digna?</li>
-          <li><strong>📱 Tiempo de pantalla:</strong> ¿Mi uso es universalizable?</li>
-          <li><strong>🔄 Compartir contenido:</strong> ¿Es mi deber verificar antes de difundir?</li>
-        </ul>
-
-        <h4>🧠 IA y Decisiones Morales</h4>
-        <p><strong>Dilema:</strong> ¿Puede una máquina tomar decisiones morales kantianas?</p>
-        <ul>
-          <li><strong>❌ Limitación:</strong> Las máquinas no tienen autonomía moral</li>
-          <li><strong>🎯 Responsabilidad:</strong> Los programadores deben aplicar principios kantianos</li>
-          <li><strong>⚖️ Transparencia:</strong> Algoritmos deben ser explicables y justos</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💻 Kant en la Era Digital</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Los principios kantianos son extraordinariamente relevantes en tecnología. Pregunta kantiana fundamental: ¿los algoritmos nos tratan como fines o como medios? Las redes sociales están diseñadas para generar adición, maximizar tiempo de uso, vender nuestros datos. ¿Es eso tratarnos como fines? No. Es usarnos como medios para ganancia empresarial. El e-commerce ofrece recomendaciones personalizadas. ¿Son para nuestro beneficio o para manipularnos a comprar? Big data recopila nuestros datos sin consentimiento informado genuino. ¿Respeta nuestra autonomía? Coches autónomos deben tomar decisiones morales en accidentes. ¿Quién es responsable? La privacidad digital es esencial para la autonomía moral. Necesitamos <strong>consentimiento genuinamente informado</strong> sobre nuestros datos. Derecho a saber <strong>cómo nos evalúan los algoritmos</strong>. <strong>Control personal</strong> sobre nuestra identidad digital. Redes sociales y vida digital: antes de postear, pregúntate ¿qué pasaría si todos compartieran así? En comentarios, ¿trato al otro como persona digna? ¿Mi uso de pantalla es universalizable? ¿Es mi deber verificar información antes de difundir? La ética kantiana en tecnología exige que reconozcamos la dignidad humana incluso en espacios virtuales, que no permitamos que los datos y algoritmos conviertan a personas en meros medios.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 ¿Nos trata la tecnología como fines o como medios?</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">💡 Verificación digital</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔐 Verificación</h4><p>Tecnología digital</p></div>
+        <div class="question"><p>¿Cuál es el problema kantiano con redes sociales extractivas?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los algoritmos deben respetar nuestra dignidad y autonomía</div>
-          <div class="option">La tecnología no tiene implicaciones morales</div>
-          <div class="option">Las máquinas pueden ser autónomas moralmente</div>
-          <div class="option">La privacidad digital es irrelevante para Kant</div>
+          <div class="option">Que nos aburren</div>
+          <div class="option" data-correct="true">Que nos tratan como medios para ganancia, no como fines</div>
+          <div class="option">Que usan tecnología</div>
+          <div class="option">Que son populares</div>
         </div>
       </div>
     </div>
 
     <!-- 17. Educación moral kantiana -->
     <div class="study-section" data-section="educacion-moral">
-      <div class="highlight-box">
-        <h3>🎓 Educación Moral según Kant</h3>
-        
-        <h4>🌱 Desarrollo de la Autonomía Moral</h4>
-        <p>Para Kant, la educación debe formar personas <strong>autónomas</strong> capaces de pensar por sí mismas.</p>
-
-        <h4>📚 Principios de la Educación Kantiana</h4>
-        <ul>
-          <li><strong>🧠 Sapere Aude:</strong> "¡Atrévete a saber!" - usar tu propia razón</li>
-          <li><strong>❓ Pensamiento Crítico:</strong> Cuestionar, analizar, evaluar</li>
-          <li><strong>⚖️ Razonamiento Moral:</strong> Aplicar el imperativo categórico</li>
-          <li><strong>👑 Dignidad:</strong> Reconocer el valor de cada persona</li>
-          <li><strong>🌍 Perspectiva Universal:</strong> Pensar más allá de intereses personales</li>
-        </ul>
-
-        <h4>🏫 Aplicaciones en el Aula</h4>
-        <ul>
-          <li><strong>🤔 Dilemas Morales:</strong> Analizar casos usando el imperativo categórico</li>
-          <li><strong>📖 Literatura Ética:</strong> Explorar motivaciones de personajes</li>
-          <li><strong>⚖️ Debates:</strong> Practicar argumentación racional</li>
-          <li><strong>🌐 Proyectos Globales:</strong> Pensar en problemas universales</li>
-          <li><strong>🤝 Servicio Comunitario:</strong> Actuar por deber, no solo por beneficio</li>
-        </ul>
-
-        <h4>👨‍🏫 El Papel del Educador</h4>
-        <ul>
-          <li><strong>🎯 Facilitador:</strong> Guiar el descubrimiento, no imponer verdades</li>
-          <li><strong>📏 Ejemplo:</strong> Actuar por principios, no solo conveniencia</li>
-          <li><strong>🤝 Respeto:</strong> Tratar estudiantes como fines en sí mismos</li>
-          <li><strong>💡 Inspiración:</strong> Mostrar la belleza del pensamiento racional</li>
-        </ul>
-
-        <h4>🎯 Objetivos de la Educación Kantiana</h4>
-        <p>Formar personas que:</p>
-        <ul>
-          <li>🧭 Naveguen la vida con principios claros</li>
-          <li>🤝 Respeten la dignidad de todos</li>
-          <li>⚖️ Tomen decisiones basadas en razón, no solo emoción</li>
-          <li>🌍 Contribuyan a una sociedad más justa</li>
-          <li>👑 Ejerzan su autonomía responsablemente</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎓 Educación Moral según Kant</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Kant, la educación debe formar personas <strong>autónomas</strong> capaces de pensar moralmente por sí mismas. Su lema es <em>"Sapere Aude"</em>: "¡Atrévete a saber!" Usa tu propia razón. La educación kantiana enfatiza <strong>pensamiento crítico</strong>, capacidad de cuestionar y analizar. Razonamiento moral aplicando el imperativo categórico. Reconocimiento de la <strong>dignidad</strong> de cada persona. <strong>Perspectiva universal</strong>: pensar más allá de intereses personales. En el aula, esto significa: <em>dilemas morales</em> donde estudiantes analizan casos usando el imperativo categórico. Literatura ética explorando motivaciones de personajes. Debates donde se practica argumentación racional. Proyectos globales pensando en problemas universales. Servicio comunitario donde se actúa por deber, no solo beneficio. El educador no es una autoridad que impone verdades, sino un <strong>facilitador</strong> que guía el descubrimiento. Debe ser <strong>ejemplo</strong> actuando por principios. Mostrar <strong>respeto</strong> tratando estudiantes como fines en sí mismos. El objetivo final es formar personas que naveguen la vida con principios claros, que respeten la dignidad de todos, que tomen decisiones basadas en razón, que contribuyan a una sociedad más justa, que ejerciten su autonomía responsablemente.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Educación kantiana: formar personas autónomas y moralmente reflexivas.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📚 Check educativo</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📚 Verificación</h4><p>Educación moral</p></div>
+        <div class="question"><p>¿Cuál es el objetivo principal de la educación kantiana?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La educación kantiana busca desarrollar la autonomía moral y el pensamiento crítico</div>
-          <div class="option">Los educadores deben imponer sus valores a los estudiantes</div>
-          <div class="option">La emoción es más importante que la razón en educación</div>
-          <div class="option">Solo algunos estudiantes pueden desarrollar autonomía moral</div>
+          <div class="option">Transmitir verdades absolutas</div>
+          <div class="option">Memorizar reglas morales</div>
+          <div class="option" data-correct="true">Desarrollar autonomía moral y pensamiento crítico</div>
+          <div class="option">Imponer valores del educador</div>
         </div>
       </div>
     </div>
 
     <!-- 18. Síntesis y legado -->
     <div class="study-section" data-section="sintesis-legado">
-      <div class="highlight-box">
-        <h3>🌟 Síntesis y Legado de la Ética Kantiana</h3>
-        
-        <h4>🎯 Ideas Centrales de Kant</h4>
-        <ul>
-          <li>⚖️ <strong>La moralidad se basa en el deber</strong>, no en las consecuencias</li>
-          <li>🧠 <strong>La razón descubre principios universales</strong> de acción moral</li>
-          <li>👑 <strong>Cada persona tiene dignidad absoluta</strong> y no puede ser solo medio</li>
-          <li>🗽 <strong>La autonomía moral es la base</strong> de la ética auténtica</li>
-          <li>🌍 <strong>Los principios morales deben ser universalizables</strong></li>
-          <li>💝 <strong>Solo la buena voluntad es incondicionalmente buena</strong></li>
-        </ul>
-
-        <h4>🌍 Influencia Histórica</h4>
-        <ul>
-          <li><strong>📜 Derecho Internacional:</strong> Base filosófica de derechos humanos</li>
-          <li><strong>⚖️ Sistemas Jurídicos:</strong> Principios de justicia y dignidad</li>
-          <li><strong>🏛️ Democracia:</strong> Autolegislación y participación ciudadana</li>
-          <li><strong>🎓 Educación:</strong> Desarrollo del pensamiento crítico</li>
-          <li><strong>🏥 Bioética:</strong> Consentimiento informado y dignidad del paciente</li>
-          <li><strong>💼 Ética Empresarial:</strong> Responsabilidad social corporativa</li>
-        </ul>
-
-        <h4>⚡ Tensiones Contemporáneas</h4>
-        <ul>
-          <li><strong>🤖 IA vs. Autonomía:</strong> ¿Cómo mantener dignidad en era algorítmica?</li>
-          <li><strong>🌍 Globalización vs. Universalidad:</strong> ¿Principios realmente universales?</li>
-          <li><strong>⚖️ Rigidez vs. Flexibilidad:</strong> ¿Necesitamos excepciones morales?</li>
-          <li><strong>🧠 Razón vs. Emoción:</strong> ¿Es suficiente la racionalidad pura?</li>
-        </ul>
-
-        <h4>🔮 Relevancia Futura</h4>
-        <p>En un mundo cada vez más complejo, los principios kantianos ofrecen:</p>
-        <ul>
-          <li>🧭 <strong>Brújula moral clara</strong> en decisiones difíciles</li>
-          <li>🛡️ <strong>Protección contra manipulación</strong> y instrumentalización</li>
-          <li>⚖️ <strong>Base sólida para justicia</strong> y derechos universales</li>
-          <li>🤝 <strong>Fundamento para cooperación global</strong> basada en respeto mutuo</li>
-        </ul>
-
-        <h4>🤔 Preguntas para Reflexión Final</h4>
-        <ul>
-          <li>¿Cómo aplicas el imperativo categórico en tus decisiones diarias?</li>
-          <li>¿En qué situaciones has tratado a otros (o a ti mismo) solo como medios?</li>
-          <li>¿Qué papel juega la emoción en tus decisiones morales?</li>
-          <li>¿Cómo puede la ética kantiana guiar el desarrollo tecnológico futuro?</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 Síntesis: El Legado Duradero de Kant</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Después de más de dos siglos, ¿qué permanece de Kant? Una transformación fundamental de cómo entendemos la moralidad. <strong>Primero, la moralidad se basa en el deber</strong>, no en las consecuencias o emociones. <strong>Segundo, la razón descubre principios universales</strong> de acción moral. <strong>Tercero, cada persona tiene dignidad absoluta</strong> y no puede ser reducida a un medio. <strong>Cuarto, la autonomía moral es la base</strong> de la ética auténtica. <strong>Quinto, los principios morales deben ser universalizables</strong>. <strong>Sexto, solo la buena voluntad es incondicionalmente buena</strong>. Su influencia histórica es profunda: base filosófica de derechos humanos internacionales, principios de justicia democrática, ética médica y bioética moderna, educación orientada a la autonomía. Pero enfrenta tensiones contemporáneas: ¿cómo mantener dignidad en era de algoritmos? ¿Son principios realmente universales o culturalmente relativa? ¿Necesitamos mayor flexibilidad? ¿Es suficiente la racionalidad sin consideración de contexto? En mundo cada vez más complejo, los principios kantianos ofrecen una brújula moral clara: un criterio objetivo en decisiones difíciles, protección contra manipulación, fundamento para justicia universal, base para cooperación global. La pregunta fundamental de Kant sigue siendo revolucionaria: ¿por qué lo haces? ¿Es por deber, por respeto a la dignidad, por reconocimiento de la razón universal? O ¿es por interés egoísta, manipulación, violación de la dignidad? Esa pregunta definirá nuestro siglo.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La pregunta eterna: ¿por qué lo haces? ¿Es por deber genuino?</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">✅ Cierre</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>✅ Conclusión</h4><p>Comprensión final</p></div>
+        <div class="question"><p>¿Cuál es la pregunta fundamental que sigue siendo revolucionaria en la ética de Kant?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La ética kantiana sigue siendo relevante para enfrentar desafíos morales contemporáneos</div>
-          <div class="option">Las ideas de Kant son obsoletas en la era moderna</div>
-          <div class="option">Solo la filosofía antigua tiene valor práctico</div>
-          <div class="option">La dignidad humana es un concepto pasado de moda</div>
+          <div class="option">¿Qué resultados conseguiré?</div>
+          <div class="option" data-correct="true">¿Por qué lo haces? ¿Es por deber o por interés?</div>
+          <div class="option">¿Qué hizo la tradición?</div>
+          <div class="option">¿Qué ley lo permite?</div>
         </div>
       </div>
     </div>
 
   </main>
 
-  <script>
-   // ▶ Ruta base de sonidos (si usás /sound/ en la raíz del proyecto)
-   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
+  <!-- 🚀 SISTEMA MODULAR - Igual que en otros temas -->
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
 
-   class ProgressiveStudy {
-      constructor() {
-        this.currentSection = 0;
-        this.totalSections = document.querySelectorAll('.study-section').length;
-        this.completedSections = new Set();
-        this.init();
-      }
-      init() {
-        // activar primera sección
-        const sections = document.querySelectorAll('.study-section');
-        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
-        this.setupEventListeners();
-        this.showComprehensionCheck();
-        this.updateProgress();
-      }
-      setupEventListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-          option.addEventListener('click', (e) => this.handleOptionClick(e));
-        });
-      }
-      showComprehensionCheck() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        if (!currentSectionEl) return;
-        const checkEl = currentSectionEl.querySelector('.comprehension-check');
-        if (checkEl) {
-          setTimeout(() => { checkEl.classList.add('show'); }, 5000); // tiempo de lectura
-        }
-      }
-      handleOptionClick(e) {
-        const option = e.target;
-        const checkContainer = option.closest('.comprehension-check');
-        const allOptions = checkContainer.querySelectorAll('.option');
-        // deshabilitar mientras se procesa
-        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-
-        if (option.dataset.correct === 'true') {
-          option.classList.add('correct');
-          this.playSound('success');
-          this.showCelebration('🎉');
-          setTimeout(() => {
-            this.markSectionCompleted();
-            this.moveToNextSection();
-          }, 1200);
-        } else {
-          option.classList.add('incorrect');
-          this.playSound('error');
-          setTimeout(() => {
-            // Reset opciones y reintento
-            allOptions.forEach(opt => {
-              opt.classList.remove('correct','incorrect');
-              opt.style.pointerEvents = 'auto';
-            });
-            this.shuffleOptions(checkContainer);
-          }, 900);
-        }
-      }
-      shuffleOptions(container) {
-        const options = Array.from(container.querySelectorAll('.option'));
-        const parent = options[0].parentNode;
-        for (let i = options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [options[i], options[j]] = [options[j], options[i]];
-        }
-        options.forEach(option => parent.appendChild(option));
-      }
-      markSectionCompleted() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        currentSectionEl.classList.add('completed');
-        currentSectionEl.classList.remove('active');
-        this.completedSections.add(this.currentSection);
-        this.updateProgress();
-      }
-      moveToNextSection() {
-        this.currentSection++;
-        const sections = document.querySelectorAll('.study-section');
-        if (this.currentSection < this.totalSections) {
-          const nextSectionEl = sections[this.currentSection];
-          nextSectionEl.classList.add('active');
-          setTimeout(() => {
-            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
-            setTimeout(() => { window.scrollBy(0, -80); }, 800);
-          }, 300);
-          setTimeout(() => { this.showComprehensionCheck(); }, 800);
-        } else {
-          this.showCompletion();
-        }
-      }
-      updateProgress() {
-        const progressFill = document.getElementById('progress-fill');
-        const progressCounter = document.getElementById('progress-counter');
-        const percentage = (this.completedSections.size / this.totalSections) * 100;
-        progressFill.style.width = `${percentage}%`;
-        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
-      }
-      showCelebration(emoji) {
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration';
-        celebration.textContent = emoji;
-        document.body.appendChild(celebration);
-        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
-      }
-      showCompletion() {
-        this.showCelebration('🎊');
-        setTimeout(() => {
-          alert('¡Excelente! Completaste el estudio sobre Ética Kantiana. Ya podés pasar a las actividades y al quiz.');
-        }, 800);
-      }
-
-      // ▶ Reproductor de sonido
-      async playSound(type) {
-        try {
-          const files = {
-            success: 'collect_points.mp3',
-            error: 'negative_beep.mp3',
-            show_question: 'show_question.mp3',
-            timer_warning: 'timer_warning.mp3',
-            timer_danger: 'timer_danger.mp3'
-          };
-          const file = files[type] || 'collect_points.mp3';
-          const audio = new Audio(SOUND_BASE + file);
-          audio.volume = 0.7;
-          audio.preload = 'auto';
-          const p = audio.play();
-          if (p !== undefined) await p;
-        } catch (err) {
-          console.warn('No se pudo reproducir sonido:', err);
-        }
-      }
-    }
-    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
-  </script>
 </body>
 </html>

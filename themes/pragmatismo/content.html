@@ -3,9 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pragmatismo: Lo Verdadero es lo Práctico (Estudio Progresivo)</title>
+  <title>Pragmatismo – Lectura guiada</title>
   <link rel="stylesheet" href="../../css/content.css">
-  
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    // Configuración específica para Pragmatismo
+    window.ReadAloudSystemConfig = {
+      tema: 'Pragmatismo',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=pragmatismo',
+      celebrationEmojis: ['🛠️','💡','🧪','🎯','📊','🚀','⚡','🏆'],
+
+      // Sinónimos y equivalencias útiles para reconocimiento
+      synonymMap: {
+        'pragmatismo': ['pragma','utilidad','práctica','funcionalidad'],
+        'verdad': ['veracidad','certeza','realidad','correspondencia'],
+        'utilidad': ['funcionalidad','aplicabilidad','provecho','beneficio'],
+        'peirce': ['charles sanders peirce','charles peirce'],
+        'james': ['william james','james psicólogo'],
+        'dewey': ['john dewey','educador pragmático'],
+        'rorty': ['richard rorty','neopragmatismo'],
+        'máxima pragmática': ['máxima de peirce','consecuencias prácticas'],
+        'experimento': ['prueba','ensayo','testeo','validación'],
+        'método': ['proceso','procedimiento','sistema','enfoque'],
+        'consecuencias': ['resultados','efectos','impacto','productos'],
+        'experiencia': ['vivencia','práctica','experimentación','acción'],
+        'funcionalismo': ['función','utilidad','propósito','adaptación'],
+        'democracia': ['sistema político','gobierno democrático','participación'],
+        'educación': ['aprendizaje','enseñanza','formación','instrucción'],
+        'mente': ['conciencia','pensamiento','cognición','intelecto'],
+        'adaptación': ['adecuación','ajuste','evolución','respuesta']
+      }
+    };
+  </script>
 </head>
 <body>
   <main class="material-dark">
@@ -20,943 +56,541 @@
     </div>
 
     <h1>🛠️ PRAGMATISMO: Lo Verdadero es lo Práctico</h1>
-    <p><em>Un movimiento filosófico americano que revolucionó la forma de entender la <strong>verdad</strong>, el <strong>conocimiento</strong> y la <strong>acción</strong> — evaluando las ideas por su utilidad y consecuencias reales.</em></p>
+    <p><em>Un movimiento filosófico americano que revolucionó la forma de entender la <strong>verdad</strong>, el <strong>conocimiento</strong> y la <strong>acción</strong>. Descubre cómo el pragmatismo evalúa las ideas por su utilidad real y sus consecuencias prácticas en el mundo.</em></p>
 
-    <!-- 1. Principio fundamental -->
-    <div class="study-section active" data-section="principio-fundamental">
-      <div class="highlight-box">
-        <h3>🎯 Principio Fundamental del Pragmatismo</h3>
-        <div class="quote-box">
-          El valor de una idea no reside en su correspondencia con una verdad absoluta, sino en su valor práctico y en las consecuencias tangibles que produce.
+    <!-- 1. Definición fundamental -->
+    <div class="study-section active" data-section="definicion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎯 ¿Qué es el Pragmatismo?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
-        <p>El pragmatismo sostiene tres ideas revolucionarias:</p>
-        <ul>
-          <li>🔧 <strong>Verdad como utilidad:</strong> Una creencia es "verdadera" si nos resulta útil para resolver problemas</li>
-          <li>🛠️ <strong>Conocimiento como herramienta:</strong> Nuestras ideas son instrumentos activos para interactuar con el mundo</li>
-          <li>🔄 <strong>Rechazo de verdades absolutas:</strong> Las ideas son provisionales y pueden cambiar con la experiencia</li>
-        </ul>
-        <p><strong>Idea central:</strong> No preguntamos "¿Es esto verdadero?" sino "¿Para qué sirve esto?"</p>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El <strong>pragmatismo</strong> es una filosofía que nos enseña a evaluar las ideas por un criterio muy simple pero revolucionario: <em>¿para qué sirve?</em> No buscamos la verdad como correspondencia perfecta con la realidad, sino como utilidad práctica. Una creencia es verdadera si <strong>funciona</strong>, si nos permite resolver problemas reales, si produce consecuencias útiles en nuestras vidas. Esto puede parecer extraño comparado con siglos de filosofía, pero es profundamente transformador.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Idea central: la verdad se mide por lo que funciona.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Verificación de comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Verificación de comprensión</h4><p>Clave de la definición:</p></div>
+        <div class="question"><p>Según el pragmatismo, ¿cuál es el criterio principal para evaluar si una idea es verdadera?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo evalúa las ideas por su utilidad práctica, no por verdades absolutas</div>
-          <div class="option">El pragmatismo busca verdades eternas e inmutables</div>
-          <div class="option">El pragmatismo rechaza completamente la utilidad de las ideas</div>
-          <div class="option">El pragmatismo solo se aplica a la ciencia</div>
+          <div class="option">Si coincide perfectamente con una realidad objetiva</div>
+          <div class="option">Si ha sido aceptada por filósofos antiguos</div>
+          <div class="option" data-correct="true">Si funciona en la práctica y produce consecuencias útiles</div>
+          <div class="option">Si suena lógicamente coherente</div>
         </div>
       </div>
     </div>
 
     <!-- 2. Contexto histórico -->
     <div class="study-section" data-section="contexto-historico">
-      <div class="highlight-box">
-        <h3>🇺🇸 Contexto Histórico: Filosofía Americana Original</h3>
-        <p>El pragmatismo surgió en Estados Unidos durante el <strong>siglo XIX</strong>, en una época de:</p>
-        <ul>
-          <li>🏭 <strong>Rápida industrialización:</strong> Necesidad de soluciones prácticas a problemas reales</li>
-          <li>🌍 <strong>Expansión territorial:</strong> Mentalidad de pioneros enfocada en "lo que funciona"</li>
-          <li>🧪 <strong>Avances científicos:</strong> Darwin, experimentos, método científico</li>
-          <li>🏛️ <strong>Democracia en acción:</strong> Pragmatismo político y social</li>
-          <li>📚 <strong>Rechazo del dogma europeo:</strong> Búsqueda de una filosofía genuinamente americana</li>
-        </ul>
-        <p><strong>¿Por qué en América?</strong> La experiencia de construir una nueva nación requería enfoques prácticos, no teorías abstractas.</p>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🇺🇸 El Pragmatismo: Una Filosofía Americana</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El pragmatismo nace en Estados Unidos durante el siglo diecinueve, en una época de <strong>rápida industrialización</strong> y expansión territorial. La mentalidad americana valoraba lo que <em>funciona</em>, lo práctico, lo que resuelve problemas reales en el campo, la fábrica y la ciudad. Esta filosofía no surge de los escritorios de universidades europeas, sino del espíritu de una nación construyéndose a sí misma, experimentando constantemente, probando soluciones nuevas. El pragmatismo es, en esencia, una filosofía genuinamente americana.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 El contexto: industrialización y experimentación.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📚 Check histórico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📚 Verificación</h4><p>Sobre el contexto histórico</p></div>
+        <div class="question"><p>¿Por qué el pragmatismo surge específicamente en Estados Unidos durante el siglo XIX?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo surgió en EE.UU. durante una época de industrialización y expansión</div>
-          <div class="option">El pragmatismo se originó en la antigua Grecia</div>
-          <div class="option">El pragmatismo apareció en el siglo XXI</div>
-          <div class="option">El pragmatismo es una filosofía exclusivamente europea</div>
+          <div class="option">Porque Europa rechazaba todas las nuevas ideas filosóficas</div>
+          <div class="option" data-correct="true">Por la mentalidad de experimentación y resolución de problemas prácticos</div>
+          <div class="option">Porque los estadounidenses inventaron la filosofía</div>
+          <div class="option">Porque fue impuesto por decreto presidencial</div>
         </div>
       </div>
     </div>
 
     <!-- 3. Charles Sanders Peirce -->
     <div class="study-section" data-section="peirce">
-      <div class="highlight-box">
-        <h3>🧮 Charles Sanders Peirce (1839-1914): El Padre Técnico</h3>
-        <p><strong>El fundador intelectual del pragmatismo</strong>, aunque nunca se hizo famoso en vida.</p>
-        
-        <h4>🔬 La Máxima Pragmática</h4>
-        <div class="quote-box">
-          Para entender completamente una idea, debemos considerar todas sus consecuencias prácticas imaginables.
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧮 Charles Sanders Peirce: El Fundador Intelectual</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
-        <ul>
-          <li>🧪 <strong>Método científico:</strong> Enfoque riguroso para clarificar conceptos</li>
-          <li>🔍 <strong>Análisis de significado:</strong> ¿Qué diferencia práctica hace creer o no creer esto?</li>
-          <li>⚡ <strong>Eliminación de pseudoproblemas:</strong> Si no tiene consecuencias prácticas, no es un problema real</li>
-          <li>🎯 <strong>Claridad conceptual:</strong> Las ideas vagas no pueden guiar la acción</li>
-        </ul>
-
-        <h4>🧮 Peirce como Científico</h4>
-        <ul>
-          <li>🔬 <strong>Formación:</strong> Químico, matemático, lógico</li>
-          <li>⚖️ <strong>Trabajo:</strong> U.S. Coast and Geodetic Survey (mediciones precisas)</li>
-          <li>📊 <strong>Contribución:</strong> Desarrolló métodos estadísticos y lógica simbólica</li>
-          <li>🌟 <strong>Legado:</strong> Su pragmatismo era más técnico y científico que el de sus seguidores</li>
-        </ul>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Charles Sanders Peirce</strong> (1839-1914) fue un matemático, químico y lógico brillante que creó lo que llamó la <em>máxima pragmática</em>. Su principio era simple pero potente: para entender completamente una idea, debes considerar <strong>todas sus consecuencias prácticas imaginables</strong>. Peirce trabajaba en el Servicio Geodésico Estadounidense, realizando mediciones precisas. Desde ese enfoque científico riguroso, desarrolló un método para clarificar conceptos confusos: pregúntate, ¿qué diferencia práctica hace creer o no creer esto? Si no hay diferencia observable, entonces el concepto no tiene verdadero significado.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La máxima pragmática de Peirce.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔬 Comprensión</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔬 Verificación</h4><p>Sobre Peirce</p></div>
+        <div class="question"><p>¿Cuál era el principio central de Peirce llamado "máxima pragmática"?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Peirce creó la "máxima pragmática" para clarificar conceptos por sus consecuencias</div>
-          <div class="option">Peirce se enfocó solo en religión y psicología</div>
-          <div class="option">Peirce rechazó el método científico</div>
-          <div class="option">Peirce fue principalmente un filósofo político</div>
+          <div class="option">Que todas las ideas deben ser memorizadas por su complejidad</div>
+          <div class="option" data-correct="true">Que una idea debe evaluarse por sus consecuencias prácticas imaginables</div>
+          <div class="option">Que los matemáticos son superiores a otros filósofos</div>
+          <div class="option">Que la ciencia debe alejarse de lo práctico</div>
         </div>
       </div>
     </div>
 
     <!-- 4. William James -->
     <div class="study-section" data-section="william-james">
-      <div class="highlight-box">
-        <h3>🧠 William James (1842-1910): El Popularizador</h3>
-        <p><strong>Hermano del escritor Henry James</strong>, llevó el pragmatismo al público general y lo aplicó a la psicología y religión.</p>
-
-        <h4>💭 La Corriente de la Conciencia</h4>
-        <p>James describió la conciencia como un <strong>flujo continuo</strong>, no como una serie de ideas separadas:</p>
-        <ul>
-          <li>🌊 <strong>Flujo constante:</strong> La conciencia nunca se detiene</li>
-          <li>🔄 <strong>Cambio permanente:</strong> Nunca regresamos al mismo estado mental</li>
-          <li>👤 <strong>Personal:</strong> Mi conciencia es mía, irreductible</li>
-          <li>🎯 <strong>Selectiva:</strong> Elegimos a qué prestar atención</li>
-        </ul>
-
-        <h4>⚙️ Funcionalismo Psicológico</h4>
-        <p>James preguntaba: <em>"¿Para qué sirve la mente?"</em></p>
-        <ul>
-          <li>🧬 <strong>Adaptación:</strong> Los procesos mentales ayudan a sobrevivir</li>
-          <li>🔧 <strong>Función sobre forma:</strong> Importa lo que hace la mente, no cómo está estructurada</li>
-          <li>🎪 <strong>Hábitos:</strong> Patrones automáticos que liberan la mente para nuevos problemas</li>
-          <li>🌱 <strong>Plasticidad:</strong> El cerebro puede cambiar y adaptarse</li>
-        </ul>
-
-        <h4>🙏 Pragmatismo Religioso</h4>
-        <p>James aplicó pragmatismo a la religión: <em>"Si una creencia religiosa mejora tu vida, es 'verdadera' para ti"</em></p>
-        <ul>
-          <li>📖 <strong>"Las Variedades de la Experiencia Religiosa"</strong></li>
-          <li>🤔 <strong>Criterio práctico:</strong> ¿Te hace una persona mejor?</li>
-          <li>🌟 <strong>Efectos personales:</strong> Valor terapéutico de la fe</li>
-          <li>⚖️ <strong>Tolerancia:</strong> Diferentes religiones pueden ser "verdaderas" para diferentes personas</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧠 William James: Pragmatismo en la Psicología</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>William James</strong> (1842-1910), hermano del famoso escritor Henry James, llevó el pragmatismo al público general. Era psicólogo además de filósofo, y contribuyó tremendamente con sus ideas sobre la <em>corriente de la conciencia</em>. James preguntaba: <strong>¿para qué sirve la mente?</strong> La respuesta revolucionaria fue que la mente existe para ayudarnos a <em>adaptarnos</em> al mundo, para resolver problemas, para sobrevivir. La conciencia no es estática sino un flujo continuo. Y aplicó el pragmatismo a la religión: si una creencia religiosa mejora tu vida, te hace mejor persona y aumenta tu bienestar, entonces es "verdadera" para ti en el sentido que importa.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Pragmatismo aplicado a la psicología y religión.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Check</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧠 Verificación</h4><p>Sobre James</p></div>
+        <div class="question"><p>¿Cuál fue la pregunta fundamental que William James planteó sobre la mente?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">James desarrolló la corriente de la conciencia y el funcionalismo psicológico</div>
-          <div class="option">James rechazó toda aplicación del pragmatismo a la religión</div>
-          <div class="option">James creía que la conciencia es estática</div>
-          <div class="option">James se opuso al método científico en psicología</div>
+          <div class="option">¿De qué están hechas las neuronas?</div>
+          <div class="option" data-correct="true">¿Para qué sirve la mente? ¿Cómo nos ayuda a adaptarnos?</div>
+          <div class="option">¿Es la mente separada del cuerpo?</div>
+          <div class="option">¿Pueden los animales pensar como los humanos?</div>
         </div>
       </div>
     </div>
 
     <!-- 5. John Dewey -->
     <div class="study-section" data-section="john-dewey">
-      <div class="highlight-box">
-        <h3>👨‍🏫 John Dewey (1859-1952): El Reformador Social</h3>
-        <p><strong>El pragmatista más influyente</strong> en educación y política, vivió 93 años y vio enormes cambios sociales.</p>
-
-        <h4>🎓 Revolución Educativa: "Aprender Haciendo"</h4>
-        <p>Dewey transformó la educación americana con sus ideas pragmatistas:</p>
-        <ul>
-          <li>🛠️ <strong>Aprendizaje activo:</strong> Los estudiantes aprenden resolviendo problemas reales</li>
-          <li>🚫 <strong>Contra memorización:</strong> Menos repetición mecánica, más comprensión</li>
-          <li>🌍 <strong>Conexión con la vida:</strong> El conocimiento debe ser útil fuera del aula</li>
-          <li>🧪 <strong>Método experimental:</strong> Probar, equivocarse, aprender, mejorar</li>
-          <li>🤝 <strong>Aprendizaje colaborativo:</strong> La escuela como comunidad democrática</li>
-        </ul>
-
-        <h4>🏛️ Democracia como Forma de Vida</h4>
-        <p>Para Dewey, la democracia no es solo un sistema político:</p>
-        <ul>
-          <li>💬 <strong>Comunicación:</strong> Intercambio libre de ideas</li>
-          <li>🤝 <strong>Cooperación:</strong> Trabajar juntos para resolver problemas</li>
-          <li>🧠 <strong>Inteligencia colectiva:</strong> Las mejores soluciones emergen del grupo</li>
-          <li>🔄 <strong>Experimentación social:</strong> Probar políticas, evaluar resultados</li>
-        </ul>
-
-        <h4>🔄 Experimentalismo</h4>
-        <p>Dewey veía la vida como un <strong>laboratorio continuo</strong>:</p>
-        <ul>
-          <li>❓ <strong>Identificar problemas:</strong> ¿Qué no está funcionando?</li>
-          <li>💡 <strong>Generar hipótesis:</strong> ¿Qué podría funcionar mejor?</li>
-          <li>🧪 <strong>Probar soluciones:</strong> Implementar y observar resultados</li>
-          <li>📊 <strong>Evaluar:</strong> ¿Funcionó? ¿Qué aprendimos?</li>
-          <li>🔄 <strong>Iterar:</strong> Mejorar basándose en la experiencia</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👨‍🏫 John Dewey: Educación y Democracia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>John Dewey</strong> (1859-1952), el pragmatista más influyente, revolucionó la educación con su lema: <em>aprender haciendo</em>. Para Dewey, la educación tradicional de memorización era un fracaso. Los estudiantes debían aprender resolviendo <strong>problemas reales</strong>, experimentando, cometiendo errores y aprendiendo de ellos. La escuela no era un lugar para transmitir conocimiento abstracto, sino una <strong>comunidad democrática</strong> donde se practicaba la democracia. Dewey también veía la vida misma como un <em>experimento continuo</em>: identificas un problema, generas hipótesis, pruebas soluciones, evalúas resultados, y mejoras en la siguiente iteración. Este enfoque experimental define no solo la educación sino toda la vida democrática.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Educación pragmática: aprender haciendo.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">👨‍🏫 Verificación</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🎓 Verificación</h4><p>Sobre Dewey</p></div>
+        <div class="question"><p>¿Cuál era el lema educativo central de John Dewey?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Dewey promovió el "aprender haciendo" y la democracia como forma de vida</div>
-          <div class="option">Dewey defendía la memorización mecánica en educación</div>
-          <div class="option">Dewey se opuso a la experimentación en la enseñanza</div>
-          <div class="option">Dewey creía que la educación debía ser puramente teórica</div>
+          <div class="option">Memorizar todo el conocimiento disponible</div>
+          <div class="option">Separar completamente la teoría de la práctica</div>
+          <div class="option" data-correct="true">Aprender haciendo: resolver problemas reales experimentando</div>
+          <div class="option">Enseñar solo a estudiantes excepcionales</div>
         </div>
       </div>
     </div>
 
-    <!-- 6. Verdad como utilidad vs correspondencia -->
+    <!-- 6. Verdad como utilidad -->
     <div class="study-section" data-section="verdad-utilidad">
-      <div class="highlight-box">
-        <h3>🔍 Revolución Conceptual: Verdad como Utilidad</h3>
-        <p>El pragmatismo rompió con 2000 años de filosofía occidental al redefinir la "verdad".</p>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Concepción Tradicional</th>
-              <th>Concepción Pragmatista</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Tradicional"><strong>🪞 Teoría de la Correspondencia</strong><br>La verdad es correspondencia entre ideas y realidad</td>
-              <td data-label="Pragmatista"><strong>🔧 Teoría de la Utilidad</strong><br>La verdad es lo que funciona en la práctica</td>
-            </tr>
-            <tr>
-              <td data-label="Tradicional"><strong>🗿 Verdades absolutas</strong><br>Existen verdades eternas e inmutables</td>
-              <td data-label="Pragmatista"><strong>🔄 Verdades provisionales</strong><br>Las "verdades" pueden cambiar con nueva experiencia</td>
-            </tr>
-            <tr>
-              <td data-label="Tradicional"><strong>🎯 Conocimiento como reflejo</strong><br>La mente debe "espejar" la realidad</td>
-              <td data-label="Pragmatista"><strong>🛠️ Conocimiento como herramienta</strong><br>La mente es activa, transforma el mundo</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>💡 Ejemplos Prácticos</h4>
-        <ul>
-          <li>🧮 <strong>Matemáticas:</strong> 2+2=4 es "verdadero" porque nos permite construir puentes que no se caen</li>
-          <li>🌡️ <strong>Teoría atómica:</strong> Es "verdadera" porque nos permite crear medicina y tecnología</li>
-          <li>🗳️ <strong>Democracia:</strong> Es "verdadera" si produce sociedades más prósperas y libres</li>
-          <li>💊 <strong>Medicina:</strong> Un tratamiento es "verdadero" si cura efectivamente</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 La Verdad Redefinida: Utilidad en Lugar de Correspondencia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Durante dos mil años, la filosofía occidental definió la <strong>verdad</strong> como <em>correspondencia</em>: una idea es verdadera si corresponde exactamente a cómo es la realidad. El pragmatismo rompe con esta tradición. Para el pragmatista, la verdad no es una <strong>propiedad estática</strong> de las ideas, sino algo que se vuelve verdadero a través del uso práctico. <strong>Dos más dos igual cuatro</strong> es verdadero porque funciona: construimos puentes con esa matemática y no se caen. <strong>La teoría atómica</strong> es verdadera porque predice y genera medicina, tecnología, energía. Una creencia es verdadera si tiene <em>poder práctico</em>, si cambia nuestras experiencias de forma útil, si resuelve problemas reales que enfrentamos en el mundo.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La verdad es utilidad, no correspondencia perfecta.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔍 Check conceptual</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔍 Verificación</h4><p>Sobre la verdad</p></div>
+        <div class="question"><p>¿Cómo redefine el pragmatismo el concepto de verdad?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los pragmatistas ven la verdad como utilidad práctica, no correspondencia absoluta</div>
-          <div class="option">Los pragmatistas buscan verdades eternas e inmutables</div>
-          <div class="option">El pragmatismo acepta la teoría del conocimiento como espejo</div>
-          <div class="option">Para los pragmatistas, la verdad nunca puede cambiar</div>
+          <div class="option">La verdad es lo que la mayoría de personas cree</div>
+          <div class="option" data-correct="true">La verdad es lo que funciona prácticamente y produce consecuencias útiles</div>
+          <div class="option">La verdad es una correspondencia perfecta con una realidad objetiva</div>
+          <div class="option">La verdad no existe realmente</div>
         </div>
       </div>
     </div>
 
-    <!-- 7. Método pragmático -->
+    <!-- 7. El método pragmático -->
     <div class="study-section" data-section="metodo-pragmatico">
-      <div class="highlight-box">
-        <h3>🧪 El Método Pragmático en Acción</h3>
-        <p><strong>¿Cómo aplicar el pensamiento pragmatista?</strong> Un proceso sistemático para evaluar ideas:</p>
-
-        <h4>📋 Los 5 Pasos del Método Pragmático</h4>
-        <ol>
-          <li><strong>🤔 Identificar el problema:</strong> ¿Qué necesita ser resuelto?</li>
-          <li><strong>💡 Generar alternativas:</strong> ¿Qué opciones tenemos?</li>
-          <li><strong>🔮 Predecir consecuencias:</strong> ¿Qué resultados esperamos de cada opción?</li>
-          <li><strong>🧪 Experimentar:</strong> Probar la opción más prometedora</li>
-          <li><strong>📊 Evaluar resultados:</strong> ¿Funcionó? ¿Qué aprendimos?</li>
-        </ol>
-
-        <h4>❓ Preguntas Clave Pragmatistas</h4>
-        <ul>
-          <li><strong>¿Qué diferencia práctica hace?</strong> Si no hay diferencia observable, quizás no importa</li>
-          <li><strong>¿Para qué sirve?</strong> ¿Cuál es la función o utilidad de esta idea?</li>
-          <li><strong>¿Funciona en la práctica?</strong> Los resultados son el criterio final</li>
-          <li><strong>¿Qué experiencias produce?</strong> ¿Mejora o empeora nuestra experiencia?</li>
-          <li><strong>¿Es adaptable?</strong> ¿Puede modificarse si las circunstancias cambian?</li>
-        </ul>
-
-        <h4>🚫 Lo que NO es Pragmatismo</h4>
-        <ul>
-          <li><strong>❌ Oportunismo:</strong> No es "hacer lo que conviene sin principios"</li>
-          <li><strong>❌ Relativismo:</strong> No es "todo es igualmente válido"</li>
-          <li><strong>❌ Anti-intelectualismo:</strong> No rechaza el pensamiento riguroso</li>
-          <li><strong>❌ Materialismo:</strong> No reduce todo a beneficio económico</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧪 El Método Pragmático en Acción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            ¿Cómo aplicamos el pensamiento pragmático en la vida real? El proceso es sistemático. Primero, <strong>identificas el problema</strong> específico que necesita solución. Segundo, <strong>generas alternativas</strong>: ¿qué opciones tienes? Tercero, <strong>predices consecuencias</strong>: ¿qué resultados esperarías de cada opción? Cuarto, <strong>experimentas</strong>: pruebas la opción más promisoria. Quinto, <strong>evalúas resultados</strong>: ¿funcionó? ¿Qué aprendiste? Este ciclo no termina: siempre refinas, pruebas nuevas variaciones, mejoras constantemente. El pragmatista nunca está completamente satisfecho; siempre busca la siguiente iteración mejor, basada en evidencia de lo que realmente funciona.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Cinco pasos: problema, opciones, predicción, experimentación, evaluación.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧪 Check metodológico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🔧 Verificación</h4><p>Sobre el método</p></div>
+        <div class="question"><p>¿Cuál es el último paso en el método pragmático descrito?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El método pragmático incluye experimentar y evaluar resultados sistemáticamente</div>
-          <div class="option">El pragmatismo es puro oportunismo sin principios</div>
-          <div class="option">El método pragmático rechaza la experimentación</div>
-          <div class="option">El pragmatismo considera que todo es igualmente válido</div>
+          <div class="option">Identificar el problema</div>
+          <div class="option">Generar alternativas</div>
+          <div class="option">Experimentar con una solución</div>
+          <div class="option" data-correct="true">Evaluar resultados y mejorar continuamente</div>
         </div>
       </div>
     </div>
 
     <!-- 8. Aplicaciones educativas -->
     <div class="study-section" data-section="aplicaciones-educativas">
-      <div class="highlight-box">
-        <h3>🎓 Revolución Educativa: De la Memorización al Pensamiento</h3>
-        
-        <h4>📚 Educación Tradicional vs. Pragmatista</h4>
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Educación Tradicional</th>
-              <th>Educación Pragmatista</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Tradicional">📖 Memorización de contenidos</td>
-              <td data-label="Pragmatista">🛠️ Resolución de problemas reales</td>
-            </tr>
-            <tr>
-              <td data-label="Tradicional">👨‍🏫 Maestro como autoridad</td>
-              <td data-label="Pragmatista">🤝 Maestro como facilitador</td>
-            </tr>
-            <tr>
-              <td data-label="Tradicional">📝 Evaluación por exámenes</td>
-              <td data-label="Pragmatista">🎯 Evaluación por proyectos</td>
-            </tr>
-            <tr>
-              <td data-label="Tradicional">🏫 Aislado de la comunidad</td>
-              <td data-label="Pragmatista">🌍 Conectado con la vida real</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>🧪 Métodos Pragmatistas en el Aula</h4>
-        <ul>
-          <li><strong>🔬 Aprendizaje basado en problemas:</strong> Estudiantes investigan problemas reales de su comunidad</li>
-          <li><strong>🤝 Trabajo colaborativo:</strong> Aprender a trabajar en equipo para resolver desafíos</li>
-          <li><strong>🎭 Aprendizaje experiencial:</strong> Simulaciones, experimentos, proyectos hands-on</li>
-          <li><strong>🔄 Reflexión crítica:</strong> ¿Qué funcionó? ¿Qué mejoraríamos?</li>
-          <li><strong>🌐 Conexión interdisciplinaria:</strong> Integrar conocimientos de diferentes materias</li>
-        </ul>
-
-        <h4>📱 Pragmatismo en la Educación Digital</h4>
-        <ul>
-          <li><strong>💻 Tecnología como herramienta:</strong> No usar tech por usar, sino para resolver problemas específicos</li>
-          <li><strong>🎮 Gamificación funcional:</strong> Juegos que enseñan habilidades transferibles</li>
-          <li><strong>📊 Analítica de aprendizaje:</strong> Datos para mejorar métodos pedagógicos</li>
-          <li><strong>🌍 Aprendizaje global:</strong> Proyectos colaborativos con estudiantes de otros países</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎓 Revolución Educativa Pragmática</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La educación pragmática transforma completamente el aula tradicional. En lugar de <strong>memorización</strong>, los estudiantes resuelven <strong>problemas reales</strong> de su comunidad. En lugar de exámenes que testan memoria, la <strong>evaluación es auténtica</strong>: ¿puedes usar lo que aprendiste? El maestro no es <em>autoridad que transmite verdades</em>, sino <strong>facilitador</strong> que ayuda a los estudiantes a investigar y experimentar. Las materias no están aisladas; están <strong>integradas</strong> porque los problemas reales no respetan fronteras disciplinarias. Un proyecto sobre cambio climático requiere ciencia, matemáticas, historia, escritura, pensamiento crítico. El aprendizaje es <strong>colaborativo</strong> porque en el mundo real, la solución de problemas complejos requiere trabajo en equipo. Esta no es educación pasiva; es <strong>educación activa y comprometida</strong>.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Aprendizaje activo, colaborativo e integrado.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎓 Comprensión educativa</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📚 Verificación</h4><p>Sobre educación</p></div>
+        <div class="question"><p>¿Cuál es el rol principal del maestro en la educación pragmática?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">La educación pragmatista enfatiza resolver problemas reales y aprendizaje experiencial</div>
-          <div class="option">La educación pragmatista se basa principalmente en memorización</div>
-          <div class="option">El pragmatismo educativo rechaza el uso de tecnología</div>
-          <div class="option">Los pragmatistas prefieren el aislamiento del aula respecto a la comunidad</div>
+          <div class="option">Transmitir toda la verdad absoluta a los estudiantes</div>
+          <div class="option">Evaluar únicamente mediante exámenes memorísticos</div>
+          <div class="option" data-correct="true">Facilitar que los estudiantes investiguen y resuelvan problemas reales</div>
+          <div class="option">Mantener aisladas las diferentes materias escolares</div>
         </div>
       </div>
     </div>
 
-    <!-- 9. Aplicaciones en psicología -->
+    <!-- 9. Pragmatismo en psicología -->
     <div class="study-section" data-section="aplicaciones-psicologia">
-      <div class="highlight-box">
-        <h3>🧠 Pragmatismo en Psicología: La Mente como Instrumento</h3>
-
-        <h4>⚙️ Funcionalismo vs. Estructuralismo</h4>
-        <ul>
-          <li><strong>❌ Estructuralismo (Wundt):</strong> ¿Cómo está estructurada la conciencia?</li>
-          <li><strong>✅ Funcionalismo (James):</strong> ¿Para qué sirve la conciencia?</li>
-        </ul>
-
-        <h4>🧬 Principios Funcionalistas</h4>
-        <ul>
-          <li><strong>🎯 Adaptación:</strong> Los procesos mentales evolucionaron para ayudar a sobrevivir</li>
-          <li><strong>🔧 Función sobre estructura:</strong> Importa lo que hace la mente, no cómo está organizada</li>
-          <li><strong>🌱 Plasticidad cerebral:</strong> El cerebro puede reorganizarse según la experiencia</li>
-          <li><strong>🎪 Formación de hábitos:</strong> Automatización para liberar recursos mentales</li>
-        </ul>
-
-        <h4>🏥 Psicología Aplicada Moderna</h4>
-        <p>El enfoque pragmatista influyó en:</p>
-        <ul>
-          <li><strong>💊 Psicoterapia:</strong> ¿Qué terapias funcionan realmente para cada problema?</li>
-          <li><strong>🏢 Psicología organizacional:</strong> ¿Cómo mejorar el rendimiento y bienestar laboral?</li>
-          <li><strong>🧑‍⚕️ Psicología de la salud:</strong> ¿Qué intervenciones mejoran comportamientos saludables?</li>
-          <li><strong>🎓 Psicología educativa:</strong> ¿Qué métodos facilitan mejor el aprendizaje?</li>
-          <li><strong>📱 Psicología UX:</strong> ¿Cómo diseñar interfaces que funcionen para usuarios reales?</li>
-        </ul>
-
-        <h4>🔬 Psicología Basada en Evidencia</h4>
-        <p>El pragmatismo impulsó el movimiento hacia terapias que demuestran eficacia:</p>
-        <ul>
-          <li><strong>📊 Terapia Cognitivo-Conductual:</strong> Métodos con evidencia empírica sólida</li>
-          <li><strong>🎯 Terapia de Aceptación y Compromiso:</strong> Enfoque en valores y acciones efectivas</li>
-          <li><strong>🧘 Mindfulness:</strong> Técnicas que producen beneficios medibles</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧠 Pragmatismo en Psicología: La Mente como Herramienta</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El pragmatismo influyó profundamente en la psicología moderna. En lugar de preguntarse <em>¿cómo está estructurada la mente?</em>, los pragmatistas preguntaban <em>¿para qué sirve?</em> Desarrollaron el <strong>funcionalismo psicológico</strong>: la mente existe para que nos <strong>adaptemos</strong> al ambiente. El pensamiento, la memoria, las emociones, todo esto evolucionó para ayudarnos a sobrevivir. Este enfoque funcionalista influyó en la psicología aplicada moderna: terapia cognitivo-conductual que pregunta "¿funciona esta intervención?", evaluación de medicamentos psicológicos por resultados medibles, mindfulness basado en evidencia. La psicología pragmática es siempre <strong>orientada a resultados</strong>: ¿mejora la vida del paciente? ¿Pueden los clientes funcionar mejor en sus relaciones, trabajo, comunidad?
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La mente como herramienta para adaptación evolutiva.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Check psicológico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧬 Verificación</h4><p>Sobre psicología</p></div>
+        <div class="question"><p>¿Cuál es la pregunta central del funcionalismo psicológico pragmatista?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El funcionalismo pragmatista pregunta "¿para qué sirve?" la mente</div>
-          <div class="option">El pragmatismo psicológico se enfoca solo en la estructura mental</div>
-          <div class="option">La psicología pragmatista rechaza la evidencia empírica</div>
-          <div class="option">El funcionalismo ignora la adaptación evolutiva</div>
+          <div class="option">¿De qué material están hechas las neuronas?</div>
+          <div class="option" data-correct="true">¿Para qué sirve la mente? ¿Cómo nos ayuda a adaptarnos?</div>
+          <div class="option">¿Es la mente superior al cuerpo?</div>
+          <div class="option">¿Pueden las máquinas tener mente?</div>
         </div>
       </div>
     </div>
 
-    <!-- 10. Aplicaciones políticas -->
+    <!-- 10. Pragmatismo político -->
     <div class="study-section" data-section="aplicaciones-politicas">
-      <div class="highlight-box">
-        <h3>🏛️ Pragmatismo Político: Democracia Experimental</h3>
-
-        <h4>🗳️ Política Pragmatista</h4>
-        <p>El pragmatismo influyó en la política americana promoviendo:</p>
-        <ul>
-          <li><strong>📊 Políticas basadas en evidencia:</strong> Evaluar programas por resultados, no ideología</li>
-          <li><strong>🧪 Experimentación social:</strong> Probar políticas en pequeña escala antes de implementarlas ampliamente</li>
-          <li><strong>🤝 Colaboración bipartidista:</strong> Buscar soluciones que funcionen, independiente del partido</li>
-          <li><strong>🔄 Flexibilidad adaptativa:</strong> Modificar políticas cuando la evidencia muestra mejores alternativas</li>
-        </ul>
-
-        <h4>📋 Ejemplos de Política Pragmatista</h4>
-        <ul>
-          <li><strong>🏥 New Deal (1930s):</strong> Roosevelt probó múltiples programas para combatir la Depresión</li>
-          <li><strong>🎓 Programas piloto educativos:</strong> Probar nuevos métodos antes de adopción masiva</li>
-          <li><strong>🌱 Política ambiental:</strong> Incentivos económicos que funcionan mejor que prohibiciones</li>
-          <li><strong>💰 Programas sociales:</strong> Evaluar efectividad de transferencias de dinero, capacitación laboral, etc.</li>
-        </ul>
-
-        <h4>🌍 Pragmatismo en Relaciones Internacionales</h4>
-        <ul>
-          <li><strong>🕊️ Diplomacia práctica:</strong> Buscar soluciones que funcionen para todas las partes</li>
-          <li><strong>📈 Cooperación por resultados:</strong> Alianzas basadas en beneficios mutuos comprobables</li>
-          <li><strong>🔧 Multilateralismo funcional:</strong> Instituciones internacionales que resuelven problemas específicos</li>
-        </ul>
-
-        <h4>⚠️ Límites del Pragmatismo Político</h4>
-        <ul>
-          <li><strong>🎯 Valores fundamentales:</strong> Algunos principios (derechos humanos) no deben negociarse</li>
-          <li><strong>⏰ Presión temporal:</strong> La política a veces requiere decisiones rápidas</li>
-          <li><strong>🗳️ Complejidad democrática:</strong> Los votantes pueden preferir ideología sobre resultados</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🗳️ Pragmatismo Político: Democracia Experimental</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El pragmatismo influyó profundamente en la política americana. En lugar de elegir políticas basadas en <strong>ideología pura</strong>, los pragmatistas preguntan: <em>¿funciona realmente?</em> Esto llevó a políticas <strong>basadas en evidencia</strong>: si un programa social no produce los resultados deseados, se modifica o se descarta, no importa cuán hermosa sea la teoría detrás. Franklin Roosevelt, durante la Gran Depresión, implementó múltiples programas del New Deal con una actitud experimental: prueba esto, ve si funciona, ajusta si es necesario. La democracia misma se ve como un <strong>experimento social continuo</strong>. Las leyes son hipótesis que probamos; si fallan, las revisamos. La mejor política es la que produce resultados medibles: ¿reduce la pobreza? ¿Mejora la salud? ¿Aumenta la estabilidad? Esta es política pragmática.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Políticas basadas en evidencia y experimentación.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🏛️ Check político</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>⚖️ Verificación</h4><p>Sobre política</p></div>
+        <div class="question"><p>¿Cuál es la actitud pragmática ante las políticas públicas?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo político enfatiza políticas basadas en evidencia y experimentación social</div>
-          <div class="option">El pragmatismo político rechaza la cooperación bipartidista</div>
-          <div class="option">Los pragmatistas políticos nunca consideran valores fundamentales</div>
-          <div class="option">El pragmatismo político prefiere ideología sobre resultados</div>
+          <div class="option">Seguir ideología política sin considerar resultados</div>
+          <div class="option" data-correct="true">Evaluar políticas por sus resultados prácticos y ajustar según evidencia</div>
+          <div class="option">Confiar siempre en la sabiduría antigua</div>
+          <div class="option">Implementar nuevas ideas sin jamás evaluarlas</div>
         </div>
       </div>
     </div>
 
     <!-- 11. Richard Rorty y neopragmatismo -->
     <div class="study-section" data-section="rorty-neopragmatismo">
-      <div class="highlight-box">
-        <h3>🔄 Richard Rorty (1931-2007): El Neopragmatismo</h3>
-        <p><strong>Filósofo que revitalizó el pragmatismo</strong> para el siglo XXI, llevándolo a extremos más radicales.</p>
-
-        <h4>📚 "La Filosofía y el Espejo de la Naturaleza" (1979)</h4>
-        <p>Rorty atacó la idea fundamental de que el conocimiento "representa" la realidad:</p>
-        <ul>
-          <li><strong>🪞 Contra el "espejo":</strong> La mente no refleja pasivamente la realidad</li>
-          <li><strong>🛠️ Conocimiento como práctica:</strong> Conocer es hacer, no contemplar</li>
-          <li><strong>💬 Lenguaje como acción:</strong> Hablamos para lograr propósitos, no para describir verdades</li>
-          <li><strong>🌍 Anti-fundamentalismo:</strong> No hay "bases" últimas del conocimiento</li>
-        </ul>
-
-        <h4>🗣️ Conversación, No Epistemología</h4>
-        <p>Para Rorty, la filosofía debe abandonar la búsqueda de <em>"la verdad"</em> y enfocarse en mantener <strong>conversaciones productivas</strong>:</p>
-        <ul>
-          <li><strong>💬 Diálogo abierto:</strong> Mantener viva la conversación humana</li>
-          <li><strong>🔄 Redescripción:</strong> Ofrecer nuevas formas de hablar sobre problemas</li>
-          <li><strong>🎭 Ironismo:</strong> Reconocer que nuestras creencias son contingentes</li>
-          <li><strong>🕊️ Tolerancia:</strong> Aceptar múltiples perspectivas sin buscar "la correcta"</li>
-        </ul>
-
-        <h4>🌈 Pragmatismo "Arcoíris"</h4>
-        <p>Rorty influyó en diversas áreas contemporáneas:</p>
-        <ul>
-          <li><strong>📚 Literatura:</strong> Los textos no tienen "significado" fijo, sino usos diversos</li>
-          <li><strong>🏛️ Política liberal:</strong> La democracia como experimento social continuo</li>
-          <li><strong>🌍 Multiculturalismo:</strong> Valorar diferentes tradiciones sin jerarquías absolutas</li>
-          <li><strong>🎓 Educación:</strong> Ampliar conversaciones, no transmitir verdades eternas</li>
-        </ul>
-
-        <h4>⚖️ Críticas a Rorty</h4>
-        <ul>
-          <li><strong>🎯 Relativismo extremo:</strong> ¿Cómo distinguir mejores de peores ideas?</li>
-          <li><strong>🔬 Anti-realismo científico:</strong> ¿La ciencia no descubre verdades sobre la naturaleza?</li>
-          <li><strong>⚖️ Problemas éticos:</strong> ¿Todos los valores son igualmente válidos?</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 Richard Rorty: Neopragmatismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Richard Rorty</strong> (1931-2007) revitalizó el pragmatismo para el siglo veinte, llevándolo a extremos aún más radicales. Rorty atacó la idea de que el conocimiento es un <em>"espejo de la naturaleza"</em>, que la mente simplemente refleja la realidad. Para Rorty, el conocimiento es más bien <strong>creación que descubrimiento</strong>. No buscamos "la verdad" como objeto fijo en el universo, sino que <strong>conversamos</strong> productivamente. La filosofía debe abandonar la búsqueda de certeza absoluta y enfocarse en <strong>mantener viva la conversación</strong> entre diferentes perspectivas. Ofrecer nuevas formas de hablar sobre problemas puede ser más valioso que "descubrir la verdad". El neopragmatismo de Rorty influye en multiculturalismo, literatura, educación liberal: valoramos diferentes tradiciones sin jerarquizar cuál es "correcta".
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 La verdad como conversación productiva.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔄 Check neopragmatista</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🗣️ Verificación</h4><p>Sobre Rorty</p></div>
+        <div class="question"><p>¿Cuál es la alternativa que Rorty propone a la búsqueda de "la verdad"?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Rorty promovió conversación productiva sobre búsqueda de verdad absoluta</div>
-          <div class="option">Rorty defendió la epistemología tradicional del conocimiento como espejo</div>
-          <div class="option">El neopragmatismo rechaza completamente el diálogo</div>
-          <div class="option">Rorty creía en verdades fundamentales inmutables</div>
+          <div class="option">Abandonar completamente el pensamiento riguroso</div>
+          <div class="option" data-correct="true">Mantener conversaciones productivas entre perspectivas diferentes</div>
+          <div class="option">Volver a la certeza absoluta de la filosofía antigua</div>
+          <div class="option">Aceptar que nada se puede conocer en absoluto</div>
         </div>
       </div>
     </div>
 
     <!-- 12. Aplicaciones modernas -->
     <div class="study-section" data-section="aplicaciones-modernas">
-      <div class="highlight-box">
-        <h3>💻 Pragmatismo en el Siglo XXI</h3>
-
-        <h4>🚀 Tecnología y Diseño</h4>
-        <ul>
-          <li><strong>📱 UX/UI Design:</strong> ¿La interfaz funciona para usuarios reales?</li>
-          <li><strong>🧪 A/B Testing:</strong> Probar diferentes versiones, quedarse con la que funciona</li>
-          <li><strong>⚡ Desarrollo ágil:</strong> Iteración rápida basada en feedback</li>
-          <li><strong>🎯 Design thinking:</strong> Empatía, definir problemas, prototipar, probar</li>
-        </ul>
-
-        <h4>💼 Mundo Empresarial</h4>
-        <ul>
-          <li><strong>📊 Decisiones basadas en datos:</strong> Análisis pragmático de métricas</li>
-          <li><strong>🔄 Lean startup:</strong> Construir-medir-aprender como ciclo continuo</li>
-          <li><strong>🎯 KPIs funcionales:</strong> Métricas que realmente predicen éxito</li>
-          <li><strong>🤝 Equipos autoorganizados:</strong> Grupos que resuelven problemas sin micromanaging</li>
-        </ul>
-
-        <h4>🧠 Inteligencia Artificial</h4>
-        <ul>
-          <li><strong>🏆 Machine learning:</strong> Algoritmos que mejoran con la experiencia</li>
-          <li><strong>🔧 AI pragmática:</strong> ¿Funciona la IA para resolver problemas específicos?</li>
-          <li><strong>⚖️ Ética de la IA:</strong> Evaluar algoritmos por sus efectos sociales</li>
-          <li><strong>🧪 Experimentación continua:</strong> Probar y mejorar modelos constantemente</li>
-        </ul>
-
-        <h4>🌍 Problemas Globales</h4>
-        <ul>
-          <li><strong>🌡️ Cambio climático:</strong> Soluciones que funcionen política y económicamente</li>
-          <li><strong>💊 Salud pública:</strong> Intervenciones basadas en evidencia</li>
-          <li><strong>📚 Educación global:</strong> Métodos pedagógicos que funcionen en diferentes culturas</li>
-          <li><strong>🏘️ Desarrollo urbano:</strong> Ciudades diseñadas para sus habitantes reales</li>
-        </ul>
-
-        <h4>📱 Redes Sociales y Comunicación</h4>
-        <ul>
-          <li><strong>🎯 Contenido útil vs. viral:</strong> ¿Qué información realmente ayuda?</li>
-          <li><strong>🤝 Construcción de comunidades:</strong> Plataformas que faciliten conexión genuina</li>
-          <li><strong>📊 Metrics that matter:</strong> Engagement significativo, no solo clicks</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💻 Pragmatismo en el Siglo XXI</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Hoy el pragmatismo está en todas partes aunque no siempre lo reconozcamos. En <strong>tecnología</strong>, el desarrollo ágil y el A/B testing son pragmatismo puro: pruebas qué interfaz funciona mejor con usuarios reales. En <strong>negocios</strong>, "lean startup" es pragmatismo: construye un prototipo mínimo, mide, aprende, itera. En <strong>inteligencia artificial</strong>, evaluamos algoritmos por su eficacia real, no por elegancia teórica. En <strong>políticas de salud pública</strong>, se implementan programas piloto, se miden resultados, se escalan lo que funciona. En <strong>medicina</strong>, la medicina basada en evidencia es pragmatista: ¿qué tratamiento realmente cura? En <strong>cambio climático</strong>, busca soluciones que funcionen política y económicamente, no solo teóricamente. El pragmatismo es el espíritu del siglo veintiuno: experimentar, medir, adaptar, mejorar constantemente.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Pragmatismo en tecnología, negocios, medicina y política.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">💻 Check moderno</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🚀 Verificación</h4><p>Aplicaciones modernas</p></div>
+        <div class="question"><p>¿Cuál de estos ejemplos NO es una aplicación de pensamiento pragmático?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo influye en tecnología, negocios, IA y solución de problemas globales</div>
-          <div class="option">El pragmatismo no tiene aplicaciones en el mundo digital</div>
-          <div class="option">Las empresas modernas rechazan el enfoque pragmatista</div>
-          <div class="option">La IA es incompatible con el pensamiento pragmático</div>
+          <div class="option">A/B testing en tecnología para determinar qué funciona mejor</div>
+          <div class="option">Medicina basada en evidencia que evalúa tratamientos por resultados</div>
+          <div class="option" data-correct="true">Adoptar una política sin jamás evaluar sus resultados reales</div>
+          <div class="option">Lean startup que prueba, mide y aprende continuamente</div>
         </div>
       </div>
     </div>
 
     <!-- 13. Críticas al pragmatismo -->
     <div class="study-section" data-section="criticas-pragmatismo">
-      <div class="highlight-box">
-        <h3>⚖️ Críticas y Limitaciones del Pragmatismo</h3>
-
-        <h4>🎭 El Problema del Relativismo</h4>
-        <p><strong>Crítica principal:</strong> Si la verdad es solo "lo que funciona", ¿no lleva esto al relativismo moral?</p>
-        <ul>
-          <li><strong>❓ Ejemplo problemático:</strong> ¿La propaganda nazi era "verdadera" porque "funcionó" para Hitler?</li>
-          <li><strong>🤔 Respuesta pragmatista:</strong> El análisis debe considerar <em>todas</em> las consecuencias a largo plazo</li>
-          <li><strong>⚖️ Matización:</strong> "Funcionar" incluye consideraciones éticas y sociales amplias</li>
-        </ul>
-
-        <h4>🔬 La Cuestión de la Objetividad Científica</h4>
-        <ul>
-          <li><strong>❓ Crítica:</strong> ¿La ciencia no descubre verdades sobre la realidad independiente de nosotros?</li>
-          <li><strong>🌟 Ejemplo:</strong> Las leyes físicas parecen existir independientemente de su utilidad humana</li>
-          <li><strong>🤝 Respuesta pragmatista:</strong> Incluso las "verdades" científicas se validan por su capacidad predictiva y tecnológica</li>
-        </ul>
-
-        <h4>⏰ Limitaciones Temporales</h4>
-        <ul>
-          <li><strong>🚨 Decisiones urgentes:</strong> A veces no hay tiempo para experimentación pragmática</li>
-          <li><strong>📊 Datos insuficientes:</strong> ¿Cómo actuar cuando faltan consecuencias observables?</li>
-          <li><strong>🔮 Incertidumbre:</strong> Las consecuencias a largo plazo son impredecibles</li>
-        </ul>
-
-        <h4>🎯 El Problema de los Valores Fundamentales</h4>
-        <ul>
-          <li><strong>⚖️ Derechos humanos:</strong> Algunos principios parecen valiosos independientemente de su utilidad</li>
-          <li><strong>🎨 Valores intrínsecos:</strong> ¿El arte, la belleza, la dignidad tienen valor por sí mismos?</li>
-          <li><strong>🙏 Experiencias espirituales:</strong> ¿Todo debe reducirse a utilidad práctica?</li>
-        </ul>
-
-        <h4>🧠 Críticas Filosóficas Técnicas</h4>
-        <ul>
-          <li><strong>💭 Realistas:</strong> "Ignora la realidad objetiva independiente de la experiencia humana"</li>
-          <li><strong>🎯 Analíticos:</strong> "Es demasiado vago sobre qué significa 'funcionar'"</li>
-          <li><strong>🏛️ Tradicionalistas:</strong> "Rechaza la sabiduría acumulada de siglos"</li>
-          <li><strong>🌍 Continentales:</strong> "No considera suficientemente el contexto histórico y cultural"</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ Críticas y Limitaciones del Pragmatismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El pragmatismo no está sin críticas. Algunos filósofos argumentan que <strong>relativismo moral</strong> es su riesgo: si la verdad es simplemente "lo que funciona", ¿no podrían funcionar también ideas malvadas? Los realistas científicos objetan que la ciencia descubre <em>verdades reales</em> sobre la naturaleza, no solo instrumentos útiles. Otros critican que <strong>valores intrínsecamente valiosos</strong>—la belleza, la dignidad humana, el arte—no pueden reducirse a utilidad. Y hay un problema temporal: ¿cómo actuamos cuando no tenemos tiempo para experimentación pragmática? Las decisiones urgentes frecuentemente exigen actuar con información incompleta. Además, las <strong>consecuencias a largo plazo</strong> son impredecibles. Sin embargo, los pragmatistas responden que el análisis debe incluir <em>todas</em> las consecuencias, incluyendo consideraciones éticas y sociales amplias, no solo beneficios inmediatos. El pragmatismo no es relativismo extremo; es relativismo con responsabilidad.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Debilidades del pragmatismo y respuestas pragmatistas.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">⚖️ Check crítico</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🤔 Verificación</h4><p>Sobre críticas</p></div>
+        <div class="question"><p>¿Cuál es una crítica significativa al pragmatismo?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Las críticas incluyen relativismo, objetividad científica y valores fundamentales</div>
-          <div class="option">El pragmatismo no tiene ninguna limitación o crítica válida</div>
-          <div class="option">Solo los filósofos tradicionalistas critican el pragmatismo</div>
-          <div class="option">Las críticas al pragmatismo son puramente teóricas</div>
+          <div class="option">Que insiste demasiado en la teoría pura</div>
+          <div class="option">Que rechaza completamente la ciencia</div>
+          <div class="option" data-correct="true">Que podría llevar al relativismo moral si no consideramos todas las consecuencias amplias</div>
+          <div class="option">Que fue inventado en Europa medieval</div>
         </div>
       </div>
     </div>
 
     <!-- 14. Pragmatismo vs otras filosofías -->
     <div class="study-section" data-section="comparacion-filosofias">
-      <div class="highlight-box">
-        <h3>🔄 Pragmatismo vs. Otras Corrientes Filosóficas</h3>
-
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Corriente</th>
-              <th>Enfoque Principal</th>
-              <th>Criterio de Validez</th>
-              <th>Relación con el Pragmatismo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Corriente"><strong>🛠️ Pragmatismo</strong></td>
-              <td data-label="Enfoque">¿Para qué sirve?</td>
-              <td data-label="Criterio">Utilidad y consecuencias</td>
-              <td data-label="Relación">—</td>
-            </tr>
-            <tr>
-              <td data-label="Corriente"><strong>💭 Racionalismo</strong></td>
-              <td data-label="Enfoque">Verdades por razón pura</td>
-              <td data-label="Criterio">Coherencia lógica</td>
-              <td data-label="Relación">Tensión: pragmatismo prefiere experiencia</td>
-            </tr>
-            <tr>
-              <td data-label="Corriente"><strong>🔬 Empirismo</strong></td>
-              <td data-label="Enfoque">Conocimiento por experiencia</td>
-              <td data-label="Criterio">Evidencia sensorial</td>
-              <td data-label="Relación">Afinidad: ambos valoran experiencia</td>
-            </tr>
-            <tr>
-              <td data-label="Corriente"><strong>🎯 Positivismo</strong></td>
-              <td data-label="Enfoque">Hechos verificables</td>
-              <td data-label="Criterio">Verificación empírica</td>
-              <td data-label="Relación">Similar pero pragmatismo más flexible</td>
-            </tr>
-            <tr>
-              <td data-label="Corriente"><strong>🌊 Existencialismo</strong></td>
-              <td data-label="Enfoque">Experiencia humana auténtica</td>
-              <td data-label="Criterio">Autenticidad personal</td>
-              <td data-label="Relación">Comparten énfasis en experiencia vivida</td>
-            </tr>
-            <tr>
-              <td data-label="Corriente"><strong>📖 Idealismo</strong></td>
-              <td data-label="Enfoque">Realidad como idea/espíritu</td>
-              <td data-label="Criterio">Consistencia con sistema total</td>
-              <td data-label="Relación">Oposición: pragmatismo es más materialista</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>🤝 Puntos de Encuentro</h4>
-        <ul>
-          <li><strong>Con empirismo:</strong> Importancia de la experiencia</li>
-          <li><strong>Con existencialismo:</strong> Énfasis en la experiencia humana concreta</li>
-          <li><strong>Con utilitarismo:</strong> Evaluación por consecuencias</li>
-          <li><strong>Con método científico:</strong> Hipótesis-experimento-evaluación</li>
-        </ul>
-
-        <h4>⚔️ Puntos de Tensión</h4>
-        <ul>
-          <li><strong>Con racionalismo:</strong> Pragmatismo desconfía de verdades "puras"</li>
-          <li><strong>Con idealismo:</strong> Pragmatismo es más materialista y práctico</li>
-          <li><strong>Con dogmatismo:</strong> Pragmatismo es inherentemente antidogmático</li>
-          <li><strong>Con absolutos:</strong> Pragmatismo ve todo como provisional</li>
-        </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 Pragmatismo Comparado con Otras Filosofías</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            ¿Cómo se diferencia el pragmatismo de otras corrientes? Con el <strong>empirismo</strong>, comparte la importancia de la experiencia, pero el empirismo es más pasivo, mientras el pragmatismo es activo y transformador. Con el <strong>racionalismo</strong> hay tensión: el pragmatista desconfía de verdades "puras" derivadas de razón sin conexión a la experiencia. Con el <strong>positivismo científico</strong>, hay afinidad pero el pragmatismo es más flexible. Con el <strong>existencialismo</strong>, ambos enfatizan la experiencia humana concreta. Con el <strong>idealismo</strong>, hay divergencia: el pragmatista es más materialista y práctico. Lo importante es entender que el pragmatismo <strong>no es dogma</strong>: es antidogmático por naturaleza. Valora lo que funciona, adapta continuamente, y mantiene apertura a nuevas perspectivas. En esencia, el pragmatismo es un <strong>método</strong> más que un conjunto fijo de creencias.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Pragmatismo como método, no doctrina fija.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔄 Check comparativo</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>📊 Verificación</h4><p>Comparación</p></div>
+        <div class="question"><p>¿Qué caracteriza al pragmatismo como metodología filosófica?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo tiene afinidades con empirismo y tensiones con racionalismo</div>
-          <div class="option">El pragmatismo es idéntico al positivismo</div>
-          <div class="option">No hay diferencias entre pragmatismo y otras filosofías</div>
-          <div class="option">El pragmatismo rechaza completamente toda otra corriente filosófica</div>
+          <div class="option">Que busca verdades eternas e invariables</div>
+          <div class="option">Que rechaza cualquier forma de pensamiento riguroso</div>
+          <div class="option" data-correct="true">Que es antidogmático, flexible y se adapta a lo que funciona</div>
+          <div class="option">Que solo acepta la razón pura sin experiencia</div>
         </div>
       </div>
     </div>
 
     <!-- 15. Ejercicios prácticos -->
     <div class="study-section" data-section="ejercicios-practicos">
-      <div class="highlight-box">
-        <h3>🎮 Ejercicios Prácticos: Aplicando el Pensamiento Pragmático</h3>
-
-        <h4>🧪 Ejercicio 1: Evaluación Pragmática de Creencias</h4>
-        <p><strong>Instrucciones:</strong> Para cada creencia, aplica las preguntas pragmáticas clave:</p>
-        
-        <div style="background:var(--panel); padding:15px; border-radius:10px; margin:10px 0;">
-          <p><strong>Creencia:</strong> "Estudiar filosofía es una pérdida de tiempo"</p>
-          <ul>
-            <li>¿Qué diferencia práctica hace creer esto?</li>
-            <li>¿Qué experiencias produce esta creencia?</li>
-            <li>¿Funciona para resolver algún problema?</li>
-            <li>¿Qué consecuencias tiene a largo plazo?</li>
-          </ul>
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎮 Ejercicios Pragmáticos: Pensamiento en Acción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
-
-        <h4>🎯 Ejercicio 2: Diseño de Solución Pragmática</h4>
-        <p><strong>Problema:</strong> Los estudiantes de tu escuela no participan en actividades extracurriculares</p>
-        
-        <p><strong>Aplica el método pragmático:</strong></p>
-        <ol>
-          <li><strong>Identificar el problema:</strong> ¿Cuál es exactamente el problema?</li>
-          <li><strong>Generar alternativas:</strong> ¿Qué opciones tenemos?</li>
-          <li><strong>Predecir consecuencias:</strong> ¿Qué esperamos de cada opción?</li>
-          <li><strong>Experimentar:</strong> ¿Cómo probaríamos la mejor alternativa?</li>
-          <li><strong>Evaluar:</strong> ¿Qué métricas usaríamos para medir éxito?</li>
-        </ol>
-
-        <h4>💻 Ejercicio 3: Análisis Tecnológico Pragmático</h4>
-        <p><strong>Situación:</strong> Tu escuela está considerando prohibir smartphones en clase</p>
-        
-        <p><strong>Preguntas pragmáticas:</strong></p>
-        <ul>
-          <li>¿Qué problemas específicos está tratando de resolver esta política?</li>
-          <li>¿Qué evidencia hay de que funciona en otros lugares?</li>
-          <li>¿Cuáles serían las consecuencias no intencionadas?</li>
-          <li>¿Cómo podríamos probar esta política antes de implementarla completamente?</li>
-          <li>¿Qué alternativas podrían funcionar mejor?</li>
-        </ul>
-
-        <h4>🌍 Ejercicio 4: Aplicación Personal</h4>
-        <p><strong>Reflexión:</strong> Elige una decisión importante que debas tomar próximamente:</p>
-        
-        <ul>
-          <li><strong>Carrera universitaria:</strong> ¿Qué criterios pragmáticos usarías?</li>
-          <li><strong>Hábitos de estudio:</strong> ¿Qué métodos funcionan realmente para ti?</li>
-          <li><strong>Relaciones sociales:</strong> ¿Qué tipos de amistad te ayudan a crecer?</li>
-          <li><strong>Uso de tiempo libre:</strong> ¿Qué actividades producen mayor bienestar?</li>
-        </ul>
-
-        <p><strong>Para cada área, pregúntate:</strong></p>
-        <ol>
-          <li>¿Qué experiencias concretas me han enseñado sobre esto?</li>
-          <li>¿Qué "funciona" realmente vs. lo que creo que debería funcionar?</li>
-          <li>¿Cómo puedo experimentar con diferentes enfoques?</li>
-          <li>¿Qué evidencia me ayudaría a tomar una mejor decisión?</li>
-        </ol>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aprender pragmatismo es practicarlo. Aquí va un ejercicio: toma una <strong>creencia importante que tienes</strong>. Pregúntate: ¿qué diferencia práctica hace creer esto? Si no hay diferencia observable en cómo vives, tal vez no importa. Segundo ejercicio: <strong>identifica un problema</strong> que enfrenta tu escuela o comunidad. Aplica el método pragmático: ¿cuáles son las opciones? ¿Qué consecuencias predices? ¿Cómo podrías experimentar? ¿Qué métricas medirías? Tercer ejercicio: <strong>reflexiona sobre tu aprendizaje</strong>. ¿Qué métodos te funcionan realmente para aprender? No lo que "deberías" hacer según teoría educativa, sino lo que prácticamente mejora tu comprensión. Cuarto: <strong>examina tus hábitos</strong>. ¿Realmente funcionan? ¿Mejoran tu vida o son solo tradicionales? ¿Qué experimento podrías hacer? El pensamiento pragmático no es complicado: observa, prueba, mide, aprende, mejora. Es simple pero transformador.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 Pragmatismo es práctica: observar, probar, aprender.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Check aplicativo</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>🧪 Verificación</h4><p>Práctica</p></div>
+        <div class="question"><p>¿Cuál es el primer paso sugerido en el ejercicio pragmático?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">Los ejercicios pragmáticos enfatizan evidencia, experimentación y consecuencias</div>
-          <div class="option">El pensamiento pragmático no puede aplicarse a decisiones personales</div>
-          <div class="option">Los ejercicios pragmáticos se basan en teoría pura</div>
-          <div class="option">El método pragmático ignora las consecuencias de las acciones</div>
+          <div class="option">Memorizar todas las definiciones de pragmatismo</div>
+          <div class="option">Buscar la opinión de un experto</div>
+          <div class="option" data-correct="true">Examinar una creencia propia y preguntarse qué diferencia práctica hace</div>
+          <div class="option">Implementar inmediatamente grandes cambios</div>
         </div>
       </div>
     </div>
 
     <!-- 16. Síntesis y legado -->
     <div class="study-section" data-section="sintesis-legado">
-      <div class="highlight-box">
-        <h3>🌟 Síntesis: El Legado Duradero del Pragmatismo</h3>
-
-        <h4>💎 Contribuciones Fundamentales</h4>
-        <ul>
-          <li>🔧 <strong>Redefinió la verdad:</strong> De correspondencia con realidad a utilidad en la práctica</li>
-          <li>🛠️ <strong>Concepción activa del conocimiento:</strong> La mente como herramienta, no espejo</li>
-          <li>🧪 <strong>Método experimental:</strong> Aplicar científicamente las ideas a problemas humanos</li>
-          <li>🎓 <strong>Revolución educativa:</strong> Aprendizaje experiencial y centrado en el estudiante</li>
-          <li>🏛️ <strong>Democracia experimental:</strong> Política como laboratorio social</li>
-          <li>🧠 <strong>Psicología funcional:</strong> Mente como adaptación evolutiva</li>
-        </ul>
-
-        <h4>🌍 Influencia Global Actual</h4>
-        <ul>
-          <li><strong>🏢 Mundo empresarial:</strong> Lean startup, design thinking, decisiones basadas en datos</li>
-          <li><strong>💻 Tecnología:</strong> Desarrollo ágil, user experience, A/B testing</li>
-          <li><strong>🎓 Educación:</strong> Aprendizaje basado en problemas, evaluación auténtica</li>
-          <li><strong>🏥 Medicina:</strong> Medicina basada en evidencia, salud pública pragmática</li>
-          <li><strong>🏛️ Política pública:</strong> Análisis costo-beneficio, programas piloto</li>
-          <li><strong>🧠 Terapia:</strong> Enfoques pragmáticos en salud mental</li>
-        </ul>
-
-        <h4>🔄 Principios Eternos del Pragmatismo</h4>
-        <ol>
-          <li><strong>🎯 Orientación a resultados:</strong> Evaluar ideas por sus consecuencias</li>
-          <li><strong>🧪 Experimentación:</strong> Probar antes de adoptar completamente</li>
-          <li><strong>🔄 Adaptabilidad:</strong> Modificar enfoques basándose en nueva evidencia</li>
-          <li><strong>🤝 Colaboración:</strong> Mejores soluciones emergen del trabajo conjunto</li>
-          <li><strong>💭 Anti-dogmatismo:</strong> Mantener apertura mental ante nuevas posibilidades</li>
-          <li><strong>🌍 Contextualismo:</strong> Considerar circunstancias específicas</li>
-        </ol>
-
-        <h4>❓ Preguntas Pragmáticas para la Vida</h4>
-        <ul>
-          <li>¿Qué diferencia práctica hace esta creencia en mi vida?</li>
-          <li>¿Estoy evaluando ideas por evidencia o por prejuicios?</li>
-          <li>¿Cómo puedo experimentar con nuevos enfoques?</li>
-          <li>¿Qué consecuencias no intencionadas podría tener esta acción?</li>
-          <li>¿Estoy adaptando mis métodos basándome en los resultados?</li>
-        </ul>
-
-        <div class="quote-box">
-          El pragmatismo nos enseña que las mejores ideas no son las más elegantes teóricamente, sino las que funcionan mejor para resolver problemas humanos reales.
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 Síntesis: El Legado Duradero del Pragmatismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
-
-        <h4>🚀 El Futuro del Pragmatismo</h4>
-        <p>En un mundo de cambio acelerado, el pragmatismo ofrece:</p>
-        <ul>
-          <li><strong>🧭 Orientación:</strong> Métodos para navegar la complejidad</li>
-          <li><strong>⚡ Agilidad:</strong> Capacidad de adaptar rápidamente a nueva información</li>
-          <li><strong>🤝 Colaboración:</strong> Herramientas para trabajar juntos efectivamente</li>
-          <li><strong>🌍 Soluciones globales:</strong> Enfoques para problemas planetarios complejos</li>
-        </ul>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Después de un siglo, ¿qué permanece del pragmatismo? Una transformación fundamental de cómo pensamos. Primero: <strong>redefinió la verdad</strong> como utilidad en lugar de correspondencia abstracta. Segundo: nos enseñó que <strong>la mente es activa</strong>, no un espejo pasivo. Tercero: revolucionó la <strong>educación</strong> hacia aprendizaje experiencial. Cuarto: mostró que <strong>la democracia es un experimento continuo</strong>. Quinto: influenció la psicología moderna con su <strong>funcionalismo</strong>. Sexto: ofrece <strong>métodos para resolver problemas</strong> en un mundo cada vez más complejo. El pragmatismo es vivo hoy: en startups que prueban y escalan rápidamente, en medicina basada en evidencia, en políticas públicas evaluadas por resultados, en educación que valora competencias reales. Su pregunta central permanece revolucionaria: <em>¿para qué sirve?</em> No es cinismo sino claridad. En un mundo de cambio acelerado, el pragmatismo nos ofrece una brújula: experimenta, mide, adapta, mejora. Eso es filosofía viva.
+          </p>
+        </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">💡 El pragmatismo como filosofía viva y aplicable.</div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">✅ Comprensión final</div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header"><h4>✅ Conclusión</h4><p>Comprensión final</p></div>
+        <div class="question"><p>¿Cuál es la pregunta central que el pragmatismo mantiene como revolucionaria?</p></div>
         <div class="options-container">
-          <div class="option" data-correct="true">El pragmatismo ofrece métodos duraderos para resolver problemas y evaluar ideas</div>
-          <div class="option">El pragmatismo es solo una teoría histórica sin aplicación actual</div>
-          <div class="option">El legado del pragmatismo se limita a la educación</div>
-          <div class="option">El pragmatismo rechaza la adaptabilidad y experimentación</div>
+          <div class="option">¿Cuál es la verdad absoluta y eterna?</div>
+          <div class="option" data-correct="true">¿Para qué sirve? ¿Funciona en la práctica?</div>
+          <div class="option">¿Qué opinaban los filósofos antiguos?</div>
+          <div class="option">¿Cuál es la estructura perfecta del universo?</div>
         </div>
       </div>
     </div>
 
   </main>
 
-  <script>
-   // ▶ Ruta base de sonidos
-   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
+  <!-- 🚀 SISTEMA MODULAR - Igual que en etica_aristoteles -->
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
 
-   class ProgressiveStudy {
-      constructor() {
-        this.currentSection = 0;
-        this.totalSections = document.querySelectorAll('.study-section').length;
-        this.completedSections = new Set();
-        this.init();
-      }
-      init() {
-        const sections = document.querySelectorAll('.study-section');
-        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
-        this.setupEventListeners();
-        this.showComprehensionCheck();
-        this.updateProgress();
-      }
-      setupEventListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-          option.addEventListener('click', (e) => this.handleOptionClick(e));
-        });
-      }
-      showComprehensionCheck() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        if (!currentSectionEl) return;
-        const checkEl = currentSectionEl.querySelector('.comprehension-check');
-        if (checkEl) {
-          setTimeout(() => { checkEl.classList.add('show'); }, 5000);
-        }
-      }
-      handleOptionClick(e) {
-        const option = e.target;
-        const checkContainer = option.closest('.comprehension-check');
-        const allOptions = checkContainer.querySelectorAll('.option');
-        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-
-        if (option.dataset.correct === 'true') {
-          option.classList.add('correct');
-          this.playSound('success');
-          this.showCelebration('🛠️');
-          setTimeout(() => {
-            this.markSectionCompleted();
-            this.moveToNextSection();
-          }, 1200);
-        } else {
-          option.classList.add('incorrect');
-          this.playSound('error');
-          setTimeout(() => {
-            allOptions.forEach(opt => {
-              opt.classList.remove('correct','incorrect');
-              opt.style.pointerEvents = 'auto';
-            });
-            this.shuffleOptions(checkContainer);
-          }, 900);
-        }
-      }
-      shuffleOptions(container) {
-        const options = Array.from(container.querySelectorAll('.option'));
-        const parent = options[0].parentNode;
-        for (let i = options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [options[i], options[j]] = [options[j], options[i]];
-        }
-        options.forEach(option => parent.appendChild(option));
-      }
-      markSectionCompleted() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        currentSectionEl.classList.add('completed');
-        currentSectionEl.classList.remove('active');
-        this.completedSections.add(this.currentSection);
-        this.updateProgress();
-      }
-      moveToNextSection() {
-        this.currentSection++;
-        const sections = document.querySelectorAll('.study-section');
-        if (this.currentSection < this.totalSections) {
-          const nextSectionEl = sections[this.currentSection];
-          nextSectionEl.classList.add('active');
-          setTimeout(() => {
-            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
-            setTimeout(() => { window.scrollBy(0, -80); }, 800);
-          }, 300);
-          setTimeout(() => { this.showComprehensionCheck(); }, 800);
-        } else {
-          this.showCompletion();
-        }
-      }
-      updateProgress() {
-        const progressFill = document.getElementById('progress-fill');
-        const progressCounter = document.getElementById('progress-counter');
-        const percentage = (this.completedSections.size / this.totalSections) * 100;
-        progressFill.style.width = `${percentage}%`;
-        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
-      }
-      showCelebration(emoji) {
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration';
-        celebration.textContent = emoji;
-        document.body.appendChild(celebration);
-        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
-      }
-      showCompletion() {
-        this.showCelebration('🎊');
-        setTimeout(() => {
-          alert('¡Excelente! Completaste el estudio sobre Pragmatismo. Ya podés pasar a las actividades y al quiz.');
-        }, 800);
-      }
-
-      async playSound(type) {
-        try {
-          const files = {
-            success: 'collect_points.mp3',
-            error: 'negative_beep.mp3',
-            show_question: 'show_question.mp3',
-            timer_warning: 'timer_warning.mp3',
-            timer_danger: 'timer_danger.mp3'
-          };
-          const file = files[type] || 'collect_points.mp3';
-          const audio = new Audio(SOUND_BASE + file);
-          audio.volume = 0.7;
-          audio.preload = 'auto';
-          const p = audio.play();
-          if (p !== undefined) await p;
-        } catch (err) {
-          console.warn('No se pudo reproducir sonido:', err);
-        }
-      }
-    }
-    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
-  </script>
 </body>
 </html>
