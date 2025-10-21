@@ -323,6 +323,23 @@
 <script src="temas_data.js"></script>
 <!-- <script src="../../js/celebration.js" defer></script>   -->
 
+<!-- quitar error de carga del video -->
+<script>
+  // Guardarraíl: si no hay VIDEO_CONFIG para el tema actual, salteo integración de video
+  (function safeVideoGuard() {
+    const ok = window.VIDEO_CONFIG && VIDEO_CONFIG[window.tema];
+    if (!ok) {
+      console.warn("VIDEO_CONFIG no disponible para", window.tema, "→ se omite integración de video.");
+      // Señalá al sistema que video vale 0% pero sin bloquear el resto:
+      window.markVideoProgress?.(0, 0, false); // no suma, no rompe
+      // Podés setear un flag global:
+      window.__VIDEO_DISABLED__ = true;
+    }
+  })();
+</script>
+
+<!-- fin de error video carga -->
+
 <script>
     // ===== Normalizar parámetros (canónico: ?tema=) =====
     const url = new URL(window.location.href);

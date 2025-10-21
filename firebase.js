@@ -19,6 +19,7 @@ const firebaseConfig = {
   appId: "1:344375832179:web:db1ea9ab343fd90b0b4406",
   measurementId: "G-GJ1XNPC80C"
 };
+
 // const firebaseConfig = {
 //   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,  // ✅ DESDE .env
 //   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
