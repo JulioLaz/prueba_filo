@@ -1730,11 +1730,16 @@
         // ===============================================
 // INICIALIZACIÓN robusta esperando auth (dual listener + polling)
 // ===============================================
-let saludoMostrado = false;
+// let saludoMostrado = false;
+// Flag global único para evitar "has already been declared"
+window.__saludoMostrado = window.__saludoMostrado ?? false;
+
 
 function saludarCon(data, u) {
-  if (saludoMostrado) return;
-  saludoMostrado = true;
+//   if (saludoMostrado) return;
+//   saludoMostrado = true;
+if (window.__saludoMostrado) return;
+window.__saludoMostrado = true;
 
   const first = getFirstName({
     displayName: data?.displayName || u?.displayName,
@@ -1893,7 +1898,7 @@ async function iniciar_0000() {
 
   if (subscribe) {
     unsub = subscribe(async (user) => {
-      if (saludoMostrado) return;
+      if (window.__saludoMostrado) return;
       const data = await readUserDoc(user);
       saludarCon(data, user);
       clearTimeout(timeoutId);
@@ -1905,7 +1910,7 @@ async function iniciar_0000() {
   // Polling suave (por si el listener no dispara en GitHub Pages)
   let tries = 0;
   pollId = setInterval(async () => {
-    if (saludoMostrado) { clearInterval(pollId); return; }
+    if (window.__saludoMostrado) { clearInterval(pollId); return; }
     const u = (window.auth || auth)?.currentUser || null;
     if (u?.uid) {
       const data = await readUserDoc(u);
@@ -1930,7 +1935,7 @@ async function iniciar_0000() {
 // INICIALIZACIÓN robusta esperando auth (dual listener + polling)
 // Requiere: getUserProfile(uid) y saludarCon(data, u)
 // ===============================================
-let saludoMostrado = false;
+// let saludoMostrado = false;
 
 async function iniciar() {
   log('🚀', 'Inicializando diálogo con Aristóteles...');
@@ -1960,7 +1965,7 @@ async function iniciar() {
 
   if (subscribe) {
     unsub = subscribe(async (user) => {
-      if (saludoMostrado) return;
+      if (window.__saludoMostrado) return;
       const data = user?.uid ? await getUserProfile(user.uid) : null; // ← lector unificado
       saludarCon(data, user || null);
       clearTimeout(timeoutId);
@@ -1972,7 +1977,7 @@ async function iniciar() {
   // Polling suave (por si el listener no dispara en GitHub Pages)
   let tries = 0;
   pollId = setInterval(async () => {
-    if (saludoMostrado) { clearInterval(pollId); return; }
+    if (window.__saludoMostrado) { clearInterval(pollId); return; }
     const u = (window.auth || auth)?.currentUser || null;
     if (u?.uid) {
       const data = await getUserProfile(u.uid);   // ← lector unificado
