@@ -1014,20 +1014,28 @@
     </div>
 
     <script type="module">
-        import { 
-            saveProgress, 
-            auth 
-        } from '../firebase.js';
-        import { 
-            getFunctions, 
-            httpsCallable 
-        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
+    import { 
+        saveProgress, 
+        auth,           // ← Ya estaba
+        db,             // ← AGREGA
+        onAuthStateChanged  // ← AGREGA
+    } from '../firebase.js';
+    
+    import { 
+        getFunctions, 
+        httpsCallable 
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
 
-        // import { auth, db } from "../firebase.js";
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-        import { db, onAuthStateChanged } from '../../firebase.js';
-        import { obtenerZodiaco, calcularEdad, extraerNombre, obtenerEmojisZodiaco } from '../../utils/horoscopo.js';
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+    import {  // ← AGREGA TODO ESTO (nuevo)
+        obtenerZodiaco, 
+        calcularEdad, 
+        extraerNombre, 
+        obtenerEmojisZodiaco 
+    } from '../utils/horoscopo.js';
+
+    
         console.log('═══════════════════════════════════════════════════');
         console.log('🎭 SISTEMA DE DIÁLOGO FILOSÓFICO - ARISTÓTELES');
         console.log('═══════════════════════════════════════════════════');
