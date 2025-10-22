@@ -445,3 +445,5 @@ export async function migrateLocalProgressToFirebase() {
     console.error("Error en migración:", error);
   }
 }
+// ✅ EXPORTAR PARA QUE CHAT.HTML PUEDA USARLAS
+export { doc, getDoc, db, onAuthStateChanged };
