@@ -94,6 +94,68 @@ async function renderHeaderAvatar(user) {
   }
 }
 
+// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+// === util: normalizar fecha a "YYYY-MM-DD" ===
+function normalizeFecha(s) {
+  if (!s || typeof s !== 'string') return null;
+  const str = s.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;                 // YYYY-MM-DD
+  let m = str.match(/^(\d{2})[\/-](\d{2})[\/-](\d{4})$/);          // DD/MM/YYYY
+  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
+  m = str.match(/^(\d{4})[\/-](\d{2})[\/-](\d{2})$/);              // YYYY/MM/DD
+  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
+  const iso = str.split('T')[0];
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+  return null;
+}
+
+// === cargar perfil desde Firestore (con posible fallback a RTDB si lo usás) ===
+async function getUserProfile(uid) {
+  if (!uid) return null;
+
+  // Firestore
+  try {
+    const snap = await getDoc(doc(db, "users", uid));
+    if (snap.exists()) {
+      const d = snap.data();
+      if (d?.fechaNacimiento && typeof d.fechaNacimiento !== 'string') {
+        try {
+          const t = d.fechaNacimiento.toDate?.() || new Date(d.fechaNacimiento);
+          if (!isNaN(t)) {
+            const y = t.getFullYear();
+            const m = String(t.getMonth() + 1).padStart(2, '0');
+            const day = String(t.getDate()).padStart(2, '0');
+            d.fechaNacimiento = `${y}-${m}-${day}`;
+          }
+        } catch {}
+      }
+      return d;
+    }
+  } catch (e) {
+    console.warn('[perfil] Firestore falló:', e);
+  }
+
+  // // Realtime DB (si lo usás)
+  // try {
+  //   const snap = await get(ref(database, `users/${uid}`));
+  //   if (snap.exists()) {
+  //     const d = snap.val();
+  //     if (typeof d?.fechaNacimiento === 'string') {
+  //       d.fechaNacimiento = normalizeFecha(d.fechaNacimiento);
+  //     }
+  //     return d;
+  //   }
+  // } catch (e) {
+  //   console.warn('[perfil] RTDB falló:', e);
+  // }
+
+  return null;
+}
+
+
+
+// mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+
 // ====================================
 // CREACIÓN/ACTUALIZACIÓN DE PERFIL DE USUARIO
 // ====================================
@@ -158,68 +220,6 @@ async function ensureUserDoc(user, profileData = {}) {
     console.log(`🔄 Login actualizado para: ${user.email}`);
     await registrarSesion(user.uid, 'login');
   }
-// nuevas lineas
-
-// === util: normalizar fecha a "YYYY-MM-DD" ===
-function normalizeFecha(s) {
-  if (!s || typeof s !== 'string') return null;
-  const str = s.trim();
-  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;                 // YYYY-MM-DD
-  let m = str.match(/^(\d{2})[\/-](\d{2})[\/-](\d{4})$/);          // DD/MM/YYYY
-  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
-  m = str.match(/^(\d{4})[\/-](\d{2})[\/-](\d{2})$/);              // YYYY/MM/DD
-  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
-  const iso = str.split('T')[0];
-  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
-  return null;
-}
-
-// === cargar perfil desde Firestore, con fallback (opcional) a RTDB ===
-async function getUserProfile(uid) {
-  if (!uid) return null;
-
-  // 1) Firestore
-  try {
-    const snap = await getDoc(doc(db, "users", uid));
-    if (snap.exists()) {
-      const d = snap.data();
-      if (d?.fechaNacimiento && typeof d.fechaNacimiento !== 'string') {
-        try {
-          const t = d.fechaNacimiento.toDate?.() || new Date(d.fechaNacimiento);
-          if (!isNaN(t)) {
-            const y = t.getFullYear();
-            const m = String(t.getMonth() + 1).padStart(2, '0');
-            const day = String(t.getDate()).padStart(2, '0');
-            d.fechaNacimiento = `${y}-${m}-${day}`;
-          }
-        } catch {}
-      }
-      return d;
-    }
-  } catch (e) {
-    console.warn('[perfil] Firestore falló:', e);
-  }
-
-  // 2) (Opcional) Realtime DB si lo usás
-  // try {
-  //   const snap = await get(ref(database, `users/${uid}`));
-  //   if (snap.exists()) {
-  //     const d = snap.val();
-  //     if (typeof d?.fechaNacimiento === 'string') {
-  //       d.fechaNacimiento = normalizeFecha(d.fechaNacimiento);
-  //     }
-  //     return d;
-  //   }
-  // } catch (e) {
-  //   console.warn('[perfil] RTDB falló:', e);
-  // }
-
-  return null;
-}
-
-
-
-
 }
 
 // ====================================
@@ -439,20 +439,6 @@ onAuthStateChanged(auth, async (user) => {
   const isLogged = !!user;
   document.documentElement.dataset.logged = isLogged ? "1" : "0";
   const userNameEl = document.querySelector("#userName");
-
-// u es el usuario autenticado (auth.currentUser)
-const profile = await getUserProfile(u.uid);
-
-// guardo en global por si algún módulo quiere leerlo luego
-window.__authUser = u;
-window.__userProfile = profile;
-
-// emito evento global para que otros módulos (chat) reaccionen
-window.dispatchEvent(new CustomEvent('user-profile-ready', {
-  detail: { uid: u.uid, authUser: u, profile }
-}));
-
-
 
   if (isLogged) {
     await ensureUserDoc(user);

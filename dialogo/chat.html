@@ -1730,16 +1730,11 @@
         // ===============================================
 // INICIALIZACIÓN robusta esperando auth (dual listener + polling)
 // ===============================================
-// let saludoMostrado = false;
-// Flag global único para evitar "has already been declared"
-window.__saludoMostrado = window.__saludoMostrado ?? false;
+let saludoMostrado = false;
 
-
-function saludarCon_00(data, u) {
-//   if (saludoMostrado) return;
-//   saludoMostrado = true;
-if (window.__saludoMostrado) return;
-window.__saludoMostrado = true;
+function saludarCon(data, u) {
+  if (saludoMostrado) return;
+  saludoMostrado = true;
 
   const first = getFirstName({
     displayName: data?.displayName || u?.displayName,
@@ -1747,7 +1742,7 @@ window.__saludoMostrado = true;
     nickname: data?.nickname,
     email: data?.email || u?.email,
   });
-//   console.log('u?: ', u)
+  console.log('u?: ', u)
 //   console.log('first: ', first)
 
   const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
@@ -1773,92 +1768,7 @@ Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo 
   log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
 }
 
-// ========================================
-// VER NUEVOS CAMBIOS PARA OBTENER FECHA
-// =======================================
-// === lector de perfil robusto: Firestore -> RTDB ===
-async function getUserProfile(uid) {
-  if (!uid) return null;
-
-  // 1) Firestore
-  try {
-    if (typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
-      const snap = await getDoc(doc(db, "users", uid));
-      if (snap.exists()) {
-        const d = snap.data();
-        // Normalizamos fechaNacimiento a string aceptable
-        if (d?.fechaNacimiento && typeof d.fechaNacimiento !== 'string') {
-          // Timestamp Firestore -> "YYYY-MM-DD"
-          try {
-            const t = d.fechaNacimiento.toDate?.() || new Date(d.fechaNacimiento);
-            if (!isNaN(t)) {
-              const y = t.getFullYear();
-              const m = String(t.getMonth() + 1).padStart(2, '0');
-              const day = String(t.getDate()).padStart(2, '0');
-              d.fechaNacimiento = `${y}-${m}-${day}`;
-            }
-          } catch {}
-        }
-        return d;
-      }
-    }
-  } catch (e) {
-    console.warn('[perfil] Firestore falló:', e);
-  }
-
-  // 2) Realtime Database (si lo usás)
-  try {
-    if (typeof get === 'function' && typeof ref === 'function' && typeof database !== 'undefined') {
-      const snap = await get(ref(database, `users/${uid}`));
-      if (snap.exists()) {
-        const d = snap.val();
-        // Si viene "DD/MM/YYYY" o "YYYY/MM/DD", convertir a "YYYY-MM-DD"
-        if (typeof d?.fechaNacimiento === 'string') {
-          d.fechaNacimiento = normalizeFecha(d.fechaNacimiento);
-        }
-        return d;
-      }
-    }
-  } catch (e) {
-    console.warn('[perfil] RTDB falló:', e);
-  }
-
-  return null;
-}
-
-// Normaliza cadenas de fecha comunes a "YYYY-MM-DD"
-function normalizeFecha(s) {
-  if (!s || typeof s !== 'string') return null;
-  const str = s.trim();
-
-  // 1) YYYY-MM-DD
-  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
-
-  // 2) DD/MM/YYYY o DD-MM-YYYY
-  const m1 = str.match(/^(\d{2})[\/-](\d{2})[\/-](\d{4})$/);
-  if (m1) {
-    const [_, dd, mm, yyyy] = m1;
-    return `${yyyy}-${mm}-${dd}`;
-  }
-
-  // 3) YYYY/MM/DD
-  const m2 = str.match(/^(\d{4})[\/-](\d{2})[\/-](\d{2})$/);
-  if (m2) {
-    const [_, yyyy, mm, dd] = m2;
-    return `${yyyy}-${mm}-${dd}`;
-  }
-
-  // 4) Texto tipo "2007-07-06T..." -> tomar solo la parte de fecha
-  const iso = str.split('T')[0];
-  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
-
-  return null;
-}
-
-
-
-// ========================================
-async function iniciar_0000() {
+async function iniciar() {
   log('🚀', 'Inicializando diálogo con Aristóteles...');
 
   // Helper: leer userDoc si hay uid y Firestore disponible
@@ -1898,7 +1808,7 @@ async function iniciar_0000() {
 
   if (subscribe) {
     unsub = subscribe(async (user) => {
-      if (window.__saludoMostrado) return;
+      if (saludoMostrado) return;
       const data = await readUserDoc(user);
       saludarCon(data, user);
       clearTimeout(timeoutId);
@@ -1910,7 +1820,7 @@ async function iniciar_0000() {
   // Polling suave (por si el listener no dispara en GitHub Pages)
   let tries = 0;
   pollId = setInterval(async () => {
-    if (window.__saludoMostrado) { clearInterval(pollId); return; }
+    if (saludoMostrado) { clearInterval(pollId); return; }
     const u = (window.auth || auth)?.currentUser || null;
     if (u?.uid) {
       const data = await readUserDoc(u);
@@ -1931,76 +1841,12 @@ async function iniciar_0000() {
   }, 3500);
 }
 
-// ===============================================
-// INICIALIZACIÓN robusta esperando auth (dual listener + polling)
-// Requiere: getUserProfile(uid) y saludarCon(data, u)
-// ===============================================
-// let saludoMostrado = false;
-
-// flag único (evita doble saludo si el evento llega dos veces)
-window.__saludoMostrado = window.__saludoMostrado ?? false;
-
-function saludarCon(data, u) {
-  if (window.__saludoMostrado) return;
-  window.__saludoMostrado = true;
-
-  const first = getFirstName({
-    displayName: data?.displayName || u?.displayName,
-    nombres: data?.nombres,
-    nickname: data?.nickname,
-    email: data?.email || u?.email,
-  });
-
-  const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
-  const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
-
-  const hookMsg = `
-👋🏼 Hola, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
-pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
-Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
-`.trim();
-
-  const msg = (first && first !== 'Estudiante')
-    ? hookMsg
-    : `Χαῖρε (Jaíρε). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
-
-  agregarMensaje('filosofo', msg);
-  elementos.inputMensaje.focus();
-
-  const t = performance.now() - tiempoInicio;
-  log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
-}
-
-function iniciar() {
-  log('🚀', 'Inicializando diálogo con Aristóteles...');
-
-  // 1) Si firebase.js ya puso los datos globales, los usamos YA
-  if (!window.__saludoMostrado && (window.__authUser || window.auth?.currentUser)) {
-    const u = window.__authUser || window.auth?.currentUser || null;
-    const profile = window.__userProfile || null;
-    saludarCon(profile, u);
-  }
-
-  // 2) Escuchar el evento que emite firebase.js
-  window.addEventListener('user-profile-ready', (e) => {
-    if (window.__saludoMostrado) return;
-    const { authUser, profile } = e.detail || {};
-    saludarCon(profile || null, authUser || null);
-  }, { once: true });
-
-  // 3) Fallback por si nada llegó en ~3.5s
-  setTimeout(() => {
-    if (!window.__saludoMostrado) saludarCon(null, null);
-  }, 3500);
-}
-
-// arranque
+// Arranque (mantené lo que ya tenés)
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', iniciar);
 } else {
   iniciar();
 }
-
 
 
 
