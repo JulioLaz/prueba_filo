@@ -1735,7 +1735,7 @@
 window.__saludoMostrado = window.__saludoMostrado ?? false;
 
 
-function saludarCon(data, u) {
+function saludarCon_00(data, u) {
 //   if (saludoMostrado) return;
 //   saludoMostrado = true;
 if (window.__saludoMostrado) return;
@@ -1937,75 +1937,70 @@ async function iniciar_0000() {
 // ===============================================
 // let saludoMostrado = false;
 
-async function iniciar() {
+// flag único (evita doble saludo si el evento llega dos veces)
+window.__saludoMostrado = window.__saludoMostrado ?? false;
+
+function saludarCon(data, u) {
+  if (window.__saludoMostrado) return;
+  window.__saludoMostrado = true;
+
+  const first = getFirstName({
+    displayName: data?.displayName || u?.displayName,
+    nombres: data?.nombres,
+    nickname: data?.nickname,
+    email: data?.email || u?.email,
+  });
+
+  const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+  const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+
+  const hookMsg = `
+👋🏼 Hola, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+`.trim();
+
+  const msg = (first && first !== 'Estudiante')
+    ? hookMsg
+    : `Χαῖρε (Jaíρε). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+
+  agregarMensaje('filosofo', msg);
+  elementos.inputMensaje.focus();
+
+  const t = performance.now() - tiempoInicio;
+  log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
+}
+
+function iniciar() {
   log('🚀', 'Inicializando diálogo con Aristóteles...');
 
-  // 1) Si YA hay usuario, personalizamos y salimos
-  const u0 = (window.auth || auth)?.currentUser || null;
-  if (u0?.uid) {
-    const data0 = await getUserProfile(u0.uid);   // ← usa el lector unificado
-    saludarCon(data0, u0);
-    return;
+  // 1) Si firebase.js ya puso los datos globales, los usamos YA
+  if (!window.__saludoMostrado && (window.__authUser || window.auth?.currentUser)) {
+    const u = window.__authUser || window.auth?.currentUser || null;
+    const profile = window.__userProfile || null;
+    saludarCon(profile, u);
   }
 
-  // 2) Set up dual listener (modular y compat) + fallback timeout + polling
-  let unsub = null;
-  let timeoutId = null;
-  let pollId = null;
+  // 2) Escuchar el evento que emite firebase.js
+  window.addEventListener('user-profile-ready', (e) => {
+    if (window.__saludoMostrado) return;
+    const { authUser, profile } = e.detail || {};
+    saludarCon(profile || null, authUser || null);
+  }, { once: true });
 
-  const listenModular = (typeof onAuthStateChanged === 'function')
-    ? (cb) => onAuthStateChanged((window.auth || auth), cb)
-    : null;
-
-  const listenCompat = ((window.auth || auth) && typeof (window.auth || auth).onAuthStateChanged === 'function')
-    ? (cb) => (window.auth || auth).onAuthStateChanged(cb)
-    : null;
-
-  const subscribe = listenModular || listenCompat;
-
-  if (subscribe) {
-    unsub = subscribe(async (user) => {
-      if (window.__saludoMostrado) return;
-      const data = user?.uid ? await getUserProfile(user.uid) : null; // ← lector unificado
-      saludarCon(data, user || null);
-      clearTimeout(timeoutId);
-      clearInterval(pollId);
-      if (typeof unsub === 'function') unsub();
-    });
-  }
-
-  // Polling suave (por si el listener no dispara en GitHub Pages)
-  let tries = 0;
-  pollId = setInterval(async () => {
-    if (window.__saludoMostrado) { clearInterval(pollId); return; }
-    const u = (window.auth || auth)?.currentUser || null;
-    if (u?.uid) {
-      const data = await getUserProfile(u.uid);   // ← lector unificado
-      saludarCon(data, u);
-      clearInterval(pollId);
-      clearTimeout(timeoutId);
-      if (typeof unsub === 'function') unsub();
-    } else if (++tries >= 12) { // ~3s si 250ms
-      clearInterval(pollId);
-    }
-  }, 250);
-
-  // Fallback duro en 3500ms (saludo genérico)
-  timeoutId = setTimeout(() => {
-    if (!saludoMostrado) saludarCon(null, null);
-    if (typeof unsub === 'function') unsub();
-    clearInterval(pollId);
+  // 3) Fallback por si nada llegó en ~3.5s
+  setTimeout(() => {
+    if (!window.__saludoMostrado) saludarCon(null, null);
   }, 3500);
 }
 
-
-
-// Arranque (mantené lo que ya tenés)
+// arranque
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', iniciar);
 } else {
   iniciar();
 }
+
 
 
 
