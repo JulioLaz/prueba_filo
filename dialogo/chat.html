@@ -1056,17 +1056,17 @@
         }
 
         function calcAgeFromYYYYMMDD(fechaStr) {
-        if (!fechaStr) return null;
-        const [y, m, d] = fechaStr.split('-').map(Number);
-        const birth = new Date(y, (m || 1) - 1, d || 1);
-        if (isNaN(birth)) return null;
-        const today = new Date();
-        let age = today.getFullYear() - birth.getFullYear();
-        const beforeBirthday =
-            today.getMonth() < birth.getMonth() ||
-            (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
-        if (beforeBirthday) age--;
-        return age;
+            if (!fechaStr) return null;
+            const [y, m, d] = fechaStr.split('-').map(Number);
+            const birth = new Date(y, (m || 1) - 1, d || 1);
+            if (isNaN(birth)) return null;
+            const today = new Date();
+            let age = today.getFullYear() - birth.getFullYear();
+            const beforeBirthday =
+                today.getMonth() < birth.getMonth() ||
+                (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+            if (beforeBirthday) age--;
+            return age;
         }
 
 
@@ -1744,6 +1744,7 @@ function saludarCon(data, u) {
   });
 
   const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+  console.log('fechaStr: ', fechaStr)
   console.log('edad: ', edad)
   const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
   console.log('edad: ', edadTxt)
