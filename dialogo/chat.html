@@ -1641,29 +1641,29 @@
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
             // Mensaje de bienvenida
-            // const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
-            // Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
-            // Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
+            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
+            Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
+            Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
             
-            // agregarMensaje('filosofo', bienvenida);
+            agregarMensaje('filosofo', bienvenida);
 
             // === Inicio del diálogo personalizado ===
-            if (userDoc && userDoc.data) {
-            const data = userDoc.data();
-            const first = getFirstName(data);
-            const edad = calcAgeFromYYYYMMDD(data.fechaNacimiento);
-            const edadTxt = edad ? ` — ya tenés ${edad} años` : '';
+            // if (userDoc && userDoc.data) {
+            // const data = userDoc.data();
+            // const first = getFirstName(data);
+            // const edad = calcAgeFromYYYYMMDD(data.fechaNacimiento);
+            // const edadTxt = edad ? ` — ya tenés ${edad} años` : '';
 
-            const hookMsg = `
-            Saludos, ${first}${edadTxt}. Muchos creen que el **horóscopo** describe su carácter,
-            pero yo enseño que el **carácter se forma por hábito y elección**.
-            Decime, ¿qué pensás vos? ¿El destino manda o elegimos mediante la virtud (areté)?
-            `.trim();
+            // const hookMsg = `
+            // Saludos, ${first}${edadTxt}. Muchos creen que el **horóscopo** describe su carácter,
+            // pero yo enseño que el **carácter se forma por hábito y elección**.
+            // Decime, ¿qué pensás vos? ¿El destino manda o elegimos mediante la virtud (areté)?
+            // `.trim();
 
-            agregarMensaje('filosofo', hookMsg);
-            } else {
-            agregarMensaje('filosofo', 'Saludos, joven aprendiz. Hoy reflexionaremos sobre el bien y la felicidad.');
-            }
+            // agregarMensaje('filosofo', hookMsg);
+            // } else {
+            // agregarMensaje('filosofo', 'Saludos, joven aprendiz. Hoy reflexionaremos sobre el bien y la felicidad.');
+            // }
 
             elementos.inputMensaje.focus();
             
