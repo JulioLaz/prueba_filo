@@ -1023,7 +1023,7 @@
             httpsCallable 
         } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
 
-        import { auth, db } from "../firebase.js";
+        // import { auth, db } from "../firebase.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 
@@ -1637,7 +1637,7 @@
         // ===============================================
         // INICIALIZACIÓN
         // ===============================================
-        function iniciar() {
+        function iniciar_00() {
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
             // Mensaje de bienvenida
@@ -1671,50 +1671,52 @@
             log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
         }
 
-        async function iniciar_00() {
-            log('🚀', 'Inicializando diálogo con Aristóteles...');
+        // ===============================================
+        // INICIALIZACIÓN (sin redeclarar auth/db)
+        // ===============================================
+        async function iniciar() {
+        log('🚀', 'Inicializando diálogo con Aristóteles...');
 
-            let data = null;
+        let data = null;
+        const u = (window.auth || auth)?.currentUser || null;
 
-            try {
-            // 1) Intentar leer el doc del usuario (si está logueado)
-            const u = auth?.currentUser || null;
-            if (u?.uid) {
-                const snap = await getDoc(doc(db, "users", u.uid));
-                if (snap.exists()) data = snap.data();
+        // Intentar leer Firestore SOLO si las funciones existen en este scope
+        try {
+            if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+            const snap = await getDoc(doc(db, "users", u.uid));
+            if (snap.exists()) data = snap.data();
             }
-            } catch (e) {
+        } catch (e) {
             console.warn('No se pudo cargar userDoc:', e);
-            }
+        }
 
-            // 2) Construir nombre/edad con lo que haya (userDoc, auth o nada)
-            const first = getFirstName({
-            displayName: data?.displayName || auth?.currentUser?.displayName,
+        const first = getFirstName({
+            displayName: data?.displayName || u?.displayName,
             nombres: data?.nombres,
             nickname: data?.nickname,
-            email: data?.email || auth?.currentUser?.email
-            });
+            email: data?.email || u?.email,
+        });
 
-            const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
-            const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+        const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+        const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
 
-            // 3) Saludo personalizado con “anzuelo” del horóscopo
-            //    Usamos <strong> en lugar de ** para que se renderice como HTML.
-            const hookMsg = `
+        const hookMsg = `
         Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
         pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
         Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
         `.trim();
 
-            // 4) Si no pudimos obtener nada, caemos a un saludo genérico
-            const mensajeInicial = first ? hookMsg :
+        // Si no tenemos nada de usuario, caemos a un mensaje genérico
+        const mensajeInicial = first ? hookMsg :
         `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
 
-            agregarMensaje('filosofo', mensajeInicial); // ← usa tu función existente :contentReference[oaicite:2]{index=2}
-            elementos.inputMensaje.focus();
+        // Usa tu función de mensajes existente
+        agregarMensaje('filosofo', mensajeInicial);   // ← ya definida en tu script :contentReference[oaicite:2]{index=2}
 
-            const tiempoInicializacion = performance.now() - tiempoInicio;
-            log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        elementos.inputMensaje.focus();
+
+        const tiempoInicializacion = performance.now() - tiempoInicio;
+        log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
         }
 
 
