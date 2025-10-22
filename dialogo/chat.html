@@ -1049,10 +1049,10 @@
          // ===============================================
         // === utils: nombre y edad ===
         function getFirstName({ displayName, nombres, nickname, email }) {
-        const base = (nombres || displayName || nickname || email || '').trim();
-        if (!base) return 'Estudiante';
-        if (base.includes('@')) return base.split('@')[0];
-        return base.split(/\s+/)[0];
+            const base = (nombres || displayName || nickname || email || '').trim();
+            if (!base) return 'Estudiante';
+            if (base.includes('@')) return base.split('@')[0];
+            return base.split(/\s+/)[0];
         }
 
         function calcAgeFromYYYYMMDD(fechaStr) {
@@ -1742,6 +1742,8 @@ function saludarCon(data, u) {
     nickname: data?.nickname,
     email: data?.email || u?.email,
   });
+  console.log('u?: ', u)
+  console.log('first: ', first)
 
   const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
   console.log('data alumno: ', data)
