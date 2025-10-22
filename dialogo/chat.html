@@ -1742,8 +1742,8 @@ function saludarCon(data, u) {
     nickname: data?.nickname,
     email: data?.email || u?.email,
   });
-  console.log('u?: ', u)
-  console.log('first: ', first)
+//   console.log('u?: ', u)
+//   console.log('first: ', first)
 
   const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
   console.log('data alumno: ', data)
@@ -1768,7 +1768,92 @@ Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo 
   log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
 }
 
-async function iniciar() {
+// ========================================
+// VER NUEVOS CAMBIOS PARA OBTENER FECHA
+// =======================================
+// === lector de perfil robusto: Firestore -> RTDB ===
+async function getUserProfile(uid) {
+  if (!uid) return null;
+
+  // 1) Firestore
+  try {
+    if (typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+      const snap = await getDoc(doc(db, "users", uid));
+      if (snap.exists()) {
+        const d = snap.data();
+        // Normalizamos fechaNacimiento a string aceptable
+        if (d?.fechaNacimiento && typeof d.fechaNacimiento !== 'string') {
+          // Timestamp Firestore -> "YYYY-MM-DD"
+          try {
+            const t = d.fechaNacimiento.toDate?.() || new Date(d.fechaNacimiento);
+            if (!isNaN(t)) {
+              const y = t.getFullYear();
+              const m = String(t.getMonth() + 1).padStart(2, '0');
+              const day = String(t.getDate()).padStart(2, '0');
+              d.fechaNacimiento = `${y}-${m}-${day}`;
+            }
+          } catch {}
+        }
+        return d;
+      }
+    }
+  } catch (e) {
+    console.warn('[perfil] Firestore falló:', e);
+  }
+
+  // 2) Realtime Database (si lo usás)
+  try {
+    if (typeof get === 'function' && typeof ref === 'function' && typeof database !== 'undefined') {
+      const snap = await get(ref(database, `users/${uid}`));
+      if (snap.exists()) {
+        const d = snap.val();
+        // Si viene "DD/MM/YYYY" o "YYYY/MM/DD", convertir a "YYYY-MM-DD"
+        if (typeof d?.fechaNacimiento === 'string') {
+          d.fechaNacimiento = normalizeFecha(d.fechaNacimiento);
+        }
+        return d;
+      }
+    }
+  } catch (e) {
+    console.warn('[perfil] RTDB falló:', e);
+  }
+
+  return null;
+}
+
+// Normaliza cadenas de fecha comunes a "YYYY-MM-DD"
+function normalizeFecha(s) {
+  if (!s || typeof s !== 'string') return null;
+  const str = s.trim();
+
+  // 1) YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+
+  // 2) DD/MM/YYYY o DD-MM-YYYY
+  const m1 = str.match(/^(\d{2})[\/-](\d{2})[\/-](\d{4})$/);
+  if (m1) {
+    const [_, dd, mm, yyyy] = m1;
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  // 3) YYYY/MM/DD
+  const m2 = str.match(/^(\d{4})[\/-](\d{2})[\/-](\d{2})$/);
+  if (m2) {
+    const [_, yyyy, mm, dd] = m2;
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  // 4) Texto tipo "2007-07-06T..." -> tomar solo la parte de fecha
+  const iso = str.split('T')[0];
+  if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return iso;
+
+  return null;
+}
+
+
+
+// ========================================
+async function iniciar_0000() {
   log('🚀', 'Inicializando diálogo con Aristóteles...');
 
   // Helper: leer userDoc si hay uid y Firestore disponible
@@ -1840,6 +1925,75 @@ async function iniciar() {
     clearInterval(pollId);
   }, 3500);
 }
+
+// ===============================================
+// INICIALIZACIÓN robusta esperando auth (dual listener + polling)
+// Requiere: getUserProfile(uid) y saludarCon(data, u)
+// ===============================================
+let saludoMostrado = false;
+
+async function iniciar() {
+  log('🚀', 'Inicializando diálogo con Aristóteles...');
+
+  // 1) Si YA hay usuario, personalizamos y salimos
+  const u0 = (window.auth || auth)?.currentUser || null;
+  if (u0?.uid) {
+    const data0 = await getUserProfile(u0.uid);   // ← usa el lector unificado
+    saludarCon(data0, u0);
+    return;
+  }
+
+  // 2) Set up dual listener (modular y compat) + fallback timeout + polling
+  let unsub = null;
+  let timeoutId = null;
+  let pollId = null;
+
+  const listenModular = (typeof onAuthStateChanged === 'function')
+    ? (cb) => onAuthStateChanged((window.auth || auth), cb)
+    : null;
+
+  const listenCompat = ((window.auth || auth) && typeof (window.auth || auth).onAuthStateChanged === 'function')
+    ? (cb) => (window.auth || auth).onAuthStateChanged(cb)
+    : null;
+
+  const subscribe = listenModular || listenCompat;
+
+  if (subscribe) {
+    unsub = subscribe(async (user) => {
+      if (saludoMostrado) return;
+      const data = user?.uid ? await getUserProfile(user.uid) : null; // ← lector unificado
+      saludarCon(data, user || null);
+      clearTimeout(timeoutId);
+      clearInterval(pollId);
+      if (typeof unsub === 'function') unsub();
+    });
+  }
+
+  // Polling suave (por si el listener no dispara en GitHub Pages)
+  let tries = 0;
+  pollId = setInterval(async () => {
+    if (saludoMostrado) { clearInterval(pollId); return; }
+    const u = (window.auth || auth)?.currentUser || null;
+    if (u?.uid) {
+      const data = await getUserProfile(u.uid);   // ← lector unificado
+      saludarCon(data, u);
+      clearInterval(pollId);
+      clearTimeout(timeoutId);
+      if (typeof unsub === 'function') unsub();
+    } else if (++tries >= 12) { // ~3s si 250ms
+      clearInterval(pollId);
+    }
+  }, 250);
+
+  // Fallback duro en 3500ms (saludo genérico)
+  timeoutId = setTimeout(() => {
+    if (!saludoMostrado) saludarCon(null, null);
+    if (typeof unsub === 'function') unsub();
+    clearInterval(pollId);
+  }, 3500);
+}
+
+
 
 // Arranque (mantené lo que ya tenés)
 if (document.readyState === 'loading') {
