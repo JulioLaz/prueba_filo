@@ -1744,9 +1744,9 @@ function saludarCon(data, u) {
   });
 
   const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
-  print('edad: ', edad)
+  console.log('edad: ', edad)
   const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
-  print('edad: ', edadTxt)
+  console.log('edad: ', edadTxt)
   
   const hookMsg = `
 👋🏼 Hola, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
