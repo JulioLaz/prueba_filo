@@ -1,0 +1,42 @@
+{
+  "id": "pragmatismo",
+  "meta": {
+    "title": "Pragmatismo: La utilidad como criterio de la verdad",
+    "author": "Pragmatismo (Peirce, James, Dewey)",
+    "icon": "🛠️",
+    "gradient": "linear-gradient(135deg, #118ab2 0%, #06d6a0 100%)",
+    "difficulty": "intermedio",
+    "description": "Una filosofía que evalúa las ideas en función de su utilidad práctica. La verdad se concibe no como una correspondencia con la realidad, sino como una herramienta efectiva para la acción y la resolución de problemas."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 4,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 4,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 12,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "pragmatismo.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#118ab2"
+}

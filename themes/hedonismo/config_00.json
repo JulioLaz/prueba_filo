@@ -1,0 +1,42 @@
+{
+  "id": "hedonismo",
+  "meta": {
+    "title": "Hedonismo: El placer como fin y fundamento de la vida",
+    "author": "Hedonismo (Epicúreo)",
+    "icon": "🌸",
+    "gradient": "linear-gradient(135deg, #e9c46a 0%, #f4a261 100%)",
+    "difficulty": "intermedio",
+    "description": "Una antigua escuela de pensamiento que identifica el placer como el bien supremo y el objetivo de la vida. Se explora la distinción entre placeres del cuerpo y la mente, y la importancia de la ataraxia (serenidad)."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 5,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 5,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 15,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "hedonismo.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#e9c46a"
+}

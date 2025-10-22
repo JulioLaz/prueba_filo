@@ -2,41 +2,69 @@
   "id": "hedonismo",
   "meta": {
     "title": "Hedonismo: El placer como fin y fundamento de la vida",
-    "author": "Hedonismo (Epicúreo)",
     "icon": "🌸",
-    "gradient": "linear-gradient(135deg, #e9c46a 0%, #f4a261 100%)",
+    "gradient": "linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)",
     "difficulty": "intermedio",
-    "description": "Una antigua escuela de pensamiento que identifica el placer como el bien supremo y el objetivo de la vida. Se explora la distinción entre placeres del cuerpo y la mente, y la importancia de la ataraxia (serenidad)."
+    "category": "Filosofía Clásica",
+    "author": "Cuestionarios de Filosofía",
+    "description": "Explora la búsqueda del placer y la felicidad desde Epicuro hasta interpretaciones modernas: ataraxia, placeres superiores y vida serena.",
+    "lastUpdated": "2024-08-20"
   },
+
   "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 16,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": {
       "enabled": true,
-      "questions": 10,
+      "questions": 14,
       "timeLimit": 30,
       "timeEstimate": 12
     },
-    "conceptos": {
+    "concepts": {
       "enabled": true,
       "levels": 5,
       "timeEstimate": 8
     },
-    "material": {
+    "cloze": {
       "enabled": true,
-      "sections": 5,
       "timeEstimate": 10
+    },
+    "cruci": {
+      "enabled": true,
+      "timeEstimate": 7
     },
     "mapa": {
       "enabled": true,
       "nodes": 15,
-      "timeEstimate": 5
+      "timeEstimate": 6
     }
   },
+
   "files": {
-    "content": "hedonismo.html",
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js",
-    "mapa": "mapa.html"
-  },
-  "prerequisites": [],
-  "color": "#e9c46a"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  }
 }

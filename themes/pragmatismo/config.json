@@ -1,29 +1,43 @@
 {
   "id": "pragmatismo",
+
   "meta": {
     "title": "Pragmatismo: La utilidad como criterio de la verdad",
-    "author": "Pragmatismo (Peirce, James, Dewey)",
+    "author": "Charles Peirce, William James y John Dewey",
     "icon": "🛠️",
     "gradient": "linear-gradient(135deg, #118ab2 0%, #06d6a0 100%)",
     "difficulty": "intermedio",
-    "description": "Una filosofía que evalúa las ideas en función de su utilidad práctica. La verdad se concibe no como una correspondencia con la realidad, sino como una herramienta efectiva para la acción y la resolución de problemas."
+    "category": "Filosofía Contemporánea",
+    "description": "Una filosofía que evalúa las ideas en función de su utilidad práctica. La verdad se concibe no como una correspondencia con la realidad, sino como una herramienta efectiva para la acción y la resolución de problemas.",
+    "lastUpdated": "2024-08-20"
   },
+
   "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 4,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": {
       "enabled": true,
       "questions": 10,
       "timeLimit": 30,
       "timeEstimate": 12
     },
-    "conceptos": {
+    "concepts": {
       "enabled": true,
       "levels": 4,
       "timeEstimate": 8
     },
-    "material": {
+    "cloze": {
       "enabled": true,
-      "sections": 4,
-      "timeEstimate": 10
+      "timeEstimate": 9
+    },
+    "cruci": {
+      "enabled": true,
+      "timeEstimate": 7
     },
     "mapa": {
       "enabled": true,
@@ -31,12 +45,30 @@
       "timeEstimate": 5
     }
   },
+
   "files": {
-    "content": "pragmatismo.html",
+    "material": {
+      "page": "pragmatismo.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js",
-    "mapa": "mapa.html"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
   },
+
   "prerequisites": [],
   "color": "#118ab2"
 }

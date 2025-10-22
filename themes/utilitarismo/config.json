@@ -1,29 +1,43 @@
 {
   "id": "utilitarismo",
+
   "meta": {
     "title": "Utilitarismo: La mayor felicidad para el mayor número",
     "author": "John Stuart Mill",
     "icon": "🎯",
     "gradient": "linear-gradient(135deg, #283048 0%, #859398 100%)",
     "difficulty": "avanzado",
-    "description": "Explora el principio de la mayor felicidad, la distinción entre placeres superiores e inferiores, la imparcialidad y la aplicación del utilitarismo en la vida moral y política."
+    "category": "Filosofía Moderna",
+    "description": "Explora el principio de la mayor felicidad, la distinción entre placeres superiores e inferiores, la imparcialidad y la aplicación del utilitarismo en la vida moral y política.",
+    "lastUpdated": "2024-08-20"
   },
+
   "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 8,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": {
       "enabled": true,
       "questions": 10,
       "timeLimit": 30,
       "timeEstimate": 12
     },
-    "conceptos": {
+    "concepts": {
       "enabled": true,
       "levels": 6,
       "timeEstimate": 8
     },
-    "material": {
+    "cloze": {
       "enabled": true,
-      "sections": 8,
-      "timeEstimate": 10
+      "timeEstimate": 9
+    },
+    "cruci": {
+      "enabled": true,
+      "timeEstimate": 7
     },
     "mapa": {
       "enabled": true,
@@ -31,12 +45,30 @@
       "timeEstimate": 5
     }
   },
+
   "files": {
-    "content": "utilitarismo.html",
+    "material": {
+      "page": "utilitarismo.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js",
-    "mapa": "mapa.html"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
   },
+
   "prerequisites": [],
   "color": "#4169e1"
 }
