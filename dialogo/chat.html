@@ -1674,21 +1674,67 @@
         // ===============================================
         // INICIALIZACIÓN (sin redeclarar auth/db)
         // ===============================================
-        async function iniciar() {
-        log('🚀', 'Inicializando diálogo con Aristóteles...');
+        // async function iniciar() {
+        // log('🚀', 'Inicializando diálogo con Aristóteles...');
 
-        let data = null;
-        const u = (window.auth || auth)?.currentUser || null;
+        // let data = null;
+        // const u = (window.auth || auth)?.currentUser || null;
 
-        // Intentar leer Firestore SOLO si las funciones existen en este scope
-        try {
-            if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
-            const snap = await getDoc(doc(db, "users", u.uid));
-            if (snap.exists()) data = snap.data();
-            }
-        } catch (e) {
-            console.warn('No se pudo cargar userDoc:', e);
-        }
+        // // Intentar leer Firestore SOLO si las funciones existen en este scope
+        // try {
+        //     if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+        //     const snap = await getDoc(doc(db, "users", u.uid));
+        //     if (snap.exists()) data = snap.data();
+        //     }
+        // } catch (e) {
+        //     console.warn('No se pudo cargar userDoc:', e);
+        // }
+
+        // const first = getFirstName({
+        //     displayName: data?.displayName || u?.displayName,
+        //     nombres: data?.nombres,
+        //     nickname: data?.nickname,
+        //     email: data?.email || u?.email,
+        // });
+
+        // const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+        // const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+
+        // const hookMsg = `
+        // Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+        // pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+        // Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+        // `.trim();
+
+        // // Si no tenemos nada de usuario, caemos a un mensaje genérico
+        // const mensajeInicial = first ? hookMsg :
+        // `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+
+        // // Usa tu función de mensajes existente
+        // agregarMensaje('filosofo', mensajeInicial);   // ← ya definida en tu script :contentReference[oaicite:2]{index=2}
+
+        // elementos.inputMensaje.focus();
+
+        // const tiempoInicializacion = performance.now() - tiempoInicio;
+        // log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        // }
+
+
+        // // Iniciar cuando el DOM esté listo
+        // if (document.readyState === 'loading') {
+        //     document.addEventListener('DOMContentLoaded', iniciar);
+        // } else {
+        //     iniciar();
+        // }
+
+        // ===============================================
+        // INICIALIZACIÓN esperando auth (con fallback)
+        // ===============================================
+        let saludoMostrado = false;
+
+        function saludarCon(data, u) {
+        if (saludoMostrado) return;
+        saludoMostrado = true;
 
         const first = getFirstName({
             displayName: data?.displayName || u?.displayName,
@@ -1706,26 +1752,67 @@
         Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
         `.trim();
 
-        // Si no tenemos nada de usuario, caemos a un mensaje genérico
-        const mensajeInicial = first ? hookMsg :
-        `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+        const msg = first && first !== 'Estudiante'
+            ? hookMsg
+            : `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
 
-        // Usa tu función de mensajes existente
-        agregarMensaje('filosofo', mensajeInicial);   // ← ya definida en tu script :contentReference[oaicite:2]{index=2}
-
+        agregarMensaje('filosofo', msg);
         elementos.inputMensaje.focus();
 
-        const tiempoInicializacion = performance.now() - tiempoInicio;
-        log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        const t = performance.now() - tiempoInicio;
+        log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
         }
 
+        // Espera auth + intenta leer userDoc; si no llega, usa fallback
+        async function iniciar() {
+        log('🚀', 'Inicializando diálogo con Aristóteles...');
+        const u = (window.auth || auth)?.currentUser || null;
 
-        // Iniciar cuando el DOM esté listo
+        // 1) Si YA hay usuario, intentamos leer su doc y saludamos
+        if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+            try {
+            const snap = await getDoc(doc(db, "users", u.uid));
+            saludarCon(snap.exists() ? snap.data() : null, u);
+            return;
+            } catch (e) { console.warn('No se pudo cargar userDoc:', e); }
+        }
+
+        // 2) Si aún no hay usuario, escuchamos un evento de auth
+        let timeoutId;
+        const fallbackMs = 2000; // 2s para no dejar al alumno esperando
+
+        const unsub = (typeof onAuthStateChanged === 'function')
+            ? onAuthStateChanged((window.auth || auth), async (user) => {
+                if (saludoMostrado) return;
+                try {
+                let data = null;
+                if (user?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+                    const snap = await getDoc(doc(db, "users", user.uid));
+                    data = snap.exists() ? snap.data() : null;
+                }
+                saludarCon(data, user || null);
+                } finally {
+                clearTimeout(timeoutId);
+                if (typeof unsub === 'function') unsub();
+                }
+            })
+            : null;
+
+        // 3) Fallback genérico si auth no llega a tiempo
+        timeoutId = setTimeout(() => {
+            if (!saludoMostrado) saludarCon(null, null);
+            if (typeof unsub === 'function') unsub();
+        }, fallbackMs);
+        }
+
+        // Mantener este arranque
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', iniciar);
+        document.addEventListener('DOMContentLoaded', iniciar);
         } else {
-            iniciar();
+        iniciar();
         }
+
+
 
         console.log('═══════════════════════════════════════════════════');
     </script>
