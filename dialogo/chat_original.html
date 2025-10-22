@@ -24,6 +24,7 @@
             grid-template-columns: 250px 1fr 280px;
             height: 100vh;
             gap: 0;
+            overflow: scroll;
         }
 
         /* SIDEBAR IZQUIERDA */
@@ -114,8 +115,6 @@
             display: flex;
             flex-direction: column;
             background: #0f1229;
-            overflow: scroll;
-            height: 98%;
         }
 
         .chat-header {
@@ -150,7 +149,7 @@
         .mensajes-container {
             flex: 1;
             overflow-y: auto;
-            padding: 15px 10px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -158,7 +157,7 @@
 
         .mensaje {
             display: flex;
-            gap: 15px;
+            gap: 5px;
             animation: messageSlide 0.4s ease;
         }
 
@@ -180,7 +179,7 @@
 
         .mensaje-alumno {
             align-self: flex-end;
-            max-width: 70%;
+            /* max-width: 70%; */
             flex-direction: row-reverse;
         }
 
@@ -653,28 +652,32 @@
             display: flex;
             gap: 10px;
             justify-content: space-between;
-            flex-direction: column;
         }
 
         .stat-mobile {
             flex: 1;
             background: rgba(10, 14, 39, 0.8);
-            padding:3px 12px;
+            padding: 12px;
             border-radius: 10px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .stat-mobile-label {
             font-size: 0.75rem;
             color: #a1a1aa;
-            /* margin-bottom: 5px; */
+            margin-bottom: 5px;
+            white-space: nowrap;
         }
 
         .stat-mobile-value {
             font-size: 1.3rem;
             font-weight: 700;
             color: #ffd700;
+            white-space: nowrap;
         }
 
         .progreso-bar-mobile {
@@ -683,21 +686,16 @@
             background: rgba(122, 126, 149, 0.8);
             border-radius: 10px;
             overflow: hidden;
-            margin:0 8px;
+            margin: 0 8px;
         }
 
         .progreso-fill-mobile {
+            display: block; /* ← CRÍTICO para que <span> respete width */
             height: 100%;
             background: linear-gradient(90deg, #d4af37 0%, #ffd700 100%);
             width: 0%;
             transition: width 0.5s ease;
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .progreso-texto-mobile {
-            font-size: 1rem;
-            color: #ffd700;
-            text-align: center;
         }
 
         /* Botones flotantes móvil */
@@ -721,12 +719,13 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #d4af37 0%, #b49c4e54 100%);
+            /* background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%); */
+            background: linear-gradient(135deg, #d4af37 0%, #b49c4e54 80%);
             border: none;
             color: #0a0e27;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(222, 184, 57, 0.5);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
             transition: transform 0.2s ease;
             display: flex;
             align-items: center;
@@ -833,30 +832,27 @@
         <!-- ÁREA CENTRAL -->
         <div class="chat-main">
             <div class="chat-header">
-               <!-- <span>💬</span> -->
                 <div class="chat-title">Diálogo con Aristóteles</div>
                 <button class="btn-salir" id="btnSalir">Salir</button>
             </div>
 
             <!-- Stats móvil (solo visible en móvil) -->
-            <div class="stats-mobile" style="display: flex;flex-direction: column;">
+            <div class="stats-mobile">
                 <div class="stats-mobile-row">
-                    <div class="stat-mobile" style="display: flex;flex-direction: row; align-items: center;">
-                        <div class="stat-mobile-label" >Progreso</div>
+                    <div class="stat-mobile" style="display: flex; flex-direction: row; align-items: center; flex: 2;">
+                        <div class="stat-mobile-label">Progreso</div>
                         <div class="progreso-bar-mobile">
-                            <div class="progreso-fill-mobile" id="progresoFillMobile" style="display: block;"></div>
+                            <span class="progreso-fill-mobile" id="progresoFillMobile"></span>
                         </div>
                         <div class="stat-mobile-value" id="progresoTextoMobile">0%</div>
-                        <!-- <div class="progreso-texto-mobile" id="progresoTextoMobile">0%</div> -->
                     </div>
-                  <div style="display: flex;gap: 8px;">
+                </div>
+                <div class="stats-mobile-row">
                     <div class="stat-mobile">
                         <div class="stat-mobile-label">Chats</div>
                         <div class="stat-mobile-value" id="intercambiosNumeroMobile">0/10</div>
                     </div>
-                <!-- </div>
-                <div class="stats-mobile-row"> -->
-                    <div class="stat-mobile" >
+                    <div class="stat-mobile">
                         <div class="stat-mobile-label">Conceptos</div>
                         <div class="stat-mobile-value" id="conceptosCountMobile">0</div>
                     </div>
@@ -864,7 +860,6 @@
                         <div class="stat-mobile-label">Pistas</div>
                         <div class="stat-mobile-value" id="hintsCountMobile">3</div>
                     </div>
-                  </div>
                 </div>
             </div>
 
@@ -913,6 +908,40 @@
             <div class="hints-box">
                 <button class="btn-hint" id="btnHint">💡 Pedir una pista</button>
                 <div class="hints-restantes" id="hintsRestantes">3 pistas disponibles</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN DE SALIDA -->
+    <div class="modal-overlay" id="modalConfirmarSalida" style="display: none;">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <h1 style="font-size: 5rem; padding-bottom: 1.5rem;">⚠️</h1>
+                <h2 class="modal-title" style="color: #ffd700;">¿Salir del diálogo?</h2>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <p style="color: #d4d4d8; line-height: 1.6; margin-bottom: 25px;">
+                    Si sales ahora, perderás el progreso actual de esta conversación. 
+                    Tu puntaje solo se guarda al completar los 10 intercambios.
+                </p>
+                <div class="modal-stats" style="gap: 10px; margin-bottom: 25px;">
+                    <div class="modal-stat" style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444;">
+                        <div class="modal-stat-value" style="color: #ef4444;" id="progresoActualSalida">0%</div>
+                        <div class="modal-stat-label">Progreso Actual</div>
+                    </div>
+                    <div class="modal-stat" style="background: rgba(251, 191, 36, 0.1); border: 1px solid #fbbf24;">
+                        <div class="modal-stat-value" style="color: #fbbf24;" id="intercambiosActualSalida">0/10</div>
+                        <div class="modal-stat-label">Mensajes</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <button class="btn-volver" id="btnCancelarSalida" style="flex: 1; background: rgba(102, 126, 234, 0.2); color: #667eea; border: 2px solid #667eea;">
+                        Dialogar
+                    </button>
+                    <button class="btn-volver" id="btnConfirmarSalida" style="flex: 1; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 2px solid #ef4444;">
+                        Salir
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -994,6 +1023,11 @@
             httpsCallable 
         } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
 
+        // import { auth, db } from "../firebase.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+        // import { db, doc, getDoc, auth, onAuthStateChanged } from '../../firebase.js';
+        // import { obtenerZodiaco, calcularEdad, extraerNombre, obtenerEmojisZodiaco } from '../../utils/horoscopo.js';
+
         console.log('═══════════════════════════════════════════════════');
         console.log('🎭 SISTEMA DE DIÁLOGO FILOSÓFICO - ARISTÓTELES');
         console.log('═══════════════════════════════════════════════════');
@@ -1011,6 +1045,32 @@
             // ¡Nuevos conceptos clave alineados con el prompt!
             conceptosClave: ['virtud', 'areté', 'término medio', 'mesotés', 'eudaimonía', 'frónesis', 'prudencia', 'templanza', 'valentía', 'justicia', 'hábito', 'carácter'],
          };
+         // ===============================================
+         // nombre del alumno y fecha de nacimiento desde localStorage
+         // ===============================================
+        // === utils: nombre y edad ===
+        function getFirstName({ displayName, nombres, nickname, email }) {
+            const base = (nombres || displayName || nickname || email || '').trim();
+            if (!base) return 'Estudiante';
+            if (base.includes('@')) return base.split('@')[0];
+            return base.split(/\s+/)[0];
+        }
+
+        function calcAgeFromYYYYMMDD(fechaStr) {
+            if (!fechaStr) return null;
+            const [y, m, d] = fechaStr.split('-').map(Number);
+            const birth = new Date(y, (m || 1) - 1, d || 1);
+            if (isNaN(birth)) return null;
+            const today = new Date();
+            let age = today.getFullYear() - birth.getFullYear();
+            const beforeBirthday =
+                today.getMonth() < birth.getMonth() ||
+                (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
+            if (beforeBirthday) age--;
+            return age;
+        }
+
+
 
         // ===============================================
         // INICIALIZAR CLOUD FUNCTION CON REGIÓN
@@ -1066,7 +1126,13 @@
             modalConceptos: document.getElementById('modalConceptos'),
             conceptosListaMobile: document.getElementById('conceptosListaMobile'),
             closeInfoModal: document.getElementById('closeInfoModal'),
-            closeConceptosModal: document.getElementById('closeConceptosModal')
+            closeConceptosModal: document.getElementById('closeConceptosModal'),
+            // Modal de confirmación de salida
+            modalConfirmarSalida: document.getElementById('modalConfirmarSalida'),
+            btnConfirmarSalida: document.getElementById('btnConfirmarSalida'),
+            btnCancelarSalida: document.getElementById('btnCancelarSalida'),
+            progresoActualSalida: document.getElementById('progresoActualSalida'),
+            intercambiosActualSalida: document.getElementById('intercambiosActualSalida')
         };
 
         // ===============================================
@@ -1174,7 +1240,13 @@
 
                 const tiempoRespuesta = performance.now() - tiempoLlamada;
                 log('✅', `Respuesta recibida en ${tiempoRespuesta.toFixed(0)}ms`);
-                log('📊', `Tokens: ${result.data.tokensUsados}, API: ${result.data.tiempoRespuestaMs}ms`);
+                log('📊', `Tokens: ${result.data.tokensUsados} (respuesta: ${result.data.tokensRespuesta || 'N/A'})`);
+                
+                // Advertir si la respuesta fue truncada
+                if (result.data.finishReason === 'length') {
+                    log('⚠️', 'Respuesta truncada por límite de tokens');
+                    console.warn('La respuesta del filósofo se cortó. Esto se reportará para ajustar límites.');
+                }
                 
                 return result.data.respuesta;
 
@@ -1229,8 +1301,8 @@
             const factores = {
                 intercambios: (estado.intercambios / CONFIG.maxIntercambios) * 0.4,
                 conceptos: (estado.conceptosDetectados.size / CONFIG.conceptosClave.length) * 0.3,
-                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.15,
-                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.15
+                longitudPromedio: Math.min(calcularLongitudPromedio() / 100, 1) * 0.2,
+                participacion: Math.min(estado.mensajes.filter(m => m.rol === 'alumno').length / 8, 1) * 0.1
             };
 
             const progresoTotal = Object.values(factores).reduce((a, b) => a + b, 0);
@@ -1355,6 +1427,13 @@
                     enviarMensaje();
                 }
             }
+            if (e.key === 'Escape') {
+                // Cerrar modal de confirmación si está abierto
+                if (elementos.modalConfirmarSalida.style.display === 'flex') {
+                    elementos.modalConfirmarSalida.classList.remove('active');
+                    elementos.modalConfirmarSalida.style.display = 'none';
+                }
+            }
         });
 
         elementos.btnEnviar.addEventListener('click', enviarMensaje);
@@ -1410,8 +1489,31 @@
         });
 
         elementos.btnSalir.addEventListener('click', () => {
-            if (confirm('¿Seguro que deseas salir? Se perderá tu progreso actual.')) {
-                window.location.href = '../index.html';
+            // Mostrar progreso actual en el modal
+            const progresoActual = calcularProgreso();
+            elementos.progresoActualSalida.textContent = `${progresoActual}%`;
+            elementos.intercambiosActualSalida.textContent = `${estado.intercambios}/${CONFIG.maxIntercambios}`;
+            
+            // Mostrar modal de confirmación
+            elementos.modalConfirmarSalida.classList.add('active');
+            elementos.modalConfirmarSalida.style.display = 'flex';
+        });
+
+        elementos.btnCancelarSalida.addEventListener('click', () => {
+            elementos.modalConfirmarSalida.classList.remove('active');
+            elementos.modalConfirmarSalida.style.display = 'none';
+        });
+
+        elementos.btnConfirmarSalida.addEventListener('click', () => {
+            log('🚪', 'Usuario confirmó salida');
+            window.location.href = '../index.html';
+        });
+
+        // Cerrar modal al hacer click fuera
+        elementos.modalConfirmarSalida?.addEventListener('click', (e) => {
+            if (e.target === elementos.modalConfirmarSalida) {
+                elementos.modalConfirmarSalida.classList.remove('active');
+                elementos.modalConfirmarSalida.style.display = 'none';
             }
         });
 
@@ -1495,7 +1597,7 @@
 
                     await saveProgress({
                         moduleId: 'dialogo_aristoteles',
-                        lessonId: null,
+                        lessonId: 'dialogo', 
                         status: aprobado ? 'completed' : 'in_progress',
                         score: scoreFinal,
                         seconds: Math.round(duracionMs / 1000)
@@ -1533,32 +1635,220 @@
             });
         }
 
-
-         // ===============================================
-         // INICIALIZACIÓN
-         // ===============================================
-         function iniciar() {
+        // ===============================================
+        // INICIALIZACIÓN
+        // ===============================================
+        function iniciar_00() {
             log('🚀', 'Inicializando diálogo con Aristóteles...');
             
-            // Mensaje de bienvenida mejorado: Usamos <strong> para asegurar la negrita en HTML.
-            const bienvenida = `Χαῖρε (Jaíre)! Soy Aristóteles de Estagira.
-         Me complace dialogar sobre la virtud (areté) y el camino hacia la eudaimonía.
-         Mi propósito es que reflexiones sobre la <strong>Justicia</strong>, la <strong>Templanza</strong>, la <strong>Valentía</strong> y la <strong>Frónesis</strong> (prudencia) en tu vida.
-         Dime, ¿qué decisión difícil o qué hábito deseas mejorar en tu vida para alcanzar una mayor excelencia?`;
+            // Mensaje de bienvenida
+            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
+            Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
+            Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
             
             agregarMensaje('filosofo', bienvenida);
+
+            // === Inicio del diálogo personalizado ===
+            // if (userDoc && userDoc.data) {
+            // const data = userDoc.data();
+            // const first = getFirstName(data);
+            // const edad = calcAgeFromYYYYMMDD(data.fechaNacimiento);
+            // const edadTxt = edad ? ` — ya tenés ${edad} años` : '';
+
+            // const hookMsg = `
+            // Saludos, ${first}${edadTxt}. Muchos creen que el **horóscopo** describe su carácter,
+            // pero yo enseño que el **carácter se forma por hábito y elección**.
+            // Decime, ¿qué pensás vos? ¿El destino manda o elegimos mediante la virtud (areté)?
+            // `.trim();
+
+            // agregarMensaje('filosofo', hookMsg);
+            // } else {
+            // agregarMensaje('filosofo', 'Saludos, joven aprendiz. Hoy reflexionaremos sobre el bien y la felicidad.');
+            // }
+
             elementos.inputMensaje.focus();
             
             const tiempoInicializacion = performance.now() - tiempoInicio;
             log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
-         }    
-
-        // Iniciar cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', iniciar);
-        } else {
-            iniciar();
         }
+
+        // ===============================================
+        // INICIALIZACIÓN (sin redeclarar auth/db)
+        // ===============================================
+        // async function iniciar() {
+        // log('🚀', 'Inicializando diálogo con Aristóteles...');
+
+        // let data = null;
+        // const u = (window.auth || auth)?.currentUser || null;
+
+        // // Intentar leer Firestore SOLO si las funciones existen en este scope
+        // try {
+        //     if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+        //     const snap = await getDoc(doc(db, "users", u.uid));
+        //     if (snap.exists()) data = snap.data();
+        //     }
+        // } catch (e) {
+        //     console.warn('No se pudo cargar userDoc:', e);
+        // }
+
+        // const first = getFirstName({
+        //     displayName: data?.displayName || u?.displayName,
+        //     nombres: data?.nombres,
+        //     nickname: data?.nickname,
+        //     email: data?.email || u?.email,
+        // });
+
+        // const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+        // const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+
+        // const hookMsg = `
+        // Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+        // pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+        // Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+        // `.trim();
+
+        // // Si no tenemos nada de usuario, caemos a un mensaje genérico
+        // const mensajeInicial = first ? hookMsg :
+        // `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+
+        // // Usa tu función de mensajes existente
+        // agregarMensaje('filosofo', mensajeInicial);   // ← ya definida en tu script :contentReference[oaicite:2]{index=2}
+
+        // elementos.inputMensaje.focus();
+
+        // const tiempoInicializacion = performance.now() - tiempoInicio;
+        // log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        // }
+
+
+        // // Iniciar cuando el DOM esté listo
+        // if (document.readyState === 'loading') {
+        //     document.addEventListener('DOMContentLoaded', iniciar);
+        // } else {
+        //     iniciar();
+        // }
+
+        // ===============================================
+// INICIALIZACIÓN robusta esperando auth (dual listener + polling)
+// ===============================================
+let saludoMostrado = false;
+
+function saludarCon(data, u) {
+  if (saludoMostrado) return;
+  saludoMostrado = true;
+
+  const first = getFirstName({
+    displayName: data?.displayName || u?.displayName,
+    nombres: data?.nombres,
+    nickname: data?.nickname,
+    email: data?.email || u?.email,
+  });
+
+  console.log('data alumno: ', data)
+  const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+  console.log('data alumno: ', data)
+  console.log('edad: ', edad)
+  const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+  console.log('edad: ', edadTxt)
+  
+  const hookMsg = `
+👋🏼 Hola, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+`.trim();
+
+  const msg = (first && first !== 'Estudiante')
+    ? hookMsg
+    : `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+
+  agregarMensaje('filosofo', msg); // usa tu render existente
+  elementos.inputMensaje.focus();
+
+  const t = performance.now() - tiempoInicio;
+  log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
+}
+
+async function iniciar() {
+  log('🚀', 'Inicializando diálogo con Aristóteles...');
+
+  // Helper: leer userDoc si hay uid y Firestore disponible
+  const readUserDoc = async (u) => {
+    if (!u?.uid) return null;
+    if (typeof getDoc !== 'function' || typeof doc !== 'function' || typeof db === 'undefined') return null;
+    try {
+      const snap = await getDoc(doc(db, "users", u.uid));
+      return snap.exists() ? snap.data() : null;
+    } catch {
+      return null;
+    }
+  };
+
+  // 1) Si YA hay usuario, personalizamos y salimos
+  const u0 = (window.auth || auth)?.currentUser || null;
+  if (u0?.uid) {
+    const data0 = await readUserDoc(u0);
+    saludarCon(data0, u0);
+    return;
+  }
+
+  // 2) Set up dual listener (modular y compat) + fallback timeout + polling
+  let unsub = null;
+  let timeoutId = null;
+  let pollId = null;
+
+  const listenModular = (typeof onAuthStateChanged === 'function')
+    ? (cb) => onAuthStateChanged((window.auth || auth), cb)
+    : null;
+
+  const listenCompat = ((window.auth || auth) && typeof (window.auth || auth).onAuthStateChanged === 'function')
+    ? (cb) => (window.auth || auth).onAuthStateChanged(cb)
+    : null;
+
+  const subscribe = listenModular || listenCompat;
+
+  if (subscribe) {
+    unsub = subscribe(async (user) => {
+      if (saludoMostrado) return;
+      const data = await readUserDoc(user);
+      saludarCon(data, user);
+      clearTimeout(timeoutId);
+      clearInterval(pollId);
+      if (typeof unsub === 'function') unsub();
+    });
+  }
+
+  // Polling suave (por si el listener no dispara en GitHub Pages)
+  let tries = 0;
+  pollId = setInterval(async () => {
+    if (saludoMostrado) { clearInterval(pollId); return; }
+    const u = (window.auth || auth)?.currentUser || null;
+    if (u?.uid) {
+      const data = await readUserDoc(u);
+      saludarCon(data, u);
+      clearInterval(pollId);
+      clearTimeout(timeoutId);
+      if (typeof unsub === 'function') unsub();
+    } else if (++tries >= 12) { // ~3s si 250ms
+      clearInterval(pollId);
+    }
+  }, 250);
+
+  // Fallback duro en 3500ms (saludo genérico)
+  timeoutId = setTimeout(() => {
+    if (!saludoMostrado) saludarCon(null, null);
+    if (typeof unsub === 'function') unsub();
+    clearInterval(pollId);
+  }, 3500);
+}
+
+// Arranque (mantené lo que ya tenés)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', iniciar);
+} else {
+  iniciar();
+}
+
+
 
         console.log('═══════════════════════════════════════════════════');
     </script>
