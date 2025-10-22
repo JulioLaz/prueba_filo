@@ -16,8 +16,8 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "utilitarismo", meaning: "Filosofía moral que sostiene que la acción correcta es la que produce la mayor felicidad o bienestar para el mayor número de personas afectadas." },
         { term: "felicidad", meaning: "En la ética de Mill, la felicidad se entiende como 'placer y ausencia de dolor'." },
         { term: "consecuencias", meaning: "Los resultados o efectos de una acción. Para el utilitarismo, son el único criterio para juzgar la moralidad de una acción." },
-        { term: "maximizar", meaning: "Lograr el mayor grado posible de felicidad o bienestar." },
-        { term: "mayor_número", meaning: "Se refiere a la totalidad de las personas o seres que son afectados por una acción, no solo uno mismo." },
+        { term: "maximizar", meaning: "Lograr el mayor grado posible de felicidad o bienestar." }
+        // { term: "mayor_número", meaning: "Se refiere a la totalidad de las personas o seres que son afectados por una acción, no solo uno mismo." },
       ],
       corollary: [
         "El principio fundamental del utilitarismo es que las consecuencias de una acción determinan si es correcta o incorrecta.",
@@ -79,7 +79,7 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "acto", meaning: "Juzga la moralidad de cada acción específica y única según sus consecuencias." },
         { term: "regla", meaning: "Juzga la moralidad de una acción en base a si la regla que la justifica, si se siguiera siempre, produciría la mayor felicidad." },
-        { term: "reglas_morales", meaning: "Principios generales de conducta (ej. no mentir, no robar). El utilitarismo de la regla las considera útiles porque la experiencia demuestra que generalmente conducen al bienestar social." },
+        // { term: "reglas_morales", meaning: "Principios generales de conducta (ej. no mentir, no robar). El utilitarismo de la regla las considera útiles porque la experiencia demuestra que generalmente conducen al bienestar social." },
         { term: "excepciones", meaning: "Situaciones muy inusuales en las que romper una regla moral puede estar justificado, pero solo si esto produce un beneficio significativamente mayor o evita un sufrimiento considerable." },
       ],
       corollary: [
