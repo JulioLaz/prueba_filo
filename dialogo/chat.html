@@ -1064,7 +1064,7 @@
             return base.split(/\s+/)[0];
         }
 
-        function calcAgeFromYYYYMMDD(fechaStr) {
+        function calcAgeFromYYYYMMDD_00(fechaStr) {
             if (!fechaStr) return null;
             const [y, m, d] = fechaStr.split('-').map(Number);
             const birth = new Date(y, (m || 1) - 1, d || 1);
