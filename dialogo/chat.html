@@ -1016,9 +1016,7 @@
     <script type="module">
         import { 
             saveProgress, 
-            auth,
-            db,
-            onAuthStateChanged
+            auth 
         } from '../firebase.js';
         import { 
             getFunctions, 
@@ -1027,7 +1025,7 @@
 
         // import { auth, db } from "../firebase.js";
         import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-        // import { db, doc, getDoc, onAuthStateChanged } from '../../firebase.js';
+        import { db, onAuthStateChanged } from '../../firebase.js';
         import { obtenerZodiaco, calcularEdad, extraerNombre, obtenerEmojisZodiaco } from '../../utils/horoscopo.js';
 
         console.log('═══════════════════════════════════════════════════');
