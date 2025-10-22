@@ -1,29 +1,43 @@
 {
   "id": "etica_kant",
+
   "meta": {
-    "title": "Ética kantiana: El deber por el deber",
+    "title": "Ética Kantiana: El deber por el deber",
     "author": "Immanuel Kant",
     "icon": "🤖",
     "gradient": "linear-gradient(135deg, #457b9d 0%, #a8dadc 100%)",
     "difficulty": "avanzado",
-    "description": "La filosofía moral de Kant, centrada en el 'imperativo categórico' como una ley universal. Sostiene que los actos son moralmente buenos solo si se realizan por puro deber, sin considerar las consecuencias."
+    "category": "Filosofía Moderna",
+    "description": "La filosofía moral de Kant, centrada en el 'imperativo categórico' como una ley universal. Sostiene que los actos son moralmente buenos solo si se realizan por puro deber, sin considerar las consecuencias.",
+    "lastUpdated": "2024-08-20"
   },
+
   "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 6,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": {
       "enabled": true,
       "questions": 10,
       "timeLimit": 30,
       "timeEstimate": 12
     },
-    "conceptos": {
+    "concepts": {
       "enabled": true,
       "levels": 6,
       "timeEstimate": 8
     },
-    "material": {
+    "cloze": {
       "enabled": true,
-      "sections": 6,
-      "timeEstimate": 10
+      "timeEstimate": 9
+    },
+    "cruci": {
+      "enabled": true,
+      "timeEstimate": 7
     },
     "mapa": {
       "enabled": true,
@@ -31,12 +45,30 @@
       "timeEstimate": 5
     }
   },
+
   "files": {
-    "content": "etica_kant.html",
+    "material": {
+      "page": "etica_kant.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js",
-    "mapa": "mapa.html"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
   },
+
   "prerequisites": [],
   "color": "#457b9d"
 }

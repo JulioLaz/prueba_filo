@@ -1,0 +1,42 @@
+{
+  "id": "antropocentrismo",
+  "meta": {
+    "title": "Antropocentrismo: El ser humano en el centro del universo",
+    "author": "Pico della Mirandola",
+    "icon": "🌍",
+    "gradient": "linear-gradient(135deg, #6b7cff 0%, #b074ff 100%)",
+    "difficulty": "intermedio",
+    "description": "El antropocentrismo es la doctrina que considera al ser humano como la medida de todas las cosas y el centro del universo. Este concepto ha influido en la filosofía, la religión y la ciencia a lo largo de la historia, especialmente durante el Renacimiento."
+  },
+  "activities": {
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 30,
+      "timeEstimate": 12
+    },
+    "conceptos": {
+      "enabled": true,
+      "levels": 6,
+      "timeEstimate": 8
+    },
+    "material": {
+      "enabled": true,
+      "sections": 8,
+      "timeEstimate": 10
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 18,
+      "timeEstimate": 5
+    }
+  },
+  "files": {
+    "content": "antropocentrismo.html",
+    "quiz": "quiz.js",
+    "conceptos": "conceptos.js",
+    "mapa": "mapa.html"
+  },
+  "prerequisites": [],
+  "color": "#6b7cff"
+}

@@ -1,29 +1,43 @@
 {
   "id": "aristoteles",
+
   "meta": {
     "title": "Aristóteles: La felicidad como fin supremo",
     "author": "Aristóteles",
     "icon": "🎯",
     "gradient": "linear-gradient(135deg, #4b67ff 0%, #b074ff 100%)",
     "difficulty": "avanzado",
-    "description": "El objetivo de la vida humana es la felicidad (eudaimonía), que se alcanza a través de la virtud y la razón. Su ética se basa en el 'justo medio' y la formación del carácter."
+    "category": "Filosofía Clásica",
+    "description": "El objetivo de la vida humana es la felicidad (eudaimonía), que se alcanza a través de la virtud y la razón. Su ética se basa en el 'justo medio' y la formación del carácter.",
+    "lastUpdated": "2024-08-20"
   },
+
   "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 7,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": {
       "enabled": true,
       "questions": 10,
       "timeLimit": 30,
       "timeEstimate": 12
     },
-    "conceptos": {
+    "concepts": {
       "enabled": true,
       "levels": 6,
       "timeEstimate": 8
     },
-    "material": {
+    "cloze": {
       "enabled": true,
-      "sections": 7,
-      "timeEstimate": 10
+      "timeEstimate": 9
+    },
+    "cruci": {
+      "enabled": true,
+      "timeEstimate": 7
     },
     "mapa": {
       "enabled": true,
@@ -31,12 +45,30 @@
       "timeEstimate": 5
     }
   },
+
   "files": {
-    "content": "etica_aristoteles.html",
+    "material": {
+      "page": "etica_aristoteles.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js",
-    "mapa": "mapa.html"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
   },
+
   "prerequisites": [],
   "color": "#4b67ff"
 }
