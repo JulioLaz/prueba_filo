@@ -446,4 +446,4 @@ export async function migrateLocalProgressToFirebase() {
   }
 }
 // ✅ EXPORTAR PARA QUE CHAT.HTML PUEDA USARLAS
-export { doc, getDoc, db, onAuthStateChanged };
+// export { doc, getDoc, db, onAuthStateChanged };
