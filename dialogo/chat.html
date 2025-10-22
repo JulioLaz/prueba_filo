@@ -1035,7 +1035,7 @@
         obtenerEmojisZodiaco 
     } from '../utils/horoscopo.js';
 
-    
+
         console.log('═══════════════════════════════════════════════════');
         console.log('🎭 SISTEMA DE DIÁLOGO FILOSÓFICO - ARISTÓTELES');
         console.log('═══════════════════════════════════════════════════');
@@ -1057,7 +1057,7 @@
          // nombre del alumno y fecha de nacimiento desde localStorage
          // ===============================================
         // === utils: nombre y edad ===
-        function getFirstName({ displayName, nombres, nickname, email }) {
+        function getFirstName_00({ displayName, nombres, nickname, email }) {
             const base = (nombres || displayName || nickname || email || '').trim();
             if (!base) return 'Estudiante';
             if (base.includes('@')) return base.split('@')[0];
