@@ -1728,89 +1728,120 @@
         // }
 
         // ===============================================
-        // INICIALIZACIÓN esperando auth (con fallback)
-        // ===============================================
-        let saludoMostrado = false;
+// INICIALIZACIÓN robusta esperando auth (dual listener + polling)
+// ===============================================
+let saludoMostrado = false;
 
-        function saludarCon(data, u) {
-        if (saludoMostrado) return;
-        saludoMostrado = true;
+function saludarCon(data, u) {
+  if (saludoMostrado) return;
+  saludoMostrado = true;
 
-        const first = getFirstName({
-            displayName: data?.displayName || u?.displayName,
-            nombres: data?.nombres,
-            nickname: data?.nickname,
-            email: data?.email || u?.email,
-        });
+  const first = getFirstName({
+    displayName: data?.displayName || u?.displayName,
+    nombres: data?.nombres,
+    nickname: data?.nickname,
+    email: data?.email || u?.email,
+  });
 
-        const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
-        const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+  const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+  const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
 
-        const hookMsg = `
-        Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
-        pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
-        Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
-        `.trim();
+  const hookMsg = `
+Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+`.trim();
 
-        const msg = first && first !== 'Estudiante'
-            ? hookMsg
-            : `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
+  const msg = (first && first !== 'Estudiante')
+    ? hookMsg
+    : `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
 
-        agregarMensaje('filosofo', msg);
-        elementos.inputMensaje.focus();
+  agregarMensaje('filosofo', msg); // usa tu render existente
+  elementos.inputMensaje.focus();
 
-        const t = performance.now() - tiempoInicio;
-        log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
-        }
+  const t = performance.now() - tiempoInicio;
+  log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
+}
 
-        // Espera auth + intenta leer userDoc; si no llega, usa fallback
-        async function iniciar() {
-        log('🚀', 'Inicializando diálogo con Aristóteles...');
-        const u = (window.auth || auth)?.currentUser || null;
+async function iniciar() {
+  log('🚀', 'Inicializando diálogo con Aristóteles...');
 
-        // 1) Si YA hay usuario, intentamos leer su doc y saludamos
-        if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
-            try {
-            const snap = await getDoc(doc(db, "users", u.uid));
-            saludarCon(snap.exists() ? snap.data() : null, u);
-            return;
-            } catch (e) { console.warn('No se pudo cargar userDoc:', e); }
-        }
+  // Helper: leer userDoc si hay uid y Firestore disponible
+  const readUserDoc = async (u) => {
+    if (!u?.uid) return null;
+    if (typeof getDoc !== 'function' || typeof doc !== 'function' || typeof db === 'undefined') return null;
+    try {
+      const snap = await getDoc(doc(db, "users", u.uid));
+      return snap.exists() ? snap.data() : null;
+    } catch {
+      return null;
+    }
+  };
 
-        // 2) Si aún no hay usuario, escuchamos un evento de auth
-        let timeoutId;
-        const fallbackMs = 2000; // 2s para no dejar al alumno esperando
+  // 1) Si YA hay usuario, personalizamos y salimos
+  const u0 = (window.auth || auth)?.currentUser || null;
+  if (u0?.uid) {
+    const data0 = await readUserDoc(u0);
+    saludarCon(data0, u0);
+    return;
+  }
 
-        const unsub = (typeof onAuthStateChanged === 'function')
-            ? onAuthStateChanged((window.auth || auth), async (user) => {
-                if (saludoMostrado) return;
-                try {
-                let data = null;
-                if (user?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
-                    const snap = await getDoc(doc(db, "users", user.uid));
-                    data = snap.exists() ? snap.data() : null;
-                }
-                saludarCon(data, user || null);
-                } finally {
-                clearTimeout(timeoutId);
-                if (typeof unsub === 'function') unsub();
-                }
-            })
-            : null;
+  // 2) Set up dual listener (modular y compat) + fallback timeout + polling
+  let unsub = null;
+  let timeoutId = null;
+  let pollId = null;
 
-        // 3) Fallback genérico si auth no llega a tiempo
-        timeoutId = setTimeout(() => {
-            if (!saludoMostrado) saludarCon(null, null);
-            if (typeof unsub === 'function') unsub();
-        }, fallbackMs);
-        }
+  const listenModular = (typeof onAuthStateChanged === 'function')
+    ? (cb) => onAuthStateChanged((window.auth || auth), cb)
+    : null;
 
-        // Mantener este arranque
-        if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', iniciar);
-        } else {
-        iniciar();
-        }
+  const listenCompat = ((window.auth || auth) && typeof (window.auth || auth).onAuthStateChanged === 'function')
+    ? (cb) => (window.auth || auth).onAuthStateChanged(cb)
+    : null;
+
+  const subscribe = listenModular || listenCompat;
+
+  if (subscribe) {
+    unsub = subscribe(async (user) => {
+      if (saludoMostrado) return;
+      const data = await readUserDoc(user);
+      saludarCon(data, user);
+      clearTimeout(timeoutId);
+      clearInterval(pollId);
+      if (typeof unsub === 'function') unsub();
+    });
+  }
+
+  // Polling suave (por si el listener no dispara en GitHub Pages)
+  let tries = 0;
+  pollId = setInterval(async () => {
+    if (saludoMostrado) { clearInterval(pollId); return; }
+    const u = (window.auth || auth)?.currentUser || null;
+    if (u?.uid) {
+      const data = await readUserDoc(u);
+      saludarCon(data, u);
+      clearInterval(pollId);
+      clearTimeout(timeoutId);
+      if (typeof unsub === 'function') unsub();
+    } else if (++tries >= 12) { // ~3s si 250ms
+      clearInterval(pollId);
+    }
+  }, 250);
+
+  // Fallback duro en 3500ms (saludo genérico)
+  timeoutId = setTimeout(() => {
+    if (!saludoMostrado) saludarCon(null, null);
+    if (typeof unsub === 'function') unsub();
+    clearInterval(pollId);
+  }, 3500);
+}
+
+// Arranque (mantené lo que ya tenés)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', iniciar);
+} else {
+  iniciar();
+}
 
 
 
