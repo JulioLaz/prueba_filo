@@ -377,13 +377,6 @@
     <script src="js/main.js"></script>
 
 <script type="module">
-  import { 
-    saveProgress, 
-    // auth,
-    getDoc,
-    doc,
-    db
-} from '../firebase.js';
 import { 
   login, 
   logout, 
@@ -1263,52 +1256,6 @@ onAuthStateChanged(auth, async (user) => {
     adminCard.style.display = 'none';
   }
 });
-
-// nuevo para corregir vista de btn de logueo
-
-// ✅ Actualizar UI según autenticación
-onAuthStateChanged(auth, async (user) => {
-  const authButtons = document.getElementById("authButtons");
-  const userProfile = document.getElementById("userProfile");
-  const userName = document.getElementById("userName");
-  const userAvatar = document.getElementById("userAvatar");
-
-  if (user) {
-    // ✅ Usuario logueado: Ocultar botones, mostrar perfil
-    authButtons.style.display = "none";
-    userProfile.style.display = "flex";
-    
-    // Obtener datos del usuario desde Firestore
-    try {
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists()) {
-        const data = userDoc.data();
-        const firstName = (data.nombres || user.displayName || user.email).split(" ")[0];
-        userName.textContent = firstName;
-        
-        // Mostrar avatar
-        if (data.avatarType === "emoji" && data.avatarValue) {
-          userAvatar.textContent = data.avatarValue;
-        } else {
-          const initials = (data.nombres || user.displayName || "U")
-            .split(" ")
-            .map(n => n[0])
-            .join("")
-            .toUpperCase();
-          userAvatar.textContent = initials;
-        }
-      }
-    } catch (err) {
-      console.error("Error cargando perfil:", err);
-      userName.textContent = (user.displayName || user.email).split(" ")[0];
-    }
-  } else {
-    // ✅ No logueado: Mostrar botones, ocultar perfil
-    authButtons.style.display = "flex";
-    userProfile.style.display = "none";
-  }
-});
-
 
 console.log('✅ Tarjeta dashboard admin móvil inicializada');
 </script>
