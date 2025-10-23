@@ -1,4 +1,4 @@
-// /prueba_filo/firebase.js - VERSIÓN MEJORADA CON EXPORTS
+// /prueba_filo/firebase.js - VERSIÓN AMPLIADA
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword,
@@ -20,17 +20,25 @@ const firebaseConfig = {
   measurementId: "G-GJ1XNPC80C"
 };
 
+// const firebaseConfig = {
+//   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,  // ✅ DESDE .env
+//   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+//   databaseURL: "https://filosofia-quiz-prod-default-rtdb.firebaseio.com",
+//   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+//   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: import.meta.env.VITE_FIREBASE_APP_ID,
+//   measurementId: "G-GJ1XNPC80C"
+// };
+
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// ✅ EXPORTAR FUNCIONES DE FIRESTORE PARA USAR EN OTROS MÓDULOS
-export { doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, where, orderBy, limit, getDocs, onAuthStateChanged };
-
 // ====================================
 // CONFIGURACIÓN ADMINISTRATIVA
 // ====================================
-const ADMIN_EMAIL = "julioalbertolazarte00@gmail.com";
+const ADMIN_EMAIL = "julioalbertolazarte00@gmail.com"; // Tu email de admin
 const CURSO_DEFAULT = "6to A";
 
 // ====================================
@@ -58,7 +66,7 @@ function calculateAge(birthDate) {
 }
 
 function isValidAge(age) {
-  return age >= 12 && age <= 25;
+  return age >= 12 && age <= 25; // Rango típico de estudiantes secundarios
 }
 
 // ====================================
@@ -99,20 +107,30 @@ async function ensureUserDoc(user, profileData = {}) {
   const isAdmin = user.email === ADMIN_EMAIL;
   
   if (!userSnap.exists()) {
+    // Crear nuevo perfil de usuario
     const newUserData = {
+      // Datos básicos
       email: user.email,
       displayName: user.displayName || "",
+      
+      // Perfil educativo
       nombres: profileData.nombres || "",
       apellidos: profileData.apellidos || "",
       fechaNacimiento: profileData.fechaNacimiento || null,
       edad: profileData.fechaNacimiento ? calculateAge(profileData.fechaNacimiento) : null,
       nickname: profileData.nickname || "",
       curso: profileData.curso || CURSO_DEFAULT,
+      
+      // Sistema
       role: isAdmin ? "admin" : "student",
       createdAt: now,
       lastLogin: now,
+      
+      // Configuración inicial
       avatarType: null,
       avatarValue: null,
+      
+      // Estadísticas iniciales
       estadisticas: {
         totalSesiones: 0,
         tiempoTotalSegundos: 0,
@@ -124,9 +142,12 @@ async function ensureUserDoc(user, profileData = {}) {
     
     await setDoc(userRef, newUserData);
     console.log(`✅ Nuevo perfil creado para: ${user.email}`);
+    
+    // Registrar sesión inicial
     await registrarSesion(user.uid, 'login');
     
   } else {
+    // Actualizar último login
     const existingData = userSnap.data();
     await updateDoc(userRef, {
       lastLogin: now,
@@ -149,7 +170,7 @@ async function registrarSesion(uid, tipo, metadata = {}) {
     
     await setDoc(sessionRef, {
       uid,
-      tipo,
+      tipo, // 'login', 'logout', 'activity'
       timestamp: serverTimestamp(),
       metadata: {
         userAgent: navigator.userAgent,
@@ -165,6 +186,10 @@ async function registrarSesion(uid, tipo, metadata = {}) {
 }
 
 // ====================================
+// GESTIÓN DE PROGRESO POR TEMA
+// ====================================
+
+// ====================================
 // GUARDAR PROGRESO CON CONTROL DE BEST SCORE
 // ====================================
 async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
@@ -174,6 +199,7 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
     const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
     
+    // 📊 PASO 1: Leer el progreso anterior
     const existingSnap = await getDoc(progressRef);
     let previousScore = 0;
     let previousAttempts = 0;
@@ -185,24 +211,26 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
       console.log(`📈 Score anterior: ${previousScore}% | Intentos: ${previousAttempts}`);
     }
     
-    const newScore = Math.min(score, 100);
+    // 🎯 PASO 2: Determinar si actualizar (solo si el nuevo score es mejor)
+    const newScore = Math.min(score, 100); // Tope máximo 100%
     const shouldUpdate = newScore > previousScore;
     
     if (!shouldUpdate) {
       console.log(`⏸️  Score ${newScore}% no supera al anterior ${previousScore}%. NO se actualiza.`);
-      return;
+      return; // Salir sin actualizar
     }
     
     console.log(`✅ Nuevo mejor score: ${previousScore}% → ${newScore}%`);
     
+    // 💾 PASO 3: Preparar datos del progreso
     const progressData = {
       uid,
       moduleId,
       lessonId,
       status,
-      score: newScore,
-      bestScore: Math.max(newScore, previousScore),
-      attempts: previousAttempts + 1,
+      score: newScore,              // Solo actualizar si es mejor
+      bestScore: Math.max(newScore, previousScore), // Garantizar que es el máximo
+      attempts: previousAttempts + 1, // Incrementar contador
       timeSpentSeconds: seconds,
       updatedAt: serverTimestamp(),
       metadata: {
@@ -212,37 +240,224 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
       }
     };
     
+    // 🔐 PASO 4: Guardar en Firebase
     await setDoc(progressRef, progressData, { merge: true });
+    
     console.log(`✅ Progreso guardado: ${progressId} | Score: ${newScore}% | Intento: ${progressData.attempts}`);
     
+    // 📊 PASO 5: Actualizar estadísticas globales del usuario
     const userRef = doc(db, "users", uid);
     const userSnap = await getDoc(userRef);
     
     if (userSnap.exists()) {
-      const currentStats = userSnap.data().estadisticas || {};
-      const completados = (currentStats.temasCompletados || 0) + (status === "completed" ? 1 : 0);
+      const userData = userSnap.data();
+      const currentTotalTime = userData.estadisticas?.tiempoTotalSegundos || 0;
       
       await updateDoc(userRef, {
-        'estadisticas.tiempoTotalSegundos': (currentStats.tiempoTotalSegundos || 0) + seconds,
-        'estadisticas.temasCompletados': completados,
+        'estadisticas.tiempoTotalSegundos': currentTotalTime + seconds,
         'estadisticas.ultimaActividad': serverTimestamp()
       });
+      
+      console.log(`⏱️  Tiempo total acumulado: ${currentTotalTime + seconds}s`);
     }
     
   } catch (error) {
-    console.error("Error guardando progreso:", error);
+    console.error("❌ Error guardando progreso:", error);
     throw error;
   }
 }
 
-// API PÚBLICA - GUARDAR PROGRESO
+// async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
+//   console.log(`💾 Guardando progreso: ${moduleId} para ${uid}`);
+  
+//   try {
+//     const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
+//     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
+    
+//     const progressData = {
+//       uid,
+//       moduleId,
+//       lessonId,
+//       status,
+//       score,
+//       timeSpentSeconds: seconds,
+//       updatedAt: serverTimestamp(),
+//       metadata
+//     };
+    
+//     await setDoc(progressRef, progressData, { merge: true });
+    
+//     // Actualizar estadísticas globales del usuario
+//     const userRef = doc(db, "users", uid);
+//     const userSnap = await getDoc(userRef);
+    
+//     if (userSnap.exists()) {
+//       const userData = userSnap.data();
+//       const currentTotalTime = userData.estadisticas?.tiempoTotalSegundos || 0;
+      
+//       await updateDoc(userRef, {
+//         'estadisticas.tiempoTotalSegundos': currentTotalTime + seconds,
+//         'estadisticas.ultimaActividad': serverTimestamp()
+//       });
+//     }
+    
+//     console.log(`✅ Progreso guardado: ${progressId}`);
+    
+//   } catch (error) {
+//     console.error("Error guardando progreso:", error);
+//     throw error;
+//   }
+// }
+
+// ====================================
+// OBTENER PROGRESO DE UN TEMA
+// ====================================
+async function getProgressFromFirebase(uid, moduleId, lessonId = null) {
+  try {
+    const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
+    const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
+    const progressSnap = await getDoc(progressRef);
+    
+    if (progressSnap.exists()) {
+      return progressSnap.data();
+    }
+    
+    return null;
+  } catch (error) {
+    console.error("Error obteniendo progreso:", error);
+    return null;
+  }
+}
+
+// ====================================
+// VALIDACIÓN DE DATOS DEL FORMULARIO
+// ====================================
+function validateStudentData({ nombres, apellidos, fechaNacimiento, nickname, curso }) {
+  const errors = [];
+  
+  // Validar nombres
+  if (!nombres || nombres.trim().length < 2) {
+    errors.push("Los nombres deben tener al menos 2 caracteres");
+  }
+  
+  // Validar apellidos
+  if (!apellidos || apellidos.trim().length < 2) {
+    errors.push("Los apellidos deben tener al menos 2 caracteres");
+  }
+  
+  // Validar fecha de nacimiento
+  if (!fechaNacimiento) {
+    errors.push("La fecha de nacimiento es requerida");
+  } else {
+    const edad = calculateAge(fechaNacimiento);
+    if (!isValidAge(edad)) {
+      errors.push(`Edad inválida: ${edad} años. Debe estar entre 12 y 25 años`);
+    }
+  }
+  
+  // Validar nickname
+  if (!nickname || nickname.trim().length < 3) {
+    errors.push("El nombre de fantasía debe tener al menos 3 caracteres");
+  } else if (!/^[a-zA-Z0-9_áéíóúñ ]+$/.test(nickname)) {
+    errors.push("El nombre de fantasía solo puede contener letras, números y espacios");
+  }
+  
+  // Validar curso
+  if (!curso || curso.trim().length < 2) {
+    errors.push("El curso es requerido");
+  }
+  
+  return errors;
+}
+
+// ====================================
+// AUTH STATE LISTENER
+// ====================================
+onAuthStateChanged(auth, async (user) => {
+  const isLogged = !!user;
+  document.documentElement.dataset.logged = isLogged ? "1" : "0";
+  const userNameEl = document.querySelector("#userName");
+
+  if (isLogged) {
+    await ensureUserDoc(user);
+    if (userNameEl) {
+      // Mostrar nickname si existe, sino nombre completo o email
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      const userData = userDoc.data();
+      const displayName = userData?.nickname || userData?.nombres || user.displayName || user.email;
+      userNameEl.textContent = displayName;
+    }
+    await renderHeaderAvatar(user);
+  } else {
+    if (userNameEl) userNameEl.textContent = "";
+  }
+});
+
+// ====================================
+// API PÚBLICA - REGISTRO AMPLIADO
+// ====================================
+export async function registerStudent(email, password, studentData) {
+  console.log("🎓 Iniciando registro de estudiante...");
+  
+  // Validar datos
+  const validationErrors = validateStudentData(studentData);
+  if (validationErrors.length > 0) {
+    throw new Error(`Datos inválidos:\n${validationErrors.join('\n')}`);
+  }
+  
+  try {
+    // Crear cuenta de Firebase Auth
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    
+    // Actualizar perfil con nombre completo
+    const fullName = `${studentData.nombres.trim()} ${studentData.apellidos.trim()}`;
+    await updateProfile(user, { displayName: fullName });
+    
+    // Crear documento completo del usuario
+    await ensureUserDoc(user, {
+      nombres: studentData.nombres.trim(),
+      apellidos: studentData.apellidos.trim(),
+      fechaNacimiento: studentData.fechaNacimiento,
+      nickname: studentData.nickname.trim(),
+      curso: studentData.curso.trim()
+    });
+    
+    console.log(`✅ Estudiante registrado exitosamente: ${email}`);
+    return user;
+    
+  } catch (error) {
+    console.error("Error en registro:", error);
+    throw error;
+  }
+}
+
+// API PÚBLICA - LOGIN SIMPLE
+export function login(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+// API PÚBLICA - LOGOUT CON REGISTRO DE SESIÓN
+export async function logout() {
+  if (auth.currentUser) {
+    await registrarSesion(auth.currentUser.uid, 'logout');
+  }
+  return signOut(auth);
+}
+
+
+// ====================================
+// API PÚBLICA - GUARDAR PROGRESO (MEJORADA)
+// ====================================
 export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
   const user = auth.currentUser;
   if (!user) throw new Error("No autenticado");
   
+  // Garantizar que score está entre 0 y 100
   const validScore = Math.max(0, Math.min(score, 100));
+  
   console.log(`🎯 Guardando progreso: ${moduleId} | Score: ${validScore}% | Tiempo: ${seconds}s`);
   
+  // Guardar en Firebase
   await saveProgressToFirebase({
     uid: user.uid,
     moduleId,
@@ -256,6 +471,7 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
     }
   });
   
+  // Mantener compatibilidad con sessionStorage
   const sessionKey = `tema.${moduleId}.progress`;
   try {
     sessionStorage.setItem(sessionKey, JSON.stringify({
@@ -271,7 +487,46 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
   }
 }
 
-// API PÚBLICA - OBTENER MEJOR SCORE
+// API PÚBLICA - GUARDAR PROGRESO (INTERFAZ SIMPLIFICADA)
+// export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
+//   const user = auth.currentUser;
+//   if (!user) throw new Error("No autenticado");
+  
+//   // Guardar en Firebase
+//   await saveProgressToFirebase({
+//     uid: user.uid,
+//     moduleId,
+//     lessonId,
+//     status,
+//     score,
+//     seconds,
+//     metadata: {
+//       timestamp: Date.now(),
+//       url: window.location.href
+//     }
+//   });
+  
+//   // Mantener compatibilidad con sistema anterior (temporal)
+//   const id = `${user.uid}__${moduleId}${lessonId ? `__${lessonId}` : ""}`;
+//   const sessionKey = `tema.${moduleId}.progress`;
+  
+//   try {
+//     sessionStorage.setItem(sessionKey, JSON.stringify({
+//       moduleId,
+//       lessonId,
+//       status,
+//       score,
+//       seconds,
+//       updatedAt: new Date().toISOString()
+//     }));
+//   } catch (error) {
+//     console.warn("No se pudo guardar en sessionStorage:", error);
+//   }
+// }
+
+// ====================================
+// FUNCIÓN PARA CONSULTAR MEJOR SCORE
+// ====================================
 export async function getBestScore(uid, moduleId) {
   try {
     const progressRef = doc(db, "progreso_temas", `${uid}_${moduleId}`);
@@ -289,20 +544,7 @@ export async function getBestScore(uid, moduleId) {
   }
 }
 
-// API PÚBLICA - LOGIN
-export function login(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
-}
-
-// API PÚBLICA - LOGOUT
-export async function logout() {
-  if (auth.currentUser) {
-    await registrarSesion(auth.currentUser.uid, 'logout');
-  }
-  return signOut(auth);
-}
-
-// API PÚBLICA - AVATAR
+// API PÚBLICA - GESTIÓN DE AVATAR (SIN CAMBIOS)
 export async function lockAvatar(type, value = null) {
   const user = auth.currentUser;
   if (!user) throw new Error("No autenticado");
@@ -324,7 +566,9 @@ export async function lockAvatar(type, value = null) {
   await renderHeaderAvatar(user);
 }
 
-// API PÚBLICA - ADMIN
+// ====================================
+// FUNCIONES PARA EL DASHBOARD ADMIN
+// ====================================
 export async function isCurrentUserAdmin() {
   const user = auth.currentUser;
   if (!user) return false;
@@ -344,9 +588,9 @@ export async function getAllStudents() {
     );
     
     const snapshot = await getDocs(studentsQuery);
-    return snapshot.docs.map(d => ({
-      id: d.id,
-      ...d.data()
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
     }));
     
   } catch (error) {
@@ -367,7 +611,7 @@ export async function getStudentProgress(studentId) {
     );
     
     const snapshot = await getDocs(progressQuery);
-    return snapshot.docs.map(d => d.data());
+    return snapshot.docs.map(doc => doc.data());
     
   } catch (error) {
     console.error("Error obteniendo progreso:", error);
@@ -375,36 +619,9 @@ export async function getStudentProgress(studentId) {
   }
 }
 
-// API PÚBLICA - REGISTRO
-export async function registerStudent(studentData) {
-  const { email, password, nombres, apellidos, fechaNacimiento, nickname, curso } = studentData;
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    await updateProfile(user, {
-      displayName: `${nombres} ${apellidos}`.trim()
-    });
-
-    await ensureUserDoc(user, {
-      nombres: nombres.trim(),
-      apellidos: apellidos.trim(),
-      fechaNacimiento: fechaNacimiento,
-      nickname: nickname.trim(),
-      curso: curso.trim()
-    });
-    
-    console.log(`✅ Estudiante registrado exitosamente: ${email}`);
-    return user;
-    
-  } catch (error) {
-    console.error("Error en registro:", error);
-    throw error;
-  }
-}
-
-// API PÚBLICA - MIGRACIÓN
+// ====================================
+// FUNCIÓN DE MIGRACIÓN (TEMPORAL)
+// ====================================
 export async function migrateLocalProgressToFirebase() {
   const user = auth.currentUser;
   if (!user) return;
@@ -412,6 +629,7 @@ export async function migrateLocalProgressToFirebase() {
   console.log("🔄 Iniciando migración de progreso local a Firebase...");
   
   try {
+    // Buscar datos en sessionStorage
     for (let i = 0; i < sessionStorage.length; i++) {
       const key = sessionStorage.key(i);
       if (key && key.startsWith('tema.') && key.includes('.')) {
@@ -445,5 +663,3 @@ export async function migrateLocalProgressToFirebase() {
     console.error("Error en migración:", error);
   }
 }
-// ✅ EXPORTAR PARA QUE CHAT.HTML PUEDA USARLAS
-// export { doc, getDoc, db, onAuthStateChanged };

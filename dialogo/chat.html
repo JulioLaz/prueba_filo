@@ -1014,27 +1014,19 @@
     </div>
 
     <script type="module">
-    import { 
-        saveProgress, 
-        auth,           // ← Ya estaba
-        db,             // ← AGREGA
-        onAuthStateChanged  // ← AGREGA
-    } from '../firebase.js';
-    
-    import { 
-        getFunctions, 
-        httpsCallable 
-    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
+        import { 
+            saveProgress, 
+            auth 
+        } from '../firebase.js';
+        import { 
+            getFunctions, 
+            httpsCallable 
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
 
-    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-    import {  // ← AGREGA TODO ESTO (nuevo)
-        obtenerZodiaco, 
-        calcularEdad, 
-        extraerNombre, 
-        obtenerEmojisZodiaco 
-    } from '../utils/horoscopo.js';
-
+        // import { auth, db } from "../firebase.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+        // import { db, doc, getDoc, auth, onAuthStateChanged } from '../../firebase.js';
+        // import { obtenerZodiaco, calcularEdad, extraerNombre, obtenerEmojisZodiaco } from '../../utils/horoscopo.js';
 
         console.log('═══════════════════════════════════════════════════');
         console.log('🎭 SISTEMA DE DIÁLOGO FILOSÓFICO - ARISTÓTELES');
@@ -1057,14 +1049,14 @@
          // nombre del alumno y fecha de nacimiento desde localStorage
          // ===============================================
         // === utils: nombre y edad ===
-        function getFirstName_00({ displayName, nombres, nickname, email }) {
+        function getFirstName({ displayName, nombres, nickname, email }) {
             const base = (nombres || displayName || nickname || email || '').trim();
             if (!base) return 'Estudiante';
             if (base.includes('@')) return base.split('@')[0];
             return base.split(/\s+/)[0];
         }
 
-        function calcAgeFromYYYYMMDD_00(fechaStr) {
+        function calcAgeFromYYYYMMDD(fechaStr) {
             if (!fechaStr) return null;
             const [y, m, d] = fechaStr.split('-').map(Number);
             const birth = new Date(y, (m || 1) - 1, d || 1);
@@ -1646,194 +1638,164 @@
         // ===============================================
         // INICIALIZACIÓN
         // ===============================================
-       /**
- * ═══════════════════════════════════════════════════════════════
- * 📜 FRAGMENTO MEJORADO PARA CHAT.HTML
- * ═══════════════════════════════════════════════════════════════
- * 
- * Reemplaza la sección de inicialización en chat.html (líneas ~1770-1850)
- * con este código que:
- * 
- * ✅ Importa módulos necesarios de Firestore
- * ✅ Calcula edad correctamente desde Firebase
- * ✅ Obtiene zodíaco desde fecha de nacimiento
- * ✅ Muestra horóscopo como anzuelo para atraer al alumno
- * ✅ Personaliza el primer mensaje de Aristóteles
- * 
- * USO:
- * 1. Copia este código
- * 2. Reemplaza la sección <script> final de chat.html
- * 3. Asegúrate de que horoscopo.js esté importado al inicio del script
- */
+        function iniciar_00() {
+            log('🚀', 'Inicializando diálogo con Aristóteles...');
+            
+            // Mensaje de bienvenida
+            const bienvenida = `Χαῖρε (Jaíre)! Bienvenido, joven aprendiz. Soy Aristóteles de Estagira. 
+            Me complace dialogar contigo sobre la virtud y el camino hacia la eudaimonía. 
+            Dime, ¿qué te trae a buscar sabiduría hoy? ¿Qué preguntas tienes sobre cómo vivir bien?`;
+            
+            agregarMensaje('filosofo', bienvenida);
 
-// ═══════════════════════════════════════════════════════════════
-// IMPORTAR MÓDULOS Y UTILIDADES
-// ═══════════════════════════════════════════════════════════════
+            // === Inicio del diálogo personalizado ===
+            // if (userDoc && userDoc.data) {
+            // const data = userDoc.data();
+            // const first = getFirstName(data);
+            // const edad = calcAgeFromYYYYMMDD(data.fechaNacimiento);
+            // const edadTxt = edad ? ` — ya tenés ${edad} años` : '';
 
-// En el <script type="module"> de chat.html, agrega al inicio:
-// import { db, doc, getDoc, auth, onAuthStateChanged } from '../../firebase.js';
-// import { obtenerZodiaco, calcularEdad, extraerNombre, obtenerEmojisZodiaco } from '../../utils/horoscopo.js';
+            // const hookMsg = `
+            // Saludos, ${first}${edadTxt}. Muchos creen que el **horóscopo** describe su carácter,
+            // pero yo enseño que el **carácter se forma por hábito y elección**.
+            // Decime, ¿qué pensás vos? ¿El destino manda o elegimos mediante la virtud (areté)?
+            // `.trim();
 
-// ═══════════════════════════════════════════════════════════════
-// FUNCIONES HELPER (copia esto dentro del script de chat.html)
-// ═══════════════════════════════════════════════════════════════
+            // agregarMensaje('filosofo', hookMsg);
+            // } else {
+            // agregarMensaje('filosofo', 'Saludos, joven aprendiz. Hoy reflexionaremos sobre el bien y la felicidad.');
+            // }
 
-/**
- * Obtener nombre desde objeto de usuario Firestore
- */
-function getFirstName(userData) {
-  if (!userData || typeof userData !== 'object') return 'Estudiante';
-  const base = (userData.nombres || userData.displayName || userData.nickname || userData.email || '').trim();
-  if (!base) return 'Estudiante';
-  if (base.includes('@')) return base.split('@')[0];
-  return base.split(/\s+/)[0];
-}
+            elementos.inputMensaje.focus();
+            
+            const tiempoInicializacion = performance.now() - tiempoInicio;
+            log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        }
 
-/**
- * Calcular edad desde string YYYY-MM-DD
- */
-function calcAgeFromYYYYMMDD(fechaStr) {
-  if (!fechaStr || typeof fechaStr !== 'string') return null;
-  try {
-    const [y, m, d] = fechaStr.split('-').map(Number);
-    if (!y || !m || !d) return null;
-    const birth = new Date(y, (m || 1) - 1, d || 1);
-    if (isNaN(birth.getTime())) return null;
-    const today = new Date();
-    let age = today.getFullYear() - birth.getFullYear();
-    const beforeBirthday =
-      today.getMonth() < birth.getMonth() ||
-      (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
-    if (beforeBirthday) age--;
-    return age > 0 ? age : null;
-  } catch {
-    return null;
-  }
-}
+        // ===============================================
+        // INICIALIZACIÓN (sin redeclarar auth/db)
+        // ===============================================
+        // async function iniciar() {
+        // log('🚀', 'Inicializando diálogo con Aristóteles...');
 
-/**
- * Leer datos del usuario desde Firestore
- */
-async function readUserDoc(uid) {
-  if (!uid) return null;
-  if (typeof getDoc !== 'function' || typeof doc !== 'function' || typeof db === 'undefined') {
-    console.warn('⚠️  Firestore no disponible en este contexto');
-    return null;
-  }
-  try {
-    const userDocRef = doc(db, "users", uid);
-    const snap = await getDoc(userDocRef);
-    return snap.exists() ? snap.data() : null;
-  } catch (error) {
-    console.error('❌ Error leyendo datos de usuario:', error);
-    return null;
-  }
-}
+        // let data = null;
+        // const u = (window.auth || auth)?.currentUser || null;
 
-// ═══════════════════════════════════════════════════════════════
-// CONSTRUIR SALUDO PERSONALIZADO CON HORÓSCOPO
-// ═══════════════════════════════════════════════════════════════
+        // // Intentar leer Firestore SOLO si las funciones existen en este scope
+        // try {
+        //     if (u?.uid && typeof getDoc === 'function' && typeof doc === 'function' && typeof db !== 'undefined') {
+        //     const snap = await getDoc(doc(db, "users", u.uid));
+        //     if (snap.exists()) data = snap.data();
+        //     }
+        // } catch (e) {
+        //     console.warn('No se pudo cargar userDoc:', e);
+        // }
 
-function construirSaludoAristetelico(userData, user) {
-  const tiempoInicio = performance.now();
+        // const first = getFirstName({
+        //     displayName: data?.displayName || u?.displayName,
+        //     nombres: data?.nombres,
+        //     nickname: data?.nickname,
+        //     email: data?.email || u?.email,
+        // });
 
-  const first = getFirstName({
-    displayName: userData?.displayName || user?.displayName,
-    nombres: userData?.nombres,
-    nickname: userData?.nickname,
-    email: userData?.email || user?.email,
-  });
+        // const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+        // const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
 
-  const edad = calcAgeFromYYYYMMDD(userData?.fechaNacimiento);
-  const edadTxt = (edad !== null) ? ` — ya tenés <strong>${edad} años</strong>` : '';
+        // const hookMsg = `
+        // Saludos, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+        // pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+        // Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+        // `.trim();
 
-  // 🔮 OBTENER ZODÍACO E EMOJIS
-  let zodiacoHTML = '';
-  if (userData?.fechaNacimiento) {
-    const signo = obtenerZodiaco(userData.fechaNacimiento);
-    if (signo) {
-      const emojis = obtenerEmojisZodiaco(signo);
-      if (emojis) {
-        zodiacoHTML = `${emojis.principal} <strong>${signo}</strong>`;
-      }
-    }
-  }
+        // // Si no tenemos nada de usuario, caemos a un mensaje genérico
+        // const mensajeInicial = first ? hookMsg :
+        // `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
 
-  // ═══════════════════════════════════════════════════════════════
-  // 🎯 MENSAJE ARISTOTÉLICO CON ANZUELO DE HORÓSCOPO
-  // ═══════════════════════════════════════════════════════════════
-  const hookMsg = `
-👋🏼 Saludos, <strong>${first}</strong>${edadTxt}. ${zodiacoHTML ? `Se que tu signo es ${zodiacoHTML}.<br><br>` : ''}
-Muchos creen que el <strong>horóscopo</strong> describe su carácter y destino. 
-Pero en mi filosofía de la <strong>ética</strong>, el carácter no se forma por las estrellas, 
-sino por <strong>hábitos</strong> y <strong>elecciones deliberadas</strong> (areté y frónesis).
+        // // Usa tu función de mensajes existente
+        // agregarMensaje('filosofo', mensajeInicial);   // ← ya definida en tu script :contentReference[oaicite:2]{index=2}
 
-Decime: ¿creés que tu signo te "define", o son tus hábitos y decisiones los que realmente te hacen quién sos?
-Contá un ejemplo de tu vida y nombra al menos una <strong>virtud cardinal</strong> que esté en juego: 
-<strong>Justicia</strong>, <strong>Prudencia</strong>, <strong>Templanza</strong> o <strong>Valentía</strong>.
-  `.trim();
+        // elementos.inputMensaje.focus();
 
-  const tiempoCalculo = performance.now() - tiempoInicio;
-  console.log(`✨ Saludo personalizado generado en ${tiempoCalculo.toFixed(2)}ms`);
+        // const tiempoInicializacion = performance.now() - tiempoInicio;
+        // log('✅', `Sistema listo en ${tiempoInicializacion.toFixed(2)}ms`);
+        // }
 
-  return hookMsg;
-}
 
-// ═══════════════════════════════════════════════════════════════
-// INICIALIZACIÓN ROBUSTA (REEMPLAZA LA FUNCIÓN iniciar() EXISTENTE)
-// ═══════════════════════════════════════════════════════════════
+        // // Iniciar cuando el DOM esté listo
+        // if (document.readyState === 'loading') {
+        //     document.addEventListener('DOMContentLoaded', iniciar);
+        // } else {
+        //     iniciar();
+        // }
 
+        // ===============================================
+// INICIALIZACIÓN robusta esperando auth (dual listener + polling)
+// ===============================================
 let saludoMostrado = false;
 
-async function mostrarSaludoPersonalizado(userData, user) {
+function saludarCon(data, u) {
   if (saludoMostrado) return;
   saludoMostrado = true;
 
-  // Construir el mensaje con horóscopo
-  const msg = construirSaludoAristetelico(userData, user);
+  const first = getFirstName({
+    displayName: data?.displayName || u?.displayName,
+    nombres: data?.nombres,
+    nickname: data?.nickname,
+    email: data?.email || u?.email,
+  });
 
-  // Agregar el mensaje (usa tu función existente)
-  agregarMensaje('filosofo', msg);
+  console.log('data alumno: ', data)
+  const edad = calcAgeFromYYYYMMDD(data?.fechaNacimiento);
+  console.log('data alumno: ', data)
+  console.log('edad: ', edad)
+  const edadTxt = (edad !== null) ? ` — ya tenés ${edad} años` : '';
+  console.log('edad: ', edadTxt)
+  
+  const hookMsg = `
+👋🏼 Hola, ${first}${edadTxt}. Muchos creen que el <strong>horóscopo</strong> describe su carácter;
+pero en mi ética, el carácter se forma por <strong>hábitos</strong> y <strong>elecciones</strong> (areté y frónesis), no por el destino.
+Decime: ¿tu signo te “define” o tus hábitos pesan más? Contá un ejemplo y nombrá una <strong>virtud</strong> que esté en juego.
+`.trim();
 
-  // Consejos pedagógicos
-  const consejoPedagogico = `
-📝 <strong>Recuerda:</strong> No busco respuestas perfectas. Quiero que <strong>pienses conmigo</strong>. 
-Responde desde tu experiencia real, no desde los libros. La reflexión es lo que importa.
-  `.trim();
+  const msg = (first && first !== 'Estudiante')
+    ? hookMsg
+    : `Χαῖρε (Jaíre). Hoy reflexionaremos sobre el bien, la felicidad y la virtud. ¿Qué creés que hace buena una vida?`;
 
-  agregarMensaje('filosofo', consejoPedagogico);
-
+  agregarMensaje('filosofo', msg); // usa tu render existente
   elementos.inputMensaje.focus();
 
-  const tiempoTotal = performance.now() - tiempoInicio;
-  log('✅', `Sistema listo en ${tiempoTotal.toFixed(2)}ms`);
+  const t = performance.now() - tiempoInicio;
+  log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
 }
 
-async function iniciarDialogoPersonalizado() {
+async function iniciar() {
   log('🚀', 'Inicializando diálogo con Aristóteles...');
-  const tiempoComienzoInicio = performance.now();
 
-  // 1️⃣ VERIFICAR SI YA HAY USUARIO AUTENTICADO
-  const usuarioActual = (window.auth || auth)?.currentUser || null;
+  // Helper: leer userDoc si hay uid y Firestore disponible
+  const readUserDoc = async (u) => {
+    if (!u?.uid) return null;
+    if (typeof getDoc !== 'function' || typeof doc !== 'function' || typeof db === 'undefined') return null;
+    try {
+      const snap = await getDoc(doc(db, "users", u.uid));
+      return snap.exists() ? snap.data() : null;
+    } catch {
+      return null;
+    }
+  };
 
-  if (usuarioActual?.uid) {
-    console.log(`👤 Usuario detectado: ${usuarioActual.email}`);
-    const userData = await readUserDoc(usuarioActual.uid);
-    console.log(`📊 Datos de Firestore: ${userData ? '✅ Encontrados' : '❌ No encontrados'}`);
-    
-    await mostrarSaludoPersonalizado(userData, usuarioActual);
+  // 1) Si YA hay usuario, personalizamos y salimos
+  const u0 = (window.auth || auth)?.currentUser || null;
+  if (u0?.uid) {
+    const data0 = await readUserDoc(u0);
+    saludarCon(data0, u0);
     return;
   }
 
-  // 2️⃣ SI NO HAY USUARIO, ESPERAR CON POLLING + LISTENER
-  console.log('⏳ Esperando autenticación...');
-
+  // 2) Set up dual listener (modular y compat) + fallback timeout + polling
   let unsub = null;
   let timeoutId = null;
   let pollId = null;
-  let pollAttempts = 0;
 
-  // Intentar listener modular y compat
   const listenModular = (typeof onAuthStateChanged === 'function')
     ? (cb) => onAuthStateChanged((window.auth || auth), cb)
     : null;
@@ -1844,68 +1806,51 @@ async function iniciarDialogoPersonalizado() {
 
   const subscribe = listenModular || listenCompat;
 
-  // Configurar listener
   if (subscribe) {
     unsub = subscribe(async (user) => {
       if (saludoMostrado) return;
-      console.log(`👤 Listener: Usuario detectado (${user?.email || 'anónimo'})`);
-      const userData = await readUserDoc(user?.uid);
-      await mostrarSaludoPersonalizado(userData, user);
+      const data = await readUserDoc(user);
+      saludarCon(data, user);
       clearTimeout(timeoutId);
       clearInterval(pollId);
       if (typeof unsub === 'function') unsub();
     });
   }
 
-  // Polling suave (para GitHub Pages donde listener puede no disparar)
+  // Polling suave (por si el listener no dispara en GitHub Pages)
+  let tries = 0;
   pollId = setInterval(async () => {
-    if (saludoMostrado) {
-      clearInterval(pollId);
-      return;
-    }
-    const user = (window.auth || auth)?.currentUser || null;
-    if (user?.uid) {
-      console.log(`🔄 Polling: Usuario detectado (${user.email})`);
-      const userData = await readUserDoc(user.uid);
-      await mostrarSaludoPersonalizado(userData, user);
+    if (saludoMostrado) { clearInterval(pollId); return; }
+    const u = (window.auth || auth)?.currentUser || null;
+    if (u?.uid) {
+      const data = await readUserDoc(u);
+      saludarCon(data, u);
       clearInterval(pollId);
       clearTimeout(timeoutId);
       if (typeof unsub === 'function') unsub();
+    } else if (++tries >= 12) { // ~3s si 250ms
+      clearInterval(pollId);
     }
-    pollAttempts++;
-    if (pollAttempts >= 15) clearInterval(pollId); // ~3.75s en 250ms
   }, 250);
 
-  // Fallback timeout (3.5s): mostrar saludo genérico si no se autentica
+  // Fallback duro en 3500ms (saludo genérico)
   timeoutId = setTimeout(() => {
-    if (!saludoMostrado) {
-      console.log('⏱️  Timeout: Mostrando saludo genérico');
-      agregarMensaje('filosofo',
-        `Χαῖρε (Jaíre). Bienvenido, joven aprendiz. Hoy reflexionaremos sobre el bien, la felicidad y la <strong>virtud</strong>. 
-         ¿Qué creés que hace buena una vida?`
-      );
-      elementos.inputMensaje.focus();
-      const t = performance.now() - tiempoInicio;
-      log('✅', `Sistema listo en ${t.toFixed(2)}ms`);
-    }
+    if (!saludoMostrado) saludarCon(null, null);
     if (typeof unsub === 'function') unsub();
     clearInterval(pollId);
   }, 3500);
 }
 
-// ═══════════════════════════════════════════════════════════════
-// INICIAR CUANDO EL DOM ESTÉ LISTO
-// ═══════════════════════════════════════════════════════════════
-
+// Arranque (mantené lo que ya tenés)
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', iniciarDialogoPersonalizado);
+  document.addEventListener('DOMContentLoaded', iniciar);
 } else {
-  iniciarDialogoPersonalizado();
+  iniciar();
 }
 
-console.log('═══════════════════════════════════════════════════');
-console.log('✨ Script de personalización cargado correctamente');
-console.log('═══════════════════════════════════════════════════');
+
+
+        console.log('═══════════════════════════════════════════════════');
     </script>
 </body>
 </html>
