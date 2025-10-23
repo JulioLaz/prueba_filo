@@ -40,10 +40,24 @@
     </div>
 
     <!-- Botones cuando NO está logueado -->
-    <div id="authButtons">
+    <!-- <div id="authButtons">
+      <button id="openLogin" class="btn primary">Ingresar</button>
+      <button id="openRegister" class="btn ghost">Registrarse</button>
+    </div> -->
+
+        <!-- Botones: No logueado -->
+    <div id="authButtons" style="display: flex;">
       <button id="openLogin" class="btn primary">Ingresar</button>
       <button id="openRegister" class="btn ghost">Registrarse</button>
     </div>
+
+    <!-- Info: Logueado -->
+    <div id="userProfile" style="display: none; align-items: center; gap: 15px;">
+      <div id="userAvatar" style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;"></div>
+      <span id="userName" style="color: #e4e4e7; font-size: 14px;"></span>
+      <button id="logoutBtn" class="btn ghost">Salir</button>
+    </div>
+
   </div>
 
   <h1>🎓 Filosofía</h1>
@@ -1242,6 +1256,52 @@ onAuthStateChanged(auth, async (user) => {
     adminCard.style.display = 'none';
   }
 });
+
+// nuevo para corregir vista de btn de logueo
+
+// ✅ Actualizar UI según autenticación
+onAuthStateChanged(auth, async (user) => {
+  const authButtons = document.getElementById("authButtons");
+  const userProfile = document.getElementById("userProfile");
+  const userName = document.getElementById("userName");
+  const userAvatar = document.getElementById("userAvatar");
+
+  if (user) {
+    // ✅ Usuario logueado: Ocultar botones, mostrar perfil
+    authButtons.style.display = "none";
+    userProfile.style.display = "flex";
+    
+    // Obtener datos del usuario desde Firestore
+    try {
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        const firstName = (data.nombres || user.displayName || user.email).split(" ")[0];
+        userName.textContent = firstName;
+        
+        // Mostrar avatar
+        if (data.avatarType === "emoji" && data.avatarValue) {
+          userAvatar.textContent = data.avatarValue;
+        } else {
+          const initials = (data.nombres || user.displayName || "U")
+            .split(" ")
+            .map(n => n[0])
+            .join("")
+            .toUpperCase();
+          userAvatar.textContent = initials;
+        }
+      }
+    } catch (err) {
+      console.error("Error cargando perfil:", err);
+      userName.textContent = (user.displayName || user.email).split(" ")[0];
+    }
+  } else {
+    // ✅ No logueado: Mostrar botones, ocultar perfil
+    authButtons.style.display = "flex";
+    userProfile.style.display = "none";
+  }
+});
+
 
 console.log('✅ Tarjeta dashboard admin móvil inicializada');
 </script>
