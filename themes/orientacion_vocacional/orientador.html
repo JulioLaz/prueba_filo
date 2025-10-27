@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧭 Orientador Vocacional — Chat</title>
+  <!--
+    orientador.html
+    Pantalla de diálogo vocacional con estética tipo Discord (dark).
+    Reutiliza la Cloud Function: chatFilosofo (filosofo: 'orientador_vocacional').
+    Lee configuración desde sessionStorage: dialogo_filosofo, dialogo_config, dialogo_inicio.
+    Compatible con el flujo actual (index.html → content.html → orientador.html).
+  -->
+  <style>
+    :root {
+      --bg-0: #1e1f22;        /* Discord dark background */
+      --bg-1: #2b2d31;        /* Channel list / sidebars */
+      --bg-2: #313338;        /* Chat panel */
+      --bg-3: #232428;        /* Header / footer */
+      --text-0: #f2f3f5;      /* Primary text */
+      --text-1: #b5bac1;      /* Secondary text */
+      --text-2: #949ba4;      /* Muted */
+      --accent: #5865f2;      /* Discord blurple */
+      --success: #3ba55c;
+      --warning: #f0b232;
+      --danger: #ed4245;
+      --chip: #3b3d45;
+      --chip-border: #4a4d57;
+      --card: #2b2d31;
+      --shadow: 0 6px 20px rgba(0,0,0,.35);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg-0);
+      color: var(--text-0);
+      overflow: hidden;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 300px 1fr 340px;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "left header right"
+        "left main   right"
+        "left input  right";
+      height: 100dvh;
+      gap: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    header.appbar {
+      grid-area: header;
+      background: var(--bg-3);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      box-shadow: var(--shadow);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand .badge { background: var(--accent); border-radius: 8px; padding: 6px 10px; font-weight: 700; }
+    .brand small { color: var(--text-1); }
+
+    aside.left {
+      grid-area: left;
+      background: var(--bg-1);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      border: 1px solid #202225;
+      padding: 12px;
+    }
+
+    .profile { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center; }
+    .avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, #667eea55, #764ba255);
+      display: grid; place-items: center; font-size: 26px; box-shadow: inset 0 0 0 2px #41434a;
+    }
+    .profile h3 { margin: 0; font-size: 1rem; }
+    .profile p { margin: 2px 0 0; color: var(--text-1); font-size: .9rem; }
+
+    .phases { display: grid; gap: 8px; }
+    .phase {
+      background: #27292f; border: 1px solid #202225; border-radius: 10px; padding: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .phase .num { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-weight: 700; font-size: .85rem; }
+    .phase .title { font-weight: 700; }
+    .phase .status { margin-left: auto; font-size: .8rem; color: var(--text-2); }
+    .phase.done { border-color: #2a2e38; }
+
+    main.chat {
+      grid-area: main;
+      background: var(--bg-2);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      display: grid; grid-template-rows: 1fr auto; overflow: hidden; box-shadow: var(--shadow);
+    }
+
+    .messages {
+      overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px;
+      scroll-behavior: smooth;
+    }
+    .msg {
+      display: grid; grid-template-columns: 42px 1fr; gap: 10px; align-items: start;
+    }
+    .msg .ava { width: 42px; height: 42px; border-radius: 50%; background: #1a1b1f; display: grid; place-items: center; font-size: 22px; }
+    .msg .bubble {
+      background: #1f2126; border: 1px solid #2a2d35; border-radius: 12px; padding: 10px 12px; line-height: 1.6; color: var(--text-0);
+    }
+    .msg.user .bubble { background: #2b2f37; border-color: #3a3f4b; }
+    .msg.assistant .bubble { background: #262a33; border-color: #323848; }
+    .msg .meta { font-size: .75rem; color: var(--text-2); margin-bottom: 4px; display: flex; gap: 8px; align-items: baseline; }
+
+    .typing { display: inline-flex; gap: 6px; align-items: center; }
+    .typing .dot { width: 6px; height: 6px; background: var(--text-2); border-radius: 50%; animation: blink 1.2s infinite ease-in-out; }
+    .typing .dot:nth-child(2){ animation-delay: .15s; }
+    .typing .dot:nth-child(3){ animation-delay: .3s; }
+    @keyframes blink { 0%, 80%, 100% { opacity: .25 } 40% { opacity: 1 } }
+
+    .composer {
+      grid-area: input;
+      background: var(--bg-3);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end;
+      box-shadow: var(--shadow);
+    }
+    textarea#input {
+      background: #1e1f24; color: var(--text-0); border: 1px solid #2b2e37; border-radius: 10px; padding: 12px; resize: none; min-height: 56px; max-height: 160px;
+      outline: none; transition: border .2s ease; font-size: .98rem; line-height: 1.5;
+    }
+    textarea#input:focus { border-color: var(--accent); }
+    .actions { display: flex; gap: 8px; }
+    button.btn {
+      background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 16px; font-weight: 700; cursor: pointer; transition: transform .05s ease, filter .15s ease;
+    }
+    button.btn.secondary { background: #3a3d45; color: var(--text-0); }
+    button.btn.ghost { background: transparent; border: 1px solid #3a3d45; color: var(--text-1); }
+    button.btn:hover { filter: brightness(1.08); }
+    button.btn:active { transform: translateY(1px); }
+
+    aside.right {
+      grid-area: right; background: var(--bg-1); border-radius: var(--radius-lg); padding: 12px; box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px; overflow: hidden;
+    }
+
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat { background: #27292f; border: 1px solid #23252c; border-radius: 12px; padding: 10px; }
+    .stat .k { font-size: .75rem; color: var(--text-2); }
+    .stat .v { font-size: 1.1rem; font-weight: 800; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { background: var(--chip); border: 1px solid var(--chip-border); color: var(--text-1); border-radius: 999px; padding: 6px 10px; font-size: .85rem; }
+    .chip.hit { border-color: var(--success); color: #d6f5df; background: rgba(59,165,92,.12); }
+
+    .hr { height: 1px; background: #202225; margin: 6px 0; }
+
+    .footer-note { color: var(--text-2); font-size: .85rem; text-align: center; }
+
+    /* Modal final */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; align-items: center; justify-content: center; }
+    .modal .panel { background: var(--bg-2); border: 1px solid #2c2f37; width: min(880px, 92vw); border-radius: 16px; padding: 16px; }
+    .panel h2 { margin: 2px 0 8px; }
+    .plan { background: #1f2126; border: 1px solid #2a2d35; border-radius: 12px; padding: 12px; display: grid; gap: 8px; }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .app { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; grid-template-areas:
+        "header" "left" "main" "input"; height: auto; min-height: 100dvh; }
+      aside.right { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="left">
+      <div class="card profile">
+        <div class="avatar">🎓</div>
+        <div>
+          <h3>Orientador Vocacional</h3>
+          <p>Método socrático · 4 fases</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="phases" id="phases">
+          <div class="phase" data-phase="1"><div class="num">1</div><div class="title">Pasiones</div><div class="status">—</div></div>
+          <div class="phase" data-phase="2"><div class="num">2</div><div class="title">Aptitudes</div><div class="status">—</div></div>
+          <div class="phase" data-phase="3"><div class="num">3</div><div class="title">Valores / Telos</div><div class="status">—</div></div>
+          <div class="phase" data-phase="4"><div class="num">4</div><div class="title">Síntesis</div><div class="status">—</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px;">Conceptos clave</div>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px;">Pistas</div>
+        <div class="chips" id="hints">
+          <button class="btn secondary" id="btnHint">💡 Pedir pista (x3)</button>
+        </div>
+      </div>
+
+      <div class="card footer-note">
+        Necesitás 80% de progreso · Máx 10 intercambios
+      </div>
+    </aside>
+
+    <header class="appbar">
+      <div class="brand">
+        <span class="badge">OV</span>
+        <div>
+          <div style="font-weight:800;">Orientación Vocacional Filosófica</div>
+          <small>Estilo Discord · Tucumán</small>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="k">Intercambios</div><div class="v" id="kInter">0/10</div></div>
+        <div class="stat"><div class="k">Progreso</div><div class="v" id="kProg">0%</div></div>
+      </div>
+    </header>
+
+    <main class="chat">
+      <div class="messages" id="messages"></div>
+    </main>
+
+    <div class="composer">
+      <textarea id="input" placeholder="Contame qué te interesa, qué disfrutas hacer… (mín. 30 caracteres)"></textarea>
+      <div class="actions">
+        <button class="btn ghost" id="btnReset" title="Reiniciar">↺</button>
+        <button class="btn" id="btnSend">Enviar ▶</button>
+      </div>
+    </div>
+
+    <aside class="right">
+      <div class="card">
+        <div style="font-weight:800; margin-bottom:6px;">Objetivo</div>
+        <div style="color:var(--text-1);">Concluir las 4 fases y recibir 3 caminos personalizados (oficio, tecnicatura, carrera) según tus pasiones, aptitudes y valores.</div>
+        <div class="hr"></div>
+        <div style="display:grid; gap:6px; color:var(--text-2); font-size:.9rem;">
+          <div>• Nivel 1: EEP-UNT / CFP (3–6 meses)</div>
+          <div>• Nivel 2: Tecnicaturas IES/CENT/ISET (3 años)</div>
+          <div>• Nivel 3: UNT / UTN (4–6 años)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:800; margin-bottom:6px;">Resumen</div>
+        <div id="resume" style="color:var(--text-1); font-size:.95rem; line-height:1.5;">Aún sin datos suficientes.</div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:800; margin-bottom:6px;">Exportar</div>
+        <button class="btn secondary" id="btnExport">⬇ Guardar plan (JSON)</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal final -->
+  <div class="modal" id="finalModal">
+    <div class="panel">
+      <h2>🎉 ¡Buen trabajo! Llegaste al final del diálogo</h2>
+      <p style="color:var(--text-1)">Acá tenés una síntesis de tus respuestas y 3 caminos sugeridos. Podés descargar el plan o volver al inicio.</p>
+      <div class="plan" id="finalPlan"></div>
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px;">
+        <button class="btn secondary" id="btnCloseFinal">Cerrar</button>
+        <button class="btn" id="btnDownloadFinal">Descargar JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Utilidades =====
+    const el = (sel, parent=document) => parent.querySelector(sel);
+    const els = (sel, parent=document) => [...parent.querySelectorAll(sel)];
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+    function getQueryParam(name) {
+      const url = new URL(location.href);
+      return url.searchParams.get(name);
+    }
+
+    function mdEscape(text) {
+      return (text||"")
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    // ===== Estado =====
+    const DEFAULT_CONFIG = {
+      id: 'orientador_vocacional',
+      nombre: 'Orientador Vocacional',
+      estilo: 'reflexivo',
+      maxIntercambios: 10,
+      minCaracteres: 30,
+      conceptosClave: ['vocación','pasiones','aptitudes','valores','propósito','telos','oficios','tecnicatura','universidad','UNT','UTN','IES','EEP']
+    };
+
+    const appState = {
+      filosofo: getQueryParam('filosofo') || sessionStorage.getItem('dialogo_filosofo') || 'orientador_vocacional',
+      config: (() => {
+        try { return JSON.parse(sessionStorage.getItem('dialogo_config')) || DEFAULT_CONFIG; } catch { return DEFAULT_CONFIG }
+      })(),
+      mensajes: [],         // {role:'assistant'|'user', content:string, t:number}
+      conceptosDetectados: new Set(),
+      hintsUsados: 0,
+      intercambios: 0,
+      progreso: 0,
+      fases: {1:false,2:false,3:false,4:false},
+      resumen: { pasiones: '', aptitudes: '', valores: '' },
+    };
+
+    // Sync UI chips
+    function renderChips() {
+      const chips = el('#chips');
+      chips.innerHTML = '';
+      appState.config.conceptosClave.forEach(c => {
+        const hit = appState.conceptosDetectados.has(c.toLowerCase());
+        const span = document.createElement('span');
+        span.className = 'chip' + (hit ? ' hit' : '');
+        span.textContent = c;
+        chips.appendChild(span);
+      });
+    }
+
+    function markConcepts(text) {
+      const lower = (text || '').toLowerCase();
+      appState.config.conceptosClave.forEach(c => {
+        if (lower.includes(c.toLowerCase())) appState.conceptosDetectados.add(c.toLowerCase());
+      });
+      renderChips();
+    }
+
+    function updatePhases() {
+      const {pasiones, aptitudes, valores} = appState.resumen;
+      appState.fases[1] = pasiones.trim().length > 15;
+      appState.fases[2] = aptitudes.trim().length > 15;
+      appState.fases[3] = valores.trim().length  > 15;
+      // fase 4 se marca al finalizar
+      els('.phase').forEach(div => {
+        const n = Number(div.dataset.phase);
+        const ok = appState.fases[n];
+        div.querySelector('.status').textContent = ok ? '✔' : '—';
+        if (ok) div.classList.add('done'); else div.classList.remove('done');
+      });
+    }
+
+    function computeProgress() {
+      const max = appState.config.maxIntercambios;
+      const wInter = 0.4, wConcept = 0.3, wLen = 0.2, wParticip = 0.1;
+      const pInter = Math.min(appState.intercambios / max, 1);
+      const pConcept = Math.min(appState.conceptosDetectados.size / Math.max(5, appState.config.conceptosClave.length), 1);
+      const avgLen = (()=>{
+        const us = appState.mensajes.filter(m=>m.role==='user').map(m=>m.content.length);
+        return us.length? (us.reduce((a,b)=>a+b,0)/us.length) : 0;
+      })();
+      const pLen = Math.min(avgLen / Math.max(60, appState.config.minCaracteres*2), 1);
+      const turns = appState.mensajes.length; // participación simple
+      const pParticip = Math.min(turns / (max*2), 1);
+      const prog = Math.round((pInter*wInter + pConcept*wConcept + pLen*wLen + pParticip*wParticip)*100);
+      appState.progreso = prog;
+      el('#kInter').textContent = `${appState.intercambios}/${max}`;
+      el('#kProg').textContent = `${prog}%`;
+      return prog;
+    }
+
+    function updateResume() {
+      const r = appState.resumen;
+      el('#resume').innerHTML = `
+        <b>Pasiones:</b> ${mdEscape(r.pasiones || '—')}<br>
+        <b>Aptitudes:</b> ${mdEscape(r.aptitudes || '—')}<br>
+        <b>Valores / Telos:</b> ${mdEscape(r.valores || '—')}
+      `;
+    }
+
+    // ===== Render mensajes =====
+    function renderMsg({role, content, t}) {
+      const wrap = document.createElement('div');
+      wrap.className = `msg ${role}`;
+      wrap.innerHTML = `
+        <div class="ava">${role==='assistant'?'🎓':'🧑'}</div>
+        <div>
+          <div class="meta">${role==='assistant'?'Orientador':'Vos'} · <span>${new Date(t).toLocaleTimeString()}</span></div>
+          <div class="bubble">${content}</div>
+        </div>
+      `;
+      el('#messages').appendChild(wrap);
+      el('#messages').scrollTop = el('#messages').scrollHeight;
+    }
+
+    function renderTyping(on=true){
+      let node = el('#typing');
+      if(on && !node){
+        node = document.createElement('div');
+        node.id = 'typing';
+        node.className = 'msg assistant';
+        node.innerHTML = `
+          <div class="ava">🎓</div>
+          <div>
+            <div class="meta">Orientador · ahora</div>
+            <div class="bubble"><span class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+          </div>`;
+        el('#messages').appendChild(node);
+        el('#messages').scrollTop = el('#messages').scrollHeight;
+      }
+      if(!on && node){ node.remove(); }
+    }
+
+    // ===== Backend IA =====
+    async function callBackend(historial, userText){
+      // Intenta Cloud Function si existe firebase
+      try {
+        if (window.firebase?.functions) {
+          const region = 'southamerica-east1';
+          const functions = firebase.app ? firebase.app().functions(region) : firebase.functions(region);
+          const callable = functions.httpsCallable ? functions.httpsCallable('chatFilosofo', { timeout: 60000 }) : firebase.functions().httpsCallable('chatFilosofo');
+          const payload = {
+            filosofo: appState.filosofo || 'orientador_vocacional',
+            mensaje: userText,
+            historial: historial.map(m => ({ role: m.role, content: m.content }))
+          };
+          const res = await callable(payload);
+          return res?.data?.respuesta || res?.data || '[Sin respuesta del servidor]';
+        }
+      } catch (err) {
+        console.warn('Cloud Function error, usando fallback local:', err);
+      }
+
+      // Fallback local muy simple
+      const turns = historial.filter(m=>m.role==='user').length;
+      const canned = [
+        'Para empezar, contame 2 o 3 actividades que disfrutás mucho, incluso si no son materias escolares. ¿Qué te hace perder la noción del tiempo?',
+        'Gracias. Ahora, ¿en qué cosas te dicen los demás que sos bueno/a? Pueden ser habilidades prácticas o sociales.',
+        'Hablemos de valores: ¿qué es importante para vos en un trabajo? (ej: ayudar, estabilidad, creatividad, ingresos, impacto social).',
+        'Con lo que me contaste, puedo sugerirte 3 caminos: un oficio corto (EEP-UNT/CFP), una tecnicatura (IES/CENT/ISET) y una carrera (UNT/UTN). ¿Querés que lo resuma?'
+      ];
+      return canned[Math.min(turns, canned.length-1)];
+    }
+
+    function push(role, content){
+      const m = { role, content, t: Date.now() };
+      appState.mensajes.push(m);
+      renderMsg(m);
+      if(role==='user'){ markConcepts(content); }
+    }
+
+    function extractToResume(userText){
+      const text = userText.toLowerCase();
+      // Heurística simple por fases (mejorada por el propio modelo en la respuesta)
+      if(!appState.fases[1]) appState.resumen.pasiones = (appState.resumen.pasiones + ' ' + userText).trim();
+      else if(!appState.fases[2]) appState.resumen.aptitudes = (appState.resumen.aptitudes + ' ' + userText).trim();
+      else appState.resumen.valores = (appState.resumen.valores + ' ' + userText).trim();
+      updateResume();
+      updatePhases();
+    }
+
+    async function send() {
+      const ta = el('#input');
+      const txt = (ta.value || '').trim();
+      if (txt.length < appState.config.minCaracteres) {
+        ta.focus();
+        ta.style.borderColor = 'var(--warning)';
+        await sleep(400); ta.style.borderColor = '#2b2e37';
+        return;
+      }
+
+      const max = appState.config.maxIntercambios;
+      if (appState.intercambios >= max) return;
+
+      push('user', mdEscape(txt));
+      extractToResume(txt);
+      appState.intercambios++;
+      computeProgress();
+      ta.value = '';
+
+      renderTyping(true);
+      const respuesta = await callBackend(appState.mensajes, txt);
+      renderTyping(false);
+
+      push('assistant', mdEscape(respuesta));
+      computeProgress();
+
+      // Marcar fases según heurística si el asistente guía
+      const l = respuesta.toLowerCase();
+      if(l.includes('fase 2')||l.includes('aptitud')) appState.fases[1] = true;
+      if(l.includes('fase 3')||l.includes('valores')||l.includes('telos')) appState.fases[2] = true;
+      if(l.includes('síntesis')||l.includes('sintesis')||l.includes('recomendaciones')) appState.fases[3] = true;
+      updatePhases();
+
+      // Cerrar al alcanzar el máximo
+      if (appState.intercambios >= max) {
+        appState.fases[4] = true;
+        updatePhases();
+        openFinalModal();
+      }
+    }
+
+    function openFinalModal(){
+      const plan = {
+        resumen: appState.resumen,
+        conceptos: [...appState.conceptosDetectados],
+        progreso: appState.progreso,
+        fecha: new Date().toISOString(),
+        sugerencias: {
+          oficio: 'EEP-UNT / CFP (3–6 meses) — elegí un curso alineado a tus pasiones',
+          tecnicatura: 'IES/CENT/ISET (3 años) — fortalece tus aptitudes prácticas',
+          universidad: 'UNT / UTN (4–6 años) — camino largo si tus valores apuntan a impacto/profundidad'
+        }
+      };
+      el('#finalPlan').innerHTML = `
+        <b>Pasiones:</b> ${mdEscape(plan.resumen.pasiones||'—')}<br>
+        <b>Aptitudes:</b> ${mdEscape(plan.resumen.aptitudes||'—')}<br>
+        <b>Valores:</b> ${mdEscape(plan.resumen.valores||'—')}<br>
+        <hr style="border-color:#2c2f37"> 
+        <b>Recomendación 1 (Oficio):</b> ${mdEscape(plan.sugerencias.oficio)}<br>
+        <b>Recomendación 2 (Tecnicatura):</b> ${mdEscape(plan.sugerencias.tecnicatura)}<br>
+        <b>Recomendación 3 (Universidad):</b> ${mdEscape(plan.sugerencias.universidad)}
+      `;
+      el('#finalModal').style.display = 'flex';
+      // Descargar
+      el('#btnDownloadFinal').onclick = () => downloadJSON(plan, `plan_vocacional_${Date.now()}.json`);
+    }
+
+    function downloadJSON(obj, filename){
+      const blob = new Blob([JSON.stringify(obj, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    // ===== Pistas =====
+    const HINTS = [
+      'Decí 3 cosas que disfrutás hacer fuera de la escuela y por qué te gustan.',
+      'Nombrá 2 situaciones donde te fue bien y qué habilidades usaste (organización, trato, coordinación, lógica…).',
+      '¿Qué valorás más en un trabajo? (ingresos, estabilidad, ayudar, crear, aprender, trabajar en equipo).'
+    ];
+    function useHint(){
+      if(appState.hintsUsados >= 3) return;
+      const hint = HINTS[appState.hintsUsados] || 'Contame algo más sobre vos.';
+      appState.hintsUsados++;
+      el('#btnHint').textContent = `💡 Pedir pista (x${3-appState.hintsUsados})`;
+      push('assistant', `<i>Pista:</i> ${mdEscape(hint)}`);
+    }
+
+    // ===== Reset =====
+    function resetAll(){
+      appState.mensajes = [];
+      appState.conceptosDetectados = new Set();
+      appState.hintsUsados = 0;
+      appState.intercambios = 0;
+      appState.progreso = 0;
+      appState.fases = {1:false,2:false,3:false,4:false};
+      appState.resumen = { pasiones:'', aptitudes:'', valores:'' };
+      el('#messages').innerHTML = '';
+      renderChips(); updatePhases(); computeProgress(); updateResume();
+      greet();
+    }
+
+    // ===== Saludo inicial =====
+    function greet(){
+      push('assistant', '¡Hola! Soy tu orientador vocacional. Vamos a explorar <b>pasiones</b>, <b>aptitudes</b> y <b>valores</b> en 10 intercambios. Empecemos: ¿Qué actividades te entusiasman y te hacen sentir pleno/a?');
+    }
+
+    // ===== Eventos =====
+    window.addEventListener('DOMContentLoaded', () => {
+      // Hidratar config
+      const routeFil = getQueryParam('filosofo');
+      if (routeFil) appState.filosofo = routeFil;
+      if (!sessionStorage.getItem('dialogo_inicio')) sessionStorage.setItem('dialogo_inicio', Date.now());
+
+      // Chips
+      renderChips();
+      updatePhases();
+      computeProgress();
+      updateResume();
+
+      greet();
+
+      el('#btnSend').addEventListener('click', send);
+      el('#input').addEventListener('keydown', (e)=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send(); }});
+      el('#btnHint').addEventListener('click', useHint);
+      el('#btnReset').addEventListener('click', resetAll);
+
+      el('#btnCloseFinal').addEventListener('click', ()=>{ el('#finalModal').style.display='none'; });
+      // Export desde sidebar
+      el('#btnExport').addEventListener('click', ()=>{
+        const plan = { resumen: appState.resumen, conceptos:[...appState.conceptosDetectados], progreso: appState.progreso, fecha:new Date().toISOString() };
+        downloadJSON(plan, `plan_vocacional_${Date.now()}.json`);
+      });
+    });
+  </script>
+</body>
+</html>
