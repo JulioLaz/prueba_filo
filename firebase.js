@@ -267,48 +267,6 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
   }
 }
 
-// async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
-//   console.log(`💾 Guardando progreso: ${moduleId} para ${uid}`);
-  
-//   try {
-//     const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
-//     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
-    
-//     const progressData = {
-//       uid,
-//       moduleId,
-//       lessonId,
-//       status,
-//       score,
-//       timeSpentSeconds: seconds,
-//       updatedAt: serverTimestamp(),
-//       metadata
-//     };
-    
-//     await setDoc(progressRef, progressData, { merge: true });
-    
-//     // Actualizar estadísticas globales del usuario
-//     const userRef = doc(db, "users", uid);
-//     const userSnap = await getDoc(userRef);
-    
-//     if (userSnap.exists()) {
-//       const userData = userSnap.data();
-//       const currentTotalTime = userData.estadisticas?.tiempoTotalSegundos || 0;
-      
-//       await updateDoc(userRef, {
-//         'estadisticas.tiempoTotalSegundos': currentTotalTime + seconds,
-//         'estadisticas.ultimaActividad': serverTimestamp()
-//       });
-//     }
-    
-//     console.log(`✅ Progreso guardado: ${progressId}`);
-    
-//   } catch (error) {
-//     console.error("Error guardando progreso:", error);
-//     throw error;
-//   }
-// }
-
 // ====================================
 // OBTENER PROGRESO DE UN TEMA
 // ====================================
@@ -486,43 +444,6 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
     console.warn("⚠️  No se pudo guardar en sessionStorage:", error);
   }
 }
-
-// API PÚBLICA - GUARDAR PROGRESO (INTERFAZ SIMPLIFICADA)
-// export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
-//   const user = auth.currentUser;
-//   if (!user) throw new Error("No autenticado");
-  
-//   // Guardar en Firebase
-//   await saveProgressToFirebase({
-//     uid: user.uid,
-//     moduleId,
-//     lessonId,
-//     status,
-//     score,
-//     seconds,
-//     metadata: {
-//       timestamp: Date.now(),
-//       url: window.location.href
-//     }
-//   });
-  
-//   // Mantener compatibilidad con sistema anterior (temporal)
-//   const id = `${user.uid}__${moduleId}${lessonId ? `__${lessonId}` : ""}`;
-//   const sessionKey = `tema.${moduleId}.progress`;
-  
-//   try {
-//     sessionStorage.setItem(sessionKey, JSON.stringify({
-//       moduleId,
-//       lessonId,
-//       status,
-//       score,
-//       seconds,
-//       updatedAt: new Date().toISOString()
-//     }));
-//   } catch (error) {
-//     console.warn("No se pudo guardar en sessionStorage:", error);
-//   }
-// }
 
 // ====================================
 // FUNCIÓN PARA CONSULTAR MEJOR SCORE
