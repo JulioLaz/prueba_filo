@@ -245,6 +245,20 @@ const AVAILABLE_THEMES = [
         type: 'dialogo'
     },
     {
+        id: 'orientacion_vocacional',
+        title: 'Orientación Vocacional Filosófica',
+        description: 'Descubrí tu vocación a través de un diálogo reflexivo. Explorá opciones educativas gratuitas en Tucumán: oficios, tecnicaturas y carreras universitarias.',
+        icon: '🎓',
+        gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        difficulty: 'DIALOGO',
+        questions: 10,
+        timeEstimate: 20,
+        prerequisites: [],
+        color: '#667eea',
+        contentFile: 'themes/orientacion_vocacional/content.html',
+        type: 'dialogo'
+    },    
+    {
     id: "dino",
     title: "Dinosaurio",
     description: "Saltando obstáculos en este juego simple pero adictivo.",

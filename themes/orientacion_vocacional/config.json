@@ -1,0 +1,36 @@
+{
+  "id": "orientacion_vocacional",
+  "meta": {
+    "title": "Orientación Vocacional Filosófica",
+    "author": "Sistema de Orientación",
+    "icon": "🎓",
+    "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "difficulty": "DIALOGO",
+    "description": "Descubrí tu vocación a través de un diálogo reflexivo. Explorá opciones educativas gratuitas en Tucumán: oficios, tecnicaturas y carreras universitarias."
+  },
+  "activities": {
+    "dialogo": {
+      "enabled": true,
+      "intercambios": 10,
+      "minCaracteres": 30,
+      "timeEstimate": 20,
+      "filosofoId": "orientador_vocacional",
+      "chatUrl": "/prueba_filo/dialogo/chat.html"
+    }
+  },
+  "files": {
+    "content": "themes/orientacion_vocacional/content.html",
+    "dialogo": "dialogo/chat.html"
+  },
+  "prerequisites": [],
+  "color": "#667eea",
+  "type": "dialogo",
+  "evaluacion": {
+    "minimoProgreso": 80,
+    "badgeEspecial": {
+      "titulo": "Explorador Vocacional",
+      "icono": "🎓",
+      "descripcion": "Completó la exploración vocacional filosófica"
+    }
+  }
+}
