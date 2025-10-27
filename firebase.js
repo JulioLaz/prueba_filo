@@ -595,15 +595,47 @@ onAuthStateChanged(auth, async (user) => {
   const userNameEl = document.querySelector("#userName");
   
   if (user) {
-    if (userNameEl) {
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      const userData = userDoc.data();
-      const displayName = userData?.nickname || userData?.nombres || user.displayName || user.email;
-      userNameEl.textContent = displayName;
+    // ✅ ESTABLECER ATRIBUTO data-logged PARA CONTROLAR LA UI
+    document.documentElement.setAttribute("data-logged", "1");
+    
+    // ✅ Verificar si el usuario tiene perfil en Firestore
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+      
+      if (!userSnap.exists()) {
+        // Si no existe el perfil, crearlo (caso de usuario registrado antes de este sistema)
+        await ensureUserDoc(user);
+      }
+      
+      // Actualizar nombre de usuario en el header
+      if (userNameEl) {
+        const userData = userSnap.exists() ? userSnap.data() : {};
+        const displayName = userData?.nickname || userData?.nombres || user.displayName || user.email;
+        userNameEl.textContent = displayName;
+      }
+      
+      // Renderizar avatar
+      await renderHeaderAvatar(user);
+      
+      console.log(`✅ Usuario autenticado: ${user.email}`);
+      
+    } catch (error) {
+      console.error("❌ Error obteniendo datos del usuario:", error);
+      // En caso de error, mostrar al menos el email
+      if (userNameEl) {
+        userNameEl.textContent = user.email.split('@')[0];
+      }
     }
-    await renderHeaderAvatar(user);
+    
   } else {
+    // ✅ REMOVER ATRIBUTO data-logged CUANDO NO HAY USUARIO
+    document.documentElement.removeAttribute("data-logged");
+    
+    // Limpiar UI
     if (userNameEl) userNameEl.textContent = "";
+    
+    console.log("🚪 Usuario desconectado");
   }
 });
 
