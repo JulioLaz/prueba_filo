@@ -745,138 +745,14 @@
         elementos.btnVolver.addEventListener('click', () => window.location.href = '../index.html');
 
         // ===============================================
-        // FUNCIONES DE PERSONALIZACIÓN
+        // INICIALIZACIÓN
         // ===============================================
-        function calcularEdad(fechaNacimiento) {
-            if (!fechaNacimiento) return null;
-            try {
-                const [y, m, d] = fechaNacimiento.split('-').map(Number);
-                if (!y || !m || !d) return null;
-                const birth = new Date(y, m - 1, d);
-                if (isNaN(birth.getTime())) return null;
-                const today = new Date();
-                let age = today.getFullYear() - birth.getFullYear();
-                const beforeBirthday =
-                    today.getMonth() < birth.getMonth() ||
-                    (today.getMonth() === birth.getMonth() && today.getDate() < birth.getDate());
-                if (beforeBirthday) age--;
-                return age > 0 ? age : null;
-            } catch {
-                return null;
-            }
-        }
-
-        function obtenerNombre(userData, user) {
-            const base = (userData?.nombres || userData?.displayName || user?.displayName || userData?.email || user?.email || '').trim();
-            if (!base) return null;
-            if (base.includes('@')) return base.split('@')[0];
-            return base.split(/\s+/)[0];
-        }
-
-        async function leerDatosUsuario(uid) {
-            if (!uid) return null;
-            try {
-                const db = (await import('../firebase.js')).db;
-                const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js");
-                const userDocRef = doc(db, "users", uid);
-                const snap = await getDoc(userDocRef);
-                return snap.exists() ? snap.data() : null;
-            } catch (error) {
-                console.error('Error leyendo datos:', error);
-                return null;
-            }
-        }
-
-        function generarSaludoPersonalizado(nombre, edad) {
-            const anoActual = new Date().getFullYear();
-            
-            let saludo = `¡Hola${nombre ? ` <strong>${nombre}</strong>` : ''}! Me alegra que estés acá.`;
-            
-            if (edad) {
-                const anoRutaRapida = anoActual + 1;
-                const edadRutaRapida = edad + 1;
-                const anoRutaMedia = anoActual + 3;
-                const edadRutaMedia = edad + 3;
-                const anoRutaLarga = anoActual + 6;
-                const edadRutaLarga = edad + 6;
-
-                saludo += `<br><br>Tenés <strong>${edad} años</strong>. ¿Sabés qué significa eso?<br><br>`;
-                saludo += `Que en <strong>${anoRutaRapida}</strong> (a los ${edadRutaRapida}) podrías estar trabajando de refrigeración, electricidad o peluquería si empezás un curso rápido HOY.<br><br>`;
-                saludo += `Que en <strong>${anoRutaMedia}</strong> (a los ${edadRutaMedia}) podrías ser <strong>Técnico en Enfermería</strong> o <strong>Desarrollador de Software</strong> recibido y trabajando.<br><br>`;
-                saludo += `Que en <strong>${anoRutaLarga}</strong> (a los ${edadRutaLarga}) podrías ser <strong>Médico</strong>, <strong>Ingeniero</strong> o <strong>Contador</strong> profesional.<br><br>`;
-                saludo += `No es magia. Es <strong>PLANIFICACIÓN</strong>. Y hoy empezamos TU plan.`;
-            } else {
-                saludo += `<br><br>Hoy vamos a diseñar juntos tu futuro. No se trata solo de elegir una carrera, sino de construir una <strong>vida que tenga sentido</strong> para vos.`;
-            }
-
-            saludo += `<br><br>Y sé que capaz tengas que trabajar mientras estudiás. <strong>Está bien</strong>. Lucas lo hizo. Carla lo hizo. Diego lo hizo. <strong>Vos también podés</strong>.<br><br>`;
-            saludo += `Pero antes de hablar de opciones, necesito conocerte. Empecemos con algo simple:<br><br>`;
-            saludo += `<strong>¿Qué actividades te hacen perder la noción del tiempo?</strong> ¿Cuándo te sentís más vos mismo?`;
-
-            return saludo;
-        }
-
-        // ===============================================
-        // INICIALIZACIÓN CON PERSONALIZACIÓN
-        // ===============================================
-        let saludoMostrado = false;
-
-        async function mostrarSaludoPersonalizado(userData, user) {
-            if (saludoMostrado) return;
-            saludoMostrado = true;
-
-            const nombre = obtenerNombre(userData, user);
-            const edad = calcularEdad(userData?.fechaNacimiento);
-            const mensaje = generarSaludoPersonalizado(nombre, edad);
-
-            agregarMensaje('orientador', mensaje);
+        function iniciar() {
+            console.log('🚀 Iniciando diálogo vocacional...');
+            agregarMensaje('orientador', 
+                '¡Hola! Me alegra que estés acá. Pensar en tu futuro vocacional es uno de los ejercicios más importantes de <strong>autoconocimiento</strong>. No se trata solo de elegir una carrera, sino de descubrir qué tipo de vida querés construir. Empecemos con algo simple pero profundo: ¿Qué actividades te hacen perder la noción del tiempo? ¿Cuándo te sentís más vos mismo?'
+            );
             elementos.inputMensaje.focus();
-        }
-
-        async function iniciar() {
-            console.log('🚀 Iniciando diálogo vocacional personalizado...');
-
-            const usuarioActual = auth?.currentUser || null;
-
-            if (usuarioActual?.uid) {
-                console.log(`👤 Usuario detectado: ${usuarioActual.email}`);
-                const userData = await leerDatosUsuario(usuarioActual.uid);
-                await mostrarSaludoPersonalizado(userData, usuarioActual);
-                return;
-            }
-
-            // Si no hay usuario, esperar con polling
-            let pollAttempts = 0;
-            const pollId = setInterval(async () => {
-                if (saludoMostrado) {
-                    clearInterval(pollId);
-                    return;
-                }
-                const user = auth?.currentUser || null;
-                if (user?.uid) {
-                    console.log(`🔄 Polling: Usuario detectado (${user.email})`);
-                    const userData = await leerDatosUsuario(user.uid);
-                    await mostrarSaludoPersonalizado(userData, user);
-                    clearInterval(pollId);
-                }
-                pollAttempts++;
-                if (pollAttempts >= 15) {
-                    clearInterval(pollId);
-                    if (!saludoMostrado) {
-                        agregarMensaje('orientador', generarSaludoPersonalizado(null, null));
-                        elementos.inputMensaje.focus();
-                    }
-                }
-            }, 250);
-
-            // Timeout de seguridad
-            setTimeout(() => {
-                if (!saludoMostrado) {
-                    agregarMensaje('orientador', generarSaludoPersonalizado(null, null));
-                    elementos.inputMensaje.focus();
-                }
-                clearInterval(pollId);
-            }, 3500);
         }
 
         if (document.readyState === 'loading') {
