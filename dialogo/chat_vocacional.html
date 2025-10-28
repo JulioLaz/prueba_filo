@@ -539,7 +539,7 @@
         const CONFIG = {
             filosofo: 'orientador_vocacional',
             maxIntercambios: 10,
-            minCaracteres: 30
+            minCaracteres: 15
         };
 
         // Inicializar Cloud Function
@@ -811,7 +811,8 @@
 
             saludo += `<br><br>Y sé que capaz tengas que trabajar mientras estudiás. <strong>Está bien</strong>. Lucas lo hizo. Carla lo hizo. Diego lo hizo. <strong>Vos también podés</strong>.<br><br>`;
             saludo += `Pero antes de hablar de opciones, necesito conocerte. Empecemos con algo simple:<br><br>`;
-            saludo += `<strong>¿Qué actividades te hacen perder la noción del tiempo?</strong> ¿Cuándo te sentís más vos mismo?`;
+            // saludo += `<strong>¿Qué actividades te hacen perder la noción del tiempo?</strong> ¿Cuándo te sentís más vos mismo?`;
+            saludo += `<strong>🤝 Cuando estás con amigos o en un equipo o en un grupo, ¿Qué tarea te gusta asumir: organizando, creando ideas, resolviendo conflictos o enseñando, tomando notas, escribiendo o dibujando, transmitiendo los resultados?</strong>`;
 
             return saludo;
         }
