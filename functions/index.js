@@ -15,9 +15,17 @@
  *   chatFilosofo(data) - Envía mensaje y recibe respuesta del filósofo
  */
 
+// const {onCall, HttpsError} = require("firebase-functions/v2/https");
+// const {onRequest} = require("firebase-functions/v2/https");
+// const logger = require("firebase-functions/logger");
 const {onCall, HttpsError} = require("firebase-functions/v2/https");
 const {onRequest} = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
+const {defineSecret} = require("firebase-functions/params"); // ← NUEVO
+
+// Definir el secret para la API key
+const GOOGLE_API_KEY = defineSecret("GOOGLE_API_KEY");
+
 
 // ═══════════════════════════════════════════════════════════════
 // 📚 PROMPTS DE SISTEMA POR FILÓSOFO
@@ -351,12 +359,22 @@ function validarDatos(data) {
 // ═══════════════════════════════════════════════════════════════
 // 🚀 CLOUD FUNCTION PRINCIPAL
 // ═══════════════════════════════════════════════════════════════
+
 exports.chatFilosofo = onCall(
     {
       region: "southamerica-east1",
       cors: true,
+      memory: "256MiB",
+      timeoutSeconds: 30,
+      secrets: [GOOGLE_API_KEY], // ← AGREGADO
     },
     async (request) => {
+// exports.chatFilosofo = onCall(
+//     {
+//       region: "southamerica-east1",
+//       cors: true,
+//     },
+//     async (request) => {
       const inicioTiempo = Date.now();
       const data = request.data;
       const auth = request.auth;
@@ -394,18 +412,10 @@ exports.chatFilosofo = onCall(
         // 3. OBTENER API KEY (desde variable de entorno)
         // ============================================
         // const apiKey = process.env.OPENROUTER_KEY;
-        const functions = require("firebase-functions"); // ← Agregar al inicio si no está
+        // const functions = require("firebase-functions"); // ← Agregar al inicio si no está
         // ...
-        const apiKey = functions.config().google?.key;
-
-        // if (!apiKey) {
-        //   logger.error("❌ API key de OpenRouter no configurada");
-        //   logger.error("   Crea un archivo functions/.env con: OPENROUTER_KEY=tu-key");
-        //   throw new HttpsError(
-        //       "internal",
-        //       "Configuración del servidor incompleta"
-        //   );
-        // }
+        // const apiKey = functions.config().google?.key;
+        const apiKey = GOOGLE_API_KEY.value(); // ← CORRECTO PARA V2
 
         if (!apiKey) {
           logger.error("❌ API key de Google no configurada");
