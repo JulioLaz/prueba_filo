@@ -386,65 +386,73 @@ questions: [
         difficulty: 'basico',
         topic: 'Dignidad Humana'
     },
-    
     {
-        id: 'kant_011',
-        question: "Además de la Ley Moral, ¿cuáles son los tres 'Postulados de la Razón Práctica' que Kant considera necesarios para que la moralidad sea posible?",
-        answers: [
+        "id": "kant_011",
+        "question": "Además de la Ley Moral, ¿cuáles son los tres 'Postulados de la Razón Práctica' que Kant considera necesarios para que la moralidad sea posible?",
+        "answers": [
             {
-                text: "El sentimiento de compasión, la autoridad de la tradición y la obediencia al gobierno civil establecido en el Estado.",
-                correct: false,
-                explanation: "Estos son elementos contingentes (sentimientos, convenciones) que Kant excluye como fundamento de la moral universal."
+                "text": "El sentimiento de compasión, la autoridad de la tradición y la obediencia al gobierno civil establecido en el Estado.",
+                "correct": false,
+                "explanation": "Estos son elementos contingentes (sentimientos, convenciones) que Kant excluye como fundamento de la moral universal."
             },
             {
-                text: "La felicidad personal, la utilidad social y la conveniencia política y económica para la comunidad.",
-                correct: false,
-                explanation: "Estos son fines materiales o empíricos, y la moralidad kantiana es puramente formal y racional, no empírica."
+                "text": "La felicidad personal, la utilidad social y la conveniencia política y económica para la comunidad.",
+                "correct": false,
+                "explanation": "Estos son fines materiales o empíricos, y la moralidad kantiana es puramente formal y racional, no empírica."
             },
             {
-                text: "La universalidad, la autonomía de la voluntad y el reino de los fines.",
-                correct: false,
-                explanation: "Estos son las tres formulaciones del Imperativo Categórico, el principio de la moralidad, no los postulados metafísicos que la sustentan."
+                "text": "La universalidad, la autonomía de la voluntad y el reino de los fines.",
+                "correct": false,
+                "explanation": "Estos son las tres formulaciones del Imperativo Categórico, el principio de la moralidad, no los postulados metafísicos que la sustentan."
             },
             {
-                text: "La libertad, la inmortalidad del alma y la existencia de Dios.",
-                correct: true,
-                explanation: "Correcto. Estos son los presupuestos metafísicos que la razón práctica debe *postular* como verdaderos para que el cumplimiento del deber y el Bien Supremo (unión de virtud y felicidad) sean posibles."
+                "text": "La libertad, la inmortalidad del alma y la existencia de Dios.",
+                "correct": true,
+                "explanation": "Correcto. Estos son los presupuestos metafísicos que la razón práctica debe *postular* como verdaderos para que el cumplimiento del deber y el Bien Supremo (unión de virtud y felicidad) sean posibles."
+            },
+            {
+                "text": "El progreso tecnológico, la paz perpetua y el desarrollo económico sostenible de todas las naciones.",
+                "correct": false,
+                "explanation": "Estos son fines sociales o políticos que, aunque deseables, no son los presupuestos metafísicos fundamentales que sustentan la posibilidad de la acción moral individual y el Bien Supremo en el sistema kantiano."
             }
         ],
-        hint: "Piensa en las tres cosas que la moralidad exige creer para poder alcanzar la unión final de virtud y felicidad ('Bien Supremo').",
-        difficulty: 'avanzado',
-        topic: 'Postulados de la Razón Práctica'
+        "hint": "Piensa en las tres cosas que la moralidad exige creer para poder alcanzar la unión final de virtud y felicidad ('Bien Supremo').",
+        "difficulty": "avanzado",
+        "topic": "Postulados de la Razón Práctica"
     },
-    
     {
-        id: 'kant_012',
-        question: "¿Cuál es la diferencia entre un 'deber perfecto' (como no mentir) y un 'deber imperfecto' (como cultivar los talentos) en la ética kantiana?",
-        answers: [
+        "id": "kant_012",
+        "question": "¿Cuál es la diferencia entre un 'deber perfecto' (como no mentir) y un 'deber imperfecto' (como cultivar los talentos) en la ética kantiana?",
+        "answers": [
             {
-                text: "El deber imperfecto es siempre más importante y prioritario que el perfecto, porque conduce a mayores beneficios para la sociedad en el largo plazo.",
-                correct: false,
-                explanation: "Ambos deberes son obligatorios, pero el perfecto tiene una obligación más estricta y su violación es lógicamente contradictoria."
+                "text": "El deber imperfecto es siempre más importante y prioritario que el perfecto, porque conduce a mayores beneficios para la sociedad en el largo plazo.",
+                "correct": false,
+                "explanation": "Ambos deberes son obligatorios, pero el perfecto tiene una obligación más estricta y su violación es lógicamente contradictoria."
             },
             {
-                text: "El deber perfecto es estricto y no admite excepciones (es siempre obligatorio), mientras que el deber imperfecto permite cierta discreción en la forma y el momento de su cumplimiento.",
-                correct: true,
-                explanation: "Correcto. El deber perfecto es 'meramente negativo' (prohíbe una acción) y no puede ser incumplido; el imperfecto es 'meritorio' (exige promover un fin) y no se aplica a todas las acciones en todo momento."
+                "text": "El deber perfecto es estricto y no admite excepciones (es siempre obligatorio), mientras que el deber imperfecto permite cierta discreción en la forma y el momento de su cumplimiento.",
+                "correct": true,
+                "explanation": "Correcto. El deber perfecto es 'meramente negativo' (prohíbe una acción) y no puede ser incumplido; el imperfecto es 'meritorio' (exige promover un fin) y no se aplica a todas las acciones en todo momento."
             },
             {
-                text: "El deber perfecto se basa exclusivamente en la inclinación emocional, mientras que el imperfecto se basa puramente en la razón práctica.",
-                correct: false,
-                explanation: "Ambos deberes se basan en la razón práctica, aunque la ejecución del deber imperfecto requiere juicio práctico."
+                "text": "El deber perfecto se basa exclusivamente en la inclinación emocional, mientras que el imperfecto se basa puramente en la razón práctica.",
+                "correct": false,
+                "explanation": "Ambos deberes se basan en la razón práctica, aunque la ejecución del deber imperfecto requiere juicio práctico."
             },
             {
-                text: "Los deberes perfectos son considerados asuntos legales y los imperfectos son considerados asuntos de moralidad puramente interna o privada.",
-                correct: false,
-                explanation: "Ambos son tipos de deberes morales que se derivan del Imperativo Categórico."
+                "text": "Los deberes perfectos son considerados asuntos legales y los imperfectos son considerados asuntos de moralidad puramente interna o privada.",
+                "correct": false,
+                "explanation": "Ambos son tipos de deberes morales que se derivan del Imperativo Categórico."
+            },
+            {
+                "text": "El deber perfecto genera obligaciones hacia los demás (deberes externos), mientras que el imperfecto genera obligaciones hacia uno mismo (deberes internos).",
+                "correct": false,
+                "explanation": "Aunque muchos deberes perfectos son hacia otros (no matar, no mentir) y muchos imperfectos son hacia uno mismo (cultivar talentos), Kant también incluye deberes perfectos hacia uno mismo (no suicidarse) e imperfectos hacia los demás (ayudar a otros). La distinción clave es la *estrictez* de la obligación."
             }
         ],
-        hint: "Piensa en la rigidez de Kant. ¿Cuál de los dos tipos de deberes se debe aplicar *siempre* sin importar la situación?",
-        difficulty: 'avanzado',
-        topic: 'Deberes Perfectos e Imperfectos'
+        "hint": "Piensa en la rigidez de Kant. ¿Cuál de los dos tipos de deberes se debe aplicar *siempre* sin importar la situación?",
+        "difficulty": "avanzado",
+        "topic": "Deberes Perfectos e Imperfectos"
     }
 ],
     
