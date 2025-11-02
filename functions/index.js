@@ -293,7 +293,7 @@ REGLAS:
 3. Usa ironía socrática con tacto
 4. Máximo 3-4 preguntas por respuesta (50-80 palabras) y siempre completa las frases
 5. Mantén tono humilde pero incisivo`,
-,
+
 
   socrates: `Eres Sócrates, el padre de la filosofía occidental. Tu método es la mayéutica: hacer preguntas que guíen al estudiante a descubrir la verdad por sí mismo.
 
@@ -393,11 +393,23 @@ exports.chatFilosofo = onCall(
         // ============================================
         // 3. OBTENER API KEY (desde variable de entorno)
         // ============================================
-        const apiKey = process.env.OPENROUTER_KEY;
+        // const apiKey = process.env.OPENROUTER_KEY;
+        const functions = require("firebase-functions"); // ← Agregar al inicio si no está
+        // ...
+        const apiKey = functions.config().google?.key;
+
+        // if (!apiKey) {
+        //   logger.error("❌ API key de OpenRouter no configurada");
+        //   logger.error("   Crea un archivo functions/.env con: OPENROUTER_KEY=tu-key");
+        //   throw new HttpsError(
+        //       "internal",
+        //       "Configuración del servidor incompleta"
+        //   );
+        // }
 
         if (!apiKey) {
-          logger.error("❌ API key de OpenRouter no configurada");
-          logger.error("   Crea un archivo functions/.env con: OPENROUTER_KEY=tu-key");
+          logger.error("❌ API key de Google no configurada");
+          logger.error("   Ejecuta: firebase functions:config:set google.key='AIzaSy...'");
           throw new HttpsError(
               "internal",
               "Configuración del servidor incompleta"
@@ -427,24 +439,59 @@ exports.chatFilosofo = onCall(
         logger.info("🤖 Llamando a OpenRouter API...");
         const tiempoApiInicio = Date.now();
 
+        // const response = await fetch(
+        //     "https://openrouter.ai/api/v1/chat/completions",
+        //     {
+        //       method: "POST",
+        //       headers: {
+        //         "Authorization": `Bearer ${apiKey}`,
+        //         "Content-Type": "application/json",
+        //         "HTTP-Referer": "https://filosofia-quiz-prod.web.app",
+        //         "X-Title": "Diálogos Filosóficos - Prueba Filo",
+        //       },
+        //       body: JSON.stringify({
+        //         model: "anthropic/claude-3-haiku",
+        //         messages: mensajesApi,
+        //         max_tokens: 500,
+        //         temperature: 0.7,
+        //       }),
+        //     }
+        // );
+
+        // Convertir mensajes de OpenAI format a Gemini format
+        const geminiMessages = (data.historial || []).map(msg => ({
+          role: msg.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: msg.content }]
+        }));
+
+        // Agregar mensaje actual del usuario
+        geminiMessages.push({
+          role: 'user',
+          parts: [{ text: data.mensaje }]
+        });
+
         const response = await fetch(
-            "https://openrouter.ai/api/v1/chat/completions",
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`,
             {
               method: "POST",
               headers: {
-                "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json",
-                "HTTP-Referer": "https://filosofia-quiz-prod.web.app",
-                "X-Title": "Diálogos Filosóficos - Prueba Filo",
               },
               body: JSON.stringify({
-                model: "anthropic/claude-3-haiku",
-                messages: mensajesApi,
-                max_tokens: 500,
-                temperature: 0.7,
+                contents: geminiMessages,
+                systemInstruction: {
+                  parts: [{ text: PROMPTS_SISTEMA[data.filosofo] }]
+                },
+                generationConfig: {
+                  maxOutputTokens: 500,
+                  temperature: 0.7,
+                }
               }),
             }
         );
+
+// ============================================
+
 
         const tiempoApi = Date.now() - tiempoApiInicio;
         logger.info(`⏱️ API respondió en ${tiempoApi}ms`);
@@ -465,9 +512,15 @@ exports.chatFilosofo = onCall(
         // ============================================
         // 7. PARSEAR Y RETORNAR RESPUESTA
         // ============================================
+        // const dataRespuesta = await response.json();
+        // const respuestaTexto = dataRespuesta.choices[0].message.content;
+        // const tokensUsados = dataRespuesta.usage?.total_tokens || 0;
+
         const dataRespuesta = await response.json();
-        const respuestaTexto = dataRespuesta.choices[0].message.content;
-        const tokensUsados = dataRespuesta.usage?.total_tokens || 0;
+        const respuestaTexto = dataRespuesta.candidates[0].content.parts[0].text;
+        const tokensUsados = (dataRespuesta.usageMetadata?.promptTokenCount || 0) + 
+                            (dataRespuesta.usageMetadata?.candidatesTokenCount || 0);
+// ===========================================
 
         const tiempoTotal = Date.now() - inicioTiempo;
 
