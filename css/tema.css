@@ -48,13 +48,14 @@
   padding: 1.2rem;
   margin: 1rem;
   color: #f0f0f0;
-  border: 1px solid rgba(128, 90, 213, 0.3); /* borde violeta tenue */
-  box-shadow: 0 0 12px rgba(128, 90, 213, 0.4); /* sombra violeta suave */
+  border: 2px solid rgba(128, 90, 213, 0.3); /* borde violeta tenue */
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); /* sombra violeta suave */
+  /* box-shadow: 0 0 25px rgba(128, 90, 213, 0.45); sombra violeta suave */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover {box-shadow: 0 0 20px rgba(128, 90, 213, 0.6); /* sombra más intensa al hover */
-  transform: scale(1.02);}
+  transform: scale(1.04);}
 
 /* Variante dorada opcional */
 .card.gold {border: 1px solid rgba(255, 215, 0, 0.3); box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);}
