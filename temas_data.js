@@ -148,11 +148,70 @@ const TOPICS = {
         duration: '57',
         // type: 'short'
       },
-      // Agregar más temas con video según necesites
-      // sartre: {
-      //   youtubeId: 'otro_video_id',
-      //   startTime: 0,
-      //   endTime: 300,
-      //   title: 'Jean-Paul Sartre: Existencialismo'
-      // }
+// 1.1 - Etimología y Origen Histórico: Del Mito al Logos
+    // origen: {
+    //     youtubeId: 'L2144lY93WI',
+    //     startTime: 1,
+    //     endTime: 481, // 8 minutos
+    //     title: 'El origen de la Filosofía. El paso del mito al logos',
+    //     duration: '8:00'
+    // },
+    // 1.1 - Etimología y Origen Histórico: Del Mito al Logos
+    origen: {
+      youtubeId: '4-6_Rmf6nh0',          // Del Mito al Logos: El Nacimiento de la Razón
+      startTime: 1,
+      endTime: 660,                       // ≈11:00
+      title: 'Del Mito al Logos: Etimología y origen histórico',
+      duration: '≈11:00'
+    },
+
+
+    // 1.2 - Los Inicios del Pensamiento Filosófico (Presocráticos)
+    presocraticos: {
+        youtubeId: 'vlIM-okP9I0',
+        startTime: 1,
+        endTime: 601, // 10 minutos
+        title: 'Los Filósofos Presocráticos (Resumen Fácil)',
+        duration: '10:00'
+    },
+    // 1.3 - El Giro Antropológico: Sócrates
+    socrates: {
+        youtubeId: '81l43tKcMxQ',
+        startTime: 1,
+        endTime: 451, // 7 minutos y 30 segundos
+        title: 'La mayéutica de Sócrates',
+        duration: '7:30'
+    },
+    // 1.4 - Platón: Mundo de las Ideas y Conocimiento
+    platon: {
+        youtubeId: 'jsoTdLmjDDc',
+        startTime: 1,
+        endTime: 541, // 9 minutos
+        title: 'Teoría de las Ideas de Platón (Explicada con vacas)',
+        duration: '9:00'
+    },
+    // 1.5 - Aristóteles: Lógica, Ética y Metafísica
+    aristoteles: {
+        youtubeId: 'jAnCP68Ch1s',
+        startTime: 1,
+        endTime: 391, // 6 minutos y 30 segundos
+        title: 'Aristóteles: El concepto de Sustancia',
+        duration: '6:30'
+    },
+    // 1.6 - El Método Filosófico: Duda, Diálogo y Crítica
+    metodo: {
+        youtubeId: 'sdGQcNaz4JM',
+        startTime: 1,
+        endTime: 721, // 12 minutos
+        title: 'El Método Filosófico: La Duda Metódica',
+        duration: '12:00'
+    },
+    // 1.7 - Ramas Clásicas: Metafísica, Ética y Lógica
+    ramas: {
+        youtubeId: 'U7fqKBvsSRQ',
+        startTime: 1,
+        endTime: 661, // 11 minutos
+        title: 'Ramas Clásicas de la Filosofía',
+        duration: '11:00'
+    }
     };
