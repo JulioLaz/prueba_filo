@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ética, Lógica y Metafísica en la Filosofía</title>
+  <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+  
+  <script>
+    // Configuración específica para Ética, Lógica y Metafísica
+    window.ReadAloudSystemConfig = {
+      tema: 'Ética, Lógica y Metafísica',
+      threshold: 0.80,
+      sections: 12, // 12 secciones completas
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=etica_logica_metafisica',
+      celebrationEmojis: ['💡', '🧠', '⚖️', '🔍', '🌌', '📚', '✨', '🎯'],
+      
+      synonymMap: {
+        'ética': ['moral', 'comportamiento', 'valores'],
+        'lógica': ['razonamiento', 'inferencia', 'validez'],
+        'metafísica': ['ontología', 'ser', 'realidad'],
+        'razón teórica': ['conocer', 'pensar'],
+        'razón práctica': ['actuar', 'decidir'],
+        'validez': ['corrección', 'argumento válido'],
+        'falacia': ['error lógico', 'sofisma'],
+        'ontología': ['estudio del ser'],
+        'ser': ['existencia', 'realidad']
+      }
+    };
+  </script>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 12 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <h1>💡 Ética, Lógica y Metafísica en la Filosofía</h1>
+    <p><em>Las tres ramas fundamentales de la filosofía: cómo debemos actuar, cómo debemos pensar y qué es la realidad última.</em></p>
+
+    <!-- SECCIÓN 1: INTRODUCCIÓN -->
+    <div class="study-section active" data-section="introduccion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎯 Introducción: Los Dos Usos de la Razón</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La filosofía se ocupa de responder a las <strong>grandes preguntas</strong> que todos nos hacemos, utilizando la razón de dos maneras principales: la <strong>razón teórica</strong> y la <strong>razón práctica</strong>.<br><br>
+            
+            <strong>1. Razón Teórica (Uso para Conocer):</strong><br>
+            El uso teórico de la razón busca <strong>conocer</strong>. Se emplea para contestar preguntas sobre las realidades que existen, cómo alcanzar la verdad o cómo ordenar correctamente nuestros pensamientos.<br><br>
+
+            Las ramas principales asociadas al uso teórico de la razón incluyen:<br>
+            • La <strong>Lógica</strong> (cómo razonar correctamente)<br>
+            • La <strong>Metafísica</strong> (qué es la realidad)<br>
+            • La <strong>Epistemología</strong> o Gnoseología (cómo conocemos)<br>
+            • La <strong>Antropología Filosófica</strong> (qué es el ser humano)<br><br>
+
+            <strong>2. Razón Práctica (Uso para Actuar):</strong><br>
+            El uso práctico de la razón se emplea para <strong>actuar</strong>. Esto ocurre cuando decidimos cómo comportarnos, cómo organizar la convivencia o cuándo analizamos qué acciones son justas o injustas.<br><br>
+
+            Las ramas principales asociadas al uso práctico de la razón son:<br>
+            • La <strong>Ética</strong> (cómo debemos actuar)<br>
+            • La <strong>Filosofía Política</strong> (cómo organizamos la sociedad)<br>
+            • La <strong>Estética</strong> (qué es la belleza)<br><br>
+
+            <strong>Nota importante:</strong> Aunque distinguimos estos dos usos, filósofos como Kant insisten en que la <strong>razón es única</strong>; solo se emplea para dos fines distintos: conocer o actuar.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Razón teórica: conocer. Razón práctica: actuar.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre los usos de la razón:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la diferencia entre razón teórica y razón práctica?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Ambas se usan para lo mismo</div>
+          <div class="option" data-correct="true">La teórica se usa para conocer; la práctica se usa para actuar</div>
+          <div class="option">La teórica es superior a la práctica</div>
+          <div class="option">Solo existe la razón teórica</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: ÉTICA Y MORAL - DEFINICIÓN -->
+    <div class="study-section" data-section="etica-moral-definicion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ Ética y Moral: Definición y Distinción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>Ética</strong> pertenece al campo de la <strong>razón práctica</strong> porque se refiere a la acción y el comportamiento. Es importante distinguir entre Ética y Moral, aunque en el lenguaje cotidiano se usan de forma indistinta.<br><br>
+            
+            <strong>La Moral:</strong><br>
+            Se refiere a los <strong>valores, normas y criterios</strong> que orientan nuestra conducta, distinguiendo lo que está bien de lo que está mal. La moral es el conjunto de <strong>creencias y expectativas</strong> que existen en una sociedad o en una persona sobre lo que parece correcto o incorrecto. Estas pautas <strong>varían</strong> entre personas y sociedades.<br><br>
+
+            <strong>La Ética:</strong><br>
+            Es la <strong>rama de la filosofía</strong> que estudia la moral. Es una disciplina académica que <strong>reflexiona de manera teórica</strong> sobre los fundamentos de la moralidad.<br><br>
+
+            <strong>Distinción Clave:</strong><br>
+            • La <strong>Moral</strong> pregunta: <em>"¿Qué debemos hacer?"</em><br>
+            • La <strong>Ética</strong> pregunta: <em>"¿Por qué debemos hacerlo?"</em><br><br>
+
+            <strong>Analogía para entender mejor:</strong><br>
+            Piensa en la Moral como el <strong>código de circulación</strong> de una ciudad: son las reglas concretas (detenerse, avanzar, velocidad máxima) que te dicen cómo actuar.<br><br>
+
+            La Ética es la <strong>comisión de urbanismo</strong> que se pregunta por qué esas reglas son las mejores, cómo se justifican y si sirven al propósito último de la convivencia pacífica y el bienestar de los ciudadanos.<br><br>
+
+            Ambas son necesarias, pero una es la <strong>práctica</strong> y la otra es la <strong>reflexión</strong> sobre la práctica.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Moral: qué hacer. Ética: por qué hacerlo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre Ética y Moral:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la principal diferencia entre Ética y Moral?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Son exactamente lo mismo</div>
+          <div class="option">La ética es religiosa y la moral es filosófica</div>
+          <div class="option" data-correct="true">La moral es el conjunto de normas; la ética es la reflexión filosófica sobre la moral</div>
+          <div class="option">La ética es práctica y la moral es teórica</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: ORIGEN DE LOS TÉRMINOS -->
+    <div class="study-section" data-section="origen-terminos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📜 Origen de los Términos: Ética y Moral</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Los términos <em>"ética"</em> y <em>"moral"</em> tienen orígenes diferentes pero significados relacionados.<br><br>
+            
+            <strong>Ética:</strong><br>
+            La palabra <em>"ética"</em> procede del griego <strong>êthos</strong> (<em>ἦθος</em>), que significa <em>"carácter"</em> o <em>"naturaleza moral"</em>. Se refiere a la <strong>disposición interna</strong> de la persona, a su manera de ser permanente.<br><br>
+
+            Para los griegos, el <em>êthos</em> era el conjunto de rasgos y modos de comportamiento que conforman el carácter de una persona. La ética, entonces, estudia cómo se forma este carácter y qué disposiciones son buenas o malas.<br><br>
+
+            <strong>Moral:</strong><br>
+            La palabra <em>"moral"</em> proviene del latín <strong>mos</strong> (plural: <em>mores</em>), que significa <em>"hábito"</em> o <em>"costumbre"</em>. Se refiere a las <strong>prácticas repetidas</strong> y las normas establecidas en una comunidad.<br><br>
+
+            Para los romanos, los <em>mores</em> eran las costumbres ancestrales y las normas de conducta transmitidas de generación en generación. La moral, entonces, es el conjunto de costumbres y normas que rigen en una sociedad.<br><br>
+
+            <strong>Curiosidad:</strong><br>
+            Aunque provienen de idiomas diferentes (griego y latín), ambos términos se refieren fundamentalmente a lo mismo: las <strong>normas de conducta</strong> y la <strong>reflexión sobre ellas</strong>. Los romanos, al traducir los textos griegos, usaron <em>"mos"</em> para traducir <em>"êthos"</em>, creando así dos palabras con significados muy similares.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 <em>Êthos</em> (griego): carácter. <em>Mos</em> (latín): costumbre.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el origen de los términos:</p>
+        </div>
+        <div class="question">
+          <p>¿De qué palabra griega proviene el término "ética"?</p>
+        </div>
+        <div class="options-container">
+          <div class="option"><em>Mos</em> (costumbre)</div>
+          <div class="option" data-correct="true"><em>Êthos</em> (carácter o naturaleza moral)</div>
+          <div class="option"><em>Logos</em> (razón)</div>
+          <div class="option"><em>Psyché</em> (alma)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: RAMAS DE LA ÉTICA -->
+    <div class="study-section" data-section="ramas-etica">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌳 Las Tres Ramas de la Ética</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La ética contemporánea se divide en <strong>tres ramas o niveles principales</strong>, cada una con un enfoque específico:<br><br>
+            
+            <strong>1. Metaética:</strong><br>
+            Estudia el <strong>origen, la naturaleza y el significado</strong> de los conceptos éticos. Es la reflexión más abstracta y filosófica.<br><br>
+
+            <strong>Preguntas que se hace la Metaética:</strong><br>
+            • ¿Los valores morales <strong>existen</strong> de manera independiente de los humanos?<br>
+            • ¿La moral es <strong>objetiva</strong> o <strong>relativa</strong>?<br>
+            • ¿Qué significa decir que algo es <em>"bueno"</em> o <em>"malo"</em>?<br>
+            • ¿Tienen las proposiciones morales valor de verdad?<br><br>
+
+            <strong>2. Ética Normativa:</strong><br>
+            Busca <strong>principios generales</strong> que justifiquen los sistemas normativos y determina cuándo una acción es correcta o incorrecta. Propone teorías sobre cómo debemos actuar.<br><br>
+
+            <strong>Principales corrientes de la Ética Normativa:</strong><br>
+            • <strong>Consecuencialismo:</strong> Juzga las acciones por sus <strong>resultados o consecuencias</strong>. Si las consecuencias son buenas, la acción es correcta. Ejemplo: el utilitarismo.<br>
+            • <strong>Deontología:</strong> Sostiene que existen <strong>deberes</strong> que deben cumplirse, independientemente de las consecuencias. Algunas acciones son correctas o incorrectas en sí mismas.<br>
+            • <strong>Ética de las Virtudes:</strong> Se enfoca en el <strong>carácter</strong> del agente moral más que en reglas o consecuencias.<br><br>
+
+            <strong>3. Ética Aplicada:</strong><br>
+            Estudia la aplicación de las teorías éticas a <strong>cuestiones morales concretas y controvertidas</strong>.<br><br>
+
+            <strong>Ejemplos de Ética Aplicada:</strong><br>
+            • <strong>Bioética:</strong> Aborto, eutanasia, experimentación con animales<br>
+            • <strong>Ética Ambiental:</strong> Responsabilidad con el medio ambiente, cambio climático<br>
+            • <strong>Ética Empresarial:</strong> Prácticas justas en los negocios<br>
+            • <strong>Ética Tecnológica:</strong> Inteligencia artificial, privacidad digital
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Tres ramas: Metaética, Ética Normativa, Ética Aplicada.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre las ramas de la ética:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué rama de la ética se pregunta si los valores morales existen independientemente de los humanos?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Ética Normativa</div>
+          <div class="option">Ética Aplicada</div>
+          <div class="option" data-correct="true">Metaética</div>
+          <div class="option">Bioética</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 5: LA LÓGICA - DEFINICIÓN -->
+    <div class="study-section" data-section="logica-definicion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧩 La Lógica: El Análisis del Pensamiento Correcto</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>Lógica</strong> es una rama de la filosofía de carácter interdisciplinario, y tradicionalmente se considera una disciplina <strong>preparatoria</strong> para la filosofía.<br><br>
+            
+            <strong>Definición:</strong><br>
+            La Lógica es la <strong>ciencia formal</strong> que estudia los principios de la <strong>demostración</strong> y la <strong>inferencia válida</strong>.<br><br>
+
+            <strong>Objetivo Principal:</strong><br>
+            El estudio de los métodos y principios que se usan para distinguir el <strong>razonamiento bueno</strong> (correcto) del <strong>razonamiento malo</strong> (incorrecto).<br><br>
+
+            <strong>Característica Clave:</strong><br>
+            La lógica se ocupa del <strong>aspecto formal</strong> del pensamiento. Esto significa que su interés se centra en la <strong>corrección o incorrección</strong> (validez o invalidez) de un razonamiento, <strong>sin importar el contenido</strong> o materia sobre el que se razona.<br><br>
+
+            <strong>Ejemplo:</strong><br>
+            La lógica puede analizar si un argumento es válido basándose únicamente en su estructura, sin necesidad de saber si las premisas son verdaderas o no.<br><br>
+
+            <strong>Argumento válido:</strong><br>
+            • Todos los A son B<br>
+            • Todos los B son C<br>
+            • Por lo tanto, todos los A son C<br><br>
+
+            Este argumento es <strong>formalmente válido</strong> independientemente de qué representan A, B y C. Podríamos sustituir A por "perros", B por "mamíferos" y C por "animales", y el argumento seguiría siendo válido.<br><br>
+
+            <strong>Importancia:</strong><br>
+            La lógica es fundamental porque nos permite <strong>evaluar argumentos</strong>, <strong>detectar errores</strong> en el razonamiento y <strong>construir demostraciones sólidas</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Lógica: distingue razonamiento correcto del incorrecto.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la Lógica:</p>
+        </div>
+        <div class="question">
+          <p>¿De qué se ocupa principalmente la lógica?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Del contenido específico de los argumentos</div>
+          <div class="option">De las emociones humanas</div>
+          <div class="option" data-correct="true">Del aspecto formal del pensamiento: validez o invalidez de razonamientos</div>
+          <div class="option">De los valores morales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 6: CONCEPTOS CLAVE - INFERENCIA -->
+    <div class="study-section" data-section="inferencia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>➡️ Conceptos Clave de la Lógica (Parte 1): Inferencia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para comprender la lógica, es esencial conocer sus conceptos fundamentales. El primero es la <strong>Inferencia</strong>.<br><br>
+            
+            <strong>Inferencia:</strong><br>
+            Es el <strong>proceso</strong> por el cual se derivan <strong>conclusiones</strong> a partir de <strong>premisas o hipótesis</strong> iniciales.<br><br>
+
+            <strong>Estructura de una inferencia:</strong><br>
+            <strong>Premisas</strong> → <strong>Conclusión</strong><br><br>
+
+            Las premisas son las proposiciones de las que partimos (lo que asumimos como punto de partida), y la conclusión es lo que se deriva de ellas.<br><br>
+
+            <strong>Ejemplo de inferencia:</strong><br>
+            <strong>Premisa 1:</strong> Todos los humanos son mortales<br>
+            <strong>Premisa 2:</strong> Sócrates es humano<br>
+            <strong>Conclusión:</strong> Por lo tanto, Sócrates es mortal<br><br>
+
+            <strong>¿Qué investiga la lógica sobre las inferencias?</strong><br>
+            La lógica investiga <strong>por qué algunas inferencias son aceptables y otras no</strong>. No todas las inferencias son válidas, y la lógica nos ayuda a distinguirlas.<br><br>
+
+            <strong>Ejemplo de inferencia INCORRECTA:</strong><br>
+            <strong>Premisa 1:</strong> Algunos animales son perros<br>
+            <strong>Premisa 2:</strong> Algunos perros son grandes<br>
+            <strong>Conclusión errónea:</strong> Por lo tanto, todos los animales grandes son perros<br><br>
+
+            Esta inferencia es <strong>inválida</strong> porque la conclusión no se sigue necesariamente de las premisas, aunque las premisas sean verdaderas.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Inferencia: derivar conclusiones de premisas.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la Inferencia:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es una inferencia?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Una opinión personal</div>
+          <div class="option">Una emoción intensa</div>
+          <div class="option" data-correct="true">El proceso de derivar conclusiones a partir de premisas</div>
+          <div class="option">Una pregunta sin respuesta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 7: VALIDEZ -->
+    <div class="study-section" data-section="validez">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>✅ Conceptos Clave de la Lógica (Parte 2): Validez</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El segundo concepto fundamental de la lógica es la <strong>Validez</strong>.<br><br>
+            
+            <strong>Validez:</strong><br>
+            Es una <strong>propiedad de los argumentos</strong> en la que las premisas <strong>implican</strong> la conclusión. Un argumento es válido cuando, <strong>si las premisas son verdaderas</strong>, entonces la conclusión <strong>también debe ser verdadera</strong>.<br><br>
+
+            <strong>Importante distinguir:</strong><br>
+            • <strong>Validez:</strong> Se refiere a la <strong>estructura</strong> del argumento (la forma)<br>
+            • <strong>Verdad:</strong> Se refiere al <strong>contenido</strong> de las proposiciones (la materia)<br><br>
+
+            <strong>Un argumento puede ser:</strong><br>
+            <strong>1. Válido con premisas verdaderas →</strong> Conclusión verdadera (argumento <strong>sólido</strong>)<br>
+            <strong>2. Válido con premisas falsas →</strong> Conclusión puede ser verdadera o falsa<br>
+            <strong>3. Inválido →</strong> Aunque las premisas sean verdaderas, la conclusión puede ser falsa<br><br>
+
+            <strong>Ejemplo de argumento VÁLIDO pero con premisas FALSAS:</strong><br>
+            <strong>Premisa 1:</strong> Todos los peces vuelan<br>
+            <strong>Premisa 2:</strong> Las ballenas son peces<br>
+            <strong>Conclusión:</strong> Por lo tanto, las ballenas vuelan<br><br>
+
+            Este argumento es <strong>formalmente válido</strong> (la conclusión se sigue de las premisas), pero las premisas son <strong>falsas</strong>, por lo que la conclusión también es falsa.<br><br>
+
+            <strong>Lo importante:</strong> La lógica se preocupa principalmente de la <strong>validez</strong>, no de la verdad. La verdad de las premisas es tarea de otras disciplinas (ciencias, observación, experiencia).
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Validez: si premisas son verdaderas, conclusión también lo es.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la Validez:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa que un argumento sea válido?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que las premisas son verdaderas</div>
+          <div class="option">Que la conclusión es popular</div>
+          <div class="option" data-correct="true">Que si las premisas son verdaderas, la conclusión debe ser verdadera necesariamente</div>
+          <div class="option">Que el argumento es largo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 8: FALACIAS -->
+    <div class="study-section" data-section="falacias">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>❌ Conceptos Clave de la Lógica (Parte 3): Falacias</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El tercer concepto fundamental son las <strong>Falacias</strong>.<br><br>
+            
+            <strong>Falacias:</strong><br>
+            Son <strong>razonamientos que parecen válidos, pero no lo son</strong>. Son errores en el razonamiento que pueden engañarnos haciéndonos creer que un argumento es correcto cuando en realidad no lo es.<br><br>
+
+            <strong>Tipos de falacias:</strong><br>
+            • <strong>Falacias formales:</strong> Errores en la estructura lógica del argumento<br>
+            • <strong>Falacias informales:</strong> Errores relacionados con el contenido, el lenguaje o el contexto<br><br>
+
+            <strong>¿Por qué se cometen falacias?</strong><br>
+            • <strong>Intencionalmente:</strong> Para persuadir mediante engaño (se llaman <strong>sofismas</strong>)<br>
+            • <strong>Por descuido:</strong> Por falta de atención o conocimiento lógico<br><br>
+
+            <strong>Ejemplos de falacias comunes:</strong><br><br>
+
+            <strong>1. Falacia ad hominem</strong> (ataque a la persona):<br>
+            En lugar de refutar el argumento, se ataca a quien lo presenta.<br>
+            <em>Ejemplo:</em> "No debes creer lo que dice Juan sobre economía porque es un mal estudiante."<br><br>
+
+            <strong>2. Falacia de falsa causa</strong> (post hoc):<br>
+            Asumir que porque algo ocurre después de otra cosa, fue causado por ella.<br>
+            <em>Ejemplo:</em> "Cada vez que uso esta camiseta, mi equipo gana. Esta camiseta causa la victoria."<br><br>
+
+            <strong>3. Falacia del hombre de paja:</strong><br>
+            Distorsionar el argumento del oponente para hacerlo más fácil de refutar.<br>
+            <em>Ejemplo:</em> "Juan dice que deberíamos aumentar el presupuesto educativo. ¿Por qué Juan odia a los médicos y quiere quitarles dinero a los hospitales?"<br><br>
+
+            La lógica enseña a <strong>detectar estas fallas</strong> en la estructura del razonamiento.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Falacias: razonamientos que parecen válidos pero no lo son.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre las Falacias:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es una falacia?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Un argumento siempre verdadero</div>
+          <div class="option">Una opinión diferente</div>
+          <div class="option" data-correct="true">Un razonamiento que parece válido pero contiene un error lógico</div>
+          <div class="option">Un silogismo perfecto</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 9: LÓGICA FORMAL E INFORMAL -->
+    <div class="study-section" data-section="logica-formal-informal">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔀 Lógica Formal vs. Lógica Informal</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La lógica se puede dividir en dos grandes ramas según su enfoque:<br><br>
+            
+            <strong>Lógica Formal:</strong><br>
+            Se enfoca en las <strong>reglas estrictas</strong> para la validez de los argumentos, <strong>independientemente de su contenido</strong>.<br><br>
+
+            <strong>Características de la Lógica Formal:</strong><br>
+            • Estudia la <strong>estructura</strong> pura de los argumentos<br>
+            • Usa <strong>símbolos</strong> y <strong>fórmulas</strong> (como en matemáticas)<br>
+            • Busca la <strong>validez deductiva</strong><br>
+            • No se preocupa por el significado concreto de las proposiciones<br>
+            • <strong>Ejemplo:</strong> Si P entonces Q; P; por lo tanto, Q<br><br>
+
+            <strong>Lógica Informal:</strong><br>
+            Se enfoca en el <strong>desarrollo lingüístico</strong> de los razonamientos y sus falacias en el <strong>lenguaje y pensamiento cotidianos</strong>.<br><br>
+
+            <strong>Características de la Lógica Informal:</strong><br>
+            • Estudia argumentos en <strong>lenguaje natural</strong> (no simbólico)<br>
+            • Se preocupa por el <strong>contexto</strong> y el <strong>significado</strong><br>
+            • Identifica <strong>falacias informales</strong> (errores relacionados con el contenido)<br>
+            • Es más útil para el <strong>análisis crítico</strong> de textos y debates<br>
+            • <strong>Ejemplo:</strong> Detectar un argumento ad hominem en un debate político<br><br>
+
+            <strong>Relación entre ambas:</strong><br>
+            Ambas son complementarias. La lógica formal proporciona las bases teóricas y estructurales, mientras que la lógica informal nos ayuda a aplicar estos principios en situaciones reales de comunicación y argumentación.<br><br>
+
+            <strong>Importancia:</strong><br>
+            El análisis de conceptos, esencial para la filosofía, requiere de <strong>rigor lógico</strong>. Confundir el análisis de conceptos con la mera asociación de ideas es un error que denota formación deficiente en lógica.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Formal: estructura pura. Informal: lenguaje cotidiano.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre Lógica Formal e Informal:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la principal diferencia entre lógica formal e informal?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">No hay diferencia entre ellas</div>
+          <div class="option">La formal es incorrecta y la informal es correcta</div>
+          <div class="option" data-correct="true">La formal usa símbolos y estructura pura; la informal analiza lenguaje cotidiano y contexto</div>
+          <div class="option">La formal es más fácil que la informal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 10: METAFÍSICA - DEFINICIÓN -->
+    <div class="study-section" data-section="metafisica-definicion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌌 La Metafísica: La Realidad Última</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>Metafísica</strong> es una de las ramas más antiguas y básicas de la filosofía, junto con la lógica y la gnoseología (teoría del conocimiento).<br><br>
+            
+            <strong>Definición:</strong><br>
+            La Metafísica es la <strong>rama de la filosofía</strong> que estudia la <strong>estructura, componentes y principios fundamentales de la realidad</strong>.<br><br>
+
+            <strong>Objetivo:</strong><br>
+            Lograr una <strong>comprensión teórica del mundo</strong> y de los principios últimos más elementales de <strong>lo que existe</strong>.<br><br>
+
+            <strong>Etimología:</strong><br>
+            La palabra proviene del griego <em>tà metà tà physikà</em>, que significa <em>"después de la naturaleza"</em> o <em>"más allá de la física"</em>.<br><br>
+
+            <strong>Origen del término:</strong><br>
+            Históricamente, el término surgió porque <strong>Andrónico de Rodas</strong> ordenó los escritos de Aristóteles que trataban sobre el ser <strong>después</strong> de los ocho libros de la <em>Física</em>. Por eso se llamaron <em>"los que vienen después de la física"</em>.<br><br>
+
+            <strong>Aristóteles y la "Filosofía Primera":</strong><br>
+            Aristóteles designó a la metafísica como <strong>"filosofía primera"</strong>, por ser la ciencia que estudia al <strong>ente en cuanto tal</strong>. Es la ciencia más fundamental porque investiga lo que es común a todo lo que existe.<br><br>
+
+            La metafísica intenta responder a las preguntas más profundas y generales sobre la existencia, yendo <em>"más allá"</em> de lo que podemos ver o medir físicamente.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Metafísica: estudia los principios fundamentales de la realidad.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la Metafísica:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué Aristóteles llamó a la metafísica "filosofía primera"?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque fue la primera ciencia inventada</div>
+          <div class="option">Porque es la más fácil de estudiar</div>
+          <div class="option" data-correct="true">Porque estudia al ente en cuanto tal, lo más fundamental de la realidad</div>
+          <div class="option">Porque viene antes de la física en los libros</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 11: PREGUNTAS DE LA METAFÍSICA -->
+    <div class="study-section" data-section="preguntas-metafisica">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>❓ Las Preguntas Centrales de la Metafísica</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La metafísica se ocupa de las preguntas más profundas y fundamentales sobre la existencia y la realidad.<br><br>
+            
+            <strong>La Pregunta Metafísica por Excelencia:</strong><br>
+            <em>"¿Por qué hay ser y no más bien nada?"</em><br><br>
+
+            Esta pregunta, formulada por Leibniz, es considerada la pregunta fundamental de la metafísica. Se pregunta por qué existe <strong>algo</strong> en lugar de que no existiera <strong>nada</strong>. ¿Por qué el universo existe? ¿Por qué hay realidad?<br><br>
+
+            <strong>Otros Conceptos Clave que Estudia la Metafísica:</strong><br><br>
+
+            <strong>• Ser:</strong> ¿Qué significa "ser" o "existir"?<br>
+            <strong>• Nada:</strong> ¿Puede la nada existir? ¿Qué significa "no ser"?<br>
+            <strong>• Existencia:</strong> ¿Qué tipos de cosas existen?<br>
+            <strong>• Esencia:</strong> ¿Qué hace que una cosa sea lo que es?<br>
+            <strong>• Causalidad:</strong> ¿Qué es una causa? ¿Todo tiene una causa?<br>
+            <strong>• Tiempo:</strong> ¿Qué es el tiempo? ¿Existe el pasado y el futuro?<br>
+            <strong>• Espacio:</strong> ¿Qué es el espacio? ¿Es independiente de las cosas?<br><br>
+
+            <strong>Ejemplos de preguntas metafísicas:</strong><br>
+            • ¿Existen los números o son solo invenciones humanas?<br>
+            • ¿La mente es distinta del cuerpo o son lo mismo?<br>
+            • ¿Existe el libre albedrío o todo está determinado?<br>
+            • ¿Dios existe?<br>
+            • ¿El alma es inmortal?<br>
+            • ¿El universo tuvo un comienzo?<br><br>
+
+            Estas preguntas no pueden responderse mediante experimentos científicos, sino que requieren <strong>análisis filosófico y razonamiento</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 "¿Por qué hay ser y no más bien nada?"
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre las preguntas metafísicas:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la pregunta metafísica por excelencia?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">¿Cómo funciona el cerebro?</div>
+          <div class="option">¿Cuántos planetas hay?</div>
+          <div class="option" data-correct="true">¿Por qué hay ser y no más bien nada?</div>
+          <div class="option">¿Qué debemos hacer?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 12: RAMAS DE LA METAFÍSICA -->
+    <div class="study-section" data-section="ramas-metafisica">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌳 Las Ramas de la Metafísica</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La metafísica se subdivide tradicionalmente en varias ramas que estudian aspectos específicos del ser.<br><br>
+            
+            <strong>1. Ontología (Metafísica General):</strong><br>
+            Es la parte de la metafísica que estudia al <strong>ser en cuanto tal</strong>. Es la rama más fundamental.<br><br>
+
+            <strong>¿Qué investiga la Ontología?</strong><br>
+            • Qué entidades <strong>existen</strong> y cuáles no<br>
+            • Qué significa <em>"ser"</em> o <em>"existir"</em><br>
+            • Las categorías fundamentales de lo que existe<br>
+            • La relación entre lo universal y lo particular<br>
+            • Más allá de las apariencias: ¿qué es <strong>realmente</strong> real?<br><br>
+
+            <strong>2. Metafísicas Especiales:</strong><br>
+            Se ocupan de <strong>ámbitos específicos del ser</strong>. Las tres principales son:<br><br>
+
+            <strong>a) Teología Natural (o Teodicea):</strong><br>
+            • Estudia el concepto de <strong>Dios</strong> o ser supremo<br>
+            • A través de la <strong>razón</strong> y el análisis filosófico<br>
+            • <strong>Sin recurrir</strong> a la revelación divina o la fe<br>
+            • Preguntas: ¿Dios existe? ¿Qué atributos tiene? ¿Es el creador?<br><br>
+
+            <strong>b) Psicología Racional (o Antropología Filosófica):</strong><br>
+            • Se ocupa del <strong>alma o mente</strong> del ser humano<br>
+            • Temas: la inmortalidad, la conciencia, la libertad<br>
+            • La relación <strong>cuerpo-alma</strong> (dualismo vs. monismo)<br>
+            • Preguntas: ¿El alma es inmortal? ¿Somos libres? ¿Qué es la conciencia?<br><br>
+
+            <strong>c) Cosmología Filosófica:</strong><br>
+            • Trata sobre la <strong>naturaleza del espacio y el tiempo</strong><br>
+            • Estudia el <strong>mundo</strong> o universo como totalidad<br>
+            • Preguntas: ¿El universo es infinito? ¿Tuvo un comienzo? ¿Qué es el tiempo?<br><br>
+
+            Todas estas ramas trabajan juntas para dar una <strong>comprensión completa</strong> de la estructura fundamental de la realidad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Ontología: ser en general. Metafísicas especiales: ámbitos específicos.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏆 Verificación final</h4>
+          <p>Síntesis sobre las ramas de la Metafísica:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué estudia la Ontología?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Solo a Dios</div>
+          <div class="option">Solo el alma humana</div>
+          <div class="option" data-correct="true">Al ser en cuanto tal, lo más fundamental de la realidad</div>
+          <div class="option">Solo el espacio y el tiempo</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
+
+</body>
+</html>

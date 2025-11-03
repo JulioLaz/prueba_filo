@@ -10,7 +10,99 @@ const startTime = performance.now();
 // 🎮 CONFIGURACIÓN DE TEMAS DISPONIBLES
 // ========================================
 
-const AVAILABLE_THEMES = [
+const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
+[
+    {
+        id: 'origen',
+        title: 'Origen de la Filosofía: Del Mito al Logos',
+        description: 'Etimología, asombro y el primer gran problema: la búsqueda racional del Arché (principio) en los Presocráticos.',
+        icon: '📜',
+        gradient: 'linear-gradient(135deg, #1e90ff 0%, #00bfff 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 10,
+        timeEstimate: 10,
+        prerequisites: [],
+        color: '#1e90ff',
+        contentFile: 'themes/origen_filosofia/content.html'
+    },
+    {
+        id: 'presocraticos',
+        title: 'Los Presocráticos: El Arché y la Naturaleza',
+        description: 'Explora a los primeros filósofos: Tales (agua), Heráclito (cambio) y Parménides (ser inmutable). El nacimiento de la Metafísica.',
+        icon: '🌊',
+        gradient: 'linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 10,
+        timeEstimate: 10,
+        prerequisites: ['origen'],
+        color: '#4CAF50',
+        contentFile: 'themes/presocraticos/content.html'
+    },
+    {
+        id: 'socrates',
+        title: 'Sócrates: El Giro Antropológico y la Mayéutica',
+        description: 'La vida de Sócrates, el "Solo sé que no sé nada", el método de la Mayéutica y la búsqueda de las definiciones universales (intelectualismo moral).',
+        icon: '🧠',
+        gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 12,
+        timeEstimate: 12,
+        prerequisites: ['origen'],
+        color: '#FFD700',
+        contentFile: 'themes/socrates/content.html'
+    },
+    {
+        id: 'platon',
+        title: 'Platón: El Mundo de las Ideas y la Caverna',
+        description: 'Aprende la Teoría de las Ideas, el dualismo cuerpo/alma, el camino del conocimiento (dialéctica) y el alegoría de la caverna.',
+        icon: '🌌',
+        gradient: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 15,
+        timeEstimate: 15,
+        prerequisites: ['socrates'],
+        color: '#9C27B0',
+        contentFile: 'themes/platon/content.html'
+    },
+    {
+        id: 'aristoteles',
+        title: 'Aristóteles: La Lógica y la Sustancia',
+        description: 'El Estagirita: Lógica (Órganon), teoría de la Sustancia (Materia y Forma) y su visión sistemática del conocimiento como base de la ciencia.',
+        icon: '📐',
+        gradient: 'linear-gradient(135deg, #607D8B 0%, #9E9E9E 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 13,
+        timeEstimate: 13,
+        prerequisites: ['platon'],
+        color: '#607D8B',
+        contentFile: 'themes/aristoteles/content.html'
+    },
+    {
+        id: 'metodo',
+        title: 'El Método Filosófico: Duda, Diálogo y Crítica',
+        description: 'Análisis de las herramientas esenciales: la Duda metódica, el Diálogo racional (dialéctica) y la Crítica constante como motor de la filosofía.',
+        icon: '🔎',
+        gradient: 'linear-gradient(135deg, #FF5722 0%, #FF9800 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 8,
+        timeEstimate: 8,
+        prerequisites: ['socrates', 'platon', 'aristoteles'],
+        color: '#FF5722',
+        contentFile: 'themes/metodo/content.html'
+    },
+    {
+        id: 'ramas',
+        title: 'Ramas Clásicas: Metafísica, Ética y Lógica',
+        description: 'Panorama de los grandes campos de estudio: ¿Qué es el ser? (Metafísica), ¿Cómo vivir? (Ética), ¿Cómo razonar? (Lógica).',
+        icon: '🌳',
+        gradient: 'linear-gradient(135deg, #009688 0%, #4D96FF 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 10,
+        timeEstimate: 10,
+        prerequisites: ['aristoteles'],
+        color: '#009688',
+        contentFile: 'themes/ramas/content.html'
+    },
     {
         id: "cassirer",
         title: "Ernst Cassirer: El ser humano como animal simbólico",
