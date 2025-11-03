@@ -49,8 +49,8 @@
   margin: 1rem;
   color: #f0f0f0;
   border: 2px solid rgba(128, 90, 213, 0.3); /* borde violeta tenue */
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); /* sombra violeta suave */
-  /* box-shadow: 0 0 25px rgba(128, 90, 213, 0.45); sombra violeta suave */
+  /* box-shadow: 0 0 18px rgba(255, 215, 0, 0.6); sombra violeta suave */
+  box-shadow: 0 0 20px rgba(128, 90, 213, 0.45); 
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -126,7 +126,7 @@
 .mapa-body{padding:16px;overflow:auto;max-height:calc(90vh - 56px)}
 
 /* Botones */
-.btn{appearance:none;border:1px solid #2a3c6f;background:linear-gradient(180deg,#101a33,#0c142b);color:#e6ecff;padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700}
+.btn{appearance:none;border:1px solid #2a3c6f;color:#e6ecff;padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700}
 .btn:hover{filter:brightness(1.08)}
 .sheet-actions{display:flex;align-items:center;gap:10px}
 
