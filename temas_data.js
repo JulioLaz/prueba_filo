@@ -162,7 +162,7 @@ const TOPICS = {
       startTime: 1,
       endTime: 660,                       // ≈11:00
       title: 'Del Mito al Logos: Etimología y origen histórico',
-      duration: '≈11:00'
+      duration: '11:00'
     },
 
 
@@ -184,11 +184,11 @@ const TOPICS = {
     },
     // 1.4 - Platón: Mundo de las Ideas y Conocimiento
     platon: {
-        youtubeId: 'jsoTdLmjDDc',
+        youtubeId: '0cqb5BBcctY',
         startTime: 1,
         endTime: 541, // 9 minutos
-        title: 'Teoría de las Ideas de Platón (Explicada con vacas)',
-        duration: '9:00'
+        title: 'Platón: ideas, alma y política',
+        duration: '14:00'
     },
     // 1.5 - Aristóteles: Lógica, Ética y Metafísica
     aristoteles: {
