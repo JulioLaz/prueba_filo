@@ -23,7 +23,7 @@ const TOPICS = {
   etica_aristoteles: {
     icon: '🏛️',
     name: 'Aristóteles',
-    desc: 'Felicidad como fin, virtud y término medio. (Ej. *Ética a Nicómaco*)',
+    desc: `Felicidad como fin, virtud y término medio. (Ej. Ética a Nicómaco)`,
     biography: 'Filósofo griego (384–322 a. C.). Defendió la eudaimonía (florecimiento) como fin humano y la virtud como hábito adquirido que halla el “término medio”, guiado por la prudencia (phronesis). Obra clave: *Ética a Nicómaco*.'
   },
 

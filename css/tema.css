@@ -23,7 +23,7 @@
   .title .icon{ font-size:28px }
   .chip{ padding:6px 10px; border-radius:999px; background:#1c2540; color:#9fb0ff; border:1px solid #2a3763; font-size:12px }
 
-  .hero{ background:linear-gradient(135deg,rgba(107,124,255,.14), rgba(155,107,255,.10)); border:1px solid #25305a; border-radius:var(--radius); padding:18px; margin-bottom:18px }
+  .hero{ background:linear-gradient(135deg,rgba(107,124,255,.14), rgba(155,107,255,.10)); border:1px solid #25305a; border-radius:var(--radius); padding:18px; margin-bottom:18px;box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
   .hero h1{ margin:0 0 6px; font-size:22px }
   .muted{ color:var(--muted) }
 
