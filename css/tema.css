@@ -42,6 +42,41 @@
   .card h3{ margin:0; font-size:18px }
   .card p{ margin:0; color:var(--muted); font-size:14px }
 
+.card {
+  background-color: #1e1e2f; /* fondo dark tipo Discord */
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem;
+  color: #f0f0f0;
+  border: 1px solid rgba(128, 90, 213, 0.3); /* borde violeta tenue */
+  box-shadow: 0 0 12px rgba(128, 90, 213, 0.4); /* sombra violeta suave */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {box-shadow: 0 0 20px rgba(128, 90, 213, 0.6); /* sombra más intensa al hover */
+  transform: scale(1.02);}
+
+/* Variante dorada opcional */
+.card.gold {border: 1px solid rgba(255, 215, 0, 0.3); box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);}
+
+.card.gold:hover {box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);}
+
+/* Icono y título */
+.card-icon {font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem;}
+
+/* Botón */
+.card .btn-primary {
+  background-color: #805ad5; /* violeta Discord */
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card .btn-primary:hover {background-color: #a78bfa; /* violeta claro al hover */}
+
   .status{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:8px }
   .status small{ color:#97a6d9 }
 
@@ -346,3 +381,4 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .sheet.compact-pad #videoFrameSlot,
 .sheet.compact-pad #videoFrameSlot iframe,
 .sheet.compact-pad .video-container-wrapper{ min-height:unset !important }
+
