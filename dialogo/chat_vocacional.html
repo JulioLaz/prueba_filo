@@ -208,6 +208,9 @@
 
         .mensaje-alumno .mensaje-avatar {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
         }
 
         .mensaje-contenido {
@@ -621,6 +624,10 @@
             esperandoRespuesta: false
         };
 
+        // Variable global para almacenar las iniciales del alumno
+        let inicialesAlumno = '👤';
+
+
         // Elementos DOM
         const elementos = {
             mensajesContainer: document.getElementById('mensajesContainer'),
@@ -666,7 +673,7 @@
             div.className = `mensaje mensaje-${esOrientador ? 'orientador' : 'alumno'}`;
 
             div.innerHTML = `
-                <div class="mensaje-avatar">${esOrientador ? '🎓' : '👤'}</div>
+                <div class="mensaje-avatar">${esOrientador ? '🎓' : inicialesAlumno}</div>
                 <div class="mensaje-contenido">
                     <div class="mensaje-header">
                         <span class="mensaje-nombre">${esOrientador ? 'Orientador' : 'Tú'}</span>
@@ -942,6 +949,37 @@
             return base.split(/\s+/)[0];
         }
 
+        function obtenerIniciales(nombre) {
+            if (!nombre || nombre.trim() === '') return '👤';
+            
+            // Limpiar el nombre
+            const nombreLimpio = nombre.trim();
+            
+            // Si es un email, tomar antes del @
+            const nombreSinEmail = nombreLimpio.includes('@') 
+                ? nombreLimpio.split('@')[0] 
+                : nombreLimpio;
+            
+            // Dividir por espacios
+            const palabras = nombreSinEmail.split(/\s+/).filter(p => p.length > 0);
+            
+            if (palabras.length === 0) return '👤';
+            
+            // Si hay una sola palabra, tomar las primeras 2 letras
+            if (palabras.length === 1) {
+                const palabra = palabras[0];
+                if (palabra.length === 1) {
+                    return palabra.toUpperCase();
+                }
+                return (palabra.substring(0, 2)).toUpperCase();
+            }
+            
+            // Si hay dos o más palabras, tomar primera letra de cada una (máximo 2)
+            return (palabras[0][0] + palabras[1][0]).toUpperCase();
+        }
+
+
+
         async function leerDatosUsuario(uid) {
             if (!uid) return null;
             try {
@@ -997,6 +1035,11 @@
 
             const nombre = obtenerNombre(userData, user);
             const edad = calcularEdad(userData?.fechaNacimiento);
+            
+            // Obtener nombre completo para las iniciales
+            const nombreCompleto = userData?.nombres || userData?.displayName || user?.displayName || userData?.email || user?.email || '';
+            inicialesAlumno = obtenerIniciales(nombreCompleto);
+            
             const mensaje = generarSaludoPersonalizado(nombre, edad);
 
             agregarMensaje('orientador', mensaje);
@@ -1033,6 +1076,7 @@
                 if (pollAttempts >= 15) {
                     clearInterval(pollId);
                     if (!saludoMostrado) {
+                        inicialesAlumno = '👤'; // Emoji por defecto si no hay usuario
                         agregarMensaje('orientador', generarSaludoPersonalizado(null, null));
                         elementos.inputMensaje.focus();
                     }
@@ -1042,6 +1086,7 @@
             // Timeout de seguridad
             setTimeout(() => {
                 if (!saludoMostrado) {
+                    inicialesAlumno = '👤'; // Emoji por defecto si no hay usuario
                     agregarMensaje('orientador', generarSaludoPersonalizado(null, null));
                     elementos.inputMensaje.focus();
                 }
