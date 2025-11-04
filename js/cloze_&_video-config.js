@@ -270,7 +270,7 @@ class VideoClozeModule {
           // args: [1.25] 
         };
         this.state.videoIframe?.contentWindow?.postMessage(JSON.stringify(message), '*');
-        console.log('⚡ Velocidad configurada a 1.25x');
+        console.log(`⚡🎦🎦🎦🎦🎦🎦🎦 Velocidad configurada a ${args}x`);
       } catch (e) {
         console.log('⚠️ Error configurando velocidad:', e);
       }
