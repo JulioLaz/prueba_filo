@@ -176,7 +176,8 @@ const TOPICS = {
     },
     // 1.3 - El Giro Antropológico: Sócrates
     socrates: {
-        youtubeId: '81l43tKcMxQ',
+        youtubeId: 'OD7klEUAq1Y',
+        // youtubeId: '81l43tKcMxQ',
         startTime: 1,
         endTime: 451, // 7 minutos y 30 segundos
         title: 'La mayéutica de Sócrates',

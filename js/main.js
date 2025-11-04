@@ -34,7 +34,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 10,
         timeEstimate: 10,
-        prerequisites: ['origen'],
+        prerequisites: [],
+        // prerequisites: ['origen'],
         color: '#4CAF50',
         contentFile: 'themes/presocraticos/content.html'
     },
@@ -47,7 +48,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 12,
         timeEstimate: 12,
-        prerequisites: ['origen'],
+        prerequisites: [],
+        // prerequisites: ['origen'],
         color: '#FFD700',
         contentFile: 'themes/socrates/content.html'
     },
@@ -60,7 +62,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 15,
         timeEstimate: 15,
-        prerequisites: ['socrates'],
+        prerequisites: [],
+        // prerequisites: ['socrates'],
         color: '#9C27B0',
         contentFile: 'themes/platon/content.html'
     },
@@ -73,7 +76,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 13,
         timeEstimate: 13,
-        prerequisites: ['platon'],
+        prerequisites: [],
+        // prerequisites: ['platon'],
         color: '#607D8B',
         contentFile: 'themes/aristoteles/content.html'
     },
@@ -86,7 +90,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 8,
         timeEstimate: 8,
-        prerequisites: ['socrates', 'platon', 'aristoteles'],
+        prerequisites: [],
+        // prerequisites: ['socrates', 'platon', 'aristoteles'],
         color: '#FF5722',
         contentFile: 'themes/metodo/content.html'
     },
@@ -99,7 +104,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         difficulty: 'UNIDAD_I',
         questions: 10,
         timeEstimate: 10,
-        prerequisites: ['aristoteles'],
+        prerequisites: [],
+        // prerequisites: ['aristoteles'],
         color: '#009688',
         contentFile: 'themes/ramas/content.html'
     },
