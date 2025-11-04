@@ -266,7 +266,8 @@ class VideoClozeModule {
         const message = { 
           event: 'command', 
           func: 'setPlaybackRate', 
-          args: [1.25] 
+          args: [1.1] 
+          // args: [1.25] 
         };
         this.state.videoIframe?.contentWindow?.postMessage(JSON.stringify(message), '*');
         console.log('⚡ Velocidad configurada a 1.25x');

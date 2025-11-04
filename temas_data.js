@@ -198,7 +198,7 @@ const TOPICS = {
         startTime: 1,
         endTime: 391, // 6 minutos y 30 segundos
         title: 'Aristóteles: El concepto de Sustancia',
-        duration: '6:30'
+        duration: '18:30'
     },
     // 1.6 - El Método Filosófico: Duda, Diálogo y Crítica
     metodo: {
