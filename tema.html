@@ -741,7 +741,7 @@ function openVideoModal() {
         const message = { event: 'command', func: 'setPlaybackRate', args: [1] };
         // const message = { event: 'command', func: 'setPlaybackRate', args: [1.25] };
         videoIframe.contentWindow?.postMessage(JSON.stringify(message), '*');
-        console.log(`⚡🎦🎦🎦🎦 Velocidad configurada a ${args}x 🎦🎦🎦🎦`);
+        console.log(`⚡🎦🎦🎦🎦 Velocidad configurada a ${message.args[0]}xx 🎦🎦🎦🎦`);
 ;
       }, 2000);
     } catch(e) {
