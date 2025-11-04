@@ -738,9 +738,11 @@ function openVideoModal() {
     // Configurar velocidad
     try {
       setTimeout(() => {
-        const message = { event: 'command', func: 'setPlaybackRate', args: [1.25] };
+        const message = { event: 'command', func: 'setPlaybackRate', args: [1] };
+        // const message = { event: 'command', func: 'setPlaybackRate', args: [1.25] };
         videoIframe.contentWindow?.postMessage(JSON.stringify(message), '*');
-        console.log('⚡ [Debug] Velocidad configurada a 1.25x');
+        console.log(`⚡🎦🎦🎦🎦 Velocidad configurada a ${args}x 🎦🎦🎦🎦`);
+;
       }, 2000);
     } catch(e) {
       console.log('⚠️ [Debug] Error configurando velocidad:', e);
