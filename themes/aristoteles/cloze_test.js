@@ -15,7 +15,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando se dice que murió un año después que Alejandro Magno.",
         "💡 A continuación se comenta que vivió la muerte de la Grecia clásica y la entrada en el helenismo."
       ],
-      videoSegment: { start: 6, end: 26 } // ≈ 7.54–25.12
+      videoSegment: { start: 5, end: 26 } // ≈ 7.54–25.12
     },
 
     // 2) Academia de Platón y fundación del Liceo
@@ -29,7 +29,7 @@ window.CLOZE_TEST = {
         "💡 Más adelante se menciona el año 335 a. C. y la fundación del Liceo.",
         "💡 Se dice que el Liceo fue equivalente a la universidad más famosa del mundo."
       ],
-      videoSegment: { start: 31, end: 82 } // 31.36–81.84
+      videoSegment: { start: 30, end: 82 } // 31.36–81.84
     },
 
     // 3) Obra y campos que trabaja
@@ -43,7 +43,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando se dice 'Escribió casi sobre todo lo imaginable'.",
         "💡 A continuación se enumeran las disciplinas sobre las que escribió."
       ],
-      videoSegment: { start: 81, end: 96 } // 81.84–95.32
+      videoSegment: { start: 80, end: 96 } // 81.84–95.32
     },
 
     // 4) Intento de escapar de Platón, aciertos y errores
@@ -71,7 +71,7 @@ window.CLOZE_TEST = {
         "💡 A continuación se enumeran las cuatro fases del conocimiento.",
         "💡 Presta atención a cómo define la ciencia como conocer el porqué de las cosas."
       ],
-      videoSegment: { start: 141, end: 176 } // 141.20–175.20
+      videoSegment: { start: 138, end: 176 } // 141.20–175.20
     },
 
     // 6) Ciencias de lo necesario y de lo posible
@@ -85,7 +85,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando nombra matemáticas, física y metafísica como ciencias de lo necesario.",
         "💡 Después habla de ética, política, retórica y estética como ciencias de lo posible."
       ],
-      videoSegment: { start: 204, end: 225 } // 204.68–224.44
+      videoSegment: { start: 200, end: 225 } // 204.68–224.44
     },
 
     // 7) Ciencia como demostración y primeros principios
