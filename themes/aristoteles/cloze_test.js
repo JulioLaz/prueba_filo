@@ -15,7 +15,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando se dice que murió un año después que Alejandro Magno.",
         "💡 A continuación se comenta que vivió la muerte de la Grecia clásica y la entrada en el helenismo."
       ],
-      videoSegment: { start: 7, end: 26 } // ≈ 7.54–25.12
+      videoSegment: { start: 6, end: 26 } // ≈ 7.54–25.12
     },
 
     // 2) Academia de Platón y fundación del Liceo
