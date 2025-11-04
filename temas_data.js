@@ -193,7 +193,8 @@ const TOPICS = {
     },
     // 1.5 - Aristóteles: Lógica, Ética y Metafísica
     aristoteles: {
-        youtubeId: 'jAnCP68Ch1s',
+        // youtubeId: 'jAnCP68Ch1s',
+        youtubeId: 'K0Dn-_ZhmyM',
         startTime: 1,
         endTime: 391, // 6 minutos y 30 segundos
         title: 'Aristóteles: El concepto de Sustancia',
