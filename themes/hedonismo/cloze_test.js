@@ -107,7 +107,7 @@ window.CLOZE_TEST = {
   items: [
     {
       id: "h1",
-      text: "El hedonismo es la doctrina moral que considera que el [[placer]] es el máximo [[bien]], y por ende, las acciones placenteras son aquellas que pueden ser consideradas como [[buenas]].",
+      text: "1- El hedonismo es la doctrina moral que considera que el [[placer]] es el máximo [[bien]], y por ende, las acciones placenteras son aquellas que pueden ser consideradas como [[buenas]].",
       feedbackOK: "¡Correcto! Has captado la definición fundamental del hedonismo.",
       feedbackKO: "Revisa la definición básica del hedonismo: ¿qué es el máximo bien?",
       videoHints: [
@@ -119,7 +119,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h2",
-      text: "Edoné en griego significaba precisamente [[placer]].",
+      text: "2- Edoné en griego significaba precisamente [[placer]].",
       feedbackOK: "¡Perfecto! Conoces la etimología del término hedonismo.",
       feedbackKO: "Piensa en la raíz griega de la palabra hedonismo.",
       videoHints: [
@@ -129,7 +129,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h3",
-      text: "Dentro de la filosofía, el máximo referente del hedonismo es [[Epicuro|Ã‰picuro|epicuro]].",
+      text: "3- Dentro de la filosofía, el máximo referente del hedonismo es [[Epicuro|Ã‰picuro|epicuro]].",
       feedbackOK: "¡Exacto! Epicuro es el filósofo hedonista por excelencia.",
       feedbackKO: "Recuerda quién es el principal filósofo hedonista de la antigüedad.",
       videoHints: [
@@ -139,7 +139,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h4",
-      text: "La máxima de Epicuro era lisa y llanamente [[aumentar]] el placer y [[disminuir]] el dolor.",
+      text: "4- La máxima de Epicuro era lisa y llanamente [[aumentar]] el placer y [[disminuir]] el dolor.",
       feedbackOK: "¡Correcto! Esta es la máxima epicúrea fundamental: más placer, menos dolor.",
       feedbackKO: "Piensa en los dos objetivos básicos de la ética epicúrea.",
       videoHints: [
@@ -150,7 +150,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h5",
-      text: "La máxima de Epicuro se lograba a través de la búsqueda de la [[ataraxia|atalaxia]].",
+      text: "5- La máxima de Epicuro se lograba a través de la búsqueda de la [[ataraxia|atalaxia]].",
       feedbackOK: "¡Perfecto! La ataraxia es el estado de tranquilidad del alma.",
       feedbackKO: "Recuerda el concepto griego para la paz mental y ausencia de perturbación.",
       videoHints: [
@@ -160,7 +160,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h6",
-      text: "Epicuro consideraba que el máximo placer es tener una vida [[simple]], [[moderada]], complementada con [[discusiones filosóficas|discusiones]] con amigos.",
+      text: "6- Epicuro consideraba que el máximo placer es tener una vida [[simple]], [[moderada]], complementada con [[discusiones filosóficas|discusiones]] con amigos.",
       feedbackOK: "¡Excelente! El hedonismo epicúreo no es desenfrenado, sino moderado y reflexivo.",
       feedbackKO: "Recuerda: el placer epicúreo no es excesivo, sino equilibrado y contemplativo.",
       videoHints: [
@@ -172,7 +172,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h7",
-      text: "Epicuro consideraba que no todos los [[deseos]] ni todos los [[placeres]] eran iguales, y aprender a [[distinguir]] entre ellos era la clave para alcanzar el máximo placer.",
+      text: "7- Epicuro consideraba que no todos los [[deseos]] ni todos los [[placeres]] eran iguales, y aprender a [[distinguir]] entre ellos era la clave para alcanzar el máximo placer.",
       feedbackOK: "¡Correcto! La sabiduría epicúrea consiste en discernir entre tipos de deseos.",
       feedbackKO: "Piensa en la importancia de clasificar y elegir bien nuestros deseos.",
       videoHints: [
@@ -184,7 +184,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h8",
-      text: "Los deseos [[naturales]] y [[necesarios]] son los más básicos como alimentarse, saciar la sed, abrigarse e incluso el sentido de la seguridad.",
+      text: "8- Los deseos [[naturales]] y [[necesarios]] son los más básicos como alimentarse, saciar la sed, abrigarse e incluso el sentido de la seguridad.",
       feedbackOK: "¡Perfecto! Estos son los deseos fundamentales para la supervivencia.",
       feedbackKO: "Recuerda la primera categoría: los deseos más esenciales para vivir.",
       videoHints: [
@@ -195,29 +195,29 @@ window.CLOZE_TEST = {
     },
     {
       id: "h9",
-      text: "Los deseos [[naturales]] [[no necesarios|innecesarios]] pueden ser la conversación amena, la satisfacción sexual e incluso las artes.",
+      text: "9- Los deseos [[naturales]] [[no necesarios|innecesarios]] pueden ser la conversación amena, la satisfacción sexual e incluso las artes.",
       feedbackOK: "¡Excelente! Estos deseos son naturales pero no indispensables para vivir.",
       feedbackKO: "Piensa en la segunda categoría: naturales pero no esenciales.",
       videoHints: [
         "💡 Opciones: artificiales | naturales | políticos | religiosos | económicos | militares",
         "💡 Opciones: necesarios | no necesarios | obligatorios | esenciales | vitales | críticos"
       ],
-      videoSegment: { start: 75, end: 83 } // 1:15 - 1:23 (restado 2 seg de 77.06)
+      videoSegment: { start: 72, end: 83 } // 1:15 - 1:23 (restado 2 seg de 77.06)
     },
     {
       id: "h10",
-      text: "Los deseos que no son ni [[naturales]] ni [[necesarios]] incluyen la fama, el prestigio, el poder político y la búsqueda de gloria.",
+      text: "10- Los deseos que no son ni [[naturales]] ni [[necesarios]] incluyen la fama, el prestigio, el poder político y la búsqueda de gloria.",
       feedbackOK: "¡Correcto! Estos son los deseos más problemáticos según Epicuro.",
       feedbackKO: "Recuerda la tercera categoría: ni naturales ni necesarios.",
       videoHints: [
         "💡 Opciones: naturales | artificiales | básicos | esenciales | primarios | innatos",
         "💡 Opciones: necesarios | opcionales | vitales | indispensables | obligatorios | esenciales"
       ],
-      videoSegment: { start: 85, end: 95 } // 1:25 - 1:35 (restado 2 seg de 87.18)
+      videoSegment: { start: 82, end: 95 } // 1:25 - 1:35 (restado 2 seg de 87.18)
     },
     {
       id: "h11",
-      text: "A los deseos naturales y necesarios hay que satisfacerlos de la manera más [[económica]] y [[simple]] posible.",
+      text: "11- A los deseos naturales y necesarios hay que satisfacerlos de la manera más [[económica]] y [[simple]] posible.",
       feedbackOK: "¡Perfecto! La moderación y simplicidad son clave en el hedonismo epicúreo.",
       feedbackKO: "Piensa en cómo debemos satisfacer los deseos más básicos según Epicuro.",
       videoHints: [
@@ -228,7 +228,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h12",
-      text: "Los deseos naturales innecesarios podemos perseguirlos pero sin caer en el [[exceso]], guiados por una búsqueda [[razonable]] y [[moderada]].",
+      text: "12- Los deseos naturales innecesarios podemos perseguirlos pero sin caer en el [[exceso]], guiados por una búsqueda [[razonable]] y [[moderada]].",
       feedbackOK: "¡Excelente! Podemos disfrutarlos con medida y prudencia.",
       feedbackKO: "Recuerda: estos deseos son aceptables si no nos controlan.",
       videoHints: [
@@ -240,7 +240,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h13",
-      text: "No debemos arriesgar la [[salud]], las [[amistades]] o incluso nuestra [[economía]] persiguiendo deseos naturales innecesarios.",
+      text: "13- No debemos arriesgar la [[salud]], las [[amistades]] o incluso nuestra [[economía]] persiguiendo deseos naturales innecesarios.",
       feedbackOK: "¡Correcto! El placer no debe comprometer aspectos fundamentales de nuestra vida.",
       feedbackKO: "Piensa en qué cosas no debemos sacrificar por placeres secundarios.",
       videoHints: [
@@ -252,7 +252,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h14",
-      text: "Los deseos no naturales y no necesarios hay que [[evitar]] su persecución porque el placer que nos pueda dar es totalmente [[efímero]].",
+      text: "14- Los deseos no naturales y no necesarios hay que [[evitar]] su persecución porque el placer que nos pueda dar es totalmente [[efímero]].",
       feedbackOK: "¡Perfecto! Estos deseos traen placer pasajero y sufrimiento duradero.",
       feedbackKO: "Recuerda qué dice Epicuro sobre la fama, el poder y la gloria.",
       videoHints: [
@@ -263,7 +263,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "h15",
-      text: "Problemática del hedonismo: ¿acaso no sería [[egoísta]] perseguir solamente el placer? ¿Podemos ser virtuosos aun cuando no genere [[placer]]?",
+      text: "15- Problemática del hedonismo: ¿acaso no sería [[egoísta]] perseguir solamente el placer? ¿Podemos ser virtuosos aun cuando no genere [[placer]]?",
       feedbackOK: "¡Excelente reflexión crítica! Has captado las objeciones al hedonismo.",
       feedbackKO: "Piensa en las críticas que se le hacen al hedonismo como doctrina moral.",
       videoHints: [
