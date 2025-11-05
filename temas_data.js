@@ -107,12 +107,13 @@ const TOPICS = {
         duration: '5:47'
       }, // https://www.youtube.com/shorts/0s73cG7fJoA
       hedonismo: {
-        youtubeId: '0s73cG7fJoA',
+        youtubeId: 'Yt0Yjtn0VSc', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
+        // youtubeId: '0s73cG7fJoA', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
         startTime: 1,
         endTime: 58,
         title: 'Hedonismo',
         duration: '58',
-        type: 'short'
+        // type: 'short'
       },
       utilitarismo: { //https://youtu.be/YU19bTA656I?si=ns1OzYx5AZyJPQKV
         youtubeId: 'YU19bTA656I',
