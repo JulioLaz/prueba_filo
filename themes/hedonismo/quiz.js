@@ -16,7 +16,7 @@ const HEDONISMO_THEME = {
     icon: '🌸',
     gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
     difficulty: 'intermedio',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/hedonismo.html',
     
     // Metadata del tema

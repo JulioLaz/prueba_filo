@@ -16,7 +16,7 @@ const UTILITARISMO_THEME = {
     icon: '🎯',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     difficulty: 'intermedio',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/utilitarismo.html',
 
     // Metadata del tema

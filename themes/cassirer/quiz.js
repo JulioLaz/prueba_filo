@@ -15,7 +15,7 @@ const CASSIRER_THEME = {
     icon: '🎭',
     gradient: 'linear-gradient(135deg, #6a85b6 0%, #bac8e0 100%)',
     difficulty: 'basico',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/cassirer.html',
 
     // Metadata del tema

@@ -974,7 +974,7 @@ function convertLegacyToModular(legacyTheme) {
             quiz: {
                 enabled: true,
                 questions: legacyTheme.questions || 10,
-                timeLimit: 30,
+                timeLimit: 50,
                 timeEstimate: legacyTheme.timeEstimate || 10
             },
             conceptos: { enabled: true, levels: 6, timeEstimate: 8 },

@@ -16,7 +16,7 @@ const ANTROPOCENTRISMO_THEME = {
     icon: '🎭',
     gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
     difficulty: 'intermedio',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/antropocentrismo.html',
     
     // Metadata del tema

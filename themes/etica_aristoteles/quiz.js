@@ -15,7 +15,7 @@ const ETICA_ARISTOTELES_THEME  = {
     icon: '🏛️',
     gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
     difficulty: 'intermedio',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/etica_aristoteles.html',
     
     // Metadata del tema

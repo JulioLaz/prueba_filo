@@ -17,7 +17,7 @@ const PRAGMATISMO_THEME = {
   icon: "🛠️",
   gradient: "linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)",
   difficulty: "intermedio",
-  timeLimit: 30,
+  timeLimit: 50,
   contentFile: "content/pragmatismo.html",
 
   // Metadata del tema

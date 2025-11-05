@@ -104,7 +104,7 @@ const NOMBRE_TEMA_THEME = {
     icon: '🔥',
     gradient: 'linear-gradient(135deg, #color1, #color2)',
     difficulty: 'basico', // basico | intermedio | avanzado
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/nombre-tema.html',
     
     questions: [

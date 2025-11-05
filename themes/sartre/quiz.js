@@ -14,7 +14,7 @@ const SARTRE_THEME = {
   icon: '🌀',
   gradient: 'linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)',
   difficulty: 'intermedio',
-  timeLimit: 30,
+  timeLimit: 50,
   contentFile: 'content/sartre.html',
 
   // ─────────────────────────────────────────────────────────

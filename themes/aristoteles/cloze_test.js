@@ -57,7 +57,7 @@ window.CLOZE_TEST = {
         "💡 Luego se comenta que su lógica es correcta y su ética influye aún.",
         "💡 Después se habla de su cosmología geocéntrica y del freno al avance científico."
       ],
-      videoSegment: { start: 95, end: 139 } // 95.32–139.88
+      videoSegment: { start: 93, end: 139 } // 95.32–139.88
     },
 
     // 5) Concepto de ciencia y cuatro fases del conocimiento
@@ -127,7 +127,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando pone el ejemplo de Sócrates es mortal.",
         "💡 Luego identifica sujeto, predicado y término medio."
       ],
-      videoSegment: { start: 288, end: 317 } // 288.76–317.08
+      videoSegment: { start: 285, end: 317 } // 288.76–317.08
     },
 
     // 10) Categorías y sustancia primera/segunda
@@ -141,7 +141,7 @@ window.CLOZE_TEST = {
         "💡 Escucha el ejemplo de 'Sócrates es un hombre de 80 kilos…'.",
         "💡 Luego explica qué es la sustancia primera y la segunda sustancia."
       ],
-      videoSegment: { start: 394, end: 455 } // 394.04–454.76
+      videoSegment: { start: 392, end: 455 } // 394.04–454.76
     },
 
     // 11) Materia y forma, cambio sustancial
@@ -155,7 +155,7 @@ window.CLOZE_TEST = {
         "💡 Justo después introduce materia y forma como dos principios.",
         "💡 Luego explica que lo que cambia en el cambio sustancial es la forma."
       ],
-      videoSegment: { start: 544, end: 566 } // 544.48–565.96
+      videoSegment: { start: 542, end: 566 } // 544.48–565.96
     },
 
     // 12) Acto y potencia
@@ -197,7 +197,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando habla de la zona sublunar y supralunar y del éter.",
         "💡 Después relaciona el principio de causalidad con el primer motor inmóvil."
       ],
-      videoSegment: { start: 755, end: 900 } // 755.84–900.04
+      videoSegment: { start: 750, end: 900 } // 755.84–900.04
     },
 
     // 15) Alma (psiqué) y nous
@@ -211,7 +211,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando enumera psiqué vegetativa, sensitiva y racional.",
         "💡 Después distingue entre nous pasivo y nous poietikós."
       ],
-      videoSegment: { start: 917, end: 950 } // 917.04–950.04
+      videoSegment: { start: 910, end: 950 } // 917.04–950.04
     },
 
     // 16) Virtud ética, virtudes dianoéticas y zoon politikon
@@ -225,7 +225,7 @@ window.CLOZE_TEST = {
         "💡 Más adelante distingue virtudes dianoéticas prácticas y teóricas.",
         "💡 Luego define al hombre como animal político, que necesita vivir en comunidad."
       ],
-      videoSegment: { start: 968, end: 1015 } // 968.04–1015.04
+      videoSegment: { start: 960, end: 1015 } // 968.04–1015.04
     }
   ]
 };

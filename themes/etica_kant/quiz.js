@@ -16,7 +16,7 @@ const ETICA_KANT_THEME = {
     icon: '⚖️',
     gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
     difficulty: 'basico',
-    timeLimit: 30,
+    timeLimit: 50,
     contentFile: 'content/etica_kant.html',
     
     // Metadata del tema

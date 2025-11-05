@@ -101,7 +101,7 @@ const TOPICS = {
     const VIDEO_CONFIG = {
       etica_aristoteles: {
         youtubeId: 'qYU0hTprTAc',
-        startTime: 13,
+        startTime: 1,
         endTime: 360,
         title: 'Ética de Aristóteles',
         duration: '5:47'
