@@ -3,490 +3,960 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tema 2 — Ética y Moral (Estudio Progresivo)</title>
+  <title>Dialéctica, Asombro y el Método Filosófico</title>
   <link rel="stylesheet" href="../../css/content.css">
-
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+  
+  <script>
+    // Configuración específica para Dialéctica y Método Filosófico
+    window.ReadAloudSystemConfig = {
+      tema: 'Dialéctica, Asombro y el Método Filosófico',
+      threshold: 0.80,
+      sections: 13, // 13 secciones completas
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=metodo_filosofico',
+      celebrationEmojis: ['💡', '🤔', '🔍', '💭', '🎯', '📚', '✨', '🧠'],
+      
+      synonymMap: {
+        'asombro': ['thaumázein', 'pathos', 'admiración'],
+        'dialéctica': ['diálogo', 'método socrático'],
+        'mayéutica': ['arte de parir', 'método socrático'],
+        'elenchos': ['refutación', 'escrutinio'],
+        'duda metódica': ['duda cartesiana', 'método de descartes'],
+        'cogito': ['pienso luego existo'],
+        'deducción': ['silogismo', 'de lo general a lo particular'],
+        'inducción': ['de lo particular a lo general'],
+        'a priori': ['independiente de la experiencia'],
+        'a posteriori': ['basado en la experiencia']
+      }
+    };
+  </script>
 </head>
 <body>
   <main class="material-dark">
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 14 secciones</span>
+        <span id="progress-counter">0 / 13 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>UNIDAD III — TEMA 2: Ética y Moral</h1>
-    <p><em>Primero clarificamos conceptos (formación del <strong>êthos</strong>, diferencia entre <strong>ética</strong> y <strong>moral</strong> y condiciones del juicio moral); luego pasamos a aplicaciones: libertad y responsabilidad, principios, problemas y casos.</em></p>
+    <h1>💡 Dialéctica, Asombro y el Método Filosófico</h1>
+    <p><em>Del asombro al conocimiento: cómo investiga la filosofía y cuáles son sus métodos para llegar a la verdad.</em></p>
 
-    <!-- 1. Introducción: diferencia de nivel -->
-    <div class="study-section active" data-section="intro">
-      <div class="highlight-box">
-        <h3>🌱 Ética y moral: dos niveles complementarios</h3>
-        <p><strong>Moral</strong>: conjunto de <em>normas, juicios y hábitos</em> que guían la vida cotidiana —la <em>moral vivida</em>.</p>
-        <p><strong>Ética</strong>: <em>reflexión filosófica</em> sobre la moral: pregunta por <strong>fundamentos, validez y justificación</strong> —la <em>moral pensada</em>.</p>
-        <p>Son distinguibles, pero se retroalimentan: los conflictos morales impulsan reflexión ética, y los principios éticos orientan la práctica.</p>
+    <!-- SECCIÓN 1: EL ASOMBRO - INTRODUCCIÓN -->
+    <div class="study-section active" data-section="asombro-intro">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>😲 El Asombro: El Motor del Pensar</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La filosofía es una actividad racional y dialógica orientada al esclarecimiento y cuestionamiento de las creencias más fundamentales. Trabaja principalmente con <strong>ideas, conceptos y argumentos</strong>, buscando identificar un problema conceptual y ensayar una respuesta rigurosamente argumentada.<br><br>
+            
+            Según los primeros filósofos, la filosofía encuentra su nacimiento en un <strong>estado del alma</strong> o <em>pathos</em> (<em>πάθος</em>), conocido como el <strong>asombro</strong> (<em>thaumázein</em>).<br><br>
+
+            <strong>¿Qué es el asombro?</strong><br>
+            El asombro es la <strong>disposición primera del conocimiento</strong>, el origen y principio (<em>archḗ</em>) de todo el saber. Es una experiencia profunda que nos hace detenernos y preguntarnos sobre lo que considerábamos obvio o natural.<br><br>
+
+            <strong>Características del asombro filosófico:</strong><br>
+            • Es una <strong>afección involuntaria</strong> del alma<br>
+            • Nos hace <strong>cuestionar</strong> lo que damos por sentado<br>
+            • Genera el <strong>deseo de conocimiento</strong><br>
+            • Es el punto de partida de toda investigación filosófica<br><br>
+
+            <strong>Ejemplo:</strong> Cuando un niño pregunta por primera vez <em>"¿Por qué existe el universo?"</em> o <em>"¿Qué es el tiempo?"</em>, está experimentando el asombro filosófico. No está buscando una respuesta práctica, sino que se maravilla ante el misterio de la existencia misma.<br><br>
+
+            Sin asombro, el pensamiento permanece <strong>inactivo</strong>, dominado por la inercia de los prejuicios y las respuestas fáciles.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El asombro: origen y motor de toda filosofía.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Verificación de comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el asombro filosófico:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el asombro (<em>thaumázein</em>) según los primeros filósofos?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">La moral regula la acción; la ética justifica por qué esas reglas valen</div>
-          <div class="option">La ética y la moral son sinónimos perfectos en filosofía</div>
-          <div class="option">La ética es un código legal; la moral, una teoría abstracta</div>
-          <div class="option">La moral solo existe en leyes estatales escritas</div>
-          <div class="option">La ética se limita a describir costumbres sin evaluarlas</div>
+          <div class="option">Una emoción de alegría intensa</div>
+          <div class="option">Un método lógico de razonamiento</div>
+          <div class="option" data-correct="true">La disposición primera del conocimiento, el origen de todo saber</div>
+          <div class="option">Una técnica de memorización</div>
         </div>
       </div>
     </div>
 
-    <!-- 2. Etimología -->
-    <div class="study-section" data-section="etimologia">
-      <div class="highlight-box">
-        <h3>📜 Etimología: êthos y mos</h3>
-        <ul>
-          <li><strong>Ética</strong> &lt; gr. <em>êthos</em>: “estancia”, luego <strong>carácter</strong> o <strong>modo de ser</strong>. Se adquiere, no se hereda.</li>
-          <li><strong>Moral</strong> &lt; lat. <em>mos</em>: <strong>costumbre</strong>. Reglas compartidas que orientan la conducta.</li>
-        </ul>
-        <p>De aquí surge la idea de una <strong>segunda naturaleza</strong>: el <em>êthos</em> se <strong>forja con hábitos</strong> generados por la repetición de actos.</p>
+    <!-- SECCIÓN 2: ASOMBRO EN PLATÓN -->
+    <div class="study-section" data-section="asombro-platon">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>✨ El Asombro en Platón: Apertura al Saber</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para <strong>Platón</strong>, el asombro tiene características específicas y un papel fundamental en el camino hacia el conocimiento.<br><br>
+            
+            <strong>Características del asombro platónico:</strong><br><br>
+
+            <strong>1. Antecede al deseo de conocimiento:</strong><br>
+            El asombro <strong>precede</strong> y <strong>posibilita</strong> el deseo de saber. Es previo a todo interés por la sabiduría. No podemos desear conocer algo sin antes asombrarnos de ello.<br><br>
+
+            <strong>2. Es una afección involuntaria del alma:</strong><br>
+            El asombro nos <strong>sobreviene</strong>, no lo buscamos deliberadamente. Pone en movimiento las <strong>tres partes del alma</strong> (racional, irascible y concupiscible).<br><br>
+
+            <strong>3. Funciona como apertura al saber:</strong><br>
+            El asombro <strong>abre</strong> el alma al conocimiento. Es como abrir una puerta que estaba cerrada. Sin esta apertura, permanecemos ciegos a las verdades profundas.<br><br>
+
+            <strong>4. Se vincula con la divinidad:</strong><br>
+            Platón relaciona el asombro con <strong>Thaumas</strong> (la divinidad del asombro) y con la discusión racional (<em>logos</em>). Lo compara con <strong>Iris</strong>, la mensajera de los dioses, que conecta el mundo humano con el divino.<br><br>
+
+            Para Platón, el asombro es una <strong>visión de lo suprasensible</strong>, un atisbo del Mundo de las Ideas. Es el primer paso en el ascenso del alma desde la caverna de la ignorancia hacia la luz de la verdad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Platón: el asombro antecede y posibilita el deseo de saber.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">📌 Check rápido</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el asombro en Platón:</p>
+        </div>
+        <div class="question">
+          <p>Según Platón, ¿qué relación tiene el asombro con el deseo de conocimiento?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Ética significa “ley humana positiva”</div>
-          <div class="option" data-correct="true">El êthos es un carácter adquirido mediante hábitos</div>
-          <div class="option">Moral proviene del griego y significa “carácter”</div>
-          <div class="option">Los hábitos morales se heredan biológicamente</div>
-          <div class="option">Ética: normas concretas; moral: reflexión general</div>
+          <div class="option">El asombro viene después del conocimiento</div>
+          <div class="option" data-correct="true">El asombro antecede y posibilita el deseo de conocimiento</div>
+          <div class="option">El asombro y el conocimiento no están relacionados</div>
+          <div class="option">El asombro impide el conocimiento</div>
         </div>
       </div>
     </div>
 
-    <!-- 3. Formación del êthos (hábitos) -->
-    <div class="study-section" data-section="habitos">
-      <div class="highlight-box">
-        <h3>🔁 ¿Cómo se forma el êthos?</h3>
-        <p>Por <strong>repetición de actos</strong>; esa repetición forma <strong>hábitos</strong>, y los hábitos configuran el <strong>carácter</strong>. A su vez, el carácter predispone a ciertos actos: un <em>círculo formativo</em>.</p>
-        <ul>
-          <li>Actos → <strong>hábitos</strong> → <strong>carácter</strong> (êthos) → actos coherentes con ese carácter.</li>
-          <li>Este proceso es <strong>educable</strong>: podemos cultivar virtudes y desarraigar vicios.</li>
-        </ul>
+    <!-- SECCIÓN 3: ASOMBRO EN ARISTÓTELES -->
+    <div class="study-section" data-section="asombro-aristoteles">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔍 El Asombro en Aristóteles: Necesidad de Investigar</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para <strong>Aristóteles</strong>, el asombro también constituye el <strong>punto de arranque</strong> de la actividad pensante, pero lo entiende de manera diferente a Platón.<br><br>
+            
+            <strong>Diferencia fundamental:</strong><br><br>
+
+            <strong>Platón:</strong> Veía el asombro como una <strong>visión de lo suprasensible</strong> (esencialismo). El asombro nos hace contemplar las Ideas eternas más allá del mundo sensible.<br><br>
+
+            <strong>Aristóteles:</strong> Veía el asombro como la <strong>toma de conciencia de la necesidad de investigar la realidad</strong>, que clama por una explicación (nominalismo).<br><br>
+
+            <strong>Características del asombro aristotélico:</strong><br>
+            • Es el reconocimiento de nuestra <strong>ignorancia</strong><br>
+            • Genera la <strong>necesidad</strong> de buscar explicaciones<br>
+            • Se dirige hacia la <strong>realidad concreta</strong>, no solo hacia las esencias abstractas<br>
+            • Impulsa la <strong>investigación empírica</strong> y racional<br><br>
+
+            <strong>Ejemplo:</strong><br>
+            Cuando observamos que el agua se congela a cierta temperatura, Aristóteles nos diría que el asombro nos lleva a preguntarnos <strong>por qué</strong> sucede esto y a <strong>investigar las causas</strong> naturales del fenómeno.<br><br>
+
+            Para Aristóteles, sin asombro, el pensamiento permanece <strong>inactivo</strong>, dominado por la <strong>inercia de los prejuicios</strong>. El asombro despierta la mente y la pone en movimiento hacia la búsqueda de la verdad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Aristóteles: el asombro genera necesidad de investigar.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧩 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el asombro en Aristóteles:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la principal diferencia entre el asombro en Platón y en Aristóteles?</p>
+        </div>
         <div class="options-container">
-          <div class="option">El carácter determina todo y no puede educarse</div>
-          <div class="option" data-correct="true">La repetición de actos genera hábitos que configuran el carácter</div>
-          <div class="option">Los hábitos morales no influyen en nuestras acciones futuras</div>
-          <div class="option">El êthos es innato y fijo</div>
-          <div class="option">Los hábitos se forman solo por imposición externa</div>
+          <div class="option">Aristóteles rechazaba el asombro completamente</div>
+          <div class="option" data-correct="true">Platón lo veía como visión de lo suprasensible; Aristóteles como necesidad de investigar la realidad</div>
+          <div class="option">Ambos tenían exactamente la misma visión</div>
+          <div class="option">Solo Platón creía en el asombro</div>
         </div>
       </div>
     </div>
 
-    <!-- 4. Moral en comunidades -->
-    <div class="study-section" data-section="comunidades">
-      <div class="highlight-box">
-        <h3>👥 Moral como código compartido</h3>
-        <p>En toda comunidad hay <strong>prescripciones y prohibiciones</strong> (lo “debido” y lo “vedado”). Incluso grupos “al margen” (p. ej., piratas) tienen su <em>código</em> (valor en combate, justicia en el reparto).</p>
-        <p>La <strong>deshonra</strong> social sanciona la transgresión a ese código; por eso, la moral no depende solo de leyes escritas.</p>
+    <!-- SECCIÓN 4: LA DIALÉCTICA - INTRODUCCIÓN -->
+    <div class="study-section" data-section="dialectica-intro">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💬 La Dialéctica: El Arte del Diálogo Filosófico</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>dialéctica</strong> (<em>dialektikḗ</em>) es el principal método de indagación filosófica desarrollado en la Antigua Grecia, especialmente por Platón.<br><br>
+            
+            <strong>Etimología:</strong><br>
+            La palabra proviene del griego y se refiere al <strong>orden lingüístico de la comunicación</strong>. Implica la pluralidad y la diversificación del <em>logos</em> (palabra de razón) en una <strong>relación intersubjetiva</strong> (entre sujetos).<br><br>
+
+            <strong>¿Qué es la dialéctica?</strong><br>
+            Es el <strong>arte del diálogo racional</strong> que busca llegar a la verdad mediante el intercambio de argumentos, preguntas y respuestas. No es un monólogo donde alguien expone sus ideas, sino un <strong>diálogo activo</strong> donde se examina y cuestiona.<br><br>
+
+            <strong>Origen:</strong><br>
+            El método dialéctico surge como un perfeccionamiento de la <strong>mayéutica de Sócrates</strong>, el maestro de Platón. Sócrates utilizaba el diálogo para ayudar a sus interlocutores a "dar a luz" sus propias ideas.<br><br>
+
+            <strong>Diferencia con otros métodos:</strong><br>
+            • No es un <strong>monólogo</strong> (una sola persona exponiendo)<br>
+            • No es una <strong>imposición</strong> de ideas desde la autoridad<br>
+            • No es una <strong>disputa</strong> donde solo se busca ganar<br>
+            • Es una <strong>búsqueda cooperativa</strong> de la verdad mediante el razonamiento<br><br>
+
+            La dialéctica reconoce que la verdad emerge del <strong>choque y examen</strong> de diferentes perspectivas, no del dogma o la imposición.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Dialéctica: diálogo racional en busca de la verdad.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Check</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la dialéctica:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la dialéctica?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Las morales aparecen como códigos compartidos, incluso fuera del derecho estatal</div>
-          <div class="option">Sin leyes estatales no hay moral posible</div>
-          <div class="option">Solo las religiones poseen moral</div>
-          <div class="option">La moral es idéntica en todas las culturas</div>
-          <div class="option">La moral no influye en la reputación de las personas</div>
+          <div class="option">Un monólogo filosófico</div>
+          <div class="option">Una imposición de ideas</div>
+          <div class="option" data-correct="true">El arte del diálogo racional que busca la verdad mediante preguntas y respuestas</div>
+          <div class="option">Una disputa donde solo importa ganar</div>
         </div>
       </div>
     </div>
 
-    <!-- 5. Ética como reflexión -->
-    <div class="study-section" data-section="etica-reflexion">
-      <div class="highlight-box">
-        <h3>🧠 Ética: moral pensada</h3>
-        <ul>
-          <li>Pregunta <strong>por qué</strong> consideramos válidas ciertas normas.</li>
-          <li><strong>Compara</strong> morales de distintas culturas y contextos.</li>
-          <li>Busca <strong>fundamentos</strong> y <strong>principios</strong> que orienten la vida buena.</li>
-        </ul>
+    <!-- SECCIÓN 5: MAYÉUTICA Y ELENCHOS -->
+    <div class="study-section" data-section="mayeutica-elenchos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤰 La Mayéutica y el Elenchos Socrático</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Antes de Platón, <strong>Sócrates</strong> desarrolló dos métodos fundamentales que son la base de la dialéctica: la <strong>mayéutica</strong> y el <strong>elenchos</strong>.<br><br>
+            
+            <strong>La Mayéutica:</strong><br>
+            Es el <em>"arte de ayudar a dar a luz"</em> conocimientos. Sócrates comparaba su método con el trabajo de su madre, que era comadrona (partera).<br><br>
+
+            <strong>Proceso de la mayéutica:</strong><br>
+            • Se basa en <strong>preguntar</strong> y <strong>criticar</strong> las definiciones<br>
+            • Va <strong>depurando</strong> la cuestión progresivamente<br>
+            • Ayuda al interlocutor a <strong>descubrir por sí mismo</strong> la verdad<br>
+            • A menudo terminaba en <strong>aporía</strong> (dejar la cuestión inconclusa), reconociendo la dificultad del problema<br><br>
+
+            <strong>El Elenchos (Escrutinio o Refutación):</strong><br>
+            Es el método central de Sócrates: un <strong>escrutinio cruzado</strong> con el propósito de la <strong>refutación</strong>.<br><br>
+
+            <strong>Características del elenchos:</strong><br>
+            • Es un método <strong>negativo</strong> de eliminación de hipótesis<br>
+            • Se identifican y <strong>eliminan</strong> las hipótesis que conducen a <strong>contradicciones</strong><br>
+            • Las mejores hipótesis son las que <strong>sobreviven</strong> al escrutinio<br>
+            • No busca imponer una verdad, sino <strong>eliminar errores</strong><br><br>
+
+            <strong>Ejemplo:</strong><br>
+            Si alguien define la valentía como "ausencia de miedo", Sócrates preguntaría: <em>"¿Entonces un loco que no tiene miedo es valiente?"</em>. Al mostrar la contradicción, elimina esa definición y busca una mejor.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Mayéutica: parir ideas. Elenchos: eliminar contradicciones.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔎 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la mayéutica y el elenchos:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el elenchos socrático?</p>
+        </div>
         <div class="options-container">
-          <div class="option">La ética repite sin más la moral de la mayoría</div>
-          <div class="option">La ética prohíbe reflexionar sobre normas</div>
-          <div class="option" data-correct="true">La ética justifica y fundamenta principios y normas</div>
-          <div class="option">La ética es equivalente al derecho penal</div>
-          <div class="option">La ética no puede comparar morales distintas</div>
+          <div class="option">Un método para memorizar información</div>
+          <div class="option">Una técnica de persuasión retórica</div>
+          <div class="option" data-correct="true">Un escrutinio cruzado que elimina hipótesis que conducen a contradicciones</div>
+          <div class="option">Una forma de escribir diálogos</div>
         </div>
       </div>
     </div>
 
-    <!-- 6. Niveles: moral/ética con ejemplos -->
-    <div class="study-section" data-section="niveles">
-      <div class="highlight-box">
-        <h3>📊 Niveles en ejemplos</h3>
-        <ul>
-          <li><strong>Nivel moral</strong>: cumplo una promesa aunque me perjudique; no copio en un examen; ayudo a un compañero.</li>
-          <li><strong>Nivel ético</strong>: analizo si “pacta sunt servanda” debe cumplirse siempre; discuto si vale más la intención o el resultado; pondero autenticidad vs amistad.</li>
-        </ul>
+    <!-- SECCIÓN 6: DIALÉCTICA PLATÓNICA - ASCENSO -->
+    <div class="study-section" data-section="dialectica-platon-ascenso">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⬆️ La Dialéctica Platónica: Ascenso a la Verdad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En la obra madura de Platón, especialmente en <em>La República</em>, la dialéctica se convierte en el <strong>estudio supremo del filósofo</strong>.<br><br>
+            
+            <strong>Naturaleza de la dialéctica platónica:</strong><br>
+            Es un conocimiento <strong>"metafísico"</strong> con miras a una fundamentación unívoca y definitiva de toda la realidad. Platón vinculó la ontología, la epistemología y la ética. Para Platón, <strong>la dialéctica era ontología</strong> (estudio del ser).<br><br>
+
+            <strong>Doble Movimiento:</strong><br>
+            La dialéctica platónica tiene dos procesos complementarios:<br><br>
+
+            <strong>1. Proceso Ascendente (Anábasis):</strong><br>
+            Va de <strong>lo múltiple y sensible</strong> (el mundo de las apariencias) a <strong>lo Uno, lo inteligible y alto</strong> (el mundo de las Ideas).<br><br>
+
+            Este ascenso es el tránsito de la <strong>diánoia</strong> (pensamiento discursivo, razonamiento paso a paso) a la <strong>nóesis</strong> (intelección directa, intuición intelectual).<br><br>
+
+            <strong>Cómo funciona el ascenso:</strong><br>
+            • La razón usa los <strong>supuestos</strong> (<em>hypothéseis</em>) como <strong>peldaños y trampolines</strong><br>
+            • Sube progresivamente eliminando los supuestos<br>
+            • Busca alcanzar el <strong>principio de todo</strong>, que es <strong>no supuesto</strong> (anhypótheton)<br>
+            • Este principio supremo es la <strong>Idea del Bien</strong><br><br>
+
+            <strong>La Idea del Bien:</strong><br>
+            • Es el <strong>objeto de estudio supremo</strong><br>
+            • Es el <strong>fundamento</strong> de la existencia y esencia de todas las cosas inteligibles<br>
+            • Es como el <strong>Sol</strong> del mundo inteligible<br>
+            • Solo los filósofos que completan este ascenso pueden conocerla
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Ascenso dialéctico: de lo múltiple a lo Uno, hasta la Idea del Bien.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">✅ ¿Cuál es ético y cuál moral?</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el ascenso dialéctico:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es el objetivo final del ascenso dialéctico según Platón?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Reflexionar si la honestidad vale más que la amistad es nivel ético</div>
-          <div class="option">No copiar en un examen es nivel ético</          div>
-          <div class="option">Cumplir una promesa es nivel ético</div>
-          <div class="option">Debatir el valor de la “regla de oro” es nivel moral</div>
-          <div class="option">Elegir ayudar a alguien solo si conviene es nivel ético</div>
+          <div class="option">Conocer el mundo sensible</div>
+          <div class="option">Ganar debates</div>
+          <div class="option" data-correct="true">Alcanzar la Idea del Bien, el principio no supuesto de todo</div>
+          <div class="option">Memorizar todas las Ideas</div>
         </div>
       </div>
     </div>
 
-    <!-- 7. Condiciones del juicio moral -->
-    <div class="study-section" data-section="condiciones">
-      <div class="highlight-box">
-        <h3>⚖️ Condiciones para juzgar moralmente</h3>
-        <ol>
-          <li><strong>Agencia libre</strong>: el acto procede de una <em>elección</em> (no es un accidente ni un reflejo).</li>
-          <li><strong>Impacto interpersonal</strong>: el acto tiene <em>efectos posibles sobre otros</em> (no es puramente privado).</li>
-        </ol>
-        <blockquote>Un pensamiento no expresado no cumple la 2ª condición; por eso, no suele ser objeto de juicio moral.</blockquote>
+    <!-- SECCIÓN 7: DIALÉCTICA PLATÓNICA - DESCENSO -->
+    <div class="study-section" data-section="dialectica-platon-descenso">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⬇️ La Dialéctica Platónica: Descenso y Deber Social</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El segundo movimiento de la dialéctica platónica es el <strong>Proceso Descendente (Katábasis)</strong>.<br><br>
+            
+            <strong>¿En qué consiste el descenso?</strong><br>
+            Es la <strong>deducción racional de las Formas</strong>. Una vez que el filósofo ha alcanzado el principio no hipotético (la Idea del Bien), debe <strong>descender</strong> nuevamente.<br><br>
+
+            <strong>Propósito del descenso:</strong><br>
+            El descenso tiene una <strong>implicación ético-política</strong>. El filósofo que ha visto la verdad tiene el <strong>deber moral</strong> de:<br>
+            • <strong>Regresar</strong> al mundo de las apariencias (la caverna)<br>
+            • <strong>Reorientar la mirada</strong> de los demás ciudadanos<br>
+            • <strong>Educar</strong> y guiar a la sociedad<br>
+            • Aplicar el conocimiento del Bien a la <strong>organización política</strong><br><br>
+
+            <strong>Conexión con la Alegoría de la Caverna:</strong><br>
+            Recordemos que en la alegoría, el prisionero liberado que ve el Sol (la Idea del Bien) debe <strong>volver a la caverna</strong> para liberar a sus compañeros. Este es el descenso dialéctico.<br><br>
+
+            <strong>La dialéctica completa:</strong><br>
+            <strong>Ascenso:</strong> De lo múltiple → lo Uno (contemplación)<br>
+            <strong>Descenso:</strong> De lo Uno → lo múltiple (aplicación práctica)<br><br>
+
+            Sin el descenso, la filosofía sería una actividad <strong>egoísta</strong> de contemplación pura. El filósofo tiene la <strong>responsabilidad social</strong> de compartir la sabiduría y mejorar la ciudad, aunque esto implique riesgo y dificultad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Descenso: aplicar la sabiduría para educar y mejorar la sociedad.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧪 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el descenso dialéctico:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué el filósofo debe realizar el descenso dialéctico según Platón?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Todo lo humano es juzgable moralmente, incluso reflejos</div>
-          <div class="option" data-correct="true">Sin libertad e impacto en otros, no se configura un juicio moral pleno</div>
-          <div class="option">Los accidentes siempre son inmorales</div>
-          <div class="option">Los pensamientos privados son inmorales si son “malos”</div>
-          <div class="option">Solo importa el impacto; la libertad no</div>
+          <div class="option">Para escapar de la Idea del Bien</div>
+          <div class="option">Porque no puede permanecer contemplando</div>
+          <div class="option" data-correct="true">Por deber moral de educar a los ciudadanos y aplicar el conocimiento a la política</div>
+          <div class="option">Para olvidar lo que aprendió</div>
         </div>
       </div>
     </div>
 
-    <!-- 8. Libertad y responsabilidad -->
-    <div class="study-section" data-section="libertad">
-      <div class="highlight-box">
-        <h3>🧭 Libertad y responsabilidad</h3>
-        <p>La <strong>intencionalidad</strong> distingue una piedra que cae (accidente) de un humano que golpea (acto libre). Solo de los libres decimos que <strong>actúan bien o mal</strong>, porque <em>eligen</em> y pueden asumir <strong>responsabilidad</strong>.</p>
+    <!-- SECCIÓN 8: DIALÉCTICA ARISTOTÉLICA -->
+    <div class="study-section" data-section="dialectica-aristoteles">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📚 La Dialéctica Aristotélica: Argumentación de lo Opinable</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Aristóteles</strong>, quien estudió 20 años en la Academia de Platón, transformó la dialéctica dándole un enfoque más práctico y metodológico.<br><br>
+            
+            En su obra <em>Tópicos</em>, Aristóteles ofrece un <strong>manual</strong> sobre cómo llevar a cabo el método dialéctico.<br><br>
+
+            <strong>Definición aristotélica de dialéctica:</strong><br>
+            Es un <strong>procedimiento racional no demostrativo</strong>. Se trata de una forma de <strong>argumentación deductiva</strong> que parte de cosas <strong>plausibles</strong> (opinables), a diferencia de la demostración científica, que parte de cosas verdaderas.<br><br>
+
+            <strong>Diferencia clave:</strong><br>
+            • <strong>Demostración científica:</strong> Parte de premisas <strong>verdaderas</strong> y necesarias<br>
+            • <strong>Dialéctica:</strong> Parte de premisas <strong>plausibles</strong> u opinables (éndoxa)<br><br>
+
+            <strong>Funciones de la dialéctica aristotélica:</strong><br><br>
+
+            <strong>1. Para ejercitarse:</strong> Entrenar la mente en el razonamiento<br>
+            <strong>2. Para las conversaciones:</strong> Forzar al interlocutor a <strong>modificar</strong> lo que no enuncie bien<br>
+            <strong>3. Para los conocimientos en filosofía:</strong> Ayuda a <strong>discernir</strong> más fácilmente lo verdadero y lo falso en cada cosa<br><br>
+
+            <strong>Posición reducida:</strong><br>
+            Aristóteles <strong>disocia dialéctica y filosofía</strong>, reduciéndola a una <em>"lógica de lo opinable"</em>. Su fin primario no es la verdad suprema (como en Platón), sino la <strong>victoria en un combate de agudezas</strong>, aunque también busca alcanzar la verdad en cada conclusión.<br><br>
+
+            La dialéctica vuelve a una posición más <strong>humilde</strong> y <strong>práctica</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Aristóteles: dialéctica parte de lo plausible, no de lo verdadero.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔬 Chequeo</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre la dialéctica aristotélica:</p>
+        </div>
+        <div class="question">
+          <p>¿De qué parte la dialéctica según Aristóteles?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Un desmayo que provoca daño no es un acto moral: falta intencionalidad</div>
-          <div class="option">Una roca que mata “obra mal”</div>
-          <div class="option">Golpear accidentalmente equivale a elegir golpear</div>
-          <div class="option">Todo evento con daño es inmoral</div>
-          <div class="option">Solo la ley decide si hubo responsabilidad</div>
+          <div class="option">De premisas verdaderas y necesarias</div>
+          <div class="option">De la Idea del Bien</div>
+          <div class="option" data-correct="true">De cosas plausibles u opinables (éndoxa)</div>
+          <div class="option">De experimentos científicos</div>
         </div>
       </div>
     </div>
 
-    <!-- 9. Tres visiones sobre libertad -->
-    <div class="study-section" data-section="visiones">
-      <div class="highlight-box">
-        <h3>🌌 Tres visiones sobre la libertad</h3>
-        <ul>
-          <li><strong>Sartre</strong>: libertad radical; “estamos condenados a ser libres”.</li>
-          <li><strong>Skinner</strong>: <em>determinismo conductual</em>; la libertad sería ilusión.</li>
-          <li><strong>Fromm</strong>: <em>libertad condicionada</em>; contexto influye, pero hay margen de elección responsable.</li>
-        </ul>
+    <!-- SECCIÓN 9: MÉTODO CARTESIANO -->
+    <div class="study-section" data-section="metodo-cartesiano">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤔 El Método Cartesiano: La Duda Metódica</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En la <strong>Modernidad</strong> (siglo XVII), el filósofo <strong>René Descartes</strong> popularizó un método radicalmente diferente: la <strong>duda metódica</strong>.<br><br>
+            
+            <strong>Contexto histórico:</strong><br>
+            Descartes vivió en una época de gran incertidumbre. Las guerras religiosas, los avances científicos y las controversias filosóficas generaban dudas sobre qué conocimientos eran realmente seguros.<br><br>
+
+            <strong>Objetivo del método cartesiano:</strong><br>
+            Encontrar <strong>verdades seguras, tangibles y fácticas</strong> de las cuales no sea posible dudar en absoluto, para <strong>fundamentar el conocimiento</strong> con absoluta garantía.<br><br>
+
+            <strong>Procedimiento de la duda metódica:</strong><br>
+            Consiste en <strong>descartar</strong> cualquier supuesto del que se pueda dudar, por mínima que sea la duda. Es una duda <strong>radical y sistemática</strong>.<br><br>
+
+            <strong>Pasos de la duda:</strong><br>
+            <strong>1.</strong> Dudar de los <strong>sentidos</strong> (a veces nos engañan)<br>
+            <strong>2.</strong> Dudar del <strong>mundo externo</strong> (podríamos estar soñando)<br>
+            <strong>3.</strong> Dudar de las <strong>verdades matemáticas</strong> (un genio maligno podría engañarnos)<br><br>
+
+            <strong>El Principio Fundamental: Cogito, ergo sum</strong><br>
+            Después de dudar de todo, Descartes encuentra una verdad <strong>indudable</strong>:<br><br>
+
+            <em>"Pienso, luego existo"</em> (<strong>Cogito, ergo sum</strong>)<br><br>
+
+            Aunque dude de todo, <strong>no puedo dudar de que estoy dudando</strong>, y si dudo, <strong>pienso</strong>, y si pienso, <strong>existo</strong>. Esta es la primera y más cierta verdad.<br><br>
+
+            <strong>Nota histórica:</strong> Ideas similares habían sido formuladas antes por Gómez Pereira (1554) y San Agustín de Hipona (<em>"Si me engaño, existo"</em>).
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Descartes: dudar de todo hasta encontrar lo indudable.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧭 Identifica la postura</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre el método cartesiano:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa <em>"Cogito, ergo sum"</em>?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Sartre sostiene que la comunidad decide por ti</div>
-          <div class="option" data-correct="true">Fromm defiende un margen de libertad dentro de condicionamientos</div>
-          <div class="option">Skinner afirma la libertad radical</div>
-          <div class="option">Sartre niega toda responsabilidad</div>
-          <div class="option">Fromm dice que el contexto elimina toda elección</div>
+          <div class="option">Dudo, luego no existo</div>
+          <div class="option">Siento, luego soy</div>
+          <div class="option" data-correct="true">Pienso, luego existo</div>
+          <div class="option">Creo, luego soy feliz</div>
         </div>
       </div>
     </div>
 
-    <!-- 10. Principios éticos personales -->
-    <div class="study-section" data-section="principios-personales">
-      <div class="highlight-box">
-        <h3>🛡️ Principios personales</h3>
-        <ul>
-          <li><strong>Honestidad</strong>: reconocer errores y decir la verdad.</li>
-          <li><strong>Integridad</strong>: coherencia entre valores y actos; <em>el fin no justifica los medios</em>.</li>
-          <li><strong>Compromiso</strong>: cumplir promesas y responsabilidades.</li>
-          <li><strong>Excelencia</strong>: dar lo mejor en lo que hacemos.</li>
-        </ul>
+    <!-- SECCIÓN 10: PRINCIPIOS LÓGICOS -->
+    <div class="study-section" data-section="principios-logicos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ Los Tres Principios Lógicos Fundamentales</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles formuló los principios más fundamentales del razonamiento, llamándolos <strong>axiomas</strong> (requisitos previos de toda argumentación y acción). Estos son los pilares de la lógica clásica.<br><br>
+            
+            <strong>1. Principio de No Contradicción:</strong><br>
+            Es <strong>imposible</strong> que un mismo atributo se dé y no se dé <strong>simultáneamente</strong> en el mismo sujeto y en el mismo sentido.<br><br>
+
+            <strong>Ejemplo:</strong> Esta mesa no puede ser y no ser blanca al mismo tiempo y en el mismo sentido.<br><br>
+
+            Es el <strong>principio más seguro de todos</strong>, ya que se emplea implícitamente en todas las pruebas. Sin él, no podría haber conocimiento.<br><br>
+
+            <strong>2. Principio de Identidad:</strong><br>
+            Toda cosa es <strong>idéntica a sí misma</strong>.<br><br>
+
+            <strong>Ejemplo:</strong> A = A. Un árbol es un árbol. Sócrates es Sócrates.<br><br>
+
+            Este principio establece que cada cosa tiene su propia identidad estable y determinada.<br><br>
+
+            <strong>3. Principio del Tercero Excluido:</strong><br>
+            Una cosa <strong>es o no es</strong>, sin <strong>graduaciones</strong> intermedias de validez.<br><br>
+
+            <strong>Ejemplo:</strong> O esta puerta está abierta o está cerrada (no puede estar "medio abierta" lógicamente, aunque físicamente sí).<br><br>
+
+            No hay una tercera opción entre ser y no ser. O una proposición es verdadera o es falsa.<br><br>
+
+            Estos tres principios son los <strong>fundamentos</strong> de todo razonamiento lógico válido y no pueden ser demostrados porque toda demostración los presupone.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Tres axiomas: No Contradicción, Identidad, Tercero Excluido.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧠 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre los principios lógicos:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué afirma el Principio del Tercero Excluido?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">La integridad rechaza que el fin justifique los medios</div>
-          <div class="option">La honestidad consiste en proteger a los tuyos aunque mientas</div>
-          <div class="option">El compromiso implica cambiar promesas si no convienen</div>
-          <div class="option">La excelencia justifica engañar para ganar</div>
-          <div class="option">La integridad permite cualquier medio si el fin es noble</div>
+          <div class="option">Que todo es relativo</div>
+          <div class="option">Que A es igual a B</div>
+          <div class="option" data-correct="true">Que una cosa es o no es, sin término medio</div>
+          <div class="option">Que todo puede ser y no ser al mismo tiempo</div>
         </div>
       </div>
     </div>
 
-    <!-- 11. Principios sociales -->
-    <div class="study-section" data-section="principios-sociales">
-      <div class="highlight-box">
-        <h3>🤝 Principios sociales</h3>
-        <ul>
-          <li><strong>Ecuanimidad</strong>: justicia e imparcialidad.</li>
-          <li><strong>Respeto</strong>: dignidad y libertad de todas las personas.</li>
-          <li><strong>Responsabilidad ciudadana</strong>: cumplir leyes y cuidar el bien común.</li>
-          <li><strong>Empatía</strong>: considerar los efectos de nuestras acciones en otros.</li>
-        </ul>
+    <!-- SECCIÓN 11: DEDUCCIÓN E INDUCCIÓN -->
+    <div class="study-section" data-section="deduccion-induccion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 Tipos de Razonamiento: Deducción e Inducción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Los filósofos emplean diferentes métodos argumentativos. Los dos más importantes son la <strong>deducción</strong> y la <strong>inducción</strong>.<br><br>
+            
+            <strong>1. Deducción (Silogismo):</strong><br>
+            Es un discurso en el cual, establecidas ciertas <strong>premisas generales</strong>, resulta necesariamente una <strong>conclusión específica</strong>. Va de <strong>lo General a lo Particular</strong>.<br><br>
+
+            <strong>Características de la deducción:</strong><br>
+            • Si las premisas son verdaderas, la conclusión <strong>debe ser verdadera</strong><br>
+            • Es un razonamiento <strong>necesario</strong><br>
+            • Proporciona <strong>certeza</strong> lógica<br><br>
+
+            <strong>Ejemplo clásico:</strong><br>
+            <strong>Premisa Mayor:</strong> Todos los hombres son mortales<br>
+            <strong>Premisa Menor:</strong> Sócrates es hombre<br>
+            <strong>Conclusión:</strong> Por lo tanto, Sócrates es mortal<br><br>
+
+            <strong>2. Inducción (Comprobación):</strong><br>
+            Es un argumento que va de <strong>lo particular a lo universal</strong>, desde las cosas singulares hasta lo general.<br><br>
+
+            <strong>Características de la inducción:</strong><br>
+            • La conclusión es <strong>probable</strong>, no necesariamente verdadera<br>
+            • Se basa en la <strong>observación</strong> de casos particulares<br>
+            • Es el método de las <strong>ciencias empíricas</strong><br><br>
+
+            <strong>Ejemplo:</strong><br>
+            <strong>Observación 1:</strong> Este cisne es blanco<br>
+            <strong>Observación 2:</strong> Ese cisne es blanco<br>
+            <strong>Observación 3:</strong> Aquel cisne es blanco<br>
+            <strong>Conclusión inductiva:</strong> Probablemente, todos los cisnes son blancos<br><br>
+
+            <strong>Limitación:</strong> La inducción puede llevar a conclusiones falsas (existen cisnes negros). Nunca proporciona certeza absoluta.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Deducción: general a particular. Inducción: particular a general.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🔗 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre deducción e inducción:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la principal diferencia entre deducción e inducción?</p>
+        </div>
         <div class="options-container">
-          <div class="option">La responsabilidad ciudadana permite el soborno si “ayuda”</div>
-          <div class="option" data-correct="true">La conciencia social contrarresta el egoísmo</div>
-          <div class="option">El respeto aplica solo a los cercanos</div>
-          <div class="option">La empatía es irrelevante para decidir</div>
-          <div class="option">La ecuanimidad acepta favoritismos por amistad</div>
+          <div class="option">No hay diferencia entre ellas</div>
+          <div class="option">La deducción es incorrecta y la inducción correcta</div>
+          <div class="option" data-correct="true">La deducción va de lo general a lo particular; la inducción de lo particular a lo general</div>
+          <div class="option">Ambas proporcionan certeza absoluta</div>
         </div>
       </div>
     </div>
 
-    <!-- 12. Herramienta para decidir -->
-    <div class="study-section" data-section="herramienta">
-      <div class="highlight-box">
-        <h3>🧰 Herramienta de decisión ética</h3>
-        <ol>
-          <li><strong>¿Es legal?</strong></li>
-          <li><strong>¿Es justo?</strong></li>
-          <li><strong>¿Lo toleraría si fuera público?</strong></li>
-          <li><strong>¿Querría que me lo hicieran?</strong> (regla de oro)</li>
-          <li><strong>¿Aporta al bien común?</strong></li>
-          <li><strong>¿Representa mis mejores valores?</strong></li>
-        </ol>
+    <!-- SECCIÓN 12: A PRIORI Y A POSTERIORI -->
+    <div class="study-section" data-section="a-priori-posteriori">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔬 Argumentos A Priori y A Posteriori</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Además de los métodos lógicos formales, los argumentos también se distinguen por su relación con la <strong>experiencia</strong>.<br><br>
+            
+            <strong>Argumentos A Priori:</strong><br>
+            Son conocimientos <strong>independientes de la experiencia</strong>. No necesitan de la observación empírica para ser verdaderos.<br><br>
+
+            <strong>Características de lo a priori:</strong><br>
+            • Son <strong>necesarios</strong> (no pueden ser de otra manera)<br>
+            • Son <strong>universales</strong> (valen en todos los casos)<br>
+            • Se obtienen por la <strong>razón pura</strong><br><br>
+
+            <strong>Ejemplos:</strong><br>
+            • <em>"Todos los triángulos tienen tres lados"</em> (verdad matemática)<br>
+            • <em>"El todo es mayor que las partes"</em> (verdad lógica)<br>
+            • <em>"2 + 2 = 4"</em> (verdad matemática)<br><br>
+
+            Estas verdades no necesitan ser comprobadas empíricamente porque son <strong>necesariamente verdaderas</strong> por la razón.<br><br>
+
+            <strong>Argumentos A Posteriori:</strong><br>
+            Son conocimientos <strong>basados en la evidencia empírica</strong>. Dependen de la observación y la experiencia.<br><br>
+
+            <strong>Características de lo a posteriori:</strong><br>
+            • Son <strong>contingentes</strong> (podrían ser de otra manera)<br>
+            • Son <strong>particulares</strong> (se refieren a casos específicos)<br>
+            • Están <strong>conectados con el mundo real</strong><br><br>
+
+            <strong>Ejemplos:</strong><br>
+            • <em>"El agua hierve a 100°C"</em> (verdad empírica)<br>
+            • <em>"Los cisnes son blancos"</em> (observación, aunque puede ser falsa)<br>
+            • <em>"Hoy está lloviendo"</em> (hecho observable)<br><br>
+
+            Estas verdades necesitan ser <strong>comprobadas</strong> mediante la experiencia y la observación.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 <em>A priori</em>: independiente de experiencia. <em>A posteriori</em>: basado en experiencia.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧭 Chequeo</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Sobre <em>a priori</em> y <em>a posteriori</em>:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál de estos es un conocimiento <em>a priori</em>?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">“¿Me sentiría cómodo si fuera público?” evalúa transparencia y reputación</div>
-          <div class="option">“¿Es legal?” decide toda cuestión ética por sí sola</div>
-          <div class="option">“¿Aporta al bien común?” es irrelevante</div>
-          <div class="option">La regla de oro es: trata a los otros peor si puedes</div>
-          <div class="option">Las preguntas son decorativas; no orientan decisiones</div>
+          <div class="option">Hoy está lloviendo</div>
+          <div class="option">Los cisnes son blancos</div>
+          <div class="option" data-correct="true">Todos los triángulos tienen tres lados</div>
+          <div class="option">El agua hierve a 100°C</div>
         </div>
       </div>
     </div>
 
-    <!-- 13. Caso Juan (dilema) -->
-    <div class="study-section" data-section="juan">
-      <div class="highlight-box">
-        <h3>📌 Caso: El dilema de Juan</h3>
-        <p>Juan atropella accidentalmente a un niño camino al aeropuerto para despedirse de su padre moribundo. Debe elegir:</p>
-        <ul>
-          <li>🚑 <strong>Llevar al niño al hospital</strong> (pierde el avión).</li>
-          <li>✈️ <strong>Seguir al aeropuerto</strong> (abandona al herido).</li>
-        </ul>
-        <p>Ilustra <strong>conflicto de valores</strong> y la necesidad de <strong>criterios</strong>.</p>
+    <!-- SECCIÓN 13: INVESTIGACIÓN Y ÉTICA -->
+    <div class="study-section" data-section="investigacion-etica">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎓 La Investigación Filosófica Hoy: Virtudes y Ética</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>investigación filosófica</strong> es un proceso sistemático de actividades intelectuales orientadas al descubrimiento o generación de un saber. Dado que la cuestión del método no está completamente zanjada, se podría decir que hay <strong>tantos métodos filosóficos como filósofos</strong>.<br><br>
+            
+            <strong>Virtudes del buen investigador filosófico:</strong><br><br>
+
+            <strong>1. Rigurosidad y objetividad:</strong><br>
+            Abordar el tema de estudio con precisión y sin sesgos personales.<br><br>
+
+            <strong>2. Integridad intelectual:</strong><br>
+            Ser honesto y humilde. Reconocer los límites del propio conocimiento.<br><br>
+
+            <strong>3. Curiosidad intelectual y creatividad:</strong><br>
+            Mantener la mente abierta y buscar nuevas perspectivas.<br><br>
+
+            <strong>¿Cómo se investiga en filosofía?</strong><br>
+            La investigación filosófica requiere <strong>leer</strong> lo que otros han escrito, para averiguar qué es interesante y establecer resultados usando los métodos del campo. <strong>Leer un texto es repensarlo</strong>, y repensar es pensar.<br><br>
+
+            <strong>El Plagio y la Ética:</strong><br>
+            La investigación filosófica está sometida a <strong>criterios éticos</strong>. Presentar el trabajo ajeno como propio (<strong>plagio</strong>) es un robo y un fraude, siendo una de las faltas más graves en la vida académica.<br><br>
+
+            <strong>Reglas fundamentales:</strong><br>
+            • <strong>Dar crédito</strong> al trabajo de otros<br>
+            • Las citas deben ser <strong>fieles</strong> (respetar el sentido del texto)<br>
+            • Las citas deben ser <strong>verificables</strong> (identificar autor y fuente)<br><br>
+
+            <strong>Pensamiento Independiente:</strong><br>
+            Lo esencial para la investigación no es ser <strong>original</strong> (la originalidad no es una exigencia), sino tener un <strong>"pensamiento independiente"</strong>. Esto significa pensar por uno mismo, aunque se llegue a conclusiones similares a otros.<br><br>
+
+            La investigación es una actividad profundamente <strong>social y ética</strong>. El investigador se une a una comunidad en busca de un bien común.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Investigar: leer, repensar, ser riguroso y éticamente responsable.
+          </div>
+        </div>
       </div>
-      <div class="comprehension-check">
-        <div class="check-title">🧪 Comprensión</div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏆 Verificación final</h4>
+          <p>Síntesis sobre la investigación filosófica:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es lo más esencial en la investigación filosófica?</p>
+        </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Priorizar al herido refleja una norma categórica de no abandono</div>
-          <div class="option">Ir al aeropuerto es siempre la opción moralmente superior</div>
-          <div class="option">Cualquier opción es amoral porque fue un accidente</div>
-          <div class="option">La decisión no requiere reflexión ética</div>
-          <div class="option">El dilema muestra que no existen valores en conflicto</div>
+          <div class="option">Ser completamente original siempre</div>
+          <div class="option">Copiar ideas de otros sin citarlas</div>
+          <div class="option" data-correct="true">Tener pensamiento independiente, rigor y responsabilidad ética</div>
+          <div class="option">No leer a otros filósofos</div>
         </div>
       </div>
     </div>
 
-    <!-- 14. Casos para analizar -->
-    <div class="study-section" data-section="casos">
-      <div class="highlight-box">
-        <h3>📝 Casos para analizar</h3>
-        <ul>
-          <li><strong>Banco</strong>: detectás desvío de fondos. Denunciar vs proteger empleo y familia.</li>
-          <li><strong>Examen</strong>: podés copiar sin que te vean; tu beca depende de nota.</li>
-          <li><strong>Trasplante</strong>: un solo riñón; pacientes con perfiles distintos.</li>
-        </ul>
-        <p>Identificá <em>opciones</em>, <em>afectados</em>, <em>principios en conflicto</em> y justificá la decisión más ética.</p>
-      </div>
-      <div class="comprehension-check">
-        <div class="check-title">🎯 Check final</div>
-        <div class="options-container">
-          <div class="option">En el examen, “nadie me ve” vuelve moral copiar</div>
-          <div class="option">En el banco, la lealtad excesiva justifica encubrir</div>
-          <div class="option" data-correct="true">En el examen, chocan honestidad/justicia con interés personal (beca)</div>
-          <div class="option">En trasplante, no hay principios en conflicto</div>
-          <div class="option">Los casos no aportan a la formación del juicio moral</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Síntesis -->
-    <div class="study-section" data-section="sintesis">
-      <div class="highlight-box">
-        <h3>🎯 Síntesis</h3>
-        <ul>
-          <li>Solo los <strong>actos libres e intencionales</strong> son moralmente evaluables.</li>
-          <li><strong>Ética</strong> (fundamenta) y <strong>moral</strong> (regula) se necesitan mutuamente.</li>
-          <li>Los <strong>principios</strong> ayudan a resolver <strong>dilemas</strong> con responsabilidad hacia otros y el bien común.</li>
-        </ul>
-      </div>
-      <div class="comprehension-check">
-        <div class="check-title">✅ Cierre</div>
-        <div class="options-container">
-          <div class="option" data-correct="true">Ética sin moral carece de anclaje práctico; moral sin ética carece de justificación</div>
-          <div class="option">La ética reemplaza por completo a la moral</          div>
-          <div class="option">Los dilemas se resuelven sin principios ni análisis</div>
-          <div class="option">La responsabilidad es irrelevante si hay leyes</div>
-          <div class="option">Solo importan las intenciones, no los efectos</div>
-        </div>
-      </div>
-    </div>
   </main>
 
-  <script>
-         // ► Pégalo arriba del class ProgressiveStudy (o al inicio del <script>)
-   const SOUND_BASE = new URL('../../sound/', document.baseURI).href;
-      // Esto resuelve a "/sound/" tanto si el HTML está en la raíz como dentro de /themes/etica/
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
 
-   class ProgressiveStudy {
-      constructor() {
-        this.currentSection = 0;
-        this.totalSections = document.querySelectorAll('.study-section').length;
-        this.completedSections = new Set();
-        this.init();
-      }
-      init() {
-        // activar primera sección
-        const sections = document.querySelectorAll('.study-section');
-        sections.forEach((s, i) => s.classList.toggle('active', i === 0));
-        this.setupEventListeners();
-        this.showComprehensionCheck();
-        this.updateProgress();
-      }
-      setupEventListeners() {
-        document.querySelectorAll('.option').forEach(option => {
-          option.addEventListener('click', (e) => this.handleOptionClick(e));
-        });
-      }
-      showComprehensionCheck() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        if (!currentSectionEl) return;
-        const checkEl = currentSectionEl.querySelector('.comprehension-check');
-        if (checkEl) {
-          setTimeout(() => { checkEl.classList.add('show'); }, 5000); // lectura
-        }
-      }
-      handleOptionClick(e) {
-        const option = e.target;
-        const checkContainer = option.closest('.comprehension-check');
-        const allOptions = checkContainer.querySelectorAll('.option');
-        // deshabilitar mientras se procesa
-        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
-
-        if (option.dataset.correct === 'true') {
-          option.classList.add('correct');
-          this.playSound('success');
-          this.showCelebration('🎉');
-          setTimeout(() => {
-            this.markSectionCompleted();
-            this.moveToNextSection();
-          }, 1200);
-        } else {
-          option.classList.add('incorrect');
-          this.playSound('error');
-          setTimeout(() => {
-            // Reset opciones y reintento
-            allOptions.forEach(opt => {
-              opt.classList.remove('correct','incorrect');
-              opt.style.pointerEvents = 'auto';
-            });
-            this.shuffleOptions(checkContainer);
-          }, 900);
-        }
-      }
-      shuffleOptions(container) {
-        const options = Array.from(container.querySelectorAll('.option'));
-        const parent = options[0].parentNode;
-        for (let i = options.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [options[i], options[j]] = [options[j], options[i]];
-        }
-        options.forEach(option => parent.appendChild(option));
-      }
-      markSectionCompleted() {
-        const currentSectionEl = document.querySelectorAll('.study-section')[this.currentSection];
-        currentSectionEl.classList.add('completed');
-        currentSectionEl.classList.remove('active');
-        this.completedSections.add(this.currentSection);
-        this.updateProgress();
-      }
-      moveToNextSection() {
-        this.currentSection++;
-        const sections = document.querySelectorAll('.study-section');
-        if (this.currentSection < this.totalSections) {
-          const nextSectionEl = sections[this.currentSection];
-          nextSectionEl.classList.add('active');
-          setTimeout(() => {
-            nextSectionEl.scrollIntoView({ behavior:'smooth', block:'start' });
-            setTimeout(() => { window.scrollBy(0, -80); }, 800);
-          }, 300);
-          setTimeout(() => { this.showComprehensionCheck(); }, 800);
-        } else {
-          this.showCompletion();
-        }
-      }
-      updateProgress() {
-        const progressFill = document.getElementById('progress-fill');
-        const progressCounter = document.getElementById('progress-counter');
-        const percentage = (this.completedSections.size / this.totalSections) * 100;
-        progressFill.style.width = `${percentage}%`;
-        progressCounter.textContent = `${this.completedSections.size} / ${this.totalSections} secciones`;
-      }
-      showCelebration(emoji) {
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration';
-        celebration.textContent = emoji;
-        document.body.appendChild(celebration);
-        setTimeout(() => { document.body.removeChild(celebration); }, 2000);
-      }
-      showCompletion() {
-        this.showCelebration('🎊');
-        setTimeout(() => {
-          alert('¡Excelente! Completaste Ética y Moral. Ya podés pasar a las actividades y al quiz.');
-        }, 800);
-      }
-
-
-      // ► Dentro de la clase ProgressiveStudy, reemplaza el método playSound por este:
-      async playSound(type) {
-      try {
-         const files = {
-            success: 'collect_points.mp3',
-            error: 'negative_beep.mp3',
-            show_question: 'show_question.mp3',
-            timer_warning: 'timer_warning.mp3',
-            timer_danger: 'timer_danger.mp3'
-         };
-         const file = files[type] || 'collect_points.mp3';
-         const audio = new Audio(SOUND_BASE + file); // ← usa /sound/ en la raíz
-         audio.volume = 0.7;
-         audio.preload = 'auto';
-         const p = audio.play();
-         if (p !== undefined) await p;
-      } catch (err) {
-         console.warn('No se pudo reproducir sonido:', err);
-      }
-      }
-
-    }
-    document.addEventListener('DOMContentLoaded', ()=> new ProgressiveStudy());
-  </script>
 </body>
 </html>
