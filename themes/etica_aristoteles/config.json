@@ -9,46 +9,51 @@
     "difficulty": "avanzado",
     "category": "Filosofía Clásica",
     "description": "El objetivo de la vida humana es la felicidad (eudaimonía), que se alcanza a través de la virtud y la razón. Su ética se basa en el 'justo medio' y la formación del carácter.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2024-11-06"
   },
 
   "activities": {
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 7,
-      "timeEstimate": 10,
+      "sections": 14,
+      "timeEstimate": 12,
       "script": "../../js/readaloud-system.js"
     },
     "quiz": {
       "enabled": true,
-      "questions": 10,
-      "timeLimit": 30,
-      "timeEstimate": 12
+      "questions": 12,
+      "timeLimit": 50,
+      "timeEstimate": 15,
+      "passingScore": 70
     },
     "concepts": {
       "enabled": true,
-      "levels": 6,
-      "timeEstimate": 8
+      "levels": 8,
+      "timeEstimate": 10
     },
     "cloze": {
       "enabled": true,
-      "timeEstimate": 9
+      "items": 17,
+      "timeEstimate": 12
     },
     "cruci": {
       "enabled": true,
-      "timeEstimate": 7
+      "words": 7,
+      "centralWord": "VIRTUD",
+      "timeEstimate": 8
     },
     "mapa": {
       "enabled": true,
-      "nodes": 20,
-      "timeEstimate": 5
+      "nodes": 28,
+      "gameMatchPairs": 15,
+      "timeEstimate": 10
     }
   },
 
   "files": {
     "material": {
-      "page": "etica_aristoteles.html",
+      "page": "content.html",
       "script": "../../js/readaloud-system.js"
     },
     "quiz": "quiz.js",
@@ -58,7 +63,7 @@
     },
     "cloze": {
       "page": "cloze.html",
-      "script": "cloze.js"
+      "script": "cloze_test.js"
     },
     "cruci": {
       "page": "crossword.html",
@@ -70,5 +75,17 @@
   },
 
   "prerequisites": [],
-  "color": "#4b67ff"
+  "color": "#4b67ff",
+  
+  "notes": {
+    "realValues": "✅ Valores actualizados según archivos reales (2024-11-06)",
+    "validation": {
+      "material": "14 secciones verificadas en content.html (window.ReadAloudSystemConfig.sections)",
+      "quiz": "12 preguntas verificadas en quiz.js (ETICA_ARISTOTELES_THEME.questions)",
+      "concepts": "8 niveles verificados en conceptos.js (CONCEPT_HUNT_CONFIG.levels)",
+      "cloze": "17 items verificados en cloze_test.js (CLOZE_TEST.items)",
+      "cruci": "7 palabras verificadas en crossword_config.js (CROSSWORD_CONFIG.entries + central)",
+      "mapa": "28 nodos verificados en mapa.html (conteo de class='node')"
+    }
+  }
 }
