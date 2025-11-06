@@ -393,203 +393,6 @@
     const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
     // Lee estados parciales
-    
-    // ════════════════════════════════════════════════════════════════════
-    // 🔧 SISTEMA DE CARGA DINÁMICA DE CONFIG.JSON
-    // ════════════════════════════════════════════════════════════════════
-    
-    let THEME_CONFIG = null;
-
-    async function loadThemeConfig(temaId) {
-      if (!temaId) {
-        console.warn('⚠️ No hay tema especificado');
-        return null;
-      }
-
-      const configPath = `themes/${temaId}/config.json`;
-      console.log(`📦 Cargando config desde: ${configPath}`);
-
-      try {
-        const response = await fetch(configPath);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const config = await response.json();
-        console.log('✅ Config cargado exitosamente:', config);
-        
-        if (!config.activities) {
-          console.warn('⚠️ Config no tiene sección "activities"');
-          return null;
-        }
-
-        return config;
-
-      } catch (error) {
-        console.error('❌ Error cargando config.json:', error);
-        console.warn('🔄 Usando valores por defecto');
-        return null;
-      }
-    }
-
-    function getConfigValue(actividad, campo, fallback) {
-      if (!THEME_CONFIG || !THEME_CONFIG.activities) {
-        return fallback;
-      }
-
-      const activityConfig = THEME_CONFIG.activities[actividad];
-      if (!activityConfig) {
-        return fallback;
-      }
-
-      const valor = activityConfig[campo];
-      return valor !== undefined ? valor : fallback;
-    }
-
-    async function initThemeConfig() {
-      console.log('🚀 Iniciando sistema de configuración dinámica...');
-      
-      const temaActual = tema;
-
-      if (temaActual) {
-        THEME_CONFIG = await loadThemeConfig(temaActual);
-        
-        if (THEME_CONFIG) {
-          console.log('✅ Configuración cargada para tema:', temaActual);
-          console.table({
-            'Material': THEME_CONFIG.activities.material?.sections || 'N/A',
-            'Quiz': THEME_CONFIG.activities.quiz?.questions || 'N/A',
-            'Conceptos': THEME_CONFIG.activities.concepts?.levels || 'N/A',
-            'Mapa': THEME_CONFIG.activities.mapa?.nodes || 'N/A',
-            'Crucigrama': THEME_CONFIG.activities.cruci?.words || 'N/A',
-            'Cloze': THEME_CONFIG.activities.cloze?.items || 'N/A'
-          });
-        }
-      }
-
-      return THEME_CONFIG;
-    }
-
-// TOMAR VALORES DE CONFIG.CJSON
-
-// // ════════════════════════════════════════════════════════════════════════════
-// // 🔧 SISTEMA DE CARGA DINÁMICA DE CONFIG.JSON
-// // Agregar este código en tema.html ANTES de la función readSectionStates()
-// // ════════════════════════════════════════════════════════════════════════════
-
-// // Variable global para almacenar la configuración del tema
-// // let THEME_CONFIG = null;
-
-// /**
-//  * Carga el config.json del tema actual
-//  * @param {string} temaId - ID del tema (ej: 'etica_aristoteles')
-//  * @returns {Promise<Object>} - Configuración del tema
-//  */
-// async function loadThemeConfig_00(temaId) {
-//   if (!temaId) {
-//     console.warn('⚠️ No hay tema especificado');
-//     return null;
-//   }
-
-//   const configPath = `themes/${temaId}/config.json`;
-//   console.log(`📦 Cargando config desde: ${configPath}`);
-
-//   try {
-//     const response = await fetch(configPath);
-    
-//     if (!response.ok) {
-//       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-//     }
-
-//     const config = await response.json();
-//     console.log('✅ Config cargado exitosamente:', config);
-    
-//     // Validar que tenga la estructura esperada
-//     if (!config.activities) {
-//       console.warn('⚠️ Config no tiene sección "activities"');
-//       return null;
-//     }
-
-//     return config;
-
-//   } catch (error) {
-//     console.error('❌ Error cargando config.json:', error);
-//     console.warn('🔄 Usando valores por defecto');
-//     return null;
-//   }
-// }
-
-// /**
-//  * Obtiene el valor de configuración para una actividad
-//  * @param {string} actividad - Nombre de la actividad ('material', 'quiz', etc)
-//  * @param {string} campo - Campo a obtener ('sections', 'questions', etc)
-//  * @param {*} fallback - Valor por defecto si no se encuentra
-//  * @returns {*} - Valor de configuración o fallback
-//  */
-// function getConfigValue(actividad, campo, fallback) {
-//   if (!THEME_CONFIG || !THEME_CONFIG.activities) {
-//     return fallback;
-//   }
-
-//   const activityConfig = THEME_CONFIG.activities[actividad];
-//   if (!activityConfig) {
-//     return fallback;
-//   }
-
-//   const valor = activityConfig[campo];
-//   return valor !== undefined ? valor : fallback;
-// }
-
-// /**
-//  * Inicializa el sistema de configuración
-//  * Debe llamarse al inicio, antes de usar readSectionStates()
-//  */
-// async function initThemeConfig() {
-//   console.log('🚀 Iniciando sistema de configuración dinámica...');
-  
-//   const tema = sessionStorage.getItem('tema.active') || 
-//                new URLSearchParams(location.search).get('tema') || 
-//                '';
-
-//   if (tema) {
-//     THEME_CONFIG = await loadThemeConfig(tema);
-    
-//     if (THEME_CONFIG) {
-//       console.log('✅ Configuración cargada para tema:', tema);
-//       console.table({
-//         'Material': THEME_CONFIG.activities.material?.sections || 'N/A',
-//         'Quiz': THEME_CONFIG.activities.quiz?.questions || 'N/A',
-//         'Conceptos': THEME_CONFIG.activities.concepts?.levels || 'N/A',
-//         'Mapa': THEME_CONFIG.activities.mapa?.nodes || 'N/A',
-//         'Crucigrama': THEME_CONFIG.activities.cruci?.words || 'N/A',
-//         'Cloze': THEME_CONFIG.activities.cloze?.items || 'N/A'
-//       });
-//     }
-//   }
-
-//   return THEME_CONFIG;
-// }
-
-// ════════════════════════════════════════════════════════════════════════════
-// 📝 NOTAS DE USO:
-// ════════════════════════════════════════════════════════════════════════════
-//
-// 1. Este código debe agregarse ANTES de la función readSectionStates()
-//
-// 2. Al inicio del script, llamar:
-//    await initThemeConfig();
-//
-// 3. Luego en readSectionStates(), usar:
-//    const totalQuiz = getConfigValue('quiz', 'questions', 10);
-//    const totalMaterial = getConfigValue('material', 'sections', 8);
-//    etc.
-//
-// ════════════════════════════════════════════════════════════════════════════
-    // ════════════════════════════════════════════════════════════════════
-
-
-
     function readSectionStates(){
       console.log('🔍 Revisando almacenamiento para tema:', tema);
       
@@ -600,28 +403,24 @@
         }
       }
 
-      const totalQuiz = getConfigValue('quiz', 'questions', 10);
-      const sQuiz = readJSON(ns('quiz'), { qIndex:0, score:0, total:totalQuiz, completed:false });
+      const sQuiz = readJSON(ns('quiz'), { qIndex:0, score:0, total:10, completed:false });
       console.log('📝 Quiz state:', sQuiz);
       
       const sCazaRaw = readJSON(ns('caza'), { total:0, found:0, completed:false });
-      const totalCaza = getConfigValue('concepts', 'levels', 6);
       console.log('🔎 Caza state (raw):', sCazaRaw);
       
       const sCaza = {
         paragraph: sCazaRaw.found || 0,
-        total: sCazaRaw.total || totalCaza,
+        total: sCazaRaw.total || 0,
         hits: sCazaRaw.found || 0,
         completed: sCazaRaw.completed || false
       };
       console.log('🔎 Caza state (processed):', sCaza);
       
-      const totalMaterial = getConfigValue('material', 'sections', 8);
-      const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:totalMaterial, completed:false });
+      const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
       console.log('📖 Material state:', sMaterial);
       
-      const totalMapa = getConfigValue('mapa', 'nodes', 10);
-      const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:totalMapa, progress:0, completed:false });
+      const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
       console.log('🗺️ Mapa state:', sMapa);
 
       const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
@@ -630,8 +429,7 @@
       const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
                                      : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
       
-      const totalCruci = getConfigValue('cruci', 'words', 0);
-      const sCruci = readJSON(ns('cruci'), { total:totalCruci, solved:0, score:0, completed:false });
+      const sCruci = readJSON(ns('cruci'), { total:0, solved:0, score:0, completed:false });
       const cruciPct = (sCruci.total && sCruci.total > 0) ? pct(sCruci.solved, sCruci.total) : 0;
 
       // ⭐ NUEVO: Estado del video
