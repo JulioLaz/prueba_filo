@@ -1,243 +1,266 @@
-// themes/aristoteles/cloze_test.js
-// CLOZE TEST — Aristóteles: vida, ciencia, lógica, metafísica, física, ética y política
-
+// themes/etica_aristoteles/cloze_test.js - Aristóteles ACTUALIZADO
 window.CLOZE_TEST = {
-  title: "Cloze — Aristóteles: ciencia, lógica, metafísica y ética",
+  title: "Cloze — Aristóteles (0:00—17:00)",
   items: [
-    // 1) Biografía y contexto histórico
     {
       id: "a1",
-      text: "Aristóteles nació en [[Estagira]], colonia [[griega]] de la península [[Calcídica|Calcidica]], en el año [[384]] antes de [[Cristo]], y murió en [[Calcis]], en la isla de [[Eubea]], en el [[322]] antes de Cristo, un año después que [[Alejandro]] [[Magno]]. Vivió la muerte de la [[Grecia]] clásica y la entrada en el [[helenismo]].",
-      feedbackOK: "Muy bien. Sitúas a Aristóteles en el espacio (Estagira, Calcis) y en el tiempo (del 384 al 322 a. C., transición a la época helenística).",
-      feedbackKO: "Recuerda: Estagira, colonia griega de la Calcídica, 384–322 a. C., muerte de la Grecia clásica y helenismo.",
+      text: "1- Aristóteles nació en [[Estagira]], colonia [[griega]], en el año [[384]] antes de Cristo, y murió en [[Calcis]] en el [[322]] a.C., un año después que [[Alejandro Magno]]. Vivió la muerte de la [[Grecia]] clásica y la entrada en el [[helenismo]].",
+      feedbackOK: "¡Correcto! Conoces los datos biográficos y el contexto histórico de Aristóteles.",
+      feedbackKO: "Recuerda: Estagira 384 a.C. - Calcis 322 a.C., transición Grecia clásica al helenismo.",
       videoHints: [
-        "💡 Es el inicio del vídeo, cuando se cuentan su lugar y fecha de nacimiento y muerte.",
-        "💡 Escucha cuando se dice que murió un año después que Alejandro Magno.",
-        "💡 A continuación se comenta que vivió la muerte de la Grecia clásica y la entrada en el helenismo."
+        "💡 Opciones: Atenas | Esparta | Tebas | Estagira | Corinto | Mileto",
+        "💡 Opciones: romana | persa | egipcia | griega | macedonia | fenicia",
+        "💡 Opciones: 428 | 399 | 370 | 384 | 356 | 427",
+        "💡 Opciones: Atenas | Esparta | Tebas | Calcis | Corinto | Mileto",
+        "💡 Opciones: 399 | 347 | 336 | 322 | 323 | 315",
+        "💡 Opciones: Filipo II | Pericles | Darío III | Alejandro Magno | Ptolomeo I | Antígono",
+        "💡 Opciones: Roma | Persia | Egipto | Grecia | Macedonia | Cartago",
+        "💡 Opciones: arcaísmo | clasicismo | imperialismo | helenismo | romanización | orientalización"
       ],
-      videoSegment: { start: 5, end: 26 } // ≈ 7.54–25.12
+      videoSegment: { start: 0, end: 26 } // 0:00 - 0:26
     },
-
-    // 2) Academia de Platón y fundación del Liceo
     {
       id: "a2",
-      text: "Cuando tenía en torno a [[18]] años fue enviado a [[Atenas]] a estudiar en la [[Academia]] de [[Platón|Platon]], donde permaneció nada menos que [[20]] años. En el año [[335]] antes de Cristo fundó su propia institución de enseñanza en Atenas, el [[Liceo]], que durante su vida fue equivalente a la [[universidad]] más [[famosa]] del mundo.",
-      feedbackOK: "Correcto. Aquí aparece su largo paso por la Academia de Platón y la fundación del Liceo.",
-      feedbackKO: "Piensa: 18 años, Academia de Platón, 20 años allí y luego el Liceo como gran centro de enseñanza.",
+      text: "2- Cuando tenía [[18]] años fue enviado a [[Atenas]] a estudiar en la [[Academia]] de [[Platón|Platon]], donde permaneció [[20]] años. En el año [[335]] a.C. fundó el [[Liceo]].",
+      feedbackOK: "¡Perfecto! Conoces su formación y la fundación del Liceo.",
+      feedbackKO: "Recuerda: 18 años a Atenas, 20 años en la Academia, fundó el Liceo en 335 a.C.",
       videoHints: [
-        "💡 Está cuando se cuenta que a los 18 años fue enviado a Atenas a la Academia de Platón.",
-        "💡 Más adelante se menciona el año 335 a. C. y la fundación del Liceo.",
-        "💡 Se dice que el Liceo fue equivalente a la universidad más famosa del mundo."
+        "💡 Opciones: 15 | 16 | 17 | 18 | 19 | 20",
+        "💡 Opciones: Esparta | Tebas | Corinto | Atenas | Delfos | Siracusa",
+        "💡 Opciones: Liceo | Gimnasio | Ágora | Academia | Pórtico | Jardín",
+        "💡 Opciones: Sócrates | Anaxágoras | Demócrito | Platón | Pitágoras | Heráclito",
+        "💡 Opciones: 10 | 15 | 18 | 20 | 25 | 30",
+        "💡 Opciones: 343 | 338 | 336 | 335 | 330 | 323",
+        "💡 Opciones: Academia | Gimnasio | Ágora | Liceo | Pórtico | Jardín"
       ],
-      videoSegment: { start: 30, end: 82 } // 31.36–81.84
+      videoSegment: { start: 29, end: 82 } // 0:31 - 1:22
     },
-
-    // 3) Obra y campos que trabaja
     {
       id: "a3",
-      text: "Escribió casi sobre todo lo [[imaginable]], aunque gran parte de su [[obra]] se ha [[perdido]]. Aun así, nos han llegado libros sobre [[lógica]], [[metafísica]], [[física]], [[biología]], [[psicología]], [[ética]], [[política]], [[retórica]] y [[estética]].",
-      feedbackOK: "Muy bien. Enumera la amplitud increíble de temas tratados por Aristóteles.",
-      feedbackKO: "Fíjate en la lista: lógica, metafísica, física, biología, psicología, ética, política, retórica y estética.",
+      text: "3- Escribió sobre [[lógica]], [[metafísica]], [[física]], [[biología]], [[psicología]], [[ética]], [[política]], [[retórica|retorica]] y [[estética|estetica]].",
+      feedbackOK: "¡Excelente! Has identificado la amplitud enciclopédica de Aristóteles.",
+      feedbackKO: "Recuerda las nueve disciplinas principales que trató Aristóteles.",
       videoHints: [
-        "💡 Está justo después de mencionar el Liceo.",
-        "💡 Escucha cuando se dice 'Escribió casi sobre todo lo imaginable'.",
-        "💡 A continuación se enumeran las disciplinas sobre las que escribió."
+        "💡 Opciones: gramática | retórica | aritmética | lógica | geometría | astronomía",
+        "💡 Opciones: epistemología | ontología | teología | metafísica | cosmología | antropología",
+        "💡 Opciones: química | astronomía | geografía | física | matemática | medicina",
+        "💡 Opciones: anatomía | fisiología | zoología | biología | botánica | genética",
+        "💡 Opciones: sociología | antropología | pedagogía | psicología | economía | historia",
+        "💡 Opciones: moral | estética | lógica | ética | política | economía",
+        "💡 Opciones: ética | economía | derecho | política | sociología | historia",
+        "💡 Opciones: gramática | dialéctica | poética | retórica | oratoria | elocuencia",
+        "💡 Opciones: ética | lógica | política | estética | retórica | metafísica"
       ],
-      videoSegment: { start: 80, end: 96 } // 81.84–95.32
+      videoSegment: { start: 80, end: 96 } // 1:22 - 1:36
     },
-
-    // 4) Intento de escapar de Platón, aciertos y errores
     {
       id: "a4",
-      text: "Pretendió [[escapar]] a la [[influencia]] de [[Platón|Platon]], al cual [[criticó|critico]], y nunca creyó ni en la [[teoría]] de las [[ideas]] ni en la de la [[reminiscencia]]. Quiso construir su propio [[método|metodo]], pretendió ser más [[científico|cientifico]] que su maestro, pero lo logró solo en parte: su [[lógica]] es totalmente [[correcta]] y su [[ética]] sigue influyendo todavía hoy, pero concibió una [[cosmología]] [[geocéntrica|geocentrica]] que es [[errónea|erronea]] y, mezclada con la [[religión]], impidió el [[avance]] [[científico|cientifico]] durante siglos.",
-      feedbackOK: "Correcto. Resumes bien el intento de separarse de Platón, sus grandes aciertos y sus errores cosmológicos.",
-      feedbackKO: "Recuerda: crítica a Platón y a las Ideas, lógica correcta, ética influyente y cosmología geocéntrica errónea pero muy influyente.",
+      text: "4- Pretendió [[escapar]] a la influencia de [[Platón|Platon]] y nunca creyó en la teoría de las [[ideas]] ni en la de la [[reminiscencia]]. Su [[lógica]] es correcta y su [[ética]] influyente, pero concibió una [[cosmología]] [[geocéntrica|geocentrica]] errónea.",
+      feedbackOK: "¡Correcto! Has captado los aciertos y errores de Aristóteles respecto a Platón.",
+      feedbackKO: "Recuerda: rechazó las Ideas platónicas, acertó en lógica y ética, erró en cosmología.",
       videoHints: [
-        "💡 Busca cuando se dice que pretendió escapar a la influencia de Platón.",
-        "💡 Luego se comenta que su lógica es correcta y su ética influye aún.",
-        "💡 Después se habla de su cosmología geocéntrica y del freno al avance científico."
+        "💡 Opciones: aceptar | adoptar | seguir | escapar | imitar | continuar",
+        "💡 Opciones: Sócrates | Anaxágoras | Pitágoras | Platón | Parménides | Heráclito",
+        "💡 Opciones: formas | conceptos | universales | ideas | categorías | esencias",
+        "💡 Opciones: inmortalidad | metempsicosis | anamnesis | reminiscencia | transmigración | reencarnación",
+        "💡 Opciones: física | ética | metafísica | lógica | política | retórica",
+        "💡 Opciones: lógica | metafísica | física | ética | política | estética",
+        "💡 Opciones: biología | física | metafísica | cosmología | astronomía | geología",
+        "💡 Opciones: heliocéntrica | antropocéntrica | teocéntrica | geocéntrica | egocéntrica | cosmocéntrica"
       ],
-      videoSegment: { start: 93, end: 139 } // 95.32–139.88
+      videoSegment: { start: 93, end: 140 } // 1:35 - 2:20
     },
-
-    // 5) Concepto de ciencia y cuatro fases del conocimiento
     {
       id: "a5",
-      text: "El punto de partida debe ser el concepto de [[ciencia]] de Aristóteles. Examina cómo se [[conoce]] y cree que el proceso tiene [[cuatro]] fases: la [[sensación]], cuando se capta un [[estímulo|estimulo]] por los órganos de los [[sentidos]]; la [[experiencia]], que consiste en [[recordar]] la sensación; la [[téchne|techne]], un grado de [[conocimiento]] que permite saber [[utilizar]] la experiencia; y la [[ciencia]], que es llegar a conocer el [[porqué|porque]] de las cosas.",
-      feedbackOK: "Muy bien. Has recogido las cuatro fases: sensación, experiencia, téchne y ciencia.",
-      feedbackKO: "Piensa en el orden: sensación → experiencia → téchne → ciencia (conocer el porqué).",
+      text: "5- El conocimiento tiene cuatro fases: la [[sensación]] (captar estímulo por los sentidos), la [[experiencia]] (recordar la sensación), la [[téchne|techne]] (saber utilizar la experiencia) y la [[ciencia]] (conocer el [[porqué|porque]]).",
+      feedbackOK: "¡Perfecto! Has identificado las cuatro fases del conocimiento aristotélico.",
+      feedbackKO: "Recuerda el proceso: sensación → experiencia → téchne → ciencia (el porqué).",
       videoHints: [
-        "💡 Está cuando dice 'El punto de partida debe ser el concepto de ciencia de Aristóteles'.",
-        "💡 A continuación se enumeran las cuatro fases del conocimiento.",
-        "💡 Presta atención a cómo define la ciencia como conocer el porqué de las cosas."
+        "💡 Opciones: percepción | imaginación | memoria | sensación | intuición | razón",
+        "💡 Opciones: opinión | creencia | sensación | experiencia | intuición | razón",
+        "💡 Opciones: ciencia | arte | sabiduría | téchne | prudencia | intuición",
+        "💡 Opciones: opinión | experiencia | téchne | ciencia | sabiduría | arte",
+        "💡 Opciones: qué | cómo | cuándo | porqué | dónde | quién"
       ],
-      videoSegment: { start: 138, end: 176 } // 141.20–175.20
+      videoSegment: { start: 139, end: 176 } // 2:21 - 2:56
     },
-
-    // 6) Ciencias de lo necesario y de lo posible
     {
       id: "a6",
-      text: "Las ciencias de lo [[necesario]] son básicamente las [[matemáticas|matematicas]], la [[física|fisica]] y la [[metafísica]], que al tratar del [[ser]] en sí mismo llama [[filosofía]] [[primera]]. Las ciencias de lo [[posible]] son aquellas en las que se pueden encontrar diferentes [[soluciones]] [[correctas]] a un problema; aquí encontramos la [[ética]], la [[política]], la [[retórica]] y la [[estética]].",
-      feedbackOK: "Correcto. Diferencias bien las ciencias de lo necesario y las de lo posible.",
-      feedbackKO: "Recuerda: necesario → matemáticas, física, metafísica; posible → ética, política, retórica y estética.",
+      text: "6- Las ciencias de lo [[necesario]] son las [[matemáticas|matematicas]], la [[física|fisica]] y la [[metafísica]] (filosofía primera). Las ciencias de lo [[posible]] son la [[ética]], la [[política]], la [[retórica|retorica]] y la [[estética|estetica]].",
+      feedbackOK: "¡Excelente! Has diferenciado las ciencias de lo necesario y lo posible.",
+      feedbackKO: "Recuerda: necesario (una verdad) vs posible (varias soluciones correctas).",
       videoHints: [
-        "💡 Está cuando explica que sigue dando más importancia a las ciencias teóricas.",
-        "💡 Escucha cuando nombra matemáticas, física y metafísica como ciencias de lo necesario.",
-        "💡 Después habla de ética, política, retórica y estética como ciencias de lo posible."
+        "💡 Opciones: posible | contingente | probable | necesario | relativo | opcional",
+        "💡 Opciones: física | biología | astronomía | matemáticas | química | medicina",
+        "💡 Opciones: metafísica | ética | lógica | física | biología | astronomía",
+        "💡 Opciones: física | lógica | ética | metafísica | biología | astronomía",
+        "💡 Opciones: necesario | cierto | absoluto | posible | relativo | contingente",
+        "💡 Opciones: lógica | metafísica | física | ética | estética | retórica",
+        "💡 Opciones: ética | economía | derecho | política | sociología | historia",
+        "💡 Opciones: lógica | gramática | dialéctica | retórica | poética | oratoria",
+        "💡 Opciones: ética | lógica | física | estética | metafísica | biología"
       ],
-      videoSegment: { start: 200, end: 225 } // 204.68–224.44
+      videoSegment: { start: 197, end: 228 } // 3:19 - 3:48
     },
-
-    // 7) Ciencia como demostración y primeros principios
     {
       id: "a7",
-      text: "En todo caso, cree que la [[ciencia]] consiste en [[demostrar]] y para ello debe apoyarse en ir [[simplificando]], de [[verdades]] más [[complejas]] a verdades más [[simples]], hasta llegar a los primeros [[principios]] o [[axiomas]], verdades que no necesitan [[demostración|demostracion]].",
-      feedbackOK: "Muy bien. Señalas la idea de la ciencia como demostración a partir de primeros principios.",
-      feedbackKO: "Piensa en el movimiento de lo complejo a lo simple y en los axiomas como verdades indemostrables.",
+      text: "7- La ciencia consiste en [[demostrar]], simplificando de verdades [[complejas]] a verdades [[simples]], hasta llegar a los primeros [[principios]] o [[axiomas]], verdades que no necesitan demostración.",
+      feedbackOK: "¡Correcto! Has captado el método demostrativo aristotélico.",
+      feedbackKO: "Recuerda: de lo complejo a lo simple hasta los axiomas indemostrables.",
       videoHints: [
-        "💡 Está cuando se pregunta qué es para Aristóteles la ciencia.",
-        "💡 Escucha la parte donde habla de simplificar de verdades complejas a simples.",
-        "💡 Luego aparecen los 'primeros principios o axiomas'."
+        "💡 Opciones: opinar | creer | imaginar | demostrar | intuir | suponer",
+        "💡 Opciones: simples | evidentes | claras | complejas | fáciles | básicas",
+        "💡 Opciones: complejas | difíciles | oscuras | simples | evidentes | claras",
+        "💡 Opciones: consecuencias | teoremas | corolarios | principios | hipótesis | tesis",
+        "💡 Opciones: teoremas | hipótesis | postulados | axiomas | corolarios | principios"
       ],
-      videoSegment: { start: 228, end: 240 } // 228.08–240.36
+      videoSegment: { start: 226, end: 241 } // 3:48 - 4:01
     },
-
-    // 8) Padre de la lógica
     {
       id: "a8",
-      text: "Aristóteles pretende ser [[sistemático]] y trazar el camino hacia el [[conocimiento]] en el [[pensamiento]] correcto, es decir, busca un [[método|metodo]] que permita saber si un [[razonamiento]] es [[lógico]] o está mal formulado. Por eso se le considera el [[padre]] de la [[lógica|logica]].",
-      feedbackOK: "Correcto. Esta frase recoge muy bien por qué se le considera padre de la lógica.",
-      feedbackKO: "Recuerda: método, razonamiento, pensamiento correcto y padre de la lógica.",
+      text: "8- Aristóteles es el [[padre]] de la [[lógica]]. Busca un [[método|metodo]] que permita saber si un [[razonamiento]] es lógico o mal formulado, independientemente del contenido.",
+      feedbackOK: "¡Perfecto! Aristóteles funda la lógica como disciplina formal.",
+      feedbackKO: "Recuerda: Aristóteles estudia la forma del razonamiento, no el contenido.",
       videoHints: [
-        "💡 Está justo antes de que empiece a hablar de silogismos.",
-        "💡 Escucha cuando se dice que busca un método para saber si un razonamiento es correcto.",
-        "💡 Después aparece la frase 'Por eso se le considera el padre de la lógica'."
+        "💡 Opciones: fundador | creador | precursor | padre | maestro | inventor",
+        "💡 Opciones: retórica | dialéctica | gramática | lógica | sofística | erística",
+        "💡 Opciones: contenido | tema | materia | método | forma | estructura",
+        "💡 Opciones: argumento | silogismo | juicio | razonamiento | proposición | premisa"
       ],
-      videoSegment: { start: 240, end: 256 } // 240.36–255.72
+      videoSegment: { start: 240, end: 266 } // 4:02 - 4:26
     },
-
-    // 9) Silogismo y ejemplo con Sócrates
     {
       id: "a9",
-      text: "Un [[silogismo]] tiene tres [[juicios]] —dos son las [[premisas]] y uno la [[conclusión|conclusion]]— y tres [[términos|terminos]]: el [[sujeto]] de la conclusión, el [[predicado]] y el [[término]] [[medio]]. Por ejemplo: todos los [[hombres]] son [[mortales]], [[Sócrates|Socrates]] es un [[hombre]], conclusión, Sócrates es [[mortal]].",
-      feedbackOK: "Muy bien. Definición de silogismo y ejemplo clásico.",
-      feedbackKO: "Piensa en premisas, conclusión, sujeto, predicado y término medio.",
+      text: "9- Un [[silogismo]] tiene tres juicios: dos [[premisas]] y una [[conclusión]]. Tiene tres términos: el [[sujeto]], el [[predicado]] y el [[término medio]] (no aparece en la conclusión).",
+      feedbackOK: "¡Excelente! Has entendido la estructura del silogismo aristotélico.",
+      feedbackKO: "Recuerda la estructura: premisa mayor, premisa menor, conclusión; con tres términos.",
       videoHints: [
-        "💡 Está cuando explica la estructura de los silogismos.",
-        "💡 Escucha cuando pone el ejemplo de Sócrates es mortal.",
-        "💡 Luego identifica sujeto, predicado y término medio."
+        "💡 Opciones: argumento | razonamiento | juicio | silogismo | entimema | sorites",
+        "💡 Opciones: conclusiones | términos | argumentos | premisas | proposiciones | juicios",
+        "💡 Opciones: premisa | término | argumento | conclusión | proposición | juicio",
+        "💡 Opciones: predicado | término medio | copula | sujeto | objeto | atributo",
+        "💡 Opciones: sujeto | objeto | término medio | predicado | copula | atributo",
+        "💡 Opciones: sujeto | predicado | copula | término medio | objeto | atributo"
       ],
-      videoSegment: { start: 285, end: 317 } // 288.76–317.08
+      videoSegment: { start: 285, end: 318 } // 4:47 - 5:18
     },
-
-    // 10) Categorías y sustancia primera/segunda
     {
       id: "a10",
-      text: "Aristóteles cree que es posible llegar a la [[verdad]] en [[metafísica]] si se utiliza el [[lenguaje]] [[apofántico|apofantico]] y se aplican las leyes [[lógicas|logicas]]. Distingue diez [[categorías|categorias]] y la más importante es la primera, la [[sustancia]], la [[verdad]] [[necesaria]], el verdadero [[ser]]. La [[primera]] sustancia designa la [[individualidad]] y la [[segunda]] sustancia designa la [[esencia]] o especie.",
-      feedbackOK: "Correcto. Has recogido el núcleo: categorías, sustancia y diferencia entre primera y segunda sustancia.",
-      feedbackKO: "Piensa en sustancia como categoría principal y en la distinción entre individuo y especie.",
+      text: "10- La [[metafísica]] es la filosofía [[primera]], la más importante, se dedica al [[ser]]. Distingue diez [[categorías]]: la más importante es la [[sustancia]] (lo que no cambia).",
+      feedbackOK: "¡Correcto! Has captado el objeto de la metafísica y la primacía de la sustancia.",
+      feedbackKO: "Recuerda: metafísica = estudio del ser; sustancia = lo que no cambia.",
       videoHints: [
-        "💡 Está cuando introduce las diez categorías que podemos decir de un ser.",
-        "💡 Escucha el ejemplo de 'Sócrates es un hombre de 80 kilos…'.",
-        "💡 Luego explica qué es la sustancia primera y la segunda sustancia."
+        "💡 Opciones: lógica | ética | física | metafísica | política | estética",
+        "💡 Opciones: segunda | tercera | última | primera | preliminar | fundamental",
+        "💡 Opciones: devenir | aparecer | parecer | ser | estar | existir",
+        "💡 Opciones: accidentes | cualidades | propiedades | categorías | atributos | predicados",
+        "💡 Opciones: accidente | cualidad | propiedad | sustancia | atributo | forma"
       ],
-      videoSegment: { start: 392, end: 455 } // 394.04–454.76
+      videoSegment: { start: 385, end: 440 } // 6:27 - 7:20
     },
-
-    // 11) Materia y forma, cambio sustancial
     {
       id: "a11",
-      text: "Quiere explicar cómo puede suceder el [[cambio]] [[sustancial]] y para ello utiliza la pareja de conceptos de [[materia]] y [[forma]]. Cree que el [[ser]] consta de dos [[principios]]: la materia [[prima]], que sería la sustancia común a todo ser, y la [[forma]] [[sustancial]], que define la [[especie]]. En el cambio sustancial lo que pasa es que la forma del ser es la que [[cambia]].",
-      feedbackOK: "Muy bien. Ésta es la explicación aristotélica del cambio sustancial mediante materia y forma.",
-      feedbackKO: "Recuerda: materia prima como sustrato común y forma sustancial como lo que cambia en el cambio sustancial.",
+      text: "11- En el cambio sustancial, el ser consta de dos principios: la [[materia]] prima (sustancia común) y la [[forma]] sustancial (lo que define la especie). En el cambio sustancial cambia la [[forma]].",
+      feedbackOK: "¡Perfecto! Has entendido el hilemorfismo aristotélico.",
+      feedbackKO: "Recuerda: materia = sustrato común; forma = lo que define la especie.",
       videoHints: [
-        "💡 Está cuando pone el ejemplo del árbol que se quema y pasa a ser ceniza.",
-        "💡 Justo después introduce materia y forma como dos principios.",
-        "💡 Luego explica que lo que cambia en el cambio sustancial es la forma."
+        "💡 Opciones: forma | acto | potencia | materia | esencia | sustancia",
+        "💡 Opciones: materia | potencia | acto | forma | esencia | sustancia",
+        "💡 Opciones: materia | esencia | sustancia | forma | acto | potencia"
       ],
-      videoSegment: { start: 542, end: 566 } // 544.48–565.96
+      videoSegment: { start: 542, end: 566 } // 9:04 - 9:26
     },
-
-    // 12) Acto y potencia
     {
       id: "a12",
-      text: "Según Aristóteles, todo [[ser]] es una combinación en grado variable de [[acto]] y de [[potencia]]. El acto es lo que el ser [[es]] en ese momento y la potencia lo que puede llegar a [[ser]]. Al [[moverse]], el ser desarrolla su [[potencia]] y la convierte en [[acto]]. Por eso considera que un [[bebé]] es mucha más potencia que acto y es menos [[perfecto]] que un [[adulto]].",
-      feedbackOK: "Correcto. Explicas bien la relación entre acto, potencia, movimiento y perfección.",
-      feedbackKO: "Piensa en la idea de que el movimiento es el paso de la potencia al acto.",
+      text: "12- Todo ser es combinación de [[acto]] (lo que el ser ES) y [[potencia]] (lo que puede llegar a SER). Al moverse, desarrolla su potencia y la convierte en [[acto]]. Un bebé es más [[potencia]] que acto.",
+      feedbackOK: "¡Excelente! Has captado la teoría del acto y la potencia.",
+      feedbackKO: "Recuerda: acto = lo que es; potencia = lo que puede ser; movimiento = actualización.",
       videoHints: [
-        "💡 Está en el bloque en que aplica acto y potencia al movimiento local.",
-        "💡 Escucha cuando dice que todo ser es combinación de acto y potencia.",
-        "💡 Luego pone el ejemplo del bebé, el adulto y el anciano."
+        "💡 Opciones: potencia | forma | materia | acto | esencia | sustancia",
+        "💡 Opciones: acto | forma | materia | potencia | esencia | movimiento",
+        "💡 Opciones: potencia | forma | materia | acto | esencia | movimiento",
+        "💡 Opciones: acto | forma | materia | potencia | esencia | movimiento"
       ],
-      videoSegment: { start: 582, end: 650 } // 582.84–649.64
+      videoSegment: { start: 580, end: 650 } // 9:42 - 10:50
     },
-
-    // 13) Cuatro causas y teleología inmanente
     {
       id: "a13",
-      text: "Aristóteles cree que en general existen cuatro [[causas]]: la [[material]], la [[formal]], la [[eficiente]] —el [[porqué|porque]]— y la [[final]], el [[para qué|para que]]. En los seres [[naturales]], la causa [[material]] es la [[materia]] y todas las otras corresponden a la [[forma]], que explica por qué la especie hace lo que hace y para qué lo hace. Por eso su filosofía defiende una [[teleología]] [[inmanente]], una [[finalidad]] [[innata]] dentro del propio [[ser]].",
-      feedbackOK: "Muy bien. Resumes las cuatro causas y la idea de teleología inmanente.",
-      feedbackKO: "Recuerda: material, formal, eficiente y final; forma como portadora de las causas y teleología interna.",
+      text: "13- Existen cuatro causas: [[material]] (la materia), [[formal]] (la forma), [[eficiente]] (el porqué) y [[final]] (el para qué). Su filosofía defiende una [[teleología]] [[inmanente]] (finalidad innata dentro del ser).",
+      feedbackOK: "¡Correcto! Has identificado las cuatro causas y la teleología inmanente.",
+      feedbackKO: "Recuerda: material, formal, eficiente y final; teleología = finalidad interna.",
       videoHints: [
-        "💡 Está cuando introduce las cuatro causas del ser.",
-        "💡 Luego explica que en los seres naturales las tres causas (formal, eficiente y final) corresponden a la forma.",
-        "💡 Más adelante se afirma que esto define la teleología inmanente de Aristóteles."
+        "💡 Opciones: formal | eficiente | final | material | instrumental | ejemplar",
+        "💡 Opciones: material | eficiente | final | formal | instrumental | ejemplar",
+        "💡 Opciones: material | formal | final | eficiente | instrumental | motriz",
+        "💡 Opciones: material | formal | eficiente | final | instrumental | ejemplar",
+        "💡 Opciones: mecanicismo | determinismo | casualismo | teleología | fatalismo | azar",
+        "💡 Opciones: trascendente | externa | divina | inmanente | sobrenatural | ajena"
       ],
-      videoSegment: { start: 686, end: 728 } // 686.24–728.44
+      videoSegment: { start: 684, end: 732 } // 11:26 - 12:12
     },
-
-    // 14) Cosmología geocéntrica, éter y acto puro / primer motor
     {
       id: "a14",
-      text: "El universo aristotélico es como una [[cebolla]], una [[esfera]] con [[capas]] superpuestas: divide su [[cosmos]] en zona [[sublunar]], [[imperfecta]], y zona [[supralunar]], [[perfecta]], con la [[Tierra]] inmóvil en el [[centro]]. Acepta la teoría de los cuatro [[elementos]] y añade un quinto elemento para los cielos, la [[quintaesencia]] o [[éter|eter]]. Como todo lo que se [[mueve]] debe ser movido por [[otro]], concluye que tiene que existir un [[primer]] [[motor]] [[inmóvil|inmovil]], acto [[puro]], que siglos después será identificado con [[Dios]].",
-      feedbackOK: "Correcto. Ahí está la imagen de universo en capas, la quintaesencia y el primer motor inmóvil.",
-      feedbackKO: "Piensa en cebolla/esfera, sublunar/supralunar, éter y primer motor inmóvil.",
+      text: "14- El universo es una [[esfera]] con capas. Divide el cosmos en zona [[sublunar]] (imperfecta) y [[supralunar]] (perfecta), con la [[Tierra]] inmóvil en el centro. Añade la [[quintaesencia]] o [[éter|eter]] a los cuatro elementos. Todo lo que se mueve es movido por otro, por eso existe un [[primer motor inmóvil|primer motor inmovil]], acto puro.",
+      feedbackOK: "¡Perfecto! Has captado la cosmología geocéntrica y el primer motor inmóvil.",
+      feedbackKO: "Recuerda: universo esférico, geocéntrico, éter en los cielos, primer motor.",
       videoHints: [
-        "💡 Está en el bloque en que describe el universo aristotélico como una cebolla/esfera.",
-        "💡 Escucha cuando habla de la zona sublunar y supralunar y del éter.",
-        "💡 Después relaciona el principio de causalidad con el primer motor inmóvil."
+        "💡 Opciones: cubo | cilindro | cono | esfera | pirámide | poliedro",
+        "💡 Opciones: supralunar | celeste | divina | sublunar | perfecta | eterna",
+        "💡 Opciones: sublunar | terrestre | imperfecta | supralunar | celeste | divina",
+        "💡 Opciones: Luna | Sol | Marte | Tierra | Venus | Júpiter",
+        "💡 Opciones: vacío | pneuma | fuego | quintaesencia | aire | agua",
+        "💡 Opciones: vacío | fuego | aire | éter | agua | tierra",
+        "💡 Opciones: acto puro | dios | causa primera | primer motor inmóvil | ser necesario | sustancia divina"
       ],
-      videoSegment: { start: 750, end: 900 } // 755.84–900.04
+      videoSegment: { start: 750, end: 905 } // 12:32 - 15:05
     },
-
-    // 15) Alma (psiqué) y nous
     {
       id: "a15",
-      text: "Divide a los seres vivos en [[plantas]], [[animales]] y [[hombres]], situando al hombre por [[encima]]. Su [[psiqué]] engloba una parte [[vegetativa]], una [[sensitiva]] y añade la parte [[racional]], su capacidad de [[pensar]] que le distingue de los animales. La psique racional es el [[noûs|nous]], la [[inteligencia]], que divide en [[pasiva]] o [[potencial]] —noûs [[pathetikós|pathetikos]]— y [[activa]] o [[productiva]] —noûs [[poiētikós|poietikos]]—, que permite extraer [[conceptos]] a partir de las impresiones.",
-      feedbackOK: "Muy bien. Has descrito las tres partes del alma y la distinción entre nous pasivo y nous activo.",
-      feedbackKO: "Recuerda: psiqué vegetativa, sensitiva y racional; nous pasivo/potencial y nous poietikós/activo.",
+      text: "15- El alma ([[psiqué|psique]]) tiene tres partes: [[vegetativa]] (plantas), [[sensitiva]] (animales) y [[racional]] (humanos). La parte racional es el [[noûs|nous]] (inteligencia): [[pasivo]] ([[pathetikós|pathetikos]]) y [[activo]] ([[poiētikós|poietikos]]).",
+      feedbackOK: "¡Excelente! Has entendido la psicología aristotélica y la distinción del nous.",
+      feedbackKO: "Recuerda: tres niveles del alma, nous pasivo y nous activo (poietikós).",
       videoHints: [
-        "💡 Está cuando habla de cómo divide a los seres vivos y la forma (psiqué) del hombre.",
-        "💡 Escucha cuando enumera psiqué vegetativa, sensitiva y racional.",
-        "💡 Después distingue entre nous pasivo y nous poietikós."
+        "💡 Opciones: pneuma | nous | logos | psiqué | thumos | eros",
+        "💡 Opciones: sensitiva | racional | apetitiva | vegetativa | locomotriz | cognitiva",
+        "💡 Opciones: vegetativa | racional | apetitiva | sensitiva | locomotriz | emotiva",
+        "💡 Opciones: vegetativa | sensitiva | apetitiva | racional | locomotriz | volitiva",
+        "💡 Opciones: logos | pneuma | thumos | noûs | psiqué | eros",
+        "💡 Opciones: activo | productivo | poietikós | pasivo | potencial | pathetikós",
+        "💡 Opciones: pasivo | potencial | pathetikós | activo | productivo | poietikós"
       ],
-      videoSegment: { start: 910, end: 950 } // 917.04–950.04
+      videoSegment: { start: 910, end: 958 } // 15:12 - 15:58
     },
-
-    // 16) Virtud ética, virtudes dianoéticas y zoon politikon
     {
       id: "a16",
-      text: "Define la [[virtud]] [[ética|etica]] como el [[hábito|habito]] [[electivo]] que consiste en elegir el [[término]] [[medio]] entre dos [[extremos]], tal como lo haría el hombre [[prudente]]. Las virtudes [[dianoéticas]] pueden ser [[prácticas|practicas]] —como la [[prudencia]] o el [[arte]]— y [[teóricas|teoricas]] —[[intuición|intuicion]], [[ciencia]] y [[sabiduría|sabiduria]]—, que deben desarrollarse al [[máximo|maximo]]. En política, Aristóteles define al hombre como [[animal]] [[político|politico]], es decir, [[animal]] [[social]] que necesita [[vivir]] en [[comunidad]].",
-      feedbackOK: "Excelente. Reúnes el núcleo de su ética (término medio, prudencia) y su definición de hombre como animal político.",
-      feedbackKO: "Piensa en virtud ética como hábito electivo del término medio y en el hombre como animal político/social.",
+      text: "16- La virtud [[ética|etica]] es el [[hábito|habito]] [[electivo]] que elige el [[término medio]] entre dos extremos (lo haría el hombre [[prudente]]). Las virtudes [[dianoéticas]] son [[prácticas|practicas]] (prudencia, arte) y [[teóricas|teoricas]] (intuición, ciencia, sabiduría). El hombre es [[animal político|animal politico]] ([[zoon politikon]]), necesita vivir en [[comunidad]].",
+      feedbackOK: "¡Correcto! Has captado la ética aristotélica: término medio, prudencia, animal político.",
+      feedbackKO: "Recuerda: virtud ética = hábito del término medio; hombre = animal político.",
       videoHints: [
-        "💡 Está cuando habla de la virtud ética como hábito electivo del término medio.",
-        "💡 Más adelante distingue virtudes dianoéticas prácticas y teóricas.",
-        "💡 Luego define al hombre como animal político, que necesita vivir en comunidad."
+        "💡 Opciones: dianoética | intelectual | teórica | ética | moral | práctica",
+        "💡 Opciones: disposición | virtud | acto | hábito | capacidad | potencia",
+        "💡 Opciones: natural | necesario | innato | electivo | automático | instintivo",
+        "💡 Opciones: justo medio | punto medio | equilibrio | término medio | centro | promedio",
+        "💡 Opciones: sabio | justo | valiente | prudente | temperante | magnánimo",
+        "💡 Opciones: éticas | morales | prácticas | dianoéticas | cardinales | teologales",
+        "💡 Opciones: teóricas | especulativas | contemplativas | prácticas | activas | productivas",
+        "💡 Opciones: prácticas | activas | productivas | teóricas | especulativas | contemplativas",
+        "💡 Opciones: animal racional | ser pensante | homo sapiens | animal político | zoon logon | ser social",
+        "💡 Opciones: homo politicus | ser político | ciudadano | zoon politikon | animal social | politikon zoon",
+        "💡 Opciones: soledad | aislamiento | individualismo | comunidad | autonomía | independencia"
       ],
-      videoSegment: { start: 960, end: 1015 } // 968.04–1015.04
+      videoSegment: { start: 960, end: 1015 } // 16:02 - 16:55
     }
   ]
 };
 
-// === Sistema de pistas (igual que en los otros temas) ===
+// Sistema de pistas mejorado con sopa de palabras
 window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoHints) return null;
-
+  
   const maxHints = item.videoHints.length;
   if (hintLevel >= maxHints) return null;
-
+  
   return {
     hint: item.videoHints[hintLevel],
     hasMore: hintLevel < maxHints - 1,
@@ -245,16 +268,23 @@ window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   };
 };
 
-// === Link directo al momento del video (3s ANTES de la frase) ===
+// Función para generar link directo al momento del video
 window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
-
-  const config = window.VIDEO_CONFIG?.aristoteles; // 👈 ajusta si usas otro nombre de tema
+  
+  const config = window.VIDEO_CONFIG?.etica_aristoteles;
   if (!config) return null;
+  
+  const actualStart = config.startTime + item.videoSegment.start;
+  return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${actualStart}s`;
+};
 
-  const baseStart = (config.startTime || 0) + item.videoSegment.start;
-  const safeStart = Math.max(baseStart - 3, 0); // 3 segundos antes de la frase
-
-  return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${safeStart}s`;
+// Función auxiliar para parsear las opciones de la sopa de palabras
+window.CLOZE_TEST.parseHintOptions = function(hintText) {
+  // Extrae las opciones del formato "💡 Opciones: opción1 | opción2 | ..."
+  const match = hintText.match(/💡 Opciones: (.+)/);
+  if (!match) return null;
+  
+  return match[1].split('|').map(opt => opt.trim());
 };

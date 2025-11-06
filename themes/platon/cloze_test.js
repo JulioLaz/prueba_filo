@@ -1,243 +1,290 @@
-// themes/platon/cloze_test.js
-// CLOZE TEST — Platón: ideas, alma y política (versión extendida, 16 ítems)
-
+// themes/platon/cloze_test.js - Platón ACTUALIZADO
 window.CLOZE_TEST = {
-  title: "Cloze — Platón: ideas, alma y política",
+  title: "Cloze — Platón: Ideas, Alma y Política (0:00—10:00)",
   items: [
-    // 1) Intro: primer gran filósofo
     {
       id: "p1",
-      text: "Platón es sin duda el primer gran [[filósofo|filosofo]], es quien da a la filosofía su [[empaque]] y su obra ha tenido tal [[influencia]] histórica que si no se [[conoce]] es como si no se supiera nada de esta [[disciplina]].",
-      feedbackOK: "Muy bien. Es la presentación de Platón como figura imprescindible para entender la filosofía.",
-      feedbackKO: "Recuerda que el narrador insiste en empaque, influencia histórica y disciplina.",
+      text: "1- Platón es sin duda el primer gran [[filósofo|filosofo]], es quien da a la filosofía su [[empaque]] y su obra ha tenido tal [[influencia]] histórica que si no se [[conoce]] es como si no se supiera nada de esta [[disciplina]].",
+      feedbackOK: "¡Correcto! Platón es la figura fundacional de la filosofía occidental.",
+      feedbackKO: "Recuerda: Platón da empaque a la filosofía y es imprescindible conocerlo.",
       videoHints: [
-        "💡 Está al principio, justo tras la música.",
-        "💡 Escucha cuando dice que si no se conoce a Platón es como no saber nada de filosofía.",
-        "💡 Son las primeras frases del video."
+        "💡 Opciones: poeta | político | matemático | filósofo | orador | dramaturgo",
+        "💡 Opciones: utilidad | simplicidad | practicidad | empaque | popularidad | accesibilidad",
+        "💡 Opciones: limitación | irrelevancia | marginalidad | influencia | decadencia | obsolescencia",
+        "💡 Opciones: ignora | rechaza | olvida | conoce | critica | cuestiona",
+        "💡 Opciones: arte | ciencia | técnica | disciplina | profesión | oficio"
       ],
-      videoSegment: { start: 5, end: 15 } // ≈ 00:05
+      videoSegment: { start: 3, end: 15 } // 0:05 - 0:15 (restado 2 seg)
     },
-
-    // 2) Decadencia y aristocracia
     {
       id: "p2",
-      text: "Es curioso que a pesar de ser visto como el primero de los grandes, su obra se dé en un contexto de [[decadencia]]: la [[Grecia]] clásica se acerca a su [[fin]] y él está recogiendo un [[acervo]] cultural [[antiguo]] porque sus ideales son los ideales de la [[aristocracia]] griega: el [[bien]], la [[belleza]], la [[justicia]] y la idea de que no todos somos [[iguales]].",
-      feedbackOK: "Correcto. Sitúas a Platón en la Grecia en decadencia con ideales aristocráticos.",
-      feedbackKO: "Fíjate en las palabras: decadencia, Grecia clásica, acervo antiguo, aristocracia, bien, belleza, justicia, desigualdad.",
+      text: "2- Su obra se da en un contexto de [[decadencia]]: la [[Grecia]] clásica se acerca a su fin y él recoge un acervo cultural [[antiguo]] porque sus ideales son los de la [[aristocracia]] griega: el [[bien]], la [[belleza]], la [[justicia]] y la idea de que no todos somos [[iguales]].",
+      feedbackOK: "¡Perfecto! Platón opera en la decadencia de Grecia con ideales aristocráticos.",
+      feedbackKO: "Recuerda: decadencia de Grecia, ideales aristocráticos (bien, belleza, justicia, desigualdad).",
       videoHints: [
-        "💡 Está inmediatamente después de la presentación inicial.",
-        "💡 Escucha cuando liga decadencia con Grecia clásica acercándose a su fin.",
-        "💡 Luego menciona literalmente bien, belleza, justicia y que no todos somos iguales."
+        "💡 Opciones: esplendor | auge | crecimiento | decadencia | expansión | florecimiento",
+        "💡 Opciones: Roma | Persia | Egipto | Grecia | Macedonia | Cartago",
+        "💡 Opciones: moderno | reciente | nuevo | antiguo | contemporáneo | actual",
+        "💡 Opciones: democracia | tiranía | oligarquía | aristocracia | plutocracia | oclocracia",
+        "💡 Opciones: mal | fealdad | injusticia | bien | vicio | falsedad",
+        "💡 Opciones: mal | fealdad | verdad | belleza | utilidad | bondad",
+        "💡 Opciones: injusticia | desigualdad | tiranía | justicia | opresión | inequidad",
+        "💡 Opciones: diferentes | diversos | únicos | iguales | desiguales | distintos"
       ],
-      videoSegment: { start: 19, end: 34 } // ≈ 00:19
+      videoSegment: { start: 17, end: 34 } // 0:19 - 0:34 (restado 2 seg)
     },
-
-    // 3) Vida: de político a fundador de la Academia
     {
       id: "p3",
-      text: "Platón iba a haber sido [[político]], pero la [[muerte]] de [[Sócrates|Socrates]] dio un giro a su vida: abandonó [[Atenas]], viajó a [[Italia]] quizá a otros sitios como [[Egipto]] y cuando volvió lo que hizo fue comprar un [[terreno]] en el que construyó su [[Academia]], donde permaneció hasta su [[muerte]] enseñando y escribiendo un sinfín de [[diálogos|dialogos]].",
-      feedbackOK: "Muy bien. Resumes el giro biográfico tras la muerte de Sócrates y la fundación de la Academia.",
-      feedbackKO: "Recuerda: político, muerte de Sócrates, viajes y fundación de la Academia.",
+      text: "3- Platón iba a haber sido [[político]], pero la [[muerte]] de [[Sócrates|Socrates]] dio un giro a su vida: abandonó [[Atenas]], viajó a [[Italia]] y cuando volvió compró un [[terreno]] donde construyó su [[Academia]], donde permaneció hasta su muerte enseñando y escribiendo [[diálogos|dialogos]].",
+      feedbackOK: "¡Excelente! La muerte de Sócrates cambió el destino de Platón.",
+      feedbackKO: "Recuerda: político → muerte de Sócrates → viajes → fundación de la Academia.",
       videoHints: [
-        "💡 Busca cuando dice 'Platón iba a haber sido político'.",
-        "💡 Luego enumera abandonar Atenas, viajar y comprar un terreno.",
-        "💡 Termina con la creación de la Academia y su actividad hasta la muerte."
+        "💡 Opciones: filósofo | matemático | poeta | político | comerciante | militar",
+        "💡 Opciones: nacimiento | exilio | juicio | muerte | condena | destierro",
+        "💡 Opciones: Platón | Aristóteles | Parménides | Sócrates | Heráclito | Pitágoras",
+        "💡 Opciones: Esparta | Tebas | Corinto | Atenas | Delfos | Mileto",
+        "💡 Opciones: Egipto | Persia | Grecia | Italia | Siria | Macedonia",
+        "💡 Opciones: edificio | palacio | templo | terreno | jardín | gimnasio",
+        "💡 Opciones: Liceo | Gimnasio | Ágora | Academia | Pórtico | Jardín",
+        "💡 Opciones: tratados | poemas | ensayos | diálogos | cartas | discursos"
       ],
-      videoSegment: { start: 39, end: 59 } // ≈ 00:39–00:59
+      videoSegment: { start: 37, end: 59 } // 0:39 - 0:59 (restado 2 seg)
     },
-
-    // 4) Influencias: aristocracia, Atenas vs Esparta, Sócrates, Heráclito, Parménides, pitagóricos
     {
       id: "p4",
-      text: "Sus [[influencias]] están claras: su origen [[aristocrático]], el contexto de decadencia de [[Atenas]] frente a [[Esparta]], cuya organización mitifica con su [[disciplina]] y [[poder]] estatal, [[Sócrates|Socrates]] con la búsqueda de [[definiciones]] mediante el método [[dialéctico|dialectico]], la antinomia de [[Heráclito|Heraclito]] y [[Parménides|Parmenides]] que él llama el problema de lo uno y de lo [[múltiple|multiple]], y los [[pitagóricos|pitagoricos]] con su amor a las [[matemáticas|matematicas]] y a la [[música|musica]].",
-      feedbackOK: "Excelente. Enumeras de forma completa las influencias de Platón.",
-      feedbackKO: "Piensa en los nombres propios: Atenas, Esparta, Sócrates, Heráclito, Parménides y los pitagóricos.",
+      text: "4- Sus influencias: origen [[aristocrático|aristocratico]], decadencia de [[Atenas]] frente a [[Esparta]], [[Sócrates|Socrates]] con el método [[dialéctico|dialectico]], la antinomia de [[Heráclito|Heraclito]] y [[Parménides|Parmenides]] (problema de lo uno y lo [[múltiple|multiple]]), y los [[pitagóricos|pitagoricos]] con las [[matemáticas|matematicas]] y la [[música|musica]].",
+      feedbackOK: "¡Correcto! Has identificado todas las influencias clave de Platón.",
+      feedbackKO: "Recuerda: aristocracia, Esparta, Sócrates, Heráclito/Parménides, pitagóricos.",
       videoHints: [
-        "💡 Aparece cuando el narrador dice literalmente 'sus influencias están claras'.",
-        "💡 A continuación menciona Esparta, Sócrates y el problema de lo uno y lo múltiple.",
-        "💡 Termina con la influencia pitagórica en matemáticas y música."
+        "💡 Opciones: democrático | plebeyo | comercial | aristocrático | artesanal | popular",
+        "💡 Opciones: Esparta | Tebas | Corinto | Atenas | Delfos | Mileto",
+        "💡 Opciones: Atenas | Tebas | Corinto | Esparta | Delfos | Mileto",
+        "💡 Opciones: Platón | Aristóteles | Parménides | Sócrates | Pitágoras | Anaxágoras",
+        "💡 Opciones: mayéutico | socrático | aristotélico | dialéctico | sofístico | retórico",
+        "💡 Opciones: Sócrates | Platón | Aristóteles | Heráclito | Tales | Anaxímenes",
+        "💡 Opciones: Heráclito | Tales | Anaximandro | Parménides | Zenón | Empédocles",
+        "💡 Opciones: uno | simple | único | múltiple | diverso | plural",
+        "💡 Opciones: presocráticos | sofistas | estoicos | pitagóricos | epicúreos | cínicos",
+        "💡 Opciones: física | astronomía | geometría | matemáticas | aritmética | álgebra",
+        "💡 Opciones: poesía | retórica | gimnasia | música | danza | teatro"
       ],
-      videoSegment: { start: 61, end: 90 } // ≈ 01:01–01:30
+      videoSegment: { start: 59, end: 90 } // 1:01 - 1:30 (restado 2 seg)
     },
-
-    // 5) Teoría de las ideas: problema de lo uno y lo múltiple, dos mundos
     {
       id: "p5",
-      text: "La teoría de las [[ideas]] de Platón es su solución al problema de lo [[uno]] y de lo [[múltiple|multiple]]: para reconciliar lo que se [[percibe]], la [[multiplicidad]] y el [[cambio]] constante de seres, con lo que se [[razona]], la existencia de [[conceptos]] eternos e [[inmutables]], concibe que existen dos [[mundos]].",
-      feedbackOK: "Correcto. Entras de lleno en la teoría de las ideas como respuesta al problema de lo uno y lo múltiple.",
-      feedbackKO: "Recuerda que se contraponen percepción cambiante y conceptos eternos.",
+      text: "5- La teoría de las [[ideas]] es su solución al problema de lo [[uno]] y de lo [[múltiple|multiple]]: para reconciliar la [[multiplicidad]] y el [[cambio]] constante (lo que se percibe) con los [[conceptos]] eternos e [[inmutables]] (lo que se razona), concibe que existen dos [[mundos]].",
+      feedbackOK: "¡Perfecto! Has captado la teoría de las Ideas como solución al problema ontológico.",
+      feedbackKO: "Recuerda: multiplicidad cambiante vs conceptos eternos = dos mundos.",
       videoHints: [
-        "💡 Está cuando se introduce explícitamente 'La teoría de las ideas de Platón...'.",
-        "💡 Se habla de multiplicidad y cambio frente a conceptos eternos.",
-        "💡 Después viene la idea de los dos mundos."
+        "💡 Opciones: formas | esencias | conceptos | ideas | categorías | arquetipos",
+        "💡 Opciones: múltiple | diverso | plural | uno | singular | único",
+        "💡 Opciones: uno | simple | único | múltiple | singular | individual",
+        "💡 Opciones: unidad | simplicidad | identidad | multiplicidad | homogeneidad | singularidad",
+        "💡 Opciones: permanencia | estabilidad | estatismo | cambio | quietud | inmutabilidad",
+        "💡 Opciones: percepciones | sensaciones | ideas | conceptos | opiniones | creencias",
+        "💡 Opciones: cambiantes | variables | mutables | inmutables | temporales | perecederos",
+        "💡 Opciones: realidades | planos | dimensiones | mundos | niveles | esferas"
       ],
-      videoSegment: { start: 115, end: 135 } // ≈ 01:55–02:15
+      videoSegment: { start: 113, end: 135 } // 1:55 - 2:15 (restado 2 seg)
     },
-
-    // 6) Las ideas: inteligencia pura, formas, causa, verdad, jerarquía, idea de bien
     {
       id: "p6",
-      text: "Las [[ideas]] son seres que son [[inteligencia]] pura, no [[materia]]; son [[formas]] porque son estructuras [[lógicas|logicas]] y son [[causa]] porque generan el mundo de abajo. Además las ideas son la [[verdad]] porque son indivisibles, [[eternas]] e [[inmutables]], y el propio mundo de las ideas está [[jerarquizado]]: las más perfectas son las más [[abstractas]] y están presididas por las ideas de [[justicia]], [[belleza]] y la perfecta, la idea de [[bien]].",
-      feedbackOK: "Muy bien. Describes la naturaleza de las ideas y la primacía de la idea de bien.",
-      feedbackKO: "Piensa en los tres rasgos: inteligencia pura, forma lógica y causa del mundo sensible.",
+      text: "6- Las ideas son [[inteligencia]] pura (no [[materia]]), son [[formas]] (estructuras lógicas) y son [[causa]] (generan el mundo sensible). Las ideas son la [[verdad]] porque son [[eternas]] e [[inmutables]]. Están [[jerarquizadas]]: las más perfectas son las más [[abstractas]], presididas por las ideas de [[justicia]], [[belleza]] y la idea de [[bien]].",
+      feedbackOK: "¡Excelente! Has captado la naturaleza, función y jerarquía de las Ideas.",
+      feedbackKO: "Recuerda: inteligencia pura, formas lógicas, causa; jerarquía con el Bien en la cúspide.",
       videoHints: [
-        "💡 Escucha cuando dice 'Las ideas son seres que son inteligencia pura, no materia'.",
-        "💡 Luego explica que son formas, causa y verdad.",
-        "💡 Finalmente menciona justicia, belleza y la idea de bien como la más perfecta."
+        "💡 Opciones: materia | sensación | emoción | inteligencia | voluntad | instinto",
+        "💡 Opciones: inteligencia | espíritu | alma | materia | forma | esencia",
+        "💡 Opciones: materias | contenidos | sustancias | formas | esencias | estructuras",
+        "💡 Opciones: efecto | consecuencia | resultado | causa | producto | derivación",
+        "💡 Opciones: apariencia | ilusión | error | verdad | opinión | falsedad",
+        "💡 Opciones: temporales | perecederas | cambiantes | eternas | efímeras | transitorias",
+        "💡 Opciones: cambiantes | variables | mutables | inmutables | dinámicas | fluctuantes",
+        "💡 Opciones: igualadas | niveladas | equiparadas | jerarquizadas | homogeneizadas | uniformadas",
+        "💡 Opciones: concretas | particulares | específicas | abstractas | materiales | sensibles",
+        "💡 Opciones: injusticia | desigualdad | tiranía | justicia | inequidad | parcialidad",
+        "💡 Opciones: fealdad | verdad | utilidad | belleza | bondad | perfección",
+        "💡 Opciones: mal | fealdad | injusticia | bien | vicio | error"
       ],
-      videoSegment: { start: 136, end: 175 } // ≈ 02:16–02:55
+      videoSegment: { start: 134, end: 175 } // 2:16 - 2:55 (restado 2 seg)
     },
-
-    // 7) Teleología, idealismo y dualismo
     {
       id: "p7",
-      text: "Por toda esta concepción se considera que la filosofía de Platón tiene una [[teleología]] o [[finalidad]] [[trascendente]], y el mundo de abajo [[depende]] del de [[arriba]]; es [[idealista]] porque las ideas son lo más [[perfecto]] y [[dualista]] porque hay dos [[mundos]].",
-      feedbackOK: "Correcto. Señalas claramente la finalidad trascendente, el idealismo y el dualismo platónicos.",
-      feedbackKO: "Recuerda: teleología, dependencia del mundo de abajo y dualismo de dos mundos.",
+      text: "7- La filosofía de Platón tiene una [[teleología]] o [[finalidad]] [[trascendente]] (el mundo de abajo [[depende]] del de arriba), es [[idealista]] (las ideas son lo más perfecto) y [[dualista]] (hay dos [[mundos]]).",
+      feedbackOK: "¡Correcto! Has identificado los tres rasgos clave: teleología, idealismo, dualismo.",
+      feedbackKO: "Recuerda: finalidad trascendente, idealismo (primacía de las Ideas), dualismo (dos mundos).",
       videoHints: [
-        "💡 Busca el fragmento donde se dice 'tiene una teleología, finalidad trascendente'.",
-        "💡 A continuación explica que el mundo de abajo depende del de arriba.",
-        "💡 Remata diciendo que es idealista y dualista."
+        "💡 Opciones: mecanicismo | materialismo | determinismo | teleología | casualidad | azar",
+        "💡 Opciones: casualidad | azar | contingencia | finalidad | coincidencia | accidente",
+        "💡 Opciones: inmanente | interior | inherente | trascendente | intrínseca | propia",
+        "💡 Opciones: determina | origina | causa | depende | fundamenta | genera",
+        "💡 Opciones: materialista | empirista | realista | idealista | pragmatista | positivista",
+        "💡 Opciones: monista | pluralista | holista | dualista | unitario | integral",
+        "💡 Opciones: realidades | planos | dimensiones | mundos | esferas | niveles"
       ],
-      videoSegment: { start: 130 + 5, end: 210 } // ≈ 03:30–03:40 aprox.
+      videoSegment: { start: 133, end: 210 } // 2:15 - 3:30 (ajustado)
     },
-
-    // 8) Teoría del conocimiento: símil de la línea y mito de la caverna
     {
       id: "p8",
-      text: "La teoría del [[conocimiento]] de Platón es fiel [[espejo]] de su [[ontología]], tal y como reflejan tanto el [[símil|simil]] de la [[línea|linea]] como el mito de la [[caverna]]: hay unos [[grados]] de conocimiento del menos al más [[perfecto]].",
-      feedbackOK: "Muy bien. Relacionas los grados de conocimiento con la ontología y los dos famosos recursos didácticos.",
-      feedbackKO: "Piensa en el símil de la línea y el mito de la caverna como espejo de su ontología.",
+      text: "8- La teoría del [[conocimiento]] de Platón es fiel espejo de su [[ontología]], como reflejan el [[símil|simil]] de la [[línea|linea]] y el mito de la [[caverna]]: hay unos [[grados]] de conocimiento del menos al más [[perfecto]].",
+      feedbackOK: "¡Perfecto! Has relacionado epistemología con ontología mediante los dos recursos platónicos.",
+      feedbackKO: "Recuerda: símil de la línea y mito de la caverna ilustran los grados de conocimiento.",
       videoHints: [
-        "💡 Escucha cuando dice literalmente 'la teoría del conocimiento de Platón es fiel espejo de su ontología'.",
-        "💡 Luego nombra el símil de la línea y el mito de la caverna.",
-        "💡 Inmediatamente después habla de grados de conocimiento del menos al más perfecto."
+        "💡 Opciones: opinión | creencia | ignorancia | conocimiento | percepción | sensación",
+        "💡 Opciones: epistemología | gnoseología | metafísica | ontología | cosmología | antropología",
+        "💡 Opciones: alegoría | metáfora | parábola | símil | analogía | comparación",
+        "💡 Opciones: círculo | esfera | recta | línea | curva | espiral",
+        "💡 Opciones: torre | laberinto | prisión | caverna | palacio | templo",
+        "💡 Opciones: niveles | escalones | etapas | grados | fases | estadios",
+        "💡 Opciones: imperfecto | deficiente | inferior | perfecto | limitado | incompleto"
       ],
-      videoSegment: { start: 233, end: 245 } // ≈ 03:53–04:05
+      videoSegment: { start: 231, end: 245 } // 3:53 - 4:05 (restado 2 seg)
     },
-
-    // 9) Opinión vs conocimiento racional
     {
       id: "p9",
-      text: "Lo peor está basado en el conocimiento [[sensorial]], que es la [[opinión]] y se divide en [[conjetura]] y [[creencia]]. El conocimiento [[racional]] es radicalmente [[superior]] al sensorial y también tiene dos partes: el [[pensamiento]] basado en las [[matemáticas|matematicas]] y la [[inteligencia]] alcanzada a través de la [[dialéctica|dialectica]].",
-      feedbackOK: "Correcto. Distingues claramente opinión sensorial y conocimiento racional.",
-      feedbackKO: "Recuerda: sensorial → opinión (conjetura y creencia); racional → pensamiento y inteligencia.",
+      text: "9- El conocimiento [[sensorial]] es la [[opinión]] (doxa) y se divide en [[conjetura]] (eikasia) y [[creencia]] (pistis). El conocimiento [[racional]] es superior y tiene dos partes: el [[pensamiento]] (diánoia) basado en las [[matemáticas|matematicas]] y la [[inteligencia]] (noesis) alcanzada por la [[dialéctica|dialectica]].",
+      feedbackOK: "¡Excelente! Has identificado los cuatro niveles del conocimiento platónico.",
+      feedbackKO: "Recuerda: opinión sensorial (conjetura/creencia) vs conocimiento racional (pensamiento/inteligencia).",
       videoHints: [
-        "💡 Está justo después de los grados de conocimiento.",
-        "💡 Escucha cuando separa opinión (conjetura/creencia) y conocimiento racional.",
-        "💡 Luego habla de pensamiento matemático e inteligencia dialéctica."
+        "💡 Opciones: racional | intelectual | lógico | sensorial | matemático | dialéctico",
+        "💡 Opciones: ciencia | verdad | certeza | opinión | conocimiento | sabiduría",
+        "💡 Opciones: creencia | opinión | certeza | conjetura | sospecha | convicción",
+        "💡 Opciones: conjetura | sospecha | duda | creencia | certeza | convicción",
+        "💡 Opciones: sensorial | empírico | perceptivo | racional | intuitivo | emocional",
+        "💡 Opciones: inteligencia | razón | intuición | pensamiento | entendimiento | comprensión",
+        "💡 Opciones: física | astronomía | geometría | matemáticas | lógica | aritmética",
+        "💡 Opciones: pensamiento | razón | entendimiento | inteligencia | comprensión | juicio",
+        "💡 Opciones: retórica | sofística | mayéutica | dialéctica | erística | oratoria"
       ],
-      videoSegment: { start: 241, end: 270 } // ≈ 04:01–04:30
+      videoSegment: { start: 244, end: 270 } // 4:06 - 4:30 (restado 2 seg)
     },
-
-    // 10) Antropología dualista y reminiscencia
     {
       id: "p10",
-      text: "El que [[conoce]] es el [[hombre]] y Platón, siguiendo con su [[dualismo]], considera que el hombre tiene dos [[partes]]: [[materia]], que pertenece al mundo de abajo, y un [[alma]] inmortal que pertenece al mundo de las [[ideas]]. Esto lo justifica con su teoría de la [[reminiscencia]], según la cual el [[saber]] es [[recordar]].",
-      feedbackOK: "Muy bien. Resumes el dualismo antropológico y la teoría de la reminiscencia.",
-      feedbackKO: "Piensa en materia vs alma inmortal y en la fórmula 'el saber es recordar'.",
+      text: "10- El que conoce es el hombre, compuesto de [[materia]] (mortal) y [[alma]] (inmortal). El conocimiento es [[recordar]] lo que el alma vio en el mundo de las ideas: esto es la teoría de la [[reminiscencia]] o [[anamnesis]], el [[saber]] es [[recordar]].",
+      feedbackOK: "¡Correcto! Has captado el dualismo antropológico y la teoría de la reminiscencia.",
+      feedbackKO: "Recuerda: cuerpo mortal + alma inmortal; conocer = recordar (anamnesis).",
       videoHints: [
-        "💡 Busca cuando empieza 'El que conoce es el hombre...'.",
-        "💡 Luego menciona las dos partes, materia y alma inmortal.",
-        "💡 A continuación introduce la teoría de la reminiscencia y la frase 'saber es recordar'."
+        "💡 Opciones: alma | espíritu | forma | materia | esencia | sustancia",
+        "💡 Opciones: materia | cuerpo | espíritu | alma | mente | psique",
+        "💡 Opciones: aprender | descubrir | investigar | recordar | observar | experimentar",
+        "💡 Opciones: metempsicosis | transmigración | reencarnación | reminiscencia | inmortalidad | anamnesis",
+        "💡 Opciones: reminiscencia | recuerdo | memoria | anamnesis | evocación | rememoración",
+        "💡 Opciones: ignorar | olvidar | desconocer | saber | dudar | imaginar",
+        "💡 Opciones: aprender | descubrir | olvidar | recordar | inventar | crear"
       ],
-      videoSegment: { start: 302, end: 320 } // ≈ 05:02–05:20
+      videoSegment: { start: 300, end: 320 } // 5:02 - 5:20 (restado 2 seg)
     },
-
-    // 11) Mito del carro alado y las tres funciones del alma
     {
       id: "p11",
-      text: "En el mito del [[carro]] [[alado]], Platón explica que el [[alma]] tiene tres [[funciones]]: la [[racional]], en la [[griega]] que dirige el carro; la [[irascible]], el [[caballo]] blanco encargado de la [[defensa]] y de emociones como la [[ira]]; y la [[concupiscente]], la de la [[nutrición]] y los [[deseos]], que se [[desboca]] y provoca la [[caída]] del alma al mundo [[sensible]].",
-      feedbackOK: "Perfecto. Describes las tres funciones del alma con la imagen del carro y los caballos.",
-      feedbackKO: "Recuerda: racional, irascible y concupiscente, cada una con su papel.",
+      text: "11- En el mito del [[carro]] [[alado]], el [[alma]] tiene tres funciones: la [[racional]] (cabeza del auriga, dirige), la [[irascible]] (caballo blanco, [[defensa]] e [[ira]]) y la [[concupiscente]] (caballo negro, [[nutrición]] y [[deseos]], se desboca y provoca la caída).",
+      feedbackOK: "¡Perfecto! Has descrito las tres partes del alma con el mito del carro alado.",
+      feedbackKO: "Recuerda: racional (auriga), irascible (caballo blanco), concupiscente (caballo negro).",
       videoHints: [
-        "💡 Está cuando se menciona explícitamente 'el mito del carro alado'.",
-        "💡 El narrador describe la función racional, la irascible y la concupiscente.",
-        "💡 Termina con la caída del alma al mundo sensible."
+        "💡 Opciones: barco | nave | caballo | carro | trineo | carruaje",
+        "💡 Opciones: marino | terrestre | acuático | alado | subterráneo | celeste",
+        "💡 Opciones: cuerpo | materia | espíritu | alma | mente | psique",
+        "💡 Opciones: emocional | apetitiva | vegetativa | racional | sensitiva | locomotriz",
+        "💡 Opciones: concupiscente | apetitiva | vegetativa | irascible | racional | sensitiva",
+        "💡 Opciones: ataque | agresión | violencia | defensa | conquista | invasión",
+        "💡 Opciones: amor | alegría | tristeza | ira | miedo | esperanza",
+        "💡 Opciones: racional | irascible | vegetativa | concupiscente | sensitiva | apetitiva",
+        "💡 Opciones: reproducción | respiración | circulación | nutrición | digestión | crecimiento",
+        "💡 Opciones: necesidades | voluntades | aspiraciones | deseos | apetitos | impulsos"
       ],
-      videoSegment: { start: 361, end: 390 } // ≈ 06:01–06:30
+      videoSegment: { start: 359, end: 390 } // 6:01 - 6:30 (restado 2 seg)
     },
-
-    // 12) Reencarnaciones y alma prisionera del cuerpo
     {
       id: "p12",
-      text: "El alma inmortal de Platón también es [[prisionera]] del [[cuerpo]] y cree que deben pasar varias [[reencarnaciones]] para por fin [[liberarse]] y no volver a [[caer]]: tres para los [[filósofos|filosofos]] y diez para el [[resto]].",
-      feedbackOK: "Muy bien. Aquí se ve la influencia pitagórica en la idea de reencarnaciones.",
-      feedbackKO: "No olvides: alma prisionera del cuerpo, liberación y números 3 y 10.",
+      text: "12- El alma inmortal es [[prisionera]] del [[cuerpo]] y deben pasar varias [[reencarnaciones]] para [[liberarse]] y no volver a caer: [[tres]] para los [[filósofos|filosofos]] y [[diez]] para el resto.",
+      feedbackOK: "¡Excelente! Has captado la doctrina pitagórica de las reencarnaciones en Platón.",
+      feedbackKO: "Recuerda: alma prisionera, liberación por reencarnaciones (3 filósofos, 10 resto).",
       videoHints: [
-        "💡 Se dice que el alma inmortal es prisionera del cuerpo.",
-        "💡 A continuación se habla de varias reencarnaciones para liberarse.",
-        "💡 Se mencionan las cifras: tres para los filósofos y diez para el resto."
+        "💡 Opciones: liberada | redimida | salvada | prisionera | purificada | elevada",
+        "💡 Opciones: alma | espíritu | mente | cuerpo | materia | sustancia",
+        "💡 Opciones: metempsicosis | transmigraciones | resurrecciones | reencarnaciones | palingenesias | renacimientos",
+        "💡 Opciones: encadenarse | atarse | aprisionarse | liberarse | sujetarse | esclavizarse",
+        "💡 Opciones: uno | dos | cinco | tres | cuatro | seis",
+        "💡 Opciones: poetas | políticos | guerreros | filósofos | artistas | comerciantes",
+        "💡 Opciones: cinco | siete | ocho | diez | doce | quince"
       ],
-      videoSegment: { start: 400, end: 415 } // ≈ 06:40–06:55
+      videoSegment: { start: 398, end: 415 } // 6:40 - 6:55 (restado 2 seg)
     },
-
-    // 13) Fin de la ética: la política y el bien común
     {
       id: "p13",
-      text: "El fin último de la [[ética]] es la [[política]], porque para Platón como para los griegos antiguos en general la [[polis]] está por encima del [[individuo]]: lo importante es el [[bien]] [[común]].",
-      feedbackOK: "Correcto. Resumes la subordinación del individuo al bien común de la polis.",
-      feedbackKO: "Piensa en la idea de que la ética desemboca en la política y en el bien común.",
+      text: "13- El fin último de la [[ética]] es la [[política]], porque para Platón la [[polis]] está por encima del [[individuo]]: lo importante es el [[bien]] [[común]].",
+      feedbackOK: "¡Correcto! Has captado la subordinación del individuo al bien común de la polis.",
+      feedbackKO: "Recuerda: ética → política; polis > individuo; bien común.",
       videoHints: [
-        "💡 Está cuando el narrador dice literalmente 'el fin último de la ética es la política'.",
-        "💡 Luego afirma que la polis está por encima del individuo.",
-        "💡 Remata con que lo importante es el bien común."
+        "💡 Opciones: lógica | metafísica | estética | ética | retórica | física",
+        "💡 Opciones: ética | economía | religión | política | arte | ciencia",
+        "💡 Opciones: imperio | reino | ciudad | polis | aldea | nación",
+        "💡 Opciones: colectivo | grupo | Estado | individuo | comunidad | pueblo",
+        "💡 Opciones: mal | privado | individual | bien | particular | egoísta",
+        "💡 Opciones: privado | particular | individual | común | propio | personal"
       ],
-      videoSegment: { start: 436, end: 450 } // ≈ 07:16–07:30
+      videoSegment: { start: 434, end: 450 } // 7:16 - 7:30 (restado 2 seg)
     },
-
-    // 14) Estado ideal y tres clases
     {
       id: "p14",
-      text: "En el estado [[ideal]] existen tres [[clases]] de hombres: [[filósofos|filosofos]], que son los [[sabios]]; [[soldados]], que son los [[fuertes]]; y el resto, los [[trabajadores]], que aspiran a alcanzar la [[templanza]] y cumplir su [[función|funcion]] trabajando para el [[sustento]] de la [[polis]].",
-      feedbackOK: "Muy bien. Enumeras claramente las tres clases del estado ideal platónico.",
-      feedbackKO: "Recuerda: filósofos-sabios, soldados-fuertes y trabajadores-templanza.",
+      text: "14- En el estado [[ideal]] existen tres [[clases]]: [[filósofos|filosofos]] (sabios), [[soldados]] (fuertes) y [[trabajadores]] (aspiran a la [[templanza]], trabajan para el sustento de la polis).",
+      feedbackOK: "¡Perfecto! Has identificado las tres clases del estado ideal platónico.",
+      feedbackKO: "Recuerda: filósofos-sabiduría, soldados-valentía, trabajadores-templanza.",
       videoHints: [
-        "💡 Busca cuando empieza 'En el estado ideal existen tres clases de hombres...'.",
-        "💡 Se nombran filósofos, soldados y trabajadores.",
-        "💡 Se indica la virtud y función asociada a cada clase."
+        "💡 Opciones: real | existente | histórico | ideal | concreto | actual",
+        "💡 Opciones: castas | estamentos | categorías | clases | grupos | estratos",
+        "💡 Opciones: políticos | guerreros | comerciantes | filósofos | artesanos | sacerdotes",
+        "💡 Opciones: filósofos | comerciantes | artesanos | soldados | sacerdotes | campesinos",
+        "💡 Opciones: comerciantes | artesanos | campesinos | trabajadores | esclavos | productores",
+        "💡 Opciones: prudencia | justicia | fortaleza | templanza | sabiduría | valentía"
       ],
-      videoSegment: { start: 484, end: 500 } // ≈ 08:04–08:20
+      videoSegment: { start: 482, end: 500 } // 8:04 - 8:20 (restado 2 seg)
     },
-
-    // 15) Control estatal inspirado en Esparta
     {
       id: "p15",
-      text: "El [[equilibrio]] será garantizado por el [[estado]], al que otorga gran [[poder]] de [[control]] inspirado en [[Esparta]]: desde el control [[demográfico]] hasta el control [[educativo]]. El [[gobierno]] y la [[educación]] estarán controlados por los [[filósofos|filosofos]].",
-      feedbackOK: "Correcto. Señalas el enorme poder de control del Estado en el modelo platónico.",
-      feedbackKO: "Piensa en la inspiración espartana, el control demográfico y educativo y el papel de los filósofos.",
+      text: "15- El [[equilibrio]] será garantizado por el [[estado]], con gran poder de [[control]] inspirado en [[Esparta]]: control [[demográfico]] y [[educativo]]. El [[gobierno]] y la [[educación]] estarán controlados por los [[filósofos|filosofos]].",
+      feedbackOK: "¡Excelente! Has captado el poder totalitario del Estado platónico inspirado en Esparta.",
+      feedbackKO: "Recuerda: Estado fuerte, control demográfico y educativo, gobierno filosófico.",
       videoHints: [
-        "💡 Está cuando se habla de que el equilibrio será garantizado por el estado.",
-        "💡 Luego se mencionan expresamente los controles demográfico y educativo.",
-        "💡 Se afirma que gobierno y educación estarán en manos de los filósofos."
+        "💡 Opciones: caos | desorden | conflicto | equilibrio | anarquía | inestabilidad",
+        "💡 Opciones: individuo | familia | tribu | estado | clan | aldea",
+        "💡 Opciones: libertad | autonomía | independencia | control | anarquía | desregulación",
+        "💡 Opciones: Atenas | Tebas | Corinto | Esparta | Delfos | Mileto",
+        "💡 Opciones: económico | militar | religioso | demográfico | comercial | cultural",
+        "💡 Opciones: económico | militar | religioso | educativo | comercial | judicial",
+        "💡 Opciones: economía | ejército | religión | gobierno | comercio | justicia",
+        "💡 Opciones: economía | salud | defensa | educación | comercio | religión",
+        "💡 Opciones: políticos | guerreros | comerciantes | filósofos | sacerdotes | artesanos"
       ],
-      videoSegment: { start: 520, end: 545 } // ≈ 08:40–09:05
+      videoSegment: { start: 518, end: 545 } // 8:40 - 9:05 (restado 2 seg)
     },
-
-    // 16) Dictadura nazi y crítica de Popper
     {
       id: "p16",
-      text: "Lo que describe es una [[dictadura]] más bien [[nazi]] como vehículo hacia la [[justicia]] y el [[equilibrio]], algo bastante [[aterrador]] que le ha granjeado, por ejemplo, que [[Karl]] [[Popper]] en su obra \"La sociedad [[abierta]] y sus [[enemigos]]\" lo nombre como primer [[enemigo]] de la [[lista]].",
-      feedbackOK: "Excelente. Captas la crítica moderna de Popper al proyecto político de Platón.",
-      feedbackKO: "Recuerda: dictadura nazi, justicia, equilibrio y Popper como crítico en 'La sociedad abierta y sus enemigos'.",
+      text: "16- Lo que describe es una [[dictadura]] más bien [[nazi]] como vehículo hacia la [[justicia]] y el equilibrio, algo [[aterrador]] que llevó a [[Karl]] [[Popper]] a nombrarlo como primer [[enemigo]] en \"La sociedad [[abierta]] y sus enemigos\".",
+      feedbackOK: "¡Correcto! Has captado la crítica moderna de Popper al totalitarismo platónico.",
+      feedbackKO: "Recuerda: dictadura nazi, Popper, 'La sociedad abierta y sus enemigos'.",
       videoHints: [
-        "💡 Está cuando se califica el modelo como 'una dictadura más bien nazi'.",
-        "💡 A continuación se explica que es un vehículo hacia la justicia y el equilibrio.",
-        "💡 Luego se menciona a Karl Popper y el título 'La sociedad abierta y sus enemigos'."
+        "💡 Opciones: democracia | aristocracia | oligarquía | dictadura | timocracia | república",
+        "💡 Opciones: democrática | liberal | anarquista | nazi | socialista | comunista",
+        "💡 Opciones: injusticia | desigualdad | opresión | justicia | tiranía | inequidad",
+        "💡 Opciones: esperanzador | inspirador | admirable | aterrador | reconfortante | alentador",
+        "💡 Opciones: Friedrich | Immanuel | Georg | Karl | Ludwig | Martin",
+        "💡 Opciones: Hegel | Kant | Marx | Popper | Nietzsche | Heidegger",
+        "💡 Opciones: amigo | aliado | defensor | enemigo | partidario | seguidor",
+        "💡 Opciones: cerrada | autoritaria | totalitaria | abierta | dictatorial | represiva"
       ],
-      videoSegment: { start: 570, end: 595 } // ≈ 09:30–09:55
+      videoSegment: { start: 568, end: 595 } // 9:30 - 9:55 (restado 2 seg)
     }
   ]
 };
 
-// === Sistema de pistas (igual que en otros temas) ===
+// Sistema de pistas mejorado con sopa de palabras
 window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoHints) return null;
-
+  
   const maxHints = item.videoHints.length;
   if (hintLevel >= maxHints) return null;
-
+  
   return {
     hint: item.videoHints[hintLevel],
     hasMore: hintLevel < maxHints - 1,
@@ -245,16 +292,23 @@ window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   };
 };
 
-// === Link directo al momento del video (3s ANTES de la frase) ===
+// Función para generar link directo al momento del video
 window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
-
-  const config = window.VIDEO_CONFIG?.platon; // 👈 clave del tema en VIDEO_CONFIG
+  
+  const config = window.VIDEO_CONFIG?.platon;
   if (!config) return null;
+  
+  const actualStart = config.startTime + item.videoSegment.start;
+  return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${actualStart}s`;
+};
 
-  const baseStart = (config.startTime || 0) + item.videoSegment.start;
-  const safeStart = Math.max(baseStart - 3, 0); // 3 segundos antes de la frase
-
-  return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${safeStart}s`;
+// Función auxiliar para parsear las opciones de la sopa de palabras
+window.CLOZE_TEST.parseHintOptions = function(hintText) {
+  // Extrae las opciones del formato "💡 Opciones: opción1 | opción2 | ..."
+  const match = hintText.match(/💡 Opciones: (.+)/);
+  if (!match) return null;
+  
+  return match[1].split('|').map(opt => opt.trim());
 };
