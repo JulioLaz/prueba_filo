@@ -4,7 +4,7 @@ window.CLOZE_TEST = {
   items: [
     {
       id: "a1",
-      text: "Las acciones humanas son [[medios]] para conseguir otras cosas en relación a un [[fin]] último que es el [[bien supremo|felicidad]].",
+      text: "1- Las acciones humanas son [[medios]] para conseguir otras cosas en relación a un [[fin]] último que es el [[bien supremo|felicidad]].",
       feedbackOK: "¡Correcto! Has captado la estructura teleológica de las acciones humanas.",
       feedbackKO: "Revisa la relación entre acciones, medios y fines en la ética aristotélica.",
       videoHints: [
@@ -16,7 +16,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a2",
-      text: "La ética de Aristóteles es [[teleológica|teleologica]], es decir, que tiende a un [[fin]], y cuál es ese fin: la [[felicidad]].",
+      text: "2- La ética de Aristóteles es [[teleológica|teleologica]], es decir, que tiende a un [[fin]], y cuál es ese fin: la [[felicidad]].",
       feedbackOK: "¡Perfecto! La teleología es fundamental en el pensamiento aristotélico.",
       feedbackKO: "Recuerda el concepto clave: una ética orientada hacia un fin.",
       videoHints: [
@@ -28,7 +28,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a3",
-      text: "Aristóteles cree algo muy básico: una acción es [[correcta]] si te hace [[feliz]].",
+      text: "3- Aristóteles cree algo muy básico: una acción es [[correcta]] si te hace [[feliz]].",
       feedbackOK: "¡Exacto! Simple pero profundo: la felicidad como criterio de corrección moral.",
       feedbackKO: "Piensa en el criterio que usa Aristóteles para evaluar las acciones.",
       videoHints: [
@@ -39,7 +39,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a4",
-      text: "Las personas que están todo el día buscando [[placeres]] inmediatos se acaban convirtiendo en una especie de [[esclavos]].",
+      text: "4- Las personas que están todo el día buscando [[placeres]] inmediatos se acaban convirtiendo en una especie de [[esclavos]].",
       feedbackOK: "¡Correcto! La búsqueda exclusiva del placer conduce a la esclavitud, no a la libertad.",
       feedbackKO: "Reflexiona sobre qué pasa con quienes solo buscan gratificación inmediata.",
       videoHints: [
@@ -50,7 +50,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a5",
-      text: "El [[honor]] no es algo que tengas en ti mismo, sino que es algo que los [[demás]] te confieren, así que tampoco puede ser la felicidad.",
+      text: "5- El [[honor]] no es algo que tengas en ti mismo, sino que es algo que los [[demás]] te confieren, así que tampoco puede ser la felicidad.",
       feedbackOK: "¡Perfecto! El honor depende de otros, no está en nuestro control.",
       feedbackKO: "Piensa en por qué el honor no puede ser el bien supremo.",
       videoHints: [
@@ -61,7 +61,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a6",
-      text: "La [[riqueza]] en sí misma no tiene ningún valor, no es más que un [[medio]] para conseguir otras cosas, así que tampoco puede ser el bien supremo.",
+      text: "6- La [[riqueza]] en sí misma no tiene ningún valor, no es más que un [[medio]] para conseguir otras cosas, así que tampoco puede ser el bien supremo.",
       feedbackOK: "¡Excelente! La riqueza es instrumental, no un fin en sí mismo.",
       feedbackKO: "Recuerda la distinción entre fines y medios.",
       videoHints: [
@@ -72,7 +72,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a7",
-      text: "La felicidad debe buscarse en aquello que solo los seres humanos sabemos hacer: la actividad [[intelectual]], [[razonar]].",
+      text: "7- La felicidad debe buscarse en aquello que solo los seres humanos sabemos hacer: la actividad [[intelectual]], [[razonar]].",
       feedbackOK: "¡Correcto! La razón es lo distintivo del ser humano para Aristóteles.",
       feedbackKO: "¿Qué capacidad nos distingue de otros seres vivos?",
       videoHints: [
@@ -83,7 +83,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a8",
-      text: "No basta con conocer qué es el bien. Si queremos ser justos y buenos, tendremos que [[practicar]] la bondad y la justicia creando un [[hábito]].",
+      text: "8- No basta con conocer qué es el bien. Si queremos ser justos y buenos, tendremos que [[practicar]] la bondad y la justicia creando un [[hábito]].",
       feedbackOK: "¡Perfecto! Aristóteles supera el intelectualismo socrático: la virtud requiere práctica.",
       feedbackKO: "Recuerda la crítica de Aristóteles a Sócrates sobre el conocimiento y la virtud.",
       videoHints: [
@@ -94,7 +94,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a9",
-      text: "Si hay [[exceso]] o [[defecto]], no hay virtud. La virtud requiere la justa proporción que es la vía [[intermedia|media]] entre dos excesos.",
+      text: "9- Si hay [[exceso]] o [[defecto]], no hay virtud. La virtud requiere la justa proporción que es la vía [[intermedia|media]] entre dos excesos.",
       feedbackOK: "¡Excelente! El término medio es la doctrina central de la ética aristotélica.",
       feedbackKO: "Piensa en la teoría del justo medio entre extremos.",
       videoHints: [
@@ -106,7 +106,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a10",
-      text: "La virtud del [[valor]] es el justo medio entre los excesos de la [[temeridad]] y la [[cobardía|cobardia]].",
+      text: "10- La virtud del [[valor]] es el justo medio entre los excesos de la [[temeridad]] y la [[cobardía|cobardia]].",
       feedbackOK: "¡Perfecto ejemplo! Has entendido cómo funciona el término medio aristotélico.",
       feedbackKO: "Piensa en los dos extremos del valor: demasiado arriesgado vs demasiado miedoso.",
       videoHints: [
@@ -118,7 +118,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a11",
-      text: "Dentro de todas las virtudes, la más importante es la de la [[justicia]]. La justicia genera [[armonía]] entre las diversas funciones del ser humano.",
+      text: "11- Dentro de todas las virtudes, la más importante es la de la [[justicia]]. La justicia genera [[armonía]] entre las diversas funciones del ser humano.",
       feedbackOK: "¡Correcto! La justicia es la virtud completa que armoniza todas las demás.",
       feedbackKO: "Recuerda cuál es la virtud que Aristóteles considera suprema.",
       videoHints: [
@@ -129,7 +129,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a12",
-      text: "La justicia implica dos cosas: obedecer las [[leyes]] y la [[equidad]] hacia los demás, es decir, repartir los bienes, beneficios y ventajas.",
+      text: "12- La justicia implica dos cosas: obedecer las [[leyes]] y la [[equidad]] hacia los demás, es decir, repartir los bienes, beneficios y ventajas.",
       feedbackOK: "¡Excelente! Has captado los dos aspectos de la justicia aristotélica.",
       feedbackKO: "La justicia tiene un aspecto legal y otro distributivo.",
       videoHints: [
@@ -140,7 +140,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a13",
-      text: "Las virtudes [[dianoeticas|dianoéticas]] son virtudes de la [[razón]]. Estas virtudes deben ser aprendidas a través de la [[educación]].",
+      text: "13- Las virtudes [[dianoeticas|dianoéticas]] son virtudes de la [[razón]]. Estas virtudes deben ser aprendidas a través de la [[educación]].",
       feedbackOK: "¡Perfecto! Las virtudes dianoéticas se adquieren por enseñanza, no por hábito.",
       feedbackKO: "Recuerda el otro tipo de virtudes, las intelectuales.",
       videoHints: [
@@ -152,7 +152,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a14",
-      text: "Las más importantes virtudes dianoéticas son la [[sabiduría|sabiduria]] y la [[prudencia]]. La prudencia consiste en saber [[deliberar]] en torno a lo que es bueno para nosotros.",
+      text: "14- Las más importantes virtudes dianoéticas son la [[sabiduría|sabiduria]] y la [[prudencia]]. La prudencia consiste en saber [[deliberar]] en torno a lo que es bueno para nosotros.",
       feedbackOK: "¡Correcto! Sabiduría teórica y prudencia práctica: las cumbres de la vida intelectual.",
       feedbackKO: "Recuerda las dos virtudes intelectuales supremas.",
       videoHints: [
@@ -164,7 +164,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a15",
-      text: "La sabiduría es una virtud más [[elevada]] que la prudencia, pues se ocupa de lo que está por [[encima]] del ser humano, de las cosas más [[divinas]].",
+      text: "15- La sabiduría es una virtud más [[elevada]] que la prudencia, pues se ocupa de lo que está por [[encima]] del ser humano, de las cosas más [[divinas]].",
       feedbackOK: "¡Excelente! La sabiduría contempla lo eterno e inmutable, lo más divino.",
       feedbackKO: "Piensa en la diferencia entre lo práctico-humano y lo teórico-divino.",
       videoHints: [
@@ -176,7 +176,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a16",
-      text: "Los [[bienes externos|bienes exteriores]] como las riquezas no son la felicidad, pero sí son [[importantes]] en cierta medida. Carecer de ellos podría comprometer nuestro [[bienestar]].",
+      text: "16- Los [[bienes externos|bienes exteriores]] como las riquezas no son la felicidad, pero sí son [[importantes]] en cierta medida. Carecer de ellos podría comprometer nuestro [[bienestar]].",
       feedbackOK: "¡Perfecto! Aristóteles es realista: los bienes externos son condiciones necesarias, no suficientes.",
       feedbackKO: "Recuerda: para Aristóteles la virtud no basta si falta todo lo demás.",
       videoHints: [
@@ -188,7 +188,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a17",
-      text: "La felicidad consiste en unir sabiamente la [[virtud]], la [[contemplación|contemplacion]] y los [[bienes externos|bienes exteriores]].",
+      text: "17- La felicidad consiste en unir sabiamente la [[virtud]], la [[contemplación|contemplacion]] y los [[bienes externos|bienes exteriores]].",
       feedbackOK: "¡Excelente síntesis! Esta es la fórmula completa de la felicidad aristotélica.",
       feedbackKO: "Recuerda los tres componentes de la vida feliz según Aristóteles.",
       videoHints: [
