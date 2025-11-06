@@ -2472,8 +2472,8 @@ function setupGlobalCompatibilityAPI(tema) {
 
 function setupEnhancedProgressTracking(tema) {
   // Constantes específicas para video+cloze
-  const VIDEO_WEIGHT = 0.1;  // 10%
-  const CLOZE_WEIGHT = 0.9;  // 90%
+  const VIDEO_WEIGHT = 0.3;  // 10%
+  const CLOZE_WEIGHT = 0.7;  // 90%
   const MIN_CLOZE_FOR_APPROVAL = 80; // 80% mínimo en cloze
   
   console.log(`📊 Progreso mejorado: ${VIDEO_WEIGHT * 100}% Video + ${CLOZE_WEIGHT * 100}% Cloze`);
@@ -2909,8 +2909,8 @@ console.log('🔧 Aplicando parche de integración Firebase para Video + Cloze..
 // ====================================
 
 const VIDEO_CLOZE_CONFIG = {
-  VIDEO_WEIGHT: 0.1,  // 10% video
-  CLOZE_WEIGHT: 0.9,  // 90% cloze (OBLIGATORIO)
+  VIDEO_WEIGHT: 0.3,  // 10% video
+  CLOZE_WEIGHT: 0.7,  // 90% cloze (OBLIGATORIO)
   MIN_CLOZE_FOR_APPROVAL: 80, // 80% mínimo para aprobar
   CELEBRATION_ENABLED: true
 };

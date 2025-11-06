@@ -6,8 +6,8 @@
 class VideoClozeModule {
   constructor() {
     this.config = {
-      VIDEO_WEIGHT: 0.1,  // 10% ver el video
-      CLOZE_WEIGHT: 0.9,  // 90% completar cloze test (OBLIGATORIO)
+      VIDEO_WEIGHT: 0.3,  // 10% ver el video
+      CLOZE_WEIGHT: 0.7,  // 90% completar cloze test (OBLIGATORIO)
       CELEBRATION_THRESHOLDS: [25, 50, 75, 100], // Puntos de celebración
       AUTO_SAVE_INTERVAL: 30000, // 30 segundos
       MIN_CLOZE_FOR_APPROVAL: 80 // Mínimo 80% del cloze para aprobar
