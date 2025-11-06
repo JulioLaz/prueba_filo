@@ -99,6 +99,13 @@ const TOPICS = {
 };
 
     const VIDEO_CONFIG = {
+      etica: {
+        youtubeId: 'eHIDwx6J-lA',
+        startTime: 1,
+        endTime: 360,
+        title: 'Ética y Moral',
+        duration: '10:33'
+      }, // https://www.youtube.com/shorts/0s73cG7fJoA
       etica_aristoteles: {
         youtubeId: 'qYU0hTprTAc',
         startTime: 1,
