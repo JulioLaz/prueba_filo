@@ -225,7 +225,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: belleza | verdad | utilidad | bondad | justicia | perfección",
         "💡 Opciones: teórica | abstracta | especulativa | práctica | ideal | conceptual"
       ],
-      videoSegment: { start: 32, end: 41 } // 0:32 - 0:41 (34.02 - 2)
+      videoSegment: { start: 29, end: 41 } // 0:32 - 0:41 (34.02 - 2)
     },
     {
       id: "p5",
@@ -237,7 +237,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: discusión | contemplación | consecución | especulación | reflexión | meditación",
         "💡 Opciones: teorías | ideas | principios | objetivos | conceptos | abstracciones"
       ],
-      videoSegment: { start: 39, end: 53 } // 0:39 - 0:53 (40.86 - 2 = 38.86, ajusto a 39)
+      videoSegment: { start: 37, end: 53 } // 0:39 - 0:53 (40.86 - 2 = 38.86, ajusto a 39)
     },
     {
       id: "p6",
@@ -249,7 +249,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: procesos | métodos | medios | resultados | formas | procedimientos",
         "💡 Opciones: ineficaz | inútil | teórico | eficaz | abstracto | ideal"
       ],
-      videoSegment: { start: 51, end: 80 } // 0:51 - 1:20 (53.02 - 2)
+      videoSegment: { start: 45, end: 80 } // 0:51 - 1:20 (53.02 - 2)
     },
     {
       id: "p7",
@@ -306,7 +306,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: primera | parcial | relativa | última | temporal | provisional",
         "💡 Opciones: ciencias | artes | filosofías | religiones | técnicas | prácticas"
       ],
-      videoSegment: { start: 107, end: 117 } // 1:47 - 1:57 (109.00 - 2)
+      videoSegment: { start: 104, end: 117 } // 1:47 - 1:57 (109.00 - 2)
     },
     {
       id: "p12",
@@ -329,7 +329,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: teoría | ideología | filosofía | supervivencia | doctrina | especulación",
         "💡 Opciones: objetivos | resultados | ideales | consecuencias | logros | metas"
       ],
-      videoSegment: { start: 141, end: 151 } // 2:21 - 2:31 (142.96 - 2 = 140.96, ajusto a 141)
+      videoSegment: { start: 138, end: 151 } // 2:21 - 2:31 (142.96 - 2 = 140.96, ajusto a 141)
     }
   ]
 };
