@@ -289,7 +289,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: antropocéntrica | tecnológica | económica | ecocéntrica | política | social",
         "💡 Opciones: extrínseco | instrumental | relativo | intrínseco | condicional | utilitario"
       ],
-      videoSegment: { start: 85, end: 98 } // 1:25 - 1:38 (87.84 - 2)
+      videoSegment: { start: 82, end: 98 } // 1:25 - 1:38 (87.84 - 2)
     },
     {
       id: "a10",
