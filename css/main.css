@@ -832,6 +832,18 @@ body::before {
       background: rgba(16, 185, 129, 0.05);
     }
 
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-label {
+      color: #7b88a8;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
     .form-help {
       color: #7b88a8;
       font-size: 12px;
