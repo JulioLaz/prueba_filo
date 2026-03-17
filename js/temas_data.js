@@ -10,56 +10,64 @@ const TOPICS = {
     icon: '🌀',
     name: 'Jean-Paul Sartre',
     desc: 'Libertad ineludible, angustia y mala fe. (Ej. *El ser y la nada*)',
-    biography: 'Filósofo y escritor francés (1905–1980), figura del existencialismo. Sostuvo que “la existencia precede a la esencia”: estamos condenados a ser libres; la mala fe es el autoengaño para huir de esa responsabilidad. Obras: *El ser y la nada*, *El existencialismo es un humanismo*.'
+    biography: 'Filósofo y escritor francés (1905–1980), figura del existencialismo. Sostuvo que “la existencia precede a la esencia”: estamos condenados a ser libres; la mala fe es el autoengaño para huir de esa responsabilidad. Obras: *El ser y la nada*, *El existencialismo es un humanismo*.',
+    sections: 3
   },
 
   etica: {
     icon: '🧭',
     name: 'Ética y Moral',
     desc: 'Dilemas morales y responsabilidad. Exponentes: Aristóteles, Kant. (Ej. *Ética a Nicómaco*)',
-    expositores: ['Aristóteles', ' Immanuel Kant', ' Jeremy Bentham', ' John Stuart Mill', ' Rosalind Hursthouse']
+    expositores: ['Aristóteles', ' Immanuel Kant', ' Jeremy Bentham', ' John Stuart Mill', ' Rosalind Hursthouse'],
+    sections: 13
   },
 
   etica_aristoteles: {
     icon: '🏛️',
     name: 'Aristóteles',
     desc: 'Felicidad como fin, virtud y término medio. (Ej. *Ética a Nicómaco*)',
-    biography: 'Filósofo griego (384–322 a. C.). Defendió la eudaimonía (florecimiento) como fin humano y la virtud como hábito adquirido que halla el “término medio”, guiado por la prudencia (phronesis). Obra clave: *Ética a Nicómaco*.'
+    biography: 'Filósofo griego (384–322 a. C.). Defendió la eudaimonía (florecimiento) como fin humano y la virtud como hábito adquirido que halla el “término medio”, guiado por la prudencia (phronesis). Obra clave: *Ética a Nicómaco*.',
+    sections: 14
   },
 
   hedonismo: {
     icon: '🌸',
     name: 'Hedonismo',
     desc: 'El placer como fin de la vida. Exponentes: Epicuro, J. Bentham. (Ej. *Carta a Meneceo*)',
-    expositores: ['Epicuro', ' Aristipo de Cirene', ' Jeremy Bentham']
+    expositores: ['Epicuro', ' Aristipo de Cirene', ' Jeremy Bentham'],
+    sections: 16
   },
 
   utilitarismo: {
     icon: '🎯',
     name: 'Utilitarismo',
     desc: 'La mayor felicidad para el mayor número. Exponentes: J. Bentham, J.S. Mill. (Ej. *El Utilitarismo*)',
-    expositores: ['Jeremy Bentham', ' John Stuart Mill', ' Henry Sidgwick', ' Peter Singer']
+    expositores: ['Jeremy Bentham', ' John Stuart Mill', ' Henry Sidgwick', ' Peter Singer'],
+    sections: 8
   },
 
   pragmatismo: {
     icon: '🛠️',
     name: 'Pragmatismo',
     desc: 'La verdad se evalúa por su utilidad práctica. Exponentes: Ch. Peirce, W. James. (Ej. *Pragmatismo*)',
-    expositores: ['Charles S. Peirce', ' William James', ' John Dewey']
+    expositores: ['Charles S. Peirce', ' William James', ' John Dewey'],
+    sections: 16
   },
 
   etica_kant: {
     icon: '⚖️',
     name: 'Ética Kantiana',
     desc: 'La moral reside en el deber y la intención. (Ej. *Fundamentación de la metafísica de las costumbres*)',
-    biography: 'Filósofo alemán (1724–1804). Propuso una ética deontológica basada en el imperativo categórico: obrar según máximas universalizables y tratar a las personas siempre como fines. Obras: *Fundamentación de la metafísica de las costumbres*, *Crítica de la razón práctica*.'
+    biography: 'Filósofo alemán (1724–1804). Propuso una ética deontológica basada en el imperativo categórico: obrar según máximas universalizables y tratar a las personas siempre como fines. Obras: *Fundamentación de la metafísica de las costumbres*, *Crítica de la razón práctica*.',
+    sections: 18
   },
 
   antropocentrismo: {
     icon: '👤',
     name: 'Antropocentrismo',
     desc: 'El ser humano como centro. Exponentes: Pico della Mirandola, L. da Vinci. (Ej. *Discurso sobre la dignidad del hombre*)',
-    expositores: ['Giovanni Pico della Mirandola', ' Leonardo da Vinci', ' René Descartes']
+    expositores: ['Giovanni Pico della Mirandola', ' Leonardo da Vinci', ' René Descartes'],
+    sections: 20
   },
 
   epistemologia: {

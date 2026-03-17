@@ -264,8 +264,15 @@
   }
 
   function totalSections() {
-    // usa lo que tengas en el parche; si no, 8 por defecto
+    // 1. Config explícita del sistema de lectura (más confiable)
     try { if (window.MATERIAL_CONFIG?.TOTAL_SECTIONS > 0) return window.MATERIAL_CONFIG.TOTAL_SECTIONS; } catch {}
+    try { if (window.ReadAloudSystemConfig?.sections > 0) return window.ReadAloudSystemConfig.sections; } catch {}
+    // 2. Dato declarado en temas_data.js
+    try {
+      const t = temaFromUrl();
+      if (window.TOPICS?.[t]?.sections > 0) return window.TOPICS[t].sections;
+    } catch {}
+    // 3. sessionStorage con total real (> 8 para no confundir con el default viejo)
     const cached = JSON.parse(sessionStorage.getItem(`tema.${getModuleId()}.material`)||'null');
     if (cached && Number.isFinite(cached.total) && cached.total > 0) return cached.total;
     return 8;
