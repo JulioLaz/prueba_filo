@@ -417,15 +417,19 @@
       };
       console.log('🔎 Caza state (processed):', sCaza);
       
-      const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:8, completed:false });
+      const sMaterial = readJSON(ns('material'), { sectionsViewed:[], total:0, completed:false, percentage:0 });
       console.log('📖 Material state:', sMaterial);
-      
+
       const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
       console.log('🗺️ Mapa state:', sMapa);
 
       const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
       const cazaPct = (sCaza.total && sCaza.total > 0 && !isNaN(sCaza.paragraph)) ? pct(sCaza.paragraph, sCaza.total) : 0;
-      const materialPct = pct((sMaterial.sectionsViewed||[]).length, sMaterial.total || 8);
+      // Usar sectionsViewed solo si el contenido ya fue abierto esta sesión (total real conocido)
+      // Si no, usar el porcentaje guardado directamente (desde Firebase o sessionStorage)
+      const materialPct = (sMaterial.total > 0 && (sMaterial.sectionsViewed||[]).length > 0)
+        ? pct((sMaterial.sectionsViewed||[]).length, sMaterial.total)
+        : (sMaterial.percentage || 0);
       const mapaPct = sMapa.progress && !isNaN(sMapa.progress) ? Math.round(sMapa.progress*100)
                                      : pct((sMapa.nodesVisited||[]).length, sMapa.total || 10);
       
@@ -449,7 +453,10 @@
         },
         mat: {
           pct: materialPct,
-          text: `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`
+          text: sMaterial.completed ? `Completado · ${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones`
+              : (sMaterial.total > 0 && (sMaterial.sectionsViewed||[]).length > 0)
+                ? `${(sMaterial.sectionsViewed||[]).length}/${sMaterial.total} secciones vistas`
+                : materialPct > 0 ? `${materialPct}% completado` : 'Sin avances'
         },
         mapa: {
           pct: mapaPct,
@@ -1944,21 +1951,12 @@ function updateSessionStorage(activityType, firebaseData) {
       break;
       
     case 'material':
-      const totalSections = 8;
+      // No reconstruir sectionsViewed con total hardcodeado (cada tema tiene distinto número).
+      // Guardar solo el porcentaje; material-firebase.js pondrá el total correcto cuando el usuario abra el contenido.
+      sessionData.percentage = firebaseData.percentage;
       sessionData.sectionsViewed = [];
-      sessionData.total = totalSections;
-
-        // ✅ CORRECTO (USAR ESTO):
-      const sectionsCount = Math.round((firebaseData.percentage / 100) * totalSections);
-      for(let i = 0; i < sectionsCount; i++) {  // ← Cambiado: empieza en 0, no en 1
-        sessionData.sectionsViewed.push(`s${i}`);  // ← Cambiado: 's' en vez de 'v'
-      }
-
-      // const sectionsCount = Math.round((firebaseData.percentage / 100) * totalSections);
-      // for(let i = 1; i <= sectionsCount; i++) {
-      //   sessionData.sectionsViewed.push(`v${i}`);
-      // }
-      // break;
+      sessionData.total = 0;
+      break;
       
     case 'cruci':
       sessionData.solved = firebaseData.percentage >= 100 ? 10 : Math.round(firebaseData.percentage / 10);
