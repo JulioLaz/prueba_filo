@@ -279,6 +279,13 @@
   }
 
   function setMaterialFromPct(pct) {
+    const mod = getModuleId();
+    const tema = temaFromUrl();
+
+    // Si ya hay datos reales de Firestore (total > 0, sectionsViewed reales), no sobreescribir con estimación
+    const existing = JSON.parse(sessionStorage.getItem(`tema.${mod}.material`) || 'null');
+    if (existing && existing.total > 0 && (existing.sectionsViewed || []).length > 0) return;
+
     const total = totalSections();
     const count = Math.max(0, Math.min(total, Math.round((pct/100)*total)));
     const sectionsViewed = Array.from({length: count}, (_,i)=>`s${i}`);
@@ -290,9 +297,6 @@
       readingSystemUsed: true,
       syncedFromFirebase: true
     };
-
-    const mod = getModuleId();
-    const tema = temaFromUrl();
 
     // Escribimos en ambas claves para compat con UI vieja
     sessionStorage.setItem(`tema.${mod}.material`, JSON.stringify(state));
@@ -1965,11 +1969,10 @@ function updateSessionStorage(activityType, firebaseData) {
       break;
       
     case 'material':
-      // No reconstruir sectionsViewed con total hardcodeado (cada tema tiene distinto número).
-      // Guardar solo el porcentaje; material-firebase.js pondrá el total correcto cuando el usuario abra el contenido.
       sessionData.percentage = firebaseData.percentage;
-      sessionData.sectionsViewed = [];
-      sessionData.total = 0;
+      // Usar los datos reales de Firestore si existen
+      sessionData.sectionsViewed = firebaseData.sectionsViewed || [];
+      sessionData.total = firebaseData.total || 0;
       break;
       
     case 'cruci':
