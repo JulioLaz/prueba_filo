@@ -282,9 +282,9 @@
     const mod = getModuleId();
     const tema = temaFromUrl();
 
-    // Si ya hay datos reales de Firestore (total > 0, sectionsViewed reales), no sobreescribir con estimación
+    // Si ya hay datos sincronizados de Firebase, no sobreescribir con estimación aproximada
     const existing = JSON.parse(sessionStorage.getItem(`tema.${mod}.material`) || 'null');
-    if (existing && existing.total > 0 && (existing.sectionsViewed || []).length > 0) return;
+    if (existing && existing.syncedFromFirebase && existing.percentage > 0) return;
 
     const total = totalSections();
     const count = Math.max(0, Math.min(total, Math.round((pct/100)*total)));
@@ -1970,9 +1970,10 @@ function updateSessionStorage(activityType, firebaseData) {
       
     case 'material':
       sessionData.percentage = firebaseData.percentage;
-      // Usar los datos reales de Firestore si existen
       sessionData.sectionsViewed = firebaseData.sectionsViewed || [];
-      sessionData.total = firebaseData.total || 0;
+      // total no se guarda en Firestore; tomarlo de TOPICS (temas_data.js)
+      sessionData.total = firebaseData.total ||
+        (typeof TOPICS !== 'undefined' && TOPICS[tema]?.sections) || 0;
       break;
       
     case 'cruci':
