@@ -6,3 +6,6 @@
 .env
 .env.local
 .env.*.local
+
+# Service Account keys (NO subir al repo)
+*firebase-adminsdk*.json

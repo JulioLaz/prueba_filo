@@ -169,7 +169,7 @@ class MaterialFirebaseIntegration {
         // Llamar a la función real de Firebase
         await saveProgress({
           moduleId: moduleId,
-          lessonId: null,
+          lessonId: 'material',
           status: status,
           score: score,
           seconds: timeSpentSeconds
