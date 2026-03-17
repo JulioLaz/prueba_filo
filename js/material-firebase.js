@@ -81,7 +81,7 @@ class MaterialFirebaseIntegration {
   // 🆕 NUEVA FUNCIÓN: Cargar progreso anterior guardado en Firebase
   async loadPreviousProgress() {
     try {
-      const moduleId = this.normalizeModuleId(this.tema);
+      const moduleId = sessionStorage.getItem('tema.active') || this.normalizeModuleId(this.tema);
       const storageKey = `tema.${moduleId}.material`;
       
       // Intentar cargar desde sessionStorage (cache local)
@@ -299,7 +299,8 @@ class MaterialFirebaseIntegration {
   
   updateLocalStorage(progress, timeSpent) {
     try {
-      const moduleId = this.normalizeModuleId(this.tema);
+      // Usar la misma clave que tema.html (tema.active del URL param), no el nombre completo normalizado
+      const moduleId = sessionStorage.getItem('tema.active') || this.normalizeModuleId(this.tema);
       const materialKey = `tema.${moduleId}.material`;
       
       // Crear lista de secciones vistas
