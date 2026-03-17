@@ -1909,6 +1909,13 @@ function updateUIWithFirebaseProgress(firebaseProgress) {
 
   // 📈 Actualizar progreso global
   updateGlobalProgress(firebaseProgress);
+
+  // 🔄 Refrescar textos de las tarjetas (statusMaterial, statusQuiz, etc.)
+  // updateUIWithFirebaseProgress actualiza los segmentos de la barra pero NO los textos
+  // de las tarjetas (#statusMaterial, etc.) — renderProgressUI los actualiza desde sessionStorage
+  if (typeof window.renderProgressUI === 'function') {
+    window.renderProgressUI();
+  }
 }
 
 // ====================================
