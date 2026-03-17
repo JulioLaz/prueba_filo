@@ -270,7 +270,7 @@
     // 2. Dato declarado en temas_data.js
     try {
       const t = temaFromUrl();
-      if (window.TOPICS?.[t]?.sections > 0) return window.TOPICS[t].sections;
+      if (typeof TOPICS !== 'undefined' && TOPICS?.[t]?.sections > 0) return TOPICS[t].sections;
     } catch {}
     // 3. sessionStorage con total real (> 8 para no confundir con el default viejo)
     const cached = JSON.parse(sessionStorage.getItem(`tema.${getModuleId()}.material`)||'null');

@@ -1,4 +1,4 @@
-const TOPICS = {
+var TOPICS = {
   cassirer: {
     icon: '🎭',
     name: 'Ernst Cassirer',
