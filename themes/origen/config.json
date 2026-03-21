@@ -1,0 +1,90 @@
+{
+  "id": "origen",
+
+  "meta": {
+    "title": "Origen de la Filosofía: Del Mito al Logos",
+    "author": "Presocráticos",
+    "icon": "📜",
+    "gradient": "linear-gradient(135deg, #1e90ff 0%, #00bfff 100%)",
+    "difficulty": "basico",
+    "category": "Filosofía Antigua",
+    "description": "El nacimiento de la filosofía occidental en el siglo VI a.C.: la etimología, el paso del mito al logos y la búsqueda del arché en los primeros filósofos presocráticos.",
+    "lastUpdated": "2026-03-20"
+  },
+
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 10,
+      "timeEstimate": 10,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 10,
+      "timeLimit": 40,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 5,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 12,
+      "timeEstimate": 10
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 6,
+      "centralWord": "MILETO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 30,
+      "timeEstimate": 8
+    }
+  },
+
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+
+  "prerequisites": [],
+  "color": "#1e90ff",
+
+  "notes": {
+    "realValues": "✅ Creado 2026-03-20",
+    "validation": {
+      "material": "10 secciones en content.html (window.ReadAloudSystemConfig.sections)",
+      "quiz": "10 preguntas en quiz.js (ORIGEN_FILOSOFIA_THEME.questions)",
+      "concepts": "5 niveles en conceptos.js (CONCEPT_HUNT_CONFIG.levels)",
+      "cloze": "12 items en cloze_test.js (CLOZE_TEST.items)",
+      "cruci": "6 palabras en crossword_config.js (CROSSWORD_CONFIG.entries + central MILETO)",
+      "mapa": "~30 nodos en mapa.html"
+    }
+  }
+}

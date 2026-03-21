@@ -1,4 +1,12 @@
 var TOPICS = {
+  origen: {
+    icon: '📜',
+    name: 'Origen de la Filosofía',
+    desc: 'Del mito al logos y la búsqueda del arché en los presocráticos.',
+    biography: 'La filosofía occidental nació en el siglo VI a.C. en Mileto (Asia Menor). Los primeros filósofos —Tales, Anaximandro, Anaxímenes, Pitágoras, Heráclito, Parménides— buscaron el arché (principio de todo) sin recurrir a los dioses.',
+    sections: 10
+  },
+
   cassirer: {
     icon: '🎭',
     name: 'Ernst Cassirer',
