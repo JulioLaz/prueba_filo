@@ -1,4 +1,16 @@
-// /prueba_filo/firebase.js - VERSIÓN CORREGIDA Y OPTIMIZADA
+/**
+ * /prueba_filo/firebase.js
+ * Módulo central de Firebase: autenticación (login, registro, logout),
+ * perfiles de usuario (users), registro de sesiones (sesiones) y
+ * guardado de progreso por tema/actividad (progreso_temas).
+ *
+ * Versión: v1.1.0 (2026-10-20)
+ *   - login() registra cada ingreso (lastLogin, totalSesiones, sesiones)
+ *   - registro: evita que onAuthStateChanged cree un perfil vacío antes
+ *     de guardar nombres/apellidos/fecha/curso (y repara si ya existía vacío)
+ *   - curso "Docente" solo para el email del admin (validación previa)
+ *   - logout y cambio de usuario limpian el progreso local del navegador
+ */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword,
@@ -41,6 +53,28 @@ const CURSO_DEFAULT = "6to A";
 // ====================================
 // UTILIDADES
 // ====================================
+function isAdminEmail(email) {
+  return (email || "").trim().toLowerCase() === ADMIN_EMAIL;
+}
+
+// Mientras login/registro están en curso, onAuthStateChanged no debe
+// crear el perfil por su cuenta (lo hace el propio flujo con los datos completos)
+let authFlowInProgress = false;
+
+// Borra el progreso guardado en el navegador para que no se mezcle
+// entre alumnos que usan la misma PC
+function clearLocalUserData() {
+  try {
+    sessionStorage.clear();
+    Object.keys(localStorage)
+      .filter(k => k.startsWith("tema.") || k === "filosofia-quiz-progress")
+      .forEach(k => localStorage.removeItem(k));
+    console.log("🧹 Datos locales del usuario limpiados");
+  } catch (error) {
+    console.warn("⚠️  No se pudieron limpiar los datos locales:", error);
+  }
+}
+
 function getInitialsFrom(user) {
   const base = (user?.displayName || user?.email || "").trim();
   if (!base) return "😊";
@@ -74,7 +108,10 @@ function validateStudentData(studentData) {
   if (!studentData.fechaNacimiento) errors.push("- Fecha de nacimiento es requerida");
   if (!studentData.nickname?.trim()) errors.push("- Nickname es requerido");
   if (!studentData.curso?.trim()) errors.push("- Curso es requerido");
-  
+  if (studentData.curso?.trim() === "Docente" && !isAdminEmail(studentData.email)) {
+    errors.push("- El curso Docente/Profesor es solo para el profesor");
+  }
+
   if (studentData.fechaNacimiento) {
     const edad = calculateAge(studentData.fechaNacimiento);
     if (!isValidAge(edad)) {
@@ -152,11 +189,26 @@ async function ensureUserDoc(user, profileData = {}) {
     
   } else {
     const existingData = userSnap.data();
-    await updateDoc(userRef, {
+    const updates = {
       lastLogin: now,
       'estadisticas.ultimaActividad': now,
       'estadisticas.totalSesiones': (existingData.estadisticas?.totalSesiones || 0) + 1
-    });
+    };
+
+    // Si viene del registro (perfil creado vacío antes), completar los datos
+    if (profileData.nombres) {
+      Object.assign(updates, {
+        displayName: user.displayName || existingData.displayName || "",
+        nombres: profileData.nombres,
+        apellidos: profileData.apellidos || "",
+        fechaNacimiento: profileData.fechaNacimiento || null,
+        edad: profileData.fechaNacimiento ? calculateAge(profileData.fechaNacimiento) : null,
+        nickname: profileData.nickname || "",
+        curso: profileData.curso || existingData.curso || CURSO_DEFAULT
+      });
+    }
+
+    await updateDoc(userRef, updates);
     
     console.log(`🔄 Login actualizado para: ${user.email}`);
     await registrarSesion(user.uid, 'login');
@@ -419,8 +471,21 @@ export async function getBestScore(uid, moduleId) {
 // ====================================
 // API PÚBLICA - LOGIN
 // ====================================
-export function login(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
+export async function login(email, password) {
+  authFlowInProgress = true;
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    // Registra el ingreso: lastLogin, totalSesiones y documento en "sesiones"
+    // (si el perfil no existe, lo crea)
+    try {
+      await ensureUserDoc(cred.user);
+    } catch (error) {
+      console.error("⚠️  Login OK pero no se pudo registrar la sesión:", error);
+    }
+    return cred;
+  } finally {
+    authFlowInProgress = false;
+  }
 }
 
 // ====================================
@@ -430,7 +495,8 @@ export async function logout() {
   if (auth.currentUser) {
     await registrarSesion(auth.currentUser.uid, 'logout');
   }
-  return signOut(auth);
+  await signOut(auth);
+  clearLocalUserData();
 }
 
 // ====================================
@@ -516,11 +582,12 @@ export async function getStudentProgress(studentId) {
 export async function registerStudent(email, password, studentData) {
   console.log("🎓 Iniciando registro de estudiante...");
   
-  const validationErrors = validateStudentData(studentData);
+  const validationErrors = validateStudentData({ ...studentData, email });
   if (validationErrors.length > 0) {
     throw new Error(`Datos inválidos:\n${validationErrors.join('\n')}`);
   }
   
+  authFlowInProgress = true;
   try {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
     
@@ -541,6 +608,8 @@ export async function registerStudent(email, password, studentData) {
   } catch (error) {
     console.error("Error en registro:", error);
     throw error;
+  } finally {
+    authFlowInProgress = false;
   }
 }
 
@@ -593,8 +662,18 @@ export async function migrateLocalProgressToFirebase() {
 // ====================================
 onAuthStateChanged(auth, async (user) => {
   const userNameEl = document.querySelector("#userName");
+  // Se toma al inicio: login()/registerStudent() ya crean/actualizan el perfil
+  const flowActive = authFlowInProgress;
   
   if (user) {
+    // Si en esta pestaña había otro usuario, limpiar su progreso local
+    // ANTES de marcar data-logged (que dispara la migración a Firebase)
+    try {
+      const prevUid = sessionStorage.getItem("auth.uid");
+      if (prevUid && prevUid !== user.uid) clearLocalUserData();
+      sessionStorage.setItem("auth.uid", user.uid);
+    } catch {}
+
     // ✅ ESTABLECER ATRIBUTO data-logged PARA CONTROLAR LA UI
     document.documentElement.setAttribute("data-logged", "1");
     
@@ -603,7 +682,7 @@ onAuthStateChanged(auth, async (user) => {
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
       
-      if (!userSnap.exists()) {
+      if (!userSnap.exists() && !flowActive) {
         // Si no existe el perfil, crearlo (caso de usuario registrado antes de este sistema)
         await ensureUserDoc(user);
       }

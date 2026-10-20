@@ -544,7 +544,7 @@ console.log('   - resetVideoClozeProgress() - Resetear progreso');
 
     try {
       // 1) Intentar leer Firestore (usuarios/{uid}) para tomar el nickname
-      const ref = doc(db, "usuarios", user.uid);
+      const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
       let nickname = null;
 

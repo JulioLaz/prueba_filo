@@ -644,7 +644,7 @@ regForm?.addEventListener("submit", async (e) => {
     hide($("#registerModal"));
 
     // Verificar si ya tiene avatar
-    const uref = doc(db, "usuarios", user.uid);
+    const uref = doc(db, "users", user.uid);
     const snap = await getDoc(uref);
     const hasAvatar = snap.exists() && snap.data().avatarType;
 
