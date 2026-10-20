@@ -9,3 +9,5 @@
 
 # Service Account keys (NO subir al repo)
 *firebase-adminsdk*.json
+# Reportes y backups con datos personales de alumnos
+reportes_alumnos/
