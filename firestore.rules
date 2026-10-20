@@ -1,0 +1,118 @@
+// ===================================================================
+// firestore.rules — Reglas de seguridad de Firestore (filosofia-quiz-prod)
+// -------------------------------------------------------------------
+// Qué hace:
+//   - users/{uid}: cada alumno lee/edita SOLO su perfil, sin poder
+//     cambiar su rol ni su email, ni pasarse a curso "Docente",
+//     ni cambiar el avatar una vez elegido. El admin lee todos.
+//   - progreso_temas/{uid_tema_actividad}: cada alumno crea/edita solo
+//     sus documentos (ID atado a su uid), con score entre 0 y 100 y
+//     bestScore que nunca baja. Las consultas (list) solo devuelven
+//     documentos propios; el admin puede leer todo.
+//   - sesiones/{uid_timestamp}: el alumno solo registra sus propios
+//     login/logout; solo el admin los lee.
+//   - Todo lo no listado queda bloqueado. Nadie borra documentos.
+//
+// Versión: v1.0.0 (2026-10-20) — reemplaza las reglas pegadas en consola:
+//   * list de progreso_temas restringido (antes: cualquier logueado leía todo)
+//   * ID de documento atado al uid (evita bloquear el guardado de otro)
+//   * uid inmutable en update (evita "regalar" progreso)
+//   * role/email/avatar protegidos y curso "Docente" solo para admin
+//   * admin requiere email verificado
+//   * límites de score/bestScore
+// ===================================================================
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Helpers ----------
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && request.auth.token.email == "julioalbertolazarte00@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // El ID del documento debe empezar con "<uid>_"
+    function idBelongsToMe(docId) {
+      return docId.matches(request.auth.uid + '_.+');
+    }
+
+    function isScore(v) {
+      return v is number && v >= 0 && v <= 100;
+    }
+
+    // ---------- Perfiles ----------
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+
+      allow create: if isOwner(userId)
+        && request.resource.data.get('email', null) == request.auth.token.email
+        && (request.resource.data.get('role', null) == 'student'
+            || (isAdmin() && request.resource.data.get('role', null) == 'admin'))
+        && (isAdmin() || request.resource.data.get('curso', null) != 'Docente');
+
+      allow update: if isOwner(userId)
+        // rol y email no se tocan
+        && request.resource.data.get('role', null) == resource.data.get('role', null)
+        && request.resource.data.get('email', null) == resource.data.get('email', null)
+        // no pasarse a "Docente" (si ya lo tenía, puede seguir actualizando lastLogin, etc.)
+        && (isAdmin()
+            || request.resource.data.get('curso', null) == resource.data.get('curso', null)
+            || request.resource.data.get('curso', null) != 'Docente')
+        // avatar: se elige una sola vez
+        && (resource.data.get('avatarType', null) == null
+            || (request.resource.data.get('avatarType', null) == resource.data.get('avatarType', null)
+                && request.resource.data.get('avatarValue', null) == resource.data.get('avatarValue', null)));
+
+      allow delete: if false;
+    }
+
+    // ---------- Progreso por tema/actividad ----------
+    match /progreso_temas/{docId} {
+      function validProgress() {
+        let d = request.resource.data;
+        return d.uid == request.auth.uid
+          && isScore(d.score)
+          && (!('bestScore' in d) || isScore(d.bestScore));
+      }
+
+      // get: propio, admin, o doc inexistente (firebase.js lee antes del primer guardado)
+      allow get: if isSignedIn()
+        && (resource == null || resource.data.uid == request.auth.uid || isAdmin());
+
+      // list (queries): solo admin o consultas filtradas por el propio uid
+      allow list: if isSignedIn()
+        && (isAdmin() || resource.data.uid == request.auth.uid);
+
+      allow create: if isSignedIn()
+        && idBelongsToMe(docId)
+        && validProgress();
+
+      allow update: if isSignedIn()
+        && resource.data.uid == request.auth.uid
+        && validProgress()
+        && request.resource.data.get('bestScore', 0) >= resource.data.get('bestScore', 0);
+
+      allow delete: if false;
+    }
+
+    // ---------- Registro de sesiones ----------
+    match /sesiones/{sessionId} {
+      allow create: if isSignedIn()
+        && idBelongsToMe(sessionId)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.tipo in ['login', 'logout'];
+
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+  }
+}
