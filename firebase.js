@@ -4,7 +4,10 @@
  * perfiles de usuario (users), registro de sesiones (sesiones) y
  * guardado de progreso por tema/actividad (progreso_temas).
  *
- * Versión: v1.2.0 (2026-10-20)
+ * Versión: v1.3.0 (2026-10-20)
+ *   - resetPassword(): email para recuperar la contraseña
+ *   - authErrorMessage(): errores de login/registro en español
+ * v1.2.0 (2026-10-20)
  *   - saveProgress registra TODOS los intentos (uno por apertura de la
  *     actividad) y el tiempo real; score/bestScore/status solo si mejora
  *   - temasCompletados se suma una sola vez por actividad
@@ -20,7 +23,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import {
   getAuth, onAuthStateChanged, signInWithEmailAndPassword,
-  createUserWithEmailAndPassword, signOut, updateProfile
+  createUserWithEmailAndPassword, signOut, updateProfile,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
   getFirestore, doc, setDoc, getDoc, updateDoc, serverTimestamp,
@@ -40,6 +44,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+auth.languageCode = "es"; // emails de Firebase (recuperar contraseña) en español
 export const db = getFirestore(app);
 
 // ✅ EXPORTAR FUNCIONES DE FIRESTORE PARA USO EN OTROS MÓDULOS
@@ -508,6 +513,34 @@ export async function login(email, password) {
   } finally {
     authFlowInProgress = false;
   }
+}
+
+// ====================================
+// API PÚBLICA - RECUPERAR CONTRASEÑA
+// ====================================
+export function resetPassword(email) {
+  return sendPasswordResetEmail(auth, (email || "").trim());
+}
+
+// ====================================
+// API PÚBLICA - MENSAJES DE ERROR EN ESPAÑOL
+// ====================================
+const AUTH_ERRORS = {
+  "auth/invalid-credential": "Email o contraseña incorrectos.",
+  "auth/wrong-password": "Email o contraseña incorrectos.",
+  "auth/user-not-found": "No hay ninguna cuenta con ese email.",
+  "auth/invalid-email": "El formato del email no es válido.",
+  "auth/missing-email": "Escribí tu email.",
+  "auth/missing-password": "Escribí tu contraseña.",
+  "auth/user-disabled": "Esta cuenta está deshabilitada. Consultá con el profesor.",
+  "auth/too-many-requests": "Demasiados intentos. Esperá unos minutos y volvé a probar.",
+  "auth/network-request-failed": "Sin conexión a internet. Revisá tu conexión y volvé a probar.",
+  "auth/email-already-in-use": "Este email ya está registrado. Intentá con otro email o iniciá sesión.",
+  "auth/weak-password": "La contraseña es muy débil. Usá al menos 6 caracteres."
+};
+
+export function authErrorMessage(error, fallback = "Ocurrió un error. Volvé a intentar.") {
+  return AUTH_ERRORS[error?.code] || fallback;
 }
 
 // ====================================

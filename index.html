@@ -61,7 +61,8 @@
       <form id="loginForm" class="auth-form">
         <input id="loginEmail" type="email" autocomplete="email" placeholder="Email" required>
         <input id="loginPass" type="password" autocomplete="current-password" placeholder="Contraseña" required>
-        <button class="btn primary full">Ingresar</button>
+        <button type="submit" class="btn primary full" id="loginSubmitBtn">Ingresar</button>
+        <a href="#" id="forgotPassword" style="text-align:center; font-size:0.85rem; color:#00bcd4; text-decoration:none;">¿Olvidaste tu contraseña?</a>
       </form>
       <p class="hint" style="text-align:center; margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
         ¿No tenés cuenta?
@@ -370,6 +371,8 @@ import {
   login, 
   logout, 
   registerStudent, 
+  resetPassword,
+  authErrorMessage,
   lockAvatar, 
   isCurrentUserAdmin,
   migrateLocalProgressToFirebase,
@@ -486,14 +489,14 @@ $("#goToLogin")?.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   const t = e.target;
   if (t.matches(".close") && t.dataset.close) hide($(t.dataset.close));
-  if (t.classList.contains("modal") && !t.querySelector(":scope .modal-content:hover")) hide(t);
+  // Registro y avatar no se cierran tocando afuera (se perdían los datos cargados)
+  if (t.classList.contains("modal") && !["registerModal", "avatarModal"].includes(t.id)
+      && !t.querySelector(":scope .modal-content:hover")) hide(t);
 });
 
 document.addEventListener("keydown", (e) => { 
   if (e.key === "Escape") { 
     hide($("#loginModal")); 
-    hide($("#registerModal")); 
-    hide($("#avatarModal")); 
   }
 });
 
@@ -502,6 +505,10 @@ document.addEventListener("keydown", (e) => {
 // ========================================
 $("#loginForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const btn = $("#loginSubmitBtn");
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = "Ingresando...";
   try {
     const email = $("#loginEmail").value.trim();
     const pass = $("#loginPass").value;
@@ -510,8 +517,29 @@ $("#loginForm")?.addEventListener("submit", async (e) => {
     console.log("✅ Login exitoso");
   } catch (err) { 
     console.error("Error en login:", err);
-    toast(err?.message || "No se pudo iniciar sesión"); 
+    toast(authErrorMessage(err, "No se pudo iniciar sesión. Volvé a intentar.")); 
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Ingresar";
   }
+});
+
+// Recuperar contraseña
+$("#forgotPassword")?.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = ($("#loginEmail").value || prompt("Escribí el email de tu cuenta:") || "").trim();
+  if (!email) return;
+  try {
+    await resetPassword(email);
+  } catch (err) {
+    if (err?.code !== "auth/user-not-found") {
+      console.error("Error recuperando contraseña:", err);
+      toast(authErrorMessage(err, "No se pudo enviar el email. Volvé a intentar."));
+      return;
+    }
+  }
+  // Mismo mensaje exista o no la cuenta (no revela qué emails están registrados)
+  toast(`Si hay una cuenta con ${email}, te enviamos un email para crear una nueva contraseña. Revisá también la carpeta de spam.`);
 });
 
 // ========================================
@@ -662,16 +690,7 @@ regForm?.addEventListener("submit", async (e) => {
       showError(errorList);
     } else {
       // Errores de Firebase
-      let friendlyMessage = error.message;
-      if (error.code === 'auth/email-already-in-use') {
-        friendlyMessage = 'Este email ya está registrado. Intenta con otro email o inicia sesión.';
-      } else if (error.code === 'auth/weak-password') {
-        friendlyMessage = 'La contraseña es muy débil. Usa al menos 6 caracteres.';
-      } else if (error.code === 'auth/invalid-email') {
-        friendlyMessage = 'El formato del email no es válido.';
-      }
-      
-      showError(friendlyMessage);
+      showError(authErrorMessage(error, error.message));
     }
   } finally {
     setLoading(false);
