@@ -214,9 +214,8 @@
 
   const temaNorm = normalize(temaFromUrl);
 
-  // Mapa corto → moduleId real
-  const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' };
-  const moduleId = MAP[temaNorm] || temaNorm;
+  // El ID del tema es siempre el de la URL (el material ya guarda con ese ID)
+  const moduleId = temaNorm;
 
   // ⚠️ Fuerza coherencia: si tema.active ≠ URL, lo alineamos
   if (temaFromUrl && temaActive !== temaFromUrl) {
@@ -238,114 +237,7 @@
 })();
 </script>
 
-<!--inicio nuevo  -->
-<script>
-/* fix-console-hydrator.js — inyecta progreso de MATERIAL desde el log de Firebase */
-(function () {
-  if (window.__MAT_CONSOLE_HYDRATOR__) return;
-  window.__MAT_CONSOLE_HYDRATOR__ = true;
 
-  // === Helpers ===
-  const normalize = s => (s||'').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^a-z0-9\s]/g,' ').trim().replace(/\s+/g,'_');
-
-  function temaFromUrl() {
-    return (new URLSearchParams(location.search).get('tema') || '').trim();
-  }
-  const MAP = { utilitarismo: 'utilitarismo_de_stuart_mill' }; // añade más si hace falta
-
-  function getModuleId() {
-    const fromUrl = temaFromUrl();
-    const norm = normalize(fromUrl);
-    return sessionStorage.getItem('tema.moduleId') ||
-           window.ACTIVE_MODULE_ID ||
-           MAP[norm] || norm || fromUrl;
-  }
-
-  function totalSections() {
-    // 1. Config explícita del sistema de lectura (más confiable)
-    try { if (window.MATERIAL_CONFIG?.TOTAL_SECTIONS > 0) return window.MATERIAL_CONFIG.TOTAL_SECTIONS; } catch {}
-    try { if (window.ReadAloudSystemConfig?.sections > 0) return window.ReadAloudSystemConfig.sections; } catch {}
-    // 2. Dato declarado en temas_data.js
-    try {
-      const t = temaFromUrl();
-      if (typeof TOPICS !== 'undefined' && TOPICS?.[t]?.sections > 0) return TOPICS[t].sections;
-    } catch {}
-    // 3. sessionStorage con total real (> 8 para no confundir con el default viejo)
-    const cached = JSON.parse(sessionStorage.getItem(`tema.${getModuleId()}.material`)||'null');
-    if (cached && Number.isFinite(cached.total) && cached.total > 0) return cached.total;
-    return 8;
-  }
-
-  function setMaterialFromPct(pct) {
-    const mod = getModuleId();
-    const tema = temaFromUrl();
-
-    // Si ya hay datos sincronizados de Firebase, no sobreescribir con estimación aproximada
-    const existing = JSON.parse(sessionStorage.getItem(`tema.${mod}.material`) || 'null');
-    if (existing && existing.syncedFromFirebase && existing.percentage > 0) return;
-
-    const total = totalSections();
-    const count = Math.max(0, Math.min(total, Math.round((pct/100)*total)));
-    const sectionsViewed = Array.from({length: count}, (_,i)=>`s${i}`);
-    const state = {
-      sectionsViewed, total,
-      completed: count >= total,
-      percentage: Math.round((count/total)*100),
-      lastUpdated: new Date().toISOString(),
-      readingSystemUsed: true,
-      syncedFromFirebase: true
-    };
-
-    // Escribimos en ambas claves para compat con UI vieja
-    sessionStorage.setItem(`tema.${mod}.material`, JSON.stringify(state));
-    sessionStorage.setItem(`tema.${tema}.material`, JSON.stringify(state));
-
-    // refresca UI si existe
-    if (typeof window.renderProgressUI === 'function') {
-      try { window.renderProgressUI(); } catch {}
-    }
-    // Log útil
-    console.info(`✅ MATERIAL hidratado: ${state.percentage}% (${count}/${total}) → tema.${mod}.material`);
-  }
-
-  // === Hook a console.log para capturar "📊 material: NN%" ===
-  const origLog = console.log;
-  console.log = function(...args){
-    try {
-      for (const a of args) {
-        const s = (typeof a === 'string') ? a : (a && a.message) || '';
-        if (!s) continue;
-        // solo actuamos para el TEMA ACTUAL, no otros
-        const thisTema = temaFromUrl();
-        const isThisTopicHeader = new RegExp(`Cargando progreso de Firebase: .* -\\s*${thisTema}\\b`, 'i');
-        if (isThisTopicHeader.test(s)) {
-          // marcamos una ventana de oportunidad para las líneas que siguen
-          window.__MAT_HYDRATOR_ARMED__ = true;
-        }
-
-        if (window.__MAT_HYDRATOR_ARMED__) {
-          const m = s.match(/📊\s*material:\s*(\d+)%/i);
-          if (m) {
-            const pct = parseInt(m[1], 10);
-            if (Number.isFinite(pct)) setMaterialFromPct(pct);
-            // desarma después de capturar material del tema actual
-            window.__MAT_HYDRATOR_ARMED__ = false;
-            break;
-          }
-        }
-      }
-    } catch(e) { /* no-op */ }
-    return origLog.apply(console, args);
-  };
-
-  console.info('🪝 Material console hydrator activo (filtrado por tema actual)');
-})();
-</script>
-
-
-<!-- fin nuevo  -->
 
 
 <script src="temas_data.js"></script>
@@ -591,7 +483,7 @@
       iframe.src = url.toString();
       iframe.loading = 'lazy';
       
-      // ✅ NO incrementar progreso aquí - el parche lo maneja
+      // El progreso lo guarda el propio material (js/material-firebase.js)
       iframe.addEventListener('load', () => {
         console.log('✅ Material cargado, esperando completación real...');
       });
@@ -3327,12 +3219,8 @@ console.log('🎯 Cloze OBLIGATORIO (≥80%) para aprobar');
 
 <script src="js/video-cloze-celebration-sound.js"></script>
 
-<!-- parche para material de lectura -->
-<!-- ✅ PARCHE: Material de Lectura con Progreso Real -->
-<script src="js/parche-material-progreso-real.js"></script>
-<script src="js/fix-material-listener.js"></script>
-<script src="js/fix-firebase-sync.js"></script> <!-- ✅ NUEVO -->
-<script src="js/fix-material-firebase-sync.js"></script>
+<!-- Material de lectura: refresca la barra cuando el iframe avisa (no guarda en Firebase) -->
+<script src="js/material-progreso.js"></script>
 
 </body>
 </html>
