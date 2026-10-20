@@ -4,7 +4,13 @@
  * perfiles de usuario (users), registro de sesiones (sesiones) y
  * guardado de progreso por tema/actividad (progreso_temas).
  *
- * Versión: v1.1.0 (2026-10-20)
+ * Versión: v1.2.0 (2026-10-20)
+ *   - saveProgress registra TODOS los intentos (uno por apertura de la
+ *     actividad) y el tiempo real; score/bestScore/status solo si mejora
+ *   - temasCompletados se suma una sola vez por actividad
+ *   - getBestScore acepta lessonId (antes siempre devolvía 0)
+ *   - migración: usa el ID uid_modulo_actividad y solo "percentage" válido
+ * v1.1.0 (2026-10-20)
  *   - login() registra cada ingreso (lastLogin, totalSesiones, sesiones)
  *   - registro: evita que onAuthStateChanged cree un perfil vacío antes
  *     de guardar nombres/apellidos/fecha/curso (y repara si ya existía vacío)
@@ -243,6 +249,11 @@ async function registrarSesion(uid, tipo, metadata = {}) {
 // ====================================
 // GUARDAR PROGRESO CON CONTROL DE BEST SCORE
 // ====================================
+// Un "intento" = una apertura de la actividad (cada carga de página/iframe
+// genera un ATTEMPT_ID nuevo). Las actividades guardan varias veces por
+// intento y mandan "seconds" acumulado desde que se abrió la actividad.
+const ATTEMPT_ID = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
 async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
   console.log(`🔄 Procesando progreso: ${moduleId} para ${uid}`);
   
@@ -251,58 +262,68 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
     const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
     
     const existingSnap = await getDoc(progressRef);
-    let previousScore = 0;
-    let previousAttempts = 0;
+    const existingData = existingSnap.exists() ? existingSnap.data() : {};
+    const previousScore = existingData.bestScore ?? existingData.score ?? 0;
+    const previousAttempts = existingData.attempts || 0;
+    const previousStatus = existingData.status || null;
     
-    if (existingSnap.exists()) {
-      const existingData = existingSnap.data();
-      previousScore = existingData.score || 0;
-      previousAttempts = existingData.attempts || 0;
-      console.log(`📈 Score anterior: ${previousScore}% | Intentos: ${previousAttempts}`);
-    }
+    // Intentos y tiempo: se registran SIEMPRE (no solo al mejorar)
+    const isNewAttempt = existingData.lastAttemptId !== ATTEMPT_ID;
+    const attempts = previousAttempts + (isNewAttempt ? 1 : 0);
+    const prevAttemptSeconds = isNewAttempt ? 0 : (existingData.lastAttemptSeconds || 0);
+    const attemptSeconds = Math.max(Math.round(seconds) || 0, prevAttemptSeconds);
+    const deltaSeconds = attemptSeconds - prevAttemptSeconds;
     
-    const newScore = Math.min(score, 100);
-    const shouldUpdate = newScore > previousScore;
-    
-    if (!shouldUpdate) {
-      console.log(`⏸️  Score ${newScore}% no supera al anterior ${previousScore}%. NO se actualiza.`);
-      return;
-    }
-    
-    console.log(`✅ Nuevo mejor score: ${previousScore}% → ${newScore}%`);
+    const newScore = Math.max(0, Math.min(score, 100));
+    const improved = !existingSnap.exists() || newScore > previousScore;
     
     const progressData = {
       uid,
       moduleId,
       lessonId,
-      status,
-      score: newScore,
-      bestScore: Math.max(newScore, previousScore),
-      attempts: previousAttempts + 1,
-      timeSpentSeconds: seconds,
-      updatedAt: serverTimestamp(),
-      metadata: {
-        ...metadata,
-        scoreDifference: newScore - previousScore,
-        updatedReason: shouldUpdate ? 'better_score' : 'skipped_lower_score'
-      }
+      attempts,
+      timeSpentSeconds: (existingData.timeSpentSeconds || 0) + deltaSeconds,
+      lastScore: newScore,
+      lastAttemptId: ATTEMPT_ID,
+      lastAttemptSeconds: attemptSeconds,
+      lastActivityAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
     };
     
-    await setDoc(progressRef, progressData, { merge: true });
-    console.log(`✅ Progreso guardado: ${progressId} | Score: ${newScore}% | Intento: ${progressData.attempts}`);
-    
-    const userRef = doc(db, "users", uid);
-    const userSnap = await getDoc(userRef);
-    
-    if (userSnap.exists()) {
-      const currentStats = userSnap.data().estadisticas || {};
-      const completados = (currentStats.temasCompletados || 0) + (status === "completed" ? 1 : 0);
-      
-      await updateDoc(userRef, {
-        'estadisticas.tiempoTotalSegundos': (currentStats.tiempoTotalSegundos || 0) + seconds,
-        'estadisticas.temasCompletados': completados,
-        'estadisticas.ultimaActividad': serverTimestamp()
+    // Score, bestScore y status: solo si mejora el récord
+    if (improved) {
+      Object.assign(progressData, {
+        status,
+        score: newScore,
+        bestScore: newScore,
+        metadata: {
+          ...metadata,
+          scoreDifference: newScore - previousScore,
+          updatedReason: 'better_score'
+        }
       });
+      console.log(`✅ Nuevo mejor score: ${previousScore}% → ${newScore}%`);
+    } else {
+      console.log(`⏸️  Score ${newScore}% no supera al récord ${previousScore}%: se registra el intento sin cambiar el récord`);
+    }
+    
+    await setDoc(progressRef, progressData, { merge: true });
+    console.log(`✅ Progreso guardado: ${progressId} | Intento: ${attempts} | +${deltaSeconds}s`);
+    
+    // Estadísticas del usuario: tiempo real sumado y "completado" una sola vez
+    const newlyCompleted = improved && status === "completed" && previousStatus !== "completed";
+    if (deltaSeconds > 0 || newlyCompleted) {
+      const userRef = doc(db, "users", uid);
+      const userSnap = await getDoc(userRef);
+      
+      if (userSnap.exists()) {
+        const currentStats = userSnap.data().estadisticas || {};
+        await updateDoc(userRef, {
+          'estadisticas.tiempoTotalSegundos': (currentStats.tiempoTotalSegundos || 0) + deltaSeconds,
+          'estadisticas.temasCompletados': (currentStats.temasCompletados || 0) + (newlyCompleted ? 1 : 0),
+          'estadisticas.ultimaActividad': serverTimestamp()
+        });
+      }
     }
     
   } catch (error) {
@@ -451,9 +472,10 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
 // ====================================
 // API PÚBLICA - OBTENER MEJOR SCORE
 // ====================================
-export async function getBestScore(uid, moduleId) {
+export async function getBestScore(uid, moduleId, lessonId = null) {
   try {
-    const progressRef = doc(db, "progreso_temas", `${uid}_${moduleId}`);
+    const progressId = lessonId ? `${moduleId}_${lessonId}` : moduleId;
+    const progressRef = doc(db, "progreso_temas", `${uid}_${progressId}`);
     const progressSnap = await getDoc(progressRef);
     
     if (progressSnap.exists()) {
@@ -622,32 +644,37 @@ export async function migrateLocalProgressToFirebase() {
   
   console.log("🔄 Iniciando migración de progreso local a Firebase...");
   
+  // Solo claves tema.<modulo>.<actividad> de actividades conocidas y con
+  // "percentage" explícito (en sessionStorage "score" suele ser cantidad de
+  // aciertos, no porcentaje, y no sirve para migrar)
+  const ACTIVIDADES = ['quiz', 'caza', 'cruci', 'material', 'mapa', 'video'];
+  
   try {
-    for (let i = 0; i < sessionStorage.length; i++) {
-      const key = sessionStorage.key(i);
-      if (key && key.startsWith('tema.') && key.includes('.')) {
-        const value = sessionStorage.getItem(key);
-        if (!value) continue;
+    const keys = [];
+    for (let i = 0; i < sessionStorage.length; i++) keys.push(sessionStorage.key(i));
+    
+    for (const key of keys) {
+      const [prefix, moduleId, lessonId, ...rest] = (key || '').split('.');
+      if (prefix !== 'tema' || !moduleId || !ACTIVIDADES.includes(lessonId) || rest.length) continue;
+      
+      try {
+        const data = JSON.parse(sessionStorage.getItem(key));
+        const percentage = Number(data?.percentage);
+        if (data?.syncedFromFirebase || !Number.isFinite(percentage) || percentage <= 0) continue;
         
-        try {
-          const data = JSON.parse(value);
-          const moduleId = key.split('.')[1];
-          
-          if (data.completed || data.score > 0) {
-            await saveProgressToFirebase({
-              uid: user.uid,
-              moduleId,
-              status: data.completed ? "completed" : "in_progress",
-              score: data.score || 0,
-              seconds: data.seconds || data.timeSpentSec || 0,
-              metadata: { migratedFrom: 'sessionStorage' }
-            });
-            
-            console.log(`✅ Migrado: ${moduleId}`);
-          }
-        } catch (parseError) {
-          console.warn(`Error parseando ${key}:`, parseError);
-        }
+        await saveProgressToFirebase({
+          uid: user.uid,
+          moduleId,
+          lessonId,
+          status: percentage >= 100 ? "completed" : percentage >= 80 ? "approved" : "in_progress",
+          score: percentage,
+          seconds: data.timeSpent || data.seconds || 0,
+          metadata: { migratedFrom: 'sessionStorage' }
+        });
+        
+        console.log(`✅ Migrado: ${moduleId}/${lessonId} (${percentage}%)`);
+      } catch (parseError) {
+        console.warn(`Error migrando ${key}:`, parseError);
       }
     }
     
