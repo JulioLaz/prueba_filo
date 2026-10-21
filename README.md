@@ -44,6 +44,7 @@ css/, sound/          Estilos y sonidos
 dialogo/              Diálogos con filósofos (IA)
 functions/            Cloud Functions de Firebase (diálogos con Gemini)
 alumnos_anio_curso.py Reporte de alumnos activos del año y limpieza de anteriores
+verificar_email_admin.py Marca verificado el email del admin (lo exigen las reglas)
 limpiar_ddbb.py       Borra datos de Firestore (excepto el admin)
 ```
 
@@ -60,6 +61,7 @@ limpiar_ddbb.py       Borra datos de Firestore (excepto el admin)
   pip install firebase-admin pandas openpyxl
   python alumnos_anio_curso.py            # reporte de activos del año
   python alumnos_anio_curso.py --borrar   # borra alumnos sin actividad en el año
+  python verificar_email_admin.py         # marca verificado el email del admin (requerido por las reglas)
   ```
 
 ## ➕ Agregar un tema
