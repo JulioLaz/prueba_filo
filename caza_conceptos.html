@@ -261,7 +261,13 @@
         config: false
       };
       
+      // El motor se inicia UNA sola vez (antes varios avisos lo cargaban 2-3 veces
+      // y quedaban juegos superpuestos que trababan la actividad)
+      let motorIniciado = false;
+
       function checkAllDependencies() {
+        if (motorIniciado) return;
+        if (window.CONCEPT_HUNT_CONFIG) dependenciesLoaded.config = true;
         const allLoaded = Object.values(dependenciesLoaded).every(loaded => loaded);
         const configExists = window.CONCEPT_HUNT_CONFIG;
         
@@ -269,6 +275,7 @@
         console.log('📊 Config existe:', !!configExists);
         
         if (allLoaded && configExists) {
+          motorIniciado = true;
           console.log('🚀 Todas las dependencias cargadas, iniciando motor Firebase...');
           iniciarMotorFirebase();
         }
@@ -333,11 +340,17 @@
           }
         }, 100);
         
-        setTimeout(() => clearInterval(readAloudCheck), 10000);
+        setTimeout(() => {
+          clearInterval(readAloudCheck);
+          dependenciesLoaded.readAloud = true;
+          checkAllDependencies();
+        }, 10000);
       }
       
-      // Verificar Modal wrapper
-      if (window.ReadAloudModalSystem) {
+      // Verificar Modal wrapper (sin reconocimiento de voz no existe: el motor usa
+      // un cartel simple, así que no hay que esperarlo)
+      const hayVoz = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+      if (window.ReadAloudModalSystem || !hayVoz) {
         dependenciesLoaded.modal = true;
       } else {
         const modalCheck = setInterval(() => {
@@ -348,7 +361,11 @@
           }
         }, 100);
         
-        setTimeout(() => clearInterval(modalCheck), 10000);
+        setTimeout(() => {
+          clearInterval(modalCheck);
+          dependenciesLoaded.modal = true;   // seguir aunque no cargue: el motor tiene cartel simple
+          checkAllDependencies();
+        }, 10000);
       }
       
       // Verificar Firebase Score
@@ -363,6 +380,7 @@
         
         setTimeout(() => {
           clearInterval(firebaseCheck);
+          if (dependenciesLoaded.firebase) return;
           console.warn('⚠️ Timeout esperando Firebase Score, continuando...');
           dependenciesLoaded.firebase = true;
           checkAllDependencies();

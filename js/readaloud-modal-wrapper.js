@@ -1,5 +1,8 @@
 /* readaloud-modal-wrapper.js - Versión Corregida
  * Versión: 1.1 - Implementación independiente
+ * Versión: 1.2 (2026-10-21) - Salida de emergencia: si el micrófono falla o pasan
+ *   30 s sin completar la lectura, aparecen "Volver al texto" y "Omitir lectura"
+ *   (antes el alumno quedaba encerrado en el cartel)
  * NO depende del sistema ReadAloud original
  */
 
@@ -13,6 +16,9 @@
         console.warn('[ReadAloudModal] SpeechRecognition no soportado en este navegador');
         return;
     }
+
+    // Si en este tiempo no se completó la lectura, se ofrece salir del cartel
+    const ESCAPE_AFTER_MS = 30000;
 
     // Configuración específica para modales de caza de conceptos
     const MODAL_READALOUD_CONFIG = {
@@ -67,6 +73,13 @@
             this.setupControls();
             this.setupRecognition();
             this.tokenizeContent();
+            this.escapeTimer = setTimeout(() => this.enableEscape(), ESCAPE_AFTER_MS);
+        }
+
+        // Muestra "Volver al texto" y "Omitir lectura" (ocultos mientras la lectura funciona)
+        enableEscape() {
+            const actions = this.modalElement.querySelector('.modal-actions');
+            if (actions) actions.classList.add('show-escape');
         }
 
 setupModalContent() {
@@ -522,6 +535,7 @@ setupModalContent() {
             }
             
             this.showError(errorMessage);
+            this.enableEscape();
         }
 
         showError(message) {
@@ -607,6 +621,7 @@ setupModalContent() {
                 .back-button:hover { background: #4b5563; }
                 .skip-button { background: #f59e0b;     color: white; }
                 .skip-button:hover { background: #f2b875ff; }
+                .modal-actions.show-escape .back-button, .modal-actions.show-escape .skip-button { display: flex; }
             `;
             document.head.appendChild(styles);
         }
@@ -618,6 +633,7 @@ setupModalContent() {
         }
 
         destroy() {
+            clearTimeout(this.escapeTimer);
             if (this.blockingOverlay) {
                 this.blockingOverlay.remove();
             }

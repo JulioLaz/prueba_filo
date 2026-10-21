@@ -3,6 +3,8 @@
 // Motor integrado con Firebase para caza de conceptos
 // Basado en el motor enhanced pero con integración Firebase completa
 // v1.1 (2026-10-21): un concepto corto ya no se marca dentro de otro más largo
+// v1.2 (2026-10-21): no se traba al cerrar el cartel sin leer; avance contado con
+//   los conceptos reales; el resumen final muestra cuántos faltan y en qué párrafos
 // ========================================
 
 (function () {
@@ -70,9 +72,10 @@
   console.log(`📈 Total de conceptos en el juego: ${TOTAL_CONCEPTS}`);
 
   // Leer progreso existente
+  // Solo se usa la lista de conceptos encontrados; el "found" que escribe el hub
+  // desde Firebase está en otra escala y no sirve para contar (se recalcula abajo)
   const existingProgress = JSON.parse(sessionStorage.getItem(`tema.${hubTemaSlug()}.caza`) || '{}');
-  overallFoundCount = existingProgress.found || 0;
-  globalFound = new Set(existingProgress.foundConcepts || []);
+  globalFound = new Set(Array.isArray(existingProgress.foundConcepts) ? existingProgress.foundConcepts : []);
 
   // === SISTEMA DE LECTURA MODAL ===
   let currentReadAloudModal = null;
@@ -145,8 +148,7 @@
     return true;
   }
 
-  // Inicializar progreso en Firebase
-  saveConceptProgressFirebase({ total: TOTAL_CONCEPTS, found: overallFoundCount, completed: false });
+  // (el progreso inicial se recalcula y guarda en sessionStorage después de definir normalize)
 
   // === DESTACADO GRADUAL INTELIGENTE ===
   function getHighlightRatio(levelIndex) {
@@ -301,6 +303,24 @@
       .map(f => `<p>✔️ ${escapeHtml(f)}</p>`)
       .join('');
 
+    // Avance real: conceptos encontrados y párrafos con conceptos pendientes
+    const pctTotal = TOTAL_CONCEPTS ? Math.round((overallFoundCount / TOTAL_CONCEPTS) * 100) : 0;
+    const pendientes = cfg.levels
+      .map((lv, i) => (lv.concepts || []).some(c => !globalFound.has(`${i}:${normalize(c.term)}`)) ? i + 1 : null)
+      .filter(Boolean);
+    let progEl = dlg.querySelector('#summary-progress');
+    if (!progEl) {
+      progEl = document.createElement('p');
+      progEl.id = 'summary-progress';
+      progEl.style.cssText = 'margin:0 0 12px;padding:10px 12px;border-radius:10px;background:#1f2937;font-weight:600;';
+      dlg.querySelector('.summary-body').prepend(progEl);
+    }
+    progEl.innerHTML = pendientes.length === 0
+      ? `🏆 Encontraste los ${TOTAL_CONCEPTS} conceptos (100%). ¡Actividad completa!`
+      : `📊 Encontraste ${overallFoundCount} de ${TOTAL_CONCEPTS} conceptos (${pctTotal}%). ` +
+        `Para completar la actividad, volvé a ${pendientes.length === 1 ? 'el párrafo' : 'los párrafos'} ` +
+        `${pendientes.join(', ')} con el botón ◀.`;
+
     dlg.style.display = 'flex';
   }
 
@@ -327,6 +347,20 @@
      .replace(/\p{Diacritic}/gu, "")
      .replace(/\s+/g, " ")
      .trim();
+
+  // Cuentan solo los conceptos encontrados que existen en la configuración actual
+  const VALID_KEYS = new Set(
+    CFG.levels.flatMap((lv, i) => (lv.concepts || []).map(c => `${i}:${normalize(c.term)}`))
+  );
+  globalFound = new Set([...globalFound].filter(k => VALID_KEYS.has(k)));
+  overallFoundCount = globalFound.size;
+  sessionStorage.setItem(`tema.${hubTemaSlug()}.caza`, JSON.stringify({
+    total: TOTAL_CONCEPTS,
+    found: overallFoundCount,
+    completed: overallFoundCount >= TOTAL_CONCEPTS,
+    foundConcepts: Array.from(globalFound),
+    timestamp: new Date().toISOString()
+  }));
 
   function markLives() {
     livesEls.forEach((el, i) => {
@@ -415,6 +449,7 @@
 
       const frag = document.createDocumentFragment();
       txt.split(/(\s+)/).forEach((chunk) => {
+        if (!chunk) return; // evita tokens vacíos
         if (/\s+/.test(chunk)) {
           frag.appendChild(document.createTextNode(chunk));
         } else {
@@ -493,9 +528,13 @@
     );
   }
 
+  // Cartel simple (navegadores sin reconocimiento de voz): se puede cerrar siempre
   function showMeaningFallback(term, meaning) {
     meaningTitle.textContent = term;
     meaningBody.textContent = meaning;
+    closeMeaning.disabled = false;
+    closeMeaning.style.opacity = '1';
+    closeMeaning.title = 'Cerrar';
     meaningSheet.classList.add("open");
   }
 
@@ -512,36 +551,22 @@ function onConceptReadingComplete(concept) {
     foundConcepts: Array.from(globalFound)
   });
   
-  // ★ NUEVO: Verificar si fue el último concepto
-  if (isLastConceptReadingPending) {
-    console.log(`🎉 [Lectura] ¡Último concepto leído! Mostrando resumen del párrafo...`);
-    
-    isLastConceptReadingPending = false;
-    
-    // Cerrar el modal de lectura después de un breve delay
-    setTimeout(() => {
-      closeMeaningModal();
-      
-      // Ahora mostrar el modal de nivel completado
-      setTimeout(() => {
-        const isLastLevel = idx >= (CFG.levels.length - 1);
-        showLevelCompleted(currentLevelForCompletion, { isLastLevel });
-        currentLevelForCompletion = null;
-        
-        if (isLastLevel) {
-          setTimeout(() => {
-            showSummaryDialog(CFG);
-          }, SUMMARY_DIALOG_DELAY_MS);
-        }
-      }, 500);
-    }, 1500);
-  } else {
-    // Concepto normal (no es el último)
-    setTimeout(() => {
-      closeMeaningModal();
-    }, 2000);
-  }
+  // Al cerrarse el cartel, closeMeaningModal() completa el párrafo si era el último concepto
+  setTimeout(() => {
+    closeMeaningModal();
+  }, isLastConceptReadingPending ? 1500 : 2000);
 }
+
+  // Muestra "¡Nivel superado!" (y el resumen si es el último párrafo) cuando el último
+  // concepto del párrafo ya se encontró, se haya leído el cartel o no
+  function completePendingLevel() {
+    if (!isLastConceptReadingPending) return;
+    isLastConceptReadingPending = false;
+    const level = currentLevelForCompletion || CFG.levels[idx];
+    currentLevelForCompletion = null;
+    const isLastLevel = idx >= (CFG.levels.length - 1);
+    setTimeout(() => showLevelCompleted(level, { isLastLevel }), 500);
+  }
 
   function onConceptReadingComplete_01(concept) {
     console.log('[CazaFirebase] Lectura completada para:', concept.term);
@@ -568,11 +593,22 @@ function onConceptReadingComplete(concept) {
       currentReadAloudModal.destroy();
       currentReadAloudModal = null;
     }
+
+    completePendingLevel();
   }
 
   closeMeaning.addEventListener("click", () => {
     closeMeaningModal();
   });
+
+  // "Volver al texto" (y cualquier otro cierre del cartel) quita la clase "open" sin pasar
+  // por closeMeaningModal(): eso dejaba el fondo bloqueado y el párrafo sin completar
+  new MutationObserver(() => {
+    if (meaningSheet.classList.contains("open")) return;
+    if (document.body.classList.contains("modal-open") || isLastConceptReadingPending) {
+      closeMeaningModal();
+    }
+  }).observe(meaningSheet, { attributes: true, attributeFilter: ["class"] });
 
   // === LÓGICA DE ACIERTOS Y ERRORES ===
   function escapeHtml(s) {
