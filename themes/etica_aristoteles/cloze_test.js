@@ -28,8 +28,8 @@ window.CLOZE_TEST = {
     },
     {
       id: "a3",
-      text: "3- Aristóteles cree algo muy básico: una acción es [[correcta]] si te hace [[feliz]].",
-      feedbackOK: "¡Exacto! Simple pero profundo: la felicidad como criterio de corrección moral.",
+      text: "3- Para Aristóteles, una acción es [[correcta]] si nos acerca a una vida plena y [[feliz]] (no al placer del momento).",
+      feedbackOK: "¡Exacto! Lo correcto se mide por su aporte a la felicidad, entendida como vida virtuosa y no como placer momentáneo.",
       feedbackKO: "Piensa en el criterio que usa Aristóteles para evaluar las acciones.",
       videoHints: [
         "💡 Opciones: incorrecta | necesaria | correcta | obligatoria | prohibida | opcional",

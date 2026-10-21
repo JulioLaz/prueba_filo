@@ -2,6 +2,7 @@
 // 🎯 CAZA-CONCEPTOS-ENGINE-FIREBASE.JS
 // Motor integrado con Firebase para caza de conceptos
 // Basado en el motor enhanced pero con integración Firebase completa
+// v1.1 (2026-10-21): un concepto corto ya no se marca dentro de otro más largo
 // ========================================
 
 (function () {
@@ -367,40 +368,37 @@
   }
 
   // === RENDERIZADO CON DESTACADO GRADUAL ===
+  // Reemplaza solo FUERA de los tokens ya creados: así un concepto corto
+  // ("virtudes") no se marca dentro de uno largo ya marcado ("virtudes éticas")
+  const TOKEN_SPLIT = /(<strong><span class="token[^>]*>[\s\S]*?<\/span><\/strong>|<span class="token[^>]*>[\s\S]*?<\/span>)/g;
+  function replaceOutsideTokens(html, re, replacer) {
+    return html.split(TOKEN_SPLIT)
+      .map((part, i) => (i % 2 === 1 ? part : part.replace(re, replacer)))
+      .join('');
+  }
+
   function wrapPhrases(text, highlightedConcepts, allConcepts) {
     let html = text;
-    
     const highlightedTerms = new Set(highlightedConcepts.map(c => c.term));
-    
-    // Términos destacados (visibles)
-    highlightedConcepts
+
+    // Una sola pasada, de más largo a más corto: los términos largos se marcan
+    // primero y los cortos no pueden "romperlos" (destacados u ocultos)
+    [...allConcepts]
       .sort((a, b) => b.term.length - a.term.length)
       .forEach((concept) => {
         const esc = concept.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const re = new RegExp(`(^|[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_])(${esc})(?=[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_]|$)`, "gi");
-        
-        html = html.replace(re, (match, prefix, word) => {
-          return `${prefix}<strong><span class="token highlighted-concept" data-key="${encodeURIComponent(
-            normalize(concept.term)
-          )}" data-correct="1">${word}</span></strong>`;
-        });
+        const key = encodeURIComponent(normalize(concept.term));
+
+        html = replaceOutsideTokens(html, re, (match, prefix, word) =>
+          highlightedTerms.has(concept.term)
+            // Términos destacados (visibles)
+            ? `${prefix}<strong><span class="token highlighted-concept" data-key="${key}" data-correct="1">${word}</span></strong>`
+            // Términos ocultos (clickeables pero no visibles)
+            : `${prefix}<span class="token hidden-concept" data-key="${key}" data-correct="1">${word}</span>`
+        );
       });
 
-    // Términos ocultos (clickeables pero no visibles)
-    allConcepts
-      .filter(concept => !highlightedTerms.has(concept.term))
-      .sort((a, b) => b.term.length - a.term.length)
-      .forEach((concept) => {
-        const esc = concept.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const re = new RegExp(`(^|[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_])(${esc})(?=[^a-záéíóúüñA-ZÁÉÍÓÚÜÑ\\d_]|$)`, "gi");
-        
-        html = html.replace(re, (match, prefix, word) => {
-          return `${prefix}<span class="token hidden-concept" data-key="${encodeURIComponent(
-            normalize(concept.term)
-          )}" data-correct="1">${word}</span>`;
-        });
-      });
-    
     return html;
   }
 

@@ -15,7 +15,7 @@
     window.ReadAloudSystemConfig = {
       tema: 'Ética de Aristóteles',
       threshold: 0.80, // 80% de lectura requerida
-      sections: 14, // ✅ CORREGIDO: 14 secciones completas
+      sections: 15, // 15 secciones (v2: se agregó «¿Placer, honores o riqueza?»)
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=etica_aristoteles',
       celebrationEmojis: ['⚖️', '🧠', '📜', '🌟', '⭐', '🏆'],
@@ -45,7 +45,7 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 14 secciones</span>
+        <span id="progress-counter">0 / 15 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
@@ -151,6 +151,56 @@
           <div class="option" data-correct="true">Los fines intermedios se ordenan a un fin último que vale por sí mismo</div>
           <div class="option">El fin último es siempre la fama</div>
           <div class="option">La cadena de fines no explica el sentido de la acción</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Candidatos al Sumo Bien -->
+    <div class="study-section" data-section="candidatos-sumo-bien">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ ¿Placer, honores o riqueza? Por qué no son el Sumo Bien</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+        
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Aristóteles, el Sumo Bien debe cumplir dos condiciones. Debe ser <strong>perfecto</strong>: se busca siempre por sí mismo y nunca como medio para otra cosa. Y debe ser <strong>autosuficiente</strong>: por sí solo hace que la vida sea plena, sin depender de los demás.<br><br>
+            
+            El <strong>placer</strong> se busca por sí mismo, pero apela a lo que compartimos con los animales y puede volvernos esclavos de los objetos. Los <strong>honores</strong> dependen de que otros nos los den. La <strong>riqueza</strong> es solo un medio para conseguir otras cosas. Por eso ninguno es el Sumo Bien: solo la <strong>felicidad</strong> cumple las dos condiciones.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Recordá las dos condiciones: perfecto y autosuficiente.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Sobre los candidatos al Sumo Bien:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué los honores no pueden ser el Sumo Bien?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque los honores son malos y corrompen siempre a quien los recibe</div>
+          <div class="option" data-correct="true">Porque dependen de que otros los otorguen, así que no son autosuficientes</div>
+          <div class="option">Porque solo los consiguen las personas más ricas de la comunidad</div>
+          <div class="option">Porque se buscan por sí mismos y eso los vuelve demasiado perfectos</div>
         </div>
       </div>
     </div>

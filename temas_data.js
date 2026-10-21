@@ -109,9 +109,9 @@ const TOPICS = {
       etica_aristoteles: {
         youtubeId: 'qYU0hTprTAc',
         startTime: 1,
-        endTime: 360,
+        endTime: 365, // el cloze llega hasta 6:02
         title: 'Ética de Aristóteles',
-        duration: '5:47'
+        duration: '6:02'
       }, // https://www.youtube.com/shorts/0s73cG7fJoA
       hedonismo: {
         youtubeId: 'Yt0Yjtn0VSc', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc

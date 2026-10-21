@@ -16,13 +16,13 @@ const ETICA_ARISTOTELES_THEME  = {
     gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
     difficulty: 'intermedio',
     timeLimit: 50,
-    contentFile: 'content/etica_aristoteles.html',
+    contentFile: 'themes/etica_aristoteles/content.html',
     
     // Metadata del tema
     metadata: {
         author: 'Cuestionarios de Filosofía',
-        version: '1.0',
-        lastUpdated: '2024-08-20',
+        version: '2.0', // 13 preguntas; definiciones unificadas con el material (perfecto/autosuficiente)
+        lastUpdated: '2026-10-21',
         category: 'Filosofía Clásica',
         prerequisites: ['etica'],
         learningObjectives: [
@@ -39,431 +39,259 @@ questions: [
     id: 'aristoteles_001',
     question: "Según Aristóteles, ¿por qué es necesario que exista un fin último en la cadena de fines que conforman nuestra vida?",
     answers: [
-      { 
-        text: "Porque sin un fin último, la cadena de fines quedaría vaciada de sentido y nuestra actividad sería inútil y absurda.", 
-        correct: true,
-        explanation: "Correcto. Para Aristóteles, si no existiera un fin que se quiera por sí mismo, toda la cadena de medios y fines perdería su sentido fundamental."
-      },
-      { 
-        text: "Porque así lo enseña la tradición religiosa, que debe respetarse, y de ese modo la vida conserva un marco moral aceptado y coherente.", 
-        correct: false,
-        explanation: "Aristóteles basa su argumento en la razón y la lógica, no en la tradición religiosa."
-      },
-      { 
-        text: "Porque los seres humanos son naturalmente ambiciosos y siempre quieren más, lo cual explicaría la acción y daría continuidad práctica a sus metas.", 
-        correct: false,
-        explanation: "Esta respuesta confunde la motivación psicológica con la necesidad lógica del argumento aristotélico."
-      },
-      { 
-        text: "Porque sin un fin último no podríamos distinguir con claridad el bien del mal ni ordenar de manera coherente nuestras decisiones cotidianas.", 
-        correct: false,
-        explanation: "Aunque relacionado, el argumento específico de Aristóteles se centra en el sentido de la acción, no en la distinción moral."
-      },
-      { 
-        text: "Porque la sociedad necesita objetivos comunes para funcionar correctamente y coordinar esfuerzos, asegurando estabilidad y progreso compartido.", 
-        correct: false,
-        explanation: "El argumento aristotélico se centra en la lógica individual de la acción, no en necesidades sociales."
-      }
+      { text: "Porque sin un fin último la cadena de medios sería un regreso infinito, y nuestra actividad quedaría vacía de sentido.", correct: true,
+        explanation: "Correcto. Si todo fin fuera solo un medio para otro, nunca llegaríamos a algo que valga por sí mismo y la acción perdería su sentido." },
+      { text: "Porque así lo enseña la tradición religiosa, que debe respetarse para que la vida conserve un marco moral coherente.", correct: false,
+        explanation: "Aristóteles basa su argumento en la razón, no en la tradición religiosa." },
+      { text: "Porque los seres humanos son ambiciosos y siempre quieren más, lo cual da continuidad práctica a todas sus metas.", correct: false,
+        explanation: "Esta respuesta confunde una motivación psicológica con la necesidad lógica del argumento aristotélico." },
+      { text: "Porque sin un fin último no podríamos distinguir el bien del mal ni ordenar con coherencia las decisiones diarias.", correct: false,
+        explanation: "Aunque relacionado, el argumento se centra en el sentido de la acción, no en la distinción moral." },
+      { text: "Porque la sociedad necesita objetivos comunes para coordinar esfuerzos y asegurar la estabilidad y el progreso.", correct: false,
+        explanation: "El argumento aristotélico se centra en la lógica de la acción, no en necesidades sociales." }
     ],
-    hint: "Piensa en el ejemplo de la alumna que va a la escuela. ¿Qué pasaría si cada fin fuera solo un medio para otro fin, sin llegar nunca a algo que se busque por sí mismo?",
+    hint: "Piensa en la cadena: estudiar para aprobar, aprobar para ingresar, ingresar para un buen trabajo… ¿Qué pasaría si nunca llegáramos a algo que se busque por sí mismo?",
     difficulty: 'intermedio',
     topic: 'Cadena de fines'
   },
-
   {
     id: 'aristoteles_002',
-    question: "¿Cuáles son las dos características que debe tener el Sumo Bien según Aristóteles?",
+    question: "¿Cuáles son las dos condiciones que debe cumplir el Sumo Bien según Aristóteles?",
     answers: [
-      { 
-        text: "Debe ser material (vinculado a bienes concretos) y espiritual (relativo al alma y sus valores fundamentales).", 
-        correct: false,
-        explanation: "Estas no son las características que Aristóteles establece para el Sumo Bien."
-      },
-      { 
-        text: "Debe ser autosuficiente (buscado por sí mismo) y perfecto (el fin más elevado posible).", 
-        correct: true,
-        explanation: "Perfecto. Estas son exactamente las dos características que Aristóteles establece para el Sumo Bien."
-      },
-      { 
-        text: "Debe ser individual (centrado en cada persona) y social (orientado al bien común de la comunidad).", 
-        correct: false,
-        explanation: "Aristóteles no define el Sumo Bien en términos de individual vs social."
-      },
-      { 
-        text: "Debe ser racional (fundado en la razón) y emocional (sustentado en los afectos personales y la sensibilidad).", 
-        correct: false,
-        explanation: "Aunque Aristóteles valora la razón, estas no son las características específicas del Sumo Bien."
-      },
-      { 
-        text: "Debe ser universal (válido para todos) y eterno (permanente en el tiempo sin cambio ni deterioro).", 
-        correct: false,
-        explanation: "Estas características pertenecen más a la metafísica platónica que a la ética aristotélica."
-      }
+      { text: "Ser perfecto (se busca siempre por sí mismo, nunca como medio) y autosuficiente (por sí solo hace plena la vida).", correct: true,
+        explanation: "Correcto. El Sumo Bien es perfecto porque no es medio para nada más, y autosuficiente porque basta para una vida plena sin depender de otros." },
+      { text: "Ser material (vinculado a bienes concretos) y espiritual (relativo al alma y a sus valores más profundos).", correct: false,
+        explanation: "Aristóteles no plantea el Sumo Bien en términos de material y espiritual." },
+      { text: "Ser individual (centrado en cada persona) y social (orientado al bien común de toda la comunidad).", correct: false,
+        explanation: "Aunque la ética y la política están unidas, estas no son las dos condiciones del Sumo Bien." },
+      { text: "Ser racional (fundado en la razón) y emocional (sustentado en los afectos personales y la sensibilidad).", correct: false,
+        explanation: "La razón es central, pero estas no son las dos condiciones del Sumo Bien." },
+      { text: "Ser universal (válido para todas las personas) y eterno (permanente en el tiempo, sin cambio ni deterioro).", correct: false,
+        explanation: "Aristóteles no define el Sumo Bien como universal y eterno, sino como perfecto y autosuficiente." }
     ],
-    hint: "Recuerda que el Sumo Bien no debe ser un medio para otra cosa, y debe ser el fin más elevado. ¿Cómo se llamarían estas dos cualidades?",
-    difficulty: 'basico',
+    hint: "El Sumo Bien no debe ser medio para otra cosa y, una vez alcanzado, no debe faltarnos nada. ¿Cómo se llaman esas dos condiciones?",
+    difficulty: 'intermedio',
     topic: 'Sumo Bien'
   },
-
   {
     id: 'aristoteles_003',
     question: "Según Aristóteles, ¿cuál es el fin último que todos los seres humanos buscan?",
     answers: [
-      { 
-        text: "El placer y la gratificación de los sentidos, que brindan satisfacción inmediata y orientan naturalmente nuestras elecciones.", 
-        correct: false,
-        explanation: "Aristóteles rechaza el placer como fin último porque apela a aspectos que compartimos con los animales."
-      },
-      { 
-        text: "Los honores, la fama y el reconocimiento social, que confirman el mérito personal y otorgan prestigio ante los demás.", 
-        correct: false,
-        explanation: "Los honores dependen de otros para ser otorgados, por lo que no son autosuficientes."
-      },
-      { 
-        text: "Las riquezas y la capacidad de comprar lo que deseamos, proporcionando seguridad material y múltiples oportunidades.", 
-        correct: false,
-        explanation: "Las riquezas son medios para otras cosas, no un fin en sí mismo."
-      },
-      { 
-        text: "La felicidad, que se desea por sí misma y no como medio para otra cosa.", 
-        correct: true,
-        explanation: "Exacto. Para Aristóteles, la felicidad es el único fin que se busca por sí mismo y que satisface plenamente."
-      },
-      { 
-        text: "El poder y la capacidad de controlar a otros, asegurando influencia efectiva y dominio en la vida pública.", 
-        correct: false,
-        explanation: "El poder no aparece como fin último en la ética aristotélica."
-      }
+      { text: "El placer y la gratificación de los sentidos, que brindan satisfacción inmediata y guían nuestras elecciones.", correct: false,
+        explanation: "Aristóteles rechaza el placer como fin último: apela a lo que compartimos con los animales." },
+      { text: "Los honores y el reconocimiento social, que confirman el mérito personal y otorgan prestigio ante los demás.", correct: false,
+        explanation: "Los honores dependen de otros, así que no pueden ser el fin último." },
+      { text: "Las riquezas y la capacidad de comprar lo que deseamos, que dan seguridad material y muchas oportunidades.", correct: false,
+        explanation: "La riqueza es solo un medio para conseguir otras cosas." },
+      { text: "La felicidad (eudaimonía), que se desea por sí misma y no como medio, y a la que se ordenan todos los demás fines.", correct: true,
+        explanation: "Correcto. La felicidad es el único fin que buscamos por sí mismo; todo lo demás lo buscamos por ella." },
+      { text: "El poder y la capacidad de controlar a otros, que aseguran influencia y dominio efectivo en la vida pública.", correct: false,
+        explanation: "El poder, como la riqueza, es un medio y depende de los demás." }
     ],
-    hint: "¿Qué buscamos que no sea un medio para otra cosa? ¿Para qué queremos ser...? Para ser... No hay otra respuesta.",
+    hint: "¿Qué buscamos que no sea un medio para otra cosa? Si preguntamos «¿para qué?» una y otra vez, ¿dónde termina la respuesta?",
     difficulty: 'basico',
     topic: 'Felicidad como fin último'
   },
-
   {
     id: 'aristoteles_004',
     question: "¿Por qué rechaza Aristóteles el placer como verdadera felicidad?",
     answers: [
-      { 
-        text: "Porque el placer es inmoral y corrompe el alma humana, desviando nuestras acciones y arruinando progresivamente el carácter.", 
-        correct: false,
-        explanation: "Aristóteles no considera el placer inmoral, sino que tiene una objeción más específica."
-      },
-      { 
-        text: "Porque el placer es autosuficiente pero no es perfecto, ya que apela a aspectos fisiológicos que compartimos con los animales.", 
-        correct: true,
-        explanation: "Correcto. El placer se busca por sí mismo (autosuficiente) pero no es lo más elevado del ser humano (no perfecto)."
-      },
-      { 
-        text: "Porque el placer es imposible de alcanzar para los seres humanos, dado que siempre falta algo y nunca se completa plenamente.", 
-        correct: false,
-        explanation: "Aristóteles no niega que el placer sea alcanzable, sino que cuestiona su valor como fin último."
-      },
-      { 
-        text: "Porque el placer depende de otros para ser experimentado, pues requiere objetos externos y cierta aprobación social continuada.", 
-        correct: false,
-        explanation: "Esta característica se aplica más bien a los honores, no al placer."
-      },
-      { 
-        text: "Porque el placer es solo un medio para conseguir riquezas, sirviendo como incentivo para acumular bienes materiales.", 
-        correct: false,
-        explanation: "Esta relación no corresponde al análisis aristotélico del placer."
-      }
+      { text: "Porque el placer es inmoral y corrompe el alma humana, desviando las acciones y arruinando el carácter.", correct: false,
+        explanation: "Aristóteles no considera que el placer sea malo en sí mismo; incluso puede acompañar la vida virtuosa." },
+      { text: "Porque, aunque se busca por sí mismo, apela a lo que compartimos con los animales y puede esclavizarnos.", correct: true,
+        explanation: "Correcto. El placer se desea por sí mismo, pero no es lo más elevado del ser humano y no nos hace autosuficientes: puede volvernos esclavos de los objetos." },
+      { text: "Porque el placer es imposible de alcanzar para los seres humanos, ya que siempre falta algo para completarlo.", correct: false,
+        explanation: "Aristóteles reconoce que el placer se alcanza; el problema es otro." },
+      { text: "Porque el placer depende siempre de la aprobación de los demás y de objetos externos que no controlamos.", correct: false,
+        explanation: "Depender de otros es el problema de los honores, no la crítica principal al placer." },
+      { text: "Porque el placer es solo un medio para conseguir riquezas, un incentivo para acumular bienes materiales.", correct: false,
+        explanation: "El placer sí se busca por sí mismo; la que es solo un medio es la riqueza." }
     ],
-    hint: "Aristóteles acepta que el placer se busca por sí mismo, pero tiene un problema con respecto a qué parte del ser humano involucra. ¿Qué nos distingue de los animales?",
+    hint: "Aristóteles acepta que el placer se busca por sí mismo, pero le preocupa qué parte del ser humano involucra. ¿Qué nos distingue de los animales?",
     difficulty: 'intermedio',
     topic: 'Crítica al placer'
   },
-
   {
     id: 'aristoteles_005',
     question: "¿Cuál es la función específica que distingue a los seres humanos de los demás animales según Aristóteles?",
     answers: [
-      { 
-        text: "La capacidad de sentir emociones profundas, que nos conmueven y orientan de diversas maneras nuestras decisiones cotidianas.", 
-        correct: false,
-        explanation: "Los animales también experimentan emociones, aunque quizás de manera diferente."
-      },
-      { 
-        text: "La capacidad de comunicarse con otros de su especie, mediante señales complejas y aprendizajes sociales compartidos.", 
-        correct: false,
-        explanation: "Muchos animales tienen sistemas de comunicación complejos."
-      },
-      { 
-        text: "La razón, ya que compartimos con los animales las funciones de respirar, alimentarse y sentir.", 
-        correct: true,
-        explanation: "Perfecto. Para Aristóteles, la racionalidad es exclusivamente humana y por eso es nuestra función específica."
-      },
-      { 
-        text: "La capacidad de crear herramientas y modificar el ambiente, transformando la naturaleza según nuestras necesidades.", 
-        correct: false,
-        explanation: "Algunos animales también usan y crean herramientas básicas."
-      },
-      { 
-        text: "La capacidad de vivir en sociedades complejas, organizando normas comunes y roles para la convivencia ordenada.", 
-        correct: false,
-        explanation: "Muchas especies animales viven en sociedades organizadas y complejas."
-      }
+      { text: "La capacidad de sentir emociones profundas, que nos conmueven y orientan nuestras decisiones cotidianas.", correct: false,
+        explanation: "Sentir es algo que compartimos con los animales." },
+      { text: "La capacidad de comunicarnos con los demás, mediante señales complejas y aprendizajes sociales compartidos.", correct: false,
+        explanation: "Muchos animales se comunican; no es lo exclusivamente humano para Aristóteles." },
+      { text: "La razón: respirar, nutrirse y sentir lo compartimos con los animales, pero razonar es propio del ser humano.", correct: true,
+        explanation: "Correcto. Es el argumento de la función (ergon): lo propio del humano es la actividad racional." },
+      { text: "La capacidad de crear herramientas y modificar el ambiente, transformando la naturaleza a nuestro favor.", correct: false,
+        explanation: "La técnica es importante, pero el argumento del ergon apunta a la razón." },
+      { text: "La capacidad de vivir en sociedades complejas, con normas comunes y roles para la convivencia ordenada.", correct: false,
+        explanation: "Somos animales políticos, pero la función específica que nos distingue es la razón." }
     ],
     hint: "Aristóteles menciona que compartimos con los animales el respirar, alimentarse y sentir. ¿Qué capacidad es exclusivamente humana?",
     difficulty: 'basico',
     topic: 'Función humana específica'
   },
-
   {
     id: 'aristoteles_006',
-    question: "Para Aristóteles, ¿en qué consiste la verdadera felicidad?",
+    question: "Para Aristóteles, ¿la felicidad (eudaimonía) es un estado o una actividad?",
     answers: [
-      { 
-        text: "En la satisfacción de todos los deseos materiales, acumulando bienes y disfrutando comodidades como meta principal de la vida.", 
-        correct: false,
-        explanation: "Esto se acercaría más a la búsqueda de riquezas, que Aristóteles rechaza."
-      },
-      { 
-        text: "En ser reconocido y admirado por otros, obteniendo prestigio público y una validación constante de la comunidad.", 
-        correct: false,
-        explanation: "Esto correspondería a los honores, que Aristóteles también rechaza."
-      },
-      { 
-        text: "En vivir guiándose por la razón, controlando las pasiones y buscando la sabiduría.", 
-        correct: true,
-        explanation: "Exacto. La felicidad aristotélica implica el ejercicio de nuestra función específica: la razón, especialmente en la búsqueda de sabiduría."
-      },
-      { 
-        text: "En experimentar el máximo placer posible en la vida, evitando el dolor y persiguiendo deleites continuos de toda índole.", 
-        correct: false,
-        explanation: "Esta sería la posición hedonista, que Aristóteles rechaza."
-      },
-      { 
-        text: "En alcanzar la inmortalidad del alma, trascendiendo el cuerpo y asegurando una existencia eterna y perfecta.", 
-        correct: false,
-        explanation: "Aunque Aristóteles habla del alma, la felicidad se centra en la vida presente y la actividad racional."
-      }
+      { text: "Un estado de ánimo agradable que se alcanza en ciertos momentos de la vida y luego se conserva sin esfuerzo.", correct: false,
+        explanation: "Aristóteles insiste en que la felicidad no es un estado pasivo ni un momento suelto." },
+      { text: "Una actividad del alma conforme a la virtud, sostenida a lo largo de toda la vida y no un momento suelto.", correct: true,
+        explanation: "Correcto. La eudaimonía es actividad: se ejerce viviendo y obrando bien durante toda una vida." },
+      { text: "Un estado de tranquilidad total que se logra al eliminar todos los deseos y todas las pasiones humanas.", correct: false,
+        explanation: "Aristóteles no propone eliminar las pasiones, sino ordenarlas con la razón." },
+      { text: "Un premio que recibimos después de la muerte si durante la vida cumplimos con las normas de la comunidad.", correct: false,
+        explanation: "La felicidad aristotélica se realiza en esta vida, como actividad." },
+      { text: "Un sentimiento interior que no depende de lo que hacemos, sino del carácter con el que cada uno nació.", correct: false,
+        explanation: "Para Aristóteles el carácter se forma con hábitos y la felicidad depende de cómo obramos." }
     ],
-    hint: "¿Cuál es la parte más elevada del ser humano según Aristóteles? ¿Qué tipo de vida permite ejercitar esta capacidad al máximo?",
+    hint: "El material dice que la felicidad es «actividad excelente de toda una vida, no un momento suelto de placer». ¿Qué implica eso?",
     difficulty: 'intermedio',
-    topic: 'Verdadera felicidad'
+    topic: 'Eudaimonía como actividad'
   },
-
   {
     id: 'aristoteles_007',
-    question: "¿Qué tipo de vida considera Aristóteles como la mejor para alcanzar la felicidad?",
+    question: "¿Qué tipo de vida considera Aristóteles como la forma más alta de felicidad?",
     answers: [
-      { 
-        text: "La vida activa dedicada a los negocios y el comercio, centrada en ganancias, transacciones y expansión material.", 
-        correct: false,
-        explanation: "Esta vida se centraría en las riquezas, que Aristóteles rechaza como fin último."
-      },
-      { 
-        text: "La vida social dedicada a obtener honores y reconocimiento, buscando prestigio y aprobación externa de forma constante.", 
-        correct: false,
-        explanation: "Los honores dependen de otros y no son autosuficientes según Aristóteles."
-      },
-      { 
-        text: "La vida hedonista dedicada a la búsqueda del placer, orientada a sensaciones intensas y disfrutes inmediatos.", 
-        correct: false,
-        explanation: "El placer apela a aspectos que compartimos con los animales, no a lo específicamente humano."
-      },
-      { 
-        text: "La vida contemplativa, dedicada a la reflexión y al estudio para adquirir sabiduría.", 
-        correct: true,
-        explanation: "Perfecto. La vida contemplativa permite ejercitar la función más elevada del ser humano: la razón en búsqueda de la sabiduría."
-      },
-      { 
-        text: "La vida política dedicada al ejercicio del poder, enfocada en mando, influencia y decisiones públicas continuas.", 
-        correct: false,
-        explanation: "Aunque Aristóteles valora la vida política, considera superior la vida contemplativa."
-      }
+      { text: "La vida activa dedicada a los negocios y al comercio, centrada en ganancias y en la expansión material.", correct: false,
+        explanation: "Es una vida centrada en la riqueza, que es solo un medio." },
+      { text: "La vida social dedicada a obtener honores y reconocimiento, buscando siempre la aprobación de los demás.", correct: false,
+        explanation: "Los honores dependen de otros; no pueden ser la forma más alta de felicidad." },
+      { text: "La vida hedonista dedicada a la búsqueda del placer, orientada a sensaciones intensas e inmediatas.", correct: false,
+        explanation: "Es una vida que nos iguala a los animales, según Aristóteles." },
+      { text: "La vida contemplativa (theoría), dedicada a buscar y contemplar la verdad, que es lo más divino en nosotros.", correct: true,
+        explanation: "Correcto. La contemplación es la actividad más elevada, autosuficiente y continua. Para la mayoría, la vida práctica virtuosa es el camino realista." },
+      { text: "La vida política dedicada al ejercicio del poder, enfocada en el mando y en las decisiones públicas.", correct: false,
+        explanation: "La vida política virtuosa es valiosa, pero Aristóteles pone la contemplación por encima." }
     ],
-    hint: "¿Qué tipo de vida permite ejercitar al máximo nuestra capacidad racional y la búsqueda del conocimiento más elevado?",
-    difficulty: 'intermedio',
+    hint: "¿Qué tipo de vida ejercita al máximo nuestra capacidad racional y la búsqueda del conocimiento más elevado?",
+    difficulty: 'basico',
     topic: 'Vida contemplativa'
   },
-
   {
     id: 'aristoteles_008',
-    question: "¿Por qué la sabiduría vuelve al hombre 'autárquico' según Aristóteles?",
+    question: "¿Por qué la sabiduría vuelve al hombre 'autárquico' (autosuficiente) según Aristóteles?",
     answers: [
-      { 
-        text: "Porque la sabiduría permite ganar mucho dinero y ser independiente económicamente, asegurando recursos y bienestar propio.", 
-        correct: false,
-        explanation: "La autarquía aristotélica no se refiere a la independencia económica."
-      },
-      { 
-        text: "Porque la sabiduría depende de cada uno de nosotros y no de otras personas, y no nos esclaviza a objetos externos.", 
-        correct: true,
-        explanation: "Exacto. A diferencia de los honores (que dependen de otros) y los placeres (que pueden esclavizarnos), la sabiduría depende solo de nosotros."
-      },
-      { 
-        text: "Porque la sabiduría nos da poder sobre otros y nos hace superiores, situándonos por encima en la jerarquía social establecida.", 
-        correct: false,
-        explanation: "La autarquía aristotélica no se basa en el dominio sobre otros."
-      },
-      { 
-        text: "Porque la sabiduría nos permite predecir el futuro y controlar los acontecimientos, evitando riesgos y sorpresas indeseadas.", 
-        correct: false,
-        explanation: "Esta no es la concepción aristotélica de la sabiduría ni de la autarquía."
-      },
-      { 
-        text: "Porque la sabiduría nos hace inmunes al sufrimiento y las emociones, manteniéndonos siempre serenos y distantes.", 
-        correct: false,
-        explanation: "Aristóteles no propone eliminar las emociones, sino controlarlas con la razón."
-      }
+      { text: "Porque la sabiduría permite ganar mucho dinero y ser independiente en lo económico, con recursos propios.", correct: false,
+        explanation: "La autarquía de la sabiduría no tiene que ver con el dinero." },
+      { text: "Porque la sabiduría depende de cada uno de nosotros, no de otras personas, y no nos esclaviza a objetos.", correct: true,
+        explanation: "Correcto. A diferencia de los honores (que dependen de otros) y del placer (que puede esclavizarnos), la sabiduría depende de uno mismo." },
+      { text: "Porque la sabiduría nos da poder sobre los demás y nos sitúa por encima en la jerarquía social establecida.", correct: false,
+        explanation: "La sabiduría no se define por el poder sobre otros." },
+      { text: "Porque la sabiduría nos permite predecir el futuro y controlar los acontecimientos, evitando todo riesgo.", correct: false,
+        explanation: "Aristóteles no atribuye a la sabiduría el poder de controlar el futuro." },
+      { text: "Porque la sabiduría nos hace inmunes al sufrimiento y a las emociones, siempre serenos y distantes.", correct: false,
+        explanation: "Aristóteles no propone eliminar las emociones." }
     ],
-    hint: "Compara la sabiduría con los honores (que dependen de otros) y con el placer (que puede esclavizarnos a objetos). ¿Qué hace diferente a la sabiduría?",
+    hint: "Compara la sabiduría con los honores (que dependen de otros) y con el placer (que puede esclavizarnos a objetos). ¿Qué la hace diferente?",
     difficulty: 'intermedio',
     topic: 'Sabiduría y autarquía'
   },
-
   {
     id: 'aristoteles_009',
     question: "¿Qué son las virtudes éticas o del carácter según Aristóteles?",
     answers: [
-      { 
-        text: "Son reglas absolutas que nunca deben violarse bajo ninguna circunstancia, válidas siempre y sin excepciones expresas.", 
-        correct: false,
-        explanation: "Aristóteles no presenta las virtudes como reglas absolutas, sino como términos medios."
-      },
-      { 
-        text: "Son el término medio entre un exceso y un defecto, logradas cuando la razón controla los impulsos instintivos.", 
-        correct: true,
-        explanation: "Perfecto. Las virtudes éticas son el justo medio entre extremos, alcanzadas mediante la prudencia racional."
-      },
-      { 
-        text: "Son los placeres que podemos disfrutar sin culpa porque son naturales, compatibles con nuestras inclinaciones básicas.", 
-        correct: false,
-        explanation: "Las virtudes no son placeres, sino disposiciones del carácter."
-      },
-      { 
-        text: "Son los conocimientos teóricos que debemos adquirir para ser sabios, fruto del estudio sistemático y la instrucción.", 
-        correct: false,
-        explanation: "Esta descripción correspondería más a las virtudes intelectuales que a las éticas."
-      },
-      { 
-        text: "Son los honores que merecemos por nuestros logros en la vida, reconocidos públicamente por la comunidad cívica.", 
-        correct: false,
-        explanation: "Los honores son externos, las virtudes son disposiciones internas del carácter."
-      }
+      { text: "Reglas absolutas que nunca deben violarse bajo ninguna circunstancia, válidas siempre y sin excepciones.", correct: false,
+        explanation: "Aristóteles no piensa la virtud como reglas rígidas, sino como un medio que exige juicio." },
+      { text: "El término medio entre un exceso y un defecto, que se logra cuando la razón ordena los deseos e impulsos.", correct: true,
+        explanation: "Correcto. Por ejemplo, la valentía es el medio entre la cobardía (defecto) y la temeridad (exceso)." },
+      { text: "Los placeres que podemos disfrutar sin culpa porque son naturales y compatibles con nuestras inclinaciones.", correct: false,
+        explanation: "Las virtudes no son placeres, aunque la persona virtuosa disfrute obrando bien." },
+      { text: "Los conocimientos teóricos que debemos adquirir para ser sabios, fruto del estudio y de la instrucción.", correct: false,
+        explanation: "Eso se acerca a las virtudes dianoéticas (de la razón), no a las del carácter." },
+      { text: "Los honores que merecemos por nuestros logros, reconocidos públicamente por toda la comunidad cívica.", correct: false,
+        explanation: "Los honores no son virtudes; dependen de otros." }
     ],
     hint: "Piensa en el ejemplo de la valentía. ¿Qué relación tiene con la cobardía (muy poco) y la temeridad (demasiado)?",
-    difficulty: 'intermedio',
+    difficulty: 'basico',
     topic: 'Virtudes éticas'
   },
-
   {
     id: 'aristoteles_010',
-    question: "En el ejemplo que da Aristóteles, ¿qué representa la valentía?",
+    question: "Según Aristóteles, ¿cómo se adquieren las virtudes éticas?",
     answers: [
-      { 
-        text: "La ausencia total de miedo ante cualquier situación, avanzando sin cautela ni una evaluación razonable del riesgo.", 
-        correct: false,
-        explanation: "La ausencia total de miedo sería temeridad, no valentía."
-      },
-      { 
-        text: "La capacidad de evitar todas las situaciones peligrosas, retirándose siempre con tal de conservar la seguridad personal.", 
-        correct: false,
-        explanation: "Evitar todo peligro sería cobardía, no valentía."
-      },
-      { 
-        text: "El término medio entre la cobardía (miedo excesivo) y la temeridad (inconsciencia ante el peligro).", 
-        correct: true,
-        explanation: "Exacto. La valentía es el justo medio entre el exceso de miedo (cobardía) y la falta de miedo (temeridad)."
-      },
-      { 
-        text: "La disposición a luchar siempre, sin importar las consecuencias, privilegiando el arrojo por encima del juicio prudente.", 
-        correct: false,
-        explanation: "Esto sería más bien temeridad o imprudencia."
-      },
-      { 
-        text: "El miedo racional que nos protege de los peligros, actuando con prudencia y limitando cuidadosamente la exposición.", 
-        correct: false,
-        explanation: "El miedo racional es importante, pero la valentía implica más que solo miedo."
-      }
+      { text: "Se heredan de los padres al nacer, como el color de ojos, y por eso no dependen de nuestras acciones.", correct: false,
+        explanation: "Para Aristóteles no nacemos virtuosos: el carácter se forma." },
+      { text: "Se aprenden leyendo y estudiando teoría ética, aunque nunca se lleven a la práctica en la vida diaria.", correct: false,
+        explanation: "No basta con conocer el bien: hay que practicarlo." },
+      { text: "Por hábito: repitiendo actos buenos se forma el carácter, así como uno se hace justo haciendo cosas justas.", correct: true,
+        explanation: "Correcto. Las virtudes éticas se adquieren por hábito; las dianoéticas, por enseñanza." },
+      { text: "Se reciben de golpe en un momento de inspiración, sin necesidad de esfuerzo ni de práctica previa.", correct: false,
+        explanation: "La virtud requiere práctica sostenida, no una inspiración repentina." },
+      { text: "Las otorga la ley de la ciudad a quienes cumplen las normas, mediante un reconocimiento público oficial.", correct: false,
+        explanation: "Las leyes ayudan a formar hábitos, pero la virtud la forma cada uno al obrar." }
     ],
-    hint: "Aristóteles dice que las virtudes son el término medio entre dos extremos. En el caso de la valentía, ¿cuáles serían esos dos extremos?",
+    hint: "Nadie se vuelve buen músico sin tocar ni justo sin obrar con justicia. ¿Qué se necesita repetir?",
     difficulty: 'basico',
-    topic: 'Término medio'
+    topic: 'Hábito'
   },
-
   {
     id: 'aristoteles_011',
-    question: "¿Cuál es la relación entre la razón y las pasiones en la ética aristotélica?",
+    question: "¿Qué es la prudencia (frónesis) en la ética aristotélica?",
     answers: [
-      { 
-        text: "Las pasiones deben ser completamente eliminadas porque son malas, expulsándolas de la vida moral en todos los casos.", 
-        correct: false,
-        explanation: "Aristóteles no propone eliminar las pasiones, sino controlarlas con la razón."
-      },
-      { 
-        text: "Las pasiones son más importantes que la razón para alcanzar la felicidad, pues motivan la totalidad de la acción valiosa.", 
-        correct: false,
-        explanation: "Para Aristóteles, la razón es superior y debe guiar las pasiones."
-      },
-      { 
-        text: "La razón debe guiar nuestras vidas y controlar nuestras pasiones para vivir felizmente.", 
-        correct: true,
-        explanation: "Correcto. La felicidad requiere que la razón domine y dirija las pasiones, no que las elimine."
-      },
-      { 
-        text: "La razón y las pasiones son igualmente importantes y deben equilibrarse, sin preeminencia de ninguna sobre la otra.", 
-        correct: false,
-        explanation: "Aunque debe haber balance, Aristóteles da primacía a la razón como guía."
-      },
-      { 
-        text: "Las pasiones son naturales y siempre debemos seguirlas, dejándonos llevar por lo que sentimos en cada momento.", 
-        correct: false,
-        explanation: "Seguir siempre las pasiones llevaría al exceso, que Aristóteles considera vicioso."
-      }
+      { text: "La habilidad de sacar ventaja en cada situación, aunque eso perjudique a los demás o al bien común.", correct: false,
+        explanation: "La prudencia no es «viveza» egoísta: orienta al bien." },
+      { text: "Una sabiduría práctica que delibera bien sobre qué hacer en cada situación concreta para vivir bien.", correct: true,
+        explanation: "Correcto. La prudencia indica dónde está el término medio en cada caso, considerando el fin humano y las circunstancias." },
+      { text: "Un conocimiento puramente teórico de las causas primeras, sin relación con las decisiones de la vida.", correct: false,
+        explanation: "Eso describe mejor a la sabiduría (sofía), no a la prudencia." },
+      { text: "La costumbre de evitar todos los riesgos y no actuar nunca hasta tener absoluta seguridad del resultado.", correct: false,
+        explanation: "La prudencia no es pasividad: decide bien aun en situaciones inciertas." },
+      { text: "La obediencia estricta a las normas escritas, sin considerar las circunstancias de cada caso particular.", correct: false,
+        explanation: "La prudencia atiende justamente a las circunstancias concretas." }
     ],
-    hint: "¿Qué debe gobernar qué en la vida humana según Aristóteles? ¿Cuál es la función específicamente humana que debe dominar?",
-    difficulty: 'basico',
-    topic: 'Razón y pasiones'
+    hint: "El término medio no es una fórmula matemática. ¿Qué virtud nos dice dónde está en cada caso concreto?",
+    difficulty: 'intermedio',
+    topic: 'Prudencia'
   },
-
   {
     id: 'aristoteles_012',
     question: "¿Por qué los honores no pueden ser el Sumo Bien según el análisis aristotélico?",
     answers: [
-      { 
-        text: "Porque los honores son inmorales y corrompen a las personas, desviando el carácter y dañando la virtud cívica común.", 
-        correct: false,
-        explanation: "Aristóteles no considera los honores inmorales, sino que tienen limitaciones estructurales."
-      },
-      { 
-        text: "Porque los honores no son ni autosuficientes ni perfectos: dependen de otros para ser otorgados y se buscan como reconocimiento.", 
-        correct: true,
-        explanation: "Exacto. Los honores fallan en ambas características del Sumo Bien: dependen de otros (no autosuficientes) y son medios para el reconocimiento (no perfectos)."
-      },
-      { 
-        text: "Porque los honores solo pueden ser alcanzados por personas muy ricas, excluyendo a quienes carecen de fortuna material.", 
-        correct: false,
-        explanation: "Esta no es la objeción aristotélica a los honores."
-      },
-      { 
-        text: "Porque los honores son temporales y eventualmente se pierden, desvaneciéndose con el paso del tiempo y la memoria.", 
-        correct: false,
-        explanation: "Aunque puede ser cierto, esta no es la crítica específica de Aristóteles."
-      },
-      { 
-        text: "Porque los honores generan envidia y conflictos sociales, provocando rivalidades frecuentes y disputas persistentes.", 
-        correct: false,
-        explanation: "Aristóteles se centra en las características lógicas del Sumo Bien, no en efectos sociales."
-      }
+      { text: "Porque los honores son inmorales y corrompen a las personas, dañando el carácter y la virtud cívica.", correct: false,
+        explanation: "Aristóteles no rechaza los honores por inmorales." },
+      { text: "Porque dependen de que otros los otorguen y se buscan como reconocimiento: no son autosuficientes.", correct: true,
+        explanation: "Correcto. Los honores dependen de los demás y se buscan para ser reconocidos, así que no cumplen las condiciones del Sumo Bien." },
+      { text: "Porque los honores solo pueden alcanzarlos las personas muy ricas, excluyendo a quienes no tienen fortuna.", correct: false,
+        explanation: "Esta no es la objeción aristotélica a los honores." },
+      { text: "Porque los honores son temporales y finalmente se pierden, desvaneciéndose con el paso del tiempo.", correct: false,
+        explanation: "Puede ser cierto, pero no es la crítica específica de Aristóteles." },
+      { text: "Porque los honores generan envidia y conflictos sociales, provocando rivalidades y disputas frecuentes.", correct: false,
+        explanation: "Aristóteles se centra en las condiciones del Sumo Bien, no en efectos sociales." }
     ],
-    hint: "Recuerda las dos características del Sumo Bien: ¿Los honores se buscan por sí mismos o por otra cosa? ¿Dependen solo de nosotros o también de otros?",
+    hint: "Recuerda las dos condiciones del Sumo Bien: ¿los honores dependen solo de nosotros o también de otros?",
     difficulty: 'intermedio',
     topic: 'Crítica a los honores'
+  },
+  {
+    id: 'aristoteles_013',
+    question: "¿En qué se diferencian las virtudes éticas de las virtudes dianoéticas?",
+    answers: [
+      { text: "Las éticas ordenan deseos y emociones y se forman por hábito; las dianoéticas perfeccionan la razón por enseñanza.", correct: true,
+        explanation: "Correcto. Ejemplos de éticas: valentía, templanza, generosidad. Dianoéticas: ciencia, arte, entendimiento, sabiduría y prudencia." },
+      { text: "Las éticas son propias de los filósofos y las dianoéticas de los ciudadanos comunes que trabajan en la polis.", correct: false,
+        explanation: "Ambas familias son para todos; se distinguen por la parte del alma que perfeccionan." },
+      { text: "Las éticas se heredan al nacer y las dianoéticas se compran con dinero pagando a buenos maestros.", correct: false,
+        explanation: "Ninguna de las dos se hereda ni se compra." },
+      { text: "No hay diferencia: son dos nombres distintos para el mismo conjunto de hábitos buenos del carácter.", correct: false,
+        explanation: "Aristóteles las distingue claramente." },
+      { text: "Las éticas regulan solo la vida política y las dianoéticas solo la vida familiar y las relaciones privadas.", correct: false,
+        explanation: "La diferencia no es el ámbito de la vida, sino si perfeccionan el carácter o la razón." }
+    ],
+    hint: "Una familia de virtudes perfecciona el carácter; la otra, el pensamiento. ¿Cómo se adquiere cada una?",
+    difficulty: 'intermedio',
+    topic: 'Tipos de virtud'
   }
 ],
 
     
     // Estadísticas del tema
     stats: {
-        totalQuestions: 12,
+        totalQuestions: 13,
         estimatedTime: 10, // minutos
         difficultyBreakdown: {
             basico: 5,
-            intermedio: 7,
+            intermedio: 8,
             avanzado: 0
         },
         topicBreakdown: {
@@ -472,13 +300,14 @@ questions: [
             'Felicidad como fin último': 1,
             'Crítica al placer': 1,
             'Función humana específica': 1,
-            'Verdadera felicidad': 1,
+            'Eudaimonía como actividad': 1,
             'Vida contemplativa': 1,
             'Sabiduría y autarquía': 1,
             'Virtudes éticas': 1,
-            'Término medio': 1,
-            'Razón y pasiones': 1,
-            'Crítica a los honores': 1
+            'Hábito': 1,
+            'Prudencia': 1,
+            'Crítica a los honores': 1,
+            'Tipos de virtud': 1
         }
     }
 };

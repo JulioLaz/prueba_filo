@@ -1,5 +1,5 @@
 {
-  "id": "aristoteles",
+  "id": "etica_aristoteles",
 
   "meta": {
     "title": "Aristóteles: La felicidad como fin supremo",
@@ -9,20 +9,20 @@
     "difficulty": "avanzado",
     "category": "Filosofía Clásica",
     "description": "El objetivo de la vida humana es la felicidad (eudaimonía), que se alcanza a través de la virtud y la razón. Su ética se basa en el 'justo medio' y la formación del carácter.",
-    "lastUpdated": "2024-11-06"
+    "lastUpdated": "2026-10-21"
   },
 
   "activities": {
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 14,
+      "sections": 15,
       "timeEstimate": 12,
       "script": "../../js/readaloud-system.js"
     },
     "quiz": {
       "enabled": true,
-      "questions": 12,
+      "questions": 13,
       "timeLimit": 50,
       "timeEstimate": 15,
       "passingScore": 70
@@ -78,13 +78,13 @@
   "color": "#4b67ff",
   
   "notes": {
-    "realValues": "✅ Valores actualizados según archivos reales (2024-11-06)",
+    "realValues": "✅ Valores actualizados según archivos reales (2026-10-21)",
     "validation": {
-      "material": "14 secciones verificadas en content.html (window.ReadAloudSystemConfig.sections)",
-      "quiz": "12 preguntas verificadas en quiz.js (ETICA_ARISTOTELES_THEME.questions)",
+      "material": "15 secciones verificadas en content.html (window.ReadAloudSystemConfig.sections)",
+      "quiz": "13 preguntas verificadas en quiz.js (ETICA_ARISTOTELES_THEME.questions)",
       "concepts": "8 niveles verificados en conceptos.js (CONCEPT_HUNT_CONFIG.levels)",
       "cloze": "17 items verificados en cloze_test.js (CLOZE_TEST.items)",
-      "cruci": "7 palabras verificadas en crossword_config.js (CROSSWORD_CONFIG.entries + central)",
+      "cruci": "7 palabras verificadas en crossword_config.js (CROSSWORD_CONFIG.entries + central): VIRTUD, VALENTIA, ENTENDIMIENTO, GENEROSIDAD, TEMPLANZA, PRUDENCIA, FELICIDAD",
       "mapa": "28 nodos verificados en mapa.html (conteo de class='node')"
     }
   }

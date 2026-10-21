@@ -12,33 +12,33 @@ try {
     // crossIndex indica qué letra de la central usar (0-5 para VIRTUD)
     entries: [
       {
-        answer: "VALOR",
-        clue: "Cualidad de quien actúa con coraje y enfrenta los peligros sin cobardía",
+        answer: "VALENTIA",
+        clue: "Virtud ética: término medio entre la cobardía (defecto) y la temeridad (exceso)",
         crossIndex: 0 // Cruce en la 'V' de VIRTUD
       },
       {
-        answer: "INTELIGENCIA",
-        clue: "Capacidad para entender, razonar y tomar buenas decisiones en la vida",
+        answer: "ENTENDIMIENTO",
+        clue: "Virtud dianoética (noûs) que capta los primeros principios del conocimiento",
         crossIndex: 1 // Cruce en la 'I' de VIRTUD
       },
       {
-        answer: "RESPETO",
-        clue: "Consideración y reconocimiento hacia otros seres humanos y hacia uno mismo",
+        answer: "GENEROSIDAD",
+        clue: "Virtud ética: término medio entre la tacañería y el derroche",
         crossIndex: 2 // Cruce en la 'R' de VIRTUD
       },
       {
         answer: "TEMPLANZA",
-        clue: "Moderación en los placeres y deseos, evitar los extremos",
+        clue: "Virtud ética: moderación en los placeres, término medio entre el desenfreno y la insensibilidad",
         crossIndex: 3 // Cruce en la 'T' de VIRTUD
       },
       {
         answer: "PRUDENCIA",
-        clue: "Sabiduría práctica para tomar decisiones correctas en cada situación",
+        clue: "Sabiduría práctica (frónesis) que delibera bien qué hacer en cada situación concreta",
         crossIndex: 4 // Cruce en la 'U' de VIRTUD
       },
       {
         answer: "FELICIDAD",
-        clue: "Estado de bienestar y plenitud que se alcanza viviendo bien",
+        clue: "Fin último (eudaimonía): actividad del alma conforme a la virtud, no un estado pasivo",
         crossIndex: 5 // Cruce en la 'D' de VIRTUD
       }
     ],
@@ -72,7 +72,7 @@ try {
     
     // Metadatos para debug
     metadata: {
-      version: "2.0_secundaria",
+      version: "2.1_secundaria", // 2026-10-21: palabras y pistas alineadas con el material
       created: new Date().toISOString(),
       theme: "etica-aristoteles-secundaria",
       totalWords: 6,
