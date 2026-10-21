@@ -10,7 +10,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>Ernst Cassirer es conocido por su concepto de que el ser humano es un <strong>animal-simbólico</strong>, en lugar de un animal racional. Si bien la razón es importante, lo que nos define es nuestra capacidad para crear y vivir en un mundo de <strong>símbolos</strong>. Estos símbolos (el <strong>lenguaje</strong>, los mitos, el arte, la religión) nos ayudan a construir nuestro universo, a pesar de que la realidad nos resulta inaccesible de forma directa.</p>
       `,
       hint: "Busca los términos clave que definen al ser humano.",
-      advanceAfter: 1,
       concepts: [
         { term: "animal-simbólico", meaning: "Concepto de Cassirer que define al ser humano por su capacidad única de crear y usar símbolos." },
         { term: "símbolos", meaning: "Representaciones que utilizamos para dar sentido a la realidad y comunicarnos. Incluyen el lenguaje, el arte, los mitos, etc." },
@@ -30,7 +29,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Piensa en cómo los símbolos nos afectan en la vida diaria.",
-      advanceAfter: 1,
       concepts: [
         { term: "red-de-símbolos", meaning: "La compleja estructura de lenguaje, mitos, arte y religión que nos rodea y a través de la cual interpretamos el mundo." },
         { term: "sentido", meaning: "La significación o propósito que le damos a nuestras vidas y al mundo a través de los símbolos." },

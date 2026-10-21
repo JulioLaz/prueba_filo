@@ -13,8 +13,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p><em>El <strong>existencialismo</strong> de J.P. Sartre afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una <strong>“naturaleza humana”</strong> prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La <strong>libertad</strong> no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
       `,
       hint: "Fijate en palabras clave como: existencia, esencia...",
-      // Podés permitir avanzar aunque falten algunos (útil en clase)
-      advanceAfter: 1,
       concepts: [
         { term: "existencialismo", meaning: "El existencialismo es una corriente filosófica que se centra en la existencia individual, la libertad y la responsabilidad. Su idea principal es que la existencia precede a la esencia." },
         { term: "naturaleza", meaning: "Aunque no hay una naturaleza humana predeterminada, Sartre sí habla de la condición humana. Esta es el conjunto de límites universales que compartimos todos los seres humanos por el simple hecho de existir en el mundo. Estos límites son:\n● Estar en el mundo.\n● Tener que trabajar.\n● Vivir entre otros.\n● Ser mortal." },
@@ -50,7 +48,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
-      advanceAfter: 1,
       concepts: [
         { term: "Ser", meaning: "Ser-en-sí: Modo de ser de las cosas: pleno, sin proyectos ni reflexión.\nSer-para-sí: Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
         // { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
@@ -77,7 +74,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Diferenciá lo dado y lo que proyectás sobre ello.",
-      advanceAfter: 1,
       concepts: [
         { term: "facticidad", meaning: " Lo dado: el conjunto de cartas que te tocaron en la vida. Son los aspectos de tu existencia que no elegiste, pero que son tu punto de partida. Incluye:\n* Tu cuerpo (la altura, el color de ojos).\n* Tu pasado (dónde naciste, tu familia).\n* Tu situación (el contexto social y la época en que vives).\nLa facticidad es el marco sobre el cual tu libertad actúa." },
         { term: "trascendencia", meaning: "Superar lo dado mediante tu proyecto; reinterpretar la facticidad." },
@@ -101,7 +97,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "¿Dónde te escondés para no elegir? Eso es mala fe.",
-      advanceAfter: 1,
       concepts: [
         { term: "autoengaño", meaning: "Mecanismo de evasión: ‘no pude’, ‘me hicieron’." },
         { term: "autenticidad", meaning: "Asumir tu libertad situada y sostener un proyecto propio." },
@@ -121,7 +116,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Atendé a ‘mirada’ y ‘objetivación’.",
-      advanceAfter: 1,
       concepts: [
         { term: "mirada", meaning: "Me descubro como objeto ante la conciencia ajena." },
         { term: "objetivarnos", meaning: "objetivacion: Ser reducido a cosa; perder la vivencia de proyecto libre." }, // sin tilde para normalizar
@@ -144,7 +138,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Elegir = instituir valor (para vos y como ejemplo).",
-      advanceAfter: 1,
       concepts: [
         { term: "decidir", meaning: "El acto funda valor, no lo recibe hecho." },
         { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },

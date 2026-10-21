@@ -9,7 +9,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>El <strong>hedonismo</strong> es una corriente filosófica que considera el <strong>placer</strong> como el único y verdadero <strong>bien</strong>. El fin de la vida es la búsqueda del placer y la evitación del <strong>dolor</strong>. Para los <strong>hedonistas</strong>, la felicidad se encuentra en una vida placentera. Sin embargo, no todos los placeres son iguales. Hay que distinguir entre los que nos dan un bienestar duradero y los que nos causan problemas a largo plazo.</p>
       `,
       hint: "Enfócate en la idea principal del hedonismo y su meta.",
-      advanceAfter: 1,
       concepts: [
         { term: "hedonismo", meaning: "El <strong>hedonismo</strong> es una corriente filosófica que postula que el placer es el fin supremo y el único bien de la vida humana." },
         { term: "placer", meaning: "El <strong>placer</strong> es una sensación agradable que guía la vida según el hedonismo. Puede ser de distintos tipos y calidades." },
@@ -30,7 +29,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca los conceptos que definen el placer epicúreo, las 'ausencias' clave.",
-      advanceAfter: 1,
       concepts: [
         { term: "Epicuro", meaning: "Filósofo griego, principal representante del hedonismo clásico. Defendió el placer como la ausencia de dolor y perturbación." },
         { term: "serenidad", meaning: "La <strong>serenidad</strong> es la tranquilidad, la calma del espíritu. Para Epicuro, es el estado de mayor placer." },
@@ -48,7 +46,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>Epicuro clasificó los placeres para enseñar el <strong>autocontrol</strong>. Distinguió los placeres <strong>naturales</strong> y <strong>necesarios</strong> (como comer cuando se tiene hambre), los <strong>naturales</strong> y <strong>no necesarios</strong> (como comer manjares caros) y los <strong>no</strong> <strong>naturales</strong> ni <strong>necesarios</strong> (como la búsqueda de fama o riqueza). El sabio debe enfocarse en satisfacer los <strong>necesarios</strong> y desechar los demás, pues solo estos conducen a la <strong>aponía</strong> y la <strong>ataraxia</strong>.</p>
       `,
       hint: "Identifica las categorías de placeres y cuál es la meta principal de la clasificación.",
-      advanceAfter: 1,
       concepts: [
         { term: "autocontrol", meaning: "La moderación y dominio de los deseos. Es clave para elegir los placeres correctos y evitar el sufrimiento futuro." },
         { term: "naturales", meaning: "Placeres que surgen de forma inherente a la naturaleza humana. Se combinan con 'necesarios' o 'no necesarios'." },
@@ -68,7 +65,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca los términos clave del hedonismo ético social y sus figuras.",
-      advanceAfter: 1,
       concepts: [
         { term: "utilitarismo", meaning: "Forma moderna de hedonismo que postula que la moralidad de un acto reside en su capacidad de producir la mayor felicidad para el mayor número de personas." },
         { term: "Mill", meaning: "John Stuart <strong>Mill</strong>, filósofo utilitarista. Introdujo la distinción de la calidad de los placeres, priorizando los intelectuales." },

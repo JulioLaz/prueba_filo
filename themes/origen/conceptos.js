@@ -10,7 +10,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>La palabra <strong>filosofía</strong> es un compuesto griego: <strong>philo</strong> (amor o tendencia a) y <strong>sophia</strong> (sabiduría). Su etimología es el <em>amor por la sabiduría</em>. El filósofo no es quien posee la <strong>verdad</strong>, sino quien la <strong>busca</strong> activamente. La filosofía nace de una actitud de <strong>asombro</strong> o <strong>curiosidad</strong> radical ante lo que nos rodea, que nos lleva a cuestionar las certezas cotidianas usando el <strong>pensamiento crítico</strong>.</p>
       `,
       hint: "Identifica los componentes del término y la actitud filosófica.",
-      advanceAfter: 1,
       concepts: [
         { term: "filosofía", meaning: "Del griego: philo (amor) + sophia (sabiduría). El amor por la sabiduría." },
         { term: "philo", meaning: "Raíz griega que significa 'amor' o 'tendencia hacia'. Está presente en palabras como 'filantrópico' (amor al ser humano)." },
@@ -36,7 +35,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "¿Quién creó el término y qué distinción hizo?",
-      advanceAfter: 1,
       concepts: [
         { term: "Pitágoras", meaning: "Matemático y pensador griego (siglo VI a.C.), a quien se atribuye el origen del término 'filosofía'. Fundó la escuela pitagórica que asoció los números con el principio de la realidad." },
         { term: "sofós", meaning: "Término griego que significa 'sabio'. Para Pitágoras, solo los dioses pueden ser verdaderamente sofós." },
@@ -63,7 +61,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Diferencia el mito del logos y entiende el proceso de cambio.",
-      advanceAfter: 1,
       concepts: [
         { term: "mito", meaning: "Narración tradicional protagonizada por dioses y héroes que explica el origen del mundo y los fenómenos naturales (cosmogonía). No pretende argumentar, solo narrar." },
         { term: "logos", meaning: "Término griego que significa 'razón', 'palabra', 'discurso racional'. El logos busca causas naturales y argumentos, no personajes sobrenaturales." },
@@ -92,7 +89,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "El arché: origen, substrato y causa. Los tres filósofos de Mileto.",
-      advanceAfter: 1,
       concepts: [
         { term: "presocráticos", meaning: "Filósofos anteriores a Sócrates (siglo VI-V a.C.). Se concentraron en buscar el principio (arché) de la naturaleza (physis). Son los primeros filósofos de Occidente." },
         { term: "arché", meaning: "Del griego ἀρχή. El principio de todas las cosas con triple sentido: (1) origen — de dónde surge todo; (2) substrato — de qué está hecho todo; (3) causa — qué produce el movimiento." },
@@ -125,7 +121,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Tres propuestas diferentes: número, fuego/devenir, y ser inmutable.",
-      advanceAfter: 1,
       concepts: [
         { term: "número", meaning: "Arché propuesto por Pitágoras. Para los pitagóricos, los números no son solo herramientas matemáticas sino la estructura real del universo." },
         { term: "matemática", meaning: "Pitágoras creía que el cosmos tiene una estructura matemática: las cosas son o imitan números." },

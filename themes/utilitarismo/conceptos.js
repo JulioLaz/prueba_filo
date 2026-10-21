@@ -11,7 +11,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>El <strong>utilitarismo</strong> de J. S. Mill se basa en un solo principio: <strong>el Principio de la Mayor Felicidad</strong>. Según este, las acciones son correctas si tienden a promover la <strong>felicidad</strong>; e incorrectas si producen lo contrario. El objetivo es <strong>maximizar</strong> la mayor cantidad de bienestar para el <strong>mayor número de personas</strong>. Lo que realmente importa son las <strong>consecuencias</strong> de nuestras acciones, no las intenciones.</p>
       `,
       hint: "Enfócate en las ideas de felicidad, consecuencias y el mayor número.",
-      advanceAfter: 1,
       concepts: [
         { term: "utilitarismo", meaning: "Filosofía moral que sostiene que la acción correcta es la que produce la mayor felicidad o bienestar para el mayor número de personas afectadas." },
         { term: "felicidad", meaning: "En la ética de Mill, la felicidad se entiende como 'placer y ausencia de dolor'." },
@@ -34,7 +33,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Fíjate en los tipos de placeres y el por qué de la distinción.",
-      advanceAfter: 1,
       concepts: [
         { term: "placeres", meaning: "Sensaciones que generan bienestar. Mill distingue entre dos tipos: los del cuerpo y los de la mente." },
         { term: "inferiores", meaning: "Placeres que compartimos con otros animales, ligados a la supervivencia y a las necesidades físicas." },
@@ -55,7 +53,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca los conceptos de imparcialidad y egoísmo.",
-      advanceAfter: 1,
       concepts: [
         { term: "egoísmo", meaning: "Actuar solo en beneficio propio. El utilitarismo rechaza el egoísmo, pues exige considerar el bienestar de todos los afectados." },
         { term: "imparcial", meaning: "Actuar sin dar un peso especial a nuestra propia felicidad o la de nuestros seres queridos. Todos los afectados cuentan por igual." },
@@ -75,7 +72,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Diferencia entre los dos tipos de utilitarismo y el papel de las reglas.",
-      advanceAfter: 1,
       concepts: [
         { term: "acto", meaning: "Juzga la moralidad de cada acción específica y única según sus consecuencias." },
         { term: "regla", meaning: "Juzga la moralidad de una acción en base a si la regla que la justifica, si se siguiera siempre, produciría la mayor felicidad." },
@@ -97,7 +93,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Atiende a los problemas de justicia y cálculo.",
-      advanceAfter: 1,
       concepts: [
         { term: "justicia", meaning: "Un principio moral que el utilitarismo a veces parece contradecir. Se refiere a dar a cada uno lo que le corresponde, respetando sus derechos individuales, sin sacrificarlo por el bien común." },
         { term: "cálculo", meaning: "La dificultad práctica de medir la cantidad de felicidad o sufrimiento que una acción podría generar, así como de predecir sus consecuencias a largo plazo." },

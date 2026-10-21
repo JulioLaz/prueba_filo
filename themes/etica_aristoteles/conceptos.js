@@ -4,6 +4,7 @@
 // conceptos y las negritas sueltas restaban vidas); términos con espacios en vez
 // de guiones/guiones bajos; nivel de "ética de las virtudes" dividido en dos y
 // sin repetir política/comunidad.
+// v2.1 (2026-10-21): hay que encontrar todos los conceptos del párrafo para avanzar.
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Aristóteles",
@@ -14,7 +15,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>Según Aristóteles, la ética no es un conjunto de reglas rígidas, sino una búsqueda de lo que es bueno para el ser humano. El fin último de todas nuestras acciones es la felicidad (en griego, eudaimonía). Pero esta felicidad no es un simple placer; es una vida activa, guiada por la razón y dedicada a la virtud.</p>
       `,
       hint: "Identifica la meta de la ética aristotélica.",
-      advanceAfter: 1,
       concepts: [
         { term: "Aristóteles", meaning: "Filósofo griego, discípulo de Platón y maestro de Alejandro Magno. Su ética se centra en la búsqueda de la felicidad a través de la virtud." },
         { term: "bueno", meaning: "Aquello a lo que todas las cosas tienden. Para Aristóteles, el bien supremo es la felicidad." },
@@ -35,7 +35,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Identifica los elementos clave de la ética aristotélica.",
-      advanceAfter: 1,
       concepts: [
         { term: "ética de Aristóteles", meaning: "Ética de las virtudes: propone la virtud como camino hacia la felicidad." },
         { term: "bien", meaning: "Aquello que se busca como fin en toda acción humana." },
@@ -58,7 +57,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Distingue los dos tipos de virtud y cuándo somos responsables.",
-      advanceAfter: 1,
       concepts: [
         { term: "virtudes éticas", meaning: "Virtudes del carácter: ordenan deseos y emociones y se adquieren por hábito." },
         { term: "templanza", meaning: "Virtud ética: moderación en los placeres, término medio entre el desenfreno y la insensibilidad." },
@@ -82,7 +80,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca los conceptos que definen la virtud como equilibrio.",
-      advanceAfter: 1,
       concepts: [
         { term: "término medio", meaning: "La posición virtuosa entre dos extremos viciosos (exceso y defecto), relativa a la persona y a la situación." },
         { term: "extremos", meaning: "Los vicios que se oponen a la virtud: uno por ir más allá de lo debido y otro por quedarse corto." },
@@ -106,7 +103,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Explora los tipos de justicia y su aplicación.",
-      advanceAfter: 1,
       concepts: [
         { term: "justicia", meaning: "Virtud que regula nuestras relaciones con los demás, buscando el bien común." },
         { term: "virtud perfecta", meaning: "Virtud que implica a todas las demás, porque se ejerce en relación con otros." },
@@ -127,7 +123,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Identifica los tipos de amistad y su valor ético.",
-      advanceAfter: 1,
       concepts: [
         { term: "amistad", meaning: "Vínculo de afecto y bien compartido; para Aristóteles, necesaria para vivir bien." },
         { term: "amistad por utilidad", meaning: "Vínculo basado en el beneficio mutuo; dura mientras dura la ventaja." },
@@ -148,7 +143,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Observa cómo se adquieren las virtudes.",
-      advanceAfter: 1,
       concepts: [
         { term: "educación", meaning: "Proceso de formación del carácter y de la razón para vivir virtuosamente." },
         { term: "virtudes morales", meaning: "Otro nombre de las virtudes éticas: hábitos que regulan emociones y acciones." },
@@ -170,7 +164,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Enfócate en la relación entre el individuo y la sociedad.",
-      advanceAfter: 1,
       concepts: [
         { term: "animal político", meaning: "La idea aristotélica de que, por naturaleza, vivimos en sociedad y desarrollamos nuestras capacidades en comunidad (zôon politikón)." },
         { term: "comunidad", meaning: "Grupo humano con fines compartidos. Es el lugar donde el ser humano alcanza su plenitud." },

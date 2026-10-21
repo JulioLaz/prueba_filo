@@ -9,7 +9,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>La <strong>ética</strong> es una rama de la filosofía que se ocupa de lo que es <strong>bueno</strong> o <strong>malo</strong>, correcto o incorrecto. Se diferencia de la moral en que la ética es la <strong>reflexión filosófica</strong> sobre los principios y valores, mientras que la <strong>moral</strong> es el conjunto de normas y costumbres de una sociedad. La ética busca los fundamentos de la moral, preguntándose por qué ciertas acciones son consideradas buenas.</p>
       `,
       hint: "Distinguir entre Ética y Moral.",
-      advanceAfter: 4,
       concepts: [
         { term: "ética", meaning: "Rama de la filosofía que estudia la moralidad de los actos humanos. Es una reflexión teórica." },
         { term: "moral", meaning: "Conjunto de normas, valores y costumbres que guían la conducta humana en una sociedad. Es la práctica." },
@@ -29,7 +28,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Enfócate en los conceptos que hacen posible la ética.",
-      advanceAfter: 4,
       concepts: [
         { term: "libertad", meaning: "La capacidad de elegir y tomar decisiones. Es la base de la moralidad." },
         { term: "responsabilidad", meaning: "La obligación de responder por las consecuencias de nuestros actos libres." },
@@ -49,7 +47,6 @@ window.CONCEPT_HUNT_CONFIG = {
   </div>
   `,
   hint: "Busca los elementos que intervienen en el juicio moral.",
-  advanceAfter: 9,
   concepts: [
     { term: "juicio-moral", meaning: "Evaluación racional de una acción como buena o mala según principios éticos." },
     { term: "valores", meaning: "Criterios que orientan el comportamiento humano y definen lo que se considera deseable." },
@@ -74,7 +71,6 @@ window.CONCEPT_HUNT_CONFIG = {
   </div>
   `,
   hint: "Identifica los valores en conflicto en cada dilema.",
-  advanceAfter: 9,
   concepts: [
     { term: "dilema-del-tranvía", meaning: "Situación ética clásica donde se debe elegir entre sacrificar a uno para salvar a varios." },
     { term: "vida-humana", meaning: "Valor fundamental que representa la existencia y dignidad de cada persona." },
@@ -101,7 +97,6 @@ window.CONCEPT_HUNT_CONFIG = {
   </div>
   `,
   hint: "Explora cómo la IA plantea nuevos desafíos éticos.",
-  advanceAfter: 9,
   concepts: [
     { term: "inteligencia-artificial", meaning: "Sistemas que simulan capacidades humanas como el razonamiento, la percepción y la toma de decisiones." },
     { term: "dilema-algoritmico", meaning: "Conflicto ético generado por decisiones automatizadas basadas en datos sesgados o incompletos." },

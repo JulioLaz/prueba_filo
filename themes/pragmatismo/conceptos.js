@@ -10,7 +10,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>El <strong>pragmatismo</strong> es una corriente filosófica que surgió en Estados Unidos. Su idea central es que el valor de una <strong>creencia</strong> o de una idea se mide por su <strong>utilidad-práctica</strong>. La <strong>verdad</strong> de una idea no se basa en una realidad abstracta, sino en sus <strong>consecuencias</strong> y en su capacidad para resolver problemas. Si una idea nos ayuda a actuar de manera efectiva, entonces es una idea válida.</p>
       `,
       hint: "Enfócate en la relación entre verdad y utilidad.",
-      advanceAfter: 1,
       concepts: [
         { term: "pragmatismo", meaning: "Corriente filosófica que evalúa el valor de las ideas y creencias en función de su utilidad práctica y sus consecuencias." },
         { term: "verdad", meaning: "Para el pragmatismo, la verdad no es algo absoluto, sino una idea que funciona y nos ayuda a interactuar con el mundo de manera efectiva." },
@@ -30,7 +29,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca cómo el pragmatismo se aplica en la vida real.",
-      advanceAfter: 1,
       concepts: [
         { term: "método-científico", meaning: "El proceso de observación, formulación de hipótesis, experimentación y análisis que el pragmatismo considera el camino más seguro hacia el conocimiento." },
         { term: "aprendizaje-por-acción", meaning: "Un enfoque educativo en el que el conocimiento se adquiere a través de la práctica y la resolución de problemas." },

@@ -10,7 +10,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>El <strong>antropocentrismo</strong> es la doctrina que puso al hombre en el <strong>centro del escenario</strong>, un lugar que antes ocupaba Dios. El término viene del griego <em>ánthropos</em> (ser humano) y <em>kéntron</em> (centro). Es la idea filosófica de que el <strong>ser humano es la medida de todas las cosas</strong> y el centro de interés moral y existencial en el universo.</p>
       `,
       hint: "Enfócate en los orígenes del término y la idea central.",
-      advanceAfter: 1,
       concepts: [
         { term: "antropocentrismo", meaning: "Doctrina filosófica que considera al ser humano como el centro de interés del universo y la medida de todas las cosas." },
         { term: "centro", meaning: "Posición que el ser humano ocupa en el universo como punto de referencia." },
@@ -30,7 +29,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Busca las palabras clave del Renacimiento y la ciencia.",
-      advanceAfter: 1,
       concepts: [
         { term: "Renacimiento", meaning: "Período histórico y cultural que marcó la transición de la Edad Media a la Edad Moderna, caracterizado por un resurgimiento de las artes, la ciencia y el pensamiento clásico." },
         { term: "Modernidad", meaning: "Época de la historia occidental (siglos XVII-XX) caracterizada por el avance de la ciencia, la tecnología y el pensamiento racional." },
@@ -50,7 +48,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Enfócate en la crítica ambiental.",
-      advanceAfter: 1,
       concepts: [
         { term: "ética-ambiental", meaning: "Rama de la ética que estudia la relación moral entre los seres humanos y el entorno natural." },
         { term: "recursos-naturales", meaning: "Elementos de la naturaleza que el ser humano utiliza para satisfacer sus necesidades." },

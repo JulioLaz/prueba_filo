@@ -10,7 +10,6 @@ window.CONCEPT_HUNT_CONFIG = {
       <p>La ética de Kant se conoce como <strong>ética-deontológica</strong>, del griego <em>deon</em>, que significa 'deber'. Kant no se enfoca en las <strong>consecuencias</strong> de las acciones, sino en la <strong>intención</strong> y el <strong>deber</strong>. Para él, una acción es moralmente buena si se realiza por respeto al <strong>deber</strong>, no por inclinación o por buscar un resultado favorable. La única cosa buena sin restricción es una <strong>buena-voluntad</strong>.</p>
       `,
       hint: "Busca la base de la ética kantiana.",
-      advanceAfter: 1,
       concepts: [
         { term: "ética-deontológica", meaning: "Teoría ética que juzga la moralidad de una acción basándose en el deber o las reglas, no en sus consecuencias." },
         { term: "deber", meaning: "La obligación moral de realizar una acción, independientemente de sus consecuencias." },
@@ -30,7 +29,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Entiende el principio moral fundamental de Kant.",
-      advanceAfter: 1,
       concepts: [
         { term: "imperativo-categórico", meaning: "Un principio moral incondicional y universal que nos obliga a actuar de cierta manera sin importar las consecuencias. Es la ley moral de la razón." },
         { term: "máxima", meaning: "La regla o principio subjetivo que guía tu acción. Es como la razón personal que tienes para hacer algo." },
@@ -49,7 +47,6 @@ window.CONCEPT_HUNT_CONFIG = {
       </div>
       `,
       hint: "Enfócate en la relación con los demás.",
-      advanceAfter: 1,
       concepts: [
         { term: "fin", meaning: "Algo que tiene valor en sí mismo. Para Kant, la humanidad es un fin en sí misma." },
         { term: "medio", meaning: "Algo que se utiliza para lograr otro propósito." },
