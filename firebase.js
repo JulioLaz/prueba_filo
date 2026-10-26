@@ -4,7 +4,10 @@
  * perfiles de usuario (users), registro de sesiones (sesiones) y
  * guardado de progreso por tema/actividad (progreso_temas).
  *
- * Versión: v1.3.0 (2026-10-20)
+ * Versión: v1.4.0 (2026-10-26)
+ *   - saveProgress acepta metadata (antes se descartaba) y acumula
+ *     foundConcepts (conceptos encontrados en la caza) entre intentos
+ * v1.3.0 (2026-10-20)
  *   - resetPassword(): email para recuperar la contraseña
  *   - authErrorMessage(): errores de login/registro en español
  * v1.2.0 (2026-10-20)
@@ -295,6 +298,11 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
       updatedAt: serverTimestamp()
     };
     
+    // Lista de conceptos encontrados (caza): se acumula entre intentos y dispositivos
+    if (Array.isArray(metadata.foundConceptsList)) {
+      progressData.foundConcepts = [...new Set([...(existingData.foundConcepts || []), ...metadata.foundConceptsList])];
+    }
+    
     // Score, bestScore y status: solo si mejora el récord
     if (improved) {
       Object.assign(progressData, {
@@ -439,7 +447,7 @@ export async function getUserDataByUid(uid) {
 // ====================================
 // API PÚBLICA - GUARDAR PROGRESO
 // ====================================
-export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0 }) {
+export async function saveProgress({ moduleId, lessonId = null, status = "in_progress", score = 0, seconds = 0, metadata = {} }) {
   const user = auth.currentUser;
   if (!user) throw new Error("No autenticado");
   
@@ -454,6 +462,7 @@ export async function saveProgress({ moduleId, lessonId = null, status = "in_pro
     score: validScore,
     seconds,
     metadata: {
+      ...metadata,
       timestamp: Date.now(),
       url: window.location.href
     }

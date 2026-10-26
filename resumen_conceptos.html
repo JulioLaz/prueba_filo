@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--
+  resumen_conceptos.html
+  Resumen de la caza de conceptos de un tema, ordenado por párrafo, para que el
+  alumno lo copie en su carpeta, lo imprima / guarde en PDF o lo copie como texto.
+
+  - Se arma con themes/<tema>/conceptos.js (conceptos, definiciones y frases clave).
+  - Los conceptos que el alumno todavía no encontró se muestran tapados
+    ("🔒 Encontralo en el párrafo N"); las frases clave de un párrafo se
+    desbloquean al completarlo. Con la caza al 100% (o como admin) se ve todo.
+  - Conceptos encontrados: los de esta sesión (sessionStorage) + los del récord
+    guardado en Firebase (progreso_temas/<uid>_<tema>_caza, campo foundConcepts).
+
+  Uso: resumen_conceptos.html?tema=<id>
+  Versión: v1.0.0 (2026-10-26)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen de conceptos</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --line:#273250; --text:#e5e7eb; --muted:#9ca3af; --brand:#7c3aed; --ok:#10b981; --term:#38bdf8; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+    .wrap { max-width:820px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    h1 { margin:0; font-size:1.35rem; }
+    .autor { color:var(--muted); font-size:.95rem; }
+    .acciones { display:flex; gap:8px; flex-wrap:wrap; }
+    button, .btn { appearance:none; border:1px solid var(--line); background:#1f2937; color:var(--text); padding:9px 12px; border-radius:10px; cursor:pointer; font-weight:600; font-size:.9rem; text-decoration:none; }
+    .btn-primary { background:linear-gradient(90deg,#6d28d9,var(--brand)); border:0; color:#fff; }
+    .avance { padding:12px 14px; border-radius:12px; background:var(--card); border:1px solid var(--line); margin-bottom:14px; font-weight:600; }
+    .barra { height:8px; background:#1f2937; border-radius:99px; overflow:hidden; margin-top:8px; }
+    .barra > div { height:100%; background:linear-gradient(90deg,var(--ok),#34d399); width:0; }
+    section.parrafo { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:12px; }
+    section.parrafo h2 { margin:0 0 8px; font-size:1.1rem; }
+    .num { color:var(--muted); font-weight:500; margin-right:4px; }
+    dl { margin:0; }
+    dt { color:var(--term); font-weight:700; margin-top:8px; }
+    dd { margin:2px 0 0 0; }
+    .tapado { color:var(--muted); font-style:italic; margin-top:8px; }
+    .frases { margin:12px 0 0; padding:10px 12px; border-left:3px solid var(--ok); background:rgba(16,185,129,.08); border-radius:6px; }
+    .frases h3 { margin:0 0 4px; font-size:.95rem; color:var(--ok); }
+    .frases p { margin:4px 0; white-space:pre-line; }
+    .frases.tapadas { border-left-color:var(--line); background:transparent; color:var(--muted); font-style:italic; }
+    .aviso { color:var(--muted); text-align:center; padding:30px 10px; }
+    .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:var(--ok); color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; }
+
+    /* Versión para imprimir / guardar PDF: fondo blanco, sin botones ni partes tapadas */
+    @media print {
+      body { background:#fff; color:#000; }
+      .wrap { max-width:none; padding:0; }
+      .acciones, .barra, .toast, .tapado, .frases.tapadas, .solo-pantalla { display:none !important; }
+      .avance, section.parrafo { background:#fff; border:1px solid #999; color:#000; break-inside:avoid; }
+      dt { color:#000; }
+      .frases { background:#fff; border-left-color:#000; }
+      .frases h3 { color:#000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>📚 Resumen de conceptos</h1>
+        <div class="autor" id="autor"></div>
+      </div>
+      <div class="acciones">
+        <button id="btnImprimir" title="Imprimir o guardar como PDF">🖨️ Imprimir / PDF</button>
+        <button id="btnCopiar" title="Copiar el resumen como texto">📋 Copiar texto</button>
+        <a class="btn" id="btnCaza">🔎 Ir a la caza</a>
+        <a class="btn btn-primary" id="btnHub">← Volver al tema</a>
+      </div>
+    </header>
+
+    <div class="avance" id="avance">Cargando…<div class="barra solo-pantalla"><div id="barra"></div></div></div>
+    <div id="contenido"><p class="aviso">Cargando resumen…</p></div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { auth, db, doc, getDoc, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const tema = (params.get('tema') || params.get('theme') || sessionStorage.getItem('tema.active') || '').trim();
+
+    // Mismo normalizador que el motor de la caza (claves "<párrafo>:<concepto>")
+    const normalize = (s) => s.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace(/\s+/g, " ").trim();
+    const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    function urlCon(pagina) {
+      const u = new URL(pagina, location);
+      u.searchParams.set('tema', tema);
+      u.searchParams.set('theme', tema);
+      return u.toString();
+    }
+
+    function cargarConfig() {
+      return new Promise((resolve, reject) => {
+        if (!/^[a-z0-9_]+$/.test(tema)) return reject(new Error('Tema inválido'));
+        const s = document.createElement('script');
+        s.src = `themes/${tema}/conceptos.js`;
+        s.onload = () => window.CONCEPT_HUNT_CONFIG ? resolve(window.CONCEPT_HUNT_CONFIG) : reject(new Error('Sin configuración'));
+        s.onerror = () => reject(new Error('Este tema no tiene caza de conceptos'));
+        document.head.appendChild(s);
+      });
+    }
+
+    function esperarUsuario() {
+      return new Promise((resolve) => {
+        const stop = onAuthStateChanged(auth, (user) => { stop(); resolve(user); });
+        setTimeout(() => resolve(auth.currentUser), 5000);
+      });
+    }
+
+    // Conceptos encontrados: sesión actual + récord en Firebase
+    async function conceptosEncontrados(user) {
+      const encontrados = new Set();
+      let completo = false;
+      try {
+        const local = JSON.parse(sessionStorage.getItem(`tema.${tema}.caza`) || '{}');
+        (local.foundConcepts || []).forEach(k => encontrados.add(k));
+      } catch {}
+      if (user) {
+        try {
+          const snap = await getDoc(doc(db, 'progreso_temas', `${user.uid}_${tema}_caza`));
+          if (snap.exists()) {
+            const data = snap.data();
+            (data.foundConcepts || []).forEach(k => encontrados.add(k));
+            (data.metadata?.foundConceptsList || []).forEach(k => encontrados.add(k));
+            completo = (data.bestScore ?? data.score ?? 0) >= 100;
+          }
+        } catch (e) {
+          console.warn('No se pudo leer el progreso de Firebase:', e);
+        }
+      }
+      return { encontrados, completo };
+    }
+
+    function render(CFG, encontrados, verTodo) {
+      const niveles = CFG.levels || [];
+      const total = niveles.reduce((a, lv) => a + (lv.concepts || []).length, 0);
+      let vistos = 0;
+      const textoPlano = [`RESUMEN DE CONCEPTOS — ${CFG.author || tema}`, ''];
+
+      const html = niveles.map((lv, i) => {
+        const titulo = (lv.html.match(/<h4[^>]*>([\s\S]*?)<\/h4>/) || [])[1];
+        const nombre = titulo ? titulo.replace(/<[^>]+>/g, '').trim() : `Párrafo ${i + 1}`;
+        const conceptos = lv.concepts || [];
+        const abiertos = conceptos.filter(c => verTodo || encontrados.has(`${i}:${normalize(c.term)}`));
+        vistos += abiertos.length;
+        const parrafoCompleto = abiertos.length === conceptos.length;
+
+        textoPlano.push(`${i + 1}. ${nombre}`);
+        const items = conceptos.map(c => {
+          if (!abiertos.includes(c)) return `<div class="tapado">🔒 Concepto oculto: encontralo en el párrafo ${i + 1}</div>`;
+          textoPlano.push(`- ${c.term}: ${c.meaning}`);
+          return `<dt>${escapeHtml(c.term)}</dt><dd>${escapeHtml(c.meaning)}</dd>`;
+        }).join('');
+
+        const frases = Array.isArray(lv.corollary) ? lv.corollary : [];
+        let frasesHtml = '';
+        if (frases.length) {
+          if (parrafoCompleto) {
+            frasesHtml = `<div class="frases"><h3>Frases clave</h3>${frases.map(f => `<p>✔️ ${escapeHtml(f)}</p>`).join('')}</div>`;
+            textoPlano.push('  Frases clave:', ...frases.map(f => `  * ${f}`));
+          } else {
+            frasesHtml = `<div class="frases tapadas">🔒 Las frases clave se desbloquean al completar este párrafo.</div>`;
+          }
+        }
+        textoPlano.push('');
+        return `<section class="parrafo"><h2><span class="num">${i + 1}.</span>${escapeHtml(nombre)}</h2><dl>${items}</dl>${frasesHtml}</section>`;
+      }).join('');
+
+      $('contenido').innerHTML = html || '<p class="aviso">Este tema no tiene conceptos.</p>';
+      const pct = total ? Math.round((vistos / total) * 100) : 0;
+      $('avance').firstChild.textContent = vistos >= total
+        ? `🏆 Caza completa: ${total} de ${total} conceptos. ¡Resumen completo para tu carpeta!`
+        : `📊 Encontraste ${vistos} de ${total} conceptos (${pct}%). Los que faltan aparecen tapados: completá la caza para verlos.`;
+      $('barra').style.width = `${pct}%`;
+      return textoPlano.join('\n');
+    }
+
+    function aviso(msg) {
+      const t = $('toast'); t.textContent = msg; t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2500);
+    }
+
+    async function iniciar() {
+      $('btnHub').href = urlCon('tema.html');
+      $('btnCaza').href = urlCon('caza_conceptos.html');
+      $('btnImprimir').addEventListener('click', () => window.print());
+
+      let CFG;
+      try {
+        CFG = await cargarConfig();
+      } catch (e) {
+        $('avance').firstChild.textContent = '⚠️ ' + e.message;
+        $('contenido').innerHTML = '';
+        return;
+      }
+      $('autor').textContent = CFG.author || '';
+      document.title = `Resumen · ${CFG.author || tema}`;
+
+      const user = await esperarUsuario();
+      const { encontrados, completo } = await conceptosEncontrados(user);
+      const verTodo = completo || (user ? await isCurrentUserAdmin() : false);
+      const texto = render(CFG, encontrados, verTodo);
+
+      $('btnCopiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(texto);
+          aviso('✅ Resumen copiado');
+        } catch {
+          aviso('No se pudo copiar: usá Imprimir / PDF');
+        }
+      });
+    }
+
+    iniciar();
+  </script>
+</body>
+</html>

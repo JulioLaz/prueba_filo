@@ -58,6 +58,7 @@
         <p>Detectá conceptos en el texto y practicá definiciones.</p>
         <div class="status">
           <small id="statusCaza">—</small>
+          <button class="btn" id="goResumenCaza" title="Resumen de conceptos para la carpeta">📚 Resumen</button>
           <button class="btn btn-primary" id="goCaza">Abrir</button>
         </div>
       </article>
@@ -448,6 +449,7 @@
     
     document.getElementById('goQuiz').addEventListener('click',    ()=> go('quiz.html'));
     document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
+    document.getElementById('goResumenCaza').addEventListener('click', ()=> go('resumen_conceptos.html'));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');

@@ -262,7 +262,10 @@
           <h4 class="section-title">Frases claves</h4>
           <p id="summary-corollaries" class="corollary-list"></p>
         </div>
-        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px;">
+        <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px;">
+          <button id="summary-resumen" style="background:#1f2937;color:#e5e7eb;border:1px solid gray;border-radius:10px;padding:10px 14px;cursor:pointer;">
+            📚 Resumen para la carpeta
+          </button>
           <button id="summary-back" style="background:linear-gradient(90deg,#6d28d9,#7c3aed);color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
             ← Volver al menú
           </button>
@@ -274,6 +277,14 @@
 
     dlg.querySelector('#summary-close').addEventListener('click', () => {
       dlg.style.display = 'none';
+    });
+
+    dlg.querySelector('#summary-resumen').addEventListener('click', () => {
+      const temaSlug = hubTemaSlug();
+      const resumen = new URL('resumen_conceptos.html', location);
+      resumen.searchParams.set('tema', temaSlug);
+      resumen.searchParams.set('theme', temaSlug);
+      location.href = resumen.toString();
     });
 
     dlg.querySelector('#summary-back').addEventListener('click', () => {
