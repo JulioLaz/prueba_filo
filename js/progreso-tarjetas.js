@@ -1,7 +1,7 @@
 /**
  * js/progreso-tarjetas.js
  * Pie de las tarjetas de tema en el inicio (index.html) con datos reales de Firebase,
- * sellos de "Aprobado" / "Completo" y resumen de temas conquistados.
+ * sellos de "Aprobado" / "Completo" y resumen de temas conquistados por unidad.
  *
  * - Alumno: Aprobadas (actividades ≥ 80%), Avance (promedio de las actividades del
  *   tema, igual que la barra del hub) y Minutos dedicados (tiempo real).
@@ -12,7 +12,9 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.0.0 (2026-10-26)
+ * Versión: v1.1.0 (2026-10-26) — el resumen de temas aprobados se muestra solo por unidad
+ *   (global desactivado: MOSTRAR_RESUMEN_GLOBAL)
+ * v1.0.0 (2026-10-26)
  */
 import {
   auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin
@@ -153,13 +155,27 @@ function aplicarProgresoTarjetas() {
   mostrarConquistas();
 }
 
-// "Temas aprobados: 2 de 14" arriba de las tarjetas (solo alumnos)
+// Recuadro "X de N temas aprobados" arriba de las tarjetas (solo alumnos).
+// Se muestra solo al elegir una unidad y cuenta solo los temas de esa unidad.
+// MOSTRAR_RESUMEN_GLOBAL = true lo muestra también con "Todo" (todas las unidades).
+const MOSTRAR_RESUMEN_GLOBAL = false;
+const NOMBRE_UNIDAD = { UNIDAD_I: 'Unidad 1', UNIDAD_II: 'Unidad 2', UNIDAD_III: 'Unidad 3' };
+
 function mostrarConquistas() {
   let caja = document.getElementById('resumen-conquistas');
-  if (!estado || estado.modo !== 'alumno') { caja?.remove(); return; }
-  const temas = [...estado.porTema.values()];
+  const filtro = typeof currentFilter !== 'undefined' ? currentFilter : 'all';
+  const esUnidad = /^UNIDAD_/.test(filtro);
+  const mostrar = estado?.modo === 'alumno' && (esUnidad || (MOSTRAR_RESUMEN_GLOBAL && filtro === 'all'));
+  if (!mostrar) { caja?.remove(); return; }
+
+  const ids = AVAILABLE_THEMES.filter((t) => ES_UNIDAD(t) && (!esUnidad || t.difficulty === filtro)).map((t) => t.id);
+  const temas = ids.map((id) => estado.porTema.get(id)).filter(Boolean);
+  if (!temas.length) { caja?.remove(); return; }
   const aprobados = temas.filter((t) => t.avance >= UMBRAL_APROBADO).length;
   const completos = temas.filter((t) => t.avance >= 100).length;
+  const faltan = temas.length - aprobados;
+  const ambito = esUnidad ? `de la ${NOMBRE_UNIDAD[filtro] || 'unidad'}` : '';
+
   if (!caja) {
     caja = document.createElement('div');
     caja.id = 'resumen-conquistas';
@@ -167,12 +183,12 @@ function mostrarConquistas() {
   }
   const mensaje = aprobados === 0
     ? 'Aprobá tu primer tema (80% de avance) para ganar su sello dorado.'
-    : aprobados === temas.length
-      ? '¡Aprobaste todos los temas! Felicitaciones: conquistaste la filosofía.'
-      : `¡Vas muy bien! Te ${temas.length - aprobados === 1 ? 'falta 1 tema' : `faltan ${temas.length - aprobados} temas`} por conquistar.`;
+    : faltan === 0
+      ? `¡Aprobaste todos los temas ${ambito}! Felicitaciones.`
+      : `¡Vas muy bien! Te ${faltan === 1 ? 'falta 1 tema' : `faltan ${faltan} temas`} por conquistar.`;
   caja.innerHTML = `
-    <div class="conquistas-num"><strong>${aprobados}</strong> de ${temas.length} temas aprobados${completos ? ` · <strong>${completos}</strong> ${completos === 1 ? 'completo' : 'completos'}` : ''}</div>
-    <div class="conquistas-barra"><div style="width:${Math.round((aprobados / (temas.length || 1)) * 100)}%"></div></div>
+    <div class="conquistas-num">${esUnidad ? `${NOMBRE_UNIDAD[filtro]}: ` : ''}<strong>${aprobados}</strong> de ${temas.length} temas aprobados${completos ? ` · <strong>${completos}</strong> ${completos === 1 ? 'completo' : 'completos'}` : ''}</div>
+    <div class="conquistas-barra"><div style="width:${Math.round((aprobados / temas.length) * 100)}%"></div></div>
     <div class="conquistas-msg">${mensaje}</div>`;
 }
 
