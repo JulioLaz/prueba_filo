@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  resumen_material.html
+  Resumen del material de estudio de un tema, para la carpeta: por cada sección,
+  sus palabras clave y la pregunta de comprensión con su respuesta correcta.
+  Se puede imprimir / guardar en PDF o copiar como texto.
+
+  - Se arma leyendo themes/<tema>/content.html (secciones .study-section).
+  - El material se lee en orden: se ven las secciones ya leídas y las demás
+    aparecen tapadas. Con el material al 100% (o como admin) se ve todo.
+  - Secciones leídas: sesión actual (sessionStorage tema.<tema>.material) +
+    récord en Firebase (progreso_temas/<uid>_<tema>_material).
+
+  Uso: resumen_material.html?tema=<id>
+  Versión: v1.0.0 (2026-10-26)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen del material</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --line:#273250; --text:#e5e7eb; --muted:#9ca3af; --ok:#10b981; --term:#38bdf8; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+    .wrap { max-width:820px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    h1 { margin:0; font-size:1.35rem; }
+    .autor { color:var(--muted); font-size:.95rem; }
+    .acciones { display:flex; gap:8px; flex-wrap:wrap; }
+    button, .btn { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe; padding:.45rem .85rem; border-radius:6px; cursor:pointer; font-weight:600; font-size:.9rem; text-decoration:none; transition:background-color .3s ease; }
+    button:hover, .btn:hover { background-color:rgba(128,90,213,.32); }
+    .btn-primary { background-color:#805ad5; border-color:#805ad5; color:#fff; }
+    .btn-primary:hover { background-color:#a78bfa; }
+    .avance { padding:12px 14px; border-radius:12px; background:var(--card); border:1px solid var(--line); margin-bottom:14px; font-weight:600; }
+    .barra { height:8px; background:#1f2937; border-radius:99px; overflow:hidden; margin-top:8px; }
+    .barra > div { height:100%; background:linear-gradient(90deg,var(--ok),#34d399); width:0; }
+    section.seccion { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:12px; }
+    section.seccion h2 { margin:0 0 8px; font-size:1.1rem; }
+    .num { color:var(--muted); font-weight:500; margin-right:4px; }
+    .claves { margin:0 0 10px; color:var(--muted); font-size:.95rem; }
+    .claves strong { color:var(--term); font-weight:600; }
+    .pregunta { margin:0; font-weight:600; }
+    .respuesta { margin:6px 0 0; padding:8px 12px; border-left:3px solid var(--ok); background:rgba(16,185,129,.08); border-radius:6px; }
+    .tapado { color:var(--muted); font-style:italic; margin:0; }
+    .aviso { color:var(--muted); text-align:center; padding:30px 10px; }
+    .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:var(--ok); color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; }
+
+    /* Versión para imprimir / guardar PDF: fondo blanco, sin botones ni secciones tapadas */
+    @media print {
+      body { background:#fff; color:#000; }
+      .wrap { max-width:none; padding:0; }
+      .acciones, .barra, .toast, section.seccion.bloqueada { display:none !important; }
+      .avance, section.seccion { background:#fff; border:1px solid #999; color:#000; break-inside:avoid; }
+      .claves, .claves strong { color:#000; }
+      .respuesta { background:#fff; border-left-color:#000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Resumen del material de estudio</h1>
+        <div class="autor" id="autor"></div>
+      </div>
+      <div class="acciones">
+        <button id="btnImprimir" title="Imprimir o guardar como PDF">Imprimir / PDF</button>
+        <button id="btnCopiar" title="Copiar el resumen como texto">Copiar texto</button>
+        <a class="btn btn-primary" id="btnHub">Volver al tema</a>
+      </div>
+    </header>
+
+    <div class="avance" id="avance">Cargando…<div class="barra"><div id="barra"></div></div></div>
+    <div id="contenido"><p class="aviso">Cargando resumen…</p></div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { auth, db, doc, getDoc, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const tema = (params.get('tema') || params.get('theme') || sessionStorage.getItem('tema.active') || '').trim();
+    const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const limpio = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+    // Negritas que no son conceptos (ej.: "estudiar <strong>para</strong> aprobar")
+    const PALABRAS_COMUNES = new Set(['para', 'por', 'que', 'de', 'del', 'la', 'el', 'los', 'las', 'y', 'o', 'un', 'una', 'con', 'sin', 'en', 'es', 'no', 'sí', 'si']);
+
+    function urlCon(pagina) {
+      const u = new URL(pagina, location);
+      u.searchParams.set('tema', tema);
+      u.searchParams.set('theme', tema);
+      return u.toString();
+    }
+
+    // Lee las secciones del material: título, palabras clave, pregunta y respuesta correcta
+    async function cargarSecciones() {
+      if (!/^[a-z0-9_]+$/.test(tema)) throw new Error('Tema inválido');
+      const res = await fetch(`themes/${tema}/content.html`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Este tema no tiene material de estudio');
+      const html = new DOMParser().parseFromString(await res.text(), 'text/html');
+      const secciones = [...html.querySelectorAll('.study-section')].map((sec, i) => {
+        const vistas = new Set();
+        const claves = [...sec.querySelectorAll('.readaloud strong')]
+          .map(limpio)
+          .filter(t => t && !PALABRAS_COMUNES.has(t.toLowerCase()) && !vistas.has(t.toLowerCase()) && vistas.add(t.toLowerCase()));
+        return {
+          titulo: limpio(sec.querySelector('h3')) || `Sección ${i + 1}`,
+          claves,
+          // La pregunta suele estar en .question; algunos temas (utilitarismo) la ponen en el encabezado
+          pregunta: limpio(sec.querySelector('.comprehension-check .question p')) ||
+                    limpio([...sec.querySelectorAll('.comprehension-check .check-header p')].pop()),
+          respuesta: limpio(sec.querySelector('.option[data-correct="true"]'))
+        };
+      });
+      if (!secciones.length) throw new Error('Este tema no tiene material de estudio');
+      return { titulo: limpio(html.querySelector('h1')) || limpio(html.querySelector('title')), secciones };
+    }
+
+    function esperarUsuario() {
+      return new Promise((resolve) => {
+        const stop = onAuthStateChanged(auth, (user) => { stop(); resolve(user); });
+        setTimeout(() => resolve(auth.currentUser), 5000);
+      });
+    }
+
+    // Secciones leídas (en orden): la mayor entre la sesión actual y el récord en Firebase
+    async function seccionesLeidas(user, total) {
+      let leidas = 0;
+      try {
+        const local = JSON.parse(sessionStorage.getItem(`tema.${tema}.material`) || '{}');
+        leidas = Math.max((local.sectionsViewed || []).length, Math.round(((local.percentage || 0) / 100) * total));
+      } catch {}
+      if (user) {
+        try {
+          const snap = await getDoc(doc(db, 'progreso_temas', `${user.uid}_${tema}_material`));
+          if (snap.exists()) {
+            const d = snap.data();
+            leidas = Math.max(leidas, Math.round(((d.bestScore ?? d.score ?? 0) / 100) * total));
+          }
+        } catch (e) {
+          console.warn('No se pudo leer el progreso de Firebase:', e);
+        }
+      }
+      return Math.min(leidas, total);
+    }
+
+    function render(datos, leidas) {
+      const { secciones } = datos;
+      const total = secciones.length;
+      const texto = [`RESUMEN DEL MATERIAL — ${datos.titulo}`, ''];
+
+      $('contenido').innerHTML = secciones.map((s, i) => {
+        const titulo = `<h2><span class="num">${i + 1}.</span>${escapeHtml(s.titulo)}</h2>`;
+        if (i >= leidas) {
+          return `<section class="seccion bloqueada">${titulo}<p class="tapado">🔒 Leé esta sección en el material para desbloquear su pregunta y respuesta.</p></section>`;
+        }
+        texto.push(`${i + 1}. ${s.titulo}`);
+        if (s.claves.length) texto.push(`   Palabras clave: ${s.claves.join(', ')}`);
+        if (s.pregunta) texto.push(`   P: ${s.pregunta}`, `   R: ${s.respuesta}`);
+        texto.push('');
+        const claves = s.claves.length
+          ? `<p class="claves">Palabras clave: ${s.claves.map(c => `<strong>${escapeHtml(c)}</strong>`).join(', ')}</p>` : '';
+        const qa = s.pregunta
+          ? `<p class="pregunta">${escapeHtml(s.pregunta)}</p><p class="respuesta">${escapeHtml(s.respuesta)}</p>` : '';
+        return `<section class="seccion">${titulo}${claves}${qa}</section>`;
+      }).join('');
+
+      const pct = Math.round((leidas / total) * 100);
+      $('avance').firstChild.textContent = leidas >= total
+        ? `🏆 Material completo: ${total} de ${total} secciones. ¡Resumen completo para tu carpeta!`
+        : `📊 Leíste ${leidas} de ${total} secciones (${pct}%). Las que faltan aparecen tapadas: seguí leyendo el material para verlas.`;
+      $('barra').style.width = `${pct}%`;
+      return texto.join('\n');
+    }
+
+    function aviso(msg) {
+      const t = $('toast'); t.textContent = msg; t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2500);
+    }
+
+    async function iniciar() {
+      $('btnHub').href = urlCon('tema.html');
+      $('btnImprimir').addEventListener('click', () => window.print());
+
+      let datos;
+      try {
+        datos = await cargarSecciones();
+      } catch (e) {
+        $('avance').firstChild.textContent = '⚠️ ' + e.message;
+        $('contenido').innerHTML = '';
+        return;
+      }
+      $('autor').textContent = datos.titulo;
+      document.title = `Resumen · ${datos.titulo}`;
+
+      const user = await esperarUsuario();
+      const total = datos.secciones.length;
+      const verTodo = user ? await isCurrentUserAdmin() : false;
+      const leidas = verTodo ? total : await seccionesLeidas(user, total);
+      const texto = render(datos, leidas);
+
+      $('btnCopiar').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(texto);
+          aviso('Resumen copiado');
+        } catch {
+          aviso('No se pudo copiar: usá Imprimir / PDF');
+        }
+      });
+    }
+
+    iniciar();
+  </script>
+</body>
+</html>

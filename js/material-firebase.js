@@ -12,6 +12,8 @@
  *
  * Versión: v3.0.0 (2026-10-20) — reescritura: ID corto del tema, tiempo real,
  *   sin doble guardado ni funciones de simulación expuestas.
+ * v3.1.0 (2026-10-26) — botón "Resumen" junto al contador de secciones
+ *   (abre resumen_material.html: preguntas y respuestas para la carpeta).
  */
 import { saveProgress, auth } from '/prueba_filo/firebase.js';
 
@@ -108,7 +110,26 @@ class MaterialFirebaseIntegration {
     window.parent.postMessage({ type: 'MATERIAL_PROGRESS', tema: this.tema, ...progress }, location.origin);
   }
 
+  // Botón "Resumen" en el encabezado de progreso (abre la página completa, fuera del hub)
+  addResumenButton() {
+    const header = document.querySelector('.progress-header .progress-text');
+    if (!header || document.getElementById('btn-resumen-material')) return;
+    const btn = document.createElement('a');
+    btn.id = 'btn-resumen-material';
+    btn.textContent = 'Resumen';
+    btn.title = 'Preguntas y respuestas del material para la carpeta';
+    const url = new URL('../../resumen_material.html', location);
+    url.searchParams.set('tema', this.tema);
+    url.searchParams.set('theme', this.tema);
+    btn.href = url.toString();
+    btn.target = '_top';
+    btn.style.cssText = 'background-color:rgba(128,90,213,.14);border:1px solid rgba(167,139,250,.55);' +
+      'color:#ddd6fe;padding:.3rem .75rem;border-radius:6px;font-weight:600;font-size:.85rem;text-decoration:none;white-space:nowrap;';
+    header.appendChild(btn);
+  }
+
   setup() {
+    this.addResumenButton();
     this.hookReadAloudSystem();
     this.autoSaveInterval = setInterval(() => this.save(true), AUTOSAVE_MS);
     window.addEventListener('pagehide', () => this.save(true));

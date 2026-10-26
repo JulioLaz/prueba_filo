@@ -264,7 +264,7 @@
         </div>
         <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:8px;">
           <button id="summary-resumen" style="background:#1f2937;color:#e5e7eb;border:1px solid gray;border-radius:10px;padding:10px 14px;cursor:pointer;">
-            📚 Resumen para la carpeta
+            Resumen para la carpeta
           </button>
           <button id="summary-back" style="background:linear-gradient(90deg,#6d28d9,#7c3aed);color:white;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;">
             ← Volver al menú

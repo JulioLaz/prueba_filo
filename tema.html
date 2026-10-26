@@ -49,7 +49,10 @@
               <p>Resumen por conceptos, ejemplos y palabras clave.</p>
               <div class="status">
                 <small id="statusMaterial">—</small>
-                <button class="btn btn-primary" id="goMaterial">Abrir</button>
+                <div class="card-actions">
+                  <button class="btn btn-secondary" id="goResumenMaterial" title="Preguntas y respuestas del material para la carpeta">Resumen</button>
+                  <button class="btn btn-primary" id="goMaterial">Abrir</button>
+                </div>
               </div>
             </article>
 
@@ -59,7 +62,7 @@
         <div class="status">
           <small id="statusCaza">—</small>
           <div class="card-actions">
-            <button class="btn btn-secondary" id="goResumenCaza" title="Resumen de conceptos para la carpeta">📚 Resumen</button>
+            <button class="btn btn-secondary" id="goResumenCaza" title="Resumen de conceptos para la carpeta">Resumen</button>
             <button class="btn btn-primary" id="goCaza">Abrir</button>
           </div>
         </div>
@@ -452,6 +455,7 @@
     document.getElementById('goQuiz').addEventListener('click',    ()=> go('quiz.html'));
     document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
     document.getElementById('goResumenCaza').addEventListener('click', ()=> go('resumen_conceptos.html'));
+    document.getElementById('goResumenMaterial').addEventListener('click', ()=> go('resumen_material.html'));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');
