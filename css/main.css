@@ -342,6 +342,70 @@ body::before {
     color: white;
 }
 
+/* ========================================
+   🏆 PROGRESO DEL ALUMNO EN LAS TARJETAS (js/progreso-tarjetas.js)
+   ======================================== */
+.theme-card.tema-en-curso .theme-progress { height: 4px; }
+
+/* Aprobado (≥ 80%): borde dorado y resplandor */
+.theme-card.tema-aprobado,
+.theme-card.tema-completo {
+    border: 2px solid #e6b422;
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.25), 0 0 22px rgba(255, 215, 0, 0.35);
+}
+.theme-card.tema-aprobado::before,
+.theme-card.tema-completo::before {
+    height: 6px;
+    background: linear-gradient(90deg, #b8860b, #ffd700, #fff3b0, #ffd700, #b8860b);
+}
+.theme-card.tema-aprobado .theme-progress,
+.theme-card.tema-completo .theme-progress {
+    height: 4px;
+    background: linear-gradient(90deg, #b8860b, #ffd700);
+}
+.theme-card.tema-aprobado [data-stat="avance"],
+.theme-card.tema-completo [data-stat="avance"] { color: #ffd700; }
+
+/* Completo (100%): brillo dorado animado */
+.theme-card.tema-completo { animation: brillo-oro 3s ease-in-out infinite; }
+@keyframes brillo-oro {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.3), 0 0 18px rgba(255, 215, 0, 0.35); }
+    50%      { box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.6), 0 0 36px rgba(255, 215, 0, 0.7); }
+}
+@media (prefers-reduced-motion: reduce) { .theme-card.tema-completo { animation: none; } }
+
+/* Sello arriba a la izquierda (la unidad está a la derecha) */
+.sello-tema {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2b1d00;
+    background: linear-gradient(135deg, #c9971c, #ffd700);
+    box-shadow: 0 2px 12px rgba(255, 215, 0, 0.45);
+}
+.sello-tema.completo { background: linear-gradient(135deg, #ffd700, #fff3b0, #ffd700); }
+
+/* Resumen "X de N temas aprobados" arriba de las tarjetas */
+#resumen-conquistas {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(128, 90, 213, 0.10));
+    color: var(--text-primary);
+}
+#resumen-conquistas .conquistas-num { font-size: 1.05em; }
+#resumen-conquistas .conquistas-num strong { color: #ffd700; font-size: 1.2em; }
+#resumen-conquistas .conquistas-barra { height: 8px; margin: 8px 0; border-radius: 99px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+#resumen-conquistas .conquistas-barra > div { height: 100%; background: linear-gradient(90deg, #b8860b, #ffd700); transition: width 0.6s ease; }
+#resumen-conquistas .conquistas-msg { color: var(--text-secondary); font-size: 0.9em; }
+
 /* Estados especiales de las cards */
 .theme-card.completed .theme-header::after {
     content: '✅';

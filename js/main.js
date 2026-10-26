@@ -1,5 +1,7 @@
 // ========================================
 // 🎯 SELECTOR DE TEMAS - CUESTIONARIOS DE FILOSOFÍA
+// 2026-10-26: el pie de cada tarjeta (actividades / minutos / avance) y los sellos
+//   Aprobado/Completo los completa js/progreso-tarjetas.js con datos de Firebase
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -534,17 +536,15 @@ function getThemeProgress(themeId) {
  */
 function createThemeCard(theme) {
     const isUnlocked = isThemeUnlocked(theme);
-    const themeProgress = getThemeProgress(theme.id);
-    const isCompleted = themeProgress && themeProgress.score >= 50;
-    const progressPercentage = themeProgress ? (themeProgress.score || 0) : 0;
+    const esUnidad = /^UNIDAD_/.test(theme.difficulty || '');
     
     const card = document.createElement('div');
-    card.className = `theme-card ${isCompleted ? 'completed' : ''} ${!isUnlocked ? 'locked' : ''}`;
+    card.className = `theme-card ${!isUnlocked ? 'locked' : ''}`;
+    card.dataset.themeId = theme.id;
     card.style.setProperty('--card-gradient', theme.gradient);
-    card.style.setProperty('--progress', `${progressPercentage}%`);
+    card.style.setProperty('--progress', '0%');
     
     const lockIcon = !isUnlocked ? '🔒' : '';
-    const completedBadge = isCompleted ? '<div class="completion-badge">✅</div>' : '';
 
     // FORMATO A DIFICULTAD EN TARGET DE TEMAS EXTREMO SUP DERECHO
 
@@ -580,25 +580,32 @@ function createThemeCard(theme) {
             <span class="difficulty-badge difficulty-${style_difficulty}">
                 ${dificultadFormateada}
             </span>
-            ${completedBadge}
             <span class="theme-icon">${lockIcon || theme.icon}</span>
             <h3 class="theme-title">${theme.title}</h3>
             <p class="theme-description">${theme.description}</p>
         </div>
+        ${esUnidad ? `
+        <!-- Valores reales los completa js/progreso-tarjetas.js (Firebase) -->
         <div class="theme-stats">
             <div class="theme-stat">
-                <span class="theme-stat-number">${theme.questions}</span>
-                <span class="theme-stat-label">Preguntas</span>
+                <span class="theme-stat-number" data-stat="actividades">${(typeof VIDEO_CONFIG !== 'undefined' && VIDEO_CONFIG[theme.id]) ? 6 : 5}</span>
+                <span class="theme-stat-label" data-stat-label="actividades">Actividades</span>
             </div>
             <div class="theme-stat">
-                <span class="theme-stat-number">${theme.timeEstimate}</span>
+                <span class="theme-stat-number" data-stat="tiempo">~${theme.timeEstimate}</span>
+                <span class="theme-stat-label" data-stat-label="tiempo">Minutos</span>
+            </div>
+            <div class="theme-stat">
+                <span class="theme-stat-number" data-stat="avance">—</span>
+                <span class="theme-stat-label" data-stat-label="avance">Avance</span>
+            </div>
+        </div>` : `
+        <div class="theme-stats">
+            <div class="theme-stat">
+                <span class="theme-stat-number">~${theme.timeEstimate}</span>
                 <span class="theme-stat-label">Minutos</span>
             </div>
-            <div class="theme-stat">
-                <span class="theme-stat-number">${themeProgress ? themeProgress.score || 0 : 0}%</span>
-                <span class="theme-stat-label">Mejor puntaje</span>
-            </div>
-        </div>
+        </div>`}
         <div class="theme-progress"></div>
     `;
     
@@ -647,6 +654,9 @@ function renderThemes(themes = AVAILABLE_THEMES) {
         card.classList.add('fade-in');
         themesGrid.appendChild(card);
     });
+    
+    // Pie de tarjetas con progreso real y sellos (js/progreso-tarjetas.js)
+    window.aplicarProgresoTarjetas?.();
     
     const renderEnd = performance.now();
     console.log(`✅ Temas renderizados en ${(renderEnd - renderStart).toFixed(2)}ms`);

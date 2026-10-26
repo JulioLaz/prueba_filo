@@ -9,6 +9,7 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 ## 📚 Cómo se usa
 
 1. El alumno se registra o ingresa desde la pantalla principal (`index.html`).
+   Cada tarjeta de tema muestra su avance real (actividades aprobadas, minutos dedicados y %), con sello dorado **Aprobado** (≥ 80%) o **Completo** (100%) — `js/progreso-tarjetas.js`.
 2. Elige un tema (filtros por Unidad 1, 2, 3, Diálogos y Juegos).
 3. En el hub del tema (`tema.html?tema=<id>`) hace las actividades; la barra muestra su avance.
 4. El docente (cuenta admin) ve el progreso de todos los alumnos en el inicio y en `progress.html`.

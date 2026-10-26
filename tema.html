@@ -332,7 +332,8 @@
       const sMapa = readJSON(ns('mapa'), { nodesVisited:[], total:10, progress:0, completed:false });
       console.log('🗺️ Mapa state:', sMapa);
 
-      const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.qIndex)) ? pct(sQuiz.qIndex, sQuiz.total) : 0;
+      // Avance del quiz = respuestas correctas (lo mismo que guarda Firebase y muestran las tarjetas del inicio)
+      const quizPct = (sQuiz.total && sQuiz.total > 0 && !isNaN(sQuiz.score)) ? pct(sQuiz.score, sQuiz.total) : 0;
       const cazaPct = (sCaza.total && sCaza.total > 0 && !isNaN(sCaza.paragraph)) ? pct(sCaza.paragraph, sCaza.total) : 0;
       // Usar sectionsViewed solo si el contenido ya fue abierto esta sesión (total real conocido)
       // Si no, usar el porcentaje guardado directamente (desde Firebase o sessionStorage)
