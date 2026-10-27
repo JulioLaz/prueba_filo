@@ -23,6 +23,7 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 | 🔎 Caza de conceptos | `themes/<id>/conceptos.js` | `caza_conceptos.html` + `js/caza-conceptos-engine-firebase.js` |
 | 📚 Resumen de la caza (para la carpeta: imprimir / PDF / copiar) | `themes/<id>/conceptos.js` | `resumen_conceptos.html` |
 | 📚 Resumen del material (preguntas y respuestas para la carpeta) | `themes/<id>/content.html` | `resumen_material.html` |
+| 📚 Resumen del cuestionario (respuestas visibles al aprobar con 80%) | `themes/<id>/quiz.js` | `resumen_cuestionario.html` |
 | 🗺️ Mapa conceptual + juego de pares | `themes/<id>/mapa.html` | `js/mapa-system-fixed.js`, `js/mapa-system-score.js` |
 | 🧩 Crucigrama | `themes/<id>/crossword_config.js` | `crossword.html` + `js/crossword_engine.js` |
 | 🎬 Video + cloze | `themes/<id>/cloze_test.js` | `tema.html` (video en `temas_data.js` → `VIDEO_CONFIG`) |

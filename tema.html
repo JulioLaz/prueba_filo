@@ -94,7 +94,10 @@
         <p>Poné a prueba lo que sabés.</p>
         <div class="status">
           <small id="statusQuiz">—</small>
-          <button class="btn btn-primary" id="goQuiz">Abrir</button>
+          <div class="card-actions">
+            <button class="btn btn-secondary" id="goResumenQuiz" title="Preguntas y respuestas del cuestionario para la carpeta">Resumen</button>
+            <button class="btn btn-primary" id="goQuiz">Abrir</button>
+          </div>
         </div>
       </article>
 
@@ -498,6 +501,7 @@
     document.getElementById('goCaza').addEventListener('click',    ()=> go('caza_conceptos.html'));
     document.getElementById('goResumenCaza').addEventListener('click', ()=> go('resumen_conceptos.html'));
     document.getElementById('goResumenMaterial').addEventListener('click', ()=> go('resumen_material.html'));
+    document.getElementById('goResumenQuiz').addEventListener('click', ()=> go('resumen_cuestionario.html'));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');

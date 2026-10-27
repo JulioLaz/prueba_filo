@@ -141,6 +141,9 @@
                         <button id="review-btn" class="tertiary-btn">
                             📋 Revisar respuestas
                         </button>
+                        <button id="resumen-quiz-btn" class="tertiary-btn" title="Preguntas y respuestas para la carpeta">
+                            Resumen
+                        </button>
                     </div>
                 </div>
             </div>
@@ -252,6 +255,14 @@ console.log('🔥 Sistema Firebase disponible para quiz');
 
 <!-- DESPUÉS va el quiz-engine -->
 <script src="js/quiz-engine.js"></script>
+<script>
+  // Resumen del cuestionario para la carpeta (respuestas visibles al aprobar)
+  document.getElementById('resumen-quiz-btn')?.addEventListener('click', () => {
+    const p = new URLSearchParams(location.search);
+    const tema = p.get('tema') || p.get('theme') || sessionStorage.getItem('tema.active') || '';
+    location.href = `resumen_cuestionario.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+  });
+</script>
 
 </body>
 </html>

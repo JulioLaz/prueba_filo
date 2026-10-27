@@ -195,5 +195,7 @@ questions: [
 
 if (typeof window !== 'undefined') {
     window.ORIGEN_FILOSOFIA_THEME = ORIGEN_FILOSOFIA_THEME;
+    // quiz-engine.js busca la variable <TEMA>_THEME (tema = "origen")
+    window.ORIGEN_THEME = ORIGEN_FILOSOFIA_THEME;
     console.log('✅ Tema Origen de la Filosofía cargado:', ORIGEN_FILOSOFIA_THEME.questions.length, 'preguntas');
 }
