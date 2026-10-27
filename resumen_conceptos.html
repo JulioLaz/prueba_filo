@@ -7,7 +7,7 @@
   - Se arma con themes/<tema>/conceptos.js (conceptos, definiciones y frases clave).
   - Los conceptos que el alumno todavía no encontró se muestran tapados
     ("🔒 Encontralo en el párrafo N"); las frases clave de un párrafo se
-    desbloquean al completarlo. Con la caza al 100% (o como admin) se ve todo.
+    desbloquean al completarlo. Con la caza al 100% (o como admin en vista Docente) se ve todo.
   - Conceptos encontrados: los de esta sesión (sessionStorage) + los del récord
     guardado en Firebase (progreso_temas/<uid>_<tema>_caza, campo foundConcepts).
 
@@ -209,7 +209,7 @@
 
       const user = await esperarUsuario();
       const { encontrados, completo } = await conceptosEncontrados(user);
-      const verTodo = completo || (user ? await isCurrentUserAdmin() : false);
+      const verTodo = completo || (user ? (await isCurrentUserAdmin() && localStorage.getItem('admin.vistaAlumno') !== '1') : false);
       const texto = render(CFG, encontrados, verTodo);
 
       $('btnCopiar').addEventListener('click', async () => {

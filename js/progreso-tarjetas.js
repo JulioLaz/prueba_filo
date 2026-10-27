@@ -12,7 +12,9 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.1.0 (2026-10-26) — el resumen de temas aprobados se muestra solo por unidad
+ * Versión: v1.2.0 (2026-10-27) — el admin puede elegir "Vista: Docente / Como alumno"
+ *   para ver las tarjetas con su propio progreso (probar la app como alumno)
+ * v1.1.0 (2026-10-26) — el resumen de temas aprobados se muestra solo por unidad
  *   (global desactivado: MOSTRAR_RESUMEN_GLOBAL)
  * v1.0.0 (2026-10-26)
  */
@@ -194,15 +196,48 @@ function mostrarConquistas() {
 
 window.aplicarProgresoTarjetas = aplicarProgresoTarjetas;
 
-onAuthStateChanged(auth, async (user) => {
+// ─── Vista del admin: "Docente" (datos del curso) o "Alumno" (su propio progreso,
+//     para probar la app como la ve un alumno). Se recuerda en este navegador y la
+//     usan también resumen_conceptos.html y resumen_material.html.
+const CLAVE_VISTA = 'admin.vistaAlumno';
+const vistaAlumno = () => { try { return localStorage.getItem(CLAVE_VISTA) === '1'; } catch { return false; } };
+
+function mostrarSelectorVista(esAdmin, user) {
+  let caja = document.getElementById('vista-admin');
+  if (!esAdmin) { caja?.remove(); return; }
+  if (!caja) {
+    caja = document.createElement('div');
+    caja.id = 'vista-admin';
+    caja.innerHTML = `<span>Vista:</span>
+      <button type="button" class="filter-btn" data-vista="docente">Docente</button>
+      <button type="button" class="filter-btn" data-vista="alumno">Como alumno</button>`;
+    document.getElementById('themes-grid')?.before(caja);
+    caja.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-vista]');
+      if (!btn) return;
+      try { localStorage.setItem(CLAVE_VISTA, btn.dataset.vista === 'alumno' ? '1' : '0'); } catch {}
+      await cargarEstado(user, true);
+    });
+  }
+  caja.querySelectorAll('[data-vista]').forEach((b) =>
+    b.classList.toggle('active', (b.dataset.vista === 'alumno') === vistaAlumno()));
+}
+
+async function cargarEstado(user, esAdmin) {
   estado = null;
   if (user) {
     try {
-      estado = (await isCurrentUserAdmin()) ? await cargarAdmin() : await cargarAlumno(user);
+      estado = (esAdmin && !vistaAlumno()) ? await cargarAdmin() : await cargarAlumno(user);
     } catch (error) {
       console.warn('⚠️ No se pudo cargar el progreso de las tarjetas:', error);
       estado = null;
     }
   }
+  mostrarSelectorVista(esAdmin, user);
   aplicarProgresoTarjetas();
+}
+
+onAuthStateChanged(auth, async (user) => {
+  const esAdmin = user ? await isCurrentUserAdmin() : false;
+  await cargarEstado(user, esAdmin);
 });

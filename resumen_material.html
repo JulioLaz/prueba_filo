@@ -7,7 +7,7 @@
 
   - Se arma leyendo themes/<tema>/content.html (secciones .study-section).
   - El material se lee en orden: se ven las secciones ya leídas y las demás
-    aparecen tapadas. Con el material al 100% (o como admin) se ve todo.
+    aparecen tapadas. Con el material al 100% (o como admin en vista Docente) se ve todo.
   - Secciones leídas: sesión actual (sessionStorage tema.<tema>.material) +
     récord en Firebase (progreso_temas/<uid>_<tema>_material).
 
@@ -198,7 +198,7 @@
 
       const user = await esperarUsuario();
       const total = datos.secciones.length;
-      const verTodo = user ? await isCurrentUserAdmin() : false;
+      const verTodo = user ? (await isCurrentUserAdmin() && localStorage.getItem('admin.vistaAlumno') !== '1') : false;
       const leidas = verTodo ? total : await seccionesLeidas(user, total);
       const texto = render(datos, leidas);
 

@@ -391,6 +391,18 @@ body::before {
 }
 .sello-tema.completo { background: linear-gradient(135deg, #ffd700, #fff3b0, #ffd700); }
 
+/* Selector de vista del admin (Docente / Como alumno) */
+#vista-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 0 18px;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
 /* Resumen "X de N temas aprobados" arriba de las tarjetas */
 #resumen-conquistas {
     margin: 0 0 22px;
