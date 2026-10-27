@@ -315,8 +315,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     },
     {
     id: "proyecto_T3",
-    title: "Proyecto Final",
-    description: "Desentrañando el misterio humano con método, investigación y debate.",
+    title: "Proyecto Final: Grandes preguntas",
+    description: "Dios desde la filosofía o el sentido de la vida: investigación, debate en grupos, afiche y exposición, con una guía completa paso a paso.",
     icon: "✨",
     gradient: "linear-gradient(135deg, #f74513ff 0%, #d0e833ff 50%, #42a714ff 100%)",
     difficulty: "PROYECTO_TRIMESTRAL",

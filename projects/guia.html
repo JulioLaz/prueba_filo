@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!--
+  projects/guia.html
+  Guía del Proyecto Final (trimestre 3) para cada tema: todo lo que un grupo de 2 o 3
+  necesita para investigar, tomar posición, argumentar, hacer el afiche y exponer.
+
+  - Contenido: guias/comun.js (requisitos, hoja de ruta, argumentos, falacias, guion,
+    rúbrica, afiche) + guias/<tema>.js (pensadores, preguntas de debate con posturas,
+    argumentos, objeciones, casos, conclusiones, recursos y afiche de muestra).
+  - Asistente: el grupo elige pregunta y postura y la guía le arma la hipótesis modelo,
+    los pensadores a favor y en contra, los argumentos y las réplicas; puede pasarlo
+    al armador del afiche.
+  - Armador de afiche: completan los campos, ven la vista previa y la imprimen o
+    guardan en PDF. No registra avance: el borrador y la hoja de ruta quedan solo en
+    este navegador (localStorage).
+
+  Uso: projects/guia.html?tema=dios | sentido
+  Versión: v1.0.0 (2026-10-28)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía del Proyecto Final</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+  <style>
+    :root {
+      --bg:#0b1220; --card:#111827; --card2:#161f33; --line:#273250; --text:#e5e7eb; --muted:#9ca3af;
+      --brand:#805ad5; --brand2:#a78bfa; --ok:#10b981; --bad:#f87171; --gold:#ffd700; --term:#38bdf8;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:70px; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.6; }
+    a { color:var(--brand2); }
+    strong { color:#f3f4f6; }
+    .top { position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 16px;
+      background:rgba(11,18,32,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+    .top h1 { margin:0; font-size:1.05rem; display:flex; align-items:center; gap:8px; }
+    .acciones { display:flex; gap:8px; flex-wrap:wrap; }
+    button, .btn { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe;
+      padding:.45rem .85rem; border-radius:6px; cursor:pointer; font-weight:600; font-size:.9rem; text-decoration:none; font-family:inherit; transition:background-color .2s; }
+    button:hover, .btn:hover { background-color:rgba(128,90,213,.32); }
+    .btn-primary { background-color:var(--brand); border-color:var(--brand); color:#fff; }
+    .btn-primary:hover { background-color:var(--brand2); }
+    button.activo { background:var(--brand); color:#fff; border-color:var(--brand); }
+
+    .layout { display:grid; grid-template-columns:230px 1fr; gap:20px; max-width:1180px; margin:0 auto; padding:16px; }
+    nav.indice { position:sticky; top:66px; align-self:start; max-height:calc(100vh - 80px); overflow-y:auto; }
+    nav.indice a { display:block; padding:6px 10px; border-radius:8px; color:var(--muted); text-decoration:none; font-size:.93rem; }
+    nav.indice a:hover, nav.indice a.activo { background:rgba(128,90,213,.18); color:#fff; }
+    main { min-width:0; }
+    section.bloque { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin-bottom:16px; }
+    section.bloque > h2 { margin:0 0 4px; font-size:1.3rem; }
+    .sub { color:var(--muted); margin:0 0 12px; }
+    .hero { background:linear-gradient(135deg, rgba(128,90,213,.25), rgba(255,215,0,.08)); }
+    .hero .icono { font-size:2.4rem; }
+    .hero h2 { font-size:1.6rem !important; }
+    .gran { font-size:1.25rem; font-weight:700; color:var(--gold); margin:6px 0 12px; }
+    .aviso { padding:10px 14px; border-radius:10px; background:rgba(16,185,129,.08); border-left:3px solid var(--ok); margin:10px 0; }
+    .aviso.violeta { background:rgba(128,90,213,.12); border-left-color:var(--brand2); }
+    ul.lista { padding-left:20px; margin:6px 0; }
+    ul.lista li { margin:5px 0; }
+    .grid { display:grid; gap:12px; }
+    .g2 { grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); }
+    .tarjeta { background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+    .tarjeta h3 { margin:0 0 6px; font-size:1.05rem; }
+    .muted { color:var(--muted); }
+    .chip { display:inline-block; font-size:.78rem; padding:2px 9px; border-radius:99px; border:1px solid var(--line); color:var(--muted); margin:2px 4px 2px 0; }
+    .chip.filosofo { color:#c4b5fd; border-color:rgba(167,139,250,.5); }
+    .chip.cientifico { color:#7dd3fc; border-color:rgba(56,189,248,.5); }
+    .chip.escritor { color:#fcd34d; border-color:rgba(252,211,77,.5); }
+    .chip.religion, .chip.tradicion { color:#6ee7b7; border-color:rgba(110,231,183,.5); }
+    blockquote { margin:8px 0; padding:6px 12px; border-left:3px solid var(--gold); color:#fde68a; font-style:italic; background:rgba(255,215,0,.05); border-radius:4px; }
+    .paso { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line); }
+    .paso:last-child { border-bottom:none; }
+    .paso input { width:20px; height:20px; margin-top:3px; accent-color:var(--brand); flex-shrink:0; }
+    .paso.hecho .tit { text-decoration:line-through; color:var(--muted); }
+    .num { width:28px; height:28px; border-radius:50%; background:var(--brand); color:#fff; display:grid; place-items:center; font-weight:800; flex-shrink:0; font-size:.9rem; }
+    .filtros { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; align-items:center; }
+    .filtros input { flex:1; min-width:180px; background:#0f172a; border:1px solid var(--line); color:var(--text); padding:.45rem .7rem; border-radius:6px; font-family:inherit; }
+    .autor.resaltado { border-color:var(--gold); box-shadow:0 0 14px rgba(255,215,0,.3); }
+    .autor .lbl { font-weight:700; color:var(--term); font-size:.85rem; }
+    .autor p { margin:4px 0; }
+    .opciones { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+    .resultado { margin-top:14px; display:none; }
+    .resultado.visible { display:block; }
+    .tesis { font-size:1.08rem; padding:12px 14px; border-radius:10px; background:rgba(255,215,0,.07); border:1px solid rgba(255,215,0,.4); }
+    .arg { padding:8px 12px; border-left:3px solid var(--ok); background:rgba(16,185,129,.06); border-radius:6px; margin:8px 0; }
+    .obj { padding:8px 12px; border-left:3px solid var(--bad); background:rgba(248,113,113,.06); border-radius:6px; margin:8px 0; }
+    .obj .rep { margin-top:4px; color:#a7f3d0; }
+    .mala { border-left:3px solid var(--bad); padding:6px 10px; margin:6px 0; background:rgba(248,113,113,.05); border-radius:6px; }
+    .buena { border-left:3px solid var(--ok); padding:6px 10px; margin:6px 0; background:rgba(16,185,129,.05); border-radius:6px; }
+    table { width:100%; border-collapse:collapse; font-size:.92rem; }
+    th, td { border:1px solid var(--line); padding:8px; text-align:left; vertical-align:top; }
+    th { background:var(--card2); color:#c4b5fd; }
+    .tabla-scroll { overflow-x:auto; }
+
+    /* Armador de afiche */
+    .armador { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1.1fr); gap:16px; align-items:start; }
+    .armador label { display:block; font-weight:600; font-size:.9rem; margin:10px 0 4px; }
+    .armador .ayuda { font-weight:400; color:var(--muted); font-size:.82rem; }
+    .armador input, .armador textarea { width:100%; background:#0f172a; border:1px solid var(--line); color:var(--text); padding:.5rem .7rem; border-radius:8px; font-family:inherit; font-size:.92rem; }
+    .armador textarea { min-height:70px; resize:vertical; }
+    .contador { font-size:.82rem; margin-top:4px; }
+    .contador.ok { color:var(--ok); } .contador.falta { color:var(--bad); }
+
+    /* Afiche (vista previa e impresión) */
+    .poster { background:#fff; color:#1f2937; border-radius:12px; padding:22px; font-size:.9rem; line-height:1.45; position:sticky; top:70px; }
+    .poster h3 { margin:0; color:#4c1d95; font-size:1.45rem; text-align:center; line-height:1.2; }
+    .poster .pe { text-align:center; color:#6b7280; font-size:.8rem; margin:4px 0 12px; }
+    .poster .caja { border:2px solid #ddd6fe; border-radius:10px; padding:8px 10px; margin:8px 0; }
+    .poster .caja h4 { margin:0 0 4px; color:#5b21b6; font-size:.82rem; text-transform:uppercase; letter-spacing:.4px; }
+    .poster .hip { background:#fef9c3; border-color:#facc15; font-weight:600; }
+    .poster .cols { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .poster .favor { border-color:#86efac; background:#f0fdf4; }
+    .poster .contra { border-color:#fca5a5; background:#fef2f2; }
+    .poster ul { margin:0; padding-left:16px; }
+    .poster li { margin:2px 0; }
+    .poster .pie { font-size:.75rem; color:#4b5563; }
+    .poster .vacio { color:#9ca3af; font-style:italic; }
+
+    .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:var(--ok); color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; z-index:30; }
+
+    @media (max-width:900px) {
+      .top { position:static; }
+      .top h1 { font-size:.95rem; }
+      html { scroll-padding-top:56px; }
+      .layout { grid-template-columns:1fr; }
+      nav.indice { position:sticky; top:0; z-index:10; display:flex; overflow-x:auto; gap:4px; max-height:none; background:var(--bg); padding:6px 0; }
+      nav.indice a { white-space:nowrap; }
+      .armador { grid-template-columns:1fr; }
+      .poster { position:static; }
+    }
+    @media (max-width:520px) { .poster .cols { grid-template-columns:1fr; } .layout { padding:10px; } }
+
+    /* Imprimir: solo el afiche */
+    @media print {
+      body { background:#fff; }
+      .top, nav.indice, .toast, main > section:not(#afiche), #afiche > :not(.armador), #afiche .armador > :not(#poster) { display:none !important; }
+      .layout, main, #afiche, #afiche .armador { display:block; padding:0; margin:0; border:0; background:none; box-shadow:none; }
+      #poster { position:static; border-radius:0; padding:0; font-size:11pt; }
+      #poster h3 { font-size:20pt; }
+      @page { size:A4; margin:10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <h1><span id="topIcono">🧭</span> <span id="topTitulo">Guía del Proyecto Final</span></h1>
+    <div class="acciones">
+      <a class="btn" href="project_t3.html">Elegir otro tema</a>
+      <a class="btn btn-primary" href="../index.html">Inicio</a>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="indice" id="indice"></nav>
+    <main id="contenido"><section class="bloque"><p class="muted">Cargando guía…</p></section></main>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script>
+  (function () {
+    'use strict';
+    const TEMAS = { dios: 'guias/dios.js', sentido: 'guias/sentido.js' };
+    const tema = new URLSearchParams(location.search).get('tema');
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const guardar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+    const leer = (k, def) => { try { return JSON.parse(localStorage.getItem(k)) ?? def; } catch { return def; } };
+    function aviso(msg) { const t = $('toast'); t.textContent = msg; t.style.display = 'block'; clearTimeout(aviso.t); aviso.t = setTimeout(() => t.style.display = 'none', 2200); }
+
+    function cargarScript(src) {
+      return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error(src)); document.head.appendChild(s); });
+    }
+
+    if (!TEMAS[tema]) { location.replace('project_t3.html'); return; }
+    Promise.all([cargarScript('guias/comun.js'), cargarScript(TEMAS[tema])])
+      .then(iniciar)
+      .catch(() => { $('contenido').innerHTML = '<section class="bloque"><p>No se pudo cargar la guía. Recargá la página.</p></section>'; });
+
+    let C, T, AUT;
+    const K = (n) => `guiaT3.${tema}.${n}`;
+
+    const SECCIONES = [
+      ['inicio', 'Inicio'], ['ruta', 'Hoja de ruta'], ['preguntas', 'Preguntas de debate'], ['autores', 'Pensadores'],
+      ['asistente', 'Asistente: tu postura'], ['hipotesis', 'La hipótesis'], ['demostrar', 'Cómo demostrar'],
+      ['casos', 'Casos y ejemplos'], ['conclusiones', 'Conclusiones'], ['afiche', 'Afiche'],
+      ['presentacion', 'Exposición'], ['rubrica', 'Cómo se evalúa'], ['recursos', 'Recursos']
+    ];
+
+    function iniciar() {
+      C = window.GUIA_COMUN; T = window.GUIA_TEMA;
+      AUT = Object.fromEntries(T.autores.map((a) => [a.id, a]));
+      document.title = `Guía · ${T.titulo}`;
+      $('topIcono').textContent = T.icono; $('topTitulo').textContent = `Proyecto Final · ${T.titulo}`;
+      $('indice').innerHTML = SECCIONES.map(([id, n]) => `<a href="#${id}" data-sec="${id}">${n}</a>`).join('');
+      $('contenido').innerHTML = [secInicio(), secRuta(), secPreguntas(), secAutores(), secAsistente(), secHipotesis(), secDemostrar(),
+        secCasos(), secConclusiones(), secAfiche(), secPresentacion(), secRubrica(), secRecursos()].join('');
+      enlazarRuta(); enlazarAutores(); enlazarAsistente(); enlazarAfiche(); observarIndice();
+    }
+
+    const bloque = (id, titulo, sub, cuerpo, clase = '') =>
+      `<section class="bloque ${clase}" id="${id}"><h2>${titulo}</h2>${sub ? `<p class="sub">${sub}</p>` : ''}${cuerpo}</section>`;
+
+    // ── Inicio ──────────────────────────────────────────────
+    function secInicio() {
+      return bloque('inicio', `<span class="icono">${T.icono}</span> ${esc(T.titulo)}`, '', `
+        <p class="gran">${esc(T.granPregunta)}</p>
+        ${T.intro.map((p) => `<p>${p}</p>`).join('')}
+        <div class="aviso">${esc(T.enfoque)}</div>
+        <h3>Qué tiene que hacer el grupo</h3>
+        <ul class="lista">${C.requisitos.map((r) => `<li>${r}</li>`).join('')}</ul>`, 'hero');
+    }
+
+    // ── Hoja de ruta (checklist local) ───────────────────────
+    function secRuta() {
+      const hechos = leer(K('pasos'), []);
+      return bloque('ruta', 'Hoja de ruta del grupo', 'Los pasos en orden. Marquen lo que van terminando (queda guardado solo en este navegador).',
+        C.pasos.map((p, i) => `<div class="paso ${hechos.includes(i) ? 'hecho' : ''}">
+          <input type="checkbox" data-paso="${i}" ${hechos.includes(i) ? 'checked' : ''} aria-label="Paso ${i + 1} terminado">
+          <div class="num">${i + 1}</div>
+          <div><div class="tit"><strong>${esc(p.titulo)}</strong></div><div class="muted">${esc(p.detalle)} <a href="#${p.seccion}">Ir a la guía →</a></div></div>
+        </div>`).join(''));
+    }
+    function enlazarRuta() {
+      document.querySelectorAll('[data-paso]').forEach((c) => c.addEventListener('change', () => {
+        const hechos = [...document.querySelectorAll('[data-paso]:checked')].map((x) => +x.dataset.paso);
+        guardar(K('pasos'), hechos);
+        c.closest('.paso').classList.toggle('hecho', c.checked);
+      }));
+    }
+
+    // ── Preguntas de debate ─────────────────────────────────
+    function secPreguntas() {
+      return bloque('preguntas', 'Preguntas de debate', 'Elijan una. Cada pregunta admite al menos dos posturas: ustedes deciden cuál defender.',
+        `<div class="grid g2">${T.preguntas.map((p, i) => `<div class="tarjeta">
+          <h3>${i + 1}. ${esc(p.texto)}</h3><p class="muted">${esc(p.porQue)}</p>
+          <p><strong>Posturas posibles:</strong></p><ul class="lista">${p.posturas.map((po) => `<li>${esc(po.nombre)}</li>`).join('')}</ul>
+          <button data-ir-pregunta="${p.id}">Trabajar esta pregunta en el asistente</button></div>`).join('')}</div>
+        <div class="aviso violeta">También pueden proponer una pregunta propia sobre el tema: consúltenla con el profesor antes de empezar.</div>`);
+    }
+
+    // ── Pensadores ──────────────────────────────────────────
+    const TIPOS = { filósofo: 'Filósofos', científico: 'Científicos', escritor: 'Escritores', religión: 'Religiones', tradición: 'Tradiciones' };
+    const claseTipo = (t) => ({ 'filósofo': 'filosofo', 'científico': 'cientifico', 'escritor': 'escritor', 'religión': 'religion', 'tradición': 'tradicion' }[t] || '');
+    function tarjetaAutor(a) {
+      return `<div class="tarjeta autor" id="autor-${a.id}" data-tipo="${esc(a.tipo)}" data-texto="${esc((a.nombre + ' ' + a.idea + ' ' + a.argumento).toLowerCase())}">
+        <h3>${esc(a.nombre)}</h3>
+        <span class="chip ${claseTipo(a.tipo)}">${esc(a.tipo)}</span><span class="chip">${esc(a.epoca)}</span>
+        <p><span class="lbl">Idea central:</span> ${esc(a.idea)}</p>
+        <blockquote>${esc(a.cita)}</blockquote>
+        <p><span class="lbl">Su argumento:</span> ${esc(a.argumento)}</p>
+        <p><span class="lbl">Para explicarlo:</span> ${esc(a.ejemplo)}</p>
+        ${a.enlace ? `<p><a href="${esc(a.enlace.url)}">${esc(a.enlace.texto)} →</a></p>` : ''}
+      </div>`;
+    }
+    function secAutores() {
+      const tipos = [...new Set(T.autores.map((a) => a.tipo))];
+      return bloque('autores', 'Mapa de pensadores', `${T.autores.length} pensadores de la filosofía, la ciencia, la literatura y las tradiciones religiosas. <strong>Elijan al menos 6</strong>, con voces a favor y en contra de su hipótesis.`,
+        `<div class="filtros"><button class="activo" data-filtro="">Todos</button>${tipos.map((t) => `<button data-filtro="${esc(t)}">${TIPOS[t] || t}</button>`).join('')}
+          <input type="search" id="buscarAutor" placeholder="Buscar pensador o idea…"></div>
+         <div class="grid g2" id="listaAutores">${T.autores.map(tarjetaAutor).join('')}</div>`);
+    }
+    function enlazarAutores() {
+      let filtro = '';
+      const aplicar = () => {
+        const q = $('buscarAutor').value.trim().toLowerCase();
+        document.querySelectorAll('.autor').forEach((el) => {
+          el.style.display = (!filtro || el.dataset.tipo === filtro) && (!q || el.dataset.texto.includes(q)) ? '' : 'none';
+        });
+      };
+      document.querySelectorAll('[data-filtro]').forEach((b) => b.addEventListener('click', () => {
+        filtro = b.dataset.filtro;
+        document.querySelectorAll('[data-filtro]').forEach((x) => x.classList.toggle('activo', x === b));
+        aplicar();
+      }));
+      $('buscarAutor').addEventListener('input', aplicar);
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('[data-ver-autor]');
+        if (!a) return;
+        e.preventDefault();
+        filtro = ''; $('buscarAutor').value = '';
+        document.querySelectorAll('[data-filtro]').forEach((x) => x.classList.toggle('activo', x.dataset.filtro === ''));
+        aplicar();
+        const card = $(`autor-${a.dataset.verAutor}`);
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('resaltado'); setTimeout(() => card.classList.remove('resaltado'), 2500);
+      });
+    }
+
+    // ── Asistente ───────────────────────────────────────────
+    function secAsistente() {
+      return bloque('asistente', 'Asistente: armen su postura', 'Elijan la pregunta y la postura. La guía les arma una hipótesis modelo, los pensadores que la apoyan y los que se oponen, los argumentos y las réplicas a las objeciones. <strong>Usenla como punto de partida y escriban con sus palabras.</strong>',
+        `<p><strong>1. La pregunta</strong></p>
+         <div class="opciones" id="asisPreguntas">${T.preguntas.map((p) => `<button data-asis-pregunta="${p.id}">${esc(p.texto)}</button>`).join('')}</div>
+         <div id="asisPosturasBox" style="display:none"><p><strong>2. La postura del grupo</strong></p><div class="opciones" id="asisPosturas"></div></div>
+         <div class="resultado" id="asisResultado"></div>`);
+    }
+    let sel = { pregunta: null, postura: null };
+    function enlazarAsistente() {
+      document.addEventListener('click', (e) => {
+        const bp = e.target.closest('[data-asis-pregunta], [data-ir-pregunta]');
+        if (bp) {
+          sel = { pregunta: bp.dataset.asisPregunta || bp.dataset.irPregunta, postura: null };
+          if (bp.dataset.irPregunta) $('asistente').scrollIntoView({ behavior: 'smooth' });
+          pintarAsistente();
+        }
+        const bo = e.target.closest('[data-asis-postura]');
+        if (bo) { sel.postura = bo.dataset.asisPostura; pintarAsistente(); }
+        if (e.target.closest('#llevarAfiche')) llevarAlAfiche();
+      });
+    }
+    function pintarAsistente() {
+      const p = T.preguntas.find((x) => x.id === sel.pregunta);
+      document.querySelectorAll('[data-asis-pregunta]').forEach((b) => b.classList.toggle('activo', b.dataset.asisPregunta === sel.pregunta));
+      $('asisPosturasBox').style.display = p ? '' : 'none';
+      if (!p) return;
+      $('asisPosturas').innerHTML = p.posturas.map((po) => `<button data-asis-postura="${po.id}" class="${po.id === sel.postura ? 'activo' : ''}">${esc(po.nombre)}</button>`).join('');
+      const po = p.posturas.find((x) => x.id === sel.postura);
+      const r = $('asisResultado');
+      r.classList.toggle('visible', !!po);
+      if (!po) return;
+      const otra = p.posturas.find((x) => x.id !== po.id);
+      const chips = (ids) => ids.filter((id) => AUT[id]).map((id) => `<a href="#autor-${id}" class="chip ${claseTipo(AUT[id].tipo)}" data-ver-autor="${id}">${esc(AUT[id].nombre)}</a>`).join(' ');
+      r.innerHTML = `
+        <h3>Hipótesis modelo</h3><div class="tesis">${esc(po.tesis)}</div>
+        <p class="muted">Reescríbanla con sus palabras: tiene que sonar a ustedes.</p>
+        <div class="grid g2">
+          <div class="tarjeta"><h3>Pensadores que apoyan su postura</h3>${chips(po.autores)}</div>
+          <div class="tarjeta"><h3>Pensadores de la postura contraria</h3>${chips(otra ? otra.autores.filter((id) => !po.autores.includes(id)) : [])}<p class="muted">Inclúyanlos: en un debate hay que mostrar las dos caras.</p></div>
+        </div>
+        <h3>Argumentos para demostrar su hipótesis</h3>${po.argumentos.map((a) => `<div class="arg"><strong>${esc(a.tipo)}</strong><br>${esc(a.texto)}</div>`).join('')}
+        <h3>Objeciones que les van a hacer y cómo responderlas</h3>${po.objeciones.map((o) => `<div class="obj"><strong>Objeción:</strong> ${esc(o.objecion)}<div class="rep"><strong>Réplica:</strong> ${esc(o.replica)}</div></div>`).join('')}
+        <div class="aviso">${esc(po.cierre)}</div>
+        <button class="btn-primary" id="llevarAfiche">Llevar esta postura al armador del afiche</button>`;
+    }
+
+    // ── Hipótesis ───────────────────────────────────────────
+    function secHipotesis() {
+      return bloque('hipotesis', 'Cómo formular la hipótesis', '', `
+        <p>${C.hipotesis.que_es}</p>
+        <ul class="lista">${C.hipotesis.caracteristicas.map((c) => `<li>${c}</li>`).join('')}</ul>
+        <div class="aviso violeta"><strong>Plantilla:</strong> ${C.hipotesis.plantilla}</div>
+        <div class="grid g2">
+          <div><h3>Buenas hipótesis</h3>${T.hipotesisEjemplos.buenas.map((h) => `<div class="buena">${esc(h)}</div>`).join('')}</div>
+          <div><h3>Hipótesis que no sirven (y por qué)</h3>${T.hipotesisEjemplos.malas.map((h) => `<div class="mala"><strong>${esc(h.texto)}</strong><br><span class="muted">${esc(h.porque)}</span></div>`).join('')}</div>
+        </div>`);
+    }
+
+    // ── Demostrar ───────────────────────────────────────────
+    function secDemostrar() {
+      return bloque('demostrar', 'Cómo demostrar: argumentos y falacias', 'Demostrar en filosofía es dar buenas razones. Estos son los tipos de argumento que pueden usar, con ejemplos del tema, y los errores que tienen que evitar.', `
+        <h3>Tipos de argumento</h3>
+        <div class="grid g2">${C.tiposArgumento.map((t) => `<div class="tarjeta"><h3>${esc(t.nombre)}</h3><p class="muted">${esc(t.explicacion)}</p>
+          ${T.demostrarEjemplos[t.id] ? `<div class="arg"><strong>Ejemplo:</strong> ${esc(T.demostrarEjemplos[t.id])}</div>` : ''}</div>`).join('')}</div>
+        <h3>Falacias: errores que debilitan el argumento</h3>
+        <div class="grid g2">${C.falacias.map((f) => `<div class="tarjeta"><h3>${esc(f.nombre)}</h3><p class="muted">${esc(f.explicacion)}</p>
+          ${T.falaciasEjemplos[f.id] ? `<div class="obj">${esc(T.falaciasEjemplos[f.id])}</div>` : ''}</div>`).join('')}</div>`);
+    }
+
+    // ── Casos ───────────────────────────────────────────────
+    function secCasos() {
+      return bloque('casos', 'Casos y ejemplos para el debate', 'Un buen caso hace que la exposición se entienda y se recuerde. Elijan uno y apliquen su hipótesis.',
+        `<div class="grid g2">${T.casos.map((c) => `<div class="tarjeta"><h3>${esc(c.titulo)}</h3><p>${esc(c.texto)}</p>
+          <ul class="lista">${c.preguntas.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>`).join('')}</div>`);
+    }
+
+    // ── Conclusiones ────────────────────────────────────────
+    function secConclusiones() {
+      return bloque('conclusiones', 'Conclusiones', '', `
+        <p>${C.conclusiones.que_es}</p>
+        <ul class="lista">${C.conclusiones.partes.map((p) => `<li>${p}</li>`).join('')}</ul>
+        <div class="aviso">${T.conclusiones.marco}</div>
+        <h3>Ejemplos de conclusión</h3>${T.conclusiones.modelos.map((m) => `<div class="buena">${esc(m)}</div>`).join('')}`);
+    }
+
+    // ── Afiche ──────────────────────────────────────────────
+    const CAMPOS = ['pregunta', 'hipotesis', 'favor', 'contra', 'argumentos', 'objeciones', 'caso', 'conclusion', 'bibliografia', 'equipo'];
+    function secAfiche() {
+      return bloque('afiche', 'El afiche', 'Completen el armador y miren la vista previa. Con «Imprimir / PDF» sale solo el afiche, con fondo blanco. El borrador queda guardado en este navegador.', `
+        <div class="grid g2">
+          <div class="tarjeta"><h3>Qué lleva</h3><ul class="lista">${C.afiche.estructura.map((e) => `<li><strong>${esc(e.titulo)}</strong>: ${esc(e.ayuda)}</li>`).join('')}</ul></div>
+          <div class="tarjeta"><h3>Consejos</h3><ul class="lista">${C.afiche.consejos.map((c) => `<li>${esc(c)}</li>`).join('')}</ul></div>
+        </div>
+        <div class="acciones" style="margin:14px 0">
+          <button id="cargarMuestra">Ver el afiche de muestra</button>
+          <button id="limpiarAfiche">Empezar uno vacío</button>
+          <button class="btn-primary" id="imprimirAfiche">Imprimir / PDF</button>
+        </div>
+        <div class="armador">
+          <div>
+            <label>Pregunta de debate</label><input id="f_pregunta">
+            <label>Nuestra hipótesis</label><textarea id="f_hipotesis"></textarea>
+            <label>Pensadores que apoyan la hipótesis <span class="ayuda">(uno por línea: Nombre: idea)</span></label><textarea id="f_favor"></textarea>
+            <label>Pensadores que se oponen <span class="ayuda">(uno por línea: Nombre: idea)</span></label><textarea id="f_contra"></textarea>
+            <div class="contador" id="contadorAutores"></div>
+            <label>Argumentos a favor <span class="ayuda">(uno por línea)</span></label><textarea id="f_argumentos"></textarea>
+            <label>Objeciones y réplicas <span class="ayuda">(una por línea: Objeción → Réplica)</span></label><textarea id="f_objeciones"></textarea>
+            <label>Caso o ejemplo</label><textarea id="f_caso"></textarea>
+            <label>Conclusión</label><textarea id="f_conclusion"></textarea>
+            <label>Fuentes</label><textarea id="f_bibliografia"></textarea>
+            <label>Curso e integrantes</label><input id="f_equipo">
+          </div>
+          <div id="poster" class="poster"></div>
+        </div>`);
+    }
+    const lineas = (s) => String(s || '').split('\n').map((x) => x.trim()).filter(Boolean);
+    const parNombre = (l) => { const i = l.indexOf(':'); return i > 0 ? { nombre: l.slice(0, i).trim(), idea: l.slice(i + 1).trim() } : { nombre: l, idea: '' }; };
+    function datosForm() { return Object.fromEntries(CAMPOS.map((c) => [c, $(`f_${c}`).value])); }
+    function ponerForm(d) { CAMPOS.forEach((c) => { $(`f_${c}`).value = d[c] || ''; }); actualizarPoster(); }
+    function muestraComoForm(a) {
+      return {
+        pregunta: a.pregunta, hipotesis: a.hipotesis,
+        favor: a.autores.filter((x) => x.lado === 'favor').map((x) => `${x.nombre}: ${x.idea}`).join('\n'),
+        contra: a.autores.filter((x) => x.lado === 'contra').map((x) => `${x.nombre}: ${x.idea}`).join('\n'),
+        argumentos: a.argumentos.join('\n'),
+        objeciones: a.objeciones.map((o) => `${o.objecion} → ${o.replica}`).join('\n'),
+        caso: a.caso, conclusion: a.conclusion, bibliografia: a.bibliografia, equipo: a.equipo
+      };
+    }
+    function actualizarPoster() {
+      const d = datosForm();
+      guardar(K('afiche'), d);
+      const v = (s, ph) => s && s.trim() ? esc(s) : `<span class="vacio">${ph}</span>`;
+      const lista = (arr, ph) => arr.length ? `<ul>${arr.join('')}</ul>` : `<span class="vacio">${ph}</span>`;
+      const autores = (txt) => lineas(txt).map(parNombre).map((a) => `<li><strong>${esc(a.nombre)}</strong>${a.idea ? `: ${esc(a.idea)}` : ''}</li>`);
+      const fav = lineas(d.favor).length, con = lineas(d.contra).length, total = fav + con;
+      const cont = $('contadorAutores');
+      cont.textContent = `Pensadores: ${total} (${fav} a favor, ${con} en contra)${total >= 6 ? ' ✓' : ` · faltan ${6 - total} para llegar a 6`}`;
+      cont.className = `contador ${total >= 6 ? 'ok' : 'falta'}`;
+      const obj = lineas(d.objeciones).map((l) => { const [o, r] = l.split(/\s*(?:→|->)\s*/); return `<li><strong>${esc(o)}</strong>${r ? ` → ${esc(r)}` : ''}</li>`; });
+      $('poster').innerHTML = `
+        <h3>${v(d.pregunta, 'Escriban acá su pregunta de debate')}</h3>
+        <div class="pe">Proyecto Final de Filosofía · ${esc(T.titulo)}</div>
+        <div class="caja hip"><h4>Nuestra hipótesis</h4>${v(d.hipotesis, 'La respuesta del grupo a la pregunta')}</div>
+        <div class="cols">
+          <div class="caja favor"><h4>Pensadores a favor</h4>${lista(autores(d.favor), 'Nombre: idea')}</div>
+          <div class="caja contra"><h4>Pensadores en contra</h4>${lista(autores(d.contra), 'Nombre: idea')}</div>
+        </div>
+        <div class="cols">
+          <div class="caja"><h4>Argumentos</h4>${lista(lineas(d.argumentos).map((a) => `<li>${esc(a)}</li>`), 'Sus 3 mejores argumentos')}</div>
+          <div class="caja"><h4>Objeciones y réplicas</h4>${lista(obj, 'Objeción → Réplica')}</div>
+        </div>
+        <div class="caja"><h4>Caso</h4>${v(d.caso, 'Un ejemplo concreto')}</div>
+        <div class="caja hip"><h4>Conclusión</h4>${v(d.conclusion, 'Respuesta final y pregunta abierta')}</div>
+        <div class="pie"><strong>Fuentes:</strong> ${v(d.bibliografia, 'libros, videos, temas de la app')}<br><strong>Equipo:</strong> ${v(d.equipo, 'curso e integrantes')}</div>`;
+    }
+    function enlazarAfiche() {
+      CAMPOS.forEach((c) => $(`f_${c}`).addEventListener('input', actualizarPoster));
+      const borrador = leer(K('afiche'), null);
+      ponerForm(borrador && Object.values(borrador).some((x) => x && x.trim()) ? borrador : muestraComoForm(T.afiche));
+      $('cargarMuestra').addEventListener('click', () => {
+        if (Object.values(datosForm()).some((x) => x.trim()) && !confirm('Se va a reemplazar lo que escribieron por el afiche de muestra. ¿Seguir?')) return;
+        ponerForm(muestraComoForm(T.afiche)); aviso('Afiche de muestra cargado');
+      });
+      $('limpiarAfiche').addEventListener('click', () => {
+        if (!confirm('¿Borrar todo el afiche para empezar uno nuevo?')) return;
+        ponerForm({}); aviso('Afiche vacío');
+      });
+      $('imprimirAfiche').addEventListener('click', () => window.print());
+    }
+    function llevarAlAfiche() {
+      const p = T.preguntas.find((x) => x.id === sel.pregunta);
+      const po = p.posturas.find((x) => x.id === sel.postura);
+      const otra = p.posturas.find((x) => x.id !== po.id);
+      const corta = (id) => `${AUT[id].nombre}: ${AUT[id].idea.split(/(?<=\.)\s/)[0]}`;
+      const actual = datosForm();
+      if (Object.values(actual).some((x) => x.trim()) && !confirm('Se va a reemplazar el afiche actual con esta postura. ¿Seguir?')) return;
+      ponerForm({
+        pregunta: p.texto, hipotesis: po.tesis,
+        favor: po.autores.filter((id) => AUT[id]).slice(0, 4).map(corta).join('\n'),
+        contra: (otra ? otra.autores.filter((id) => AUT[id] && !po.autores.includes(id)) : []).slice(0, 3).map(corta).join('\n'),
+        argumentos: po.argumentos.map((a) => a.texto).join('\n'),
+        objeciones: po.objeciones.slice(0, 2).map((o) => `${o.objecion} → ${o.replica}`).join('\n'),
+        caso: '', conclusion: po.cierre, bibliografia: '', equipo: actual.equipo || ''
+      });
+      $('afiche').scrollIntoView({ behavior: 'smooth' });
+      aviso('Postura cargada en el afiche: ahora escríbanla con sus palabras');
+    }
+
+    // ── Exposición ──────────────────────────────────────────
+    function secPresentacion() {
+      const P = C.presentacion;
+      return bloque('presentacion', 'La exposición: 8 minutos + 4 de preguntas', 'Exponen ustedes y, al final, el resto del curso pregunta y cuestiona.', `
+        <h3>Guion minuto a minuto</h3>
+        <div class="tabla-scroll"><table><tr><th>Tiempo</th><th>Parte</th><th>Qué hacer</th></tr>
+          ${P.guion.map((g) => `<tr><td>${esc(g.tiempo)}</td><td><strong>${esc(g.parte)}</strong></td><td>${esc(g.detalle)}</td></tr>`).join('')}</table></div>
+        <div class="grid g2" style="margin-top:12px">
+          <div class="tarjeta"><h3>Grupo de 2</h3><ul class="lista">${P.roles.dos.map((r) => `<li>${r}</li>`).join('')}</ul></div>
+          <div class="tarjeta"><h3>Grupo de 3</h3><ul class="lista">${P.roles.tres.map((r) => `<li>${r}</li>`).join('')}</ul></div>
+        </div>
+        <h3>Consejos</h3><ul class="lista">${P.consejos.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+        <h3>Preguntas que probablemente les hagan</h3>
+        ${T.preguntasProbables.map((q) => `<div class="obj"><strong>${esc(q.pregunta)}</strong><div class="rep">${esc(q.comoResponder)}</div></div>`).join('')}
+        <h3>Cómo responder bien</h3><ul class="lista">${P.comoResponder.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+        <h3>Para el público: cómo preguntar y cuestionar</h3>
+        <p class="muted">Cuando expone otro grupo, ustedes también participan. Algunos tipos de preguntas:</p>
+        <div class="grid g2">${P.publico.map((p) => `<div class="tarjeta"><strong>${esc(p.tipo)}</strong><p class="muted" style="margin:4px 0 0">${esc(p.ejemplo)}</p></div>`).join('')}</div>`);
+    }
+
+    // ── Rúbrica ─────────────────────────────────────────────
+    function secRubrica() {
+      const R = C.rubrica;
+      return bloque('rubrica', 'Cómo se evalúa', '', `
+        <div class="aviso">${esc(R.aclaracion)}</div>
+        <div class="tabla-scroll"><table>
+          <tr><th>Criterio</th>${R.niveles.map((n) => `<th>${esc(n)}</th>`).join('')}</tr>
+          ${R.criterios.map((c) => `<tr><td><strong>${esc(c.nombre)}</strong><br><span class="muted">${c.peso}%</span></td>${c.descriptores.map((d) => `<td>${esc(d)}</td>`).join('')}</tr>`).join('')}
+        </table></div>`);
+    }
+
+    // ── Recursos ────────────────────────────────────────────
+    function secRecursos() {
+      return bloque('recursos', 'Recursos', '', `
+        <div class="grid g2">
+          <div class="tarjeta"><h3>En la app</h3><ul class="lista">${T.recursos.app.map((r) => `<li><a href="${esc(r.url)}">${esc(r.texto)}</a></li>`).join('')}</ul>
+            <p class="muted">En cada tema tienen el material, la caza de conceptos y, en algunos, el <strong>resumen final</strong> (botón en la tarjeta del examen).</p></div>
+          <div class="tarjeta"><h3>Para leer o ver</h3><ul class="lista">${T.recursos.libros.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
+            <p class="muted">Siempre anoten la fuente de cada cita en el afiche.</p></div>
+        </div>`);
+    }
+
+    // ── Índice activo ───────────────────────────────────────
+    function observarIndice() {
+      const links = Object.fromEntries([...document.querySelectorAll('#indice a')].map((a) => [a.dataset.sec, a]));
+      const obs = new IntersectionObserver((entradas) => {
+        entradas.forEach((e) => {
+          if (!e.isIntersecting) return;
+          Object.values(links).forEach((l) => l.classList.remove('activo'));
+          const l = links[e.target.id];
+          if (!l) return;
+          l.classList.add('activo');
+          // Mover solo el índice (scrollIntoView cortaría el desplazamiento de la página)
+          const nav = $('indice');
+          if (nav.scrollWidth > nav.clientWidth) nav.scrollLeft = l.offsetLeft - 8;
+          else if (nav.scrollHeight > nav.clientHeight) nav.scrollTop = l.offsetTop - 40;
+        });
+      }, { rootMargin: '-80px 0px -70% 0px' });
+      document.querySelectorAll('section.bloque[id]').forEach((s) => obs.observe(s));
+    }
+  })();
+  </script>
+</body>
+</html>

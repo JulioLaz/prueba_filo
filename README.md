@@ -32,6 +32,12 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 
 Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad de secciones, preguntas, niveles, etc.).
 
+## ✨ Proyecto Final (trimestre 3)
+
+`projects/project_t3.html` presenta el proyecto y los dos temas; cada uno abre su guía en `projects/guia.html?tema=dios|sentido`. Es una guía de trabajo para grupos de 2 o 3 (no registra avance): requisitos (mínimo 6 pensadores, afiche, exposición de 8 minutos + 4 de preguntas), hoja de ruta, preguntas de debate, mapa de pensadores (filósofos, científicos, escritores y tradiciones religiosas), asistente que arma la postura (hipótesis, argumentos, objeciones y réplicas), cómo demostrar y falacias, casos, conclusiones, afiche de muestra y armador de afiche imprimible, guion de la exposición, guía para el público y rúbrica. La hoja de ruta y el borrador del afiche quedan solo en el navegador.
+
+El contenido se edita en `projects/guias/comun.js` (lo común), `projects/guias/dios.js` y `projects/guias/sentido.js`.
+
 ## 🏛️ Examen oral (cierra el tema)
 
 Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro) y **Utilitarismo** (con John Stuart Mill). Es un diálogo guiado con el filósofo:
