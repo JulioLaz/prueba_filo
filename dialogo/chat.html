@@ -1261,29 +1261,38 @@
             } catch (error) {
                 log('❌', 'Error en Cloud Function:', error);
                 
-                // Mensajes de error específicos
+                // Sin respuesta de la IA: se avisa al alumno (sin respuestas simuladas)
                 if (error.code === 'unauthenticated') {
-                    return "Por favor, inicia sesión para continuar el diálogo.";
+                    return { error: "Tenés que iniciar sesión para continuar el diálogo." };
                 } else if (error.code === 'invalid-argument') {
-                    return "Hubo un problema con tu mensaje. Intenta reformularlo.";
+                    return { error: "Hubo un problema con tu mensaje. Revisalo y volvé a enviarlo." };
                 }
-                
-                // Fallback a respuesta simulada
-                log('⚠️', 'Usando respuesta simulada de emergencia');
-                return obtenerRespuestaSimulada(mensajeUsuario);
+                return { error: "⏳ Aristóteles no está disponible en este momento. Tu mensaje no se perdió: volvé a enviarlo en un minuto." };
             }
         }
 
-        function obtenerRespuestaSimulada(mensaje) {
-            const respuestas = [
-                "Interesante reflexión. ¿Podrías explicar qué entiendes por 'virtud' en este contexto?",
-                "Veo tu punto. Pero dime, ¿acaso no hay un término medio entre esos dos extremos que mencionas?",
-                "Comprendo. ¿Y cómo se relaciona eso con la búsqueda de la eudaimonía, la felicidad plena?",
-                "Bien pensado. ¿Consideras que la prudencia juega un papel en esta decisión?",
-                "Reflexiona: ¿no sería ese comportamiento un exceso o un defecto de alguna virtud?"
-            ];
-            return respuestas[Math.floor(Math.random() * respuestas.length)];
+        // Si la IA no responde: se quita el mensaje del alumno (no cuenta como intercambio),
+        // se le devuelve al cuadro de texto y se muestra un aviso (sin respuestas simuladas)
+        function revertirMensajeAlumno(texto, aviso) {
+            const ultimo = estado.mensajes[estado.mensajes.length - 1];
+            if (ultimo && ultimo.rol === 'alumno' && ultimo.texto === texto) {
+                estado.mensajes.pop();
+                estado.intercambios = Math.max(0, estado.intercambios - 1);
+                const nodos = elementos.mensajesContainer.querySelectorAll('.mensaje-alumno');
+                nodos[nodos.length - 1]?.remove();
+                actualizarUI();
+            }
+            elementos.inputMensaje.value = texto;
+            elementos.inputMensaje.dispatchEvent(new Event('input'));
+            const div = document.createElement('div');
+            div.className = 'mensaje mensaje-aviso';
+            div.style.cssText = 'margin:8px auto;max-width:90%;padding:10px 14px;border-radius:10px;' +
+                'background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.5);color:#fcd34d;font-size:.9rem;text-align:center;';
+            div.textContent = aviso;
+            elementos.mensajesContainer.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
+
 
         // ===============================================
         // SISTEMA DE EVALUACIÓN
@@ -1470,7 +1479,11 @@
             const respuesta = await obtenerRespuestaIA(texto);
             
             mostrarTypingIndicator(false);
-            agregarMensaje('filosofo', respuesta);
+            if (respuesta && respuesta.error) {
+                revertirMensajeAlumno(texto, respuesta.error);
+            } else {
+                agregarMensaje('filosofo', respuesta);
+            }
 
             // Reactivar input
             estado.esperandoRespuesta = false;

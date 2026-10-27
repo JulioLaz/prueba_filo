@@ -726,8 +726,30 @@
                 return result.data.respuesta;
             } catch (error) {
                 console.error('Error al obtener respuesta:', error);
-                return "Disculpa, hubo un problema. ¿Podrías reformular tu respuesta?";
+                // Sin respuesta de la IA: se avisa al alumno y no cuenta como intercambio
+                return { error: "⏳ El orientador no está disponible en este momento. Tu mensaje no se perdió: volvé a enviarlo en un minuto." };
             }
+        }
+
+        function revertirMensajeAlumno(texto, aviso) {
+            const ultimo = estado.mensajes[estado.mensajes.length - 1];
+            if (ultimo && ultimo.rol === 'alumno' && ultimo.texto === texto) {
+                estado.mensajes.pop();
+                estado.intercambios = Math.max(0, estado.intercambios - 1);
+                const nodos = elementos.mensajesContainer.querySelectorAll('.mensaje-alumno');
+                nodos[nodos.length - 1]?.remove();
+                actualizarUI();
+                actualizarBotonCopiar();
+            }
+            elementos.inputMensaje.value = texto;
+            elementos.inputMensaje.dispatchEvent(new Event('input'));
+            const div = document.createElement('div');
+            div.className = 'mensaje mensaje-aviso';
+            div.style.cssText = 'margin:8px auto;max-width:90%;padding:10px 14px;border-radius:10px;' +
+                'background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.5);color:#fcd34d;font-size:.9rem;text-align:center;';
+            div.textContent = aviso;
+            elementos.mensajesContainer.appendChild(div);
+            div.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
 
         function calcularProgreso() {
@@ -763,7 +785,11 @@
 
             const respuesta = await obtenerRespuestaIA(texto);
             mostrarTypingIndicator(false);
-            agregarMensaje('orientador', respuesta);
+            if (respuesta && respuesta.error) {
+                revertirMensajeAlumno(texto, respuesta.error);
+            } else {
+                agregarMensaje('orientador', respuesta);
+            }
 
             estado.esperandoRespuesta = false;
             elementos.inputMensaje.disabled = false;

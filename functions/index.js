@@ -1,9 +1,22 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- * 🔥 FIREBASE CLOUD FUNCTION V6 - DIÁLOGOS FILOSÓFICOS
+ * 🔥 FIREBASE CLOUD FUNCTION V7 - DIÁLOGOS FILOSÓFICOS
  * ═══════════════════════════════════════════════════════════════
  * 
- * Función segura con Google Gemini API
+ * Función segura con IA y respaldo automático:
+ *   1) Google Gemini (MODELOS_GEMINI, en orden)
+ *   2) OpenRouter, modelos gratuitos (MODELOS_OPENROUTER, en orden)
+ * Si un modelo no existe (404), está saturado (429), falla o tarda demasiado,
+ * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
+ * avisa al alumno; ya no hay respuestas simuladas).
+ *
+ * V7 (2026-10-27): el modelo gemini-2.0-flash-exp fue dado de baja (404);
+ *   cadena de modelos con respaldo en OpenRouter; conversación normalizada
+ *   (empieza con el alumno, sin mensajes duplicados ni roles repetidos).
+ *
+ * Secretos (firebase functions:secrets:set NOMBRE):
+ *   GOOGLE_API_KEY  — clave de Google AI Studio
+ *   OPENROUTER_KEY  — clave de openrouter.ai
  * 
  * Filósofos disponibles:
  * - aristoteles (Ética de la virtud)
@@ -21,6 +34,28 @@ const logger = require("firebase-functions/logger");
 const {defineSecret} = require("firebase-functions/params");
 
 const GOOGLE_API_KEY = defineSecret("GOOGLE_API_KEY");
+const OPENROUTER_KEY = defineSecret("OPENROUTER_KEY");
+
+// ═══════════════════════════════════════════════════════════════
+// 🤖 MODELOS DE IA (en orden de preferencia — editar acá cuando cambien)
+// ═══════════════════════════════════════════════════════════════
+// Gemini: los alias *-latest apuntan siempre a la versión vigente.
+const MODELOS_GEMINI = [
+  "gemini-flash-lite-latest",
+  "gemini-3.5-flash-lite",
+  "gemini-flash-latest",
+];
+// OpenRouter: los modelos ":free" cambian seguido; ver la lista con
+// GET https://openrouter.ai/api/v1/models y actualizar si hace falta.
+const MODELOS_OPENROUTER = [
+  "google/gemma-4-31b-it:free",
+  "google/gemma-4-26b-a4b-it:free",
+  "nvidia/nemotron-3.5-super-vl:free",
+];
+const MAX_MENSAJES_HISTORIAL = 20;   // contexto que se envía a la IA
+const TIMEOUT_MODELO_MS = 20000;     // si un modelo tarda más, se pasa al siguiente
+const LIMITE_TOTAL_MS = 45000;       // la función tiene 60 s: después de 45 s deja de probar
+const MAX_TOKENS_RESPUESTA = 1024;   // margen para modelos que "piensan" antes de responder
 
 // ═══════════════════════════════════════════════════════════════
 // 📋 REGLAS COMUNES PARA TODOS LOS FILÓSOFOS
@@ -452,6 +487,150 @@ function validarDatos(data) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 💬 CONVERSACIÓN Y LLAMADAS A LA IA
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Arma la conversación para la IA: últimos mensajes, sin HTML, sin duplicar el
+ * último mensaje del alumno (el chat ya lo manda en el historial), sin roles
+ * repetidos seguidos y empezando siempre por el alumno.
+ */
+function armarConversacion(historial, mensaje) {
+  const turnos = historial
+    .filter((m) => m && typeof m.content === "string" && m.content.trim())
+    .slice(-MAX_MENSAJES_HISTORIAL)
+    .map((m) => ({
+      rol: m.role === "assistant" ? "assistant" : "user",
+      texto: m.content.replace(/<[^>]+>/g, "").slice(0, 2000),
+    }));
+
+  const ultimo = turnos[turnos.length - 1];
+  if (!(ultimo && ultimo.rol === "user" && ultimo.texto.trim() === mensaje.trim())) {
+    turnos.push({rol: "user", texto: mensaje});
+  }
+
+  const conversacion = [];
+  turnos.forEach((t) => {
+    const previo = conversacion[conversacion.length - 1];
+    if (previo && previo.rol === t.rol) previo.texto += "\n\n" + t.texto;
+    else conversacion.push({...t});
+  });
+  if (conversacion[0]?.rol === "assistant") {
+    conversacion.unshift({rol: "user", texto: "(Comienza el diálogo.)"});
+  }
+  return conversacion;
+}
+
+async function fetchConTimeout(url, opciones) {
+  const control = new AbortController();
+  const timer = setTimeout(() => control.abort(), TIMEOUT_MODELO_MS);
+  try {
+    return await fetch(url, {...opciones, signal: control.signal});
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function errorModelo(motivo, status) {
+  const e = new Error(motivo);
+  e.status = status;
+  return e;
+}
+
+async function llamarGemini(modelo, clave, sistema, conversacion) {
+  const res = await fetchConTimeout(
+    `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${clave}`,
+    {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        contents: conversacion.map((t) => ({
+          role: t.rol === "assistant" ? "model" : "user",
+          parts: [{text: t.texto}],
+        })),
+        systemInstruction: {parts: [{text: sistema}]},
+        generationConfig: {maxOutputTokens: MAX_TOKENS_RESPUESTA, temperature: 0.7},
+      }),
+    }
+  );
+  if (!res.ok) throw errorModelo(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`, res.status);
+  const datos = await res.json();
+  const candidato = datos.candidates?.[0];
+  const texto = (candidato?.content?.parts || []).map((p) => p.text || "").join("").trim();
+  if (!texto) throw errorModelo(`respuesta vacía (${candidato?.finishReason || "sin candidatos"})`, "vacia");
+  return {
+    texto,
+    tokens: (datos.usageMetadata?.promptTokenCount || 0) + (datos.usageMetadata?.candidatesTokenCount || 0),
+    finishReason: candidato.finishReason === "MAX_TOKENS" ? "length" : "stop",
+  };
+}
+
+async function llamarOpenRouter(modelo, clave, sistema, conversacion) {
+  const res = await fetchConTimeout("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${clave}`,
+      "HTTP-Referer": "https://juliolaz.github.io/prueba_filo/",
+      "X-Title": "Filosofia App",
+    },
+    body: JSON.stringify({
+      model: modelo,
+      messages: [
+        {role: "system", content: sistema},
+        ...conversacion.map((t) => ({role: t.rol, content: t.texto})),
+      ],
+      max_tokens: MAX_TOKENS_RESPUESTA,
+      temperature: 0.7,
+    }),
+  });
+  if (!res.ok) throw errorModelo(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`, res.status);
+  const datos = await res.json();
+  const eleccion = datos.choices?.[0];
+  const texto = (eleccion?.message?.content || "").trim();
+  if (!texto) throw errorModelo(`respuesta vacía (${eleccion?.finish_reason || "sin opciones"})`, "vacia");
+  return {
+    texto,
+    tokens: datos.usage?.total_tokens || 0,
+    finishReason: eleccion.finish_reason === "length" ? "length" : "stop",
+  };
+}
+
+/**
+ * Prueba los modelos en orden (Gemini y luego OpenRouter) hasta que uno responda.
+ * Devuelve {texto, tokens, finishReason, proveedor, modelo, ms}; si ninguno
+ * responde lanza HttpsError("unavailable").
+ */
+async function llamarIA({sistema, conversacion, claveGemini, claveOpenRouter}) {
+  const intentos = [
+    ...(claveGemini ? MODELOS_GEMINI.map((m) => ({proveedor: "gemini", modelo: m})) : []),
+    ...(claveOpenRouter ? MODELOS_OPENROUTER.map((m) => ({proveedor: "openrouter", modelo: m})) : []),
+  ];
+  const fallas = [];
+  const inicioTotal = Date.now();
+  for (const {proveedor, modelo} of intentos) {
+    if (Date.now() - inicioTotal > LIMITE_TOTAL_MS) {
+      fallas.push("límite de tiempo total alcanzado");
+      break;
+    }
+    const inicio = Date.now();
+    try {
+      const r = proveedor === "gemini" ?
+        await llamarGemini(modelo, claveGemini, sistema, conversacion) :
+        await llamarOpenRouter(modelo, claveOpenRouter, sistema, conversacion);
+      if (fallas.length) logger.info(`↪️ Respondió el respaldo ${proveedor}/${modelo} tras ${fallas.length} falla(s)`);
+      return {...r, proveedor, modelo, ms: Date.now() - inicio};
+    } catch (error) {
+      const motivo = error.name === "AbortError" ? "timeout" : error.message;
+      logger.warn(`⚠️ ${proveedor}/${modelo} no respondió: ${motivo}`);
+      fallas.push(`${modelo}: ${motivo}`);
+    }
+  }
+  logger.error(`❌ Ningún modelo respondió: ${fallas.join(" | ")}`);
+  throw new HttpsError("unavailable", "El filósofo no está disponible en este momento. Probá de nuevo en un minuto.");
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 🚀 CLOUD FUNCTION PRINCIPAL
 // ═══════════════════════════════════════════════════════════════
 
@@ -460,8 +639,8 @@ exports.chatFilosofo = onCall(
     region: "southamerica-east1",
     cors: true,
     memory: "256MiB",
-    timeoutSeconds: 30,
-    secrets: [GOOGLE_API_KEY],
+    timeoutSeconds: 60,
+    secrets: [GOOGLE_API_KEY, OPENROUTER_KEY],
   },
   async (request) => {
     const inicioTiempo = Date.now();
@@ -493,87 +672,42 @@ exports.chatFilosofo = onCall(
         );
       }
 
-      // 3. OBTENER API KEY
-      const apiKey = GOOGLE_API_KEY.value();
-
-      if (!apiKey) {
-        logger.error("❌ API key de Google no configurada");
-        throw new HttpsError(
-          "internal",
-          "Configuración del servidor incompleta"
-        );
+      // 3. CLAVES (alcanza con una de las dos)
+      const claveGemini = GOOGLE_API_KEY.value();
+      const claveOpenRouter = OPENROUTER_KEY.value();
+      if (!claveGemini && !claveOpenRouter) {
+        logger.error("❌ No hay claves de IA configuradas");
+        throw new HttpsError("internal", "Configuración del servidor incompleta");
       }
 
-      // 4. CONSTRUIR MENSAJES PARA GEMINI
-      const geminiMessages = (data.historial || []).map(msg => ({
-        role: msg.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: msg.content }]
-      }));
+      // 4. CONVERSACIÓN
+      const conversacion = armarConversacion(data.historial || [], data.mensaje);
+      logger.info(`📚 Turnos enviados: ${conversacion.length}`);
 
-      geminiMessages.push({
-        role: 'user',
-        parts: [{ text: data.mensaje }]
+      // 5. LLAMAR A LA IA (con respaldo automático)
+      const r = await llamarIA({
+        sistema: PROMPTS_SISTEMA[data.filosofo],
+        conversacion,
+        claveGemini,
+        claveOpenRouter,
       });
 
-      logger.info(`📚 Mensajes: ${geminiMessages.length} intercambios`);
-
-      // 5. LLAMAR A GEMINI API
-      logger.info("🤖 Llamando a Google Gemini API...");
-      const tiempoApiInicio = Date.now();
-
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: geminiMessages,
-            systemInstruction: {
-              parts: [{ text: PROMPTS_SISTEMA[data.filosofo] }]
-            },
-            generationConfig: {
-              maxOutputTokens: 500,
-              temperature: 0.7,
-            }
-          }),
-        }
-      );
-
-      const tiempoApi = Date.now() - tiempoApiInicio;
-      logger.info(`⏱️ API respondió en ${tiempoApi}ms`);
-
-      // 6. VERIFICAR RESPUESTA
-      if (!response.ok) {
-        const errorText = await response.text();
-        logger.error(`❌ Error API: ${response.status} - ${errorText}`);
-        throw new HttpsError(
-          "internal",
-          `Error en API de IA: ${response.status}`
-        );
-      }
-
-      // 7. PARSEAR Y RETORNAR
-      const dataRespuesta = await response.json();
-      const respuestaTexto = dataRespuesta.candidates[0].content.parts[0].text;
-      const tokensUsados = (dataRespuesta.usageMetadata?.promptTokenCount || 0) + 
-                          (dataRespuesta.usageMetadata?.candidatesTokenCount || 0);
-
       const tiempoTotal = Date.now() - inicioTiempo;
-
-      logger.info("✅ Respuesta exitosa");
-      logger.info(`📊 Tokens: ${tokensUsados}, Tiempo total: ${tiempoTotal}ms`);
+      logger.info(`✅ Respuesta de ${r.proveedor}/${r.modelo} | Tokens: ${r.tokens} | ${tiempoTotal}ms`);
       logger.info("═══════════════════════════════════════════════════");
 
       return {
-        respuesta: respuestaTexto,
+        respuesta: r.texto,
         timestamp: new Date().toISOString(),
-        tokensUsados: tokensUsados,
-        tiempoRespuestaMs: tiempoApi,
+        tokensUsados: r.tokens,
+        tiempoRespuestaMs: r.ms,
         tiempoTotalMs: tiempoTotal,
         filosofo: data.filosofo,
+        proveedor: r.proveedor,
+        modelo: r.modelo,
+        finishReason: r.finishReason,
       };
+
     } catch (error) {
       logger.error("❌ Error procesando petición:", error);
       logger.error("═══════════════════════════════════════════════════");
