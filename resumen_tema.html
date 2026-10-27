@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--
+  resumen_tema.html
+  Resumen final del tema, para copiar en la carpeta antes del examen oral:
+  las ideas centrales que se evalúan en el examen (idea, palabras clave y un
+  ejemplo por eje) y preguntas "Para practicar" (parecidas a las del examen,
+  pero distintas, sin respuesta). Se puede imprimir / guardar en PDF o copiar.
+
+  - Se arma con themes/<tema>/examen.json (el mismo banco que usa el examen):
+    intro, ejes[].titulo/resumen/palabras/ejemplo y practica[].
+  - Se desbloquea con el mismo requisito que el examen: avance ≥ 80% en las
+    actividades requeridas (progreso_temas, récord en Firebase). Antes se ven
+    solo los títulos de los ejes, tapados. El admin en vista Docente ve todo.
+
+  Uso: resumen_tema.html?tema=<id>
+  Versión: v1.0.0 (2026-10-27)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumen final del tema</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --line:#273250; --text:#e5e7eb; --muted:#9ca3af; --ok:#10b981; --term:#38bdf8; --gold:#ffd700; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.55; }
+    .wrap { max-width:820px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    h1 { margin:0; font-size:1.35rem; }
+    .autor { color:var(--muted); font-size:.95rem; }
+    .acciones { display:flex; gap:8px; flex-wrap:wrap; }
+    button, .btn { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe; padding:.45rem .85rem; border-radius:6px; cursor:pointer; font-weight:600; font-size:.9rem; text-decoration:none; transition:background-color .3s ease; font-family:inherit; }
+    button:hover, .btn:hover { background-color:rgba(128,90,213,.32); }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    .btn-primary { background-color:#805ad5; border-color:#805ad5; color:#fff; }
+    .btn-primary:hover { background-color:#a78bfa; }
+    .avance { padding:12px 14px; border-radius:12px; background:var(--card); border:1px solid var(--line); margin-bottom:14px; font-weight:600; }
+    .avance.listo { border-color:rgba(255,215,0,.55); box-shadow:0 0 16px rgba(255,215,0,.15); }
+    .barra { height:8px; background:#1f2937; border-radius:99px; overflow:hidden; margin-top:8px; }
+    .barra > div { height:100%; background:linear-gradient(90deg,var(--ok),#34d399); width:0; }
+    .intro { background:var(--card); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:10px; padding:12px 16px; margin-bottom:12px; }
+    section.eje { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:12px; }
+    section.eje h2 { margin:0 0 6px; font-size:1.08rem; }
+    .num { color:var(--muted); font-weight:500; margin-right:4px; }
+    .resumen { margin:0; }
+    .claves { margin:8px 0 0; color:var(--muted); font-size:.95rem; }
+    .claves strong { color:var(--term); font-weight:600; }
+    .ejemplo { margin:8px 0 0; padding:8px 12px; border-left:3px solid var(--ok); background:rgba(16,185,129,.08); border-radius:6px; }
+    .tapado { color:var(--muted); font-style:italic; margin:0; }
+    .practica { background:var(--card); border:1px solid rgba(167,139,250,.45); border-radius:14px; padding:14px 16px; margin-bottom:12px; }
+    .practica h2 { margin:0 0 4px; font-size:1.08rem; }
+    .practica p.sub { margin:0 0 8px; color:var(--muted); font-size:.92rem; }
+    .practica ol { margin:0; padding-left:22px; }
+    .practica li { margin:6px 0; }
+    .aviso { color:var(--muted); text-align:center; padding:30px 10px; }
+    .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:var(--ok); color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; }
+
+    /* Versión para imprimir / guardar PDF: fondo blanco, sin botones */
+    @media print {
+      body { background:#fff; color:#000; }
+      .wrap { max-width:none; padding:0; }
+      .acciones, .barra, .toast, .avance { display:none !important; }
+      .intro, section.eje, .practica { background:#fff; border:1px solid #999; color:#000; break-inside:avoid; }
+      .claves, .claves strong, .practica p.sub { color:#000; }
+      .ejemplo { background:#fff; border-left-color:#000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Resumen final del tema</h1>
+        <div class="autor" id="autor"></div>
+      </div>
+      <div class="acciones">
+        <button id="btnImprimir" title="Imprimir o guardar como PDF" disabled>Imprimir / PDF</button>
+        <button id="btnCopiar" title="Copiar el resumen como texto" disabled>Copiar texto</button>
+        <a class="btn" id="btnExamen">Ir al examen</a>
+        <a class="btn btn-primary" id="btnHub">Volver al tema</a>
+      </div>
+    </header>
+
+    <div class="avance" id="avance">Cargando…<div class="barra"><div id="barra"></div></div></div>
+    <div id="contenido"><p class="aviso">Cargando resumen…</p></div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script src="temas_data.js"></script>
+  <script type="module">
+    import { auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const tema = (params.get('tema') || params.get('theme') || sessionStorage.getItem('tema.active') || '').trim();
+    const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const ALIAS = { caza_conceptos: 'caza' };
+
+    function urlCon(pagina) {
+      const u = new URL(pagina, location);
+      u.searchParams.set('tema', tema);
+      u.searchParams.set('theme', tema);
+      return u.toString();
+    }
+
+    async function cargarBanco() {
+      if (!/^[a-z0-9_]+$/.test(tema)) throw new Error('Tema inválido');
+      const res = await fetch(`themes/${tema}/examen.json`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Este tema todavía no tiene resumen final');
+      const banco = await res.json();
+      if (!Array.isArray(banco.ejes) || !banco.ejes.length) throw new Error('Este tema todavía no tiene resumen final');
+      return banco;
+    }
+
+    function esperarUsuario() {
+      return new Promise((resolve) => {
+        const stop = onAuthStateChanged(auth, (user) => { stop(); resolve(user); });
+        setTimeout(() => resolve(auth.currentUser), 5000);
+      });
+    }
+
+    // Avance en las actividades requeridas (mismo cálculo que el examen)
+    async function avanceAlumno(user, banco) {
+      const acts = banco.actividadesRequeridas || ['quiz', 'caza', 'cruci', 'material', 'mapa'];
+      const mejor = {};
+      try {
+        const snap = await getDocs(query(collection(db, 'progreso_temas'), where('uid', '==', user.uid), where('moduleId', '==', tema)));
+        snap.docs.forEach((d) => {
+          const x = d.data();
+          const act = ALIAS[x.lessonId] || x.lessonId;
+          const p = Math.min(100, Math.max(Number(x.bestScore) || 0, Number(x.score) || 0));
+          mejor[act] = Math.max(mejor[act] || 0, p);
+        });
+      } catch (e) {
+        console.warn('No se pudo leer el progreso de Firebase:', e);
+      }
+      return Math.round(acts.reduce((s, a) => s + (mejor[a] || 0), 0) / acts.length);
+    }
+
+    function render(banco, desbloqueado, avance) {
+      const requerido = banco.avanceRequerido ?? 80;
+      const filosofo = banco.filosofo || '';
+      const texto = [`RESUMEN FINAL — ${banco.tema || tema}`, ''];
+
+      if (!desbloqueado) {
+        $('contenido').innerHTML = banco.ejes.map((e, i) =>
+          `<section class="eje"><h2><span class="num">${i + 1}.</span>${escapeHtml(e.titulo)}</h2><p class="tapado">🔒 Se desbloquea con ${requerido}% en las actividades del tema.</p></section>`).join('');
+        $('avance').firstChild.textContent = `📊 Vas ${avance}% en las actividades. El resumen final se desbloquea con ${requerido}%, junto con el examen con ${filosofo}.`;
+        $('barra').style.width = `${Math.min(100, Math.round((avance / requerido) * 100))}%`;
+        return null;
+      }
+
+      let html = '';
+      if (banco.intro) {
+        html += `<div class="intro">${escapeHtml(banco.intro)}</div>`;
+        texto.push(banco.intro, '');
+      }
+      html += banco.ejes.map((e, i) => {
+        texto.push(`${i + 1}. ${e.titulo}`);
+        if (e.resumen) texto.push(`   ${e.resumen}`);
+        if (e.palabras?.length) texto.push(`   Palabras clave: ${e.palabras.join(', ')}`);
+        if (e.ejemplo) texto.push(`   Ejemplo: ${e.ejemplo}`);
+        texto.push('');
+        return `<section class="eje"><h2><span class="num">${i + 1}.</span>${escapeHtml(e.titulo)}</h2>
+          ${e.resumen ? `<p class="resumen">${escapeHtml(e.resumen)}</p>` : ''}
+          ${e.palabras?.length ? `<p class="claves">Palabras clave: ${e.palabras.map((p) => `<strong>${escapeHtml(p)}</strong>`).join(', ')}</p>` : ''}
+          ${e.ejemplo ? `<p class="ejemplo">Ejemplo: ${escapeHtml(e.ejemplo)}</p>` : ''}</section>`;
+      }).join('');
+
+      if (Array.isArray(banco.practica) && banco.practica.length) {
+        texto.push('PARA PRACTICAR (respondé con tus palabras, usando los conceptos)');
+        banco.practica.forEach((p, i) => texto.push(`${i + 1}. ${p}`));
+        html += `<section class="practica"><h2>Para practicar</h2>
+          <p class="sub">Respondé por escrito con tus palabras, usando los conceptos y explicando el porqué. En el examen, ${escapeHtml(filosofo)} te va a preguntar de esta manera.</p>
+          <ol>${banco.practica.map((p) => `<li>${escapeHtml(p)}</li>`).join('')}</ol></section>`;
+      }
+
+      $('contenido').innerHTML = html;
+      $('avance').classList.add('listo');
+      $('avance').firstChild.textContent = `🏛️ Las ${banco.ejes.length} ideas centrales que te puede preguntar ${filosofo} en el examen. Copialas en tu carpeta y practicá las preguntas del final.`;
+      $('barra').parentElement.remove();
+      $('btnImprimir').disabled = false;
+      $('btnCopiar').disabled = false;
+      return texto.join('\n');
+    }
+
+    function aviso(msg) {
+      const t = $('toast'); t.textContent = msg; t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2500);
+    }
+
+    async function iniciar() {
+      $('btnHub').href = urlCon('tema.html');
+      $('btnExamen').href = urlCon('dialogo/examen.html');
+      $('btnImprimir').addEventListener('click', () => window.print());
+
+      let banco;
+      try {
+        banco = await cargarBanco();
+      } catch (e) {
+        $('avance').firstChild.textContent = '⚠️ ' + e.message;
+        $('contenido').innerHTML = '';
+        $('btnExamen').remove();
+        return;
+      }
+      $('autor').textContent = banco.tema || '';
+      document.title = `Resumen final · ${TOPICS?.[tema]?.name || banco.filosofo || tema}`;
+
+      const user = await esperarUsuario();
+      if (!user) {
+        $('avance').firstChild.textContent = '⚠️ Iniciá sesión para ver el resumen final.';
+        $('contenido').innerHTML = '';
+        return;
+      }
+      const docente = await isCurrentUserAdmin() && localStorage.getItem('admin.vistaAlumno') !== '1';
+      const avance = await avanceAlumno(user, banco);
+      const texto = render(banco, docente || avance >= (banco.avanceRequerido ?? 80), avance);
+
+      $('btnCopiar').addEventListener('click', async () => {
+        if (!texto) return;
+        try {
+          await navigator.clipboard.writeText(texto);
+          aviso('Resumen copiado');
+        } catch {
+          aviso('No se pudo copiar: usá Imprimir / PDF');
+        }
+      });
+    }
+
+    iniciar();
+  </script>
+</body>
+</html>

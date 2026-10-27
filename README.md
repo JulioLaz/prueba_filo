@@ -28,6 +28,7 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 | 🧩 Crucigrama | `themes/<id>/crossword_config.js` | `crossword.html` + `js/crossword_engine.js` |
 | 🎬 Video + cloze | `themes/<id>/cloze_test.js` | `tema.html` (video en `temas_data.js` → `VIDEO_CONFIG`) |
 | 🏛️ Examen oral con el filósofo (actividad final) | `themes/<id>/examen.json` | `dialogo/examen.html` + Cloud Functions `examen*` |
+| 📜 Resumen final del tema (lo que se evalúa en el examen; se desbloquea con 80%) | `themes/<id>/examen.json` | `resumen_tema.html` |
 
 Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad de secciones, preguntas, niveles, etc.).
 
@@ -43,6 +44,8 @@ Por ahora lo tiene **Ética de Aristóteles**. Es un diálogo guiado con el fil�
 - El tema queda **aprobado** solo con 80% de avance **y** el examen aprobado (sello "Falta examen" mientras tanto).
 - La nota la guarda la Cloud Function: el alumno no puede escribirla (`firestore.rules`).
 - El docente ve cada intento, con la conversación completa y la rúbrica, en `examenes.html?tema=<id>` (botón "Exámenes del curso" en la página del examen).
+
+**Resumen final** (`resumen_tema.html`, botón "Resumen final" en la tarjeta del examen): las 12 ideas centrales que se evalúan, cada una con su explicación, palabras clave y un ejemplo, más preguntas "Para practicar" (parecidas a las del examen, pero distintas). Se desbloquea con el mismo 80% que el examen y se puede imprimir o copiar para la carpeta. Sale del mismo `examen.json`: en cada eje, `guia` y `claves` son para la IA, y `resumen`, `palabras` y `ejemplo` son para el alumno.
 
 Para editar las preguntas, casos o reflexiones: cambiar `themes/<id>/examen.json` y hacer push (no hace falta volver a desplegar la función). Para agregar el examen a otro tema: crear su `examen.json` y sumarlo a `EXAMEN_CONFIG` en `temas_data.js`.
 

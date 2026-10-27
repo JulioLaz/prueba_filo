@@ -118,7 +118,10 @@
         <p id="examenDesc">Diálogo final con el maestro: cierra el tema.</p>
         <div class="status">
           <small id="statusExamen">—</small>
-          <button class="btn btn-primary" id="goExamen">Abrir</button>
+          <div class="card-actions">
+            <button class="btn btn-secondary" id="goResumenTema" title="Resumen final del tema para la carpeta: lo que se evalúa en el examen">Resumen final</button>
+            <button class="btn btn-primary" id="goExamen">Abrir</button>
+          </div>
         </div>
       </article>
     </section>
@@ -558,6 +561,7 @@
     document.getElementById('goResumenMaterial').addEventListener('click', ()=> go('resumen_material.html'));
     document.getElementById('goResumenQuiz').addEventListener('click', ()=> go('resumen_cuestionario.html'));
     document.getElementById('goExamen').addEventListener('click', ()=> go('dialogo/examen.html'));
+    document.getElementById('goResumenTema').addEventListener('click', ()=> go('resumen_tema.html'));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');
