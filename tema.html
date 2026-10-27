@@ -405,42 +405,83 @@
         document.getElementById('statusVideo').textContent = s.video.text;
       }
 
+      // Mejor % de cada actividad: lo de esta sesión o el récord en Firebase
+      const P = {
+        quiz: pctActividad('quiz', s.quiz.pct), caza: pctActividad('caza', s.caza.pct),
+        cruci: pctActividad('cruci', s.cruci.pct), mat: pctActividad('mat', s.mat.pct),
+        mapa: pctActividad('mapa', s.mapa.pct), video: hasVideo ? pctActividad('video', s.video?.pct) : 0
+      };
+
       const segments = document.getElementById('segments');
       segments.innerHTML = '';
       
       const baseSegments = [
-        {key:'quiz', label:'📝 Cuestionario',         pct:s.quiz.pct,  target:'goQuiz'},
-        // {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
-        {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-        {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
-        {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
-        {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
+        {key:'quiz', label:'📝 Cuestionario',         pct:P.quiz,  target:'goQuiz'},
+        // {key:'quiz', label:'📝 Quiz',         pct:P.quiz,  target:'goQuiz'},
+        {key:'caza', label:'🔎 Caza',         pct:P.caza,  target:'goCaza'},
+        {key:'cruci', label:'🧩 Crucigrama',  pct:P.cruci, target:'goCruci'},
+        {key:'mat',  label:'📖 Material',     pct:P.mat,   target:'goMaterial'},
+        {key:'mapa', label:'🗺️ Mapa',        pct:P.mapa,  target:'goMapa'},
       ];
 
       const allSegments = hasVideo ? [
-        {key:'quiz', label:'📝 Cuestionario',         pct:s.quiz.pct,  target:'goQuiz'},
-        // {key:'quiz', label:'📝 Quiz',         pct:s.quiz.pct,  target:'goQuiz'},
-        {key:'caza', label:'🔎 Caza',         pct:s.caza.pct,  target:'goCaza'},
-        {key:'video', label:'🎬 Video',       pct:s.video.pct, target:'goVideo'},
-        {key:'cruci', label:'🧩 Crucigrama',  pct:s.cruci.pct, target:'goCruci'},
-        {key:'mat',  label:'📖 Material',     pct:s.mat.pct,   target:'goMaterial'},
-        {key:'mapa', label:'🗺️ Mapa',        pct:s.mapa.pct,  target:'goMapa'},
+        {key:'quiz', label:'📝 Cuestionario',         pct:P.quiz,  target:'goQuiz'},
+        // {key:'quiz', label:'📝 Quiz',         pct:P.quiz,  target:'goQuiz'},
+        {key:'caza', label:'🔎 Caza',         pct:P.caza,  target:'goCaza'},
+        {key:'video', label:'🎬 Video',       pct:P.video, target:'goVideo'},
+        {key:'cruci', label:'🧩 Crucigrama',  pct:P.cruci, target:'goCruci'},
+        {key:'mat',  label:'📖 Material',     pct:P.mat,   target:'goMaterial'},
+        {key:'mapa', label:'🗺️ Mapa',        pct:P.mapa,  target:'goMapa'},
       ] : baseSegments;
 
       allSegments.forEach(seg=>{
         const el = document.createElement('div');
-        el.className = 'seg clickable';
+        el.className = 'seg clickable' + (seg.pct >= 100 ? ' completed' : seg.pct >= UMBRAL_APROBADA ? ' approved' : '');
         el.dataset.type = seg.key;
         el.innerHTML = `<div class="fill" style="width:${seg.pct}%"></div><div class="label">${seg.label} · ${seg.pct}%</div>`;
         el.addEventListener('click', ()=> document.getElementById(seg.target).click());
         segments.appendChild(el);
       });
 
-      const parts = hasVideo ? [s.quiz.pct, s.caza.pct, s.video.pct, s.cruci.pct, s.mat.pct, s.mapa.pct]
-                             : [s.quiz.pct, s.caza.pct, s.cruci.pct, s.mat.pct, s.mapa.pct];
+      const parts = hasVideo ? [P.quiz, P.caza, P.video, P.cruci, P.mat, P.mapa]
+                             : [P.quiz, P.caza, P.cruci, P.mat, P.mapa];
       const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
       document.getElementById('progressPct').textContent = globalPct + '%';
       document.getElementById('progressBar').style.width = globalPct + '%';
+
+      marcarActividades(P);
+    }
+
+    // ===== Sello de actividad aprobada (≥ 80%) / completa (100%) en cada tarjeta =====
+    const UMBRAL_APROBADA = 80;
+    const BOTON_DE = { quiz:'goQuiz', caza:'goCaza', video:'goVideo', cruci:'goCruci', mat:'goMaterial', mapa:'goMapa' };
+    const CLAVE_FIREBASE = { quiz:'quiz', caza:'caza', video:'video', cruci:'cruci', mat:'material', mapa:'mapa' };
+
+    function pctActividad(key, pctLocal){
+      const fb = window.__progresoFirebase?.[CLAVE_FIREBASE[key]]?.percentage || 0;
+      return Math.max(Number(pctLocal) || 0, Number(fb) || 0);
+    }
+
+    function marcarActividades(P){
+      Object.entries(BOTON_DE).forEach(([key, id]) => {
+        const card = document.getElementById(id)?.closest('.card');
+        if (!card) return;
+        const p = Math.round(P[key] || 0);
+        card.classList.toggle('act-aprobada', p >= UMBRAL_APROBADA && p < 100);
+        card.classList.toggle('act-completa', p >= 100);
+        let sello = card.querySelector('.sello-actividad');
+        if (p < UMBRAL_APROBADA) { sello?.remove(); return; }
+        if (!sello) {
+          sello = document.createElement('span');
+          sello.className = 'sello-actividad';
+          sello.tabIndex = 0;                       // para mostrar el cartelito al tocar en el celular
+          card.appendChild(sello);
+        }
+        sello.textContent = p >= 100 ? '★' : '✓';
+        sello.dataset.tip = p >= 100 ? 'Completa · 100%' : `Aprobada · ${p}%`;
+        sello.setAttribute('aria-label', sello.dataset.tip);
+        sello.title = sello.dataset.tip;
+      });
     }
 
     renderProgressUI();
@@ -1759,6 +1800,7 @@ async function loadProgressFromFirebase() {
 
 function updateUIWithFirebaseProgress(firebaseProgress) {
   console.log("🎨 Actualizando UI con progreso completo...");
+  window.__progresoFirebase = firebaseProgress;   // lo usan los sellos de actividad (renderProgressUI)
 
   const activities = ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'];
   const segments = document.querySelectorAll('.seg[data-type]');
@@ -2089,17 +2131,15 @@ async function initializeSystem() {
 function injectImprovedCSS() {
   const style = document.createElement('style');
   style.textContent = `
-    .seg.completed .fill {
-      background: linear-gradient(90deg, #10b981, #059669) !important;
-    }
-    
+    /* Actividad aprobada (≥ 80%) o completa (100%): segmento dorado */
     .seg.approved .fill {
-      background: linear-gradient(90deg, #3b82f6, #1d4ed8) !important;
+      background: linear-gradient(90deg, #b8860b, #ffd700) !important;
     }
-    
-    .seg.in-progress .fill {
-      background: linear-gradient(90deg, #f59e0b, #d97706) !important;
+    .seg.completed .fill {
+      background: linear-gradient(90deg, #ffd700, #fff3b0, #ffd700) !important;
     }
+    .seg.approved, .seg.completed { border-color: rgba(255, 215, 0, 0.6) !important; }
+    .seg.approved .label, .seg.completed .label { color: #2b1d00; text-shadow: none; }
     
     #progressPct {
       font-weight: 700;

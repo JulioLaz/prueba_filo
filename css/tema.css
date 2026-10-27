@@ -396,3 +396,69 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .sheet.compact-pad #videoFrameSlot iframe,
 .sheet.compact-pad .video-container-wrapper{ min-height:unset !important }
 
+
+/* ========================================
+   🏅 ACTIVIDAD APROBADA (≥ 80%) / COMPLETA (100%) — tema.html: marcarActividades()
+   ======================================== */
+.card.act-aprobada, .card.act-completa {
+  border-color: rgba(255, 215, 0, 0.55);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.28);
+}
+.card.act-completa { animation: act-brillo-oro 3s ease-in-out infinite; }
+@keyframes act-brillo-oro {
+  0%, 100% { box-shadow: 0 0 14px rgba(255, 215, 0, 0.25); }
+  50%      { box-shadow: 0 0 28px rgba(255, 215, 0, 0.55); }
+}
+@media (prefers-reduced-motion: reduce) { .card.act-completa { animation: none; } }
+
+/* Que el título no quede debajo del círculo */
+.card.act-aprobada .card-icon, .card.act-completa .card-icon { padding-right: 38px; }
+
+/* Círculo arriba a la derecha: ✓ aprobada (contorno) / ★ completa (relleno) */
+.card .sello-actividad {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: default;
+  color: #ffd700;
+  border: 2px solid #ffd700;
+  background: rgba(255, 215, 0, 0.12);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.45);
+  outline: none;
+}
+.card.act-completa .sello-actividad {
+  color: #2b1d00;
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #c9971c, #ffd700, #fff3b0);
+}
+
+/* Cartelito "Aprobada · 85%" al pasar el mouse o tocar el círculo */
+.card .sello-actividad::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd700;
+  background: #111827;
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+}
+.card .sello-actividad:hover::after,
+.card .sello-actividad:focus::after { opacity: 1; }
