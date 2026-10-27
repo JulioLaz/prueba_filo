@@ -1,0 +1,146 @@
+{
+  "_info": "Banco del examen oral con Aristóteles. Lo lee la Cloud Function (examenIniciar) desde GitHub Pages: al editarlo y hacer push, el próximo examen ya usa la versión nueva (no hace falta redeploy). Versión v1.0.0 (2026-10-27).",
+  "version": "1.0.0",
+  "filosofo": "Aristóteles",
+  "tema": "Ética de Aristóteles (Ética a Nicómaco)",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "avanceRequerido": 80,
+  "actividadesRequeridas": ["quiz", "caza", "video", "cruci", "material", "mapa"],
+  "cantidadEjes": 4,
+
+  "aperturas": [
+    { "id": "liceo", "texto": "Aristóteles camina por los jardines del Liceo de Atenas y le pide al alumno que lo acompañe en el paseo: así enseñaba a sus discípulos, los peripatéticos (los que pasean)." },
+    { "id": "alejandro", "texto": "Aristóteles recuerda que fue maestro del joven Alejandro Magno y le cuenta al alumno que a Alejandro también le tomaba examen hablando, no por escrito." },
+    { "id": "mercado", "texto": "Aristóteles acaba de ver en el mercado de Atenas a un vendedor que engañaba en el peso y a otro que regalaba todo; lo usa como excusa para empezar a conversar sobre cómo vivir bien." },
+    { "id": "feliz", "texto": "Aristóteles empieza con una pregunta directa y personal: si el alumno se considera feliz, y aclara que la respuesta a eso no se califica, pero que lo que sigue sí." },
+    { "id": "cita", "texto": "Aristóteles abre con su frase «Somos lo que hacemos repetidamente; la excelencia no es un acto, sino un hábito» y le dice al alumno que hoy va a ver cuánto de eso aprendió." },
+    { "id": "lampara", "texto": "Es de noche en el Liceo; Aristóteles enciende una lámpara de aceite y dice que la filosofía, como la lámpara, sirve para ver mejor el camino: hoy quiere ver cuán claro lo tiene el alumno." }
+  ],
+
+  "ejes": [
+    {
+      "id": "sumo_bien",
+      "titulo": "Sumo Bien y felicidad (eudaimonía)",
+      "guia": "Preguntar cuál es el fin último de la vida humana según Aristóteles y por qué la felicidad lo es.",
+      "claves": "La felicidad (eudaimonía) es el Sumo Bien: se busca por sí misma y no como medio para otra cosa; todo lo demás se busca por ella. No es un estado pasajero sino una actividad del alma conforme a la virtud, durante toda una vida."
+    },
+    {
+      "id": "cadena_fines",
+      "titulo": "La cadena de fines",
+      "guia": "Pedir que explique, con un ejemplo de su vida, cómo una acción busca un fin que a su vez es medio para otro, y por qué la cadena tiene que terminar en algo.",
+      "claves": "Toda acción busca un fin; muchos fines son medios para otros (estudiar → aprobar → recibirse → trabajar…). Si la cadena fuera infinita, el deseo sería vacío: tiene que haber un fin último que se quiere por sí mismo (la felicidad)."
+    },
+    {
+      "id": "placer_honor_riqueza",
+      "titulo": "Placer, honores y riqueza",
+      "guia": "Preguntar por qué, para Aristóteles, ni el placer, ni la fama/honores, ni el dinero pueden ser el Sumo Bien.",
+      "claves": "El placer solo es una vida propia de animales (o de esclavos de los deseos); los honores dependen de quien los da, no de uno; la riqueza es un medio (sirve para otra cosa), no un fin. El Sumo Bien debe ser propio, estable y buscado por sí mismo."
+    },
+    {
+      "id": "ergon",
+      "titulo": "El argumento de la función (ergon)",
+      "guia": "Preguntar cuál es la función propia del ser humano y qué tiene que ver con vivir bien (puede usar la comparación con el flautista, el ojo o un cuchillo).",
+      "claves": "Cada cosa es buena cuando cumple bien su función (un buen cuchillo corta bien). Lo propio y exclusivo del ser humano es la razón; vivir bien es ejercer bien la razón, es decir, vivir conforme a la virtud."
+    },
+    {
+      "id": "dos_virtudes",
+      "titulo": "Virtudes éticas y dianoéticas",
+      "guia": "Pedir que distinga las dos familias de virtudes, cómo se adquiere cada una y un ejemplo de cada una.",
+      "claves": "Virtudes éticas (del carácter): ordenan deseos y emociones, se adquieren por hábito (valentía, templanza, generosidad, justicia). Virtudes dianoéticas (intelectuales, de la razón): se adquieren por enseñanza y requieren experiencia y tiempo (prudencia, sabiduría)."
+    },
+    {
+      "id": "habito",
+      "titulo": "La virtud como hábito",
+      "guia": "Preguntar cómo se llega a ser virtuoso según Aristóteles y si alguien nace virtuoso.",
+      "claves": "Nadie nace virtuoso ni vicioso: tenemos la capacidad, y la virtud se forma practicando (uno se hace justo obrando con justicia, valiente actuando con valentía). El hábito forma el carácter; por eso importan la educación y la repetición de actos buenos."
+    },
+    {
+      "id": "termino_medio",
+      "titulo": "El término medio",
+      "guia": "Pedir que explique qué es el término medio y que lo muestre con una virtud y sus dos vicios (exceso y defecto).",
+      "claves": "La virtud es un término medio entre dos vicios: uno por exceso y otro por defecto (valentía entre temeridad y cobardía; generosidad entre derroche y tacañería; templanza entre desenfreno e insensibilidad). No es la mitad matemática: es relativo a la persona y a la situación, y lo determina la prudencia."
+    },
+    {
+      "id": "prudencia",
+      "titulo": "La prudencia (frónesis)",
+      "guia": "Preguntar qué es la prudencia, por qué es tan importante para las demás virtudes y si se puede aprender de un libro.",
+      "claves": "La prudencia (frónesis) es la sabiduría práctica: deliberar bien y decidir qué hacer aquí y ahora. Es la que encuentra el término medio en cada caso concreto. Se gana con la experiencia, no solo con teoría; sin ella las virtudes éticas no aciertan."
+    },
+    {
+      "id": "justicia",
+      "titulo": "La justicia",
+      "guia": "Preguntar por qué la justicia es una virtud distinta (social) y pedir que explique alguno de sus tipos con un ejemplo.",
+      "claves": "La justicia es la virtud que se ejerce en relación con los demás (virtud perfecta o completa) y busca el bien común. Distributiva: repartir bienes, honores y cargas según el mérito, proporcionalmente. Correctiva: restituir la igualdad en intercambios o daños. Equidad: corregir la ley general en un caso particular para que sea justa."
+    },
+    {
+      "id": "amistad",
+      "titulo": "La amistad (philia)",
+      "guia": "Pedir que explique los tres tipos de amistad y cuál es la verdadera y por qué.",
+      "claves": "Amistad por utilidad (dura mientras hay beneficio), por placer (mientras dura el disfrute) y por virtud (entre personas buenas que quieren el bien del otro por el otro mismo). Esta última es la perfecta: es estable, escasa y necesita tiempo y convivencia. Nadie elegiría vivir sin amigos: la amistad es necesaria para la vida buena."
+    },
+    {
+      "id": "voluntario_akrasia",
+      "titulo": "Lo voluntario, lo involuntario y la akrasia",
+      "guia": "Preguntar cuándo somos responsables de una acción (voluntaria) y qué es la akrasia, con un ejemplo cotidiano.",
+      "claves": "Un acto es voluntario cuando se hace sabiendo lo que se hace y sin coacción externa; por eso merece elogio o reproche. Es involuntario si se hace por fuerza o por ignorancia de las circunstancias. La akrasia (debilidad de la voluntad) es saber qué es lo mejor y, sin embargo, dejarse arrastrar por el deseo y no hacerlo."
+    },
+    {
+      "id": "animal_politico",
+      "titulo": "El ser humano como animal político",
+      "guia": "Preguntar qué significa que el ser humano es un animal político y por qué la ética se continúa en la vida de la comunidad (polis).",
+      "claves": "Por naturaleza vivimos en comunidad (zôon politikón): solo en la polis desarrollamos plenamente nuestras capacidades, como el lenguaje y la justicia. La política busca el bien común y la felicidad de los ciudadanos; la ética personal y la vida en comunidad van juntas. Quien vive aislado sería «una bestia o un dios»."
+    }
+  ],
+
+  "casos": [
+    {
+      "id": "pelea_amigos",
+      "texto": "Dos amigos tuyos se empiezan a pelear en el recreo por un comentario en un grupo de WhatsApp. Podés quedarte callado, meterte a los gritos o hacer otra cosa.",
+      "claves": "Identificar la virtud en juego (valentía, prudencia, también amistad/justicia), los dos extremos (cobardía/indiferencia vs. temeridad/violencia) y proponer un término medio razonado (intervenir con calma, con palabras, buscando el bien de ambos)."
+    },
+    {
+      "id": "copiarse",
+      "texto": "En una prueba, tu compañero de banco te pide que le pases las respuestas. Si no le pasás, se enoja; si le pasás, los dos se arriesgan y él no aprende.",
+      "claves": "Relacionar con la justicia, la amistad por virtud (querer el bien real del otro, no solo agradarle) y la prudencia; distinguir el acto voluntario y su responsabilidad; proponer una acción virtuosa (ayudarlo a estudiar después, no hacer trampa)."
+    },
+    {
+      "id": "trabajo_grupo",
+      "texto": "En un trabajo práctico grupal, dos integrantes no hicieron nada, pero el profesor pone la misma nota a todos. Tenés que decidir qué hacer.",
+      "claves": "Aplicar la justicia distributiva (repartir según el mérito, proporcionalmente) y quizá la equidad; reconocer los extremos (callarse y aceptar la injusticia vs. escrachar o humillar); proponer un término medio prudente."
+    },
+    {
+      "id": "defender",
+      "texto": "Ves que en redes se están burlando de un chico del curso con memes. La mayoría se ríe y comparte.",
+      "claves": "Identificar la valentía como término medio entre la cobardía (sumarse o mirar para otro lado) y la temeridad (responder con agresión); la prudencia para elegir cómo actuar; la amistad y la justicia como virtudes sociales."
+    },
+    {
+      "id": "plata",
+      "texto": "Cobraste tu primer sueldo en un trabajo de fin de semana. Algunos amigos te dicen que lo gastes todo en una salida; tu familia te dice que lo guardes todo.",
+      "claves": "Aplicar la generosidad / buen uso del dinero como término medio entre el derroche y la tacañería; la riqueza como medio y no como fin; la templanza; decidir con prudencia según la situación."
+    },
+    {
+      "id": "amigo_interesado",
+      "texto": "Tenés un amigo que solo te escribe cuando necesita algo: la tarea, plata o que lo lleves en moto.",
+      "claves": "Reconocer la amistad por utilidad y diferenciarla de la amistad por virtud; explicar por qué la verdadera amistad busca el bien del otro por sí mismo; decidir qué hacer con prudencia."
+    },
+    {
+      "id": "celular",
+      "texto": "Mañana tenés un examen importante. Sabés que tenés que estudiar, pero te quedás hasta las 3 de la mañana mirando videos en el celular.",
+      "claves": "Identificar la akrasia (saber lo mejor y no hacerlo), la templanza como término medio en los placeres, y el hábito como camino para formar la virtud (cómo cambiar repitiendo actos buenos)."
+    },
+    {
+      "id": "capitan",
+      "texto": "Te eligen capitán del equipo del torneo intercolegial. Tenés que decidir quién juega: tus mejores amigos o los que más entrenaron.",
+      "claves": "Aplicar la justicia distributiva (según el mérito), distinguirla de la amistad, pensar en el bien común del equipo (dimensión política) y decidir con prudencia."
+    }
+  ],
+
+  "reflexiones": [
+    { "id": "habito_propio", "texto": "¿Qué hábito tuyo te acerca a la virtud y cuál te aleja? ¿Cómo lo cambiarías, según lo que enseña Aristóteles?" },
+    { "id": "vida_buena", "texto": "Para vos, ¿qué sería una vida buena dentro de diez años? ¿En qué coincide y en qué se diferencia con la eudaimonía de Aristóteles?" },
+    { "id": "amigo_virtud", "texto": "Pensá en alguna amistad tuya: ¿es por utilidad, por placer o por virtud? ¿Qué la haría más verdadera?" },
+    { "id": "medio_propio", "texto": "¿En qué situación de tu vida te cuesta encontrar el término medio (te pasás o te quedás corto)? ¿Qué te diría Aristóteles?" },
+    { "id": "redes", "texto": "¿Las redes sociales ayudan o dificultan vivir según la virtud? Respondé con algún concepto de Aristóteles." }
+  ]
+}

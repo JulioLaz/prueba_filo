@@ -225,3 +225,13 @@ const TOPICS = {
         duration: '11:00'
     }
     };
+    // Examen oral con el filósofo: actividad final que cierra el tema.
+    // El tema se aprueba con avance ≥ 80% en las demás actividades Y el examen aprobado.
+    // El banco de preguntas está en themes/<tema>/examen.json (lo lee la Cloud Function).
+    const EXAMEN_CONFIG = {
+      etica_aristoteles: {
+        filosofo: 'Aristóteles',
+        icono: '🏛️',
+        notaAprobacion: 6
+      }
+    };

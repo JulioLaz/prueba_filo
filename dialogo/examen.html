@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--
+  dialogo/examen.html
+  Examen oral con el filósofo: actividad final que cierra el tema.
+
+  - Antes de empezar muestra la situación del alumno: avance en las demás
+    actividades (se habilita con 80%), intentos que le quedan hoy (2 por día),
+    mejor nota y la devolución del último intento.
+  - El examen es un diálogo guiado: el filósofo hace una pregunta por vez
+    (ejes al azar, un caso práctico y una reflexión personal) y puede repreguntar
+    una vez si la respuesta es vaga. No da respuestas ni evalúa durante el examen.
+  - Al terminar, la IA corrige con una rúbrica y la Cloud Function guarda la
+    nota (1 a 10, se aprueba con 6). El alumno no puede escribir la nota.
+  - No se puede pegar texto en las respuestas (se registra el intento).
+  - Si se cierra la página, el examen se retoma al volver (hasta 45 min sin actividad).
+
+  Cloud Functions: examenEstado, examenIniciar, examenResponder (functions/index.js)
+  Banco de preguntas: themes/<tema>/examen.json
+  Uso: dialogo/examen.html?tema=<id>
+  Versión: v1.0.0 (2026-10-27)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen oral</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+  <style>
+    :root {
+      --bg:#0b1220; --card:#111827; --card2:#161f33; --line:#273250; --text:#e5e7eb; --muted:#9ca3af;
+      --brand:#805ad5; --brand2:#a78bfa; --ok:#10b981; --bad:#f87171; --gold:#ffd700; --gold2:#c9971c;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+    .wrap { max-width:860px; margin:0 auto; padding:16px; min-height:100%; display:flex; flex-direction:column; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+    .titulo { display:flex; align-items:center; gap:12px; }
+    .avatar { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem;
+      background:linear-gradient(135deg, var(--gold2), var(--gold)); box-shadow:0 4px 18px rgba(255,215,0,.3); }
+    h1 { margin:0; font-size:1.3rem; }
+    .sub { color:var(--muted); font-size:.92rem; }
+    button, .btn { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe;
+      padding:.5rem .95rem; border-radius:6px; cursor:pointer; font-weight:600; font-size:.92rem; text-decoration:none; transition:background-color .2s ease; font-family:inherit; }
+    button:hover:not(:disabled), .btn:hover { background-color:rgba(128,90,213,.32); }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    .btn-primary { background-color:var(--brand); border-color:var(--brand); color:#fff; }
+    .btn-primary:hover:not(:disabled) { background-color:var(--brand2); }
+    .oculto { display:none !important; }
+
+    /* Panel de inicio / resultado */
+    .panel { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin-bottom:14px; }
+    .panel h2 { margin:0 0 10px; font-size:1.1rem; }
+    .reglas { margin:0; padding-left:20px; color:#d1d5db; }
+    .reglas li { margin:4px 0; }
+    .datos { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin:14px 0; }
+    .dato { background:var(--card2); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+    .dato .n { font-size:1.35rem; font-weight:800; }
+    .dato .l { color:var(--muted); font-size:.85rem; }
+    .dato.ok { border-color:rgba(255,215,0,.55); }
+    .aviso { padding:10px 12px; border-radius:10px; background:rgba(128,90,213,.12); border:1px solid rgba(167,139,250,.35); margin:10px 0; }
+    .aviso.alerta { background:rgba(248,113,113,.1); border-color:rgba(248,113,113,.45); }
+    .acciones { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .devolucion { margin-top:10px; padding:10px 12px; border-left:3px solid var(--gold2); background:rgba(255,215,0,.06); border-radius:6px; }
+
+    /* Chat */
+    .chat { flex:1; display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; min-height:420px; }
+    .chat-top { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 14px; border-bottom:1px solid var(--line); font-size:.9rem; color:var(--muted); }
+    .pasos { display:flex; gap:4px; }
+    .pasos span { width:22px; height:6px; border-radius:99px; background:#1f2937; }
+    .pasos span.hecho { background:var(--brand2); }
+    .pasos span.actual { background:var(--gold); }
+    .mensajes { flex:1; overflow-y:auto; padding:16px 14px; display:flex; flex-direction:column; gap:12px; }
+    .msg { max-width:85%; padding:10px 14px; border-radius:14px; white-space:pre-wrap; word-wrap:break-word; }
+    .msg.filosofo { align-self:flex-start; background:var(--card2); border:1px solid rgba(255,215,0,.25); border-top-left-radius:4px; }
+    .msg.filosofo strong { color:var(--gold); }
+    .msg.alumno { align-self:flex-end; background:rgba(128,90,213,.22); border:1px solid rgba(167,139,250,.4); border-top-right-radius:4px; }
+    .msg.final { border-color:rgba(255,215,0,.6); box-shadow:0 0 14px rgba(255,215,0,.15); }
+    .msg .quien { display:block; font-size:.78rem; color:var(--muted); margin-bottom:2px; font-weight:600; }
+    .pensando { align-self:flex-start; color:var(--muted); font-style:italic; font-size:.92rem; }
+    .pensando::after { content:'…'; animation:puntos 1.2s steps(3) infinite; }
+    @keyframes puntos { 0% { content:'.'; } 33% { content:'..'; } 66% { content:'…'; } }
+    .entrada { border-top:1px solid var(--line); padding:10px; display:flex; gap:8px; align-items:flex-end; }
+    textarea { flex:1; resize:none; min-height:64px; max-height:200px; background:#0f172a; color:var(--text); border:1px solid var(--line); border-radius:10px;
+      padding:10px 12px; font-family:inherit; font-size:.97rem; line-height:1.4; }
+    textarea:focus { outline:none; border-color:var(--brand2); }
+    .contador { color:var(--muted); font-size:.78rem; text-align:right; padding:0 12px 8px; }
+
+    /* Resultado */
+    .nota { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+    .nota .num { font-size:2.6rem; font-weight:900; line-height:1; padding:12px 18px; border-radius:14px; background:var(--card2); border:2px solid var(--line); }
+    .nota.aprobado .num { border-color:var(--gold); color:var(--gold); box-shadow:0 0 22px rgba(255,215,0,.25); }
+    .nota.desaprobado .num { border-color:rgba(248,113,113,.6); color:var(--bad); }
+    .nota .estado { font-size:1.15rem; font-weight:800; }
+
+    .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:#7c2d12; color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; z-index:10; max-width:90vw; text-align:center; }
+    @media (max-width:600px) { .msg { max-width:95%; } .wrap { padding:10px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="titulo">
+        <div class="avatar" id="avatar">🏛️</div>
+        <div>
+          <h1 id="titulo">Examen oral</h1>
+          <div class="sub" id="subtitulo">Cargando…</div>
+        </div>
+      </div>
+      <div class="acciones" style="margin:0">
+        <a class="btn oculto" id="btnDocente">Exámenes del curso</a>
+        <a class="btn btn-primary" id="btnHub">Volver al tema</a>
+      </div>
+    </header>
+
+    <!-- Inicio -->
+    <section class="panel" id="panelInicio">
+      <h2>Cómo es el examen</h2>
+      <ul class="reglas" id="reglas"></ul>
+      <div class="datos" id="datos"></div>
+      <div id="avisos"></div>
+      <div class="acciones">
+        <button class="btn-primary" id="btnComenzar" disabled>Comenzar examen</button>
+      </div>
+    </section>
+
+    <!-- Resultado -->
+    <section class="panel oculto" id="panelResultado">
+      <div class="nota" id="nota"></div>
+      <div class="devolucion" id="devolucionFinal"></div>
+      <div class="acciones">
+        <button class="oculto" id="btnReintentarCorreccion">Reintentar corrección</button>
+        <button class="oculto" id="btnOtraVez">Intentar de nuevo</button>
+        <a class="btn btn-primary" id="btnHub2">Volver al tema</a>
+      </div>
+    </section>
+
+    <!-- Diálogo -->
+    <section class="chat oculto" id="chat">
+      <div class="chat-top">
+        <span id="pasoTexto">Pregunta 1</span>
+        <div class="pasos" id="pasos"></div>
+      </div>
+      <div class="mensajes" id="mensajes"></div>
+      <div class="entrada" id="entrada">
+        <textarea id="respuesta" maxlength="1500" placeholder="Escribí tu respuesta con tus palabras… (Enter envía, Shift+Enter baja de línea)"></textarea>
+        <button class="btn-primary" id="btnEnviar">Enviar</button>
+      </div>
+      <div class="contador" id="contador">0 / 1500</div>
+    </section>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script src="../temas_data.js"></script>
+  <script type="module">
+    import { app, auth, onAuthStateChanged } from "/prueba_filo/firebase.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
+
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const tema = (params.get('tema') || params.get('theme') || sessionStorage.getItem('tema.active') || '').trim();
+    const CFG = (typeof EXAMEN_CONFIG !== 'undefined' && EXAMEN_CONFIG[tema]) || null;
+    const FILOSOFO = CFG?.filosofo || 'el filósofo';
+
+    const functions = getFunctions(app, 'southamerica-east1');
+    const fnEstado = httpsCallable(functions, 'examenEstado', { timeout: 60000 });
+    const fnIniciar = httpsCallable(functions, 'examenIniciar', { timeout: 100000 });
+    const fnResponder = httpsCallable(functions, 'examenResponder', { timeout: 190000 });
+
+    let examen = null;          // { examenId, paso, total }
+    let situacion = null;       // respuesta de examenEstado
+    let enviando = false;
+    let intentoPegar = false;
+
+    // ── Utilidades ─────────────────────────────────────────────
+    const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // Texto de la IA: solo se permiten <strong>, <em> y <br>
+    const htmlSeguro = (s) => escapeHtml(s)
+      .replace(/&lt;(\/?)(strong|em|b|i)&gt;/gi, '<$1$2>')
+      .replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+    const urlTema = (pagina) => {
+      const u = new URL(pagina, location);
+      u.searchParams.set('tema', tema);
+      u.searchParams.set('theme', tema);
+      return u.toString();
+    };
+    function aviso(msg, ms = 3500) {
+      const t = $('toast'); t.textContent = msg; t.style.display = 'block';
+      clearTimeout(aviso.timer); aviso.timer = setTimeout(() => { t.style.display = 'none'; }, ms);
+    }
+    function mensajeError(e) {
+      const m = (e?.message || '').replace(/^FirebaseError:\s*/, '');
+      if (e?.code === 'functions/unavailable' || e?.code === 'functions/deadline-exceeded') {
+        return `${FILOSOFO} no está disponible en este momento. Tu respuesta no se perdió: volvé a enviarla en un minuto.`;
+      }
+      if (e?.code === 'functions/internal' || !m) return 'Ocurrió un error. Probá de nuevo en un minuto.';
+      return m;
+    }
+    const formatoNota = (n) => Number(n).toLocaleString('es-AR', { maximumFractionDigits: 1 });
+
+    // ── Inicio ─────────────────────────────────────────────────
+    function pintarInicio(s) {
+      $('reglas').innerHTML = [
+        `${FILOSOFO} te va a hacer <strong>${s.cantidadPreguntas} preguntas</strong>, de a una: ideas centrales del tema, un caso práctico y una reflexión personal.`,
+        'Respondé con <strong>tus propias palabras</strong>, con ejemplos y explicando el porqué. No se puede pegar texto.',
+        `Si una respuesta queda corta, ${FILOSOFO} puede repreguntarte una vez. Durante el examen no te dice si está bien o mal.`,
+        `Al terminar recibís tu nota (1 a 10). <strong>Se aprueba con ${s.notaAprobacion}</strong>, y sin aprobar el examen el tema no queda aprobado.`,
+        `Tenés <strong>${s.intentosPorDia} intentos por día</strong> y cuenta tu mejor nota. Si cerrás la página, el examen se retoma al volver.`
+      ].map((t) => `<li>${t}</li>`).join('');
+
+      $('datos').innerHTML = `
+        <div class="dato ${s.avance >= s.avanceRequerido ? 'ok' : ''}"><div class="n">${s.avance}%</div><div class="l">Avance en las actividades (se pide ${s.avanceRequerido}%)</div></div>
+        <div class="dato"><div class="n">${s.esAdmin ? '∞' : s.intentosRestantes}</div><div class="l">Intentos que te quedan hoy</div></div>
+        <div class="dato ${s.aprobado ? 'ok' : ''}"><div class="n">${s.mejorNota ? formatoNota(s.mejorNota) : '—'}</div><div class="l">Tu mejor nota${s.aprobado ? ' · Aprobado' : ''}</div></div>`;
+
+      const avisos = [];
+      if (s.ultimo) {
+        avisos.push(`<div class="aviso"><strong>Último intento: ${formatoNota(s.ultimo.nota)}</strong> ${s.ultimo.aprobado ? '(aprobado)' : '(no aprobado)'}
+          <div class="devolucion">${htmlSeguro(s.ultimo.devolucion)}</div></div>`);
+      }
+      const btn = $('btnComenzar');
+      btn.disabled = false;
+      if (s.enCurso) {
+        btn.textContent = s.enCurso.estado === 'corrigiendo' ? 'Ver corrección pendiente' : 'Retomar examen';
+        avisos.unshift('<div class="aviso">Tenés un examen sin terminar: podés retomarlo donde lo dejaste.</div>');
+      } else if (!s.habilitado) {
+        btn.disabled = true;
+        avisos.unshift(`<div class="aviso alerta">🔒 El examen se habilita cuando llegues al <strong>${s.avanceRequerido}%</strong> en las demás actividades del tema (vas ${s.avance}%).</div>`);
+      } else if (s.intentosRestantes <= 0) {
+        btn.disabled = true;
+        avisos.unshift(`<div class="aviso alerta">Ya usaste los ${s.intentosPorDia} intentos de hoy. Mañana podés volver a intentarlo.</div>`);
+      } else {
+        btn.textContent = s.mejorNota ? 'Comenzar otro intento' : 'Comenzar examen';
+      }
+      if (s.esAdmin) avisos.push('<div class="aviso">Vista docente: podés rendir sin requisitos ni límite de intentos para probar el examen.</div>');
+      $('avisos').innerHTML = avisos.join('');
+      $('btnDocente').classList.toggle('oculto', !s.esAdmin);
+    }
+
+    async function cargarSituacion() {
+      $('subtitulo').textContent = 'Cargando…';
+      try {
+        situacion = (await fnEstado({ tema })).data;
+        $('subtitulo').textContent = TOPICS?.[tema]?.name ? `${TOPICS[tema].name} · actividad final del tema` : 'Actividad final del tema';
+        pintarInicio(situacion);
+      } catch (e) {
+        console.error(e);
+        $('subtitulo').textContent = 'No se pudo cargar el examen';
+        $('avisos').innerHTML = `<div class="aviso alerta">${escapeHtml(mensajeError(e))}</div>`;
+      }
+    }
+
+    // ── Diálogo ────────────────────────────────────────────────
+    function agregarMensaje(rol, texto, extra = '') {
+      const div = document.createElement('div');
+      div.className = `msg ${rol === 'alumno' ? 'alumno' : 'filosofo'} ${extra}`;
+      const quien = rol === 'alumno' ? 'Vos' : FILOSOFO;
+      div.innerHTML = `<span class="quien">${escapeHtml(quien)}</span>${rol === 'alumno' ? escapeHtml(texto) : htmlSeguro(texto)}`;
+      $('mensajes').appendChild(div);
+      $('mensajes').scrollTop = $('mensajes').scrollHeight;
+      return div;
+    }
+    function pensando(si) {
+      let p = document.querySelector('.pensando');
+      if (si && !p) {
+        p = document.createElement('div'); p.className = 'pensando'; p.textContent = `${FILOSOFO} está pensando`;
+        $('mensajes').appendChild(p); $('mensajes').scrollTop = $('mensajes').scrollHeight;
+      } else if (!si) p?.remove();
+    }
+    function pintarPasos() {
+      const { paso, total } = examen;
+      $('pasoTexto').textContent = paso < total ? `Pregunta ${paso + 1} de ${total}` : 'Corrección';
+      $('pasos').innerHTML = Array.from({ length: total }, (_, i) =>
+        `<span class="${i < paso ? 'hecho' : i === paso ? 'actual' : ''}"></span>`).join('');
+    }
+    function bloquearEntrada(si) {
+      enviando = si;
+      $('btnEnviar').disabled = si;
+      $('respuesta').disabled = si;
+      if (!si) $('respuesta').focus();
+    }
+
+    function mostrarChat(datos) {
+      examen = { examenId: datos.examenId, paso: datos.paso, total: datos.total };
+      $('panelInicio').classList.add('oculto');
+      $('panelResultado').classList.add('oculto');
+      $('chat').classList.remove('oculto');
+      $('mensajes').innerHTML = '';
+      (datos.turnos || []).forEach((t) => agregarMensaje(t.rol, t.texto, t.final ? 'final' : ''));
+      pintarPasos();
+      if (datos.retomado) aviso('Retomaste tu examen donde lo habías dejado.');
+      if (datos.estado === 'corrigiendo') {
+        $('entrada').classList.add('oculto'); $('contador').classList.add('oculto');
+        mostrarResultado({ estado: 'corrigiendo', mensaje: 'Tus respuestas están guardadas: falta la corrección.' });
+      } else {
+        $('entrada').classList.remove('oculto'); $('contador').classList.remove('oculto');
+        bloquearEntrada(false);
+      }
+    }
+
+    async function comenzar() {
+      $('btnComenzar').disabled = true;
+      $('btnComenzar').textContent = `${FILOSOFO} se está preparando…`;
+      try {
+        const r = (await fnIniciar({ tema })).data;
+        mostrarChat(r);
+      } catch (e) {
+        console.error(e);
+        aviso(mensajeError(e), 6000);
+        await cargarSituacion();
+      }
+    }
+
+    async function enviar() {
+      if (enviando || !examen) return;
+      const texto = $('respuesta').value.trim();
+      if (texto.length < 2) { aviso('Escribí tu respuesta antes de enviar.'); return; }
+      const pegado = intentoPegar;
+      const burbuja = agregarMensaje('alumno', texto);
+      $('respuesta').value = ''; actualizarContador();
+      bloquearEntrada(true); pensando(true);
+      try {
+        const r = (await fnResponder({ examenId: examen.examenId, respuesta: texto, pegado })).data;
+        intentoPegar = false;
+        pensando(false);
+        if (r.estado === 'en_curso') {
+          agregarMensaje('filosofo', r.mensaje);
+          examen.paso = r.paso; pintarPasos();
+          bloquearEntrada(false);
+        } else {
+          examen.paso = examen.total; pintarPasos();
+          $('entrada').classList.add('oculto'); $('contador').classList.add('oculto');
+          if (r.mensaje) agregarMensaje('filosofo', r.mensaje, 'final');
+          mostrarResultado(r);
+        }
+      } catch (e) {
+        console.error(e);
+        pensando(false);
+        // La respuesta no se guardó: vuelve al cuadro de texto para reenviarla
+        burbuja.remove();
+        $('respuesta').value = texto; actualizarContador();
+        bloquearEntrada(false);
+        aviso(mensajeError(e), 6000);
+        if (e?.code === 'functions/failed-precondition') setTimeout(() => location.reload(), 3000);
+      }
+    }
+
+    function mostrarResultado(r) {
+      sinSalir(false);
+      const panel = $('panelResultado');
+      panel.classList.remove('oculto');
+      $('btnReintentarCorreccion').classList.toggle('oculto', r.estado !== 'corrigiendo');
+      if (r.estado === 'corrigiendo') {
+        $('nota').className = 'nota';
+        $('nota').innerHTML = '<div class="estado">Corrección pendiente</div>';
+        $('devolucionFinal').textContent = r.mensaje || '';
+        $('btnOtraVez').classList.add('oculto');
+      } else {
+        const { nota, aprobado, devolucion } = r.resultado;
+        $('nota').className = `nota ${aprobado ? 'aprobado' : 'desaprobado'}`;
+        $('nota').innerHTML = `<div class="num">${formatoNota(nota)}</div>
+          <div><div class="estado">${aprobado ? '¡Examen aprobado!' : 'Todavía no aprobaste'}</div>
+          <div class="sub">${aprobado ? 'El tema ya puede quedar aprobado.' : `Se aprueba con ${situacion?.notaAprobacion ?? 6}. Repasá lo que te marcó ${FILOSOFO} y volvé a intentarlo.`}</div></div>`;
+        $('devolucionFinal').innerHTML = htmlSeguro(devolucion);
+        $('btnOtraVez').classList.toggle('oculto', aprobado);
+      }
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function reintentarCorreccion() {
+      const b = $('btnReintentarCorreccion');
+      b.disabled = true; b.textContent = 'Corrigiendo…';
+      try {
+        const r = (await fnResponder({ examenId: examen.examenId, corregir: true })).data;
+        if (r.mensaje && r.estado === 'finalizado') agregarMensaje('filosofo', r.mensaje, 'final');
+        mostrarResultado(r);
+      } catch (e) {
+        aviso(mensajeError(e), 6000);
+      } finally {
+        b.disabled = false; b.textContent = 'Reintentar corrección';
+      }
+    }
+
+    // ── Entrada de texto: sin pegar, Enter envía ───────────────
+    const ta = $('respuesta');
+    function actualizarContador() { $('contador').textContent = `${ta.value.length} / 1500`; }
+    ta.addEventListener('input', actualizarContador);
+    ta.addEventListener('paste', (e) => {
+      e.preventDefault(); intentoPegar = true;
+      aviso('En el examen no se puede pegar texto: escribí con tus palabras.');
+    });
+    ta.addEventListener('drop', (e) => { e.preventDefault(); intentoPegar = true; });
+    ta.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); enviar(); }
+    });
+
+    // Avisar antes de salir con el examen en curso (igual se puede retomar)
+    const avisarSalida = (e) => { e.preventDefault(); e.returnValue = ''; };
+    function sinSalir(activo) {
+      window.removeEventListener('beforeunload', avisarSalida);
+      if (activo) window.addEventListener('beforeunload', avisarSalida);
+    }
+
+    // ── Arranque ───────────────────────────────────────────────
+    $('btnHub').href = urlTema('../tema.html');
+    $('btnHub2').href = urlTema('../tema.html');
+    $('btnDocente').href = urlTema('../examenes.html');
+    $('titulo').textContent = `Examen con ${FILOSOFO}`;
+    $('avatar').textContent = CFG?.icono || '🏛️';
+    document.title = `Examen · ${FILOSOFO}`;
+    $('btnComenzar').addEventListener('click', async () => { sinSalir(true); await comenzar(); });
+    $('btnEnviar').addEventListener('click', enviar);
+    $('btnReintentarCorreccion').addEventListener('click', reintentarCorreccion);
+    $('btnOtraVez').addEventListener('click', () => { location.reload(); });
+
+    if (!CFG) {
+      $('subtitulo').textContent = 'Este tema no tiene examen';
+      $('panelInicio').innerHTML = '<div class="aviso alerta">Este tema todavía no tiene examen oral.</div>';
+    } else {
+      let iniciado = false;
+      onAuthStateChanged(auth, (user) => {
+        if (iniciado) return;
+        if (!user) {
+          $('subtitulo').textContent = 'Tenés que iniciar sesión';
+          $('avisos').innerHTML = '<div class="aviso alerta">Iniciá sesión desde la página principal para rendir el examen.</div>';
+          return;
+        }
+        iniciado = true;
+        cargarSituacion();
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--
+  examenes.html
+  Vista docente de los exámenes orales de un tema: alumno, curso, fecha, estado
+  y nota de cada intento. Al abrir un intento se ve la conversación completa con
+  el filósofo, la rúbrica por pregunta (comprensión, vocabulario, aplicación y
+  argumentación, de 0 a 2) con el comentario de la IA y la devolución final.
+
+  - Solo para el admin (las reglas de Firestore no dejan leer exámenes ajenos).
+  - Datos: colección examenes (la escribe la Cloud Function del examen).
+
+  Uso: examenes.html?tema=<id>
+  Versión: v1.0.0 (2026-10-27)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exámenes orales</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --card2:#161f33; --line:#273250; --text:#e5e7eb; --muted:#9ca3af; --ok:#10b981; --bad:#f87171; --gold:#ffd700; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+    .wrap { max-width:1000px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    h1 { margin:0; font-size:1.35rem; }
+    .sub { color:var(--muted); font-size:.92rem; }
+    button, .btn, select, input { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe; padding:.45rem .8rem; border-radius:6px; font-weight:600; font-size:.9rem; font-family:inherit; text-decoration:none; }
+    button, .btn { cursor:pointer; }
+    select option { background:#111827; }
+    input::placeholder { color:#8b8fb0; }
+    .btn-primary { background-color:#805ad5; border-color:#805ad5; color:#fff; }
+    .filtros { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    .resumen { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-bottom:14px; }
+    .dato { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+    .dato .n { font-size:1.35rem; font-weight:800; }
+    .dato .l { color:var(--muted); font-size:.85rem; }
+    table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+    th, td { padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; font-size:.92rem; vertical-align:top; }
+    th { color:var(--muted); font-weight:600; background:var(--card2); }
+    tr.fila { cursor:pointer; }
+    tr.fila:hover { background:rgba(128,90,213,.1); }
+    .nota { font-weight:800; }
+    .nota.ok { color:var(--gold); }
+    .nota.bad { color:var(--bad); }
+    .chip { font-size:.78rem; padding:2px 8px; border-radius:99px; border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+    .chip.alerta { border-color:rgba(248,113,113,.6); color:var(--bad); }
+    .detalle td { background:#0f172a; }
+    .conv { display:flex; flex-direction:column; gap:8px; margin:8px 0; }
+    .msg { padding:8px 12px; border-radius:10px; max-width:90%; white-space:pre-wrap; }
+    .msg.filosofo { background:var(--card2); border:1px solid rgba(255,215,0,.25); }
+    .msg.filosofo strong { color:var(--gold); }
+    .msg.alumno { align-self:flex-end; background:rgba(128,90,213,.2); border:1px solid rgba(167,139,250,.4); }
+    .msg .quien { display:block; font-size:.75rem; color:var(--muted); font-weight:600; }
+    .pregunta-titulo { margin:14px 0 4px; font-weight:700; color:#c4b5fd; }
+    .rubrica { font-size:.85rem; color:var(--muted); margin:4px 0 0; }
+    .rubrica b { color:var(--text); }
+    .aviso { color:var(--muted); text-align:center; padding:30px 10px; }
+    @media (max-width:700px) { .ocultar-movil { display:none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1 id="titulo">Exámenes orales</h1>
+        <div class="sub" id="subtitulo">Cargando…</div>
+      </div>
+      <a class="btn btn-primary" id="btnHub">Volver al tema</a>
+    </header>
+
+    <div class="filtros">
+      <select id="selTema" title="Tema"></select>
+      <select id="selCurso" title="Curso"><option value="">Todos los cursos</option></select>
+      <input id="buscar" type="search" placeholder="Buscar alumno…">
+      <select id="selVista" title="Qué intentos mostrar">
+        <option value="todos">Todos los intentos</option>
+        <option value="mejor">Solo la mejor nota de cada alumno</option>
+      </select>
+    </div>
+    <div class="resumen" id="resumen"></div>
+    <div id="contenido"><p class="aviso">Cargando…</p></div>
+  </div>
+
+  <script src="temas_data.js"></script>
+  <script type="module">
+    import { auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+
+    const $ = (id) => document.getElementById(id);
+    const params = new URLSearchParams(location.search);
+    const temas = Object.keys(typeof EXAMEN_CONFIG !== 'undefined' ? EXAMEN_CONFIG : {});
+    let tema = params.get('tema') || params.get('theme') || temas[0] || '';
+    let examenes = [];
+
+    const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const htmlSeguro = (s) => escapeHtml(s).replace(/&lt;(\/?)(strong|em|b|i)&gt;/gi, '<$1$2>').replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+    const fmtNota = (n) => Number(n).toLocaleString('es-AR', { maximumFractionDigits: 1 });
+    const fmtFecha = (ms) => ms ? new Date(ms).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—';
+    const ESTADOS = { en_curso: 'En curso', corrigiendo: 'Sin corregir', finalizado: 'Finalizado', abandonado: 'Abandonado' };
+    const CRITERIOS = { comprension: 'Comprensión', vocabulario: 'Vocabulario', aplicacion: 'Aplicación', argumentacion: 'Argumentación' };
+
+    function filtrados() {
+      const curso = $('selCurso').value;
+      const texto = $('buscar').value.trim().toLowerCase();
+      let lista = examenes.filter((e) =>
+        (!curso || e.alumno?.curso === curso) &&
+        (!texto || `${e.alumno?.nombre} ${e.alumno?.email}`.toLowerCase().includes(texto)));
+      if ($('selVista').value === 'mejor') {
+        const mejor = new Map();
+        lista.forEach((e) => {
+          const previo = mejor.get(e.uid);
+          if (!previo || (e.resultado?.nota || 0) > (previo.resultado?.nota || 0)) mejor.set(e.uid, e);
+        });
+        lista = [...mejor.values()];
+      }
+      return lista.sort((a, b) => (b.inicioMs || 0) - (a.inicioMs || 0));
+    }
+
+    function pintarResumen() {
+      const alumnos = new Map();
+      examenes.filter((e) => e.resultado).forEach((e) => {
+        alumnos.set(e.uid, Math.max(alumnos.get(e.uid) || 0, e.resultado.nota));
+      });
+      const notas = [...alumnos.values()];
+      const aprobacion = EXAMEN_CONFIG[tema]?.notaAprobacion ?? 6;
+      const promedio = notas.length ? notas.reduce((a, b) => a + b, 0) / notas.length : 0;
+      $('resumen').innerHTML = `
+        <div class="dato"><div class="n">${alumnos.size}</div><div class="l">Alumnos que rindieron</div></div>
+        <div class="dato"><div class="n">${notas.filter((n) => n >= aprobacion).length}</div><div class="l">Aprobaron (≥ ${aprobacion})</div></div>
+        <div class="dato"><div class="n">${notas.length ? fmtNota(promedio) : '—'}</div><div class="l">Promedio (mejor nota de cada uno)</div></div>
+        <div class="dato"><div class="n">${examenes.length}</div><div class="l">Intentos en total</div></div>`;
+    }
+
+    function detalleHtml(e) {
+      const preguntas = e.plan?.preguntas || [];
+      const det = e.resultado?.detalle || [];
+      const bloques = preguntas.map((p, i) => {
+        const msgs = (e.turnos || []).filter((t) => t.pregunta === i).map((t) => `
+          <div class="msg ${t.rol === 'alumno' ? 'alumno' : 'filosofo'}"><span class="quien">${t.rol === 'alumno' ? 'Alumno' + (t.pegado ? ' · intentó pegar texto' : '') : (t.repregunta ? 'Repregunta' : 'Filósofo')}</span>${t.rol === 'alumno' ? escapeHtml(t.texto) : htmlSeguro(t.texto)}</div>`).join('');
+        const d = det[i];
+        const rub = d ? `<p class="rubrica">${Object.entries(CRITERIOS).map(([k, l]) => `${l}: <b>${d[k]}</b>/2`).join(' · ')} · Total <b>${d.puntos}</b>/8${d.comentario ? `<br>${escapeHtml(d.comentario)}` : ''}</p>` : '';
+        return `<div class="pregunta-titulo">${i + 1}. ${escapeHtml(p.titulo)}</div><div class="conv">${msgs || '<span class="sub">Sin respuesta</span>'}</div>${rub}`;
+      }).join('');
+      const final = (e.turnos || []).find((t) => t.final);
+      const apertura = e.plan?.apertura ? `<p class="sub">Apertura sorteada: ${escapeHtml(e.plan.apertura.id)} · Banco v${escapeHtml(e.bancoVersion || '?')}${e.resultado?.modelo ? ` · Corrigió: ${escapeHtml(e.resultado.proveedor)}/${escapeHtml(e.resultado.modelo)}` : ''}</p>` : '';
+      return `${apertura}${bloques}${final ? `<div class="pregunta-titulo">Devolución</div><div class="conv"><div class="msg filosofo">${htmlSeguro(final.texto)}</div></div>` : ''}`;
+    }
+
+    function pintarTabla() {
+      const lista = filtrados();
+      if (!lista.length) { $('contenido').innerHTML = '<p class="aviso">Todavía no hay exámenes para mostrar.</p>'; return; }
+      const aprobacion = EXAMEN_CONFIG[tema]?.notaAprobacion ?? 6;
+      $('contenido').innerHTML = `<table>
+        <thead><tr><th>Alumno</th><th class="ocultar-movil">Curso</th><th>Fecha</th><th>Estado</th><th>Nota</th></tr></thead>
+        <tbody>${lista.map((e) => {
+          const nota = e.resultado?.nota;
+          return `<tr class="fila" data-id="${escapeHtml(e.id)}">
+            <td>${escapeHtml(e.alumno?.nombre || e.uid)}<div class="sub">${escapeHtml(e.alumno?.email || '')}</div></td>
+            <td class="ocultar-movil">${escapeHtml(e.alumno?.curso || '—')}</td>
+            <td>${fmtFecha(e.inicioMs)}</td>
+            <td><span class="chip">${ESTADOS[e.estado] || e.estado}</span>${e.pegados ? ` <span class="chip alerta" title="Intentos de pegar texto">pegó ×${e.pegados}</span>` : ''}</td>
+            <td class="nota ${nota == null ? '' : nota >= aprobacion ? 'ok' : 'bad'}">${nota == null ? '—' : fmtNota(nota)}</td>
+          </tr>`;
+        }).join('')}</tbody></table>`;
+      $('contenido').querySelectorAll('tr.fila').forEach((tr) => tr.addEventListener('click', () => {
+        const sig = tr.nextElementSibling;
+        if (sig?.classList.contains('detalle')) { sig.remove(); return; }
+        const e = examenes.find((x) => x.id === tr.dataset.id);
+        tr.insertAdjacentHTML('afterend', `<tr class="detalle"><td colspan="5">${detalleHtml(e)}</td></tr>`);
+      }));
+    }
+
+    async function cargar() {
+      $('subtitulo').textContent = 'Cargando…';
+      $('btnHub').href = `tema.html?tema=${encodeURIComponent(tema)}&theme=${encodeURIComponent(tema)}`;
+      $('titulo').textContent = `Exámenes con ${EXAMEN_CONFIG[tema]?.filosofo || 'el filósofo'}`;
+      try {
+        const snap = await getDocs(query(collection(db, 'examenes'), where('tema', '==', tema)));
+        examenes = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      } catch (e) {
+        console.error(e);
+        $('subtitulo').textContent = 'No se pudieron leer los exámenes';
+        $('contenido').innerHTML = `<p class="aviso">${escapeHtml(e.message)}</p>`;
+        return;
+      }
+      const cursos = [...new Set(examenes.map((e) => e.alumno?.curso).filter(Boolean))].sort();
+      $('selCurso').innerHTML = '<option value="">Todos los cursos</option>' + cursos.map((c) => `<option>${escapeHtml(c)}</option>`).join('');
+      $('subtitulo').textContent = `${TOPICS?.[tema]?.name || tema} · tocá un intento para ver la conversación y la rúbrica`;
+      pintarResumen();
+      pintarTabla();
+    }
+
+    $('selTema').innerHTML = temas.map((t) => `<option value="${t}">${escapeHtml(TOPICS?.[t]?.name || t)}</option>`).join('');
+    $('selTema').value = tema;
+    $('selTema').addEventListener('change', () => { tema = $('selTema').value; cargar(); });
+    ['selCurso', 'selVista'].forEach((id) => $(id).addEventListener('change', pintarTabla));
+    $('buscar').addEventListener('input', pintarTabla);
+
+    let iniciado = false;
+    onAuthStateChanged(auth, async (user) => {
+      if (iniciado) return;
+      if (!user || !(await isCurrentUserAdmin())) {
+        $('subtitulo').textContent = 'Solo el docente puede ver esta página';
+        $('contenido').innerHTML = '<p class="aviso">Iniciá sesión con la cuenta docente.</p>';
+        return;
+      }
+      iniciado = true;
+      cargar();
+    });
+  </script>
+</body>
+</html>

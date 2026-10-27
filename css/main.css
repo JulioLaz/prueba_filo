@@ -1302,4 +1302,5 @@ body::before {
   .admin-stat-number {
     font-size: 1.5rem;
   }
-  }
+  }/* Llegó al 80% pero falta aprobar el examen oral (js/progreso-tarjetas.js) */
+.sello-tema.pendiente { background: rgba(128, 90, 213, 0.85); color: #fff; box-shadow: 0 2px 12px rgba(128, 90, 213, 0.45); }

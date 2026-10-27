@@ -27,8 +27,24 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 | 🗺️ Mapa conceptual + juego de pares | `themes/<id>/mapa.html` | `js/mapa-system-fixed.js`, `js/mapa-system-score.js` |
 | 🧩 Crucigrama | `themes/<id>/crossword_config.js` | `crossword.html` + `js/crossword_engine.js` |
 | 🎬 Video + cloze | `themes/<id>/cloze_test.js` | `tema.html` (video en `temas_data.js` → `VIDEO_CONFIG`) |
+| 🏛️ Examen oral con el filósofo (actividad final) | `themes/<id>/examen.json` | `dialogo/examen.html` + Cloud Functions `examen*` |
 
 Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad de secciones, preguntas, niveles, etc.).
+
+## 🏛️ Examen oral (cierra el tema)
+
+Por ahora lo tiene **Ética de Aristóteles**. Es un diálogo guiado con el filósofo:
+
+- Se habilita con **80%** en las demás actividades del tema.
+- **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.
+- El filósofo pregunta de a una, puede repreguntar una vez si la respuesta es vaga, y no da respuestas ni evalúa durante el examen. No se puede pegar texto.
+- Al terminar, la IA corrige con una rúbrica (comprensión, vocabulario, aplicación y argumentación, de 0 a 2 por pregunta) y pone la nota de 1 a 10. **Se aprueba con 6.**
+- **2 intentos por día**, cuenta la mejor nota. Si se cierra la página, se retoma (hasta 45 minutos sin actividad).
+- El tema queda **aprobado** solo con 80% de avance **y** el examen aprobado (sello "Falta examen" mientras tanto).
+- La nota la guarda la Cloud Function: el alumno no puede escribirla (`firestore.rules`).
+- El docente ve cada intento, con la conversación completa y la rúbrica, en `examenes.html?tema=<id>` (botón "Exámenes del curso" en la página del examen).
+
+Para editar las preguntas, casos o reflexiones: cambiar `themes/<id>/examen.json` y hacer push (no hace falta volver a desplegar la función). Para agregar el examen a otro tema: crear su `examen.json` y sumarlo a `EXAMEN_CONFIG` en `temas_data.js`.
 
 ## 🗂️ Estructura
 
@@ -46,7 +62,8 @@ js/                   Motores de las actividades
 themes/<id>/          Contenido de cada tema
 css/, sound/          Estilos y sonidos
 dialogo/              Diálogos con filósofos (IA)
-functions/            Cloud Functions de Firebase (diálogos con Gemini)
+functions/            Cloud Functions de Firebase (diálogos y examen oral con IA)
+examenes.html         Exámenes orales del curso (admin): conversación, rúbrica y nota
 alumnos_anio_curso.py Reporte de alumnos activos del año y limpieza de anteriores
 verificar_email_admin.py Marca verificado el email del admin (lo exigen las reglas)
 limpiar_ddbb.py       Borra datos de Firestore (excepto el admin)
@@ -59,6 +76,8 @@ limpiar_ddbb.py       Borra datos de Firestore (excepto el admin)
   - `users/{uid}`: perfil del alumno (nombre, curso, rol, avatar, estadísticas).
   - `sesiones/{uid_timestamp}`: registro de cada login y logout.
   - `progreso_temas/{uid}_{tema}_{actividad}`: récord (`score`, `bestScore`), último intento (`lastScore`), intentos y tiempo.
+  - `examenes/{uid}_{tema}_{ms}` y `examenes_estado/{uid}_{tema}`: intentos del examen oral (los escribe solo la Cloud Function).
+- **Cloud Functions** (`functions/index.js`, región southamerica-east1): `chatFilosofo` (diálogos) y `examenEstado`, `examenIniciar`, `examenResponder` (examen oral). Usan Gemini con respaldo en OpenRouter; las claves van como secretos (`GOOGLE_API_KEY`, `OPENROUTER_KEY`). Publicar con `firebase deploy --only functions`.
 - **Reglas:** `firestore.rules`. Cada alumno lee y escribe solo lo suyo; el admin lee todo. Si se cambian, hay que pegarlas en la consola de Firebase → Firestore → Reglas.
 - **Scripts de administración (Python):** usan la clave de service account (`*firebase-adminsdk*.json`), que **no se sube al repo** (está en `.gitignore`).
   ```

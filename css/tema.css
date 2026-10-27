@@ -462,3 +462,10 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 }
 .card .sello-actividad:hover::after,
 .card .sello-actividad:focus::after { opacity: 1; }
+
+/* ========================================
+   🏛️ EXAMEN ORAL (actividad final) — tema.html: pintarExamen()
+   ======================================== */
+.card.card-examen { border-color: rgba(255, 215, 0, 0.35); }
+.card.card-examen.examen-bloqueado { opacity: 0.7; }
+.card.card-examen.examen-bloqueado:hover { transform: none; }

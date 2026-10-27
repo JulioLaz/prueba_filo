@@ -12,7 +12,10 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.2.0 (2026-10-27) — el admin puede elegir "Vista: Docente / Como alumno"
+ * Versión: v1.3.0 (2026-10-27) — temas con examen oral (EXAMEN_CONFIG): el sello
+ *   "Aprobado" exige avance ≥ 80% Y examen aprobado; con 80% sin examen muestra
+ *   "Falta examen". "Completo" exige además el 100% de avance.
+ * v1.2.0 (2026-10-27) — el admin puede elegir "Vista: Docente / Como alumno"
  *   para ver las tarjetas con su propio progreso (probar la app como alumno)
  * v1.1.0 (2026-10-26) — el resumen de temas aprobados se muestra solo por unidad
  *   (global desactivado: MOSTRAR_RESUMEN_GLOBAL)
@@ -34,6 +37,9 @@ function actividadesDe(temaId) {
   return conVideo ? [...ACTIVIDADES_BASE, 'video'] : ACTIVIDADES_BASE;
 }
 
+// Examen oral del tema (o null si el tema no tiene): ver temas_data.js
+const examenDe = (temaId) => (typeof EXAMEN_CONFIG !== 'undefined' && EXAMEN_CONFIG[temaId]) || null;
+
 const puntaje = (d) => Math.max(0, Math.min(100, Number(d.bestScore ?? d.score ?? 0) || 0));
 
 // Avance de UN alumno en UN tema a partir de sus documentos de progreso
@@ -41,19 +47,31 @@ function resumenAlumno(temaId, docs) {
   const acts = actividadesDe(temaId);
   const mejor = {};
   let segundos = 0;
+  let notaExamen = 0;
   docs.forEach((d) => {
     const act = ALIAS[d.lessonId] || d.lessonId;
+    if (act === 'examen') {
+      notaExamen = Math.max(notaExamen, puntaje(d) / 10);   // score = nota × 10
+      segundos += Number(d.timeSpentSeconds) || 0;
+      return;
+    }
     if (!acts.includes(act)) return;
     mejor[act] = Math.max(mejor[act] || 0, puntaje(d));
     segundos += Number(d.timeSpentSeconds) || 0;
   });
   const scores = acts.map((a) => mejor[a] || 0);
+  const avance = Math.round(scores.reduce((a, b) => a + b, 0) / acts.length);
+  const examen = examenDe(temaId);
+  const examenOk = !examen || notaExamen >= examen.notaAprobacion;
   return {
     total: acts.length,
     aprobadas: scores.filter((s) => s >= UMBRAL_APROBADO).length,
-    avance: Math.round(scores.reduce((a, b) => a + b, 0) / acts.length),
+    avance,
     minutos: Math.round(segundos / 60),
-    empezado: docs.length > 0
+    empezado: docs.length > 0,
+    faltaExamen: avance >= UMBRAL_APROBADO && !examenOk,
+    aprobado: avance >= UMBRAL_APROBADO && examenOk,
+    completo: avance >= 100 && examenOk
   };
 }
 
@@ -90,7 +108,7 @@ async function cargarAdmin() {
     porTema.set(t.id, {
       alumnos: alumnos.length,
       empezaron: avances.filter((a) => a.empezado).length,
-      aprobaron: avances.filter((a) => a.avance >= UMBRAL_APROBADO).length,
+      aprobaron: avances.filter((a) => a.aprobado).length,
       avanceCurso: alumnos.length ? Math.round(avances.reduce((s, a) => s + a.avance, 0) / alumnos.length) : 0
     });
   });
@@ -144,12 +162,15 @@ function aplicarProgresoTarjetas() {
     setStat(card, 'tiempo', datos.minutos, 'Minutos');
     setStat(card, 'avance', `${datos.avance}%`, 'Avance');
     card.style.setProperty('--progress', `${datos.avance}%`);
-    if (datos.avance >= 100) {
+    if (datos.completo) {
       card.classList.add('tema-completo');
       ponerSello(card, '★ Completo', 'completo');
-    } else if (datos.avance >= UMBRAL_APROBADO) {
+    } else if (datos.aprobado) {
       card.classList.add('tema-aprobado');
       ponerSello(card, '✓ Aprobado', 'aprobado');
+    } else if (datos.faltaExamen) {
+      card.classList.add('tema-en-curso');
+      ponerSello(card, 'Falta examen', 'pendiente');
     } else if (datos.avance > 0) {
       card.classList.add('tema-en-curso');
     }
@@ -173,8 +194,8 @@ function mostrarConquistas() {
   const ids = AVAILABLE_THEMES.filter((t) => ES_UNIDAD(t) && (!esUnidad || t.difficulty === filtro)).map((t) => t.id);
   const temas = ids.map((id) => estado.porTema.get(id)).filter(Boolean);
   if (!temas.length) { caja?.remove(); return; }
-  const aprobados = temas.filter((t) => t.avance >= UMBRAL_APROBADO).length;
-  const completos = temas.filter((t) => t.avance >= 100).length;
+  const aprobados = temas.filter((t) => t.aprobado).length;
+  const completos = temas.filter((t) => t.completo).length;
   const faltan = temas.length - aprobados;
   const ambito = esUnidad ? `de la ${NOMBRE_UNIDAD[filtro] || 'unidad'}` : '';
 
@@ -184,7 +205,7 @@ function mostrarConquistas() {
     document.getElementById('themes-grid')?.before(caja);
   }
   const mensaje = aprobados === 0
-    ? 'Aprobá tu primer tema (80% de avance) para ganar su sello dorado.'
+    ? 'Aprobá tu primer tema (80% de avance y su examen, si lo tiene) para ganar su sello dorado.'
     : faltan === 0
       ? `¡Aprobaste todos los temas ${ambito}! Felicitaciones.`
       : `¡Vas muy bien! Te ${faltan === 1 ? 'falta 1 tema' : `faltan ${faltan} temas`} por conquistar.`;

@@ -111,6 +111,16 @@
           <button class="btn btn-primary" id="goMapa">Abrir</button>
         </div>
       </article>
+
+      <!-- Examen oral con el filósofo: actividad final (solo si el tema tiene EXAMEN_CONFIG) -->
+      <article class="card card-examen" id="examenCard" style="display:none;">
+        <div class="card-icon" id="examenTitulo">🏛️ Examen oral</div>
+        <p id="examenDesc">Diálogo final con el maestro: cierra el tema.</p>
+        <div class="status">
+          <small id="statusExamen">—</small>
+          <button class="btn btn-primary" id="goExamen">Abrir</button>
+        </div>
+      </article>
     </section>
 
     <section class="progress" aria-label="Progreso general">
@@ -453,6 +463,51 @@
       document.getElementById('progressBar').style.width = globalPct + '%';
 
       marcarActividades(P);
+      pintarExamen(globalPct);
+    }
+
+    // ===== Examen oral (actividad final): se habilita con 80% en las demás actividades.
+    //       El tema queda aprobado solo con el examen aprobado (nota ≥ notaAprobacion).
+    const EXAMEN = (typeof EXAMEN_CONFIG !== 'undefined' && EXAMEN_CONFIG[tema]) || null;
+
+    // Mejor nota del examen (la guarda la Cloud Function como score = nota × 10)
+    function notaExamen(){
+      const fb = window.__progresoFirebase?.examen;
+      return fb ? Math.round(Number(fb.percentage) || 0) / 10 : 0;
+    }
+    window.examenDelTema = () => EXAMEN ? { requiere: true, nota: notaExamen(), aprobado: notaExamen() >= EXAMEN.notaAprobacion } : { requiere: false };
+
+    function pintarExamen(globalPct){
+      const card = document.getElementById('examenCard');
+      if (!EXAMEN || !card) return;
+      card.style.display = 'flex';
+      document.getElementById('examenTitulo').textContent = `${EXAMEN.icono || '🏛️'} Examen con ${EXAMEN.filosofo}`;
+      document.getElementById('examenDesc').textContent = `Diálogo final con ${EXAMEN.filosofo}: cierra el tema. Se aprueba con ${EXAMEN.notaAprobacion}.`;
+      const nota = notaExamen();
+      const fmt = (n) => n.toLocaleString('es-AR', { maximumFractionDigits: 1 });
+      const aprobado = nota >= EXAMEN.notaAprobacion;
+      const st = document.getElementById('statusExamen');
+      if (aprobado) st.textContent = `Aprobado · nota ${fmt(nota)}`;
+      else if (nota > 0) st.textContent = `Mejor nota ${fmt(nota)} · volvé a intentarlo`;
+      else if (globalPct >= UMBRAL_APROBADA) st.textContent = 'Habilitado: ¡rendilo!';
+      else st.textContent = `🔒 Se habilita con ${UMBRAL_APROBADA}% (vas ${globalPct}%)`;
+      card.classList.toggle('examen-bloqueado', !aprobado && nota === 0 && globalPct < UMBRAL_APROBADA);
+
+      // Sello como las demás actividades: ✓ aprobado, ★ nota 10
+      card.classList.toggle('act-aprobada', aprobado && nota < 10);
+      card.classList.toggle('act-completa', nota >= 10);
+      let sello = card.querySelector('.sello-actividad');
+      if (!aprobado) { sello?.remove(); return; }
+      if (!sello) {
+        sello = document.createElement('span');
+        sello.className = 'sello-actividad';
+        sello.tabIndex = 0;
+        card.appendChild(sello);
+      }
+      sello.textContent = nota >= 10 ? '★' : '✓';
+      sello.dataset.tip = `Examen aprobado · nota ${fmt(nota)}`;
+      sello.setAttribute('aria-label', sello.dataset.tip);
+      sello.title = sello.dataset.tip;
     }
 
     // ===== Sello de actividad aprobada (≥ 80%) / completa (100%) en cada tarjeta =====
@@ -502,6 +557,7 @@
     document.getElementById('goResumenCaza').addEventListener('click', ()=> go('resumen_conceptos.html'));
     document.getElementById('goResumenMaterial').addEventListener('click', ()=> go('resumen_material.html'));
     document.getElementById('goResumenQuiz').addEventListener('click', ()=> go('resumen_cuestionario.html'));
+    document.getElementById('goExamen').addEventListener('click', ()=> go('dialogo/examen.html'));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');
@@ -1989,7 +2045,10 @@ function updateGlobalProgress(firebaseProgress) {
 
   if (progressLabel) {
     let statusText = 'Tu progreso en este tema';
-    if (isGloballyCompleted) {
+    const examen = window.examenDelTema?.() || { requiere: false };
+    if (isGloballyApproved && examen.requiere && !examen.aprobado) {
+      statusText = `✅ ${APPROVAL_THRESHOLD}% logrado: falta aprobar el examen con ${EXAMEN_CONFIG[tema].filosofo} para cerrar el tema`;
+    } else if (isGloballyCompleted) {
       statusText = '🏆 ¡Tema completado al 100%!';
     } else if (isGloballyApproved) {
       statusText = '✅ ¡Tema aprobado! (80%+)';

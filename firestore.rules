@@ -11,9 +11,13 @@
 //     documentos propios; el admin puede leer todo.
 //   - sesiones/{uid_timestamp}: el alumno solo registra sus propios
 //     login/logout; solo el admin los lee.
+//   - examenes/{uid_tema_ms} y examenes_estado/{uid_tema}: los escribe SOLO
+//     la Cloud Function del examen; el alumno lee los suyos y el admin todos.
+//     La actividad "examen" de progreso_temas tampoco la puede escribir el alumno.
 //   - Todo lo no listado queda bloqueado. Nadie borra documentos.
 //
-// Versión: v1.0.0 (2026-10-20) — reemplaza las reglas pegadas en consola:
+// Versión: v1.1.0 (2026-10-27) — examen oral: la nota solo la guarda la función
+// v1.0.0 (2026-10-20) — reemplaza las reglas pegadas en consola:
 //   * list de progreso_temas restringido (antes: cualquier logueado leía todo)
 //   * ID de documento atado al uid (evita bloquear el guardado de otro)
 //   * uid inmutable en update (evita "regalar" progreso)
@@ -77,11 +81,14 @@ service cloud.firestore {
 
     // ---------- Progreso por tema/actividad ----------
     match /progreso_temas/{docId} {
-      function validProgress() {
+      // La nota del examen ("<uid>_<tema>_examen") solo la escribe la Cloud Function
+      function validProgress(docId) {
         let d = request.resource.data;
         return d.uid == request.auth.uid
           && isScore(d.score)
-          && (!('bestScore' in d) || isScore(d.bestScore));
+          && (!('bestScore' in d) || isScore(d.bestScore))
+          && d.get('lessonId', null) != 'examen'
+          && !docId.matches('.*_examen$');
       }
 
       // get: propio, admin, o doc inexistente (firebase.js lee antes del primer guardado)
@@ -94,14 +101,25 @@ service cloud.firestore {
 
       allow create: if isSignedIn()
         && idBelongsToMe(docId)
-        && validProgress();
+        && validProgress(docId);
 
       allow update: if isSignedIn()
         && resource.data.uid == request.auth.uid
-        && validProgress()
+        && validProgress(docId)
         && request.resource.data.get('bestScore', 0) >= resource.data.get('bestScore', 0);
 
       allow delete: if false;
+    }
+
+    // ---------- Examen oral (lo escribe solo la Cloud Function) ----------
+    match /examenes/{examenId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /examenes_estado/{estadoId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
     }
 
     // ---------- Registro de sesiones ----------
