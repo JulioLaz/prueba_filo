@@ -490,24 +490,24 @@
       const fmt = (n) => n.toLocaleString('es-AR', { maximumFractionDigits: 1 });
       const aprobado = nota >= EXAMEN.notaAprobacion;
       const st = document.getElementById('statusExamen');
-      if (aprobado) st.textContent = `Aprobado · nota ${fmt(nota)}`;
+      if (aprobado) st.textContent = 'Examen aprobado';
       else if (nota > 0) st.textContent = `Mejor nota ${fmt(nota)} · volvé a intentarlo`;
       else if (globalPct >= UMBRAL_APROBADA) st.textContent = 'Habilitado: ¡rendilo!';
       else st.textContent = `🔒 Se habilita con ${UMBRAL_APROBADA}% (vas ${globalPct}%)`;
       card.classList.toggle('examen-bloqueado', !aprobado && nota === 0 && globalPct < UMBRAL_APROBADA);
 
-      // Sello como las demás actividades: ✓ aprobado, ★ nota 10
+      // Sello como las demás actividades, pero con la nota adentro (dorado relleno con 10)
       card.classList.toggle('act-aprobada', aprobado && nota < 10);
       card.classList.toggle('act-completa', nota >= 10);
       let sello = card.querySelector('.sello-actividad');
       if (!aprobado) { sello?.remove(); return; }
       if (!sello) {
         sello = document.createElement('span');
-        sello.className = 'sello-actividad';
+        sello.className = 'sello-actividad sello-nota';
         sello.tabIndex = 0;
         card.appendChild(sello);
       }
-      sello.textContent = nota >= 10 ? '★' : '✓';
+      sello.textContent = fmt(nota);
       sello.dataset.tip = `Examen aprobado · nota ${fmt(nota)}`;
       sello.setAttribute('aria-label', sello.dataset.tip);
       sello.title = sello.dataset.tip;

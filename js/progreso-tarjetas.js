@@ -12,7 +12,9 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.3.0 (2026-10-27) — temas con examen oral (EXAMEN_CONFIG): el sello
+ * Versión: v1.4.0 (2026-10-27) — el examen cuenta como una actividad más en
+ *   "Aprobadas" (ej. 7/7 = 6 actividades + examen); el avance sigue siendo el de las actividades
+ * v1.3.0 (2026-10-27) — temas con examen oral (EXAMEN_CONFIG): el sello
  *   "Aprobado" exige avance ≥ 80% Y examen aprobado; con 80% sin examen muestra
  *   "Falta examen". "Completo" exige además el 100% de avance.
  * v1.2.0 (2026-10-27) — el admin puede elegir "Vista: Docente / Como alumno"
@@ -64,8 +66,8 @@ function resumenAlumno(temaId, docs) {
   const examen = examenDe(temaId);
   const examenOk = !examen || notaExamen >= examen.notaAprobacion;
   return {
-    total: acts.length,
-    aprobadas: scores.filter((s) => s >= UMBRAL_APROBADO).length,
+    total: acts.length + (examen ? 1 : 0),
+    aprobadas: scores.filter((s) => s >= UMBRAL_APROBADO).length + (examen && examenOk ? 1 : 0),
     avance,
     minutos: Math.round(segundos / 60),
     empezado: docs.length > 0,
@@ -143,7 +145,7 @@ function aplicarProgresoTarjetas() {
     ponerSello(card, null);
 
     if (!datos) {
-      setStat(card, 'actividades', actividadesDe(tema.id).length, 'Actividades');
+      setStat(card, 'actividades', actividadesDe(tema.id).length + (examenDe(tema.id) ? 1 : 0), 'Actividades');
       setStat(card, 'tiempo', `~${tema.timeEstimate}`, 'Minutos');
       setStat(card, 'avance', '—', 'Avance');
       card.style.setProperty('--progress', '0%');

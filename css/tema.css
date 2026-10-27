@@ -469,3 +469,6 @@ li.collapsed>.node .toggle{transform:rotate(-90deg)}
 .card.card-examen { border-color: rgba(255, 215, 0, 0.35); }
 .card.card-examen.examen-bloqueado { opacity: 0.7; }
 .card.card-examen.examen-bloqueado:hover { transform: none; }
+/* Sello del examen: muestra la nota (ej. 9,4) en vez del ✓ */
+.card .sello-actividad.sello-nota { width: 42px; height: 42px; font-size: 14px; letter-spacing: -0.3px; }
+.card.card-examen.act-aprobada .card-icon, .card.card-examen.act-completa .card-icon { padding-right: 52px; }
