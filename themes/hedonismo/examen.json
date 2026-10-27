@@ -1,0 +1,300 @@
+{
+  "_info": "Banco del examen oral con Epicuro y del resumen final del tema Hedonismo. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-10-27).",
+  "version": "1.0.0",
+  "filosofo": "Epicuro",
+  "tema": "Hedonismo: el placer como fin de la vida (Epicuro)",
+  "intro": "Epicuro de Samos (341–270 a. C.) se preguntó cómo vivir feliz y respondió que el placer es el bien de la vida. Pero no cualquier placer: el verdadero placer es no sufrir, en el cuerpo y en el alma, y se alcanza con una vida sencilla, deseos ordenados, amigos y filosofía.",
+  "conceptosClave": "placer, dolor, ataraxia, aponía, autarquía, deseos naturales y necesarios, moderación, prudencia, amistad",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "avanceRequerido": 80,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "jardin",
+      "texto": "Epicuro recibe al alumno en el Jardín, su escuela de Atenas, sentado a la sombra con un pan y un vaso de agua, y le dice que con eso ya se siente rico."
+    },
+    {
+      "id": "queso",
+      "texto": "Epicuro cuenta que le pidió a un amigo «un poco de queso, para darme un banquete cuando quiera», y le pregunta al alumno si se puede ser feliz con tan poco."
+    },
+    {
+      "id": "carta",
+      "texto": "Epicuro está terminando una carta para su discípulo Meneceo, donde le explica cómo vivir feliz, y le propone al alumno conversar sobre eso mismo."
+    },
+    {
+      "id": "mercado",
+      "texto": "Epicuro viene del mercado de Atenas, donde vio a un hombre gastar todo en perfumes caros y salir angustiado por las deudas; lo usa para empezar a hablar del placer."
+    },
+    {
+      "id": "muerte",
+      "texto": "Epicuro abre con su frase más famosa: «La muerte no es nada para nosotros», y le dice al alumno que hoy va a ver si entendió por qué."
+    },
+    {
+      "id": "amigos",
+      "texto": "Es la cena mensual de los amigos del Jardín; Epicuro invita al alumno a sentarse y le dice que, para él, la amistad es uno de los mayores placeres."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "que_es",
+      "titulo": "¿Qué es el hedonismo?",
+      "guia": "Preguntar qué sostiene el hedonismo y cuál es, para esta doctrina, el bien de la vida y el camino a la felicidad.",
+      "claves": "El hedonismo sostiene que el placer es el bien fundamental (fin de la vida) y que la felicidad consiste en evitar el dolor y cultivar gozos estables. Todo ser vivo busca el placer y huye del dolor.",
+      "resumen": "El hedonismo es la doctrina que afirma que el placer es el bien fundamental de la vida humana. Todos buscamos el placer y huimos del dolor, y la felicidad consiste en evitar el dolor y cultivar gozos estables.",
+      "palabras": [
+        "hedonismo",
+        "placer",
+        "dolor",
+        "bien",
+        "felicidad"
+      ],
+      "ejemplo": "Desde chicos buscamos lo que nos hace bien y escapamos de lo que nos hace sufrir: para el hedonismo, ahí está la clave de la ética."
+    },
+    {
+      "id": "ambiguedad",
+      "titulo": "La ambigüedad del placer",
+      "guia": "Preguntar por qué la palabra «placer» es ambigua y por qué es importante distinguir la calidad de los placeres.",
+      "claves": "«Placer» puede significar un estímulo físico inmediato, un bienestar estable, un gozo intelectual o algo útil. Según cómo se lo entienda, el hedonismo es vulgar o refinado. Distinguir calidades evita confundir el hedonismo prudente con la satisfacción impulsiva.",
+      "resumen": "La palabra placer es ambigua: puede ser un estímulo físico inmediato, un bienestar que dura, un gozo intelectual o algo útil. Por eso hay que distinguir la calidad de los placeres: no es lo mismo un impulso del momento que una satisfacción estable.",
+      "palabras": [
+        "ambigüedad",
+        "calidad",
+        "estímulo inmediato",
+        "bienestar estable"
+      ],
+      "ejemplo": "Comer un paquete entero de golosinas da un placer inmediato; terminar un buen libro o una charla con un amigo da un placer que dura."
+    },
+    {
+      "id": "formas",
+      "titulo": "Hedonismo absoluto y mitigado (vulgar y refinado)",
+      "guia": "Pedir que explique las dos formas de hedonismo y que dé un ejemplo de cada una.",
+      "claves": "Hedonismo absoluto (vulgar): persigue estímulos sensibles inmediatos sin moderación; gira en torno a la compulsión y suele producir más dolor que gozo. Hedonismo mitigado o eudemonista (refinado): prefiere placeres más altos y duraderos (amistad, conocimiento, arte, filosofía). Epicuro está del lado refinado.",
+      "resumen": "El hedonismo absoluto o vulgar busca estímulos inmediatos sin medida y, por la compulsión, termina causando más dolor que placer. El hedonismo mitigado o refinado prefiere placeres más altos y duraderos, como la amistad, el conocimiento y el arte. Epicuro defiende el refinado.",
+      "palabras": [
+        "hedonismo absoluto",
+        "hedonismo mitigado",
+        "vulgar",
+        "refinado",
+        "compulsión",
+        "moderación"
+      ],
+      "ejemplo": "Vulgar: salir todas las noches buscando más y más diversión hasta quedar agotado. Refinado: disfrutar de un asado tranquilo con amigos."
+    },
+    {
+      "id": "criticas",
+      "titulo": "Críticas al hedonismo",
+      "guia": "Preguntar qué críticas recibió el hedonismo (por ejemplo, religiosas) y cómo se defendería Epicuro.",
+      "claves": "Algunas tradiciones religiosas temen que poner el placer primero degrade los valores espirituales y fomente el egoísmo o las adicciones. Epicuro responde que su hedonismo es de moderación, amistad y serenidad, no de excesos.",
+      "resumen": "Varias tradiciones religiosas criticaron el hedonismo: creían que poner el placer en primer lugar degrada los valores espirituales y fomenta el egoísmo y las adicciones. Epicuro responde que su propuesta es justamente de moderación, amistad y serenidad.",
+      "palabras": [
+        "críticas religiosas",
+        "egoísmo",
+        "adicciones",
+        "moderación",
+        "serenidad"
+      ],
+      "ejemplo": "Alguien dice «el que busca el placer es un egoísta». Epicuro contestaría que la amistad, que es pensar en el otro, es uno de los mayores placeres."
+    },
+    {
+      "id": "epicuro_jardin",
+      "titulo": "Epicuro, el Jardín y los malentendidos",
+      "guia": "Preguntar quién fue Epicuro, qué era el Jardín y por qué se lo malinterpretó (licencioso o asceta).",
+      "claves": "Epicuro (341–270 a. C.) enseñó en Atenas y fundó el Jardín, comunidad que valoraba la amistad e integraba a mujeres y esclavos. Fue caricaturizado como licencioso (entregado a los excesos) o como asceta (que renuncia al placer); en realidad propuso una vida sencilla de placer continuo y calculado, con prudencia y justicia.",
+      "resumen": "Epicuro (341–270 a. C.) fundó en Atenas el Jardín, una escuela-comunidad de amigos que aceptaba a mujeres y esclavos. Lo acusaron de licencioso (vivir de excesos) y otros lo vieron como asceta (renunciar al placer), pero ninguna de las dos cosas es cierta: propuso una vida sencilla, con placer calculado, prudencia y justicia.",
+      "palabras": [
+        "Epicuro",
+        "Jardín",
+        "amistad",
+        "licencioso",
+        "asceta",
+        "prudencia"
+      ],
+      "ejemplo": "Hoy se dice «epicúreo» de alguien que come y bebe de más: es el mismo malentendido que sufrió Epicuro."
+    },
+    {
+      "id": "limite",
+      "titulo": "Una vida de placer, no picos de intensidad",
+      "guia": "Preguntar por qué para Epicuro no conviene buscar placeres cada vez más intensos y qué busca en cambio.",
+      "claves": "El placer tiene un límite de intensidad: más intensidad no da más felicidad. Lo que importa es una vida de placer continuo y estable, que puede variar en formas (contemplación, amistad, descanso, diálogo). La calidad pesa más que la cantidad.",
+      "resumen": "Para Epicuro el placer tiene un límite: buscar sensaciones cada vez más fuertes no nos hace más felices. Lo valioso es una vida de placer estable, que puede variar de formas: la amistad, el descanso, el diálogo, el pensar. La calidad pesa más que la cantidad.",
+      "palabras": [
+        "límite",
+        "intensidad",
+        "placer estable",
+        "calidad",
+        "cantidad"
+      ],
+      "ejemplo": "El que necesita cada vez más adrenalina para divertirse nunca está satisfecho; el que disfruta de una charla tranquila, sí."
+    },
+    {
+      "id": "ataraxia",
+      "titulo": "La ataraxia",
+      "guia": "Preguntar qué es la ataraxia, por qué es el estado ideal y si significa no tener emociones.",
+      "claves": "La ataraxia es la imperturbabilidad del alma: serenidad, equilibrio y lucidez frente a lo que pasa. No suprime las emociones: ordena los deseos para evitar la ansiedad, que destruye el placer. Es el estado ideal del sabio.",
+      "resumen": "La ataraxia es la imperturbabilidad del alma: estar sereno, en equilibrio y lúcido pase lo que pase. No significa no sentir: significa ordenar los deseos para no vivir en la ansiedad, que es lo que destruye el placer. Es el estado ideal del sabio epicúreo.",
+      "palabras": [
+        "ataraxia",
+        "imperturbabilidad",
+        "serenidad",
+        "equilibrio",
+        "ansiedad"
+      ],
+      "ejemplo": "Antes de una prueba, el que estudió y está tranquilo vive con ataraxia; el que está desesperado por la nota, con ansiedad."
+    },
+    {
+      "id": "ausencia_dolor",
+      "titulo": "El placer como ausencia de dolor",
+      "guia": "Preguntar cómo define Epicuro el placer y qué son la aponía y la ataraxia.",
+      "claves": "Para Epicuro, placer es no sufrir: sin hambre ni sed, sin ansiedad ni miedo. Ausencia de dolor del cuerpo = aponía; ausencia de perturbación del alma = ataraxia. Ese estado «neutro» ya es bienestar y es el placer más alto.",
+      "resumen": "Para Epicuro, el placer es la ausencia de dolor: no tener hambre, sed, miedo ni ansiedad. Si el cuerpo no sufre hay aponía; si el alma está tranquila hay ataraxia. Ese estado de calma, que parece «neutro», ya es bienestar y es el placer más alto.",
+      "palabras": [
+        "ausencia de dolor",
+        "aponía",
+        "ataraxia",
+        "bienestar"
+      ],
+      "ejemplo": "Cuando se te pasa un dolor de muelas sentís un alivio enorme: Epicuro diría que ese no-sufrir ya es placer."
+    },
+    {
+      "id": "sensuales",
+      "titulo": "Los placeres sensuales: medios, no fines",
+      "guia": "Preguntar qué lugar ocupan los placeres de los sentidos para Epicuro y qué pasa si se los convierte en el fin de la vida.",
+      "claves": "Epicuro no rechaza los sentidos: el gusto, la música, el amor y la belleza enriquecen la vida. Pero son medios, no fines: si se convierten en el fin último generan ansiedad, dependencia y adicción. Deben servir a la serenidad.",
+      "resumen": "Epicuro no desprecia los placeres de los sentidos: la comida rica, la música, el amor y la belleza hacen la vida más linda. Pero son medios y no fines: si vivimos solo para ellos aparecen la ansiedad y la adicción. Deben estar al servicio de la serenidad.",
+      "palabras": [
+        "placeres sensuales",
+        "medios",
+        "fines",
+        "adicción",
+        "serenidad"
+      ],
+      "ejemplo": "Escuchar música te relaja; no poder estar un minuto sin auriculares ya es dependencia."
+    },
+    {
+      "id": "temores",
+      "titulo": "Los dos grandes temores: los dioses y la muerte",
+      "guia": "Preguntar qué dos temores quiere eliminar Epicuro y con qué argumentos.",
+      "claves": "Los dioses existen pero viven felices y no intervienen en los asuntos humanos: no hay que temerlos. La muerte no es nada para nosotros: mientras vivimos no está, y cuando llega ya no sentimos. La filosofía funciona como medicina del alma que libra de miedos falsos.",
+      "resumen": "Epicuro quiere liberarnos de dos miedos. A los dioses no hay que temerlos: existen, pero viven felices y no se ocupan de los humanos. Y la muerte «no es nada para nosotros»: mientras vivimos no está, y cuando llega ya no sentimos nada. La filosofía es una medicina del alma.",
+      "palabras": [
+        "temores",
+        "dioses",
+        "muerte",
+        "medicina del alma"
+      ],
+      "ejemplo": "Una cadena de WhatsApp que amenaza con mala suerte si no la reenviás es un miedo falso, como el temor a los dioses que combatía Epicuro."
+    },
+    {
+      "id": "autarquia",
+      "titulo": "Autarquía, amistad y felicidad",
+      "guia": "Preguntar qué es la autarquía, cómo lleva a la felicidad y qué papel cumple la amistad.",
+      "claves": "La autarquía es la autosuficiencia razonable: necesitar poco y depender menos de caprichos y cosas externas. Autarquía → ataraxia → felicidad. La sabiduría elimina obstáculos y cultiva lo que sostiene la serenidad, sobre todo la amistad, uno de los mayores placeres.",
+      "resumen": "La autarquía es la autosuficiencia: necesitar poco y no depender de caprichos ni de cosas externas. El camino es autarquía → ataraxia → felicidad. Y lo que más sostiene esa vida serena es la amistad, que para Epicuro es uno de los mayores placeres.",
+      "palabras": [
+        "autarquía",
+        "autosuficiencia",
+        "ataraxia",
+        "felicidad",
+        "amistad"
+      ],
+      "ejemplo": "Si necesitás el celular último modelo para estar bien, dependés de algo externo; si estás bien con lo que tenés y con tus amigos, sos más libre."
+    },
+    {
+      "id": "deseos",
+      "titulo": "La clasificación de los deseos",
+      "guia": "Pedir que explique los tres tipos de deseos según Epicuro, con un ejemplo de cada uno y qué hacer con cada tipo.",
+      "claves": "Deseos naturales y necesarios (comida simple, refugio, amistad): satisfacerlos. Naturales no necesarios (lujos, manjares caros): moderarlos. Vanos, ni naturales ni necesarios (fama, poder, riqueza sin límite): eliminarlos. Ordenar los deseos con prudencia lleva a la ataraxia.",
+      "resumen": "Epicuro distingue tres tipos de deseos. Los naturales y necesarios (comida simple, abrigo, amistad) hay que satisfacerlos. Los naturales no necesarios (lujos, comidas caras) hay que moderarlos. Los vanos (fama, poder, riqueza sin límite) hay que eliminarlos, porque nunca se sacian.",
+      "palabras": [
+        "deseos naturales y necesarios",
+        "naturales no necesarios",
+        "deseos vanos",
+        "prudencia"
+      ],
+      "ejemplo": "Tomar agua cuando tenés sed es necesario; querer una gaseosa importada es natural pero no necesario; querer ser famoso en todas las redes es vano."
+    }
+  ],
+  "casos": [
+    {
+      "id": "zapatillas",
+      "texto": "Ahorraste durante meses. Podés gastar todo en unas zapatillas de marca que están de moda o comprar unas comunes y guardar el resto.",
+      "claves": "Aplicar la clasificación de deseos (natural no necesario / vano: la moda, la marca), la autarquía (no depender de lo externo), la moderación y la prudencia para calcular placeres y dolores futuros."
+    },
+    {
+      "id": "fiesta",
+      "texto": "Te invitan a una fiesta donde todos van a tomar mucho alcohol. Al día siguiente tenés un partido importante con tu equipo.",
+      "claves": "Cálculo de placeres y dolores (un placer inmediato que trae dolor después), hedonismo vulgar vs. refinado, la prudencia y la aponía/ataraxia como verdadero placer."
+    },
+    {
+      "id": "likes",
+      "texto": "Subiste una foto y casi nadie le dio like. Te sentís mal y pensás en borrarla y subir otra «mejor».",
+      "claves": "Identificar un deseo vano (la aprobación, la fama), la ansiedad que destruye la ataraxia, la autarquía (no depender de la opinión ajena) y la amistad verdadera frente a la validación."
+    },
+    {
+      "id": "cadena",
+      "texto": "Te llega una cadena de WhatsApp que dice que si no la reenviás a 10 personas te va a ir mal. Tu amiga está asustada.",
+      "claves": "Aplicar el argumento contra el temor a los dioses (no intervienen en los asuntos humanos), la filosofía como medicina del alma contra miedos falsos, y la ataraxia."
+    },
+    {
+      "id": "carrera",
+      "texto": "Un pariente te dice que estudies algo solo porque da mucha plata y prestigio, aunque a vos te apasiona otra cosa más sencilla.",
+      "claves": "Distinguir deseos vanos (riqueza sin límite, prestigio) de lo que da placer estable; la calidad sobre la cantidad; la autarquía y la serenidad como camino a la felicidad."
+    },
+    {
+      "id": "atracon",
+      "texto": "Es fin de semana y te dan ganas de comer comida chatarra sin parar mientras mirás series todo el día.",
+      "claves": "Placeres sensuales como medios y no fines, el límite del placer, la moderación y el hedonismo refinado frente al vulgar; la aponía (el malestar después)."
+    },
+    {
+      "id": "prueba",
+      "texto": "Mañana tenés una prueba y estás tan nervioso que no podés dormir ni concentrarte.",
+      "claves": "Aplicar la ataraxia (ordenar los deseos y los miedos, serenidad), la ansiedad como enemiga del placer, y la prudencia para organizarse."
+    },
+    {
+      "id": "viaje",
+      "texto": "Tus amigos organizan un viaje caro que no podés pagar. Otro grupo te invita a acampar cerca, casi sin gastar.",
+      "claves": "Deseos naturales no necesarios vs. necesarios, la autarquía, la amistad como mayor placer y la sencillez del Jardín de Epicuro."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "placer_propio",
+      "texto": "¿Qué placer de tu vida es estable y cuál es solo un impulso del momento? ¿Qué diría Epicuro de cada uno?"
+    },
+    {
+      "id": "deseo_vano",
+      "texto": "¿Tenés algún deseo que Epicuro llamaría vano? ¿Cómo te afecta y qué harías con él?"
+    },
+    {
+      "id": "miedo",
+      "texto": "¿Qué miedo te quita la tranquilidad? ¿Cómo te ayudaría la idea de ataraxia?"
+    },
+    {
+      "id": "amigos",
+      "texto": "¿Por qué creés que Epicuro consideraba la amistad uno de los mayores placeres? ¿Pasa lo mismo en tu vida?"
+    },
+    {
+      "id": "redes",
+      "texto": "¿Las redes sociales te acercan o te alejan de la ataraxia? Respondé con algún concepto de Epicuro."
+    }
+  ],
+  "practica": [
+    "Un compañero dice que ser hedonista es «hacer lo que se te antoja». ¿Qué le respondería Epicuro?",
+    "Da un ejemplo de un placer que después trae dolor y otro de un dolor que después trae placer.",
+    "¿Por qué Epicuro diría que con pan, agua y amigos alguien puede ser feliz?",
+    "Clasificá estos deseos según Epicuro: dormir cuando tenés sueño, un celular de última generación, ser el más popular del colegio.",
+    "Explicá con tus palabras por qué «la muerte no es nada para nosotros».",
+    "¿Qué diferencia hay entre la ataraxia y no sentir nada?",
+    "¿En qué se parece y en qué se diferencia el placer de Epicuro del placer de una propaganda de comida rápida?",
+    "Pensá en un día en que estuviste tranquilo y sin sufrir: ¿por qué para Epicuro eso ya es placer?"
+  ]
+}

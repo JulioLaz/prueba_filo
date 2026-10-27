@@ -10,6 +10,8 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.1 (2026-10-27): el examen sirve para cualquier tema (sin "ética aristotélica"
+ *   fijo en las instrucciones): vocabulario y reflexión usan banco.conceptosClave.
  * V8 (2026-10-27): examen oral con el filósofo (examenEstado, examenIniciar,
  *   examenResponder). El banco de preguntas se lee de GitHub Pages:
  *   themes/<tema>/examen.json. La nota la corrige la IA con rúbrica y la
@@ -801,6 +803,7 @@ async function cargarBanco(tema) {
   banco.avanceRequerido = banco.avanceRequerido ?? 80;
   banco.actividadesRequeridas = banco.actividadesRequeridas || ["quiz", "caza", "cruci", "material", "mapa"];
   banco.filosofo = banco.filosofo || "el filósofo";
+  banco.conceptosClave = banco.conceptosClave || banco.ejes.map((e) => e.titulo).join(", ");
   bancosCache.set(tema, {banco, hasta: Date.now() + CACHE_BANCO_MS});
   return banco;
 }
@@ -847,14 +850,14 @@ function armarPlan(banco, ultimosEjes = []) {
       ...ejes.map((e) => ({tipo: "eje", id: e.id, titulo: e.titulo, guia: e.guia, claves: e.claves})),
       {
         tipo: "caso", id: caso.id, titulo: "Caso práctico",
-        guia: `Presentá este caso y preguntá qué haría y por qué, según tu ética: «${caso.texto}»`,
+        guia: `Presentá este caso y preguntá qué haría y por qué, según tu filosofía: «${caso.texto}»`,
         claves: caso.claves,
       },
       {
         tipo: "reflexion", id: reflexion.id, titulo: "Reflexión personal",
         guia: `Hacé esta pregunta de reflexión personal (podés reformularla): «${reflexion.texto}»`,
-        claves: "Respuesta personal y honesta que use con sentido al menos un concepto de la ética aristotélica " +
-          "(virtud, hábito, término medio, eudaimonía, amistad, prudencia…) y lo aplique a su propia vida.",
+        claves: `Respuesta personal y honesta que use con sentido al menos un concepto del tema (${banco.conceptosClave}) ` +
+          "y lo aplique a su propia vida.",
       },
     ],
   };
@@ -916,7 +919,7 @@ function sistemaEvaluador(banco, n) {
 
 Para CADA una de las ${n} preguntas asigná de 0 a 2 puntos en cuatro criterios:
 - comprension: entiende el concepto (0 = no o es incorrecto, 1 = parcial, 2 = claro y correcto).
-- vocabulario: usa con sentido términos de la ética aristotélica (0 = ninguno, 1 = alguno, 2 = varios y bien usados).
+- vocabulario: usa con sentido los términos propios del tema, como ${banco.conceptosClave} (0 = ninguno, 1 = alguno, 2 = varios y bien usados).
 - aplicacion: da ejemplos o lo aplica a una situación concreta (0 = no, 1 = débil, 2 = bien aplicado).
 - argumentacion: justifica y explica el porqué (0 = solo afirma, 1 = algo, 2 = razona bien).
 Respuestas vacías, "no sé", fuera de tema o que solo repiten la pregunta: 0 en todo.

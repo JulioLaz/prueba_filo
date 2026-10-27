@@ -117,9 +117,9 @@ const TOPICS = {
         youtubeId: 'Yt0Yjtn0VSc', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
         // youtubeId: '0s73cG7fJoA', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
         startTime: 1,
-        endTime: 58,
+        endTime: 168, // el cloze llega hasta 2:45 (antes cortaba en 0:58)
         title: 'Hedonismo',
-        duration: '58',
+        duration: '2:48',
         // type: 'short'
       },
       utilitarismo: { //https://youtu.be/YU19bTA656I?si=ns1OzYx5AZyJPQKV
@@ -232,6 +232,11 @@ const TOPICS = {
       etica_aristoteles: {
         filosofo: 'Aristóteles',
         icono: '🏛️',
+        notaAprobacion: 6
+      },
+      hedonismo: {
+        filosofo: 'Epicuro',
+        icono: '🌸',
         notaAprobacion: 6
       }
     };

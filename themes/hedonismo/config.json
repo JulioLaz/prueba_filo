@@ -8,7 +8,7 @@
     "category": "Filosofía Clásica",
     "author": "Cuestionarios de Filosofía",
     "description": "Explora la búsqueda del placer y la felicidad desde Epicuro hasta interpretaciones modernas: ataraxia, placeres superiores y vida serena.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2026-10-27"
   },
 
   "activities": {
@@ -27,7 +27,7 @@
     },
     "concepts": {
       "enabled": true,
-      "levels": 5,
+      "levels": 8,
       "timeEstimate": 8
     },
     "cloze": {

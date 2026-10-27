@@ -34,7 +34,7 @@ Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad
 
 ## 🏛️ Examen oral (cierra el tema)
 
-Por ahora lo tiene **Ética de Aristóteles**. Es un diálogo guiado con el filósofo:
+Lo tienen **Ética de Aristóteles** (con Aristóteles) y **Hedonismo** (con Epicuro). Es un diálogo guiado con el filósofo:
 
 - Se habilita con **80%** en las demás actividades del tema.
 - **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.
@@ -47,7 +47,7 @@ Por ahora lo tiene **Ética de Aristóteles**. Es un diálogo guiado con el fil�
 
 **Resumen final** (`resumen_tema.html`, botón "Resumen final" en la tarjeta del examen): las 12 ideas centrales que se evalúan, cada una con su explicación, palabras clave y un ejemplo, más preguntas "Para practicar" (parecidas a las del examen, pero distintas). Se desbloquea con el mismo 80% que el examen y se puede imprimir o copiar para la carpeta. Sale del mismo `examen.json`: en cada eje, `guia` y `claves` son para la IA, y `resumen`, `palabras` y `ejemplo` son para el alumno.
 
-Para editar las preguntas, casos o reflexiones: cambiar `themes/<id>/examen.json` y hacer push (no hace falta volver a desplegar la función). Para agregar el examen a otro tema: crear su `examen.json` y sumarlo a `EXAMEN_CONFIG` en `temas_data.js`.
+Para editar las preguntas, casos o reflexiones: cambiar `themes/<id>/examen.json` y hacer push (no hace falta volver a desplegar la función). Para agregar el examen a otro tema: crear su `examen.json` (copiar el de un tema existente; `conceptosClave` es el vocabulario que la IA tiene en cuenta al corregir) y sumarlo a `EXAMEN_CONFIG` en `temas_data.js`.
 
 ## 🗂️ Estructura
 
