@@ -1,106 +1,164 @@
-// js/caza_conceptos_utilitarismo.js
+// themes/utilitarismo/conceptos.js
+// Caza de conceptos — Utilitarismo: la mayor felicidad para el mayor número (Mill)
+// v2.0 (2026-10-27): 8 niveles, uno por cada sección del material (antes 5 niveles
+// y 14 conceptos, algunos comentados); sin negritas en el texto (el motor resalta
+// los conceptos); hay que encontrar todos los conceptos del párrafo para avanzar.
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "John Stuart Mill",
-  menuUrl: "https://juliolaz.github.io/prueba_filo/quiz.html?tema=utilitarismo&theme=utilitarismo",
-  // Niveles
+  menuUrl: "tema.html?tema=utilitarismo",
   levels: [
     {
-      // 1) Principio fundamental
       html: `
-      <p>El <strong>utilitarismo</strong> de J. S. Mill se basa en un solo principio: <strong>el Principio de la Mayor Felicidad</strong>. Según este, las acciones son correctas si tienden a promover la <strong>felicidad</strong>; e incorrectas si producen lo contrario. El objetivo es <strong>maximizar</strong> la mayor cantidad de bienestar para el <strong>mayor número de personas</strong>. Lo que realmente importa son las <strong>consecuencias</strong> de nuestras acciones, no las intenciones.</p>
+      <p>El utilitarismo, iniciado por Jeremy Bentham y desarrollado por John Stuart Mill, sostiene que una acción es moralmente correcta si promueve la felicidad, e incorrecta si produce dolor. Lo bueno es lo útil, y lo útil es lo placentero. Su principio de la mayor felicidad pide buscar la felicidad del mayor número de personas, y en ese cálculo la felicidad de cada uno cuenta lo mismo: es una ética imparcial.</p>
       `,
-      hint: "Enfócate en las ideas de felicidad, consecuencias y el mayor número.",
+      hint: "Buscá la idea central del utilitarismo y quiénes la propusieron.",
       concepts: [
-        { term: "utilitarismo", meaning: "Filosofía moral que sostiene que la acción correcta es la que produce la mayor felicidad o bienestar para el mayor número de personas afectadas." },
-        { term: "felicidad", meaning: "En la ética de Mill, la felicidad se entiende como 'placer y ausencia de dolor'." },
-        { term: "consecuencias", meaning: "Los resultados o efectos de una acción. Para el utilitarismo, son el único criterio para juzgar la moralidad de una acción." },
-        { term: "maximizar", meaning: "Lograr el mayor grado posible de felicidad o bienestar." }
-        // { term: "mayor_número", meaning: "Se refiere a la totalidad de las personas o seres que son afectados por una acción, no solo uno mismo." },
+        { term: "utilitarismo", meaning: "Ética que juzga las acciones por su utilidad: es correcta la que produce más felicidad para el mayor número." },
+        { term: "Bentham", meaning: "Jeremy Bentham (1748–1832), fundador del utilitarismo: propuso medir placeres y dolores." },
+        { term: "útil", meaning: "Lo que produce placer o evita dolor. Para el utilitarismo, lo útil es lo bueno." },
+        { term: "principio de la mayor felicidad", meaning: "Regla central del utilitarismo: actuar buscando la mayor felicidad para el mayor número de personas." },
+        { term: "mayor número", meaning: "No basta con mi felicidad: hay que tener en cuenta a todos los afectados por una acción." },
+        { term: "imparcial", meaning: "Que no favorece a nadie: la felicidad de cada persona cuenta lo mismo, incluida la propia." }
       ],
       corollary: [
-        "El principio fundamental del utilitarismo es que las consecuencias de una acción determinan si es correcta o incorrecta.",
-        "Se busca la mayor felicidad para la mayor cantidad de gente."
-      ],
+        "Lo correcto es lo que produce más felicidad para más personas.",
+        "Cada persona cuenta como una: nadie vale más que otro."
+      ]
     },
     {
-      // 2) Placeres superiores e inferiores
       html: `
       <div class="highlight-box">
-        <h4>🌟 Placeres Superiores e Inferiores</h4>
-        <p>Mill refina el utilitarismo distinguiendo entre diferentes tipos de <strong>placeres</strong>. Los <strong>placeres inferiores</strong> están ligados al cuerpo (comer, beber), mientras que los <strong>placeres superiores</strong> se asocian con nuestras facultades intelectuales (amistad, arte, conocimiento).</p>
-        <p>Según Mill, la <strong>calidad</strong> del placer es más importante que su cantidad. Por eso afirma que "es mejor ser un ser humano insatisfecho que un cerdo satisfecho", lo que demuestra el valor único de los placeres intelectuales.</p>
+        <h4>🎯 Una ética eudemonista y hedonista</h4>
+        <p>El utilitarismo es una ética eudemonista, porque busca la felicidad como fin último, y hedonista, porque identifica la felicidad con el placer. Pero a diferencia de Epicuro, no piensa solo en la felicidad propia: tiene un alcance universalista, porque se preocupa por la felicidad de toda la sociedad.</p>
       </div>
       `,
-      hint: "Fíjate en los tipos de placeres y el por qué de la distinción.",
+      hint: "Identificá cómo se clasifica la ética utilitarista y qué la distingue.",
       concepts: [
-        { term: "placeres", meaning: "Sensaciones que generan bienestar. Mill distingue entre dos tipos: los del cuerpo y los de la mente." },
-        { term: "inferiores", meaning: "Placeres que compartimos con otros animales, ligados a la supervivencia y a las necesidades físicas." },
-        { term: "superiores", meaning: "Placeres exclusivos de los seres humanos, como los que provienen del intelecto, la moral y la estética." },
-        { term: "calidad", meaning: "Para Mill, no todos los placeres son iguales. Los placeres superiores son de mayor valor y duración, incluso si generan menos intensidad inmediata." },
+        { term: "eudemonista", meaning: "Ética que pone a la felicidad como fin último de la vida." },
+        { term: "hedonista", meaning: "Que identifica la felicidad con el placer y la ausencia de dolor." },
+        { term: "fin último", meaning: "Lo que se busca por sí mismo y no como medio: para el utilitarismo, la felicidad." },
+        { term: "universalista", meaning: "Que abarca a todos: el utilitarismo busca la felicidad general, no solo la propia." },
+        { term: "sociedad", meaning: "El conjunto de personas cuya felicidad hay que tener en cuenta al decidir." }
       ],
       corollary: [
-        "Para Mill, la calidad de un placer es más importante que la cantidad.",
-        "Los placeres intelectuales y morales tienen un valor superior a los puramente físicos."
-      ],
+        "Felicidad = placer, como en el hedonismo.",
+        "Pero la meta es la felicidad de todos, no solo la mía."
+      ]
     },
     {
-      // 3) El utilitarismo no es egoísmo: el espectador imparcial
       html: `
-      <div class="highlight-box">
-        <h4>⚖️ El Principio de Imparcialidad Estricta</h4>
-        <p>A pesar de lo que pueda parecer, el utilitarismo no es una justificación del <strong>egoísmo</strong>. Al evaluar una acción, se debe considerar la felicidad de <strong>todos los afectados</strong>, no solo la nuestra. Esto exige que actuemos como un <strong>espectador imparcial</strong>, sopesando de forma equitativa las consecuencias para cada persona.</p>
-      </div>
+      <p>Mill distingue los placeres por su calidad, y no solo por su cantidad. Los placeres inferiores son corporales y fugaces. Los placeres superiores son intelectuales y morales, como el pensamiento, el arte y el estudio: son más duraderos y dan una satisfacción más plena. Por eso Mill dice que es mejor ser un Sócrates insatisfecho que un tonto satisfecho.</p>
       `,
-      hint: "Busca los conceptos de imparcialidad y egoísmo.",
+      hint: "Buscá cómo clasifica Mill los placeres y su famosa comparación.",
       concepts: [
-        { term: "egoísmo", meaning: "Actuar solo en beneficio propio. El utilitarismo rechaza el egoísmo, pues exige considerar el bienestar de todos los afectados." },
-        { term: "imparcial", meaning: "Actuar sin dar un peso especial a nuestra propia felicidad o la de nuestros seres queridos. Todos los afectados cuentan por igual." },
-        { term: "afectados", meaning: "Todas las personas o seres que recibirán las consecuencias de nuestra decisión, incluyendo nuestra familia, comunidad, la sociedad y futuras generaciones." },
+        { term: "calidad", meaning: "Lo que hace más valioso a un placer. Para Mill importa más que la cantidad." },
+        { term: "placeres inferiores", meaning: "Placeres corporales y fugaces, como comer o dormir. Son buenos, pero menos valiosos." },
+        { term: "placeres superiores", meaning: "Placeres intelectuales, morales y estéticos: más duraderos y plenos." },
+        { term: "fugaces", meaning: "Que duran poco. Así son los placeres del cuerpo." },
+        { term: "satisfacción", meaning: "Contento que produce un placer. La de los placeres superiores es más plena." },
+        { term: "Sócrates insatisfecho", meaning: "Imagen de Mill: vale más una vida humana con placeres superiores, aunque falte algo, que una vida solo de placeres simples." }
       ],
       corollary: [
-        "El utilitarismo es una ética profundamente altruista, no egoísta.",
-        "La moralidad de una acción se juzga desde una perspectiva objetiva, no personal."
-      ],
+        "No todos los placeres valen lo mismo: importa la calidad.",
+        "Mejor Sócrates insatisfecho que un tonto satisfecho."
+      ]
     },
     {
-      // 4) Utilitarismo del Acto vs. Utilitarismo de la Regla
       html: `
       <div class="highlight-box">
-        <h4>📋 Utilitarismo del Acto vs. Utilitarismo de la Regla</h4>
-        <p>Una gran pregunta en el utilitarismo es si debemos juzgar cada <strong>acto individual</strong> o si debemos seguir <strong>reglas morales</strong> que, en general, promueven la mayor felicidad. Mill se inclinó por el <strong>utilitarismo de la regla</strong>, argumentando que seguir reglas como "no mentir" o "no robar" crea confianza y bienestar a largo plazo, aunque haya <strong>excepciones</strong> en situaciones extremas donde romper la regla evita un daño mucho mayor.</p>
+        <h4>🧠 ¿Se puede ser feliz?</h4>
+        <p>Mill afirma que la felicidad sí es alcanzable, pero no hay que imaginarla como un éxtasis continuo. Una vida feliz tiene algunos momentos de exaltación, pocos dolores pasajeros y muchos placeres variados. Además, el principio utilitarista no solo pide aumentar la felicidad: también pide la prevención y la mitigación de la desgracia.</p>
       </div>
       `,
-      hint: "Diferencia entre los dos tipos de utilitarismo y el papel de las reglas.",
+      hint: "Encontrá cómo describe Mill una vida feliz posible.",
       concepts: [
-        { term: "acto", meaning: "Juzga la moralidad de cada acción específica y única según sus consecuencias." },
-        { term: "regla", meaning: "Juzga la moralidad de una acción en base a si la regla que la justifica, si se siguiera siempre, produciría la mayor felicidad." },
-        // { term: "reglas_morales", meaning: "Principios generales de conducta (ej. no mentir, no robar). El utilitarismo de la regla las considera útiles porque la experiencia demuestra que generalmente conducen al bienestar social." },
-        { term: "excepciones", meaning: "Situaciones muy inusuales en las que romper una regla moral puede estar justificado, pero solo si esto produce un beneficio significativamente mayor o evita un sufrimiento considerable." },
+        { term: "alcanzable", meaning: "Que se puede lograr. Para Mill la felicidad lo es, si no se la confunde con un éxtasis permanente." },
+        { term: "éxtasis continuo", meaning: "Alegría intensa sin fin. No es eso la felicidad: es imposible y no hace falta." },
+        { term: "exaltación", meaning: "Momentos de gran alegría. Una vida feliz tiene algunos, no todo el tiempo." },
+        { term: "placeres variados", meaning: "Muchos y distintos placeres: son parte de una vida feliz real." },
+        { term: "prevención", meaning: "Evitar que ocurra un sufrimiento. También es un deber utilitarista." },
+        { term: "mitigación", meaning: "Aliviar un sufrimiento que ya existe." }
       ],
       corollary: [
-        "Utilitarismo del acto: juzga cada acción por sus consecuencias.",
-        "Utilitarismo de la regla: juzga las acciones por las reglas que las justifican.",
-        "Mill prefirió el utilitarismo de la regla porque garantiza un mayor bienestar a largo plazo."
-      ],
+        "La felicidad es posible: muchos placeres variados y pocos dolores.",
+        "Evitar y aliviar la desgracia también es buscar la felicidad."
+      ]
     },
     {
-      // 5) Aplicaciones y críticas
       html: `
-      <div class="highlight-box">
-        <h4>🤔 Desafíos y Críticas al Utilitarismo</h4>
-        <p>El utilitarismo, pese a su gran influencia, enfrenta críticas importantes. Un problema clave es el de la <strong>justicia</strong>: ¿podría justificarse sacrificar a una persona inocente por el bien de la mayoría? Otro desafío es el del <strong>cálculo</strong>: ¿es realmente posible medir y comparar la felicidad o el bienestar? Además, se cuestiona si el utilitarismo exige demasiado de las personas.</p>
-      </div>
+      <p>El utilitarismo es una ética consecuencialista: la bondad o maldad de un acto se mide por sus consecuencias, es decir, por sus resultados concretos. Los motivos o intenciones no cambian su valor moral. Una acción es buena si promueve la felicidad, aunque quien la hizo haya actuado por egoísmo o por altruismo. Lo que cuenta es el balance final de felicidad.</p>
       `,
-      hint: "Atiende a los problemas de justicia y cálculo.",
+      hint: "Identificá cómo se juzga una acción en el utilitarismo.",
       concepts: [
-        { term: "justicia", meaning: "Un principio moral que el utilitarismo a veces parece contradecir. Se refiere a dar a cada uno lo que le corresponde, respetando sus derechos individuales, sin sacrificarlo por el bien común." },
-        { term: "cálculo", meaning: "La dificultad práctica de medir la cantidad de felicidad o sufrimiento que una acción podría generar, así como de predecir sus consecuencias a largo plazo." },
+        { term: "consecuencialista", meaning: "Ética que juzga las acciones por sus consecuencias, no por las intenciones." },
+        { term: "consecuencias", meaning: "Los efectos reales de una acción. Son lo único que importa para valorarla." },
+        { term: "intenciones", meaning: "Lo que alguien quería al actuar. Para el utilitarismo no cambian el valor moral del acto." },
+        { term: "egoísmo", meaning: "Actuar pensando solo en uno mismo. Si el resultado es bueno, igual la acción es buena." },
+        { term: "altruismo", meaning: "Actuar pensando en los demás. Tampoco alcanza si el resultado es malo." },
+        { term: "balance", meaning: "La cuenta final entre la felicidad y el dolor que produce una acción." }
       ],
       corollary: [
-        "El utilitarismo es una teoría de las consecuencias y, por lo tanto, puede entrar en conflicto con la justicia.",
-        "Es un desafío práctico poder calcular la felicidad y sus efectos a largo plazo."
-      ],
+        "Importan los resultados, no las intenciones.",
+        "Se mide el balance final de felicidad y dolor."
+      ]
     },
-  ],
+    {
+      html: `
+      <div class="highlight-box">
+        <h4>🎯 La regla y la excepción</h4>
+        <p>Mentir suele estar mal porque rompe la confianza, que es necesaria para la felicidad general. Pero para el utilitarismo toda regla moral admite excepciones. Si en un caso particular una mentira piadosa produce más beneficios, o evita una desgracia mayor, que decir la verdad, esa mentira no es condenable: incluso puede ser recomendable.</p>
+      </div>
+      `,
+      hint: "Buscá por qué mentir suele estar mal y cuándo no.",
+      concepts: [
+        { term: "confianza", meaning: "Base de la convivencia y de la felicidad general. Por eso mentir suele ser malo." },
+        { term: "regla moral", meaning: "Norma general (no mentir, cumplir promesas) que suele producir buenos resultados." },
+        { term: "excepciones", meaning: "Casos en que romper una regla produce más felicidad que cumplirla." },
+        { term: "mentira piadosa", meaning: "Mentira dicha para evitar un daño o un sufrimiento mayor." },
+        { term: "desgracia", meaning: "Sufrimiento o mal grave. Evitarla puede justificar una excepción." }
+      ],
+      corollary: [
+        "Las reglas valen porque suelen dar buenos resultados.",
+        "Si romperlas da más felicidad, se justifica la excepción."
+      ]
+    },
+    {
+      html: `
+      <p>El sacrificio de la propia felicidad tiene valor moral solo si sirve para aumentar la felicidad de los demás. La renuncia es noble cuando produce un beneficio real. En cambio, el sacrificio que no ayuda a nadie ni alivia ninguna desgracia no tiene sentido ni valor moral para el utilitarismo.</p>
+      `,
+      hint: "Identificá cuándo vale la pena renunciar a la propia felicidad.",
+      concepts: [
+        { term: "sacrificio", meaning: "Renunciar a la propia felicidad. Solo vale si aumenta la felicidad de otros." },
+        { term: "renuncia", meaning: "Dejar algo propio por otros. Es noble cuando produce un beneficio real." },
+        { term: "valor moral", meaning: "Lo que hace buena a una acción. En el sacrificio depende de sus efectos en los demás." },
+        { term: "beneficio real", meaning: "Una mejora concreta en la felicidad de alguien. Es lo que da sentido al sacrificio." }
+      ],
+      corollary: [
+        "Sacrificarse vale si ayuda de verdad a otros.",
+        "Un sacrificio inútil no tiene valor moral."
+      ]
+    },
+    {
+      html: `
+      <div class="highlight-box">
+        <h4>⚖️ La dimensión social</h4>
+        <p>Para lograr la felicidad general hay que combatir los grandes males sociales: la enfermedad, la ignorancia y la pobreza. Eso se consigue con el avance de la medicina, la educación universal, que acerca a todos los placeres superiores, y una legislación justa para repartir con equidad la riqueza. La política debe crear un sentimiento de unidad y de solidaridad.</p>
+      </div>
+      `,
+      hint: "Buscá qué males hay que combatir y con qué herramientas.",
+      concepts: [
+        { term: "enfermedad", meaning: "Uno de los grandes males sociales. Se combate con el avance de la medicina." },
+        { term: "ignorancia", meaning: "Otro gran mal: se combate con la educación universal." },
+        { term: "pobreza", meaning: "Gran mal social que se combate con leyes justas y reparto equitativo." },
+        { term: "educación universal", meaning: "Educación para todos: permite que todos accedan a los placeres superiores." },
+        { term: "legislación", meaning: "Las leyes. Deben ser justas y buscar la felicidad general." },
+        { term: "solidaridad", meaning: "Sentimiento de unidad con los demás que la política debe promover." }
+      ],
+      corollary: [
+        "La felicidad general exige combatir enfermedad, ignorancia y pobreza.",
+        "Medicina, educación y leyes justas son herramientas utilitaristas."
+      ]
+    }
+  ]
 };

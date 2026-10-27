@@ -1,0 +1,298 @@
+{
+  "_info": "Banco del examen oral con John Stuart Mill y del resumen final del tema Utilitarismo. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-10-27).",
+  "version": "1.0.0",
+  "filosofo": "John Stuart Mill",
+  "tema": "Utilitarismo: la mayor felicidad para el mayor número (Bentham y Mill)",
+  "intro": "El utilitarismo nació en Inglaterra con Jeremy Bentham y fue desarrollado por John Stuart Mill (1806–1873). Su pregunta es: ¿cómo saber si una acción es buena? Su respuesta: es buena si produce la mayor felicidad para el mayor número de personas, contando a todos por igual.",
+  "conceptosClave": "principio de la mayor felicidad, utilidad, consecuencias, placeres superiores e inferiores, imparcialidad, mayor número, bienestar general",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "avanceRequerido": 80,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "infancia",
+      "texto": "Mill cuenta que su padre le enseñó griego a los 3 años y latín a los 8, y que de joven aprendió que pensar no alcanza si uno no es feliz; con eso invita al alumno a conversar."
+    },
+    {
+      "id": "crisis",
+      "texto": "Mill recuerda que a los 20 años cayó en una profunda tristeza y que lo rescataron la poesía y la amistad: placeres que, dice, valen más que cualquier otro. Desde ahí arranca el examen."
+    },
+    {
+      "id": "parlamento",
+      "texto": "Mill acaba de salir del Parlamento de Londres, donde defendió el voto de las mujeres, y le dice al alumno que toda ley debería pensarse según la felicidad que produce."
+    },
+    {
+      "id": "socrates",
+      "texto": "Mill abre con su frase: «Es mejor ser un Sócrates insatisfecho que un tonto satisfecho», y le pregunta al alumno si está de acuerdo, avisándole que después viene el examen."
+    },
+    {
+      "id": "harriet",
+      "texto": "Mill cuenta que escribió sus mejores obras junto a Harriet Taylor, su compañera, y que pensar juntos fue una de sus mayores felicidades; con esa idea empieza la conversación."
+    },
+    {
+      "id": "balanza",
+      "texto": "Mill pone sobre la mesa una balanza imaginaria: de un lado la felicidad, del otro el dolor que produce una acción. Le dice al alumno que hoy va a ver si sabe usarla."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "mayor_felicidad",
+      "titulo": "El principio de la mayor felicidad",
+      "guia": "Preguntar qué dice el principio de la mayor felicidad y cuándo una acción es correcta según el utilitarismo.",
+      "claves": "Una acción es correcta si promueve la felicidad e incorrecta si produce dolor. Hay que buscar la mayor felicidad para el mayor número de personas afectadas. Lo bueno es lo útil y lo útil es lo placentero.",
+      "resumen": "Para el utilitarismo, una acción es correcta si produce felicidad y es incorrecta si produce dolor. Su principio de la mayor felicidad dice: actuá buscando la mayor felicidad para el mayor número de personas. Lo bueno es lo útil, y lo útil es lo que da placer o evita dolor.",
+      "palabras": [
+        "utilitarismo",
+        "principio de la mayor felicidad",
+        "mayor número",
+        "útil",
+        "dolor"
+      ],
+      "ejemplo": "Si con la plata del curso podés hacer algo que disfruten todos o algo que disfrute un grupito, el utilitarismo elige lo primero."
+    },
+    {
+      "id": "eudemonista",
+      "titulo": "Una ética eudemonista, hedonista y universalista",
+      "guia": "Preguntar por qué el utilitarismo es eudemonista y hedonista, y en qué se diferencia del hedonismo de Epicuro.",
+      "claves": "Es eudemonista porque la felicidad es el fin último, y hedonista porque identifica felicidad con placer y ausencia de dolor. A diferencia de Epicuro (que buscaba la felicidad individual, la ataraxia), tiene un alcance universalista: busca la felicidad de toda la sociedad.",
+      "resumen": "El utilitarismo es eudemonista, porque pone la felicidad como fin último, y hedonista, porque entiende la felicidad como placer y ausencia de dolor. Pero a diferencia de Epicuro, que buscaba la tranquilidad personal, es universalista: le importa la felicidad de toda la sociedad.",
+      "palabras": [
+        "eudemonista",
+        "hedonista",
+        "universalista",
+        "fin último",
+        "sociedad"
+      ],
+      "ejemplo": "Epicuro se preguntaría «¿cómo vivo yo tranquilo?»; Mill, «¿cómo hacemos para que haya más felicidad en todo el barrio?»."
+    },
+    {
+      "id": "imparcialidad",
+      "titulo": "La imparcialidad: cada uno cuenta como uno",
+      "guia": "Preguntar qué significa que el utilitarismo es imparcial y por qué la propia felicidad no vale más que la de otro.",
+      "claves": "Al calcular la felicidad, la de cada persona cuenta lo mismo («cada uno cuenta como uno, nadie como más de uno»), incluida la propia. No se puede favorecer a uno mismo ni a los amigos por serlo. Esto lo distingue del egoísmo.",
+      "resumen": "El utilitarismo es imparcial: al decidir, la felicidad de cada persona vale lo mismo, también la tuya. Nadie cuenta más que otro por ser yo, mi amigo o alguien importante. Por eso no es una ética egoísta.",
+      "palabras": [
+        "imparcialidad",
+        "cada uno cuenta como uno",
+        "egoísmo",
+        "afectados"
+      ],
+      "ejemplo": "Si sos el árbitro de un partido entre tu curso y otro, cobrar a favor de los tuyos porque son tuyos no es imparcial."
+    },
+    {
+      "id": "bentham_mill",
+      "titulo": "De Bentham a Mill: cantidad y calidad",
+      "guia": "Preguntar qué aportó Bentham al utilitarismo y en qué lo corrigió Mill.",
+      "claves": "Bentham fundó el utilitarismo y propuso medir los placeres por su cantidad (intensidad, duración), con un cálculo de placeres y dolores. Mill lo corrigió: además de la cantidad importa la calidad de los placeres; hay placeres superiores e inferiores.",
+      "resumen": "Jeremy Bentham fundó el utilitarismo y propuso un cálculo de placeres y dolores según su cantidad: cuánto duran y qué tan intensos son. John Stuart Mill, su sucesor, agregó que también importa la calidad: no todos los placeres valen lo mismo.",
+      "palabras": [
+        "Bentham",
+        "Mill",
+        "cálculo",
+        "cantidad",
+        "calidad"
+      ],
+      "ejemplo": "Para Bentham, una tarde de juegos y una de lectura se comparan por cuánto placer dan; Mill pregunta además qué tipo de placer es."
+    },
+    {
+      "id": "placeres",
+      "titulo": "Placeres superiores e inferiores",
+      "guia": "Pedir que explique la diferencia entre placeres superiores e inferiores, con ejemplos, y por qué Mill prefiere los superiores.",
+      "claves": "Placeres inferiores: corporales y fugaces (comer, dormir). Placeres superiores: intelectuales, morales y estéticos (pensar, estudiar, el arte, ayudar). Los superiores son más duraderos y dan una satisfacción más plena; quien conoce ambos prefiere los superiores.",
+      "resumen": "Mill distingue placeres inferiores, que son corporales y duran poco (comer, dormir), y placeres superiores, que son intelectuales, morales y artísticos (pensar, estudiar, la música, ayudar a otros). Los superiores duran más y dan una satisfacción más plena, y quien conoce los dos tipos prefiere los superiores.",
+      "palabras": [
+        "placeres superiores",
+        "placeres inferiores",
+        "calidad",
+        "fugaces",
+        "satisfacción"
+      ],
+      "ejemplo": "Una hamburguesa da un placer inferior; entender por fin un tema difícil o tocar una canción en la guitarra da un placer superior."
+    },
+    {
+      "id": "socrates",
+      "titulo": "«Mejor un Sócrates insatisfecho»",
+      "guia": "Preguntar qué quiso decir Mill con «es mejor ser un Sócrates insatisfecho que un tonto satisfecho».",
+      "claves": "Una vida humana con facultades superiores (pensar, sentir con profundidad) vale más aunque no esté siempre satisfecha, que una vida contenta solo con placeres simples. La calidad de los placeres pesa más que la cantidad; quien conoce los placeres superiores no cambiaría su vida por la del satisfecho.",
+      "resumen": "Mill dice que es mejor ser un ser humano insatisfecho que un cerdo satisfecho, y mejor un Sócrates insatisfecho que un tonto satisfecho. Quiere decir que una vida con pensamiento y sensibilidad vale más, aunque a veces duela, que una vida contenta solo con placeres simples.",
+      "palabras": [
+        "Sócrates insatisfecho",
+        "facultades superiores",
+        "calidad"
+      ],
+      "ejemplo": "Alguien que lee, piensa y se preocupa por el mundo a veces sufre más, pero no cambiaría su vida por la de quien solo busca pasarla bien."
+    },
+    {
+      "id": "alcanzable",
+      "titulo": "¿Es alcanzable la felicidad?",
+      "guia": "Preguntar si la felicidad es posible según Mill y cómo sería una vida feliz real.",
+      "claves": "Sí es alcanzable, pero no es un éxtasis continuo. Una vida feliz tiene algunos momentos de exaltación, pocos dolores pasajeros y muchos placeres variados. El principio utilitarista también pide la prevención y la mitigación de la desgracia.",
+      "resumen": "Para Mill la felicidad sí se puede alcanzar, siempre que no la imaginemos como una alegría intensa sin fin. Una vida feliz tiene algunos momentos de gran alegría, pocos dolores pasajeros y muchos placeres variados. Y buscar la felicidad también es prevenir y aliviar el sufrimiento.",
+      "palabras": [
+        "alcanzable",
+        "éxtasis continuo",
+        "exaltación",
+        "placeres variados",
+        "mitigación"
+      ],
+      "ejemplo": "Un año feliz no es una fiesta permanente: son muchos días buenos, algunos momentos inolvidables y pocos malos."
+    },
+    {
+      "id": "consecuencias",
+      "titulo": "El consecuencialismo",
+      "guia": "Preguntar cómo se juzga una acción en el utilitarismo y qué lugar tienen las intenciones.",
+      "claves": "Es una ética consecuencialista: el valor moral de un acto se mide por sus consecuencias (resultados concretos), no por los motivos o intenciones. Una acción es buena si produce un balance favorable de felicidad, aunque se haya hecho por egoísmo; y mala si produce dolor, aunque la intención fuera buena.",
+      "resumen": "El utilitarismo es consecuencialista: una acción se juzga por sus consecuencias, es decir, por lo que realmente produce. Las intenciones no cambian su valor moral: si el resultado da más felicidad, la acción es buena aunque se haya hecho por egoísmo. Lo que cuenta es el balance final.",
+      "palabras": [
+        "consecuencialismo",
+        "consecuencias",
+        "intenciones",
+        "balance",
+        "altruismo"
+      ],
+      "ejemplo": "Si alguien dona plata a un comedor solo para salir en la foto, igual la acción es buena para el utilitarismo, porque los chicos comen."
+    },
+    {
+      "id": "excepcion",
+      "titulo": "La regla y la excepción: la mentira piadosa",
+      "guia": "Preguntar por qué mentir suele estar mal para el utilitarismo y en qué casos podría estar bien.",
+      "claves": "Mentir suele ser malo porque rompe la confianza, necesaria para la felicidad general. Pero toda regla moral admite excepciones: si una mentira (piadosa) produce más beneficios o evita una desgracia mayor que la verdad, no es condenable y puede ser recomendable.",
+      "resumen": "Para el utilitarismo mentir suele estar mal, porque rompe la confianza que necesitamos para convivir felices. Pero las reglas morales tienen excepciones: si una mentira piadosa evita un sufrimiento mayor que el que causaría la verdad, puede estar bien.",
+      "palabras": [
+        "confianza",
+        "regla moral",
+        "excepciones",
+        "mentira piadosa"
+      ],
+      "ejemplo": "Decirle a tu abuela que te encantó la comida, aunque estaba salada, para no arruinarle el día."
+    },
+    {
+      "id": "sacrificio",
+      "titulo": "El sacrificio",
+      "guia": "Preguntar cuándo tiene valor moral sacrificar la propia felicidad según el utilitarismo.",
+      "claves": "El sacrificio de la felicidad propia tiene valor moral solo si promueve la felicidad de los demás o alivia una desgracia. La renuncia es noble si produce un beneficio real; el sacrificio inútil no tiene sentido ni valor moral.",
+      "resumen": "Sacrificar la propia felicidad tiene valor moral solo si sirve para aumentar la felicidad de otros o aliviar un sufrimiento. Renunciar a algo es noble cuando produce un beneficio real; un sacrificio que no ayuda a nadie no tiene valor.",
+      "palabras": [
+        "sacrificio",
+        "renuncia",
+        "valor moral",
+        "beneficio real"
+      ],
+      "ejemplo": "Dejar de salir un sábado para ayudar a tu hermano a aprobar tiene valor; quedarte encerrado «por sacrificio» sin ayudar a nadie, no."
+    },
+    {
+      "id": "social",
+      "titulo": "La dimensión social: combatir la desgracia",
+      "guia": "Preguntar qué males sociales hay que combatir para lograr la felicidad general y con qué herramientas.",
+      "claves": "Hay que combatir la enfermedad, la ignorancia y la pobreza extrema. Herramientas: el avance de la medicina, la educación universal (que acerca los placeres superiores a todos) y una legislación justa con distribución equitativa de la riqueza. La política debe crear un sentimiento de unidad y solidaridad.",
+      "resumen": "Para que haya felicidad general hay que combatir tres grandes males: la enfermedad, la ignorancia y la pobreza. Las herramientas son la medicina, la educación para todos (que acerca a todos los placeres superiores) y leyes justas que repartan mejor la riqueza. La política debe promover la solidaridad.",
+      "palabras": [
+        "enfermedad",
+        "ignorancia",
+        "pobreza",
+        "educación universal",
+        "legislación",
+        "solidaridad"
+      ],
+      "ejemplo": "Una escuela pública gratuita o una campaña de vacunación son ejemplos de políticas utilitaristas: dan bienestar a muchísimas personas."
+    },
+    {
+      "id": "vivir_bien",
+      "titulo": "Vivir bien según Mill",
+      "guia": "Pedir que sintetice cómo es una buena vida para Mill.",
+      "claves": "Vivir bien es obrar buscando la mayor felicidad para el mayor número, juzgando las acciones por sus consecuencias. Implica moderación, predominio de los placeres superiores (espirituales), solidaridad social y compromiso político para eliminar la enfermedad, la ignorancia y la pobreza.",
+      "resumen": "Para Mill, vivir bien es actuar siempre buscando la mayor felicidad para el mayor número, mirando las consecuencias de lo que hacemos. Una buena vida combina moderación, preferencia por los placeres superiores, solidaridad con los demás y compromiso para mejorar la sociedad.",
+      "palabras": [
+        "mayor felicidad",
+        "consecuencias",
+        "moderación",
+        "placeres superiores",
+        "solidaridad"
+      ],
+      "ejemplo": "Estudiar algo que te apasiona y usarlo para ayudar a tu comunidad sería, para Mill, una vida muy buena."
+    }
+  ],
+  "casos": [
+    {
+      "id": "centro",
+      "texto": "El centro de estudiantes tiene plata para una sola cosa: arreglar los baños de la escuela o hacer la fiesta de fin de año.",
+      "claves": "Aplicar el principio de la mayor felicidad (a cuántos beneficia y cuánto), la imparcialidad, las consecuencias a largo plazo y la calidad de los placeres."
+    },
+    {
+      "id": "dibujo",
+      "texto": "Un amigo que está muy triste te muestra un dibujo que hizo y te pregunta si te gusta. A vos no te gusta nada.",
+      "claves": "Aplicar la regla y la excepción (mentira piadosa vs. confianza), el balance de consecuencias, y la posibilidad de una respuesta que maximice el bienestar."
+    },
+    {
+      "id": "sabado",
+      "texto": "Tenés el sábado libre: podés jugar a la play todo el día o ir a ayudar en un comedor del barrio.",
+      "claves": "Placeres superiores e inferiores, el sacrificio con valor moral (beneficio real), el mayor número y la felicidad propia como una más."
+    },
+    {
+      "id": "billetera",
+      "texto": "Encontrás una billetera con mucha plata y el documento del dueño. Nadie te vio.",
+      "claves": "Consecuencias para todos los afectados (el dueño, vos, la confianza social), imparcialidad (tu felicidad cuenta como una), la regla moral y su utilidad general."
+    },
+    {
+      "id": "votacion",
+      "texto": "En el curso votan una salida: 20 quieren ir al shopping y 5 necesitan ir a la feria de carreras porque el año que viene se van a estudiar.",
+      "claves": "Cantidad vs. calidad de la felicidad, el mayor número sin olvidar a la minoría (imparcialidad), consecuencias a largo plazo, y la crítica de que el utilitarismo puede pasar por encima de las minorías."
+    },
+    {
+      "id": "plaza",
+      "texto": "El municipio debe decidir si en un terreno del barrio hace una plaza con canchas o un estacionamiento que deja ganancias.",
+      "claves": "Dimensión social y política del utilitarismo, bienestar general, placeres superiores, salud, y el cálculo de quiénes se benefician."
+    },
+    {
+      "id": "tarea",
+      "texto": "Tu compañero te pide que le hagas el trabajo práctico porque trabaja de noche. Si se lo hacés, aprueba; si no, puede quedar libre.",
+      "claves": "Consecuencias a corto y largo plazo (aprende o no), la regla moral (no hacer trampa) y sus excepciones, imparcialidad con el resto del curso, y alternativas que den más felicidad."
+    },
+    {
+      "id": "vacuna",
+      "texto": "Hay una campaña de vacunación en la escuela. A vos la vacuna te da un poco de miedo y te deja el brazo dolorido un día.",
+      "claves": "Sacrificio con beneficio real, el mayor número (protección de todos), consecuencias, prevención y mitigación de la desgracia."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "placer_superior",
+      "texto": "¿Qué placer superior tenés en tu vida y cuál inferior? ¿Estás de acuerdo con Mill en que el superior vale más?"
+    },
+    {
+      "id": "intencion",
+      "texto": "¿Te parece justo juzgar las acciones solo por sus consecuencias, sin mirar la intención? Dá un ejemplo de tu vida."
+    },
+    {
+      "id": "mentira",
+      "texto": "¿Alguna vez dijiste una mentira piadosa? ¿El utilitarismo la justificaría? ¿Y vos?"
+    },
+    {
+      "id": "sociedad",
+      "texto": "Si fueras intendente de tu ciudad, ¿qué decisión tomarías para lograr la mayor felicidad para el mayor número?"
+    },
+    {
+      "id": "redes",
+      "texto": "¿Las redes sociales nos dan placeres superiores o inferiores? Respondé con conceptos de Mill."
+    }
+  ],
+  "practica": [
+    "Explicá con tus palabras por qué para el utilitarismo «lo bueno es lo útil».",
+    "¿En qué se parecen y en qué se diferencian el hedonismo de Epicuro y el utilitarismo de Mill?",
+    "Clasificá como placer superior o inferior: comer una pizza, aprender a tocar un instrumento, dormir la siesta, ayudar a un amigo a entender matemática.",
+    "Un chico ayuda a una anciana a cruzar la calle solo para que lo filmen. ¿Qué diría el utilitarismo de esa acción? ¿Y vos?",
+    "¿Por qué la felicidad de un desconocido cuenta lo mismo que la tuya para el utilitarismo?",
+    "Inventá un caso en que, para el utilitarismo, romper una promesa sería lo correcto.",
+    "¿Qué quiere decir que la felicidad no es un «éxtasis continuo»?",
+    "Nombrá una ley o política de tu país que te parezca utilitarista y explicá por qué."
+  ]
+}

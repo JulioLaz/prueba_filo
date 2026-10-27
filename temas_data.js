@@ -238,5 +238,10 @@ const TOPICS = {
         filosofo: 'Epicuro',
         icono: '🌸',
         notaAprobacion: 6
+      },
+      utilitarismo: {
+        filosofo: 'John Stuart Mill',
+        icono: '🎯',
+        notaAprobacion: 6
       }
     };

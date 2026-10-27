@@ -34,7 +34,7 @@ Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad
 
 ## 🏛️ Examen oral (cierra el tema)
 
-Lo tienen **Ética de Aristóteles** (con Aristóteles) y **Hedonismo** (con Epicuro). Es un diálogo guiado con el filósofo:
+Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro) y **Utilitarismo** (con John Stuart Mill). Es un diálogo guiado con el filósofo:
 
 - Se habilita con **80%** en las demás actividades del tema.
 - **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.

@@ -9,7 +9,7 @@
     "difficulty": "avanzado",
     "category": "Filosofía Moderna",
     "description": "Explora el principio de la mayor felicidad, la distinción entre placeres superiores e inferiores, la imparcialidad y la aplicación del utilitarismo en la vida moral y política.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2026-10-27"
   },
 
   "activities": {
@@ -22,13 +22,13 @@
     },
     "quiz": {
       "enabled": true,
-      "questions": 10,
+      "questions": 12,
       "timeLimit": 30,
       "timeEstimate": 12
     },
     "concepts": {
       "enabled": true,
-      "levels": 6,
+      "levels": 8,
       "timeEstimate": 8
     },
     "cloze": {
