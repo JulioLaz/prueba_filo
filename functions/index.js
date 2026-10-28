@@ -10,6 +10,8 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.2 (2026-10-28): el examen se habilita con un mínimo por actividad
+ *   (banco.minimoPorActividad, 60%) en lugar de un promedio del 80%.
  * V8.1 (2026-10-27): el examen sirve para cualquier tema (sin "ética aristotélica"
  *   fijo en las instrucciones): vocabulario y reflexión usan banco.conceptosClave.
  * V8 (2026-10-27): examen oral con el filósofo (examenEstado, examenIniciar,
@@ -800,7 +802,7 @@ async function cargarBanco(tema) {
   banco.cantidadEjes = n;
   banco.notaAprobacion = banco.notaAprobacion ?? 6;
   banco.intentosPorDia = banco.intentosPorDia ?? 2;
-  banco.avanceRequerido = banco.avanceRequerido ?? 80;
+  banco.minimoPorActividad = banco.minimoPorActividad ?? 60;
   banco.actividadesRequeridas = banco.actividadesRequeridas || ["quiz", "caza", "cruci", "material", "mapa"];
   banco.filosofo = banco.filosofo || "el filósofo";
   banco.conceptosClave = banco.conceptosClave || banco.ejes.map((e) => e.titulo).join(", ");
@@ -823,7 +825,10 @@ function mezclar(lista) {
 }
 const elegir = (lista) => lista[Math.floor(Math.random() * lista.length)];
 
-/** Avance del alumno en las actividades requeridas (mismo cálculo que el hub). */
+/**
+ * Avance del alumno en las actividades requeridas (mismo cálculo que el hub):
+ * promedio, % de cada actividad y las que no llegan al mínimo.
+ */
 async function avanceAlumno(uid, tema, banco) {
   const snap = await db.collection("progreso_temas").where("uid", "==", uid).where("moduleId", "==", tema).get();
   const mejor = {};
@@ -834,8 +839,19 @@ async function avanceAlumno(uid, tema, banco) {
     mejor[act] = Math.max(mejor[act] || 0, p);
   });
   const acts = banco.actividadesRequeridas;
-  return Math.round(acts.reduce((s, a) => s + (mejor[a] || 0), 0) / acts.length);
+  const porActividad = Object.fromEntries(acts.map((a) => [a, Math.round(mejor[a] || 0)]));
+  return {
+    avance: Math.round(acts.reduce((s, a) => s + porActividad[a], 0) / acts.length),
+    porActividad,
+    faltan: acts.filter((a) => porActividad[a] < banco.minimoPorActividad).map((a) => ({actividad: a, pct: porActividad[a]})),
+  };
 }
+
+const NOMBRE_ACTIVIDAD = {
+  quiz: "Cuestionario", caza: "Caza de conceptos", video: "Video", cruci: "Crucigrama",
+  material: "Material de estudio", mapa: "Mapa conceptual",
+};
+const listaFaltan = (faltan) => faltan.map((f) => `${NOMBRE_ACTIVIDAD[f.actividad] || f.actividad} (${f.pct}%)`).join(", ");
 
 /** Sortea el examen: apertura, ejes (sin repetir los del intento anterior), caso y reflexión. */
 function armarPlan(banco, ultimosEjes = []) {
@@ -1051,7 +1067,7 @@ async function situacionExamen(auth, banco, tema) {
   const estadoSnap = await db.collection("examenes_estado").doc(`${auth.uid}_${tema}`).get();
   const estado = estadoSnap.exists ? estadoSnap.data() : {};
   const intentosHoy = estado.dia === hoyArgentina() ? (estado.intentosHoy || 0) : 0;
-  const avance = await avanceAlumno(auth.uid, tema, banco);
+  const {avance, porActividad, faltan} = await avanceAlumno(auth.uid, tema, banco);
   let ultimo = null;
   if (estado.ultimoExamenId) {
     const u = await db.collection("examenes").doc(estado.ultimoExamenId).get();
@@ -1061,15 +1077,17 @@ async function situacionExamen(auth, banco, tema) {
     }
   }
   return {
-    estado, admin, avance, intentosHoy, ultimo,
+    estado, admin, avance, faltan, intentosHoy, ultimo,
     publico: {
       filosofo: banco.filosofo,
       notaAprobacion: banco.notaAprobacion,
       intentosPorDia: banco.intentosPorDia,
-      avanceRequerido: banco.avanceRequerido,
+      minimoPorActividad: banco.minimoPorActividad,
+      porActividad,
+      faltan: faltan.map((f) => ({...f, nombre: NOMBRE_ACTIVIDAD[f.actividad] || f.actividad})),
       cantidadPreguntas: banco.cantidadEjes + 2,
       avance,
-      habilitado: admin || avance >= banco.avanceRequerido,
+      habilitado: admin || faltan.length === 0,
       intentosHoy,
       intentosRestantes: admin ? 99 : Math.max(0, banco.intentosPorDia - intentosHoy),
       mejorNota: Number(estado.mejorNota) || 0,
@@ -1130,7 +1148,7 @@ exports.examenIniciar = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 90}, async (
     }
     if (!s.publico.habilitado) {
       throw new HttpsError("failed-precondition",
-        `El examen se habilita con ${banco.avanceRequerido}% en las demás actividades (vas ${s.avance}%).`);
+        `El examen se habilita con al menos ${banco.minimoPorActividad}% en cada actividad. Te falta: ${listaFaltan(s.faltan)}.`);
     }
     if (s.publico.intentosRestantes <= 0) {
       throw new HttpsError("resource-exhausted",

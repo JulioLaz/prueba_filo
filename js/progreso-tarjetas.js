@@ -12,7 +12,10 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.4.0 (2026-10-27) — el examen cuenta como una actividad más en
+ * Versión: v1.5.0 (2026-10-28) — temas con examen: se aprueban con al menos 60%
+ *   (minimoActividad) en CADA actividad y el examen aprobado; "Falta examen" cuando
+ *   ya se llegó al mínimo en todas. Los temas sin examen siguen con 80% de promedio.
+ * v1.4.0 (2026-10-27) — el examen cuenta como una actividad más en
  *   "Aprobadas" (ej. 7/7 = 6 actividades + examen); el avance sigue siendo el de las actividades
  * v1.3.0 (2026-10-27) — temas con examen oral (EXAMEN_CONFIG): el sello
  *   "Aprobado" exige avance ≥ 80% Y examen aprobado; con 80% sin examen muestra
@@ -65,14 +68,19 @@ function resumenAlumno(temaId, docs) {
   const avance = Math.round(scores.reduce((a, b) => a + b, 0) / acts.length);
   const examen = examenDe(temaId);
   const examenOk = !examen || notaExamen >= examen.notaAprobacion;
+  // Con examen: mínimo en cada actividad (habilita el examen). Sin examen: 80% de promedio.
+  const actividadesOk = examen
+    ? scores.every((s) => s >= (examen.minimoActividad ?? 60))
+    : avance >= UMBRAL_APROBADO;
   return {
     total: acts.length + (examen ? 1 : 0),
-    aprobadas: scores.filter((s) => s >= UMBRAL_APROBADO).length + (examen && examenOk ? 1 : 0),
+    // En temas con examen, una actividad cuenta como aprobada desde el mínimo (60%)
+    aprobadas: scores.filter((s) => s >= (examen ? (examen.minimoActividad ?? 60) : UMBRAL_APROBADO)).length + (examen && examenOk ? 1 : 0),
     avance,
     minutos: Math.round(segundos / 60),
     empezado: docs.length > 0,
-    faltaExamen: avance >= UMBRAL_APROBADO && !examenOk,
-    aprobado: avance >= UMBRAL_APROBADO && examenOk,
+    faltaExamen: actividadesOk && !examenOk,
+    aprobado: actividadesOk && examenOk,
     completo: avance >= 100 && examenOk
   };
 }
@@ -207,7 +215,7 @@ function mostrarConquistas() {
     document.getElementById('themes-grid')?.before(caja);
   }
   const mensaje = aprobados === 0
-    ? 'Aprobá tu primer tema (80% de avance y su examen, si lo tiene) para ganar su sello dorado.'
+    ? 'Aprobá tu primer tema para ganar su sello dorado (80% de avance; si tiene examen, 60% en cada actividad y el examen).'
     : faltan === 0
       ? `¡Aprobaste todos los temas ${ambito}! Felicitaciones.`
       : `¡Vas muy bien! Te ${faltan === 1 ? 'falta 1 tema' : `faltan ${faltan} temas`} por conquistar.`;

@@ -1,13 +1,13 @@
 {
-  "_info": "Banco del examen oral con Epicuro y del resumen final del tema Hedonismo. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-10-27).",
-  "version": "1.0.0",
+  "_info": "Banco del examen oral con Epicuro y del resumen final del tema Hedonismo. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.1.0 (2026-10-28): el examen se habilita con al menos 60% en cada actividad.",
+  "version": "1.1.0",
   "filosofo": "Epicuro",
   "tema": "Hedonismo: el placer como fin de la vida (Epicuro)",
   "intro": "Epicuro de Samos (341–270 a. C.) se preguntó cómo vivir feliz y respondió que el placer es el bien de la vida. Pero no cualquier placer: el verdadero placer es no sufrir, en el cuerpo y en el alma, y se alcanza con una vida sencilla, deseos ordenados, amigos y filosofía.",
   "conceptosClave": "placer, dolor, ataraxia, aponía, autarquía, deseos naturales y necesarios, moderación, prudencia, amistad",
   "notaAprobacion": 6,
   "intentosPorDia": 2,
-  "avanceRequerido": 80,
+  "minimoPorActividad": 60,
   "actividadesRequeridas": [
     "quiz",
     "caza",

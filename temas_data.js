@@ -226,22 +226,26 @@ const TOPICS = {
     }
     };
     // Examen oral con el filósofo: actividad final que cierra el tema.
-    // El tema se aprueba con avance ≥ 80% en las demás actividades Y el examen aprobado.
+    // Se habilita con al menos minimoActividad (60%) en CADA actividad del tema, y el
+    // tema se aprueba con eso Y el examen aprobado (nota ≥ notaAprobacion).
     // El banco de preguntas está en themes/<tema>/examen.json (lo lee la Cloud Function).
     const EXAMEN_CONFIG = {
       etica_aristoteles: {
         filosofo: 'Aristóteles',
         icono: '🏛️',
-        notaAprobacion: 6
+        notaAprobacion: 6,
+        minimoActividad: 60
       },
       hedonismo: {
         filosofo: 'Epicuro',
         icono: '🌸',
-        notaAprobacion: 6
+        notaAprobacion: 6,
+        minimoActividad: 60
       },
       utilitarismo: {
         filosofo: 'John Stuart Mill',
         icono: '🎯',
-        notaAprobacion: 6
+        notaAprobacion: 6,
+        minimoActividad: 60
       }
     };

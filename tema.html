@@ -466,7 +466,7 @@
       document.getElementById('progressBar').style.width = globalPct + '%';
 
       marcarActividades(P);
-      pintarExamen(globalPct);
+      pintarExamen(allSegments);
     }
 
     // ===== Examen oral (actividad final): se habilita con 80% en las demás actividades.
@@ -478,9 +478,13 @@
       const fb = window.__progresoFirebase?.examen;
       return fb ? Math.round(Number(fb.percentage) || 0) / 10 : 0;
     }
-    window.examenDelTema = () => EXAMEN ? { requiere: true, nota: notaExamen(), aprobado: notaExamen() >= EXAMEN.notaAprobacion } : { requiere: false };
+    // Actividades que no llegan al mínimo para habilitar el examen (60% en cada una)
+    let faltanExamen = [];
+    window.examenDelTema = () => EXAMEN ? { requiere: true, nota: notaExamen(), aprobado: notaExamen() >= EXAMEN.notaAprobacion, habilitado: faltanExamen.length === 0, minimo: EXAMEN.minimoActividad ?? 60 } : { requiere: false };
 
-    function pintarExamen(globalPct){
+    function pintarExamen(segmentos){
+      const minimo = EXAMEN?.minimoActividad ?? 60;
+      faltanExamen = (segmentos || []).filter((sg) => sg.pct < minimo);
       const card = document.getElementById('examenCard');
       if (!EXAMEN || !card) return;
       card.style.display = 'flex';
@@ -492,9 +496,19 @@
       const st = document.getElementById('statusExamen');
       if (aprobado) st.textContent = 'Examen aprobado';
       else if (nota > 0) st.textContent = `Mejor nota ${fmt(nota)} · volvé a intentarlo`;
-      else if (globalPct >= UMBRAL_APROBADA) st.textContent = 'Habilitado: ¡rendilo!';
-      else st.textContent = `🔒 Se habilita con ${UMBRAL_APROBADA}% (vas ${globalPct}%)`;
-      card.classList.toggle('examen-bloqueado', !aprobado && nota === 0 && globalPct < UMBRAL_APROBADA);
+      else if (!faltanExamen.length) st.textContent = 'Habilitado: ¡rendilo!';
+      else st.textContent = `🔒 Se habilita con ${minimo}% en cada actividad (falta: ${faltanExamen.map((f) => f.label.replace(/^\S+\s/, '')).join(', ')})`;
+      card.classList.toggle('examen-bloqueado', !aprobado && nota === 0 && faltanExamen.length > 0);
+
+      // Etiqueta del progreso general del tema
+      const etiqueta = document.getElementById('progressLabel');
+      if (etiqueta) {
+        etiqueta.textContent = aprobado && !faltanExamen.length
+          ? `✅ ¡Tema aprobado! Examen con ${EXAMEN.filosofo}: ${fmt(nota)}`
+          : !faltanExamen.length
+            ? `✅ Actividades al ${minimo}% o más: falta aprobar el examen con ${EXAMEN.filosofo} para cerrar el tema`
+            : `📚 Para cerrar el tema: ${minimo}% en cada actividad y aprobar el examen con ${EXAMEN.filosofo}`;
+      }
 
       // Sello como las demás actividades, pero con la nota adentro (dorado relleno con 10)
       card.classList.toggle('act-aprobada', aprobado && nota < 10);
@@ -514,7 +528,8 @@
     }
 
     // ===== Sello de actividad aprobada (≥ 80%) / completa (100%) en cada tarjeta =====
-    const UMBRAL_APROBADA = 80;
+    // Actividad aprobada: 80%; en temas con examen, desde el mínimo por actividad (60%)
+    const UMBRAL_APROBADA = EXAMEN ? (EXAMEN.minimoActividad ?? 60) : 80;
     const BOTON_DE = { quiz:'goQuiz', caza:'goCaza', video:'goVideo', cruci:'goCruci', mat:'goMaterial', mapa:'goMapa' };
     const CLAVE_FIREBASE = { quiz:'quiz', caza:'caza', video:'video', cruci:'cruci', mat:'material', mapa:'mapa' };
 
@@ -2049,10 +2064,8 @@ function updateGlobalProgress(firebaseProgress) {
 
   if (progressLabel) {
     let statusText = 'Tu progreso en este tema';
-    const examen = window.examenDelTema?.() || { requiere: false };
-    if (isGloballyApproved && examen.requiere && !examen.aprobado) {
-      statusText = `✅ ${APPROVAL_THRESHOLD}% logrado: falta aprobar el examen con ${EXAMEN_CONFIG[tema].filosofo} para cerrar el tema`;
-    } else if (isGloballyCompleted) {
+    // En los temas con examen, la etiqueta la pinta pintarExamen() (regla: 60% en cada actividad + examen)
+    if (isGloballyCompleted) {
       statusText = '🏆 ¡Tema completado al 100%!';
     } else if (isGloballyApproved) {
       statusText = '✅ ¡Tema aprobado! (80%+)';

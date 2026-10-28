@@ -8,12 +8,13 @@
 
   - Se arma con themes/<tema>/examen.json (el mismo banco que usa el examen):
     intro, ejes[].titulo/resumen/palabras/ejemplo y practica[].
-  - Se desbloquea con el mismo requisito que el examen: avance ≥ 80% en las
-    actividades requeridas (progreso_temas, récord en Firebase). Antes se ven
+  - Se desbloquea con el mismo requisito que el examen: al menos 60%
+    (minimoPorActividad) en CADA actividad requerida (progreso_temas, récord en Firebase). Antes se ven
     solo los títulos de los ejes, tapados. El admin en vista Docente ve todo.
 
   Uso: resumen_tema.html?tema=<id>
-  Versión: v1.0.0 (2026-10-27)
+  Versión: v1.1.0 (2026-10-28) — se desbloquea con 60% en cada actividad (antes 80% de promedio)
+  v1.0.0 (2026-10-27)
 -->
 <html lang="es">
 <head>
@@ -135,19 +136,24 @@
       } catch (e) {
         console.warn('No se pudo leer el progreso de Firebase:', e);
       }
-      return Math.round(acts.reduce((s, a) => s + (mejor[a] || 0), 0) / acts.length);
+      const minimo = banco.minimoPorActividad ?? 60;
+      const NOMBRES = { quiz: 'Cuestionario', caza: 'Caza de conceptos', video: 'Video', cruci: 'Crucigrama', material: 'Material', mapa: 'Mapa conceptual' };
+      return {
+        avance: Math.round(acts.reduce((s, a) => s + (mejor[a] || 0), 0) / acts.length),
+        faltan: acts.filter((a) => (mejor[a] || 0) < minimo).map((a) => `${NOMBRES[a] || a} (${Math.round(mejor[a] || 0)}%)`)
+      };
     }
 
-    function render(banco, desbloqueado, avance) {
-      const requerido = banco.avanceRequerido ?? 80;
+    function render(banco, desbloqueado, avance, faltan = []) {
+      const requerido = banco.minimoPorActividad ?? 60;
       const filosofo = banco.filosofo || '';
       const texto = [`RESUMEN FINAL — ${banco.tema || tema}`, ''];
 
       if (!desbloqueado) {
         $('contenido').innerHTML = banco.ejes.map((e, i) =>
-          `<section class="eje"><h2><span class="num">${i + 1}.</span>${escapeHtml(e.titulo)}</h2><p class="tapado">🔒 Se desbloquea con ${requerido}% en las actividades del tema.</p></section>`).join('');
-        $('avance').firstChild.textContent = `📊 Vas ${avance}% en las actividades. El resumen final se desbloquea con ${requerido}%, junto con el examen con ${filosofo}.`;
-        $('barra').style.width = `${Math.min(100, Math.round((avance / requerido) * 100))}%`;
+          `<section class="eje"><h2><span class="num">${i + 1}.</span>${escapeHtml(e.titulo)}</h2><p class="tapado">🔒 Se desbloquea con ${requerido}% en cada actividad del tema.</p></section>`).join('');
+        $('avance').firstChild.textContent = `📊 El resumen final se desbloquea con al menos ${requerido}% en cada actividad, junto con el examen con ${filosofo}. Te falta: ${faltan.join(', ')}.`;
+        $('barra').style.width = `${Math.min(100, avance)}%`;
         return null;
       }
 
@@ -214,8 +220,8 @@
         return;
       }
       const docente = await isCurrentUserAdmin() && localStorage.getItem('admin.vistaAlumno') !== '1';
-      const avance = await avanceAlumno(user, banco);
-      const texto = render(banco, docente || avance >= (banco.avanceRequerido ?? 80), avance);
+      const { avance, faltan } = await avanceAlumno(user, banco);
+      const texto = render(banco, docente || faltan.length === 0, avance, faltan);
 
       $('btnCopiar').addEventListener('click', async () => {
         if (!texto) return;

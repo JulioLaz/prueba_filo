@@ -4,7 +4,7 @@
   Examen oral con el filósofo: actividad final que cierra el tema.
 
   - Antes de empezar muestra la situación del alumno: avance en las demás
-    actividades (se habilita con 80%), intentos que le quedan hoy (2 por día),
+    actividades (se habilita con al menos 60% en CADA actividad), intentos que le quedan hoy (2 por día),
     mejor nota y la devolución del último intento.
   - El examen es un diálogo guiado: el filósofo hace una pregunta por vez
     (ejes al azar, un caso práctico y una reflexión personal) y puede repreguntar
@@ -17,7 +17,8 @@
   Cloud Functions: examenEstado, examenIniciar, examenResponder (functions/index.js)
   Banco de preguntas: themes/<tema>/examen.json
   Uso: dialogo/examen.html?tema=<id>
-  Versión: v1.0.0 (2026-10-27)
+  Versión: v1.1.0 (2026-10-28) — se habilita con 60% en cada actividad (antes 80% de promedio)
+  v1.0.0 (2026-10-27)
 -->
 <html lang="es">
 <head>
@@ -209,7 +210,7 @@
       ].map((t) => `<li>${t}</li>`).join('');
 
       $('datos').innerHTML = `
-        <div class="dato ${s.avance >= s.avanceRequerido ? 'ok' : ''}"><div class="n">${s.avance}%</div><div class="l">Avance en las actividades (se pide ${s.avanceRequerido}%)</div></div>
+        <div class="dato ${s.faltan.length ? '' : 'ok'}"><div class="n">${s.faltan.length ? `${s.faltan.length} por completar` : '✓'}</div><div class="l">Actividades con al menos ${s.minimoPorActividad}% (avance promedio: ${s.avance}%)</div></div>
         <div class="dato"><div class="n">${s.esAdmin ? '∞' : s.intentosRestantes}</div><div class="l">Intentos que te quedan hoy</div></div>
         <div class="dato ${s.aprobado ? 'ok' : ''}"><div class="n">${s.mejorNota ? formatoNota(s.mejorNota) : '—'}</div><div class="l">Tu mejor nota${s.aprobado ? ' · Aprobado' : ''}</div></div>`;
 
@@ -225,7 +226,7 @@
         avisos.unshift('<div class="aviso">Tenés un examen sin terminar: podés retomarlo donde lo dejaste.</div>');
       } else if (!s.habilitado) {
         btn.disabled = true;
-        avisos.unshift(`<div class="aviso alerta">🔒 El examen se habilita cuando llegues al <strong>${s.avanceRequerido}%</strong> en las demás actividades del tema (vas ${s.avance}%).</div>`);
+        avisos.unshift(`<div class="aviso alerta">🔒 El examen se habilita cuando tengas al menos <strong>${s.minimoPorActividad}% en cada actividad</strong> del tema. Te falta: ${s.faltan.map((f) => `<strong>${escapeHtml(f.nombre)}</strong> (${f.pct}%)`).join(', ')}.</div>`);
       } else if (s.intentosRestantes <= 0) {
         btn.disabled = true;
         avisos.unshift(`<div class="aviso alerta">Ya usaste los ${s.intentosPorDia} intentos de hoy. Mañana podés volver a intentarlo.</div>`);

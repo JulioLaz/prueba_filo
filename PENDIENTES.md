@@ -3,6 +3,15 @@
 Registro de cosas detectadas en las revisiones que quedaron resueltas de forma
 provisoria o sin resolver. Actualizado: 2026-10-28.
 
+## Regla de aprobación de los temas con examen
+
+Desde el 2026-10-28: el examen (y el resumen final) se habilitan con **al menos
+60% en cada actividad**; el tema se aprueba con eso y el examen aprobado (nota ≥ 6).
+Los temas sin examen siguen con **80% de promedio** para el sello «Aprobado».
+Si se quiere unificar, el umbral está en `UMBRAL_APROBADO` (`js/progreso-tarjetas.js`)
+y `UMBRAL_APROBADA` (`tema.html`); el mínimo de los temas con examen, en
+`minimoActividad` (`temas_data.js`) y `minimoPorActividad` (`themes/<id>/examen.json`).
+
 ## Mapas conceptuales de versión vieja (Ética y Moral, Origen, Sartre)
 
 - **Qué pasaba:** `themes/etica/mapa.html`, `themes/origen/mapa.html` y
@@ -55,7 +64,8 @@ necesita.)
 ## Firebase (no se actualiza con GitHub)
 
 - Las **Cloud Functions** se publican con `firebase deploy --only functions`
-  cada vez que cambia `functions/index.js`. Última versión: V8.1 (examen con el
-  vocabulario de cada tema).
+  cada vez que cambia `functions/index.js`. Última versión: V8.2 (el examen se
+  habilita con 60% en cada actividad). **Hasta publicarla, el servidor sigue
+  pidiendo el 80% de promedio** aunque la web ya muestre la regla nueva.
 - Las **reglas** (`firestore.rules`, v1.1.0) se copian a mano en Firebase
   Console → Firestore → Reglas.

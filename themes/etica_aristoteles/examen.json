@@ -1,13 +1,13 @@
 {
-  "_info": "Banco del examen oral con Aristóteles y del resumen final del tema. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.1.0 (2026-10-27).",
-  "version": "1.1.0",
+  "_info": "Banco del examen oral con Aristóteles y del resumen final del tema. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.2.0 (2026-10-28): el examen se habilita con al menos 60% en cada actividad.",
+  "version": "1.2.0",
   "filosofo": "Aristóteles",
   "tema": "Ética de Aristóteles (Ética a Nicómaco)",
   "intro": "Aristóteles (384–322 a. C.) escribió la Ética a Nicómaco para responder una pregunta: ¿cómo se vive bien? Su respuesta: todos buscamos la felicidad, y se llega a ella practicando las virtudes, con la razón como guía y en comunidad con otros.",
   "conceptosClave": "virtud, hábito, término medio, eudaimonía, prudencia, amistad, justicia",
   "notaAprobacion": 6,
   "intentosPorDia": 2,
-  "avanceRequerido": 80,
+  "minimoPorActividad": 60,
   "actividadesRequeridas": [
     "quiz",
     "caza",

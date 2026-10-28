@@ -9,7 +9,7 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 ## 📚 Cómo se usa
 
 1. El alumno se registra o ingresa desde la pantalla principal (`index.html`).
-   Cada tarjeta de tema muestra su avance real (actividades aprobadas, minutos dedicados y %), con sello dorado **Aprobado** (≥ 80%) o **Completo** (100%) — `js/progreso-tarjetas.js`.
+   Cada tarjeta de tema muestra su avance real (actividades aprobadas, minutos dedicados y %), con sello dorado **Aprobado** o **Completo** (100%) — `js/progreso-tarjetas.js`. Aprobado: 80% de promedio; en los temas con examen, 60% en cada actividad y el examen aprobado.
 2. Elige un tema (filtros por Unidad 1, 2, 3, Diálogos y Juegos).
 3. En el hub del tema (`tema.html?tema=<id>`) hace las actividades; la barra muestra su avance.
 4. El docente (cuenta admin) ve el progreso de todos los alumnos en el inicio y en `progress.html`.
@@ -28,7 +28,7 @@ Aplicación web para estudiar filosofía en el secundario: cada tema reúne mate
 | 🧩 Crucigrama | `themes/<id>/crossword_config.js` | `crossword.html` + `js/crossword_engine.js` |
 | 🎬 Video + cloze | `themes/<id>/cloze_test.js` | `tema.html` (video en `temas_data.js` → `VIDEO_CONFIG`) |
 | 🏛️ Examen oral con el filósofo (actividad final) | `themes/<id>/examen.json` | `dialogo/examen.html` + Cloud Functions `examen*` |
-| 📜 Resumen final del tema (lo que se evalúa en el examen; se desbloquea con 80%) | `themes/<id>/examen.json` | `resumen_tema.html` |
+| 📜 Resumen final del tema (lo que se evalúa en el examen; se desbloquea con 60% en cada actividad) | `themes/<id>/examen.json` | `resumen_tema.html` |
 
 Cada tema tiene además un `themes/<id>/config.json` con sus metadatos (cantidad de secciones, preguntas, niveles, etc.).
 
@@ -42,16 +42,17 @@ El contenido se edita en `projects/guias/comun.js` (lo común), `projects/guias/
 
 Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro) y **Utilitarismo** (con John Stuart Mill). Es un diálogo guiado con el filósofo:
 
-- Se habilita con **80%** en las demás actividades del tema.
+- Se habilita con **al menos 60% en cada actividad** del tema (cuestionario, caza, video, crucigrama, material y mapa). No alcanza con el promedio: ninguna puede quedar por debajo.
 - **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.
 - El filósofo pregunta de a una, puede repreguntar una vez si la respuesta es vaga, y no da respuestas ni evalúa durante el examen. No se puede pegar texto.
 - Al terminar, la IA corrige con una rúbrica (comprensión, vocabulario, aplicación y argumentación, de 0 a 2 por pregunta) y pone la nota de 1 a 10. **Se aprueba con 6.**
 - **2 intentos por día**, cuenta la mejor nota. Si se cierra la página, se retoma (hasta 45 minutos sin actividad).
-- El tema queda **aprobado** solo con 80% de avance **y** el examen aprobado (sello "Falta examen" mientras tanto).
+- El tema queda **aprobado** con 60% en cada actividad **y** el examen aprobado (sello "Falta examen" mientras tanto). En estos temas, cada actividad cuenta como aprobada desde el 60%.
+- En la tabla de progreso del docente (`progress.html`) el examen aparece en su propia columna **EXAMEN** (la nota), al lado de **GENERAL**, y no entra en ese promedio.
 - La nota la guarda la Cloud Function: el alumno no puede escribirla (`firestore.rules`).
 - El docente ve cada intento, con la conversación completa y la rúbrica, en `examenes.html?tema=<id>` (botón "Exámenes del curso" en la página del examen).
 
-**Resumen final** (`resumen_tema.html`, botón "Resumen final" en la tarjeta del examen): las 12 ideas centrales que se evalúan, cada una con su explicación, palabras clave y un ejemplo, más preguntas "Para practicar" (parecidas a las del examen, pero distintas). Se desbloquea con el mismo 80% que el examen y se puede imprimir o copiar para la carpeta. Sale del mismo `examen.json`: en cada eje, `guia` y `claves` son para la IA, y `resumen`, `palabras` y `ejemplo` son para el alumno.
+**Resumen final** (`resumen_tema.html`, botón "Resumen final" en la tarjeta del examen): las 12 ideas centrales que se evalúan, cada una con su explicación, palabras clave y un ejemplo, más preguntas "Para practicar" (parecidas a las del examen, pero distintas). Se desbloquea con el mismo requisito que el examen (60% en cada actividad) y se puede imprimir o copiar para la carpeta. Sale del mismo `examen.json`: en cada eje, `guia` y `claves` son para la IA, y `resumen`, `palabras` y `ejemplo` son para el alumno.
 
 Para editar las preguntas, casos o reflexiones: cambiar `themes/<id>/examen.json` y hacer push (no hace falta volver a desplegar la función). Para agregar el examen a otro tema: crear su `examen.json` (copiar el de un tema existente; `conceptosClave` es el vocabulario que la IA tiene en cuenta al corregir) y sumarlo a `EXAMEN_CONFIG` en `temas_data.js`.
 

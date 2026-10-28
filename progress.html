@@ -240,6 +240,11 @@
         .progress-50 { background: #fff9c4; color: #f57f17; }
         .progress-75 { background: #e8f5e8; color: #388e3c; }
         .progress-100 { background: #e3f2fd; color: #1976d2; }
+        /* Examen oral: nota (aparte del promedio de actividades) */
+        .nota-examen { display:inline-block; min-width:44px; padding:4px 8px; border-radius:6px; font-weight:800; }
+        .nota-examen.aprobado { background:#fff8e1; color:#b8860b; border:1px solid #ffd54f; }
+        .nota-examen.desaprobado { background:#ffebee; color:#c62828; }
+        .nota-examen.sin { color:#9e9e9e; }
 
         .student-info {
             display: flex;
@@ -362,6 +367,7 @@
         ⏱️ Tiempo: 0.000s
     </div>
 
+    <script src="temas_data.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
         import {
@@ -394,7 +400,8 @@
         // Variables globales
         let studentsData = [];
         let progressData = [];
-        let themeStructure = new Map(); // tema -> actividades
+        let themeStructure = new Map(); // tema -> actividades (sin el examen)
+        const examThemes = new Set();   // temas con examen oral (columna EXAMEN)
         let startTime = Date.now();
         let compactView = false;
 
@@ -438,6 +445,8 @@
             console.log('🔍 Analizando estructura jerárquica...');
             
             themeStructure.clear();
+            examThemes.clear();
+            if (typeof EXAMEN_CONFIG !== 'undefined') Object.keys(EXAMEN_CONFIG).forEach((t) => examThemes.add(t));
             
             progressData.forEach(record => {
                 const { moduleId, lessonId } = record;
@@ -447,7 +456,10 @@
                         themeStructure.set(moduleId, new Set());
                     }
                     
-                    if (lessonId) {
+                    // El examen no es una actividad más: va en su propia columna, al lado de GENERAL
+                    if (lessonId === 'examen') {
+                        examThemes.add(moduleId);
+                    } else if (lessonId) {
                         themeStructure.get(moduleId).add(lessonId);
                     }
                 }
@@ -483,8 +495,8 @@
                 themeHeader.className = 'main-theme theme-separator';
                 themeHeader.textContent = theme.replace(/_/g, ' ').toUpperCase();
                 
-                // Calcular colspan: general + actividades específicas
-                const colspan = 1 + activities.length;
+                // Calcular colspan: general + examen (si tiene) + actividades específicas
+                const colspan = 1 + (examThemes.has(theme) ? 1 : 0) + activities.length;
                 themeHeader.colSpan = colspan;
                 
                 mainHeaderRow.appendChild(themeHeader);
@@ -502,6 +514,17 @@
                 generalHeader.textContent = 'GENERAL';
                 generalHeader.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
                 subHeaderRow.appendChild(generalHeader);
+
+                // Columna del examen oral (nota), al lado de GENERAL
+                if (examThemes.has(theme)) {
+                    const examHeader = document.createElement('th');
+                    examHeader.className = 'sub-activity';
+                    examHeader.textContent = 'EXAMEN';
+                    examHeader.title = 'Nota del examen oral (1 a 10). No entra en el promedio GENERAL.';
+                    examHeader.style.background = 'linear-gradient(135deg, #b8860b, #ffd700)';
+                    examHeader.style.color = '#2b1d00';
+                    subHeaderRow.appendChild(examHeader);
+                }
                 
                 // Columnas de actividades específicas
                 activities.forEach((activity, index) => {
@@ -564,6 +587,9 @@
                         </span>
                     `;
                     row.appendChild(generalCell);
+
+                    // Examen oral: nota aparte, no entra en GENERAL
+                    if (examThemes.has(theme)) row.appendChild(celdaExamen(student.id, theme));
                     
                     // Actividades específicas
                     activities.forEach((activity, index) => {
@@ -621,6 +647,29 @@
             console.log('✅ Tabla jerárquica generada');
         }
 
+        // Nota del examen oral (se guarda como score = nota × 10)
+        function notaExamen(studentId, theme) {
+            const r = progressData.find(p => p.uid === studentId && p.moduleId === theme && p.lessonId === 'examen');
+            if (!r) return null;
+            return { nota: Math.round(Number(r.bestScore ?? r.score ?? 0)) / 10, ultima: r.lastNota, intentos: r.attempts || 0 };
+        }
+
+        function celdaExamen(studentId, theme) {
+            const td = document.createElement('td');
+            td.className = 'activity-tooltip';
+            const e = notaExamen(studentId, theme);
+            const aprobacion = (typeof EXAMEN_CONFIG !== 'undefined' && EXAMEN_CONFIG[theme]?.notaAprobacion) || 6;
+            if (!e) {
+                td.setAttribute('data-tooltip', `${theme} - examen\nNo rindió`);
+                td.innerHTML = '<span class="nota-examen sin">—</span>';
+                return td;
+            }
+            const fmt = (n) => Number(n).toLocaleString('es-AR', { maximumFractionDigits: 1 });
+            td.setAttribute('data-tooltip', `${theme} - examen\nMejor nota: ${fmt(e.nota)}${e.ultima != null ? `\nÚltima nota: ${fmt(e.ultima)}` : ''}\nIntentos: ${e.intentos}`);
+            td.innerHTML = `<span class="nota-examen ${e.nota >= aprobacion ? 'aprobado' : 'desaprobado'}">${fmt(e.nota)}</span>`;
+            return td;
+        }
+
         function calculateGeneralThemeProgress(studentId, theme, activities) {
             if (activities.length === 0) return 0;
             
@@ -651,6 +700,7 @@
             const headers = ['Estudiante', 'Curso'];
             for (let [theme, activities] of themeStructure) {
                 headers.push(`${theme}_GENERAL`);
+                if (examThemes.has(theme)) headers.push(`${theme}_EXAMEN_NOTA`);
                 activities.forEach(activity => {
                     headers.push(`${theme}_${activity}`);
                 });
@@ -668,6 +718,10 @@
                     // Progreso general
                     const generalProgress = calculateGeneralThemeProgress(student.id, theme, activities);
                     row.push(generalProgress);
+                    if (examThemes.has(theme)) {
+                        const e = notaExamen(student.id, theme);
+                        row.push(e ? `"${String(e.nota).replace('.', ',')}"` : '');
+                    }
                     
                     // Actividades específicas
                     activities.forEach(activity => {
