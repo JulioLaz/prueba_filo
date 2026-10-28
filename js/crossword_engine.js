@@ -1433,9 +1433,11 @@ if (!window.__EXT_ERR_GUARD__) {
       await updateHUD();
     }
 
-    // Configurar botón verificar
+    // Configurar botón verificar (onclick y no addEventListener: el motor puede
+    // arrancar dos veces —al cargar y desde el modal educativo— y cada respuesta
+    // se contaba doble: intentos y puntaje x2)
     if (uiElements.verifyBtn) {
-      uiElements.verifyBtn.addEventListener('click', verifyAnswer);
+      uiElements.verifyBtn.onclick = verifyAnswer;
     }
 
     console.log('✅ UI moderna configurada');
@@ -1492,7 +1494,7 @@ if (!window.__EXT_ERR_GUARD__) {
       // Configurar clicks en celdas
       const gridEl = document.getElementById("grid");
       if (gridEl) {
-        gridEl.addEventListener("click", (e) => {
+        gridEl.onclick = (e) => {
           const cell = e.target.closest(".cell.h");
           if (!cell || cell.classList.contains('central')) return;
           
@@ -1505,7 +1507,7 @@ if (!window.__EXT_ERR_GUARD__) {
           }
           
           ui.selectWord(wordId);
-        });
+        };
       }
 
       // Inicializar HUD
