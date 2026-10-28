@@ -471,6 +471,8 @@ function saveMapaProgress() {
     progress,
     completed: progress >= 1
   }));
+  // Guardado en Firebase (js/mapa-firebase-simple.js)
+  window.guardarMapaFirebase?.(visited.size, total);
 }
 
 // marcar visitado al interactuar con un nodo
@@ -546,5 +548,6 @@ root?.classList.remove('collapsed');
       if (e.key === 'Escape') { q.value=''; clearSearch(); }
     });
   </script>
+  <script type="module" src="../../js/mapa-firebase-simple.js"></script>
 </body>
 </html>

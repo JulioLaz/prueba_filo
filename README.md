@@ -133,3 +133,7 @@ python -m http.server 8000
 ```
 
 Y abrí en Chrome: http://localhost:8000/prueba_filo/index.html
+
+## 📝 Pendientes
+
+Lo que quedó resuelto de forma provisoria o falta revisar está anotado en [`PENDIENTES.md`](PENDIENTES.md).

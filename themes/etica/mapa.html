@@ -308,6 +308,8 @@
 
       console.log('💾 Guardando progreso del mapa:', state);
       sessionStorage.setItem(key, JSON.stringify(state));
+      // Guardado en Firebase (js/mapa-firebase-simple.js)
+      window.guardarMapaFirebase?.(visitedNodes.size, totalNodes);
       
       // Disparar evento para que tema.html se actualice si está abierto
       window.parent.postMessage({ type: 'mapa-progress', data: state }, '*');
@@ -595,5 +597,6 @@
       }
     });
   </script>
+  <script type="module" src="../../js/mapa-firebase-simple.js"></script>
 </body>
 </html>
