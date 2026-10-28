@@ -12,7 +12,8 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.5.0 (2026-10-28) — temas con examen: se aprueban con al menos 60%
+ * Versión: v1.5.1 (2026-10-28) — usa el mayor entre bestScore y score de cada actividad
+ * v1.5.0 (2026-10-28) — temas con examen: se aprueban con al menos 60%
  *   (minimoActividad) en CADA actividad y el examen aprobado; "Falta examen" cuando
  *   ya se llegó al mínimo en todas. Los temas sin examen siguen con 80% de promedio.
  * v1.4.0 (2026-10-27) — el examen cuenta como una actividad más en
@@ -45,7 +46,9 @@ function actividadesDe(temaId) {
 // Examen oral del tema (o null si el tema no tiene): ver temas_data.js
 const examenDe = (temaId) => (typeof EXAMEN_CONFIG !== 'undefined' && EXAMEN_CONFIG[temaId]) || null;
 
-const puntaje = (d) => Math.max(0, Math.min(100, Number(d.bestScore ?? d.score ?? 0) || 0));
+// El mayor entre bestScore y score (como el servidor del examen): si alguno se
+// editó a mano en la consola, no queda un valor viejo tapando al otro
+const puntaje = (d) => Math.max(0, Math.min(100, Math.max(Number(d.bestScore) || 0, Number(d.score) || 0)));
 
 // Avance de UN alumno en UN tema a partir de sus documentos de progreso
 function resumenAlumno(temaId, docs) {
