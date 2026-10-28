@@ -12,6 +12,15 @@ Si se quiere unificar, el umbral está en `UMBRAL_APROBADO` (`js/progreso-tarjet
 y `UMBRAL_APROBADA` (`tema.html`); el mínimo de los temas con examen, en
 `minimoActividad` (`temas_data.js`) y `minimoPorActividad` (`themes/<id>/examen.json`).
 
+## Video: avances guardados antes del 2026-10-28
+
+Hasta el 2026-10-28 el video guardaba en Firebase «segundos mirados ÷ 600» en lugar
+del avance real (30% video + 70% cloze): con el cloze completo quedaba, por ejemplo,
+en 16%. Corregido en `tema.html` y `js/cloze_&_video-config.js`. Los alumnos que ya
+hicieron el video antes de esa fecha tienen ese valor bajo: tienen que volver a
+abrir el video y completar el cloze para que se guarde el porcentaje correcto
+(Firebase conserva el mejor, así que solo puede subir).
+
 ## Mapas conceptuales de versión vieja (Ética y Moral, Origen, Sartre)
 
 - **Qué pasaba:** `themes/etica/mapa.html`, `themes/origen/mapa.html` y

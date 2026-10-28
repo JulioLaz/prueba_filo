@@ -1059,10 +1059,12 @@ class VideoClozeModule {
     try {
       console.log(`💾 Guardando progreso: ${progress.combinedPercentage}% (Video: ${progress.videoPercentage}%, Cloze: ${progress.clozePercentage}%)`);
       
+      // Se guarda el avance combinado (video + cloze), no el tiempo ÷ 600
       const success = await window.saveVideoProgress(
         progress.totalTimeSpent,
         600, // duración estimada
-        progress.totalCompleted
+        progress.totalCompleted,
+        progress.combinedPercentage
       );
       
       if (success) {

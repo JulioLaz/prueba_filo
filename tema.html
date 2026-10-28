@@ -364,7 +364,9 @@
 
       // ⭐ NUEVO: Estado del video
       const sVideo = readJSON(ns('video'), { watched:false, watchTime:0, completed:false });
-      const videoPct = sVideo.completed ? 100 : (sVideo.watched ? 30 : 0);
+      // Avance combinado (video + cloze) si ya se calculó; si no, solo el video
+      const videoPct = Number.isFinite(sVideo.percentage) ? sVideo.percentage
+        : (sVideo.completed ? 100 : (sVideo.watched ? 30 : 0));
 
       console.log('📊 Porcentajes calculados:', { quizPct, cazaPct, materialPct, mapaPct, cruciPct, videoPct });
 
@@ -2095,10 +2097,16 @@ window.saveCazaProgress = async (found, total, timeSpent = 0) => {
   console.log(`🔎 Caza: ${percentage}% guardado`);
 };
 
-window.saveVideoProgress = async (watchTime, totalDuration, completed = false) => {
-  const percentage = completed ? 100 : Math.min(Math.round((watchTime / totalDuration) * 100), 100);
-  await saveProgressToFirebase('video', { percentage, timeSpent: watchTime });
+// porcentaje: avance combinado de la actividad (30% ver el video + 70% cloze).
+// Antes se guardaba watchTime/600 (ej.: 100 s → 16%) aunque el cloze estuviera completo,
+// y la actividad quedaba baja en Firebase (tarjetas del inicio, examen, tabla del docente).
+window.saveVideoProgress = async (watchTime, totalDuration, completed = false, porcentaje = null) => {
+  const percentage = Number.isFinite(porcentaje)
+    ? Math.max(0, Math.min(Math.round(porcentaje), 100))
+    : completed ? 100 : Math.min(Math.round((watchTime / totalDuration) * 100), 100);
+  const ok = await saveProgressToFirebase('video', { percentage, timeSpent: watchTime });
   console.log(`🎬 Video: ${percentage}% guardado`);
+  return ok;
 };
 
 window.saveCruciProgress = async (solved, total, timeSpent = 0) => {
@@ -2535,7 +2543,8 @@ function setupEnhancedProgressTracking(tema) {
         const success = await window.saveVideoProgress(
           progress.totalTimeSpent,
           600, // duración estimada
-          progress.totalCompleted
+          progress.totalCompleted,
+          progress.combinedPercentage
         );
         
         if (success) {
@@ -3036,7 +3045,8 @@ async function saveVideoClozeProgressToFirebase() {
     const success = await window.saveVideoProgress(
       progress.timeSpent,
       600, // duración estimada
-      progress.totalCompleted
+      progress.totalCompleted,
+      progress.combinedPercentage
     );
     
     if (success) {
