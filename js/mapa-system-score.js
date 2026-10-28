@@ -1,6 +1,7 @@
 // ========================================
-// 🗺️ MAPA-SYSTEM-SCORE.JS v3.1
+// 🗺️ MAPA-SYSTEM-SCORE.JS v3.2
 // Con protección de score máximo histórico
+// v3.2 (2026-10-28): estado "completed" solo con el 100% (antes, con el juego al 80%)
 // ========================================
 
 import { saveProgress } from "/prueba_filo/firebase.js";
@@ -147,12 +148,12 @@ async function saveToFirebaseNow(reason = '') {
   const totalTime = Math.round((Date.now() - systemState.startTime) / 1000);
   const tema = getActiveTema();
   
+  // "completed" solo con el 100% (mapa y juego perfectos); antes, con el juego al
+  // 80% ya quedaba "completed" y sumaba un tema completado a las estadísticas
   let status = "in_progress";
   if (systemState.overallStatus === SCORING_CONFIG.states.EXCELLENT) {
     status = "completed";
-  } else if (systemState.overallStatus === SCORING_CONFIG.states.APPROVED) {
-    status = "completed";
-  } else if (systemState.finalScore >= 80) {
+  } else if (systemState.overallStatus === SCORING_CONFIG.states.APPROVED || systemState.finalScore >= 80) {
     status = "approved";
   }
   
