@@ -44,11 +44,12 @@ abrir el video y completar el cloze para que se guarde el porcentaje correcto
 
 ## Tema «Ética y Moral» (`themes/etica`)
 
-- El **material** (`content.html`) es una copia del de «El Método»
-  (`themes/metodo/content.html`): mismas secciones sobre el asombro. Hay que
-  escribir el material propio de ética y moral.
-- **Video:** en `temas_data.js` dura 10:33 pero `endTime` es 360 (6:00).
-  Revisar hasta dónde llega el cloze y ajustar `endTime`.
+- ✅ **Material** (2026-11-19): ya no es la copia de «El Método». Tiene 17
+  secciones propias (ética y moral, etimología, códigos, acto moral, libertad,
+  corrientes, pruebas rápidas, pasos, errores, dilemas, caso de Juan, IA,
+  síntesis) que cubren lo que pregunta `quiz.js`.
+- ✅ **Video** (2026-11-19): `endTime` 576, así que entran los 23 huecos del cloze.
+- **Pendiente:** el mapa conceptual sigue siendo el sistema viejo (ver arriba).
 
 ## Temas sin cuestionario ni caza de conceptos
 
