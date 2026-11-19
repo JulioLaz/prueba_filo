@@ -1,0 +1,11 @@
+{
+  "name": "filo-app-pruebas",
+  "private": true,
+  "description": "Pruebas automáticas de la app (ver tools/pruebas/README.md)",
+  "scripts": {
+    "emulador": "firebase emulators:start --only firestore,auth --project demo-filo --config firebase.json"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.35.1"
+  }
+}
