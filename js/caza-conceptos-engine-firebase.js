@@ -7,6 +7,7 @@
 //   los conceptos reales; el resumen final muestra cuántos faltan y en qué párrafos
 // v1.3 (2026-11-19): ayuda para no trabarse: cada 3 toques errados seguidos en un
 //   párrafo, un concepto oculto que falta encontrar se ilumina unos segundos
+//   (v1.3.1: elige primero un oculto, no uno ya resaltado)
 // ========================================
 
 (function () {
@@ -825,8 +826,10 @@ function onConceptReadingComplete(concept) {
   const FALLOS_PARA_AYUDA = 3;
   let fallosSeguidos = 0;
   function mostrarAyudaOculto() {
-    const pendiente = [...paragraphEl.querySelectorAll('.token[data-correct="1"]:not(.correct)')]
-      .find(t => !foundSet.has(decodeURIComponent(t.dataset.key || "").trim()));
+    // primero los ocultos (los resaltados ya se ven); si no queda ninguno, cualquiera pendiente
+    const pendientes = [...paragraphEl.querySelectorAll('.token[data-correct="1"]:not(.correct)')]
+      .filter(t => !foundSet.has(decodeURIComponent(t.dataset.key || "").trim()));
+    const pendiente = pendientes.find(t => t.classList.contains("hidden-concept")) || pendientes[0];
     if (!pendiente) return;
     pendiente.classList.remove("ayuda-caza");
     void pendiente.offsetWidth;
