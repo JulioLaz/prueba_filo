@@ -9,7 +9,7 @@
     "difficulty": "intermedio",
     "category": "Filosofía del Renacimiento",
     "description": "El antropocentrismo es la doctrina que considera al ser humano como la medida de todas las cosas y el centro del universo. Este concepto ha influido en la filosofía, la religión y la ciencia a lo largo de la historia, especialmente durante el Renacimiento.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2026-11-19"
   },
 
   "activities": {
@@ -28,7 +28,7 @@
     },
     "concepts": {
       "enabled": true,
-      "levels": 6,
+      "levels": 8,
       "timeEstimate": 8
     },
     "cloze": {

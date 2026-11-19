@@ -9,7 +9,7 @@
     "difficulty": "intermedio",
     "category": "Filosofía Contemporánea",
     "description": "Una filosofía que evalúa las ideas en función de su utilidad práctica. La verdad se concibe no como una correspondencia con la realidad, sino como una herramienta efectiva para la acción y la resolución de problemas.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2026-11-19"
   },
 
   "activities": {
@@ -28,7 +28,7 @@
     },
     "concepts": {
       "enabled": true,
-      "levels": 4,
+      "levels": 8,
       "timeEstimate": 8
     },
     "cloze": {

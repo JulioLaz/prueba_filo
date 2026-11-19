@@ -9,7 +9,7 @@
     "difficulty": "avanzado",
     "category": "Filosofía Moderna",
     "description": "La filosofía moral de Kant, centrada en el 'imperativo categórico' como una ley universal. Sostiene que los actos son moralmente buenos solo si se realizan por puro deber, sin considerar las consecuencias.",
-    "lastUpdated": "2024-08-20"
+    "lastUpdated": "2026-11-19"
   },
 
   "activities": {
@@ -28,7 +28,7 @@
     },
     "concepts": {
       "enabled": true,
-      "levels": 6,
+      "levels": 8,
       "timeEstimate": 8
     },
     "cloze": {
