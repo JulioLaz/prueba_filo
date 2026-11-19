@@ -755,9 +755,17 @@
 //  - La letra que ya se ve en la palabra central aparece como guía en su casilla.
 //  - Las palabras resueltas se recuerdan al recargar (por alumno, en este navegador).
 //  - Sin etiqueta "fácil/medio/difícil" por largo; textos en voseo.
+// v3.3 (2026-11-19) — pistas escalonadas por palabra (botón "Pista", hasta 3):
+//    1) sección del material donde está la palabra (si el título la contiene, se tapa);
+//    2) la primera letra (queda como guía en su casilla);
+//    3) la oración del material con la palabra reemplazada por "_____"
+//       (si no hay oración, otra letra más).
+//    Se sacan solas de themes/<tema>/content.html; cada entrada del crucigrama puede
+//    fijarlas a mano con "seccion" y "frase". Cada pista resta 3 puntos de juego a esa
+//    palabra (10 → 7 → 4 → 1); el % guardado (palabras resueltas) no cambia.
 // v3.1: integración con Firebase (crossword-score.js).
 
-console.log('🎯 Iniciando Crossword Engine v3.2 con Firebase');
+console.log('🎯 Iniciando Crossword Engine v3.3 con Firebase');
 const startTime = performance.now();
 
 // Protección contra errores de extensiones
@@ -794,6 +802,9 @@ if (!window.__EXT_ERR_GUARD__) {
   // Variables globales
   let layout = null;
   let uiElements = {};
+  // Palabra elegida: a nivel del módulo porque el motor puede arrancar dos veces
+  // (al cargar y desde el modal educativo) y cada arranque arma su propia UI
+  let palabraActual = null;
 
   // Reproducir sonidos con manejo de errores
   const playSound = (file) => {
@@ -1070,6 +1081,105 @@ if (!window.__EXT_ERR_GUARD__) {
     return gridEl;
   }
 
+  // ===== PISTAS ESCALONADAS (del material del tema) =====
+  let configActual = null;
+  let material = null;            // [{ titulo, oraciones: [] }] de themes/<tema>/content.html
+  const MAX_PISTAS = 3;
+  const PUNTOS_POR_PISTA = 3;
+
+  async function cargarMaterial() {
+    if (material) return material;
+    try {
+      const res = await fetch(`themes/${getCurrentTheme()}/content.html`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      material = [...doc.querySelectorAll('.study-section')].map((s) => {
+        const titulo = (s.querySelector('h3')?.textContent || '').replace(/\s+/g, ' ').trim();
+        const texto = [...s.querySelectorAll('.readaloud')].map((p) => p.textContent).join(' ').replace(/\s+/g, ' ').trim();
+        return { titulo, oraciones: texto.match(/[^.!?]+[.!?]+/g) || (texto ? [texto] : []) };
+      });
+    } catch (e) {
+      console.warn('⚠️ Pistas: no se pudo leer el material del tema', e.message);
+      material = [];
+    }
+    return material;
+  }
+
+  // Busca la palabra (sin acentos, palabra completa) en un texto: devuelve [inicio, fin] o null
+  function ubicarPalabra(texto, answer) {
+    const re = /[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g;
+    let m;
+    while ((m = re.exec(texto))) {
+      if (normalizeText(m[0]) === answer) return [m.index, m.index + m[0].length];
+    }
+    return null;
+  }
+  const taparPalabra = (texto, answer) => {
+    const p = ubicarPalabra(texto, answer);
+    return p ? texto.slice(0, p[0]) + '_____' + texto.slice(p[1]) : texto;
+  };
+
+  /** Sección y frase con hueco para una palabra (config manual primero; si no, del material). */
+  function pistasDe(word) {
+    if (word.pistasCalculadas) return word.pistasCalculadas;
+    const entry = configActual?.entries?.[Number(word.id.replace('word_', ''))] || {};
+    let seccion = entry.seccion || '';
+    let frase = entry.frase || '';
+    let enMaterial = !!(seccion || frase);
+    if ((!seccion || !frase) && material?.length) {
+      // La mejor oración: sin otras respuestas del crucigrama, que no sea una lista
+      // ("Ejemplos: a, b, c") y no muy larga; a igualdad, la que aparece primero
+      const otras = layout.words.filter((w) => w.id !== word.id).map((w) => w.answer);
+      let mejor = null;
+      material.forEach((s, si) => s.oraciones.forEach((o, oi) => {
+        if (!ubicarPalabra(o, word.answer)) return;
+        const costo = (otras.some((a) => ubicarPalabra(o, a)) ? 100 : 0) +
+          (/^\W*(ejemplos?|incluyen|como|por ejemplo)\b/i.test(o.trim()) ? 50 : 0) +
+          (o.length > 220 ? 20 : 0) + si * 0.01 + oi * 0.0001;
+        if (!mejor || costo < mejor.costo) mejor = { costo, titulo: s.titulo, oracion: o };
+      }));
+      if (mejor) {
+        enMaterial = true;
+        seccion = seccion || mejor.titulo;
+        frase = frase || mejor.oracion;
+      }
+    }
+    // Limpieza: comillas sueltas y oraciones muy largas (se recorta alrededor del hueco)
+    frase = frase.replace(/^[\s"“”«»'’]+|[\s"“”«»'’]+$/g, '').trim();
+    if (frase && !/[.!?]$/.test(frase)) frase += '.';
+    if (frase.length > 220) {
+      const p = ubicarPalabra(frase, word.answer);
+      if (p) {
+        const ini = Math.max(0, p[0] - 100);
+        const fin = Math.min(frase.length, p[1] + 100);
+        frase = (ini > 0 ? '…' : '') + frase.slice(ini, fin).trim() + (fin < frase.length ? '…' : '');
+      }
+    }
+    // Que la pista no regale la respuesta
+    seccion = seccion ? taparPalabra(seccion, word.answer) : '';
+    frase = frase ? taparPalabra(frase, word.answer) : '';
+    if (frase && ubicarPalabra(frase, word.answer)) frase = '';
+    word.pistasCalculadas = { seccion, frase, enMaterial };
+    return word.pistasCalculadas;
+  }
+
+  /** Textos de las pistas pedidas hasta el nivel dado, y letras que quedan de guía. */
+  function textosPistas(word, nivel) {
+    const { seccion, frase } = pistasDe(word);
+    const textos = [];
+    const letras = [];
+    if (nivel >= 1) textos.push(seccion ? `Está en el material, en la sección «${seccion}».` : 'Pensá en las ideas centrales del tema y releé la definición con atención.');
+    if (nivel >= 2) { textos.push(`Empieza con «${word.answer[0]}».`); letras.push(0); }
+    if (nivel >= 3) {
+      if (frase) textos.push(`En el material: «${frase}»`);
+      else {
+        const otra = [...Array(word.answer.length).keys()].find((i) => i > 0 && i !== word.crossIndex && i >= Math.floor(word.answer.length / 2));
+        if (otra !== undefined) { letras.push(otra); textos.push(`La letra ${otra + 1} es «${word.answer[otra]}».`); }
+      }
+    }
+    return { textos, letras };
+  }
+
   // ===== PALABRAS RESUELTAS: TABLERO Y MEMORIA =====
   const ordenadas = () => [...(layout?.words || [])].sort((a, b) => a.num - b.num);
 
@@ -1156,10 +1266,12 @@ if (!window.__EXT_ERR_GUARD__) {
     
     if (uiElements.finalScore) uiElements.finalScore.textContent = gameState.score;
     if (uiElements.finalAccuracy) uiElements.finalAccuracy.textContent = `${accuracy}%`;
-    
+    const finalHints = document.getElementById('finalHints');
+    if (finalHints) finalHints.textContent = gameState.pistasUsadas || 0;
+
     uiElements.completionModal.classList.add('show');
     playSound(SOUNDS.COMPLETE);
-    
+
     // Guardar progreso final
     if (window.updateFirebaseStatus) {
       window.updateFirebaseStatus('saving');
@@ -1216,8 +1328,6 @@ if (!window.__EXT_ERR_GUARD__) {
       });
     }
 
-    let palabraActual = null;
-
     // Crear slots visuales para la palabra
     function createVisualSlots(length) {
       if (!uiElements.visualInput) return;
@@ -1252,7 +1362,9 @@ if (!window.__EXT_ERR_GUARD__) {
             }
           }
         } else {
-          const guia = palabraActual && index === palabraActual.crossIndex;
+          const nivel = palabraActual ? (gameState.pistas[palabraActual.id] || 0) : 0;
+          const reveladas = palabraActual ? textosPistas(palabraActual, nivel).letras : [];
+          const guia = palabraActual && (index === palabraActual.crossIndex || reveladas.includes(index));
           slot.textContent = guia ? palabraActual.answer[index] : '';
           if (guia) slot.classList.add('guia');
           if (index === normalizedText.length) {
@@ -1392,6 +1504,7 @@ if (!window.__EXT_ERR_GUARD__) {
       updateVisualSlots('');
       validateInput('', word);
       renderClueList();
+      mostrarPistas();
       // Foco inmediato: si se eligió con un toque, el celular abre el teclado
       try { uiElements.textInput.focus({ preventScroll: true }); } catch (e) {}
       const otra = document.getElementById('skipBtn');
@@ -1403,6 +1516,40 @@ if (!window.__EXT_ERR_GUARD__) {
       
       console.log(`✅ Palabra seleccionada: "${word.answer}" - ${word.clue}`);
     }
+
+    // Pistas de la palabra actual (botón "Pista" y recuadro con las pedidas)
+    function mostrarPistas() {
+      const box = document.getElementById('hintBox');
+      const btn = document.getElementById('hintBtn');
+      if (!palabraActual) return;
+      const nivel = gameState.pistas[palabraActual.id] || 0;
+      const { textos } = textosPistas(palabraActual, nivel);
+      if (box) {
+        box.innerHTML = '';
+        textos.forEach((t, i) => {
+          const p = document.createElement('p');
+          p.textContent = `Pista ${i + 1}: ${t}`;
+          box.appendChild(p);
+        });
+        box.style.display = textos.length ? 'block' : 'none';
+      }
+      if (btn) {
+        btn.disabled = nivel >= MAX_PISTAS;
+        btn.textContent = nivel >= MAX_PISTAS ? 'Sin más pistas' : `Pista (${nivel + 1} de ${MAX_PISTAS})`;
+      }
+    }
+    async function pedirPista() {
+      if (!palabraActual) return;
+      await cargarMaterial();
+      const id = palabraActual.id;
+      gameState.pistas[id] = Math.min(MAX_PISTAS, (gameState.pistas[id] || 0) + 1);
+      gameState.pistasUsadas++;
+      mostrarPistas();
+      updateVisualSlots(gameState.currentAnswer);
+      uiElements.textInput?.focus();
+    }
+    const hintBtn = document.getElementById('hintBtn');
+    if (hintBtn) hintBtn.onclick = pedirPista;
 
     // Lista de definiciones numeradas: tocar una elige la palabra; las resueltas, tachadas
     function renderClueList() {
@@ -1466,7 +1613,8 @@ if (!window.__EXT_ERR_GUARD__) {
         console.log('🎉 ¡Respuesta correcta!');
         
         gameState.solved.add(gameState.currentWordId);
-        gameState.score += 10;
+        // 10 puntos menos 3 por cada pista pedida en esta palabra (mínimo 1)
+        gameState.score += Math.max(1, 10 - PUNTOS_POR_PISTA * (gameState.pistas[gameState.currentWordId] || 0));
         gameState.correctAttempts++;
 
         // Llenar celdas con la respuesta y recordarla
@@ -1565,6 +1713,13 @@ if (!window.__EXT_ERR_GUARD__) {
       if (!config.central) throw new Error('Palabra central requerida');
       if (!config.entries) throw new Error('Entradas requeridas');
 
+      // El motor se arranca dos veces (al cargar y, con un retraso, desde el modal educativo):
+      // si ya está armado con la misma configuración, no se reinicia (no se pierde lo hecho)
+      if (layout && configActual === config && document.getElementById('grid')?.childElementCount) {
+        console.log('ℹ️ Crucigrama ya iniciado con esta configuración: no se reinicia');
+        return;
+      }
+
       // Resetear estado del juego
       gameState = {
         solved: new Set(),
@@ -1572,8 +1727,13 @@ if (!window.__EXT_ERR_GUARD__) {
         currentAnswer: "",
         score: 0,
         attempts: 0,
-        correctAttempts: 0
+        correctAttempts: 0,
+        pistas: {},            // nivel de pista pedido por palabra
+        pistasUsadas: 0
       };
+      configActual = config;
+      palabraActual = null;
+      cargarMaterial();          // en segundo plano: lo usan las pistas
 
       // Actualizar título
       const titleEl = document.getElementById("title");

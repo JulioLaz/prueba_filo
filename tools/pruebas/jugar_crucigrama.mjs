@@ -7,11 +7,12 @@
  *  - una respuesta equivocada del largo justo se puede verificar: cuenta el intento y
  *    marca letras en verde/rojo;
  *  - tocar una definición elige esa palabra; "Otra palabra" pasa a la siguiente;
+ *  - pistas escalonadas (sección del material, primera letra, frase): restan puntos de juego;
  *  - al recargar, las palabras resueltas siguen resueltas;
  *  - al terminar: cartel final y guardado en Firebase (moduleId = tema, lessonId = 'cruci', 100%).
  *
  * Uso:  node tools/pruebas/jugar_crucigrama.mjs <tema>
- * Versión: v2.0.0 (2026-11-19)
+ * Versión: v2.1.0 (2026-11-19) — prueba las pistas
  */
 import { abrirNavegador, servirRepo, controles, temaDeArgs, BASE, SALIDA } from './comun.mjs';
 
@@ -80,8 +81,25 @@ async function main_jugar_crucigrama() {
   await page.waitForTimeout(300);
   check('"Otra palabra" pasa a otra', (await actual()) !== segundaId);
 
-  // Resolver 2 palabras y recargar: siguen resueltas
+  // Pistas escalonadas: 2 pistas → 2 textos y la primera letra de guía; la palabra vale 10 - 2×3 = 4
+  const conPista = await actual();
+  const resp = await respuesta(conPista);
+  await page.click('#hintBtn');
+  await page.waitForTimeout(400);
+  await page.click('#hintBtn');
+  await page.waitForTimeout(300);
+  const pz = await page.evaluate(() => ({
+    textos: [...document.querySelectorAll('#hintBox p')].map((p) => p.textContent),
+    guia: document.querySelector('#visualInput .letter-slot')?.textContent,
+    boton: document.getElementById('hintBtn').textContent,
+    puntos: Number(document.getElementById('score').textContent),
+  }));
+  check('2 pistas: sección del material y primera letra (queda de guía)', pz.textos.length === 2 && pz.textos[1].includes(`«${resp[0]}»`) && pz.guia === resp[0] && pz.boton.includes('3 de 3'), JSON.stringify(pz.textos));
   await resolverActual();
+  const puntos = Number(await page.locator('#score').innerText());
+  check('la palabra resuelta con 2 pistas suma 4 puntos', puntos - pz.puntos === 4, `${pz.puntos} → ${puntos}`);
+
+  // Resolver otra palabra y recargar: siguen resueltas
   await resolverActual();
   const antes = await page.evaluate(() => window.CrosswordEngine.getState().solved.size);
   await abrir();

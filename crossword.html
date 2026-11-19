@@ -4,6 +4,7 @@
   Motor: js/crossword_engine.js · Guardado: js/crossword-score.js
   Versión: v2.0 (2026-11-19) — campo de texto encima de las casillas (teclado en el celular),
     lista de definiciones numeradas, botón "Otra palabra", textos en voseo.
+  v2.1 (2026-11-19) — botón "Pista" (hasta 3 por palabra) y pistas usadas en el cartel final.
 -->
 <html lang="es">
 <head>
@@ -139,6 +140,9 @@
     .clue.resuelta .clue-txt{text-decoration:line-through;text-decoration-color:rgba(110,231,183,.5)}
     .clue-num{flex:0 0 22px;height:22px;border-radius:50%;background:#805ad5;color:#fff;display:inline-grid;place-items:center;font-size:12px;font-weight:700}
     .clue.resuelta .clue-num{background:#10b981}
+    .pistas-box{margin:0 0 12px;padding:10px 12px;border-radius:8px;border-left:3px solid #805ad5;background:rgba(128,90,213,.1);font-size:14px;color:#ddd6fe}
+    .pistas-box p{margin:4px 0}
+    .actions{flex-wrap:wrap}
     .btn-secundario{background:rgba(128,90,213,.14);border:1px solid rgba(167,139,250,.55);color:#ddd6fe}
     .btn-secundario:hover:not(:disabled){background:rgba(128,90,213,.32)}
     .btn-secundario:disabled{opacity:.45;cursor:not-allowed}
@@ -255,6 +259,8 @@
           <div class="difficulty" id="difficultyTag" style="display:none"></div>
         </div>
 
+        <div class="pistas-box" id="hintBox" style="display:none" aria-live="polite"></div>
+
         <div class="campo">
           <div class="visual-input" id="visualInput"></div>
           <input type="text" id="textInput" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="20" aria-label="Tu respuesta">
@@ -267,6 +273,7 @@
         </div>
 
         <div class="actions">
+          <button class="btn btn-secundario" id="hintBtn" type="button">Pista (1 de 3)</button>
           <button class="btn btn-secundario" id="skipBtn" type="button">Otra palabra</button>
           <button class="btn btn-primary" id="verifyBtn" disabled>
             Verificar respuesta
@@ -294,6 +301,10 @@
         <div class="stat">
           <div class="stat-value" id="finalAccuracy">0%</div>
           <div class="stat-label">PRECISIÓN</div>
+        </div>
+        <div class="stat" style="grid-column:1 / -1">
+          <div class="stat-value" id="finalHints">0</div>
+          <div class="stat-label">PISTAS USADAS</div>
         </div>
       </div>
       <div class="actions">

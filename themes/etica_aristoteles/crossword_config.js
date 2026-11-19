@@ -14,31 +14,43 @@ try {
       {
         answer: "VALENTIA",
         clue: "Virtud ética: término medio entre la cobardía (defecto) y la temeridad (exceso)",
+        seccion: "🎯 Término medio: arte de equilibrar",
+        frase: "La _____ está entre cobardía y temeridad.",
         crossIndex: 0 // Cruce en la 'V' de VIRTUD
       },
       {
         answer: "ENTENDIMIENTO",
         clue: "Virtud dianoética (noûs) que capta los primeros principios del conocimiento",
+        seccion: "🧩 Dos familias de virtudes",
+        frase: "Entre las virtudes dianoéticas (de la razón) están el _____, la ciencia, el arte y la sabiduría.",
         crossIndex: 1 // Cruce en la 'I' de VIRTUD
       },
       {
         answer: "GENEROSIDAD",
         clue: "Virtud ética: término medio entre la tacañería y el derroche",
+        seccion: "🎯 Término medio: arte de equilibrar",
+        frase: "La _____ está entre la tacañería y el derroche.",
         crossIndex: 2 // Cruce en la 'R' de VIRTUD
       },
       {
         answer: "TEMPLANZA",
         clue: "Virtud ética: moderación en los placeres, término medio entre el desenfreno y la insensibilidad",
+        seccion: "🧩 Dos familias de virtudes",
+        frase: "La _____ es la virtud ética que modera los placeres.",
         crossIndex: 3 // Cruce en la 'T' de VIRTUD
       },
       {
         answer: "PRUDENCIA",
         clue: "Sabiduría práctica (frónesis) que delibera bien qué hacer en cada situación concreta",
+        seccion: "🧭 Prudencia (frónesis): decidir bien aquí y ahora",
+        frase: "La _____ indica dónde está ese medio en cada caso concreto.",
         crossIndex: 4 // Cruce en la 'U' de VIRTUD
       },
       {
         answer: "FELICIDAD",
         clue: "Fin último (eudaimonía): actividad del alma conforme a la virtud, no un estado pasivo",
+        seccion: "🎯 ¿Dónde está el bien humano? — El Sumo Bien y la felicidad",
+        frase: "La _____ es lo que deseamos por sí mismo; lo demás, por ella.",
         crossIndex: 5 // Cruce en la 'D' de VIRTUD
       }
     ],
@@ -72,7 +84,7 @@ try {
     
     // Metadatos para debug
     metadata: {
-      version: "2.1_secundaria", // 2026-10-21: palabras y pistas alineadas con el material
+      version: "2.2_secundaria", // 2026-11-19: seccion y frase de cada palabra para las pistas escalonadas (2.1: palabras y pistas alineadas con el material)
       created: new Date().toISOString(),
       theme: "etica-aristoteles-secundaria",
       totalWords: 6,
