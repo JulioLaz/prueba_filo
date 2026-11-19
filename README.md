@@ -40,7 +40,7 @@ El contenido se edita en `projects/guias/comun.js` (lo común), `projects/guias/
 
 ## 🏛️ Examen oral (cierra el tema)
 
-Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro) y **Utilitarismo** (con John Stuart Mill). Es un diálogo guiado con el filósofo:
+Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro), **Utilitarismo** (con John Stuart Mill) y **Ética y Moral** (con Sócrates). Es un diálogo guiado con el filósofo:
 
 - Se habilita con **al menos 60% en cada actividad** del tema (cuestionario, caza, video, crucigrama, material y mapa). No alcanza con el promedio: ninguna puede quedar por debajo.
 - **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.
@@ -73,6 +73,8 @@ themes/<id>/          Contenido de cada tema
 css/, sound/          Estilos y sonidos
 dialogo/              Diálogos con filósofos (IA)
 functions/            Cloud Functions de Firebase (diálogos y examen oral con IA)
+docs/                 Documentación técnica (arquitectura, actividades, objetivos, estado de los temas)
+tools/pruebas/        Pruebas automáticas
 examenes.html         Exámenes orales del curso (admin): conversación, rúbrica y nota
 alumnos_anio_curso.py Reporte de alumnos activos del año y limpieza de anteriores
 verificar_email_admin.py Marca verificado el email del admin (lo exigen las reglas)
@@ -137,4 +139,10 @@ Y abrí en Chrome: http://localhost:8000/prueba_filo/index.html
 
 ## 📝 Pendientes
 
-Lo que quedó resuelto de forma provisoria o falta revisar está anotado en [`PENDIENTES.md`](PENDIENTES.md).
+El estado de cada tema (qué está revisado y qué falta) y los pendientes de Firebase están en [`docs/ESTADO_TEMAS.md`](docs/ESTADO_TEMAS.md).
+
+## 📐 Documentación técnica y pruebas
+
+- [`CLAUDE.md`](CLAUDE.md): guía para continuar el desarrollo con Claude Code (preferencias, reglas, mapa de documentos).
+- [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md), [`docs/ACTIVIDADES.md`](docs/ACTIVIDADES.md), [`docs/OBJETIVOS.md`](docs/OBJETIVOS.md), [`docs/GUIA_TEMA.md`](docs/GUIA_TEMA.md): cómo está armada la app, formato y estándar de cada actividad (referencia: Ética de Aristóteles), objetivos y guía para crear o mejorar un tema.
+- [`tools/pruebas/`](tools/pruebas/README.md): pruebas automáticas (verificar un tema, jugar cada actividad, examen con el emulador).

@@ -9,7 +9,7 @@
  *
  * - Guarda solo cuando el % sube (firebase.js además conserva el mejor puntaje).
  * - Si la sesión todavía no cargó, guarda apenas el usuario está disponible.
- * Pendiente (ver PENDIENTES.md): pasar estos mapas al sistema completo
+ * Pendiente (ver docs/ESTADO_TEMAS.md): pasar estos mapas al sistema completo
  * (mapa-system-fixed.js + mapa-system-score.js, con juego de pares).
  *
  * Versión: v1.0.0 (2026-10-28)
