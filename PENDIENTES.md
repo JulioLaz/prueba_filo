@@ -49,6 +49,9 @@ abrir el video y completar el cloze para que se guarde el porcentaje correcto
   corrientes, pruebas rápidas, pasos, errores, dilemas, caso de Juan, IA,
   síntesis) que cubren lo que pregunta `quiz.js`.
 - ✅ **Video** (2026-11-19): `endTime` 576, así que entran los 23 huecos del cloze.
+- ✅ **Examen oral con Sócrates y resumen final** (2026-11-19): `themes/etica/examen.json`
+  (12 ejes, 8 casos) y entrada en `EXAMEN_CONFIG`. Se aprueba con 60% en cada actividad y
+  examen ≥ 6. No requiere redeploy de las Cloud Functions (leen el banco desde Pages).
 - ✅ **Mapa** (2026-11-19): pasado al sistema completo (48 nodos + juego de 15 pares),
   con la rama nueva «Dilemas y desafíos actuales».
 

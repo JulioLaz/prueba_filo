@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Sócrates y del resumen final del tema Ética y Moral. El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-19): primera versión, alineada con las 17 secciones del material.",
+  "version": "1.0.0",
+  "filosofo": "Sócrates",
+  "tema": "Ética y moral: cómo debemos vivir (libertad, responsabilidad y grandes corrientes éticas)",
+  "intro": "La moral es el conjunto de normas y costumbres con las que vivimos; la ética es la reflexión filosófica que las examina y busca sus fundamentos. Sócrates, en la Atenas del siglo V a. C., hizo de esa pregunta su vida entera: ¿cómo debemos vivir? Hoy te examina sobre la diferencia entre ética y moral, la libertad y la responsabilidad, las grandes corrientes éticas y las herramientas para decidir bien.",
+  "conceptosClave": "ética, moral, moral pensada y moral vivida, ethos, agente libre, responsabilidad, deontología, utilitarismo, ética de la virtud, ética del cuidado, velo de ignorancia, dilema ético, pruebas rápidas, falacia de tradición",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "agora",
+      "texto": "Sócrates está en el ágora de Atenas, descalzo como siempre, y detiene al alumno con su pregunta de toda la vida: «¿Cómo debemos vivir?». Le dice que hoy van a ver juntos cuánto sabe sobre eso."
+    },
+    {
+      "id": "delfos",
+      "texto": "Sócrates recuerda la inscripción del templo de Delfos, «Conócete a ti mismo», y le dice al alumno que pensar la propia conducta es el primer paso de la ética. Desde ahí empieza el examen."
+    },
+    {
+      "id": "partera",
+      "texto": "Sócrates cuenta que su madre era partera y que él hace lo mismo con las ideas: ayuda a que nazcan con preguntas. Le avisa al alumno que va a preguntarle mucho, pero que las respuestas tienen que ser suyas."
+    },
+    {
+      "id": "no_se",
+      "texto": "Sócrates abre con su frase más famosa, «Solo sé que no sé nada», y le dice al alumno que justamente por eso quiere escuchar lo que él aprendió sobre la ética y la moral."
+    },
+    {
+      "id": "tabano",
+      "texto": "Sócrates cuenta que en Atenas lo llamaban «el tábano», porque picaba a los ciudadanos con preguntas para que no se durmieran. Hoy le toca al alumno recibir sus picaduras."
+    },
+    {
+      "id": "carcel",
+      "texto": "Sócrates está en la cárcel, poco antes de beber la cicuta. Su amigo Critón le ofreció escapar, pero él decidió no desobedecer las leyes de Atenas. Le pregunta al alumno si una decisión así es moral, ética o las dos cosas, y arranca el examen."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "etica_moral",
+      "titulo": "Ética y moral: no son lo mismo",
+      "guia": "Preguntar en qué se diferencian la ética y la moral.",
+      "claves": "La moral es el conjunto de normas, costumbres y valores con que una sociedad orienta la conducta: es práctica, la moral vivida. La ética es una rama de la filosofía que reflexiona críticamente sobre la moral y busca sus fundamentos: es teoría, la moral pensada.",
+      "resumen": "La moral es el conjunto de normas y costumbres con las que vivimos cada día: es la moral vivida. La ética es la rama de la filosofía que reflexiona sobre esas normas y busca sus fundamentos, es decir, por qué algo es bueno o malo: es la moral pensada.",
+      "palabras": [
+        "ética",
+        "moral",
+        "moral vivida",
+        "moral pensada",
+        "fundamentos"
+      ],
+      "ejemplo": "Saludar a los mayores es parte de la moral de muchas familias; preguntarse por qué hay que hacerlo y si siempre está bien es hacer ética."
+    },
+    {
+      "id": "etimologia",
+      "titulo": "El origen de las palabras",
+      "guia": "Preguntar de dónde vienen las palabras ética y moral, y cómo las distingue Paul Ricoeur.",
+      "claves": "Ética viene del griego ethos (costumbre, hábito, carácter); Aristóteles la entendía como filosofía de las costumbres. Moral viene del latín moralis, de mos, moris (costumbre). Ricoeur: la ética trata de lo bueno; la moral, de lo obligatorio.",
+      "resumen": "Ética viene del griego ethos y moral, del latín mos: las dos significan costumbre. Hoy las distinguimos: según Paul Ricoeur, la ética se ocupa de lo que es bueno, y la moral, de lo que es obligatorio.",
+      "palabras": [
+        "ethos",
+        "mos",
+        "costumbre",
+        "Ricoeur",
+        "obligatorio"
+      ],
+      "ejemplo": "Que sea obligatorio llegar a horario es una norma moral de la escuela; preguntarse si es bueno y por qué es una pregunta ética."
+    },
+    {
+      "id": "personal_social",
+      "titulo": "Ética personal, moral social",
+      "guia": "Preguntar por qué la ética es personal y la moral social, y cómo pueden entrar en conflicto.",
+      "claves": "La ética es una postura personal: cada uno la adopta desde su consciencia y suele ser constante. La moral es normativa: códigos que impone una sociedad, cuyo incumplimiento trae sanciones sociales o penales. Pueden chocar: alguien puede rechazar la pena de muerte aunque su sociedad la acepte.",
+      "resumen": "La ética nace de la consciencia de cada persona y suele mantenerse en el tiempo. La moral es social: son normas que impone una sociedad, y no cumplirlas trae sanciones. Por eso pueden chocar, como cuando alguien rechaza la pena de muerte aunque su país la acepte.",
+      "palabras": [
+        "personal",
+        "consciencia",
+        "normativa",
+        "sanciones",
+        "conflicto"
+      ],
+      "ejemplo": "Un jugador que no simula faltas aunque en su equipo «todos lo hacen» sigue su ética contra la costumbre del grupo."
+    },
+    {
+      "id": "codigos",
+      "titulo": "Códigos y ejemplos",
+      "guia": "Preguntar qué son los códigos éticos y morales, con ejemplos, y por qué la moral cambia.",
+      "claves": "Las profesiones tienen códigos éticos de cumplimiento obligatorio. La Declaración Universal de Derechos Humanos (ONU, 1948) reúne principios éticos universales. Los códigos morales (como los diez mandamientos) rigen la vida cotidiana y varían con el tiempo y el lugar: la moral no es uniforme. Faltar a ella puede costar caro: los testigos de Jehová fueron presos por negarse a tomar un fusil en la Segunda Guerra Mundial.",
+      "resumen": "Muchas profesiones tienen códigos éticos, y la Declaración Universal de Derechos Humanos de 1948 reúne principios éticos para toda la humanidad. Los códigos morales, como los diez mandamientos, guían la vida cotidiana y cambian según la época y el lugar: la moral no es igual en todas partes.",
+      "palabras": [
+        "códigos éticos",
+        "Declaración Universal de Derechos Humanos",
+        "diez mandamientos",
+        "variar",
+        "uniforme"
+      ],
+      "ejemplo": "Un médico no puede contar la enfermedad de un paciente: lo prohíbe el código ético de su profesión."
+    },
+    {
+      "id": "acto_moral",
+      "titulo": "¿Cuándo un acto es moral?",
+      "guia": "Preguntar qué condiciones hacen que un acto sea evaluable moralmente y qué se mira al juzgarlo.",
+      "claves": "Dos condiciones mínimas: que lo realice un agente libre (que elige con conocimiento y sin coacción) y que afecte o pueda afectar a otras personas. Al juzgarlo se miran la intención, los medios y los fines. El juicio moral se apoya en valores y normas; la conciencia moral es la voz interior que juzga nuestros actos.",
+      "resumen": "Un acto es moral cuando lo hace un agente libre y afecta, o puede afectar, a otras personas. Para juzgarlo miramos la intención con que se hizo, los medios que se usaron y los fines que se buscaban. La conciencia moral es la voz interior que juzga nuestros propios actos.",
+      "palabras": [
+        "agente libre",
+        "otras personas",
+        "intención",
+        "medios",
+        "conciencia moral"
+      ],
+      "ejemplo": "Romper un vidrio por un tropezón no es igual que romperlo a propósito: en el segundo caso hubo elección libre."
+    },
+    {
+      "id": "libertad",
+      "titulo": "Libertad y responsabilidad",
+      "guia": "Preguntar por qué sin libertad no hay responsabilidad, y qué dicen Skinner, Fromm y Sartre.",
+      "claves": "Sin libertad no hay responsabilidad. Skinner: la conducta está condicionada por el ambiente. Fromm: el contexto condiciona pero no anula la libertad. Sartre: estamos condenados a ser libres; no hay una moral dada de antemano, cada uno inventa sus valores al elegir, e incluso no elegir es elegir, por eso somos responsables de todo lo que hacemos.",
+      "resumen": "Sin libertad no hay responsabilidad: no podemos reprocharle algo a quien no pudo elegir. Skinner creía que el ambiente condiciona nuestra conducta y Fromm, que la condiciona pero no anula la libertad. Sartre dijo que estamos condenados a ser libres: incluso no elegir es una forma de elegir.",
+      "palabras": [
+        "libertad",
+        "responsabilidad",
+        "Sartre",
+        "condenados a ser libres",
+        "Fromm"
+      ],
+      "ejemplo": "Quien ve que maltratan a un compañero y no hace nada también eligió: eligió no intervenir."
+    },
+    {
+      "id": "deontologia",
+      "titulo": "La ética del deber: Kant",
+      "guia": "Preguntar qué propone la deontología de Kant y cómo se usa la prueba de la universalidad.",
+      "claves": "La deontología o ética del deber (Kant): lo que hace buena una acción es actuar por deber, no sus resultados. Se examina la máxima de la acción y se pregunta si podría ser ley universal (¿podría querer que todos hicieran lo mismo?). Además, hay que tratar a toda persona como fin y nunca solo como medio, porque tiene dignidad.",
+      "resumen": "La deontología de Kant dice que una acción es buena si se hace por deber, no por sus resultados. Para saberlo, pregunto si la regla de mi acción, su máxima, podría ser ley universal: ¿querría que todos hicieran lo mismo? Y nunca debo usar a una persona solo como un medio, porque tiene dignidad.",
+      "palabras": [
+        "deontología",
+        "deber",
+        "máxima",
+        "ley universal",
+        "dignidad"
+      ],
+      "ejemplo": "Si mentir cuando me conviene fuera ley universal, nadie le creería a nadie: por eso, para Kant, mentir está mal."
+    },
+    {
+      "id": "utilitarismo",
+      "titulo": "La ética de las consecuencias: el utilitarismo",
+      "guia": "Preguntar cómo juzga una acción el utilitarismo y cuál es su riesgo.",
+      "claves": "El utilitarismo (Bentham y Mill) juzga las acciones por sus consecuencias: es correcta la que produce el mayor bienestar para el mayor número. Una decisión utilitarista bien entendida maximiza el bienestar y minimiza el daño total, contando a todos por igual. Su riesgo es el consecuencialismo crudo: creer que, si el resultado es bueno, cualquier medio vale.",
+      "resumen": "El utilitarismo de Bentham y Mill juzga las acciones por sus consecuencias: es correcta la que produce el mayor bienestar para el mayor número de personas, contando a todos por igual. Su riesgo es pensar que, si el resultado total es bueno, cualquier medio vale.",
+      "palabras": [
+        "utilitarismo",
+        "consecuencias",
+        "bienestar",
+        "mayor número",
+        "consecuencialismo crudo"
+      ],
+      "ejemplo": "Elegir el horario de un torneo en el que puedan jugar más chicos es razonar como un utilitarista."
+    },
+    {
+      "id": "virtud_cuidado",
+      "titulo": "El carácter y el cuidado",
+      "guia": "Preguntar qué propone la ética de la virtud y qué aporta la ética del cuidado.",
+      "claves": "La ética de la virtud (Aristóteles) pregunta qué clase de persona quiero ser: formar un carácter excelente con hábitos y prudencia (sabiduría práctica). La ética del cuidado (Gilligan, Noddings) pone en el centro las relaciones y la vulnerabilidad: atender al otro concreto, no solo aplicar reglas abstractas.",
+      "resumen": "La ética de la virtud, que viene de Aristóteles, pregunta qué clase de persona quiero ser y propone formar el carácter con hábitos y prudencia. La ética del cuidado, de Gilligan y Noddings, pide atender a las relaciones y a la vulnerabilidad del otro concreto que tenemos delante.",
+      "palabras": [
+        "ética de la virtud",
+        "carácter",
+        "prudencia",
+        "ética del cuidado",
+        "vulnerabilidad"
+      ],
+      "ejemplo": "Acompañar a un amigo que está mal, aunque ninguna regla te obligue, es lo que valora la ética del cuidado."
+    },
+    {
+      "id": "contractualismo",
+      "titulo": "El acuerdo justo: Rawls",
+      "guia": "Preguntar qué sostiene el contractualismo y en qué consiste el velo de ignorancia de Rawls.",
+      "claves": "El contractualismo: las normas justas son las que aceptarían personas libres e iguales en un acuerdo racional. Rawls (Teoría de la justicia) propone el velo de ignorancia: elegir las reglas sin saber qué lugar ocuparemos en la sociedad (rico o pobre, sano o enfermo). Así elegiríamos principios imparciales que protejan también a los más desfavorecidos.",
+      "resumen": "Para el contractualismo, las normas justas son las que aceptarían personas libres e iguales. John Rawls propone el velo de ignorancia: elegir las reglas de la sociedad sin saber qué lugar nos va a tocar. Como podríamos ser los más débiles, elegiríamos reglas justas para todos.",
+      "palabras": [
+        "contractualismo",
+        "Rawls",
+        "velo de ignorancia",
+        "imparcialidad",
+        "desfavorecidos"
+      ],
+      "ejemplo": "Si tenés que repartir una pizza y no sabés qué porción te va a tocar, la cortás en partes iguales."
+    },
+    {
+      "id": "decidir",
+      "titulo": "Pruebas rápidas y pasos para decidir",
+      "guia": "Preguntar qué pruebas rápidas y qué pasos ayudan a resolver un problema ético.",
+      "claves": "Pruebas rápidas: ¿es legal?, universalidad (¿querría que todos lo hicieran?), publicidad (¿me sentiría cómodo si se hiciera público?), dignidad, bien común, regla de oro (¿querría que me lo hicieran a mí?) e imparcialidad. Preguntarse solo si me conviene no es una prueba ética. Pasos: describir los hechos, identificar valores y opciones, evaluar con varios criterios, decidir y justificar, mitigar los daños.",
+      "resumen": "Antes de decidir podemos hacernos preguntas rápidas: ¿es legal?, ¿querría que todos lo hicieran?, ¿me sentiría cómodo si se hiciera público?, ¿respeta la dignidad?, ¿querría que me lo hicieran a mí? Y seguir cinco pasos: describir, identificar valores y opciones, evaluar, decidir y justificar, y mitigar los daños.",
+      "palabras": [
+        "universalidad",
+        "publicidad",
+        "regla de oro",
+        "describir",
+        "mitigar"
+      ],
+      "ejemplo": "Antes de reenviar una foto de un compañero, la regla de oro pregunta: ¿te gustaría que hicieran eso con la tuya?"
+    },
+    {
+      "id": "errores",
+      "titulo": "Errores a evitar",
+      "guia": "Preguntar qué errores frecuentes hay al razonar sobre ética, con ejemplos.",
+      "claves": "Falacia de tradición (siempre se hizo así, por lo tanto está bien), confundir lo legal con lo ético, relativismo total (nada es mejor ni peor), favoritismo (mi grupo primero), egoísmo (me conviene, por eso es correcto), creer que la buena intención basta aunque dañe a terceros, o que algo es correcto porque es popular en las redes.",
+      "resumen": "Hay errores frecuentes al razonar sobre ética: la falacia de tradición («siempre se hizo así»), confundir lo legal con lo ético, el relativismo total («todo da igual»), el favoritismo y el egoísmo («me conviene, entonces está bien»). Que algo sea antiguo, legal o popular no lo vuelve correcto.",
+      "palabras": [
+        "falacia de tradición",
+        "legal",
+        "relativismo",
+        "favoritismo",
+        "egoísmo"
+      ],
+      "ejemplo": "«Siempre se hizo el bautismo a los de primero» no justifica humillar a nadie: es una falacia de tradición."
+    }
+  ],
+  "casos": [
+    {
+      "id": "examen_copia",
+      "texto": "Durante una prueba, tu mejor amigo te pide por WhatsApp que le pases las respuestas. Si no lo hacés, se va a enojar con vos.",
+      "claves": "Aplicar la universalidad y la regla de oro, distinguir amistad de complicidad (ética del cuidado bien entendida), considerar las consecuencias para el amigo y para el grupo, y la responsabilidad de elegir."
+    },
+    {
+      "id": "grupo_burla",
+      "texto": "En el grupo del curso empiezan a circular memes burlándose de una compañera. Todos se ríen y nadie dice nada.",
+      "claves": "Libertad y responsabilidad (no hacer nada también es elegir, Sartre), dignidad (no usar a nadie como medio), ética del cuidado ante la vulnerabilidad, favoritismo y presión del grupo."
+    },
+    {
+      "id": "billetera",
+      "texto": "Encontrás una billetera con mucha plata y el documento del dueño. Nadie te vio levantarla.",
+      "claves": "Actuar por deber y no por miedo a ser descubierto (Kant), prueba de universalidad y de publicidad, regla de oro, diferencia entre lo que conviene y lo correcto (egoísmo)."
+    },
+    {
+      "id": "fabrica_rio",
+      "texto": "Una fábrica da trabajo a medio pueblo, pero contamina el río del que toman agua las familias de otro barrio.",
+      "claves": "Utilitarismo (comparar bienestar y daño de todos), dignidad y derechos de los afectados (Kant), velo de ignorancia (¿y si yo viviera en ese barrio?), mitigar daños, bien común."
+    },
+    {
+      "id": "ia_seleccion",
+      "texto": "Una empresa usa un programa de inteligencia artificial para elegir a quién contratar, y casi nunca elige a mujeres ni a personas de barrios pobres.",
+      "claves": "Sesgos en los datos que reproducen discriminación, responsabilidad (programador, empresa, usuario), imparcialidad y velo de ignorancia, dignidad de los candidatos."
+    },
+    {
+      "id": "tranvia",
+      "texto": "Un tren sin frenos va hacia cinco personas. Podés mover una palanca y desviarlo hacia una vía donde hay una sola persona.",
+      "claves": "Dilema ético: utilitarismo (salvar al mayor número) frente a deontología (no usar a nadie como medio, deber de no matar); comparar con el dilema médico, donde casi todos rechazan sacrificar a uno por el consentimiento y la dignidad."
+    },
+    {
+      "id": "ley_injusta",
+      "texto": "Una ley de tu ciudad permite echar a una familia de su casa en pleno invierno por una deuda pequeña. Sos el empleado que tiene que firmar la orden.",
+      "claves": "Distinguir lo legal de lo ético, conflicto entre la ética personal y la moral o ley social (como Sócrates ante las leyes o la pena de muerte), obediencia y conciencia, buscar mitigar los daños."
+    },
+    {
+      "id": "promesa_hermano",
+      "texto": "Le prometiste a tu hermano chico ir a su acto escolar, pero ese mismo día un vecino mayor te pide ayuda urgente porque se cayó en su casa.",
+      "claves": "Dilema entre dos deberes (cumplir la promesa y socorrer al vulnerable), ética del cuidado, deber de socorro (como el caso de Juan del material), decidir y justificar, mitigar el daño a quien queda afectado."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "norma_propia",
+      "texto": "¿Qué norma de tu familia o de tu escuela cumplís aunque no estés de acuerdo? ¿Por qué la cumplís igual?"
+    },
+    {
+      "id": "decision_dificil",
+      "texto": "Contame una decisión difícil que hayas tenido que tomar. ¿Qué valores estaban en conflicto?"
+    },
+    {
+      "id": "corriente_favorita",
+      "texto": "¿Cuál de las corrientes éticas (deber, consecuencias, virtud, cuidado o acuerdo justo) te parece más útil para tu vida? ¿Por qué?"
+    },
+    {
+      "id": "libres",
+      "texto": "¿Estás de acuerdo con Sartre en que siempre somos libres, o creés que a veces el contexto no nos deja elegir?"
+    },
+    {
+      "id": "redes",
+      "texto": "¿Qué problema ético ves en las redes sociales o en la inteligencia artificial que use tu generación?"
+    }
+  ],
+  "practica": [
+    "Explicá con tus palabras por qué se dice que la ética es la moral pensada y la moral es la moral vivida.",
+    "¿Qué dos condiciones tiene que cumplir un acto para que lo podamos juzgar moralmente? Dá un ejemplo.",
+    "¿Qué quiso decir Sartre con que estamos «condenados a ser libres»?",
+    "Compará cómo resolverían el dilema del tranvía un utilitarista y un kantiano.",
+    "¿Qué es el velo de ignorancia de Rawls y para qué sirve?",
+    "Aplicá tres pruebas rápidas a esta situación: subir una foto de un amigo sin su permiso.",
+    "Dá un ejemplo de falacia de tradición y explicá por qué es un error.",
+    "¿Por qué que algo sea legal no alcanza para que sea ético? Dá un ejemplo."
+  ]
+}

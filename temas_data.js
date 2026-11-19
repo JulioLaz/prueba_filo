@@ -245,5 +245,11 @@ const TOPICS = {
         icono: '🎯',
         notaAprobacion: 6,
         minimoActividad: 60
+      },
+      etica: {
+        filosofo: 'Sócrates',
+        icono: '🧭',
+        notaAprobacion: 6,
+        minimoActividad: 60
       }
     };
