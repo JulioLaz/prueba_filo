@@ -74,6 +74,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-19: grupo nuevo «Taller» en el inicio (filtro y tarjeta). Copia del taller de cierre «Lo que traje, lo que me llevo» en `taller/taller.html` v2.6 (original en el repo `emociones`): abre en el paso de `?paso=N`; la tarjeta abre en el 6 (El bambú).
 - 2026-11-19: motor del crucigrama v3.2 (teclado en el celular, sin adelantar la respuesta, se puede verificar un error con letras verdes/rojas, lista de definiciones, «Otra palabra», guía con la letra del cruce, recuerda las resueltas). Probado en los 7 crucigramas de la Unidad 3 y en Origen. Pistas escalonadas (motor v3.3): automáticas desde el material en todos; revisadas a mano en Aristóteles. **Pendiente:** rehacer el contenido de los crucigramas de Utilitarismo, Pragmatismo, Antropocentrismo, Hedonismo y Kant.
 - 2026-11-19: examen oral más pedagógico (functions V8.3): devolución de cada pregunta y las 2 ideas más flojas vuelven en el intento siguiente.
 - 2026-11-19: Ética y Moral completa (material propio, mapa al sistema completo, crucigrama nuevo, examen con Sócrates y resumen final). Videos de Kant, Antropocentrismo y Ética y Moral corregidos. Cazas de Kant, Pragmatismo, Antropocentrismo y Ética y Moral rehechas con 8 niveles. Pruebas automáticas guardadas en `tools/pruebas/`. Documentación en `CLAUDE.md` y `docs/`.

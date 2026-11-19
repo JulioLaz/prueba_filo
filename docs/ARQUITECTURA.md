@@ -35,7 +35,7 @@ Tres capas:
 
 | Archivo | Qué define | Lo leen |
 |---|---|---|
-| `js/main.js` → `AVAILABLE_THEMES` | Tarjeta del inicio: `id`, `title`, `description`, `icon`, `gradient`, `difficulty` (unidad: `UNIDAD_I`, `UNIDAD_II`, `UNIDAD_III`, `PROYECTO_TRIMESTRAL`, `DIALOGO`, `GAME`), `questions` (= preguntas del cuestionario), `timeEstimate`, `contentFile`. | `index.html` (los filtros usan `data-filter` = `difficulty`) |
+| `js/main.js` → `AVAILABLE_THEMES` | Tarjeta del inicio: `id`, `title`, `description`, `icon`, `gradient`, `difficulty` (unidad: `UNIDAD_I`, `UNIDAD_II`, `UNIDAD_III`, `PROYECTO_TRIMESTRAL`, `DIALOGO`, `TALLER`, `GAME`; los que no son unidad abren `contentFile` directo), `questions` (= preguntas del cuestionario), `timeEstimate`, `contentFile`. | `index.html` (los filtros usan `data-filter` = `difficulty`) |
 | `temas_data.js` → `TOPICS` | Datos del hub: `icon`, `name`, `desc`, `biography`. | hub, resúmenes, paneles |
 | `temas_data.js` → `VIDEO_CONFIG` | Video del tema: `youtubeId` (11 caracteres, **sin** `&t=` ni `?si=`), `startTime`, `endTime` (segundos), `title`, `duration`. Si el tema no está acá, no tiene actividad de video. | hub (video + cloze), `progreso-tarjetas.js`, `progress.html` |
 | `temas_data.js` → `EXAMEN_CONFIG` | Temas con examen oral: `filosofo`, `icono`, `notaAprobacion` (6), `minimoActividad` (60). Estar acá activa la tarjeta del examen, el resumen final, la regla de aprobación con examen y la columna EXAMEN. | hub, `dialogo/examen.html`, `progreso-tarjetas.js`, `progress.html`, `examenes.html` |

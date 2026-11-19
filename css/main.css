@@ -342,6 +342,12 @@ body::before {
     color: white;
 }
 
+/* 2026-11-19 — Grupo «Taller» */
+.difficulty-taller {
+    background: linear-gradient(135deg, #3d5045 0%, #f2c66d 100%);
+    color: white;
+}
+
 /* ========================================
    🏆 PROGRESO DEL ALUMNO EN LAS TARJETAS (js/progreso-tarjetas.js)
    ======================================== */

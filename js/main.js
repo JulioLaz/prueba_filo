@@ -2,6 +2,8 @@
 // 🎯 SELECTOR DE TEMAS - CUESTIONARIOS DE FILOSOFÍA
 // 2026-10-26: el pie de cada tarjeta (actividades / minutos / avance) y los sellos
 //   Aprobado/Completo los completa js/progreso-tarjetas.js con datos de Firebase
+// 2026-11-19: grupo nuevo «Taller» (difficulty 'TALLER'): abre su contentFile,
+//   el taller de cierre «Lo que traje, lo que me llevo» desde el punto 6 (El bambú)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -359,6 +361,20 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         type: 'dialogo'
     },    
     {
+        id: 'taller_lo_que_traje',
+        title: 'Taller: Lo que traje, lo que me llevo',
+        description: 'Taller de cierre de egresados 2026. Seguimos desde el punto 6: el cuento del bambú, las tarjetas y el consejo para 1° año, el ensayo, lo que me llevo y la visita.',
+        icon: '✍️',
+        gradient: 'linear-gradient(135deg, #1f2a24 0%, #3d5045 50%, #f2c66d 100%)',
+        difficulty: 'TALLER',
+        questions: 0,
+        timeEstimate: 120,
+        prerequisites: [],
+        color: '#f2c66d',
+        contentFile: 'taller/taller.html?paso=6',
+        type: 'taller'
+    },
+    {
     id: "dino",
     title: "Dinosaurio",
     description: "Saltando obstáculos en este juego simple pero adictivo.",
@@ -551,7 +567,7 @@ function createThemeCard(theme) {
     let dificultadFormateada = theme.difficulty;
     let style_difficulty = '';
 
-    if (dificultadFormateada !== 'PROYECTO_TRIMESTRAL' && dificultadFormateada !== 'GAME' && dificultadFormateada !== 'DIALOGO') {
+    if (!['PROYECTO_TRIMESTRAL', 'GAME', 'DIALOGO', 'TALLER'].includes(dificultadFormateada)) {
         dificultadFormateada = dificultadFormateada.replace(/_/g, ' ');
 
         if (dificultadFormateada == 'basico' || dificultadFormateada == 'UNIDAD I') {
@@ -572,6 +588,9 @@ function createThemeCard(theme) {
     } else if(dificultadFormateada === 'DIALOGO' ){
         dificultadFormateada = 'DIÁLOGO';
         style_difficulty = 'game';
+    } else if(dificultadFormateada === 'TALLER' ){
+        dificultadFormateada = 'TALLER';
+        style_difficulty = 'taller';
     }
 
 
@@ -616,8 +635,9 @@ function createThemeCard(theme) {
         const isProyecto = theme.difficulty === 'PROYECTO_TRIMESTRAL';
         const isGame     = theme.difficulty === 'GAME';
         const isDialogo     = theme.difficulty === 'DIALOGO';
+        const isTaller   = theme.difficulty === 'TALLER';
 
-        if (isProyecto || isGame || isDialogo) {
+        if (isProyecto || isGame || isDialogo || isTaller) {
         window.location.href = theme.contentFile;   // ✅ ahora GAME abre su HTML
         console.log(`➡️ Abriendo: ${theme.contentFile}`);
         } else {

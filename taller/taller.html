@@ -1,0 +1,483 @@
+<!--
+'''
+GUÍA PARA ALUMNOS — TALLER "LO QUE TRAJE, LO QUE ME LLEVO"
+Pantalla para proyectar en el aula durante el taller de cierre de trayectoria.
+Muestra solo lo que ven los estudiantes: consigna, pasos y un ejemplo visual
+de cómo hacer cada actividad (dibujo de la línea, muro, tarjeta, hoja, sobre).
+No incluye tiempos ni notas docentes (van en docente.html).
+Navegación con botones o flechas del teclado. No guarda ni envía datos.
+
+Versiones:
+v1.0 — 2026-11-08 — Guía única docente/alumnos (60 min).
+v1.1 — 2026-11-08 — 120 min + consejo a 1° año + visita.
+v2.0 — 2026-11-09 — Separada: versión solo alumnos. Sin botones de modo
+                    (pizarrón fijo), sin tiempos, fuentes más chicas y
+                    ejemplos visuales en cada actividad.
+v2.1 — 2026-11-10 — Sin afiches: muro con 3 hojas A4 de título y papelitos
+                    pegados alrededor; consejo del grupo en hoja A4.
+v2.2 — 2026-11-10 — Botón "Descargar" para guardar la guía y usarla sin
+                    internet.
+v2.3 — 2026-11-10 — Ayudas para entrar en clima: desplegables con 3
+                    disparadores por ítem en "Mi línea", 3 ejemplos y frases
+                    de arranque en "Lo guardado", y "Arrancá así" en el muro,
+                    el consejo y lo que me llevo.
+v2.4 — 2026-11-17 — Nueva actividad "El bambú" (cuento) antes de las
+                    tarjetas. "Mis tarjetas para 1°": 3 tarjetas por alumno
+                    (ánimo, consejo práctico, secreto de la escuela) con 5
+                    ejemplos. Visita con cuento y entrega en mano.
+v2.5 — 2026-11-17 — Botón al cuento completo (cuento.html) en "El bambú"
+                    y en la visita.
+v2.6 — 2026-11-19 — Copia dentro de FILOSOFIA APP (grupo «Taller»).
+                    Abre en el paso indicado con ?paso=N (o #N) y recuerda
+                    la URL al navegar; botón para volver a la app.
+'''
+-->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo que traje, lo que me llevo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1f2a24; --panel:#26332c; --panel2:#2d3c34; --line:#3d5045;
+  --text:#eef1ea; --muted:#a9b8ad; --chalk:#f4f1e6;
+  --amarillo:#f2c66d; --celeste:#7fc8d8; --coral:#e79a8b; --verde:#9fd39a; --rosa:#f0a0c8;
+  --papel:#f6efdc; --tinta:#2f2a22; --postit:#fbe58f;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif;font-size:15px;line-height:1.5}
+header{padding:12px 16px;border-bottom:1px solid var(--line);text-align:center;position:relative}
+/* v2.2 — Botón de descarga */
+.descargar{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:5px 10px;background:var(--panel2)}
+.descargar:hover{color:var(--chalk);border-color:var(--amarillo)}
+/* v2.6 — Volver a FILOSOFIA APP */
+.volver{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:5px 10px;background:var(--panel2)}
+.volver:hover{color:var(--chalk);border-color:var(--amarillo)}
+@media(max-width:600px){header{padding-right:56px;padding-left:56px}.descargar .txt,.volver .txt{display:none}}
+header h1{font-family:Caveat,cursive;font-size:1.7rem;margin:0;color:var(--chalk);line-height:1.1}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;border-bottom:1px solid var(--line)}
+nav button{white-space:nowrap;font-size:.82rem}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:6px 11px}
+button:hover{border-color:var(--amarillo)}
+button:disabled{opacity:.35;cursor:default}
+nav button.active{border-color:var(--amarillo);box-shadow:inset 0 -3px 0 var(--amarillo)}
+main{max-width:1050px;margin:0 auto;padding:16px 16px 50px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 9px;border-radius:999px;border:1px solid currentColor}
+.t-personal{color:var(--amarillo)} .t-grupo{color:var(--celeste)} .t-pausa{color:var(--verde)} .t-visita{color:var(--rosa)}
+h2{font-family:Caveat,cursive;font-size:2rem;margin:6px 0 2px;color:var(--chalk);line-height:1.1}
+.consigna{font-family:Caveat,cursive;font-size:1.45rem;line-height:1.3;color:var(--chalk);background:var(--panel2);border-left:4px solid var(--amarillo);border-radius:9px;padding:12px 14px;margin:12px 0}
+.cols{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:860px){.cols{grid-template-columns:1fr 1.25fr}}
+ol{padding-left:1.3em;margin:.3em 0} li{margin:.3em 0}
+h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:4px 0 8px}
+.ejemplo{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:14px}
+.foot{display:flex;justify-content:space-between;margin-top:16px}
+
+/* v2.3 — Ayudas: desplegables, frases de arranque y carrusel de ejemplos */
+.ayuda{margin:6px 0 4px}
+.ayuda summary{cursor:pointer;display:inline-block;font-size:.82rem;color:var(--amarillo);border:1px dashed var(--amarillo);border-radius:999px;padding:3px 11px;list-style:none;user-select:none}
+.ayuda summary::-webkit-details-marker{display:none}
+.ayuda[open] summary{background:rgba(242,198,109,.12)}
+.ayuda ul{list-style:none;padding:0;margin:8px 0 2px;display:grid;gap:6px}
+.ayuda li{background:var(--panel2);border-left:3px solid var(--amarillo);border-radius:7px;padding:7px 10px;font-size:.9rem;margin:0}
+.arranca{margin-top:14px;background:var(--panel2);border-radius:10px;padding:12px}
+.arranca h4{margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--amarillo)}
+.arranca .sub{font-size:.8rem;color:var(--muted);margin:10px 0 6px}
+.arranca .sub:first-of-type{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:Caveat,cursive;font-size:1.15rem;line-height:1.2;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--chalk)}
+.carr .tabs{display:flex;gap:6px;margin-bottom:10px}
+.carr .tabs button{font-size:.8rem;padding:4px 10px}
+.carr .tabs button.on{border-color:var(--amarillo);color:var(--amarillo)}
+.carr .pane{display:none}
+.carr .pane.on{display:block}
+
+/* v2.4 — Tipos de tarjeta y cuento */
+.tj-tipo{display:inline-block;font-family:Nunito,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#6c6355;margin-bottom:6px}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.tres div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center;font-size:.82rem;line-height:1.3}
+.tres .ico{font-size:1.5rem;display:block;margin-bottom:2px}
+.bambu{display:flex;justify-content:space-around;background:linear-gradient(#17201b 0 60%,#d9b48a 60% calc(60% + 2px),#3b2a1c calc(60% + 2px));border-radius:10px;height:190px;padding:0 8px}
+.bambu .col{display:flex;flex-direction:column;align-items:center;font-size:.72rem;color:#c7d6cb;flex:1}
+.bambu .arriba{height:60%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:4px}
+.bambu .abajo{height:40%;display:flex;justify-content:center;padding-top:2px}
+.bambu .tallo{width:10px;background:#8fd18a;border-radius:5px;margin:4px 0 -4px}
+.bambu .raiz{width:3px;background:#e0b98c;border-radius:2px}
+/* v2.5 — Botón al cuento completo */
+.btn-cuento{display:flex;align-items:center;gap:10px;margin-top:14px;text-decoration:none;color:#10200f;background:#8fd18a;border-radius:12px;padding:12px 14px;font-weight:800}
+.btn-cuento .ico{font-size:1.6rem}
+.btn-cuento small{display:block;font-weight:600;font-size:.8rem;opacity:.8}
+/* v2.4 — Evita que columnas y pestañas se desborden en el celular */
+.cols > div{min-width:0}
+.carr .tabs{flex-wrap:wrap}
+.chip{max-width:100%}
+
+/* SVG línea */
+.ej-svg{width:100%;height:auto;display:block}
+.s-line{stroke:var(--chalk);stroke-width:3;fill:none}
+.s-dash{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 4}
+.s-fill{fill:var(--chalk)}
+.s-year{font-family:Nunito,sans-serif;font-size:14px;fill:var(--muted);text-anchor:middle}
+.s-lbl{font-family:Caveat,cursive;font-size:21px;fill:var(--chalk);text-anchor:middle}
+.s-emo{font-size:17px;text-anchor:middle;dominant-baseline:central}
+.c1{fill:var(--amarillo)} .c2{fill:var(--coral)} .c3{fill:var(--celeste)} .c4{fill:var(--verde)} .c5{fill:var(--rosa)}
+
+/* Reglas */
+.reglas{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.regla{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.regla .ico{font-size:1.6rem}
+.regla b{display:block;font-family:Caveat,cursive;font-size:1.3rem;color:var(--chalk)}
+.regla span{font-size:.82rem;color:var(--muted)}
+
+/* Hoja de papel */
+.hoja{background:var(--papel);color:var(--tinta);border-radius:6px;padding:14px 16px;font-family:Caveat,cursive;font-size:1.25rem;line-height:1.45;
+  background-image:repeating-linear-gradient(transparent 0 28px,#d9cfb5 28px 29px);box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.hoja .ensena{color:#a3331f;border-top:2px solid #a3331f;margin-top:8px;padding-top:4px}
+.opciones{display:flex;gap:10px;margin-top:12px}
+.opcion{flex:1;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:.9rem}
+.opcion .ico{font-size:1.5rem;display:block}
+
+/* Afiche y post-its */
+.afiche{background:#f3f0e8;border-radius:6px;padding:12px;color:var(--tinta);box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.afiche .tit{font-family:Caveat,cursive;font-size:1.4rem;text-align:center;border-bottom:2px solid #c9bfa6;margin-bottom:10px;padding-bottom:2px}
+.postits{display:flex;flex-wrap:wrap;gap:8px}
+.postit{background:var(--postit);font-family:Caveat,cursive;font-size:1.15rem;padding:8px 10px;border-radius:3px;max-width:170px;line-height:1.2;transform:rotate(-1.5deg)}
+.postit:nth-child(2n){transform:rotate(1.5deg);background:#ffd1c2}
+.postit:nth-child(3n){background:#c9ecf2}
+/* v2.1 — Pared con hoja A4 central y papelitos alrededor */
+.pared{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:center;background:#e8e2d3;border-radius:8px;padding:12px}
+.pared .a4{grid-column:2;grid-row:2;background:#fff;color:var(--tinta);aspect-ratio:1/1.41;display:grid;place-items:center;text-align:center;font-family:Caveat,cursive;font-size:1.15rem;line-height:1.15;padding:8px;box-shadow:0 2px 6px rgba(0,0,0,.2);border-radius:2px}
+.pared .postit{max-width:none;font-size:.95rem;padding:6px 7px;color:var(--tinta)}
+.checks{display:block;color:#2e7d32;font-family:Nunito,sans-serif;font-size:.8rem;font-weight:800;margin-top:4px}
+.compara{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.compara div{border-radius:9px;padding:9px;font-size:.85rem}
+.mal{background:rgba(231,154,139,.15);border:1px solid var(--coral)}
+.bien{background:rgba(159,211,154,.15);border:1px solid var(--verde)}
+.compara i{display:block;font-family:Caveat,cursive;font-style:normal;font-size:1.15rem;color:var(--chalk)}
+
+/* Tarjeta */
+.tarjeta{background:var(--papel);color:var(--tinta);border-radius:8px;padding:16px;font-family:Caveat,cursive;font-size:1.3rem;line-height:1.35;box-shadow:0 3px 10px rgba(0,0,0,.25);max-width:420px;margin:0 auto;border-top:6px solid var(--amarillo)}
+.tarjeta .firma{text-align:right;font-size:1.05rem;color:#6c6355;margin-top:8px}
+
+/* Sobre */
+.sobre{background:#e9dcc0;color:var(--tinta);border-radius:6px;position:relative;padding:44px 16px 14px;font-family:Caveat,cursive;font-size:1.2rem;max-width:380px;margin:0 auto;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.sobre::before{content:"";position:absolute;top:0;left:0;right:0;height:38px;background:linear-gradient(to bottom right,transparent 49%,#d6c6a3 50%) left/50% 100% no-repeat,linear-gradient(to bottom left,transparent 49%,#d6c6a3 50%) right/50% 100% no-repeat}
+.sobre small{display:block;font-family:Nunito,sans-serif;font-size:.75rem;color:#6c6355}
+.pizarron{margin-top:12px;background:#17201b;border:6px solid #6b4f34;border-radius:6px;padding:12px;text-align:center;font-family:Caveat,cursive;color:#f4f1e6;line-height:1.6}
+.pizarron span{display:inline-block;margin:0 8px}
+
+/* Tips */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tip{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;font-size:.88rem}
+.tip .ico{font-size:1.5rem;display:block}
+.dice{margin-top:12px;font-family:Caveat,cursive;font-size:1.25rem;color:var(--chalk);background:var(--panel);border-radius:9px;padding:10px 12px;border-left:4px solid var(--celeste)}
+</style>
+</head>
+<body>
+<header><a class="volver" href="../index.html" title="Volver a la app">←<span class="txt"> Volver</span></a><h1>Lo que traje, lo que me llevo</h1><a class="descargar" href="taller.html" download="taller_lo_que_traje.html" title="Descargar para usar sin internet">⬇<span class="txt"> Descargar</span></a></header>
+<nav id="nav"></nav>
+<main><section class="card" id="main"></section></main>
+
+<script>
+// v2.3 — Helpers de ayuda: desplegable de disparadores, frases de arranque y carrusel
+const ayuda = items => `<details class="ayuda"><summary>💭 ¿No se te ocurre? Tocá acá</summary><ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul></details>`;
+const chips = items => `<div class="chips">${items.map(i=>`<span class="chip">${i}</span>`).join("")}</div>`;
+const arranca = grupos => `<div class="arranca"><h4>✏️ Arrancá así</h4>${grupos.map(([sub,items])=>`${sub?`<div class="sub">${sub}</div>`:""}${chips(items)}`).join("")}</div>`;
+const carrusel = (id, items) => `<div class="carr" id="carr-${id}">
+    <div class="tabs">${items.map((_,i)=>`<button class="${i?"":"on"}" onclick="verPane('${id}',${i})">Ejemplo ${i+1}</button>`).join("")}</div>
+    ${items.map((h,i)=>`<div class="pane ${i?"":"on"}">${h}</div>`).join("")}
+  </div>`;
+function verPane(id, n){
+  const c = document.getElementById("carr-"+id); if(!c) return;
+  c.querySelectorAll(".tabs button").forEach((b,i)=>b.classList.toggle("on",i===n));
+  c.querySelectorAll(".pane").forEach((p,i)=>p.classList.toggle("on",i===n));
+}
+
+// v2.5 — Link absoluto: funciona también en la versión descargada
+const URL_CUENTO = "https://juliolaz.github.io/emociones/cuento.html";
+const btnCuento = `<a class="btn-cuento" href="${URL_CUENTO}" target="_blank" rel="noopener"><span class="ico">🎋</span><span>Abrir el cuento completo<small>Para leerlo o estudiarlo en el celular</small></span></a>`;
+
+// v2.0 — Ejemplos visuales (HTML/SVG) por actividad
+const EJ = {
+  reglas: `
+    <div class="reglas">
+      <div class="regla"><div class="ico">🔒</div><b>Lo tuyo es tuyo</b><span>Tu hoja no la lee nadie si no querés.</span></div>
+      <div class="regla"><div class="ico">🙊</div><b>Sin firma, sin nombres</b><span>En el muro no se nombra a nadie.</span></div>
+      <div class="regla"><div class="ico">✋</div><b>Podés pasar</b><span>Sin explicar por qué.</span></div>
+      <div class="regla"><div class="ico">🏫</div><b>Queda acá</b><span>Lo que se lee hoy, no sale del aula.</span></div>
+    </div>`,
+
+  linea: `
+    <svg class="ej-svg" viewBox="0 0 800 270" role="img" aria-label="Ejemplo de línea de trayectoria">
+      <line x1="40" y1="140" x2="752" y2="140" class="s-line"/>
+      <polygon points="750,131 770,140 750,149" class="s-fill"/>
+      ${[["1°",60],["2°",190],["3°",320],["4°",450],["5°",580],["6°",710]].map(([t,x])=>
+        `<line x1="${x}" y1="132" x2="${x}" y2="148" class="s-line"/><text x="${x}" y="168" class="s-year">${t}</text>`).join("")}
+      <text x="772" y="122" class="s-year" style="text-anchor:end">hoy</text>
+      ${[
+        [125,"up","c1","🤝","El torneo de 2°"],
+        [300,"down","c2","🌧️","Casi repito 3°"],
+        [430,"up","c3","⭐","La profe que me escuchó"],
+        [560,"down","c4","💡","Puedo hablar en público"],
+        [690,"up","c5","😂","El viaje de 5°"]
+      ].map(([x,pos,c,emo,txt])=>{
+        const cy = pos==="up"?78:205, ly = pos==="up"?38:252;
+        const y1 = pos==="up"?96:140, y2 = pos==="up"?140:187;
+        return `<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" class="s-dash"/>
+                <circle cx="${x}" cy="140" r="6" class="${c}"/>
+                <circle cx="${x}" cy="${cy}" r="18" class="${c}"/>
+                <text x="${x}" y="${cy}" class="s-emo">${emo}</text>
+                <text x="${x}" y="${ly}" class="s-lbl">${txt}</text>`;
+      }).join("")}
+    </svg>`,
+
+  guardado: carrusel("guardado", [
+    `<div class="hoja">
+      Me dio bronca cuando nadie me eligió para el grupo en 3°. No dije nada y me hice el que no me importaba.
+      También extraño a los que se fueron de la escuela. A veces sentí que tenía que ser otro para encajar…
+      <div class="ensena">Esto me enseñó: que no hace falta hacerme el fuerte todo el tiempo.</div>
+    </div>`,
+    `<div class="hoja">
+      En 4° mi mejor amiga se cambió de escuela y nunca le dije cuánto la extrañaba. Los recreos se me hacían larguísimos
+      y yo hacía como que no pasaba nada. Me hubiera gustado que alguien me preguntara cómo estaba…
+      <div class="ensena">Esto me enseñó: que está bien extrañar, y decirlo.</div>
+    </div>`,
+    `<div class="hoja">
+      Siempre sentí que los demás entendían más rápido que yo. Cuando el profe preguntaba, me hacía el distraído
+      para que no me tocara. Me daba vergüenza preguntar y nunca lo dije…
+      <div class="ensena">Esto me enseñó: que preguntar no me hace menos.</div>
+    </div>`
+  ]) + `
+    <div class="opciones">
+      <div class="opcion"><span class="ico">✂️</span>La rompo</div>
+      <div class="opcion"><span class="ico">✉️</span>La guardo en el sobre</div>
+    </div>`,
+
+  pausa: `<div class="tips">
+      <div class="tip"><span class="ico">💧</span>Tomar agua</div>
+      <div class="tip"><span class="ico">🙆</span>Estirarse</div>
+      <div class="tip"><span class="ico">🌬️</span>Respirar</div>
+    </div>`,
+
+  muro: `
+    <div class="pared">
+      <div class="postit">Me costaba hablar en clase<span class="checks">✓✓✓✓✓</span></div>
+      <div class="postit">Sentirme solo en los recreos<span class="checks">✓✓✓</span></div>
+      <div class="postit">Los problemas de casa<span class="checks">✓✓✓✓</span></div>
+      <div class="postit">Miedo a no aprobar</div>
+      <div class="a4">Lo que me pesó y no dije</div>
+      <div class="postit">Que me importaba lo que pensaban<span class="checks">✓✓</span></div>
+      <div class="postit">Extrañar a un amigo que se fue</div>
+      <div class="postit">Hacerme el fuerte<span class="checks">✓✓✓</span></div>
+      <div class="postit">No pedir ayuda</div>
+    </div>
+    <div class="compara">
+      <div class="mal">❌ Así no<i>«Fulano siempre me molestaba»</i></div>
+      <div class="bien">✅ Así sí<i>«Me sentí molestado y no lo dije»</i></div>
+    </div>`,
+
+  vemos: `
+    <div class="afiche">
+      <div class="postits"><div class="postit">Me costaba hablar en clase por miedo a equivocarme<span class="checks">✓✓✓✓✓✓✓✓</span></div></div>
+    </div>
+    <div class="dice">Podés decir: «Me sorprendió que a tantos les pasara lo mismo que a mí…»</div>`,
+
+  // v2.4 — 5 ejemplos de tarjeta, con su tipo
+  consejo: carrusel("consejo", [
+    ["💪 Ánimo","Si hoy sentís que no entendés nada, tranqui: a todos nos pasó. Vas a poder.","un egresado 2026"],
+    ["💪 Ánimo","Sos como el bambú: lo que crecés ahora no se ve, pero está pasando.","Sofi, 6° año"],
+    ["🧭 Consejo práctico","Preguntá cuando no entiendas. El que pregunta aprende el doble.","un egresado 2026"],
+    ["🧭 Consejo práctico","No dejes las materias para diciembre. Hacete amigo de la carpeta al día 😅","Lucas, 6° año"],
+    ["🤫 Secreto de la escuela","Los profes que parecen más serios suelen ser los que más te ayudan si te acercás.","un egresado 2026"]
+  ].map(([tipo,txt,firma])=>`<div class="tarjeta"><span class="tj-tipo">${tipo}</span><br>${txt}<div class="firma">— ${firma}</div></div>`)),
+
+  // v2.4 — Cuento del bambú: raíces que crecen y el bambú en el año 6
+  cuento: `
+    <div class="bambu">
+      ${[1,2,3,4,5].map(a=>`<div class="col"><div class="arriba">año ${a}<br>nada</div><div class="abajo"><div class="raiz" style="height:${10+a*10}px"></div></div></div>`).join("")}
+      <div class="col" style="color:#8fd18a;font-weight:800"><div class="arriba">año 6<div class="tallo" style="height:80px"></div></div><div class="abajo"><div class="raiz" style="height:68px"></div></div></div>
+    </div>
+    <div class="dice">«Lo que no se ve… también es crecer.»</div>`,
+
+  grupo: `
+    <div class="afiche">
+      <div class="tit">Para los chicos de 1° año 💛</div>
+      <div style="font-family:Caveat,cursive;font-size:1.25rem;line-height:1.4">
+        No tengan miedo de equivocarse: todos nos equivocamos y acá seguimos.
+        Pidan ayuda cuando no entiendan, a un profe o a un compañero.
+        Y disfruten, porque se pasa más rápido de lo que creen.
+      </div>
+      <div style="text-align:right;font-family:Caveat,cursive;font-size:1.05rem;color:#6c6355;margin-top:6px">— Grupo 3 · Egresados 2026</div>
+    </div>
+    <div class="dice">Quién lo dice: alguien que se ofrezca. También pueden ir de a dos.</div>`,
+
+  ensayo: `
+    <div class="tips">
+      <div class="tip"><span class="ico">🐢</span>Hablá despacio</div>
+      <div class="tip"><span class="ico">👀</span>Mirá al público</div>
+      <div class="tip"><span class="ico">📜</span>Podés leer de la hoja</div>
+    </div>
+    <div class="dice">Para empezar: «Hola, somos de 6° y les queremos contar algo que aprendimos…»</div>`,
+
+  llevo: `
+    <div class="sobre">
+      Martina · abrir en noviembre 2027
+      <small>Adentro: lo que me llevo + una frase para mí</small>
+      <div style="margin-top:8px">«¿Seguís riéndote igual que en el viaje de 5°?»</div>
+    </div>
+    <div class="pizarron">
+      <span style="font-size:1.6rem">amigos</span><span style="font-size:1.2rem">paciencia</span><span style="font-size:1.4rem">risas</span>
+      <span style="font-size:1.1rem">fuerza</span><span style="font-size:1.5rem">familia</span><span style="font-size:1.2rem">aprender</span>
+    </div>`,
+
+  visita: `
+    <div class="tips">
+      <div class="tip"><span class="ico">🎋</span>Les contamos el cuento del bambú</div>
+      <div class="tip"><span class="ico">🗣️</span>Cada representante cuenta su experiencia y el consejo del grupo</div>
+      <div class="tip"><span class="ico">❓</span>Respondemos sus preguntas</div>
+      <div class="tip"><span class="ico">💌</span>Entregamos las tarjetas en mano, una por una</div>
+    </div>`
+};
+
+// v2.0 — Actividades (solo contenido para alumnos)
+const PASOS = [
+  { nav:"Bienvenida", tipo:"grupo", tipoTxt:"Todos", titulo:"Antes de empezar",
+    consigna:"Hoy no se estudia ni se evalúa. Vamos a mirar para atrás, ver qué nos llevamos y dejarle algo a los que recién empiezan.",
+    pasos:["Tu hoja es solo tuya.","En el muro: sin firma y sin nombrar a nadie.","Podés pasar cuando quieras.","Lo que se lee hoy, queda acá."],
+    ejTit:"Las reglas", ej:EJ.reglas },
+  { nav:"Mi línea", tipo:"personal", tipoTxt:"Personal", titulo:"Mi línea de estos años",
+    consigna:"Dibujá una línea de 1° año a hoy y marcá 5 momentos.",
+    pasos:[
+      {t:"🤝 Un momento en que me sentí parte del grupo.", ay:["Un viaje, campamento o salida del curso.","Una vez que se bancaron entre todos por algo: un trabajo, un acto, un profe.","La semana del estudiante, una previa o el día que eligieron el buzo."]},
+      {t:"🌧️ Un momento difícil (el que vos elijas).", ay:["Una materia que se te hizo cuesta arriba.","Un día que no querías venir a la escuela.","Un cambio: de curso, de amigos, o algo de casa que se notaba acá."]},
+      {t:"⭐ Alguien de la escuela que me marcó para bien.", ay:["Un profe que te tuvo paciencia.","Un compañero que te defendió o te ayudó.","Alguien de la escuela (preceptor, portero, kiosquero) que siempre te saludaba."]},
+      {t:"💡 Algo que aprendí de mí, no de una materia.", ay:["Algo que antes te daba miedo y ahora no.","Una vez que te animaste a decir lo que pensabas.","Algo en lo que sos bueno y no sabías."]},
+      {t:"😂 Un momento en que me reí hasta no poder más.", ay:["Un apodo o un chiste interno del curso.","Algo que salió mal en un acto o en educación física.","Una hora libre que terminó en desastre."]}
+    ],
+    ejTit:"Ejemplo", ej:EJ.linea, ancho:true },
+  { nav:"Lo guardado", tipo:"personal", tipoTxt:"Personal", titulo:"Lo que quedó guardado",
+    consigna:"Escribí sin parar lo que te quedó guardado de estos años. Al final, una línea: «esto me enseñó…».",
+    pasos:["Escribí sin levantar la lapicera.","Si te trabás, escribí «no sé qué poner» hasta que salga algo.","Al final: «esto me enseñó…».","Vos elegís: la rompés o la guardás en el sobre.","Esta hoja no la lee nadie. Nunca."],
+    extra:arranca([["",["Nunca dije que…","Me dolió cuando…","Me hubiera gustado que…","Todavía me pesa…","Me hice el que no me importaba cuando…"]]]),
+    ejTit:"Ejemplos", ej:EJ.guardado },
+  { nav:"Pausa", tipo:"pausa", tipoTxt:"Pausa", titulo:"Pausa",
+    consigna:"Un respiro antes de seguir.",
+    pasos:["Agua, estirarse, respirar.","Después viene la parte que compartimos."],
+    ejTit:"", ej:EJ.pausa },
+  { nav:"El muro", tipo:"grupo", tipoTxt:"En grupo", titulo:"El muro",
+    consigna:"En tus 3 papelitos escribí lo que quieras para cada hoja de la pared. Sin firma y sin nombres de personas.",
+    pasos:["Hay 3 hojas en la pared: «Lo que me pesó y no dije», «Lo que me hizo bien», «Lo que dejo acá».","Un papelito para cada hoja, en letra de imprenta. Escribí solo en los que quieras.","Frases cortas: lo que sentiste, no a quién culpás.","Cuando el profe avisa, pegamos todos a la vez alrededor de cada hoja.","Segunda vuelta, en silencio: leé el muro y marcá un ✓ si algo te pasó a vos también."],
+    extra:arranca([
+      ["Lo que me pesó y no dije",["Tener que hacerme el que no me importaba","Que me costaba seguir el ritmo"]],
+      ["Lo que me hizo bien",["Los mates en la hora libre","Que alguien me preguntara cómo estaba"]],
+      ["Lo que dejo acá",["El miedo a hablar en público","Las ganas de rendirme en 3°"]]
+    ]),
+    ejTit:"Ejemplo", ej:EJ.muro },
+  { nav:"Lo que vemos", tipo:"grupo", tipoTxt:"Todos", titulo:"Lo que vemos en el muro",
+    consigna:"¿Qué se repite? ¿Qué te sorprendió leer?",
+    pasos:["Escuchamos algunas frases con muchos ✓.","Quien quiera, comenta qué le llamó la atención.","Nadie tiene que decir qué escribió."],
+    ejTit:"Ejemplo", ej:EJ.vemos },
+  { nav:"El bambú", tipo:"grupo", tipoTxt:"Todos · Escuchamos", titulo:"El cuento del bambú",
+    consigna:"Escuchamos un cuento. Es el mismo que vamos a contarles a los chicos de 1° año.",
+    pasos:["Un compañero cuenta el cuento.","Escuchamos en silencio.","Pensá: ¿cuáles fueron tus raíces en estos años, eso que no se veía pero te hizo crecer?"],
+    extra:btnCuento,
+    ejTit:"El bambú", ej:EJ.cuento },
+  { nav:"Mis tarjetas", tipo:"personal", tipoTxt:"Personal", titulo:"Mis tarjetas para 1° año",
+    consigna:"Escribí 3 tarjetas, cada una de un tipo distinto. En la visita se las vas a dar en mano a un chico o una chica de 1° año.",
+    pasos:[
+      {t:"💪 <b>Ánimo:</b> una frase para que no tenga miedo.", ay:["Algo que te hubiera gustado escuchar el primer día.","Pensá en el bambú: «lo que no se ve también es crecer».","Algo que te dio fuerza en un año difícil."]},
+      {t:"🧭 <b>Consejo práctico:</b> algo concreto que le sirva.", ay:["Cómo organizarse con las materias.","Qué hacer cuando no entendés algo.","Cómo hacerse amigos sin forzar nada."]},
+      {t:"🤫 <b>Secreto de la escuela:</b> lo que nadie te cuenta.", ay:["Algo de los recreos, los actos o la semana del estudiante.","Algo de los profes que se descubre con el tiempo.","Algo que te sorprendió de la secundaria."]},
+      "Cortas, en letra clara. Firma opcional: tu nombre o «un egresado 2026».",
+      "Si el profe lo indica, hacé alguna más: tiene que alcanzar una para cada chico de 1°."
+    ],
+    extra:`<div class="tres"><div><span class="ico">💪</span>Ánimo</div><div><span class="ico">🧭</span>Consejo práctico</div><div><span class="ico">🤫</span>Secreto de la escuela</div></div>` +
+      arranca([["",["Algo que me hubiera gustado saber en 1° es…","No tengas miedo de…","Lo que nadie te dice de la secundaria es…","Si pudiera volver a 1°, yo…","Animate a…"]]]),
+    ejTit:"5 ejemplos de tarjeta", ej:EJ.consejo },
+  { nav:"Consejo del grupo", tipo:"grupo", tipoTxt:"En grupo", titulo:"El consejo del grupo",
+    consigna:"Junten sus ideas en un solo mensaje para 1° año, escríbanlo en una hoja A4 y elijan quién lo va a decir.",
+    pasos:["Quien quiera lee una de sus tarjetas al grupo.","Busquen lo que se repite o lo que más les gustó.","Escriban el mensaje en la hoja A4: letra grande, corto y como si hablaran.","Elijan al representante entre los que se ofrecen.","Entreguen las tarjetas al profe."],
+    ejTit:"Ejemplo de hoja", ej:EJ.grupo },
+  { nav:"Ensayo", tipo:"grupo", tipoTxt:"Todos", titulo:"Ensayo",
+    consigna:"Cada representante dice el consejo de su grupo frente al curso, como lo va a decir en 1° año.",
+    pasos:["De pie, con la hoja del grupo.","El curso escucha en silencio.","Aplauso al final de todos."],
+    ejTit:"Tips", ej:EJ.ensayo },
+  { nav:"Lo que me llevo", tipo:"personal", tipoTxt:"Personal + pizarrón", titulo:"Lo que me llevo",
+    consigna:"Escribí una sola cosa que te llevás y no te querés olvidar. Después, quien quiera pasa y escribe UNA palabra en el pizarrón.",
+    pasos:["En el reverso de tu línea: «lo que me llevo».","Al sobre, con una frase para vos dentro de un año.","Tu nombre afuera del sobre.","Una palabra al pizarrón (si querés)."],
+    extra:arranca([
+      ["Lo que me llevo (una sola cosa)",["Las risas del fondo del aula","A la profe que me hizo creer que podía","Que me animo a hablar en público","El viaje de egresados"]],
+      ["Una frase para vos dentro de un año",["¿Seguís en contacto con los chicos?","Ojalá estés haciendo lo que te gusta","No te olvides de dónde venís"]]
+    ]),
+    ejTit:"Ejemplo", ej:EJ.llevo },
+  { nav:"Cierre", tipo:"grupo", tipoTxt:"Todos", titulo:"Gracias",
+    consigna:"No se llevan una nota. Se llevan un rato para mirarse, un sobre, y algo que van a dejar.",
+    pasos:["Miramos el pizarrón con todas las palabras.","La próxima clase: visita a 1° año."],
+    ejTit:"", ej:"" },
+  { nav:"Visita a 1° año", tipo:"visita", tipoTxt:"Próxima clase", titulo:"Visita a 1° año",
+    consigna:"Los egresados le dejan su experiencia, un cuento y una tarjeta a cada uno de los que recién empiezan.",
+    pasos:["Un compañero cuenta el cuento del bambú (otro lo dibuja en el pizarrón).","Cada representante cuenta 1 minuto de su experiencia y el consejo del grupo, y pega la hoja en su aula.","Los de 1° nos hacen preguntas.","Al final, cada uno de nosotros entrega sus tarjetas en mano: «esta es para vos»."],
+    extra:btnCuento,
+    ejTit:"Cómo va a ser", ej:EJ.visita }
+];
+
+// v2.0 — Render y navegación
+let idx = 0;
+const $ = s => document.querySelector(s);
+
+function renderNav(){
+  $("#nav").innerHTML = PASOS.map((p,i)=>`<button class="${i===idx?"active":""}" data-i="${i}">${i?i+" · ":""}${p.nav}</button>`).join("");
+  $("#nav").querySelectorAll("button").forEach(b=>b.onclick=()=>ir(+b.dataset.i));
+  $("#nav").children[idx].scrollIntoView({inline:"center",block:"nearest"});
+}
+
+function renderMain(){
+  const p = PASOS[idx];
+  const ejemplo = p.ej ? `<div class="ejemplo">${p.ejTit?`<h3>${p.ejTit}</h3>`:""}${p.ej}</div>` : "";
+  // v2.3 — un paso puede ser texto o {t, ay:[disparadores]}; "extra" agrega frases de arranque
+  const li = x => typeof x === "string" ? `<li>${x}</li>` : `<li>${x.t}${ayuda(x.ay)}</li>`;
+  const lista = `<ol>${p.pasos.map(li).join("")}</ol>${p.extra||""}`;
+  const cuerpo = p.ancho
+    ? `${lista}<div style="margin-top:14px">${ejemplo}</div>`
+    : `<div class="cols"><div>${lista}</div><div>${ejemplo}</div></div>`;
+  $("#main").innerHTML = `
+    <span class="tag t-${p.tipo}">${p.tipoTxt}</span>
+    <h2>${p.titulo}</h2>
+    <div class="consigna">${p.consigna}</div>
+    ${cuerpo}
+    <div class="foot">
+      <button id="prev" ${idx===0?"disabled":""}>← Anterior</button>
+      <button id="next" ${idx===PASOS.length-1?"disabled":""}>Siguiente →</button>
+    </div>`;
+  $("#prev").onclick=()=>ir(idx-1);
+  $("#next").onclick=()=>ir(idx+1);
+}
+
+function ir(i){
+  if(i<0||i>=PASOS.length) return;
+  idx=i; renderNav(); renderMain();
+  // v2.6 — la URL guarda el paso para retomar o compartir
+  try{ const u=new URL(location.href); u.searchParams.set("paso",i); u.hash=""; history.replaceState(null,"",u); }catch(e){}
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight") ir(idx+1);
+  if(e.key==="ArrowLeft") ir(idx-1);
+});
+
+// v2.6 — paso inicial desde ?paso=N o #N (0 = Bienvenida)
+function pasoInicial(){
+  const q = new URLSearchParams(location.search).get("paso") ?? location.hash.replace("#","");
+  const n = parseInt(q,10);
+  return Number.isInteger(n) && n>=0 && n<PASOS.length ? n : 0;
+}
+function main_guia_alumnos(){ ir(pasoInicial()); }
+main_guia_alumnos();
+</script>
+</body>
+</html>
