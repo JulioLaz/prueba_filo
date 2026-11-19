@@ -27,7 +27,7 @@
     },
     "mapa": {
       "enabled": true,
-      "nodes": 15,
+      "nodes": 48,
       "timeEstimate": 5
     }
   },

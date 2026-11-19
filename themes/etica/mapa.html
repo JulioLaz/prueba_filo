@@ -7,6 +7,50 @@
   <title>Ética y Moral · Mapa Conceptual Interactivo</title>
   <link rel="stylesheet" href="../../css/mapa.css">
 
+  <!-- Mapa de Ética y Moral v2.0.0 (2026-11-19): pasa del sistema viejo
+       (mapa-firebase-simple + script propio) al sistema completo con juego de
+       pares, como themes/etica_aristoteles/mapa.html. Se suma la rama
+       «Dilemas y desafíos actuales» del material nuevo. -->
+  <script>
+    window.MapaSystemConfig = {
+      tema: 'etica',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+
+      // Datos del juego de matching (15 pares, iguales a las Palabras Clave)
+      gameData: [
+        { term: "Ética", definition: "Reflexión filosófica que analiza y fundamenta la moral: la moral pensada." },
+        { term: "Moral", definition: "Conjunto de normas, costumbres y valores que guían la conducta en una sociedad: la moral vivida." },
+        { term: "Deontología", definition: "Ética del deber (Kant): lo correcto es actuar por deber y respeto a la ley moral." },
+        { term: "Utilitarismo", definition: "Ética de las consecuencias (Bentham, Mill): el mayor bienestar para el mayor número." },
+        { term: "Ética de la Virtud", definition: "Ética del carácter (Aristóteles): cultivar hábitos excelentes guiados por la prudencia." },
+        { term: "Ética del Cuidado", definition: "Ética relacional (Gilligan, Noddings): atención a las relaciones y a la vulnerabilidad del otro." },
+        { term: "Contractualismo", definition: "Las normas justas son las que aceptarían personas libres e iguales en un acuerdo racional." },
+        { term: "Imperativo Categórico", definition: "Principio de Kant: actuar solo según máximas que puedas querer como ley universal." },
+        { term: "Velo de Ignorancia", definition: "Experimento de Rawls: elegir principios de justicia sin saber qué lugar ocuparemos en la sociedad." },
+        { term: "Prudencia", definition: "Sabiduría práctica: deliberar y juzgar bien en cada situación concreta." },
+        { term: "Libertad", definition: "Capacidad de elegir: condición necesaria de todo acto moral." },
+        { term: "Responsabilidad", definition: "Responder por los propios actos y sus consecuencias." },
+        { term: "Dignidad", definition: "Valor absoluto de toda persona, que nunca debe ser tratada solo como un medio." },
+        { term: "Bien Común", definition: "Condiciones sociales que permiten a todos los miembros de la comunidad alcanzar su plenitud." },
+        { term: "Dilema Ético", definition: "Situación en la que dos valores o deberes entran en conflicto y toda elección tiene un costo." }
+      ],
+
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '⚖️'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '⚖️']
+    };
+  </script>
 </head>
 <body>
   <header class="appbar">
@@ -199,30 +243,44 @@
                 </li>
               </ul>
             </li>
+            <li>
+              <div class="node" data-title="Dilemas y Desafíos Actuales">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Dilemas y Desafíos Actuales</div>
+                <div class="desc">Casos en los que dos valores entran en conflicto y toda elección tiene un costo.</div>
+                <span class="badge">Aplicación</span>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Dilema del Tranvía"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dilema del Tranvía</div><div class="desc">¿Desviar un tren para que mate a una persona en lugar de a cinco? Enfrenta las <strong>consecuencias</strong> con el <strong>deber</strong> de no matar.</div></div></li>
+                <li><div class="node" data-title="Dilema Médico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dilema Médico</div><div class="desc">Sacrificar a un sano para salvar a cinco pacientes viola el <strong>consentimiento</strong> y la <strong>dignidad humana</strong>.</div></div></li>
+                <li><div class="node" data-title="El Caso de Juan"><div class="toggle" style="visibility: hidden;"></div><div class="title">El Caso de Juan</div><div class="desc">Pierde la despedida de su hermano para llevar a un niño herido al hospital: cumple un <strong>deber de socorro</strong> hacia el vulnerable.</div></div></li>
+                <li><div class="node" data-title="Inteligencia Artificial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inteligencia Artificial</div><div class="desc">Los <strong>sesgos</strong> en los datos pueden producir discriminación. ¿Quién es responsable: el programador, el usuario o el sistema?</div></div></li>
+              </ul>
+            </li>
           </ul>
         </li>
       </ul>
     </section>
 
     <details class="panel" open>
-      <summary>🎯 Palabras Clave <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
       <div class="content">
         <div class="terms">
-          <article class="term"><h4>Ética</h4><p>Disciplina filosófica que estudia la moral, su fundamento, estructura y validez.</p></article>
-          <article class="term"><h4>Moral</h4><p>Conjunto de costumbres, normas y valores que guían la conducta en una sociedad.</p></article>
-          <article class="term"><h4>Deontología</h4><p>Ética del deber. La corrección de un acto depende de la intención y el respeto a la ley moral.</p></article>
-          <article class="term"><h4>Utilitarismo</h4><p>Ética de las consecuencias. El acto correcto es el que maximiza el bienestar general.</p></article>
-          <article class="term"><h4>Ética de la Virtud</h4><p>Ética del carácter. Se enfoca en cultivar hábitos excelentes para el florecimiento humano.</p></article>
-          <article class="term"><h4>Ética del Cuidado</h4><p>Ética relacional. Prioriza la responsabilidad, la empatía y el contexto interpersonal.</p></article>
-          <article class="term"><h4>Contractualismo</h4><p>Ética de la justicia como imparcialidad, basada en un acuerdo hipotético entre iguales.</p></article>
-          <article class="term"><h4>Imperativo Categórico</h4><p>Principio de Kant: actúa solo según máximas que puedas querer como leyes universales.</p></article>
-          <article class="term"><h4>Velo de la Ignorancia</h4><p>Experimento mental de Rawls para elegir principios justos sin conocer nuestra posición social.</p></article>
-          <article class="term"><h4>Eudaimonía</h4><p>Término griego (Aristóteles) para el florecimiento, la vida buena o la felicidad plena.</p></article>
-          <article class="term"><h4>Phronesis</h4><p>Prudencia o sabiduría práctica. La virtud de deliberar y juzgar correctamente en situaciones particulares.</p></article>
-          <article class="term"><h4>Libertad</h4><p>Capacidad de agencia y elección, considerada la condición necesaria para la responsabilidad moral.</p></article>
-          <article class="term"><h4>Responsabilidad</h4><p>Capacidad de responder por los propios actos y sus consecuencias.</p></article>
-          <article class="term"><h4>Dignidad</h4><p>Valor intrínseco e incondicional de todo ser humano, que no debe ser tratado como un mero medio.</p></article>
-          <article class="term"><h4>Bien Común</h4><p>Conjunto de condiciones sociales que permiten a todos los miembros de la comunidad alcanzar su plenitud.</p></article>
+          <article class="term"><h4>Ética</h4><p>Reflexión filosófica que analiza y fundamenta la moral: la moral pensada.</p></article>
+          <article class="term"><h4>Moral</h4><p>Conjunto de normas, costumbres y valores que guían la conducta en una sociedad: la moral vivida.</p></article>
+          <article class="term"><h4>Deontología</h4><p>Ética del deber (Kant): lo correcto es actuar por deber y respeto a la ley moral.</p></article>
+          <article class="term"><h4>Utilitarismo</h4><p>Ética de las consecuencias (Bentham, Mill): el mayor bienestar para el mayor número.</p></article>
+          <article class="term"><h4>Ética de la Virtud</h4><p>Ética del carácter (Aristóteles): cultivar hábitos excelentes guiados por la prudencia.</p></article>
+          <article class="term"><h4>Ética del Cuidado</h4><p>Ética relacional (Gilligan, Noddings): atención a las relaciones y a la vulnerabilidad del otro.</p></article>
+          <article class="term"><h4>Contractualismo</h4><p>Las normas justas son las que aceptarían personas libres e iguales en un acuerdo racional.</p></article>
+          <article class="term"><h4>Imperativo Categórico</h4><p>Principio de Kant: actuar solo según máximas que puedas querer como ley universal.</p></article>
+          <article class="term"><h4>Velo de Ignorancia</h4><p>Experimento de Rawls: elegir principios de justicia sin saber qué lugar ocuparemos en la sociedad.</p></article>
+          <article class="term"><h4>Prudencia</h4><p>Sabiduría práctica: deliberar y juzgar bien en cada situación concreta.</p></article>
+          <article class="term"><h4>Libertad</h4><p>Capacidad de elegir: condición necesaria de todo acto moral.</p></article>
+          <article class="term"><h4>Responsabilidad</h4><p>Responder por los propios actos y sus consecuencias.</p></article>
+          <article class="term"><h4>Dignidad</h4><p>Valor absoluto de toda persona, que nunca debe ser tratada solo como un medio.</p></article>
+          <article class="term"><h4>Bien Común</h4><p>Condiciones sociales que permiten a todos los miembros de la comunidad alcanzar su plenitud.</p></article>
+          <article class="term"><h4>Dilema Ético</h4><p>Situación en la que dos valores o deberes entran en conflicto y toda elección tiene un costo.</p></article>
         </div>
       </div>
     </details>
@@ -280,323 +338,8 @@
     </details>
   </main>
 
-  <script>
-    // === SONIDOS ===
-    const playSound = (filename) => {
-      try {
-        const audio = new Audio(`../../sound/${filename}`);
-        audio.volume = 0.3; // Volumen moderado
-        audio.play().catch(() => {}); // Ignore si no puede reproducir
-      } catch {}
-    };
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
 
-    // === TRACKING DE PROGRESO ===
-    let visitedNodes = new Set();
-    let totalNodes = 0;
-
-    function saveMapProgress() {
-      const params = new URLSearchParams(location.search);
-      const tema = params.get('tema') || params.get('theme') || 'sartre';
-      const key = `tema.${tema}.mapa`;
-      
-      const state = {
-        nodesVisited: Array.from(visitedNodes),
-        total: totalNodes,
-        progress: visitedNodes.size / totalNodes,
-        completed: visitedNodes.size >= totalNodes
-      };
-
-      console.log('💾 Guardando progreso del mapa:', state);
-      sessionStorage.setItem(key, JSON.stringify(state));
-      // Guardado en Firebase (js/mapa-firebase-simple.js)
-      window.guardarMapaFirebase?.(visitedNodes.size, totalNodes);
-      
-      // Disparar evento para que tema.html se actualice si está abierto
-      window.parent.postMessage({ type: 'mapa-progress', data: state }, '*');
-    }
-
-    function markNodeAsVisited(node) {
-      const title = node.dataset.title || node.querySelector('.title')?.textContent?.trim();
-      if (!title || visitedNodes.has(title)) return;
-
-      visitedNodes.add(title);
-      node.classList.add('visited');
-      
-      // Sonido de exploración
-      playSound('collect_points.mp3');
-      
-      console.log(`🌟 Nodo visitado: "${title}" (${visitedNodes.size}/${totalNodes})`);
-      saveMapProgress();
-
-      // Animación de celebración
-      const emoji = ['🌟', '⭐', '💫', '✨'][Math.floor(Math.random() * 4)];
-      showCelebrationEmoji(node, emoji);
-    }
-
-    function showCelebrationEmoji(element, emoji) {
-      const explosion = document.createElement('div');
-      explosion.className = 'emoji-explosion';
-      explosion.textContent = emoji;
-      explosion.style.left = '50%';
-      explosion.style.top = '10px';
-      element.style.position = 'relative';
-      element.appendChild(explosion);
-      setTimeout(() => explosion.remove(), 800);
-    }
-
-    // === CONTROLES DEL ÁRBOL ===
-    document.addEventListener('DOMContentLoaded', () => {
-      const tree = document.querySelector('.tree');
-      if (!tree) return;
-      
-      // Contar nodos totales
-      totalNodes = tree.querySelectorAll('.node[data-title]').length;
-      console.log('📊 Total de nodos en el mapa:', totalNodes);
-
-      // IMPORTANTE: Colapsar TODO inicialmente (incluyendo la raíz)
-      document.querySelectorAll('.tree li').forEach(li => {
-          if (li.querySelector(':scope > ul')) {
-              li.classList.add('collapsed');
-          } else {
-              const toggle = li.querySelector(':scope > .node .toggle');
-              if (toggle) toggle.style.visibility = 'hidden';
-          }
-      });
-      
-      // 🔥 CORREGIDO: Ahora TODA la estructura inicia colapsada
-      console.log('🌲 Árbol completamente colapsado al inicio');
-      
-      // Event listener para clicks en nodos
-      tree.addEventListener('click', (e) => {
-        const node = e.target.closest('.node');
-        if (!node) return;
-
-        // Marcar como visitado
-        markNodeAsVisited(node);
-        
-        const toggle = e.target.closest('.toggle');
-        if (!toggle) return;
-        
-        const parentLi = node.parentElement;
-        if (parentLi && parentLi.tagName === 'LI' && parentLi.querySelector(':scope > ul')) {
-            parentLi.classList.toggle('collapsed');
-            
-            // Sonido de expansión/colapso
-            if (parentLi.classList.contains('collapsed')) {
-              playSound('timer_warning.mp3'); // Colapsar
-            } else {
-              playSound('show_question.mp3'); // Expandir
-            }
-        }
-      });
-
-      // Botón para volver al tema
-      document.getElementById('backToTema')?.addEventListener('click', () => {
-        const params = new URLSearchParams(location.search);
-        const tema = params.get('tema') || params.get('theme') || 'sartre';
-        
-        // Subir al directorio padre donde está tema.html
-        const temaUrl = new URL('../../tema.html', location);
-        temaUrl.searchParams.set('tema', tema);
-        temaUrl.searchParams.set('theme', tema);
-        
-        location.href = temaUrl.toString();
-      });
-
-      // Botones de expansión (ocultos pero funcionales por si los necesitas)
-      document.getElementById('expandAll')?.addEventListener('click', () => {
-        document.querySelectorAll('.tree li.collapsed').forEach(li => {
-          li.classList.remove('collapsed');
-        });
-      });
-
-      document.getElementById('collapseAll')?.addEventListener('click', () => {
-        document.querySelectorAll('.tree li').forEach(li => {
-          if (li.querySelector(':scope > ul') && !li.matches('.tree > ul > li')) {
-            li.classList.add('collapsed');
-          }
-        });
-      });
-    });
-
-    // === JUEGO DE MATCHING ===
-    const gameData = [
-      { term: "Ética", definition: "Disciplina filosófica que estudia la moral, su fundamento, estructura y validez." },
-      { term: "Moral", definition: "Conjunto de costumbres, normas y valores que guían la conducta en una sociedad." },
-      { term: "Deontología", definition: "Ética del deber. La corrección de un acto depende de la intención y el respeto a la ley moral." },
-      { term: "Utilitarismo", definition: "Ética de las consecuencias. El acto correcto es el que maximiza el bienestar general." },
-      { term: "Ética de la Virtud", definition: "Ética del carácter. Se enfoca en cultivar hábitos excelentes para el florecimiento humano." },
-      { term: "Ética del Cuidado", definition: "Ética relacional. Prioriza la responsabilidad, la empatía y el contexto interpersonal." },
-      { term: "Contractualismo", definition: "Ética de la justicia como imparcialidad, basada en un acuerdo hipotético entre iguales." },
-      { term: "Imperativo Categórico", definition: "Principio de Kant: actúa solo según máximas que puedas querer como leyes universales." },
-      { term: "Velo de la Ignorancia", definition: "Experimento mental de Rawls para elegir principios justos sin conocer nuestra posición social." },
-      { term: "Eudaimonía", definition: "Término griego (Aristóteles) para el florecimiento, la vida buena o la felicidad plena." },
-      { term: "Phronesis", definition: "Prudencia o sabiduría práctica. La virtud de deliberar y juzgar correctamente en situaciones particulares." },
-      { term: "Libertad", definition: "Capacidad de agencia y elección, considerada la condición necesaria para la responsabilidad moral." },
-      { term: "Responsabilidad", definition: "Capacidad de responder por los propios actos y sus consecuencias." },
-      { term: "Dignidad", definition: "Valor intrínseco e incondicional de todo ser humano, que no debe ser tratado como un mero medio." },
-      { term: "Bien Común", definition: "Conjunto de condiciones sociales que permiten a todos los miembros de la comunidad alcanzar su plenitud." }
-    ];
-
-    let selectedTerm = null;
-    let correctCount = 0;
-    let errorCount = 0;
-    let matchedPairs = new Set();
-
-    function shuffle(array) {
-      const arr = [...array];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function initGame() {
-      const termsGrid = document.getElementById('termsGrid');
-      const definitionsGrid = document.getElementById('definitionsGrid');
-      const gameOverlay = document.getElementById('gameOverlay');
-      
-      // Reset game state
-      selectedTerm = null;
-      correctCount = 0;
-      errorCount = 0;
-      matchedPairs.clear();
-      
-      // Shuffle data
-      const shuffledTerms = shuffle(gameData.map(item => ({...item, type: 'term'})));
-      const shuffledDefs = shuffle(gameData.map(item => ({...item, type: 'definition'})));
-      
-      // Create term cards
-      termsGrid.innerHTML = shuffledTerms.map((item, idx) => 
-        `<div class="card" data-term="${item.term}" data-type="term" data-idx="${idx}">
-          ${item.term}
-        </div>`
-      ).join('');
-      
-      // Create definition cards
-      definitionsGrid.innerHTML = shuffledDefs.map((item, idx) => 
-        `<div class="card" data-term="${item.term}" data-type="definition" data-idx="${idx}">
-          ${item.definition}
-        </div>`
-      ).join('');
-
-      updateStats();
-      gameOverlay.style.display = 'flex';
-      
-      // Add event listeners
-      gameOverlay.addEventListener('click', handleCardClick);
-    }
-
-    function handleCardClick(e) {
-      const card = e.target.closest('.card');
-      if (!card || card.classList.contains('matched')) return;
-
-      if (card.dataset.type === 'term') {
-        // Deselect previous term
-        document.querySelectorAll('.card[data-type="term"].selected').forEach(c => 
-          c.classList.remove('selected')
-        );
-        
-        // Select new term
-        card.classList.add('selected');
-        selectedTerm = card.dataset.term;
-        
-      } else if (card.dataset.type === 'definition' && selectedTerm) {
-        // Check if match is correct
-        if (card.dataset.term === selectedTerm) {
-          // Correct match!
-          correctCount++;
-          matchedPairs.add(selectedTerm);
-          
-          // Sonido de acierto
-          playSound('correct_answer.mp3');
-          
-          // Mark both cards as matched
-          const termCard = document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`);
-          termCard.classList.add('matched');
-          card.classList.add('matched');
-          
-          // Celebration animation
-          const emojis = ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆'];
-          const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-          showCelebrationEmoji(card, emoji);
-          showCelebrationEmoji(termCard, emoji);
-          
-          // Reset selection
-          selectedTerm = null;
-          termCard.classList.remove('selected');
-          
-          // Check if game is complete
-          if (matchedPairs.size === gameData.length) {
-            setTimeout(() => {
-              playSound('fin_caza.mp3'); // Sonido de juego completado
-              showGameComplete();
-            }, 1000);
-          }
-          
-        } else {
-          // Wrong match
-          errorCount++;
-          
-          // Sonido de error
-          playSound('negative_beep.mp3');
-          
-          card.classList.add('wrong');
-          setTimeout(() => card.classList.remove('wrong'), 300);
-          
-          // Deselect term
-          document.querySelector(`[data-term="${selectedTerm}"][data-type="term"]`)
-            ?.classList.remove('selected');
-          selectedTerm = null;
-        }
-        
-        updateStats();
-      }
-    }
-
-    function updateStats() {
-      document.getElementById('correctCount').textContent = correctCount;
-      document.getElementById('errorCount').textContent = errorCount;
-      document.getElementById('currentProgress').textContent = matchedPairs.size;
-      document.getElementById('totalPairs').textContent = gameData.length;
-      
-      const progressPercent = (matchedPairs.size / gameData.length) * 100;
-      document.getElementById('gameProgress').style.width = progressPercent + '%';
-    }
-
-    function showGameComplete() {
-      document.getElementById('celebration').style.display = 'block';
-      
-      // Guardar progreso del juego (opcional)
-      const params = new URLSearchParams(location.search);
-      const tema = params.get('tema') || params.get('theme') || 'sartre';
-      const key = `tema.${tema}.matching`;
-      
-      sessionStorage.setItem(key, JSON.stringify({
-        completed: true,
-        correctCount,
-        errorCount,
-        timestamp: new Date().toISOString()
-      }));
-    }
-
-    // Event listeners
-    document.getElementById('startGame')?.addEventListener('click', initGame);
-    
-    document.getElementById('closeGame')?.addEventListener('click', () => {
-      document.getElementById('gameOverlay').style.display = 'none';
-      document.getElementById('celebration').style.display = 'none';
-    });
-
-    // Close on backdrop click
-    document.getElementById('gameOverlay')?.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        document.getElementById('gameOverlay').style.display = 'none';
-        document.getElementById('celebration').style.display = 'none';
-      }
-    });
-  </script>
-  <script type="module" src="../../js/mapa-firebase-simple.js"></script>
 </body>
 </html>

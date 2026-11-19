@@ -49,7 +49,8 @@ abrir el video y completar el cloze para que se guarde el porcentaje correcto
   corrientes, pruebas rápidas, pasos, errores, dilemas, caso de Juan, IA,
   síntesis) que cubren lo que pregunta `quiz.js`.
 - ✅ **Video** (2026-11-19): `endTime` 576, así que entran los 23 huecos del cloze.
-- **Pendiente:** el mapa conceptual sigue siendo el sistema viejo (ver arriba).
+- ✅ **Mapa** (2026-11-19): pasado al sistema completo (48 nodos + juego de 15 pares),
+  con la rama nueva «Dilemas y desafíos actuales».
 
 ## Temas sin cuestionario ni caza de conceptos
 
