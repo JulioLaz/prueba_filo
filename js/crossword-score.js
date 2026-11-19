@@ -1,6 +1,8 @@
 // ========================================
-// 🧩 CROSSWORD-SCORE.JS 
+// 🧩 CROSSWORD-SCORE.JS
 // Integración Firebase para crucigrama
+// Versión: v1.1.0 (2026-11-19) — expone window.crosswordUid y el evento
+//   'crossword-usuario' para que el motor recuerde las palabras resueltas por alumno
 // ========================================
 
 import { saveProgress } from "/prueba_filo/firebase.js";
@@ -273,6 +275,10 @@ window.forceCrosswordSave = async () => {
 
 // Escuchar cambios de autenticación
 auth.onAuthStateChanged((user) => {
+  // El motor usa el uid para recordar las palabras resueltas de ESTE alumno
+  // (en las compus de la escuela varios alumnos comparten navegador)
+  window.crosswordUid = user ? user.uid : null;
+  window.dispatchEvent(new CustomEvent('crossword-usuario', { detail: { uid: window.crosswordUid } }));
   if (user) {
     console.log('👤 [CrosswordScore] Usuario autenticado:', user.email);
   } else {

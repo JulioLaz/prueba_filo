@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+  crossword.html — crucigrama del tema (?tema=<id>), con themes/<id>/crossword_config.js
+  Motor: js/crossword_engine.js · Guardado: js/crossword-score.js
+  Versión: v2.0 (2026-11-19) — campo de texto encima de las casillas (teclado en el celular),
+    lista de definiciones numeradas, botón "Otra palabra", textos en voseo.
+-->
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -106,10 +112,36 @@
     .letter-slot.correct{border-color:var(--ok);background:rgba(16,185,129,.1)}
     .letter-slot.incorrect{border-color:var(--bad);background:rgba(239,68,68,.1)}
 
-    /* Campo oculto para input real */
+    /* Campo real de texto: transparente y ENCIMA de las casillas, así tocarlas abre el
+       teclado del celular (font-size 16px evita el zoom automático del iPhone) */
+    .campo{position:relative;max-width:100%;margin:0 auto 4px}
+    .campo .visual-input{margin-bottom:0}
     #textInput{
-      position:absolute;opacity:0;pointer-events:none;
+      position:absolute;inset:0;width:100%;height:100%;opacity:0;
+      font-size:16px;color:transparent;caret-color:transparent;background:transparent;
+      border:0;cursor:text;z-index:2;
     }
+    .ayuda-campo{text-align:center;color:var(--muted);font-size:13px;margin:6px 0 12px}
+    .letter-slot.guia{color:#5b6b9a;border-style:dashed}
+    .validation.listo{background:rgba(124,58,237,.12);border:1px solid rgba(167,139,250,.4);color:#ddd6fe}
+
+    /* Número de cada palabra en su primera casilla */
+    .cell[data-num]::before{content:attr(data-num);position:absolute;top:1px;left:3px;font-size:9px;font-weight:700;color:#a78bfa;line-height:1}
+
+    /* Lista de definiciones */
+    .pistas{margin-top:14px;background:#0e162b;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+    .pistas h3{margin:0 0 8px;font-size:15px;color:#cfe2ff}
+    #clueList{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+    .clue{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;border:1px solid transparent;cursor:pointer;font-size:14px;line-height:1.35;color:#cfe2ff}
+    .clue:hover{background:#142038}
+    .clue.actual{border-color:#805ad5;background:rgba(128,90,213,.15)}
+    .clue.resuelta{cursor:default;color:#6ee7b7;opacity:.8}
+    .clue.resuelta .clue-txt{text-decoration:line-through;text-decoration-color:rgba(110,231,183,.5)}
+    .clue-num{flex:0 0 22px;height:22px;border-radius:50%;background:#805ad5;color:#fff;display:inline-grid;place-items:center;font-size:12px;font-weight:700}
+    .clue.resuelta .clue-num{background:#10b981}
+    .btn-secundario{background:rgba(128,90,213,.14);border:1px solid rgba(167,139,250,.55);color:#ddd6fe}
+    .btn-secundario:hover:not(:disabled){background:rgba(128,90,213,.32)}
+    .btn-secundario:disabled{opacity:.45;cursor:not-allowed}
 
     /* Validación en tiempo real */
     .validation{
@@ -216,28 +248,36 @@
       <div id="grid" aria-label="Tablero del crucigrama"></div>
 
       <div class="input-section" id="inputSection">
-        <div class="question" id="questionText">Selecciona una palabra para empezar...</div>
-        
+        <div class="question" id="questionText">Elegí una palabra para empezar...</div>
+
         <div class="word-info">
           <div class="length-info" id="lengthInfo"></div>
-          <div class="difficulty" id="difficultyTag"></div>
+          <div class="difficulty" id="difficultyTag" style="display:none"></div>
         </div>
-        
-        <div class="visual-input" id="visualInput"></div>
-        
-        <input type="text" id="textInput" autocomplete="off" maxlength="20">
-        
+
+        <div class="campo">
+          <div class="visual-input" id="visualInput"></div>
+          <input type="text" id="textInput" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="20" aria-label="Tu respuesta">
+        </div>
+        <p class="ayuda-campo">Tocá las casillas para escribir.</p>
+
         <div class="validation" id="validation" style="display:none">
           <span id="validationIcon">ℹ️</span>
-          <span id="validationText">Escribe tu respuesta...</span>
+          <span id="validationText">Escribí tu respuesta...</span>
         </div>
-        
+
         <div class="actions">
+          <button class="btn btn-secundario" id="skipBtn" type="button">Otra palabra</button>
           <button class="btn btn-primary" id="verifyBtn" disabled>
             Verificar respuesta
           </button>
         </div>
       </div>
+    </section>
+
+    <section class="pistas" aria-label="Definiciones">
+      <h3>Definiciones</h3>
+      <ol id="clueList"></ol>
     </section>
   </div>
 

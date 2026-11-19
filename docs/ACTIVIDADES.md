@@ -61,9 +61,10 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 
 - **Motor:** `crossword.html` + `js/crossword_engine.js` + `js/crossword-score.js`.
 - **Formato:** `window.CROSSWORD_CONFIG = { title, central, entries: [{ answer, clue, crossIndex }], promptText, sounds, options, educational: { introduction, conclusion, keyWords }, metadata }`, dentro del bloque `try` con la validación que traen los archivos. `central` es la palabra vertical; `crossIndex` es la posición de la letra de la central por la que cruza cada palabra horizontal, y la palabra **tiene que contener esa letra**. Respuestas sin acentos ni espacios.
-- **Puntaje (`cruci`):** 100% al completar todas las palabras (el puntaje de juego que se ve en pantalla es aparte).
+- **Mecánica (motor v3.2, 2026-11-19):** el alumno elige una palabra tocando el tablero o la **lista de definiciones numeradas** (o con «Otra palabra») y escribe tocando las casillas (el campo de texto está encima, así se abre el teclado del celular). La letra del cruce aparece como guía. Mientras escribe solo ve cuántas letras faltan; al verificar una respuesta equivocada, las letras bien ubicadas quedan en verde y las demás en rojo, y cuenta como intento. Las palabras resueltas se recuerdan al recargar (por alumno, en ese navegador).
+- **Puntaje (`cruci`):** palabras resueltas ÷ total (100% al completar). El puntaje de juego y la precisión que se ven en pantalla son aparte.
 - **Estándar (Aristóteles):** la central es el concepto clave del tema (VIRTUD) y hay **una palabra por letra**; todas las palabras y pistas salen del material; pistas que definen sin regalar la respuesta.
-- **Errores ya vistos:** palabras que el tema no trabaja (Ética y Moral tenía existencialismo, teleología, casuística y altruismo). El motor contaba doble cada respuesta (corregido para todos el 2026-10-28).
+- **Errores ya vistos:** palabras que el tema no trabaja (Ética y Moral tenía existencialismo, teleología, casuística y altruismo); pistas casi iguales para dos palabras (Kant: DEBER y OBLIGACION); pistas genéricas que no son del tema. Del motor (corregidos para todos): contaba doble cada respuesta (2026-10-28); en el celular podía no abrirse el teclado, decía «¡Respuesta correcta!» mientras se escribía y no dejaba verificar una respuesta equivocada (2026-11-19).
 - **Pruebas:** `verificar_tema.js` (controla los cruces) y `jugar_crucigrama.mjs`.
 
 ## 5. Mapa conceptual + juego de pares — `mapa.html`
