@@ -4,6 +4,7 @@
 // (antes: 2 niveles y 7 conceptos); modelo de etica_aristoteles: sin negritas en
 // el texto (el motor resalta los conceptos), términos con espacios en vez de
 // guiones y hay que encontrar todos los conceptos del párrafo para avanzar.
+// v2.1 (2026-11-19): «matemático, químico y lógico» como un solo concepto.
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Charles S. Peirce, William James y John Dewey",
@@ -58,7 +59,7 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Identifica la regla que propone Peirce para aclarar las ideas.",
       concepts: [
         { term: "Charles Sanders Peirce", meaning: "Fundador del pragmatismo (1839-1914): lógico y científico que creó la máxima pragmática." },
-        { term: "lógico", meaning: "Estudioso de las reglas del razonamiento correcto. Peirce trabajó sobre todo en lógica y ciencia." },
+        { term: "matemático, químico y lógico", meaning: "Las profesiones de Peirce: un científico que estudió las reglas del razonamiento correcto." },
         { term: "máxima pragmática", meaning: "Regla de Peirce: el significado de una idea está en sus consecuencias prácticas imaginables." },
         { term: "clarificar conceptos", meaning: "Hacer claras las ideas confusas. Para Peirce, se logra examinando sus efectos prácticos." },
         { term: "diferencia práctica", meaning: "El cambio observable que produce creer algo. Si no hay ninguno, la idea no significa nada." },

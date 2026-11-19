@@ -74,6 +74,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-19: cazas de la Unidad 3 revisadas: las 7 se juegan completas. Conceptos emparejados (si una palabra es concepto, su gemela del párrafo también) en Utilitarismo, Hedonismo, Kant, Pragmatismo y Aristóteles, y ocultos muy generales reemplazados.
 - 2026-11-19: caza de conceptos: ayuda en el motor v1.3 (3 errores seguidos iluminan un concepto oculto pendiente). Ética y Moral v2.1: el párrafo 2 trababa con «latín» y «mos» ocultos; ahora «mos, moris», «carácter» y «hábitos».
 - 2026-11-19: grupo nuevo «Taller» en el inicio (filtro y tarjeta). Copia del taller de cierre «Lo que traje, lo que me llevo» en `taller/taller.html` v2.6 (original en el repo `emociones`): abre en el paso de `?paso=N`; la tarjeta abre en el 6 (El bambú).
 - 2026-11-19: motor del crucigrama v3.2 (teclado en el celular, sin adelantar la respuesta, se puede verificar un error con letras verdes/rojas, lista de definiciones, «Otra palabra», guía con la letra del cruce, recuerda las resueltas). Probado en los 7 crucigramas de la Unidad 3 y en Origen. Pistas escalonadas (motor v3.3): automáticas desde el material en todos; revisadas a mano en Aristóteles. **Pendiente:** rehacer el contenido de los crucigramas de Utilitarismo, Pragmatismo, Antropocentrismo, Hedonismo y Kant.

@@ -4,6 +4,8 @@
 // el video (antes: 3 niveles y 11 conceptos); modelo de etica_aristoteles: sin
 // negritas en el texto (el motor resalta los conceptos), términos con espacios
 // y hay que encontrar todos los conceptos del párrafo para avanzar.
+// v2.1 (2026-11-19): conceptos parejos: «Aristóteles» junto a «Epicuro» (sin
+//   «resultado»); «legisladora y súbdita».
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Immanuel Kant",
@@ -58,8 +60,8 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Identifica lo único bueno sin condiciones y qué tipo de ética rechaza Kant.",
       concepts: [
         { term: "buena voluntad", meaning: "Lo único bueno sin restricciones: la disposición a actuar por respeto al deber." },
-        { term: "resultado", meaning: "El efecto de una acción. Para Kant no define su valor moral." },
         { term: "éticas materiales", meaning: "Éticas que valoran las acciones por el fin que persiguen (felicidad, placer). Kant las rechaza." },
+        { term: "Aristóteles", meaning: "Filósofo griego que puso la felicidad como fin de la vida: ejemplo de ética material." },
         { term: "Epicuro", meaning: "Filósofo griego que puso el placer como fin de la vida: ejemplo de ética material." },
         { term: "formal", meaning: "La ética de Kant no dice qué fin buscar, sino la forma que debe tener toda acción moral." },
         { term: "intención", meaning: "El motivo con el que se actúa. Para Kant es lo que da valor moral a la acción." }
@@ -165,7 +167,7 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "autónomos", meaning: "Capaces de darnos nuestra propia ley moral mediante la razón (auto = uno mismo, nomos = ley)." },
         { term: "heteronomía", meaning: "Cuando la norma moral viene de fuera: autoridad, miedo, presión social." },
         { term: "reino de los fines", meaning: "Comunidad ideal donde todos se tratan como fines y obedecen leyes que ellos mismos se dan." },
-        { term: "legisladora", meaning: "Cada persona, con su razón, crea las leyes morales universales." },
+        { term: "legisladora y súbdita", meaning: "Cada persona crea con su razón las leyes morales y a la vez las obedece." },
         { term: "rigorismo", meaning: "Crítica a Kant: sus normas serían demasiado inflexibles y no admitirían excepciones." },
         { term: "dilema del asesino", meaning: "Caso famoso: ¿se puede mentir a un asesino para salvar a un amigo? Kant responde que no." }
       ],

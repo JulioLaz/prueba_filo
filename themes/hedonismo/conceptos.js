@@ -4,6 +4,9 @@
 // (antes: 4 niveles y uno sobre utilitarismo, que es otro tema); sin negritas en
 // el texto (el motor resalta los conceptos); hay que encontrar todos los
 // conceptos del párrafo para avanzar (como en etica_aristoteles).
+// v2.1 (2026-11-19): conceptos parejos: párrafo 4 sin «intensidad» (ahora «emociones»
+//   junto a «deseos»), «medios y no fines», «calidad y duración»; párrafo 8 sin
+//   ejemplos sueltos («lujos», «consumo»).
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Epicuro y el hedonismo",
@@ -76,8 +79,7 @@ window.CONCEPT_HUNT_CONFIG = {
       concepts: [
         { term: "ataraxia", meaning: "Imperturbabilidad del alma: serenidad y paz mental. Es el estado ideal para Epicuro." },
         { term: "imperturbabilidad", meaning: "No dejarse alterar por lo que pasa: mantener la calma interior." },
-        { term: "serenidad", meaning: "Calma del espíritu. Para Epicuro vale más que la excitación." },
-        { term: "intensidad", meaning: "Fuerza de un placer. Tiene un límite: más intensidad no da más felicidad." },
+        { term: "emociones", meaning: "La ataraxia no las suprime: no se trata de no sentir, sino de vivir en calma." },
         { term: "deseos", meaning: "Lo que nos mueve a buscar placeres. Hay que ordenarlos para no vivir en la ansiedad." },
         { term: "ansiedad", meaning: "Inquietud y temor constante. Es lo que destruye el placer y la ataraxia." }
       ],
@@ -96,7 +98,7 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "aponía", meaning: "Ausencia de dolor en el cuerpo. Junto con la ataraxia, forma el placer pleno." },
         { term: "bienestar", meaning: "El estado de no sufrir. Para Epicuro ya es valioso por sí mismo." },
         { term: "placeres sensuales", meaning: "Los placeres de los sentidos (gusto, música, amor). Son buenos como medios, no como fin último." },
-        { term: "medios", meaning: "Lo que sirve para otra cosa. Los placeres sensuales deben servir a la serenidad." },
+        { term: "medios y no fines", meaning: "Los placeres sensuales sirven para vivir bien, pero no son la meta de la vida." },
         { term: "adicción", meaning: "Dependencia que aparece cuando un placer sensual se vuelve el fin de la vida." }
       ],
       corollary: [
@@ -134,7 +136,7 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "hedonismo refinado", meaning: "El que busca placeres de calidad y duración: belleza, amistad, filosofía." },
         { term: "hedonismo vulgar", meaning: "El que vive de estímulos compulsivos y termina causando más dolor que placer." },
         { term: "compulsión", meaning: "Impulso que no se puede controlar. Es la marca del hedonismo vulgar." },
-        { term: "calidad", meaning: "Lo que vale en un placer: pesa más que la cantidad." }
+        { term: "calidad y duración", meaning: "Lo que vale en un placer: que sea valioso y perdure, no que sea intenso." }
       ],
       corollary: [
         "Autarquía → ataraxia → felicidad.",
@@ -153,8 +155,6 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "naturales y necesarios", meaning: "Deseos básicos (comida simple, refugio, amistad): hay que satisfacerlos." },
         { term: "naturales no necesarios", meaning: "Deseos naturales pero prescindibles, como los lujos: hay que moderarlos." },
         { term: "deseos vanos", meaning: "Deseos ni naturales ni necesarios (fama, riqueza sin límite): hay que eliminarlos." },
-        { term: "lujos", meaning: "Ejemplo de deseo natural no necesario: comer manjares caros en vez de comida simple." },
-        { term: "consumo", meaning: "Ámbito actual donde se aplica Epicuro: distinguir necesidades reales de lo que impone la publicidad." },
         { term: "utilitarismo", meaning: "Ética moderna (Bentham, Mill) que hereda del hedonismo la idea del placer como medida del bien." }
       ],
       corollary: [

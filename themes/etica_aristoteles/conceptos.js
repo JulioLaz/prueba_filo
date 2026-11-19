@@ -5,6 +5,8 @@
 // de guiones/guiones bajos; nivel de "ética de las virtudes" dividido en dos y
 // sin repetir política/comunidad.
 // v2.1 (2026-10-21): hay que encontrar todos los conceptos del párrafo para avanzar.
+// v2.2 (2026-11-19): sin ocultos muy generales: «fin último» en vez de «bueno»;
+//   «carácter» y «actuar bien» en vez de «bien» y «práctica».
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Aristóteles",
@@ -17,7 +19,7 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Identifica la meta de la ética aristotélica.",
       concepts: [
         { term: "Aristóteles", meaning: "Filósofo griego, discípulo de Platón y maestro de Alejandro Magno. Su ética se centra en la búsqueda de la felicidad a través de la virtud." },
-        { term: "bueno", meaning: "Aquello a lo que todas las cosas tienden. Para Aristóteles, el bien supremo es la felicidad." },
+        { term: "fin último", meaning: "Aquello que buscamos por sí mismo y no por otra cosa. Para Aristóteles, la felicidad." },
         { term: "felicidad", meaning: "El fin último de la vida humana. No es un estado pasivo, sino una actividad del alma conforme a la virtud. En griego, eudaimonía." },
         { term: "eudaimonía", meaning: "Término griego que se traduce como 'felicidad' o 'buen vivir', pero implica un florecimiento humano pleno." },
         { term: "virtud", meaning: "Cualidad que nos permite actuar bien. Para Aristóteles, se adquiere con la práctica y el hábito." }
@@ -37,12 +39,12 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Identifica los elementos clave de la ética aristotélica.",
       concepts: [
         { term: "ética de Aristóteles", meaning: "Ética de las virtudes: propone la virtud como camino hacia la felicidad." },
-        { term: "bien", meaning: "Aquello que se busca como fin en toda acción humana." },
+        { term: "carácter", meaning: "Nuestra manera de ser. Las virtudes son hábitos que lo perfeccionan." },
         { term: "eudaimonía", meaning: "Felicidad plena o florecimiento humano, fin último de la vida ética." },
         { term: "florecimiento humano", meaning: "Desarrollo pleno de las capacidades humanas, sobre todo de la razón." },
         { term: "virtudes", meaning: "Hábitos que perfeccionan el carácter y orientan hacia el bien." },
         { term: "hábitos", meaning: "Disposiciones que se forman repitiendo actos: uno se hace justo obrando con justicia." },
-        { term: "práctica", meaning: "La ética no es solo teoría: se aprende y se demuestra actuando bien." }
+        { term: "actuar bien", meaning: "La ética es práctica: no basta con conocer el bien, hay que llevarlo a la acción." }
       ],
       corollary: [
         "La virtud es un hábito que perfecciona el carácter.",

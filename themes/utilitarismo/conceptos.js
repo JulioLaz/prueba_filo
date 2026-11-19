@@ -3,6 +3,8 @@
 // v2.0 (2026-10-27): 8 niveles, uno por cada sección del material (antes 5 niveles
 // y 14 conceptos, algunos comentados); sin negritas en el texto (el motor resalta
 // los conceptos); hay que encontrar todos los conceptos del párrafo para avanzar.
+// v2.1 (2026-11-19): conceptos parejos: Jeremy Bentham y John Stuart Mill; calidad y
+//   cantidad; Sócrates insatisfecho y tonto satisfecho; párrafo 4 sin ocultos difíciles.
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "John Stuart Mill",
@@ -15,8 +17,9 @@ window.CONCEPT_HUNT_CONFIG = {
       hint: "Buscá la idea central del utilitarismo y quiénes la propusieron.",
       concepts: [
         { term: "utilitarismo", meaning: "Ética que juzga las acciones por su utilidad: es correcta la que produce más felicidad para el mayor número." },
-        { term: "Bentham", meaning: "Jeremy Bentham (1748–1832), fundador del utilitarismo: propuso medir placeres y dolores." },
-        { term: "útil", meaning: "Lo que produce placer o evita dolor. Para el utilitarismo, lo útil es lo bueno." },
+        { term: "Jeremy Bentham", meaning: "Filósofo inglés (1748–1832), fundador del utilitarismo: propuso medir placeres y dolores." },
+        { term: "John Stuart Mill", meaning: "Filósofo inglés (1806–1873) que desarrolló el utilitarismo y distinguió la calidad de los placeres." },
+        { term: "lo útil", meaning: "Lo que produce placer o evita dolor. Para el utilitarismo, lo útil es lo bueno." },
         { term: "principio de la mayor felicidad", meaning: "Regla central del utilitarismo: actuar buscando la mayor felicidad para el mayor número de personas." },
         { term: "mayor número", meaning: "No basta con mi felicidad: hay que tener en cuenta a todos los afectados por una acción." },
         { term: "imparcial", meaning: "Que no favorece a nadie: la felicidad de cada persona cuenta lo mismo, incluida la propia." }
@@ -55,9 +58,9 @@ window.CONCEPT_HUNT_CONFIG = {
         { term: "calidad", meaning: "Lo que hace más valioso a un placer. Para Mill importa más que la cantidad." },
         { term: "placeres inferiores", meaning: "Placeres corporales y fugaces, como comer o dormir. Son buenos, pero menos valiosos." },
         { term: "placeres superiores", meaning: "Placeres intelectuales, morales y estéticos: más duraderos y plenos." },
-        { term: "fugaces", meaning: "Que duran poco. Así son los placeres del cuerpo." },
-        { term: "satisfacción", meaning: "Contento que produce un placer. La de los placeres superiores es más plena." },
-        { term: "Sócrates insatisfecho", meaning: "Imagen de Mill: vale más una vida humana con placeres superiores, aunque falte algo, que una vida solo de placeres simples." }
+        { term: "cantidad", meaning: "Cuánto placer hay. Para Mill no alcanza: importa más la calidad." },
+        { term: "Sócrates insatisfecho", meaning: "Imagen de Mill: vale más una vida humana con placeres superiores, aunque falte algo, que una vida solo de placeres simples." },
+        { term: "tonto satisfecho", meaning: "La otra cara de la imagen de Mill: quien se contenta solo con placeres inferiores." }
       ],
       corollary: [
         "No todos los placeres valen lo mismo: importa la calidad.",
@@ -68,17 +71,17 @@ window.CONCEPT_HUNT_CONFIG = {
       html: `
       <div class="highlight-box">
         <h4>🧠 ¿Se puede ser feliz?</h4>
-        <p>Mill afirma que la felicidad sí es alcanzable, pero no hay que imaginarla como un éxtasis continuo. Una vida feliz tiene algunos momentos de exaltación, pocos dolores pasajeros y muchos placeres variados. Además, el principio utilitarista no solo pide aumentar la felicidad: también pide la prevención y la mitigación de la desgracia.</p>
+        <p>Mill afirma que la felicidad sí es posible, pero no hay que imaginarla como un éxtasis continuo. Una vida feliz tiene algunos momentos de exaltación, pocos dolores pasajeros y muchos placeres variados. Además, el principio utilitarista no solo pide aumentar la felicidad: también pide prevenir el sufrimiento y aliviar la desgracia.</p>
       </div>
       `,
       hint: "Encontrá cómo describe Mill una vida feliz posible.",
       concepts: [
-        { term: "alcanzable", meaning: "Que se puede lograr. Para Mill la felicidad lo es, si no se la confunde con un éxtasis permanente." },
         { term: "éxtasis continuo", meaning: "Alegría intensa sin fin. No es eso la felicidad: es imposible y no hace falta." },
-        { term: "exaltación", meaning: "Momentos de gran alegría. Una vida feliz tiene algunos, no todo el tiempo." },
+        { term: "momentos de exaltación", meaning: "Ratos de gran alegría. Una vida feliz tiene algunos, no todo el tiempo." },
+        { term: "dolores pasajeros", meaning: "Sufrimientos que duran poco. Una vida feliz tiene pocos." },
         { term: "placeres variados", meaning: "Muchos y distintos placeres: son parte de una vida feliz real." },
-        { term: "prevención", meaning: "Evitar que ocurra un sufrimiento. También es un deber utilitarista." },
-        { term: "mitigación", meaning: "Aliviar un sufrimiento que ya existe." }
+        { term: "prevenir el sufrimiento", meaning: "Evitar que el dolor ocurra. También es un deber utilitarista." },
+        { term: "aliviar la desgracia", meaning: "Reducir un sufrimiento que ya existe. También es buscar la felicidad." }
       ],
       corollary: [
         "La felicidad es posible: muchos placeres variados y pocos dolores.",
