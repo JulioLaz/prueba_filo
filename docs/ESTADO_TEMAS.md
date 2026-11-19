@@ -68,12 +68,13 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Firebase (no se actualiza con git)
 
-- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: V8.2 (examen con 60% en cada actividad). Los cambios en `examen.json` no necesitan publicar.
+- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: V8.2 (examen con 60% en cada actividad). **Pendiente de publicar: V8.3** (devolución por pregunta e ideas flojas que vuelven, 2026-11-19); hasta publicarla, el examen sigue mostrando solo la nota y el mensaje general. Los cambios en `examen.json` no necesitan publicar.
 - **Reglas** (`firestore.rules` v1.1.0): se pegan a mano en Firebase Console → Firestore → Reglas. Sin confirmar que estén pegadas.
 - **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill y Sócrates).
 
 ## Historial reciente
 
+- 2026-11-19: examen oral más pedagógico (functions V8.3): devolución de cada pregunta y las 2 ideas más flojas vuelven en el intento siguiente.
 - 2026-11-19: Ética y Moral completa (material propio, mapa al sistema completo, crucigrama nuevo, examen con Sócrates y resumen final). Videos de Kant, Antropocentrismo y Ética y Moral corregidos. Cazas de Kant, Pragmatismo, Antropocentrismo y Ética y Moral rehechas con 8 niveles. Pruebas automáticas guardadas en `tools/pruebas/`. Documentación en `CLAUDE.md` y `docs/`.
 - 2026-10-27/28: Hedonismo y Utilitarismo revisados con examen oral; regla del 60% por actividad en temas con examen; corrección del guardado del video y del conteo del crucigrama.
 - 2026-10-21: Ética de Aristóteles revisada como tema de referencia.

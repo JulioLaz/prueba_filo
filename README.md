@@ -43,9 +43,11 @@ El contenido se edita en `projects/guias/comun.js` (lo común), `projects/guias/
 Lo tienen **Ética de Aristóteles** (con Aristóteles), **Hedonismo** (con Epicuro), **Utilitarismo** (con John Stuart Mill) y **Ética y Moral** (con Sócrates). Es un diálogo guiado con el filósofo:
 
 - Se habilita con **al menos 60% en cada actividad** del tema (cuestionario, caza, video, crucigrama, material y mapa). No alcanza con el promedio: ninguna puede quedar por debajo.
-- **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos. El segundo intento usa otros ejes.
+- **6 preguntas**: 4 ideas centrales sorteadas entre 12, un caso práctico (entre 8) y una reflexión personal (entre 5). La escena de apertura también se sortea, así que no empieza igual para todos.
 - El filósofo pregunta de a una, puede repreguntar una vez si la respuesta es vaga, y no da respuestas ni evalúa durante el examen. No se puede pegar texto.
 - Al terminar, la IA corrige con una rúbrica (comprensión, vocabulario, aplicación y argumentación, de 0 a 2 por pregunta) y pone la nota de 1 a 10. **Se aprueba con 6.**
+- El alumno recibe una **devolución de cada pregunta**: qué estuvo bien, qué le faltó (orientación, sin la respuesta armada), su nivel en cada criterio y qué idea repasar del resumen final.
+- En el intento siguiente **vuelven las 2 ideas más flojas** (las que quedaron por debajo de la nota de aprobación), junto con ideas nuevas.
 - **2 intentos por día**, cuenta la mejor nota. Si se cierra la página, se retoma (hasta 45 minutos sin actividad).
 - El tema queda **aprobado** con 60% en cada actividad **y** el examen aprobado (sello "Falta examen" mientras tanto). En estos temas, cada actividad cuenta como aprobada desde el 60%.
 - En la tabla de progreso del docente (`progress.html`) el examen aparece en su propia columna **EXAMEN** (la nota), al lado de **GENERAL**, y no entra en ese promedio.

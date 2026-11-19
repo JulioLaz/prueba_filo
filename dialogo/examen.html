@@ -17,7 +17,11 @@
   Cloud Functions: examenEstado, examenIniciar, examenResponder (functions/index.js)
   Banco de preguntas: themes/<tema>/examen.json
   Uso: dialogo/examen.html?tema=<id>
-  Versión: v1.1.0 (2026-10-28) — se habilita con 60% en cada actividad (antes 80% de promedio)
+  - Al terminar (y en "Último intento") muestra la devolución de cada pregunta: qué estuvo
+    bien, orientación sobre lo que faltó, nivel por criterio, qué repasar del resumen final
+    y si esa idea vuelve en el próximo intento (las 2 más flojas vuelven).
+  Versión: v1.2.0 (2026-11-19) — devolución pedagógica por pregunta (requiere functions V8.3)
+  v1.1.0 (2026-10-28) — se habilita con 60% en cada actividad (antes 80% de promedio)
   v1.0.0 (2026-10-27)
 -->
 <html lang="es">
@@ -94,6 +98,29 @@
     .nota.desaprobado .num { border-color:rgba(248,113,113,.6); color:var(--bad); }
     .nota .estado { font-size:1.15rem; font-weight:800; }
 
+    /* Devolución por pregunta */
+    .pp-lista { margin-top:14px; display:flex; flex-direction:column; gap:10px; }
+    .pp-lista > h3 { margin:6px 0 0; font-size:1rem; }
+    .pp { background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+    .pp.vuelve { border-color:rgba(167,139,250,.6); }
+    .pp-cab { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-weight:700; }
+    .pp-num { width:24px; height:24px; border-radius:50%; background:var(--brand); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.85rem; }
+    .pp-preg { margin:6px 0 8px; color:#cbd5e1; font-style:italic; font-size:.93rem; }
+    .pp p { margin:6px 0; font-size:.95rem; }
+    .pp .et { font-weight:700; }
+    .pp .et.bien { color:var(--ok); }
+    .pp .et.mejorar { color:var(--gold); }
+    .niveles { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0; }
+    .nivel { font-size:.78rem; padding:2px 8px; border-radius:99px; border:1px solid var(--line); }
+    .nivel.logrado { border-color:rgba(16,185,129,.6); color:#6ee7b7; }
+    .nivel.en_proceso { border-color:rgba(255,215,0,.5); color:#fde68a; }
+    .nivel.a_mejorar { border-color:rgba(248,113,113,.55); color:#fca5a5; }
+    .chip-vuelve { font-size:.78rem; font-weight:600; padding:2px 8px; border-radius:99px; background:rgba(128,90,213,.25); color:#ddd6fe; }
+    .pp-repasar { color:var(--muted); font-size:.88rem !important; }
+    .pp-repasar a { color:var(--brand2); }
+    details.ver-pp { margin-top:8px; }
+    details.ver-pp summary { cursor:pointer; color:var(--brand2); font-weight:600; }
+
     .toast { position:fixed; left:50%; bottom:18px; transform:translateX(-50%); background:#7c2d12; color:#fff; padding:10px 14px; border-radius:10px; font-weight:600; display:none; z-index:10; max-width:90vw; text-align:center; }
     @media (max-width:600px) { .msg { max-width:95%; } .wrap { padding:10px; } }
   </style>
@@ -129,6 +156,7 @@
     <section class="panel oculto" id="panelResultado">
       <div class="nota" id="nota"></div>
       <div class="devolucion" id="devolucionFinal"></div>
+      <div class="pp-lista" id="porPregunta"></div>
       <div class="acciones">
         <button class="oculto" id="btnReintentarCorreccion">Reintentar corrección</button>
         <button class="oculto" id="btnOtraVez">Intentar de nuevo</button>
@@ -199,13 +227,34 @@
     }
     const formatoNota = (n) => Number(n).toLocaleString('es-AR', { maximumFractionDigits: 1 });
 
+    // ── Devolución por pregunta ────────────────────────────────
+    const NOMBRE_CRITERIO = { comprension: 'Comprensión', vocabulario: 'Vocabulario', aplicacion: 'Aplicación', argumentacion: 'Argumentación' };
+    const NOMBRE_NIVEL = { logrado: 'logrado', en_proceso: 'en proceso', a_mejorar: 'a mejorar' };
+    function devolucionPreguntasHtml(lista) {
+      if (!lista?.length) return '';
+      const vuelven = lista.filter((p) => p.vuelve).length;
+      const tarjetas = lista.map((p, i) => `
+        <div class="pp ${p.vuelve ? 'vuelve' : ''}">
+          <div class="pp-cab"><span class="pp-num">${i + 1}</span>${escapeHtml(p.titulo)}${p.vuelve ? '<span class="chip-vuelve">Vuelve en tu próximo intento</span>' : ''}</div>
+          ${p.pregunta ? `<div class="pp-preg">«${escapeHtml(p.pregunta)}»</div>` : ''}
+          <div class="niveles">${Object.entries(NOMBRE_CRITERIO).map(([k, l]) =>
+            `<span class="nivel ${escapeHtml(p.niveles?.[k] || '')}">${l}: ${NOMBRE_NIVEL[p.niveles?.[k]] || '—'}</span>`).join('')}</div>
+          ${p.logrado ? `<p><span class="et bien">Lo que estuvo bien:</span> ${htmlSeguro(p.logrado)}</p>` : ''}
+          ${p.orientacion ? `<p><span class="et mejorar">Para mejorar:</span> ${htmlSeguro(p.orientacion)}</p>` : ''}
+          ${p.tipo === 'eje' ? `<p class="pp-repasar">Repasá en el <a href="${urlTema('../resumen_tema.html')}">resumen final</a> la idea «${escapeHtml(p.titulo)}».</p>` : ''}
+        </div>`).join('');
+      const intro = vuelven ? `<p class="sub">Las ideas marcadas con «Vuelve en tu próximo intento» te las va a volver a preguntar ${escapeHtml(FILOSOFO)}: repasalas antes de rendir de nuevo.</p>` : '';
+      return `<h3>Devolución de cada pregunta</h3>${intro}${tarjetas}`;
+    }
+
     // ── Inicio ─────────────────────────────────────────────────
     function pintarInicio(s) {
       $('reglas').innerHTML = [
         `${FILOSOFO} te va a hacer <strong>${s.cantidadPreguntas} preguntas</strong>, de a una: ideas centrales del tema, un caso práctico y una reflexión personal.`,
         'Respondé con <strong>tus propias palabras</strong>, con ejemplos y explicando el porqué. No se puede pegar texto.',
         `Si una respuesta queda corta, ${FILOSOFO} puede repreguntarte una vez. Durante el examen no te dice si está bien o mal.`,
-        `Al terminar recibís tu nota (1 a 10). <strong>Se aprueba con ${s.notaAprobacion}</strong>, y sin aprobar el examen el tema no queda aprobado.`,
+        `Al terminar recibís tu nota (1 a 10) y una <strong>devolución de cada pregunta</strong>. <strong>Se aprueba con ${s.notaAprobacion}</strong>, y sin aprobar el examen el tema no queda aprobado.`,
+        'En el intento siguiente vuelven las ideas que más te costaron (si las hubo), junto con preguntas nuevas.',
         `Tenés <strong>${s.intentosPorDia} intentos por día</strong> y cuenta tu mejor nota. Si cerrás la página, el examen se retoma al volver.`
       ].map((t) => `<li>${t}</li>`).join('');
 
@@ -217,7 +266,8 @@
       const avisos = [];
       if (s.ultimo) {
         avisos.push(`<div class="aviso"><strong>Último intento: ${formatoNota(s.ultimo.nota)}</strong> ${s.ultimo.aprobado ? '(aprobado)' : '(no aprobado)'}
-          <div class="devolucion">${htmlSeguro(s.ultimo.devolucion)}</div></div>`);
+          <div class="devolucion">${htmlSeguro(s.ultimo.devolucion)}</div>
+          ${s.ultimo.porPregunta?.length ? `<details class="ver-pp"><summary>Ver la devolución de cada pregunta</summary><div class="pp-lista">${devolucionPreguntasHtml(s.ultimo.porPregunta)}</div></details>` : ''}</div>`);
       }
       const btn = $('btnComenzar');
       btn.disabled = false;
@@ -355,9 +405,11 @@
         $('nota').className = 'nota';
         $('nota').innerHTML = '<div class="estado">Corrección pendiente</div>';
         $('devolucionFinal').textContent = r.mensaje || '';
+        $('porPregunta').innerHTML = '';
         $('btnOtraVez').classList.add('oculto');
       } else {
-        const { nota, aprobado, devolucion } = r.resultado;
+        const { nota, aprobado, devolucion, porPregunta } = r.resultado;
+        $('porPregunta').innerHTML = devolucionPreguntasHtml(porPregunta);
         $('nota').className = `nota ${aprobado ? 'aprobado' : 'desaprobado'}`;
         $('nota').innerHTML = `<div class="num">${formatoNota(nota)}</div>
           <div><div class="estado">${aprobado ? '¡Examen aprobado!' : 'Todavía no aprobaste'}</div>

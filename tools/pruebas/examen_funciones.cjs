@@ -15,7 +15,7 @@
  *   2) en otra:          node tools/pruebas/examen_funciones.cjs [tema]   (por defecto etica_aristoteles)
  * Opcional: EXAMEN_ADMIN_EMAIL=<email del admin> para probar también el acceso de admin
  * (el email no se escribe en este archivo).
- * Versión: v1.0.0 (2026-11-19)
+ * Versión: v1.1.0 (2026-11-19) — devolución por pregunta e ideas flojas que vuelven (functions V8.3)
  */
 process.env.FIRESTORE_EMULATOR_HOST = '127.0.0.1:8080';
 process.env.GCLOUD_PROJECT = 'demo-filo';
@@ -58,7 +58,7 @@ global.fetch = async (url, op) => {
   if (!paso) {
     if (sistema.includes('Respondé SOLO con JSON')) {
       const n = (sistema.match(/exactamente (\d+) elementos/) || [])[1] * 1;
-      paso = { texto: JSON.stringify({ preguntas: Array.from({ length: n }, (_, i) => ({ n: i + 1, comprension: 2, vocabulario: 1, aplicacion: 2, argumentacion: 1, comentario: 'ok' })), devolucion: 'Muy bien pensado. Repasá los conceptos clave.' }) };
+      paso = { texto: JSON.stringify({ preguntas: Array.from({ length: n }, (_, i) => ({ n: i + 1, comprension: 2, vocabulario: 1, aplicacion: 2, argumentacion: 1, comentario: 'ok', logrado: 'Usaste bien un concepto.', orientacion: 'Faltó explicar el porqué con un ejemplo.' })), devolucion: 'Muy bien pensado. Repasá los conceptos clave.' }) };
     } else if (sistema.includes('el primero')) paso = { texto: 'Empecemos. ¿Qué es para vos lo <strong>bueno</strong>?' };
     else if (sistema.includes('[FIN]') && sistema.includes('respondé solamente')) paso = { texto: '[FIN]' };
     else paso = { texto: 'Entiendo. Ahora decime: ¿qué es el **hábito**?' };
@@ -136,6 +136,11 @@ async function main_examen_funciones() {
   check('12) última respuesta → corrige (si el 1er modelo no da JSON, usa el siguiente): nota 7,5', rr.estado === 'finalizado' && rr.resultado.nota === 7.5 && rr.resultado.aprobado && fin1.estado === 'finalizado' && llamadas.length === 3, JSON.stringify(rr.resultado));
   check(`   la corrección usa el vocabulario del tema (conceptosClave)`, llamadas.at(-1).sistema.includes(banco(T).conceptosClave.slice(0, 40)));
   check('   devolución como último turno y pegados registrados', fin1.turnos.at(-1).final === true && fin1.pegados === 1);
+  const pp = rr.resultado.porPregunta || [];
+  check('12b) devolución por pregunta para el alumno: 6, con pregunta, logrado, orientación y niveles',
+    pp.length === 6 && pp.every((p) => p.pregunta && p.logrado && p.orientacion && p.niveles.comprension === 'logrado' && p.niveles.vocabulario === 'en_proceso') && pp[0].pregunta === '¿Qué es para vos lo bueno?',
+    JSON.stringify(pp[0]));
+  check('   con 6/8 en cada idea no hay ideas flojas: nada vuelve', pp.every((p) => !p.vuelve));
   const prog = (await db.doc(`progreso_temas/alu1_${T}_examen`).get()).data();
   const est2 = (await db.doc(`examenes_estado/alu1_${T}`).get()).data();
   check('13) guarda el progreso del examen (score 75, mejor nota 7,5) y libera el examen en curso', prog.score === 75 && prog.bestNota === 7.5 && prog.lessonId === 'examen' && prog.attempts === 1 && est2.enCursoId === null && est2.mejorNota === 7.5);
@@ -153,11 +158,22 @@ async function main_examen_funciones() {
   rr = await llamar('examenResponder', alumno, { examenId: r2.examenId, corregir: true });
   const prog2 = (await db.doc(`progreso_temas/alu1_${T}_examen`).get()).data();
   check('16) reintento de corrección → nota 1, no baja el récord (sigue 7,5)', rr.resultado.nota === 1 && !rr.resultado.aprobado && prog2.bestNota === 7.5 && prog2.lastNota === 1 && prog2.attempts === 2);
+  const repetir = (await db.doc(`examenes_estado/alu1_${T}`).get()).data().ejesARepetir || [];
+  const vuelven = rr.resultado.porPregunta.filter((p) => p.vuelve).map((p) => p.id);
+  check('16b) con nota 1: las 2 ideas más flojas quedan para repetir y se marcan "vuelve"',
+    repetir.length === 2 && repetir.every((id) => ejes2.includes(id)) && JSON.stringify([...vuelven].sort()) === JSON.stringify([...repetir].sort()), repetir.join(','));
+  s = await llamar('examenEstado', alumno, { tema: T });
+  check('   el estado devuelve la devolución por pregunta del último intento', s.ultimo?.porPregunta?.length === 6);
   check('17) 3er intento el mismo día → resource-exhausted', await esperarError(llamar('examenIniciar', alumno, { tema: T }), 'resource-exhausted') === true);
   await db.doc(`examenes_estado/alu1_${T}`).update({ dia: '2020-01-01' });
   s = await llamar('examenEstado', alumno, { tema: T });
   check('18) otro día: vuelven los 2 intentos', s.intentosRestantes === 2 && s.mejorNota === 7.5 && s.aprobado);
   const r3 = await llamar('examenIniciar', alumno, { tema: T });
+  const plan3 = (await db.doc(`examenes/${r3.examenId}`).get()).data().plan.preguntas.filter((p) => p.tipo === 'eje');
+  const ejes3 = plan3.map((p) => p.id);
+  check('18b) 3er intento: vuelven las 2 ideas flojas (marcadas) y las otras 2 son nuevas',
+    repetir.every((id) => ejes3.includes(id)) && plan3.filter((p) => p.repite).length === 2 &&
+    plan3.filter((p) => !p.repite).every((p) => !ejes2.includes(p.id)) && new Set(ejes3).size === 4, ejes3.join(','));
   await db.doc(`examenes/${r3.examenId}`).update({ ultimaActividadMs: Date.now() - 50 * 60000 });
   s = await llamar('examenEstado', alumno, { tema: T });
   check('19) 50 min sin actividad → abandonado', s.enCurso === null && (await db.doc(`examenes/${r3.examenId}`).get()).data().estado === 'abandonado');

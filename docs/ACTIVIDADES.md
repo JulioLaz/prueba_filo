@@ -103,6 +103,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
   - `practica`: 8 preguntas para el resumen final (parecidas a las del examen, pero distintas).
 - **Estándar (Aristóteles, Hedonismo, Utilitarismo, Ética y Moral):** los 12 ejes recorren el material completo; `claves` con lo mínimo que tiene que decir un alumno para aprobar; `resumen` de 2 o 3 oraciones en voseo; `ejemplo` cotidiano (escuela, amigos, familia, redes); casos sin respuesta única, que obliguen a usar los conceptos.
 - **Puntaje (`examen`):** nota × 10, la guarda solo la función. Aprueba con 6.
+- **Devolución:** al terminar, el alumno ve la nota, un mensaje general y la devolución de cada pregunta (qué estuvo bien, para mejorar, nivel por criterio, qué idea repasar del resumen final). Las 2 ideas más flojas vuelven en el intento siguiente, junto con 2 nuevas.
 - **Pruebas:** `hub_examen.mjs` y `examen_funciones.cjs` (con el emulador; la IA está simulada). El examen con la IA real hay que probarlo a mano, en «Vista: Como alumno».
 
 ## 8. Resumen final del tema — `resumen_tema.html` (solo temas con examen)

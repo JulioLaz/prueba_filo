@@ -10,7 +10,9 @@
   - Datos: colección examenes (la escribe la Cloud Function del examen).
 
   Uso: examenes.html?tema=<id>
-  Versión: v1.0.0 (2026-10-27)
+  Versión: v1.1.0 (2026-11-19) — muestra la devolución al alumno de cada pregunta y qué ideas
+    se repiten o vuelven en el próximo intento (functions V8.3)
+  v1.0.0 (2026-10-27)
 -->
 <html lang="es">
 <head>
@@ -139,8 +141,11 @@
         const msgs = (e.turnos || []).filter((t) => t.pregunta === i).map((t) => `
           <div class="msg ${t.rol === 'alumno' ? 'alumno' : 'filosofo'}"><span class="quien">${t.rol === 'alumno' ? 'Alumno' + (t.pegado ? ' · intentó pegar texto' : '') : (t.repregunta ? 'Repregunta' : 'Filósofo')}</span>${t.rol === 'alumno' ? escapeHtml(t.texto) : htmlSeguro(t.texto)}</div>`).join('');
         const d = det[i];
-        const rub = d ? `<p class="rubrica">${Object.entries(CRITERIOS).map(([k, l]) => `${l}: <b>${d[k]}</b>/2`).join(' · ')} · Total <b>${d.puntos}</b>/8${d.comentario ? `<br>${escapeHtml(d.comentario)}` : ''}</p>` : '';
-        return `<div class="pregunta-titulo">${i + 1}. ${escapeHtml(p.titulo)}</div><div class="conv">${msgs || '<span class="sub">Sin respuesta</span>'}</div>${rub}`;
+        const alAlumno = d && (d.logrado || d.orientacion) ? `<br><span class="sub">Al alumno — bien: ${escapeHtml(d.logrado || '—')} · Para mejorar: ${escapeHtml(d.orientacion || '—')}</span>` : '';
+        const rub = d ? `<p class="rubrica">${Object.entries(CRITERIOS).map(([k, l]) => `${l}: <b>${d[k]}</b>/2`).join(' · ')} · Total <b>${d.puntos}</b>/8${d.comentario ? `<br>${escapeHtml(d.comentario)}` : ''}${alAlumno}</p>` : '';
+        const vuelve = (e.resultado?.porPregunta || [])[i]?.vuelve ? ' <span class="sub">(vuelve en el próximo intento)</span>' : '';
+        const repite = p.repite ? ' <span class="sub">(repetida de un intento anterior)</span>' : '';
+        return `<div class="pregunta-titulo">${i + 1}. ${escapeHtml(p.titulo)}${repite}${vuelve}</div><div class="conv">${msgs || '<span class="sub">Sin respuesta</span>'}</div>${rub}`;
       }).join('');
       const final = (e.turnos || []).find((t) => t.final);
       const apertura = e.plan?.apertura ? `<p class="sub">Apertura sorteada: ${escapeHtml(e.plan.apertura.id)} · Banco v${escapeHtml(e.bancoVersion || '?')}${e.resultado?.modelo ? ` · Corrigió: ${escapeHtml(e.resultado.proveedor)}/${escapeHtml(e.resultado.modelo)}` : ''}</p>` : '';
