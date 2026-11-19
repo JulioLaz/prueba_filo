@@ -102,7 +102,7 @@ const TOPICS = {
       etica: {
         youtubeId: 'eHIDwx6J-lA',
         startTime: 1,
-        endTime: 360,
+        endTime: 576,
         title: 'Ética y Moral',
         duration: '10:33'
       }, // https://www.youtube.com/shorts/0s73cG7fJoA
@@ -138,22 +138,20 @@ const TOPICS = {
         duration: '2:38',
         // type: 'short'
       },
-      etica_kant: { // https://www.youtube.com/watch?v=Lq0ZGcqn-Zg&t=155s
-      // etica_kant: { // https://youtube.com/shorts/SD8kiCDupYc?si=_HISyvC6m5cmJH0i
-        youtubeId: 'Lq0ZGcqn-Zg&t',
-        // youtubeId: 'SD8kiCDupYc',
+      etica_kant: { // https://youtu.be/Lq0ZGcqn-Zg (La Ética en Kant - Unboxing Philosophy)
+        youtubeId: 'Lq0ZGcqn-Zg',
         startTime: 1,
-        endTime: 127,
-        title: 'Etica de Kant',
-        duration: '57',
+        endTime: 330,
+        title: 'Ética de Kant',
+        duration: '5:30',
         // type: 'short'
       },
       antropocentrismo: { // https://www.youtube.com/watch?v=xf96Q4NAdwY
         youtubeId: 'xf96Q4NAdwY',
         startTime: 1,
-        endTime: 127,
+        endTime: 157,
         title: 'Antropocentrismo',
-        duration: '57',
+        duration: '2:36',
         // type: 'short'
       },
 // 1.1 - Etimología y Origen Histórico: Del Mito al Logos
