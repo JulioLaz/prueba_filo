@@ -8,7 +8,8 @@
  * Se juega sin micrófono (el cartel del concepto se cierra con "Cerrar").
  *
  * Uso:  node tools/pruebas/jugar_caza.mjs <tema>     (tarda ~1 minuto por tema)
- * Versión: v1.0.0 (2026-11-19)
+ * Versión: v1.1.0 (2026-11-19) — en el párrafo 2 comprueba la ayuda: 3 toques errados
+ *   iluminan un concepto oculto pendiente (motor v1.3).
  */
 import { abrirNavegador, servirRepo, controles, temaDeArgs, BASE, SALIDA } from './comun.mjs';
 
@@ -45,6 +46,12 @@ async function main_jugar_caza() {
   const niveles = await page.evaluate(() => window.CONCEPT_HUNT_CONFIG.levels.map((l) => l.concepts.length));
   check(`carga ${niveles.length} niveles`, niveles.length > 0, niveles.join('/'));
   for (let i = 0; i < niveles.length - 1; i++) {
+    if (i === 1) {
+      const errados = page.locator('#paragraph .token:not([data-correct])');
+      for (let k = 0; k < 3; k++) { await errados.nth(k + 1).click(); await page.waitForTimeout(250); }
+      const ayuda = await page.$$eval('#paragraph .ayuda-caza', (ts) => ts.map((t) => t.className + ' ' + t.textContent));
+      check('nivel 2: 3 errores iluminan un concepto oculto que falta', ayuda.length === 1 && ayuda[0].includes('hidden-concept'), JSON.stringify(ayuda));
+    }
     await encontrar(niveles[i]);
     await page.waitForTimeout(4000);
     check(`nivel ${i + 1}: pantalla desbloqueada tras cerrar el cartel`, !(await bloqueada()));

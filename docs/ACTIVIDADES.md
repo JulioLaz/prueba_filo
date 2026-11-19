@@ -45,11 +45,12 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 
 - **Motor:** `caza_conceptos.html` + `js/caza-conceptos-engine-firebase.js` + `js/caza-conceptos-score.js`.
 - **Formato:** `window.CONCEPT_HUNT_CONFIG = { author, menuUrl: 'tema.html?tema=<id>', levels: [...] }`. Cada nivel: `{ html, hint, concepts: [{ term, meaning }], corollary: [dos frases] }`. El `html` del primer nivel es un `<p>`; los demás, `<div class="highlight-box"><h4>emoji Título</h4><p>...</p></div>`.
-- **Mecánica:** el alumno toca las palabras importantes del párrafo. El motor resalta una parte de los conceptos como ayuda (70% en el nivel 1, 60%, 40%, 30% y 20% desde el 5). Al encontrar un concepto se abre un cartel con su significado para leerlo en voz alta (se puede omitir pasados 30 s). Hay que encontrar **todos** los conceptos del nivel para avanzar. 10 vidas: cada palabra equivocada resta una; en 0, una pausa breve y vuelve con 3.
+- **Mecánica:** el alumno toca las palabras importantes del párrafo. El motor resalta una parte de los conceptos como ayuda (70% en el nivel 1, 60%, 40%, 30% y 20% desde el 5). Al encontrar un concepto se abre un cartel con su significado para leerlo en voz alta (se puede omitir pasados 30 s). Hay que encontrar **todos** los conceptos del nivel para avanzar. 10 vidas: cada palabra equivocada resta una; en 0, una pausa breve y vuelve con 3. **Ayuda (motor v1.3):** cada 3 toques errados seguidos, un concepto oculto que falta se ilumina unos segundos, para que nadie quede trabado.
 - **Puntaje (`caza`):** conceptos encontrados ÷ total (los encontrados se acumulan entre intentos y dispositivos).
 - **Estándar (Aristóteles, revisado en v2):**
   - **8 niveles** de unos 6 conceptos (entre 44 y 55 en total), siguiendo el orden de las secciones del material.
   - **Sin `<strong>` ni `<b>`** en el texto: el motor resalta solo, y las negritas sueltas confunden y restan vidas.
+  - Los conceptos ocultos son los de término más corto: que sean conceptos reconocibles (no «latín» o «mos» sueltos), y si una palabra parecida del párrafo no es concepto, reformular (p. ej. «griego» no y «latín» sí confunde).
   - Cada `term` aparece **literal** en el texto de su nivel, como palabra completa (sin distinguir mayúsculas). Términos de varias palabras **con espacios**, no con guiones (`virtudes éticas`, no `virtudes-eticas`).
   - Sin términos repetidos en un nivel y, en lo posible, sin uno contenido en otro.
   - `meaning` claro para un alumno de 17 años; pista en voseo («Identificá…»); dos corolarios.

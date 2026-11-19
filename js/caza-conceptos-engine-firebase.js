@@ -5,6 +5,8 @@
 // v1.1 (2026-10-21): un concepto corto ya no se marca dentro de otro más largo
 // v1.2 (2026-10-21): no se traba al cerrar el cartel sin leer; avance contado con
 //   los conceptos reales; el resumen final muestra cuántos faltan y en qué párrafos
+// v1.3 (2026-11-19): ayuda para no trabarse: cada 3 toques errados seguidos en un
+//   párrafo, un concepto oculto que falta encontrar se ilumina unos segundos
 // ========================================
 
 (function () {
@@ -478,6 +480,7 @@
     const level = CFG.levels[idx];
     foundSet = new Set();
     streak = 0;
+    fallosSeguidos = 0;
     updateHeader(level);
 
     console.log(`📄 Renderizando nivel ${idx + 1}: ${level.concepts?.length || 0} conceptos`);
@@ -728,6 +731,7 @@ function onConceptReadingComplete(concept) {
   
   token.classList.add("correct");
   streak++;
+  fallosSeguidos = 0;
 
   const concept = level.concepts.find(c => normalize(c.term) === keyNorm);
   if (concept) {
@@ -817,12 +821,29 @@ function onConceptReadingComplete(concept) {
 
   let cooling = false;
 
+  // v1.3 — Ayuda: cada 3 errores seguidos se ilumina un concepto oculto pendiente
+  const FALLOS_PARA_AYUDA = 3;
+  let fallosSeguidos = 0;
+  function mostrarAyudaOculto() {
+    const pendiente = [...paragraphEl.querySelectorAll('.token[data-correct="1"]:not(.correct)')]
+      .find(t => !foundSet.has(decodeURIComponent(t.dataset.key || "").trim()));
+    if (!pendiente) return;
+    pendiente.classList.remove("ayuda-caza");
+    void pendiente.offsetWidth;
+    pendiente.classList.add("ayuda-caza");
+    setTimeout(() => pendiente.classList.remove("ayuda-caza"), 3500);
+    hintSlot.textContent = "💡 Ayuda: mirá la palabra que se ilumina.";
+  }
+
   function onWrong(token) {
     if (cooling) return;
     token.classList.add("wrong", "shake");
     setTimeout(() => token.classList.remove("shake"), 250);
 
     play(SND_WRONG);
+
+    fallosSeguidos++;
+    if (fallosSeguidos % FALLOS_PARA_AYUDA === 0) mostrarAyudaOculto();
 
     streak = 0;
     lives = Math.max(0, lives - 1);
@@ -903,6 +924,11 @@ function onConceptReadingComplete(concept) {
       }
       .hidden-concept { cursor: pointer; transition: background 0.3s ease; }
       .hidden-concept:hover { background: rgba(251, 191, 36, 0.2); border-radius: 3px; }
+      .token.ayuda-caza { border-radius: 4px; animation: ayudaCaza 0.9s ease-in-out 4; }
+      @keyframes ayudaCaza {
+        0%, 100% { background: transparent; box-shadow: none; }
+        50% { background: #e9d8fd; box-shadow: 0 0 0 3px #805ad5; }
+      }
       .token.correct {
         background: linear-gradient(120deg, #dcfce7 0%, #bbf7d0 100%) !important;
         color: #166534 !important; font-weight: bold;

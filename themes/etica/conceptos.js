@@ -5,6 +5,8 @@
 // modelo de etica_aristoteles: sin negritas en el texto (el motor resalta los
 // conceptos), términos con espacios y hay que encontrar todos los conceptos del
 // párrafo para avanzar. El material propio de este tema debe seguir estos ejes.
+// v2.1 (2026-11-19): párrafo 2 sin «latín» ni «mos» sueltos (no parecían
+//   conceptos y trababan el avance): ahora «mos, moris», «carácter» y «hábitos».
 
 window.CONCEPT_HUNT_CONFIG = {
   author: "Ética y filosofía moral",
@@ -35,12 +37,13 @@ window.CONCEPT_HUNT_CONFIG = {
         <p>La palabra ética proviene del griego ethos, que significa manera de hacer, costumbre o carácter; Aristóteles la entendía como una filosofía de las costumbres. Moral proviene del latín moralis, derivado de mos, moris: costumbre. Ambas palabras remiten a los hábitos, pero hoy las distinguimos: según Paul Ricoeur, la ética se ocupa de lo bueno y la moral de lo obligatorio.</p>
       </div>
       `,
-      hint: "Busca de qué lengua viene cada palabra y qué significan.",
+      hint: "Busca las palabras de origen (griega y latina), qué significan y quién distingue ética y moral.",
       concepts: [
         { term: "ethos", meaning: "Palabra griega: costumbre, hábito, carácter, manera de ser. Origen de «ética»." },
+        { term: "carácter", meaning: "Manera de ser que se forma con lo que hacemos. Es uno de los sentidos de ethos." },
         { term: "filosofía de las costumbres", meaning: "Traducción aristotélica de lo que estudia la ética." },
-        { term: "latín", meaning: "Lengua de la que proviene la palabra «moral» (moralis)." },
-        { term: "mos", meaning: "Palabra latina (mos, moris) que significa costumbre. Origen de «moral»." },
+        { term: "mos, moris", meaning: "Palabra latina que significa costumbre. De ella viene moralis y de ahí «moral»." },
+        { term: "hábitos", meaning: "Costumbres que repetimos. Ética y moral, por su origen, remiten a ellos." },
         { term: "Paul Ricoeur", meaning: "Filósofo francés que distingue la ética (lo bueno) de la moral (lo obligatorio)." },
         { term: "obligatorio", meaning: "Lo que una norma exige cumplir. Según Ricoeur, es el campo de la moral." }
       ],
