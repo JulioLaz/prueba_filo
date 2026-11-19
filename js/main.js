@@ -146,7 +146,7 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         icon: '🧭',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         difficulty: 'UNIDAD_III',
-        questions: 10,
+        questions: 12,
         timeEstimate: 8,
         prerequisites: [],
         color: '#667eea',
