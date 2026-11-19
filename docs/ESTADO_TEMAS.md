@@ -68,7 +68,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Firebase (no se actualiza con git)
 
-- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: V8.2 (examen con 60% en cada actividad). **Pendiente de publicar: V8.3** (devolución por pregunta e ideas flojas que vuelven, 2026-11-19); hasta publicarla, el examen sigue mostrando solo la nota y el mensaje general. Los cambios en `examen.json` no necesitan publicar.
+- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: **V8.3** (2026-11-19: devolución por pregunta e ideas flojas que vuelven en el intento siguiente). Los cambios en `examen.json` no necesitan publicar.
 - **Reglas** (`firestore.rules` v1.1.0): se pegan a mano en Firebase Console → Firestore → Reglas. Sin confirmar que estén pegadas.
 - **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill y Sócrates).
 
