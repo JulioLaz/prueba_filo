@@ -10,7 +10,9 @@
   - Datos: colección examenes (la escribe la Cloud Function del examen).
 
   Uso: examenes.html?tema=<id>
-  Versión: v1.1.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
+  Versión: v1.2.0 (2026-11-24) — botón «Corregir» en los intentos «Sin corregir»
+    (functions V8.4: examenCorregir, solo el docente)
+  v1.1.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
   v1.1.0 (2026-11-19) — muestra la devolución al alumno de cada pregunta y qué ideas
     se repiten o vuelven en el próximo intento (functions V8.3)
   v1.0.0 (2026-10-27)
@@ -88,7 +90,9 @@
 
   <script src="temas_data.js"></script>
   <script type="module">
-    import { auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+    import { app, auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin } from "/prueba_filo/firebase.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
+    const fnCorregir = httpsCallable(getFunctions(app, 'southamerica-east1'), 'examenCorregir', { timeout: 310000 });
 
     const $ = (id) => document.getElementById(id);
     const params = new URLSearchParams(location.search);
@@ -166,16 +170,47 @@
             <td>${escapeHtml(e.alumno?.nombre || e.uid)}<div class="sub">${escapeHtml(e.alumno?.email || '')}</div></td>
             <td class="ocultar-movil">${escapeHtml(e.alumno?.curso || '—')}</td>
             <td>${fmtFecha(e.inicioMs)}</td>
-            <td><span class="chip">${ESTADOS[e.estado] || e.estado}</span>${e.pegados ? ` <span class="chip alerta" title="Intentos de pegar texto">pegó ×${e.pegados}</span>` : ''}</td>
+            <td><span class="chip">${ESTADOS[e.estado] || e.estado}</span>${e.pegados ? ` <span class="chip alerta" title="Intentos de pegar texto">pegó ×${e.pegados}</span>` : ''}${e.estado === 'corrigiendo' ? ` <button class="btn-primary btnCorregir" data-id="${escapeHtml(e.id)}">Corregir</button>` : ''}</td>
             <td class="nota ${nota == null ? '' : nota >= aprobacion ? 'ok' : 'bad'}">${nota == null ? '—' : fmtNota(nota)}</td>
           </tr>`;
         }).join('')}</tbody></table>`;
+      $('contenido').querySelectorAll('.btnCorregir').forEach((b) => b.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        corregir(b);
+      }));
       $('contenido').querySelectorAll('tr.fila').forEach((tr) => tr.addEventListener('click', () => {
         const sig = tr.nextElementSibling;
         if (sig?.classList.contains('detalle')) { sig.remove(); return; }
         const e = examenes.find((x) => x.id === tr.dataset.id);
         tr.insertAdjacentHTML('afterend', `<tr class="detalle"><td colspan="5">${detalleHtml(e)}</td></tr>`);
       }));
+    }
+
+    // El docente corrige un intento que quedó «Sin corregir» (la IA no respondió al terminar)
+    function avisar(msg) {
+      let t = $('avisoDocente');
+      if (!t) {
+        t = document.createElement('div'); t.id = 'avisoDocente';
+        t.style.cssText = 'position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#2d2346;color:#fff;border:1px solid #805ad5;padding:.7rem 1rem;border-radius:8px;z-index:50;max-width:90vw';
+        document.body.appendChild(t);
+      }
+      t.textContent = msg; t.style.display = 'block';
+      clearTimeout(t._h); t._h = setTimeout(() => { t.style.display = 'none'; }, 6000);
+    }
+
+    async function corregir(b) {
+      b.disabled = true; b.textContent = 'Corrigiendo…';
+      try {
+        const { data } = await fnCorregir({ examenId: b.dataset.id });
+        const e = examenes.find((x) => x.id === b.dataset.id);
+        if (e) e.estado = 'finalizado';
+        avisar(`Corregido: nota ${fmtNota(data.resultado.nota)}`);
+        await cargar();
+      } catch (err) {
+        console.error(err);
+        b.disabled = false; b.textContent = 'Corregir';
+        avisar(err?.code === 'functions/unavailable' ? 'La IA no respondió: probá de nuevo en unos minutos.' : (err?.message || 'No se pudo corregir.'));
+      }
     }
 
     async function cargar() {

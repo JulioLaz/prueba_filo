@@ -15,7 +15,8 @@
  *   2) en otra:          node tools/pruebas/examen_funciones.cjs [tema]   (por defecto etica_aristoteles)
  * Opcional: EXAMEN_ADMIN_EMAIL=<email del admin> para probar también el acceso de admin
  * (el email no se escribe en este archivo).
- * Versión: v1.1.0 (2026-11-19) — devolución por pregunta e ideas flojas que vuelven (functions V8.3)
+ * Versión: v1.2.0 (2026-11-24) — examenCorregir: el docente corrige un examen «Sin corregir» (functions V8.4)
+ * v1.1.0 (2026-11-19) — devolución por pregunta e ideas flojas que vuelven (functions V8.3)
  */
 process.env.FIRESTORE_EMULATOR_HOST = '127.0.0.1:8080';
 process.env.GCLOUD_PROJECT = 'demo-filo';
@@ -154,10 +155,20 @@ async function main_examen_funciones() {
   check('15) corrección caída → queda "corrigiendo" sin perder respuestas', rr.estado === 'corrigiendo');
   s = await llamar('examenEstado', alumno, { tema: T });
   check('   el estado lo ofrece para retomar', s.enCurso?.estado === 'corrigiendo');
+  check('15b) examenCorregir pedido por un alumno → permission-denied', await esperarError(llamar('examenCorregir', alumno, { examenId: r2.examenId }), 'permission-denied') === true);
   guion = [{ texto: JSON.stringify({ preguntas: Array.from({ length: 6 }, () => ({ comprension: 0, vocabulario: 0, aplicacion: 0, argumentacion: 0 })), devolucion: 'Tenés que estudiar más.' }) }];
-  rr = await llamar('examenResponder', alumno, { examenId: r2.examenId, corregir: true });
+  if (ADMIN) {
+    // El docente corrige desde el panel (functions V8.4)
+    const docente = { uid: 'adm1', token: { email: ADMIN, email_verified: true } };
+    rr = await llamar('examenCorregir', docente, { examenId: r2.examenId });
+    check('15c) el docente corrige el examen «Sin corregir» con examenCorregir', rr.estado === 'finalizado');
+    check('   ya corregido → failed-precondition', await esperarError(llamar('examenCorregir', docente, { examenId: r2.examenId }), 'failed-precondition') === true);
+  } else {
+    console.log('⏭️  15c) corrección por el docente: omitida (definí EXAMEN_ADMIN_EMAIL para probarla)');
+    rr = await llamar('examenResponder', alumno, { examenId: r2.examenId, corregir: true });
+  }
   const prog2 = (await db.doc(`progreso_temas/alu1_${T}_examen`).get()).data();
-  check('16) reintento de corrección → nota 1, no baja el récord (sigue 7,5)', rr.resultado.nota === 1 && !rr.resultado.aprobado && prog2.bestNota === 7.5 && prog2.lastNota === 1 && prog2.attempts === 2);
+  check('16) reintento de corrección (alumno o docente) → nota 1, no baja el récord (sigue 7,5)', rr.resultado.nota === 1 && !rr.resultado.aprobado && prog2.bestNota === 7.5 && prog2.lastNota === 1 && prog2.attempts === 2);
   const repetir = (await db.doc(`examenes_estado/alu1_${T}`).get()).data().ejesARepetir || [];
   const vuelven = rr.resultado.porPregunta.filter((p) => p.vuelve).map((p) => p.id);
   check('16b) con nota 1: las 2 ideas más flojas quedan para repetir y se marcan "vuelve"',

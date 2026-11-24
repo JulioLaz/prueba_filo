@@ -72,12 +72,13 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Firebase (no se actualiza con git)
 
-- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: **V8.3** (2026-11-19: devolución por pregunta e ideas flojas que vuelven en el intento siguiente). Los cambios en `examen.json` no necesitan publicar.
+- **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. **Pendiente de publicar: V8.4** (2026-11-24: más tiempo para corregir y `examenCorregir`, el botón «Corregir» del panel docente). Última publicada: V8.3 (2026-11-19: devolución por pregunta). Los cambios en `examen.json` no necesitan publicar.
 - **Reglas** (`firestore.rules` v1.1.0): se pegan a mano en Firebase Console → Firestore → Reglas. Sin confirmar que estén pegadas.
 - **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill, Sócrates, Platón, Aristóteles en la Unidad II, Tales, Heráclito y Sócrates en la Unidad I).
 
 ## Historial reciente
 
+- 2026-11-24: examen: los párrafos <p> de la IA ya no se ven como texto; functions V8.4 (más tiempo para corregir: hasta 200 s probando modelos) y botón «Corregir» en el panel docente para los exámenes «Sin corregir». Requiere `firebase deploy --only functions`.
 - 2026-11-24: lectura en voz alta (motor v1.2): cada error del micrófono muestra al alumno los pasos para resolverlo (navegador, permiso, micrófono ocupado, internet, voz baja, lectura rápida).
 - 2026-11-24: examen oral y resumen final en Origen (Tales de Mileto), Presocráticos (Heráclito de Éfeso) y Sócrates (Sócrates). Desde ahora esos temas se aprueban con 60% en cada actividad y el examen aprobado.
 - 2026-11-24: Sócrates completo (v2.0): material en 16 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama SOCRATES, mapa con 15 pares. Los cuestionarios de Origen, Presocráticos, Sócrates, Dualismo y Antropología de Aristóteles se probaron cargando en el navegador.

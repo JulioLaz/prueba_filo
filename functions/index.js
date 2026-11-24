@@ -10,6 +10,9 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.4 (2026-11-24): más tiempo para corregir (examenResponder 300 s; la corrección prueba
+ *   modelos hasta 200 s, antes 80 s) y examenCorregir: el docente corrige desde examenes.html
+ *   un examen que quedó «Sin corregir» (la IA no respondió al terminar).
  * V8.3 (2026-11-19): devolución pedagógica por pregunta para el alumno (qué estuvo
  *   bien, orientación sobre lo que faltó, nivel por criterio y qué repasar), y el
  *   intento siguiente vuelve a preguntar las 2 ideas más flojas (debajo de la nota
@@ -775,7 +778,8 @@ const PUNTOS_POR_PREGUNTA = 8;        // 4 criterios × 2 puntos
 const CRITERIOS = ["comprension", "vocabulario", "aplicacion", "argumentacion"];
 const EJES_A_REPETIR = 2;             // ideas flojas que vuelven en el intento siguiente
 const OPCIONES_TURNO = {maxTokens: 700, temperature: 0.8};
-const OPCIONES_CORRECCION = {maxTokens: 4096, temperature: 0.2, json: true, timeoutMs: 40000, limiteMs: 80000};
+const OPCIONES_CORRECCION = {maxTokens: 4096, temperature: 0.2, json: true, timeoutMs: 40000, limiteMs: 200000};
+const BLOQUEO_CORRECCION_MS = 290000; // la función tiene 300 s: una respuesta o corrección por vez
 
 const bancosCache = new Map();
 
@@ -1280,7 +1284,7 @@ exports.examenIniciar = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 90}, async (
   }
 });
 
-exports.examenResponder = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 180}, async (request) => {
+exports.examenResponder = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 300}, async (request) => {
   let ref = null;
   let bloqueado = false;
   try {
@@ -1300,7 +1304,7 @@ exports.examenResponder = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 180}, asyn
       if (d.procesandoHasta > Date.now()) throw new HttpsError("aborted", "Ya estoy leyendo tu respuesta anterior: esperá un momento.");
       if (d.estado === "finalizado") throw new HttpsError("failed-precondition", "Este examen ya terminó.");
       if (d.estado === "abandonado") throw new HttpsError("failed-precondition", "Este examen se cerró por inactividad.");
-      t.update(ref, {procesandoHasta: Date.now() + 170000});
+      t.update(ref, {procesandoHasta: Date.now() + BLOQUEO_CORRECCION_MS});
       return d;
     });
     bloqueado = true;
@@ -1383,6 +1387,40 @@ exports.examenResponder = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 180}, asyn
   } catch (error) {
     if (bloqueado && ref) await ref.update({procesandoHasta: 0}).catch(() => {});
     relanzar(error, "examenResponder");
+  }
+});
+
+/**
+ * El docente corrige un examen que quedó «Sin corregir» (la IA no respondió al terminar).
+ * Mismo resultado que si lo corrigiera el alumno con «Reintentar corrección».
+ */
+exports.examenCorregir = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 300}, async (request) => {
+  let ref = null;
+  let bloqueado = false;
+  try {
+    const auth = requerirAuth(request);
+    if (!esAdmin(auth)) throw new HttpsError("permission-denied", "Solo el docente puede corregir exámenes de otros.");
+    const {examenId} = request.data || {};
+    if (typeof examenId !== "string" || !examenId) throw new HttpsError("invalid-argument", "Examen inválido");
+    ref = db.collection("examenes").doc(examenId);
+    const ex = await db.runTransaction(async (t) => {
+      const snap = await t.get(ref);
+      if (!snap.exists) throw new HttpsError("not-found", "No se encontró el examen");
+      const d = snap.data();
+      if (d.estado !== "corrigiendo") throw new HttpsError("failed-precondition", "Este examen no está pendiente de corrección.");
+      if (d.procesandoHasta > Date.now()) throw new HttpsError("aborted", "Ya se está corrigiendo: esperá un momento.");
+      t.update(ref, {procesandoHasta: Date.now() + BLOQUEO_CORRECCION_MS});
+      return d;
+    });
+    bloqueado = true;
+    const banco = await cargarBanco(ex.tema);
+    const {resultado} = await corregirYGuardar(ref, ex, banco);
+    bloqueado = false;
+    logger.info(`🧑‍🏫 El docente corrigió el examen ${examenId}`);
+    return {estado: "finalizado", resultado: resultadoPublico(resultado)};
+  } catch (error) {
+    if (bloqueado && ref) await ref.update({procesandoHasta: 0}).catch(() => {});
+    relanzar(error, "examenCorregir");
   }
 });
 

@@ -20,7 +20,8 @@
   - Al terminar (y en "Último intento") muestra la devolución de cada pregunta: qué estuvo
     bien, orientación sobre lo que faltó, nivel por criterio, qué repasar del resumen final
     y si esa idea vuelve en el próximo intento (las 2 más flojas vuelven).
-  Versión: v1.2.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
+  Versión: v1.2.2 (2026-11-24) — espera hasta 5 min la corrección (functions V8.4)
+  v1.2.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
   v1.2.0 (2026-11-19) — devolución pedagógica por pregunta (requiere functions V8.3)
   v1.1.0 (2026-10-28) — se habilita con 60% en cada actividad (antes 80% de promedio)
   v1.0.0 (2026-10-27)
@@ -195,7 +196,7 @@
     const functions = getFunctions(app, 'southamerica-east1');
     const fnEstado = httpsCallable(functions, 'examenEstado', { timeout: 60000 });
     const fnIniciar = httpsCallable(functions, 'examenIniciar', { timeout: 100000 });
-    const fnResponder = httpsCallable(functions, 'examenResponder', { timeout: 190000 });
+    const fnResponder = httpsCallable(functions, 'examenResponder', { timeout: 310000 });
 
     let examen = null;          // { examenId, paso, total }
     let situacion = null;       // respuesta de examenEstado
