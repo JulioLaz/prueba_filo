@@ -3,33 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dialéctica, Asombro y el Método Filosófico</title>
+  <!--
+    Material de lectura — El Método Filosófico: Duda, Diálogo y Crítica. Unidad I.
+    16 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-24): reescrito en 16 secciones cortas (antes 13 muy largas y centradas en la dialéctica de Platón y Aristóteles). Ahora sigue el título: duda (Descartes, que trata el video), diálogo, argumentación y crítica. Corrige redirectTo (iba a metodo_filosofico, que no existe).
+  -->
+  <title>El Método Filosófico: Duda, Diálogo y Crítica</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
   <script src="../../js/celebration.js" defer></script>
-  
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Dialéctica y Método Filosófico
     window.ReadAloudSystemConfig = {
-      tema: 'Dialéctica, Asombro y el Método Filosófico',
-      threshold: 0.80,
-      sections: 13, // 13 secciones completas
+      tema: 'El Método Filosófico: Duda, Diálogo y Crítica',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
       soundsPath: '../../sound/',
-      redirectTo: '../../tema.html?tema=metodo_filosofico',
-      celebrationEmojis: ['💡', '🤔', '🔍', '💭', '🎯', '📚', '✨', '🧠'],
-      
+      redirectTo: '../../tema.html?tema=metodo',
+      celebrationEmojis: ['🔎', '🤔', '💬', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'asombro': ['thaumázein', 'pathos', 'admiración'],
-        'dialéctica': ['diálogo', 'método socrático'],
-        'mayéutica': ['arte de parir', 'método socrático'],
-        'elenchos': ['refutación', 'escrutinio'],
-        'duda metódica': ['duda cartesiana', 'método de descartes'],
-        'cogito': ['pienso luego existo'],
-        'deducción': ['silogismo', 'de lo general a lo particular'],
-        'inducción': ['de lo particular a lo general'],
-        'a priori': ['independiente de la experiencia'],
-        'a posteriori': ['basado en la experiencia']
+        'metodo': ['método'],
+        'methodos': ['méthodos', 'metodos'],
+        'thaumazein': ['thaumázein', 'taumasein', 'taumazein'],
+        'descartes': ['descartes', 'decart'],
+        'rene': ['rené'],
+        'cogito': ['cógito', 'coyito'],
+        'ergo': ['ergo'],
+        'sum': ['sum', 'sun'],
+        'socrates': ['sócrates'],
+        'dialectica': ['dialéctica'],
+        'kant': ['kant', 'can'],
+        'immanuel': ['emanuel', 'inmanuel'],
+        'sapere': ['sapere', 'sápere'],
+        'aude': ['aude', 'áude'],
+        'krino': ['kríno', 'crino'],
+        'hominem': ['hóminem'],
+        'induccion': ['inducción'],
+        'deduccion': ['deducción'],
+        'enumeracion': ['enumeración']
       }
     };
   </script>
@@ -39,21 +54,21 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 13 secciones</span>
+        <span id="progress-counter">0 / 16 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>💡 Dialéctica, Asombro y el Método Filosófico</h1>
-    <p><em>Del asombro al conocimiento: cómo investiga la filosofía y cuáles son sus métodos para llegar a la verdad.</em></p>
+    <h1>🔎 El Método Filosófico: Duda, Diálogo y Crítica</h1>
+    <p><em>La filosofía no tiene laboratorio: piensa con <strong>preguntas</strong> y <strong>argumentos</strong>. Recorremos el <strong>asombro</strong>, la <strong>duda metódica</strong> de Descartes, el <strong>diálogo</strong> y sus reglas, cómo argumentar sin caer en <strong>falacias</strong> y la <strong>crítica</strong>: atreverse a pensar por uno mismo.</em></p>
 
-    <!-- SECCIÓN 1: EL ASOMBRO - INTRODUCCIÓN -->
-    <div class="study-section active" data-section="asombro-intro">
+    <!-- 1. ¿Qué es un método? -->
+    <div class="study-section active" data-section="que-es">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>😲 El Asombro: El Motor del Pensar</h3>
+          <h3>🧭 ¿Qué es un método?</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -61,25 +76,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La filosofía es una actividad racional y dialógica orientada al esclarecimiento y cuestionamiento de las creencias más fundamentales. Trabaja principalmente con <strong>ideas, conceptos y argumentos</strong>, buscando identificar un problema conceptual y ensayar una respuesta rigurosamente argumentada.<br><br>
-            
-            Según los primeros filósofos, la filosofía encuentra su nacimiento en un <strong>estado del alma</strong> o <em>pathos</em> (<em>πάθος</em>), conocido como el <strong>asombro</strong> (<em>thaumázein</em>).<br><br>
-
-            <strong>¿Qué es el asombro?</strong><br>
-            El asombro es la <strong>disposición primera del conocimiento</strong>, el origen y principio (<em>archḗ</em>) de todo el saber. Es una experiencia profunda que nos hace detenernos y preguntarnos sobre lo que considerábamos obvio o natural.<br><br>
-
-            <strong>Características del asombro filosófico:</strong><br>
-            • Es una <strong>afección involuntaria</strong> del alma<br>
-            • Nos hace <strong>cuestionar</strong> lo que damos por sentado<br>
-            • Genera el <strong>deseo de conocimiento</strong><br>
-            • Es el punto de partida de toda investigación filosófica<br><br>
-
-            <strong>Ejemplo:</strong> Cuando un niño pregunta por primera vez <em>"¿Por qué existe el universo?"</em> o <em>"¿Qué es el tiempo?"</em>, está experimentando el asombro filosófico. No está buscando una respuesta práctica, sino que se maravilla ante el misterio de la existencia misma.<br><br>
-
-            Sin asombro, el pensamiento permanece <strong>inactivo</strong>, dominado por la inercia de los prejuicios y las respuestas fáciles.
+            La palabra <strong>método</strong> viene del griego <em>méthodos</em>: «<strong>camino</strong> para llegar a una meta». La ciencia tiene laboratorios e instrumentos; la filosofía no. Sus herramientas son las <strong>preguntas</strong>, la <strong>razón</strong> y los <strong>argumentos</strong>.<br><br>No hay un único método filosófico, pero casi todos los filósofos usaron tres herramientas: la <strong>duda</strong>, que pone a prueba lo que creemos; el <strong>diálogo</strong>, que piensa con otros; y la <strong>crítica</strong>, que revisa las razones y los límites de todo.
           </p>
         </div>
 
@@ -90,7 +90,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 El asombro: origen y motor de toda filosofía.
+            💡 Un camino con tres herramientas.
           </div>
         </div>
       </div>
@@ -98,25 +98,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el asombro filosófico:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es el asombro (<em>thaumázein</em>) según los primeros filósofos?</p>
+          <p>¿Qué significa la palabra «método»?</p>
         </div>
         <div class="options-container">
-          <div class="option">Una emoción de alegría intensa</div>
-          <div class="option">Un método lógico de razonamiento</div>
-          <div class="option" data-correct="true">La disposición primera del conocimiento, el origen de todo saber</div>
-          <div class="option">Una técnica de memorización</div>
+          <div class="option" data-correct="true">Camino para llegar a una meta</div>
+          <div class="option">Un aparato de laboratorio</div>
+          <div class="option">Una opinión personal</div>
+          <div class="option">Un libro de reglas que no se puede discutir</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 2: ASOMBRO EN PLATÓN -->
-    <div class="study-section" data-section="asombro-platon">
+    <!-- 2. El punto de partida: el asombro -->
+    <div class="study-section" data-section="asombro">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>✨ El Asombro en Platón: Apertura al Saber</h3>
+          <h3>😲 El punto de partida: el asombro</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -124,26 +124,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para <strong>Platón</strong>, el asombro tiene características específicas y un papel fundamental en el camino hacia el conocimiento.<br><br>
-            
-            <strong>Características del asombro platónico:</strong><br><br>
-
-            <strong>1. Antecede al deseo de conocimiento:</strong><br>
-            El asombro <strong>precede</strong> y <strong>posibilita</strong> el deseo de saber. Es previo a todo interés por la sabiduría. No podemos desear conocer algo sin antes asombrarnos de ello.<br><br>
-
-            <strong>2. Es una afección involuntaria del alma:</strong><br>
-            El asombro nos <strong>sobreviene</strong>, no lo buscamos deliberadamente. Pone en movimiento las <strong>tres partes del alma</strong> (racional, irascible y concupiscible).<br><br>
-
-            <strong>3. Funciona como apertura al saber:</strong><br>
-            El asombro <strong>abre</strong> el alma al conocimiento. Es como abrir una puerta que estaba cerrada. Sin esta apertura, permanecemos ciegos a las verdades profundas.<br><br>
-
-            <strong>4. Se vincula con la divinidad:</strong><br>
-            Platón relaciona el asombro con <strong>Thaumas</strong> (la divinidad del asombro) y con la discusión racional (<em>logos</em>). Lo compara con <strong>Iris</strong>, la mensajera de los dioses, que conecta el mundo humano con el divino.<br><br>
-
-            Para Platón, el asombro es una <strong>visión de lo suprasensible</strong>, un atisbo del Mundo de las Ideas. Es el primer paso en el ascenso del alma desde la caverna de la ignorancia hacia la luz de la verdad.
+            Platón y Aristóteles coincidían en algo: la filosofía nace del <strong>asombro</strong> (<em>thaumázein</em>). Asombrarse es <strong>detenerse</strong> ante lo que todos dan por obvio y preguntar «¿por qué?».<br><br>Un chico pregunta por qué el cielo es azul o qué pasa cuando morimos. Con los años solemos perder esa capacidad y nos acostumbramos a todo. El filósofo, en cambio, conserva la mirada <strong>curiosa</strong>: el asombro es el punto de partida de cualquier camino filosófico.
           </p>
         </div>
 
@@ -154,33 +138,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Platón: el asombro antecede y posibilita el deseo de saber.
+            💡 Detenerse ante lo obvio.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el asombro en Platón:</p>
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>Según Platón, ¿qué relación tiene el asombro con el deseo de conocimiento?</p>
+          <p>¿Por qué el asombro es el punto de partida de la filosofía?</p>
         </div>
         <div class="options-container">
-          <div class="option">El asombro viene después del conocimiento</div>
-          <div class="option" data-correct="true">El asombro antecede y posibilita el deseo de conocimiento</div>
-          <div class="option">El asombro y el conocimiento no están relacionados</div>
-          <div class="option">El asombro impide el conocimiento</div>
+          <div class="option">Porque da miedo y obliga a escapar</div>
+          <div class="option" data-correct="true">Porque nos lleva a preguntar por lo que todos dan por obvio</div>
+          <div class="option">Porque solo lo sienten los niños</div>
+          <div class="option">Porque reemplaza a la razón</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 3: ASOMBRO EN ARISTÓTELES -->
-    <div class="study-section" data-section="asombro-aristoteles">
+    <!-- 3. Problematizar: de lo obvio a la pregunta -->
+    <div class="study-section" data-section="problematizar">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔍 El Asombro en Aristóteles: Necesidad de Investigar</h3>
+          <h3>❓ Problematizar: de lo obvio a la pregunta</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -188,27 +172,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para <strong>Aristóteles</strong>, el asombro también constituye el <strong>punto de arranque</strong> de la actividad pensante, pero lo entiende de manera diferente a Platón.<br><br>
-            
-            <strong>Diferencia fundamental:</strong><br><br>
-
-            <strong>Platón:</strong> Veía el asombro como una <strong>visión de lo suprasensible</strong> (esencialismo). El asombro nos hace contemplar las Ideas eternas más allá del mundo sensible.<br><br>
-
-            <strong>Aristóteles:</strong> Veía el asombro como la <strong>toma de conciencia de la necesidad de investigar la realidad</strong>, que clama por una explicación (nominalismo).<br><br>
-
-            <strong>Características del asombro aristotélico:</strong><br>
-            • Es el reconocimiento de nuestra <strong>ignorancia</strong><br>
-            • Genera la <strong>necesidad</strong> de buscar explicaciones<br>
-            • Se dirige hacia la <strong>realidad concreta</strong>, no solo hacia las esencias abstractas<br>
-            • Impulsa la <strong>investigación empírica</strong> y racional<br><br>
-
-            <strong>Ejemplo:</strong><br>
-            Cuando observamos que el agua se congela a cierta temperatura, Aristóteles nos diría que el asombro nos lleva a preguntarnos <strong>por qué</strong> sucede esto y a <strong>investigar las causas</strong> naturales del fenómeno.<br><br>
-
-            Para Aristóteles, sin asombro, el pensamiento permanece <strong>inactivo</strong>, dominado por la <strong>inercia de los prejuicios</strong>. El asombro despierta la mente y la pone en movimiento hacia la búsqueda de la verdad.
+            El primer paso del método es <strong>problematizar</strong>: convertir algo obvio en un <strong>problema</strong>. «¿Qué hora es?» tiene una respuesta rápida; «¿qué es el tiempo?» abre un problema filosófico.<br><br>Una pregunta filosófica es <strong>radical</strong>, porque va a la raíz; es <strong>universal</strong>, porque vale para todos; y no se responde con un dato ni con un experimento. Por ejemplo: «¿Es justo que existan ricos y pobres?» o «¿Somos libres de verdad?».
           </p>
         </div>
 
@@ -219,33 +186,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Aristóteles: el asombro genera necesidad de investigar.
+            💡 Preguntas que van a la raíz.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el asombro en Aristóteles:</p>
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la principal diferencia entre el asombro en Platón y en Aristóteles?</p>
+          <p>¿Cuál de estas es una pregunta filosófica?</p>
         </div>
         <div class="options-container">
-          <div class="option">Aristóteles rechazaba el asombro completamente</div>
-          <div class="option" data-correct="true">Platón lo veía como visión de lo suprasensible; Aristóteles como necesidad de investigar la realidad</div>
-          <div class="option">Ambos tenían exactamente la misma visión</div>
-          <div class="option">Solo Platón creía en el asombro</div>
+          <div class="option">¿Qué hora es?</div>
+          <div class="option">¿Cuánto cuesta el pan?</div>
+          <div class="option" data-correct="true">¿Somos libres de verdad?</div>
+          <div class="option">¿A qué temperatura hierve el agua?</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 4: LA DIALÉCTICA - INTRODUCCIÓN -->
-    <div class="study-section" data-section="dialectica-intro">
+    <!-- 4. La duda: escéptica o metódica -->
+    <div class="study-section" data-section="duda">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>💬 La Dialéctica: El Arte del Diálogo Filosófico</h3>
+          <h3>🤔 La duda: escéptica o metódica</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -253,27 +220,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>dialéctica</strong> (<em>dialektikḗ</em>) es el principal método de indagación filosófica desarrollado en la Antigua Grecia, especialmente por Platón.<br><br>
-            
-            <strong>Etimología:</strong><br>
-            La palabra proviene del griego y se refiere al <strong>orden lingüístico de la comunicación</strong>. Implica la pluralidad y la diversificación del <em>logos</em> (palabra de razón) en una <strong>relación intersubjetiva</strong> (entre sujetos).<br><br>
-
-            <strong>¿Qué es la dialéctica?</strong><br>
-            Es el <strong>arte del diálogo racional</strong> que busca llegar a la verdad mediante el intercambio de argumentos, preguntas y respuestas. No es un monólogo donde alguien expone sus ideas, sino un <strong>diálogo activo</strong> donde se examina y cuestiona.<br><br>
-
-            <strong>Origen:</strong><br>
-            El método dialéctico surge como un perfeccionamiento de la <strong>mayéutica de Sócrates</strong>, el maestro de Platón. Sócrates utilizaba el diálogo para ayudar a sus interlocutores a "dar a luz" sus propias ideas.<br><br>
-
-            <strong>Diferencia con otros métodos:</strong><br>
-            • No es un <strong>monólogo</strong> (una sola persona exponiendo)<br>
-            • No es una <strong>imposición</strong> de ideas desde la autoridad<br>
-            • No es una <strong>disputa</strong> donde solo se busca ganar<br>
-            • Es una <strong>búsqueda cooperativa</strong> de la verdad mediante el razonamiento<br><br>
-
-            La dialéctica reconoce que la verdad emerge del <strong>choque y examen</strong> de diferentes perspectivas, no del dogma o la imposición.
+            Dudar es suspender el juicio: no afirmar ni negar hasta tener razones. Pero hay dos maneras. La <strong>duda escéptica</strong> concluye que no podemos conocer nada con certeza, y se queda ahí.<br><br>La <strong>duda metódica</strong> usa la duda como <strong>herramienta</strong>: pone en cuestión todo lo que se pueda, no para quedarse sin nada, sino para encontrar algo <strong>indudable</strong> sobre lo cual construir. Es la duda de <strong>René Descartes</strong>.
           </p>
         </div>
 
@@ -284,33 +234,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Dialéctica: diálogo racional en busca de la verdad.
+            💡 Dudar para construir.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la dialéctica:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es la dialéctica?</p>
+          <p>¿Qué diferencia hay entre la duda escéptica y la duda metódica?</p>
         </div>
         <div class="options-container">
-          <div class="option">Un monólogo filosófico</div>
-          <div class="option">Una imposición de ideas</div>
-          <div class="option" data-correct="true">El arte del diálogo racional que busca la verdad mediante preguntas y respuestas</div>
-          <div class="option">Una disputa donde solo importa ganar</div>
+          <div class="option">Son exactamente lo mismo</div>
+          <div class="option" data-correct="true">La escéptica concluye que no se puede conocer; la metódica duda para encontrar algo indudable</div>
+          <div class="option">La metódica no duda de nada</div>
+          <div class="option">La escéptica busca una verdad firme para construir sobre ella</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 5: MAYÉUTICA Y ELENCHOS -->
-    <div class="study-section" data-section="mayeutica-elenchos">
+    <!-- 5. Un filósofo en busca de certeza -->
+    <div class="study-section" data-section="descartes">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🤰 La Mayéutica y el Elenchos Socrático</h3>
+          <h3>📜 Un filósofo en busca de certeza</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -318,31 +268,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Antes de Platón, <strong>Sócrates</strong> desarrolló dos métodos fundamentales que son la base de la dialéctica: la <strong>mayéutica</strong> y el <strong>elenchos</strong>.<br><br>
-            
-            <strong>La Mayéutica:</strong><br>
-            Es el <em>"arte de ayudar a dar a luz"</em> conocimientos. Sócrates comparaba su método con el trabajo de su madre, que era comadrona (partera).<br><br>
-
-            <strong>Proceso de la mayéutica:</strong><br>
-            • Se basa en <strong>preguntar</strong> y <strong>criticar</strong> las definiciones<br>
-            • Va <strong>depurando</strong> la cuestión progresivamente<br>
-            • Ayuda al interlocutor a <strong>descubrir por sí mismo</strong> la verdad<br>
-            • A menudo terminaba en <strong>aporía</strong> (dejar la cuestión inconclusa), reconociendo la dificultad del problema<br><br>
-
-            <strong>El Elenchos (Escrutinio o Refutación):</strong><br>
-            Es el método central de Sócrates: un <strong>escrutinio cruzado</strong> con el propósito de la <strong>refutación</strong>.<br><br>
-
-            <strong>Características del elenchos:</strong><br>
-            • Es un método <strong>negativo</strong> de eliminación de hipótesis<br>
-            • Se identifican y <strong>eliminan</strong> las hipótesis que conducen a <strong>contradicciones</strong><br>
-            • Las mejores hipótesis son las que <strong>sobreviven</strong> al escrutinio<br>
-            • No busca imponer una verdad, sino <strong>eliminar errores</strong><br><br>
-
-            <strong>Ejemplo:</strong><br>
-            Si alguien define la valentía como "ausencia de miedo", Sócrates preguntaría: <em>"¿Entonces un loco que no tiene miedo es valiente?"</em>. Al mostrar la contradicción, elimina esa definición y busca una mejor.
+            <strong>René Descartes</strong> (1596–1650) fue un filósofo y matemático francés. Había estudiado en los mejores colegios y, sin embargo, sentía que mucho de lo que le enseñaron era <strong>dudoso</strong>: los sabios no se ponían de acuerdo en nada.<br><br>Admiraba la <strong>matemática</strong>, donde todo es claro y seguro, y quiso darle a la filosofía esa misma <strong>certeza</strong>. En el <em>Discurso del método</em> (1637) propuso empezar de cero: derribar todas sus creencias y reconstruir el conocimiento sobre bases firmes.
           </p>
         </div>
 
@@ -353,33 +282,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Mayéutica: parir ideas. Elenchos: eliminar contradicciones.
+            💡 Certeza como la de la matemática.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la mayéutica y el elenchos:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es el elenchos socrático?</p>
+          <p>¿Qué quería lograr Descartes?</p>
         </div>
         <div class="options-container">
-          <div class="option">Un método para memorizar información</div>
-          <div class="option">Una técnica de persuasión retórica</div>
-          <div class="option" data-correct="true">Un escrutinio cruzado que elimina hipótesis que conducen a contradicciones</div>
-          <div class="option">Una forma de escribir diálogos</div>
+          <div class="option" data-correct="true">Darle a la filosofía una certeza como la de la matemática</div>
+          <div class="option">Demostrar que nada se puede saber</div>
+          <div class="option">Volver a explicar el mundo con mitos</div>
+          <div class="option">Ganar debates con la retórica</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 6: DIALÉCTICA PLATÓNICA - ASCENSO -->
-    <div class="study-section" data-section="dialectica-platon-ascenso">
+    <!-- 6. Tres motivos para dudar -->
+    <div class="study-section" data-section="motivos">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⬆️ La Dialéctica Platónica: Ascenso a la Verdad</h3>
+          <h3>🌀 Tres motivos para dudar</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -387,33 +316,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            En la obra madura de Platón, especialmente en <em>La República</em>, la dialéctica se convierte en el <strong>estudio supremo del filósofo</strong>.<br><br>
-            
-            <strong>Naturaleza de la dialéctica platónica:</strong><br>
-            Es un conocimiento <strong>"metafísico"</strong> con miras a una fundamentación unívoca y definitiva de toda la realidad. Platón vinculó la ontología, la epistemología y la ética. Para Platón, <strong>la dialéctica era ontología</strong> (estudio del ser).<br><br>
-
-            <strong>Doble Movimiento:</strong><br>
-            La dialéctica platónica tiene dos procesos complementarios:<br><br>
-
-            <strong>1. Proceso Ascendente (Anábasis):</strong><br>
-            Va de <strong>lo múltiple y sensible</strong> (el mundo de las apariencias) a <strong>lo Uno, lo inteligible y alto</strong> (el mundo de las Ideas).<br><br>
-
-            Este ascenso es el tránsito de la <strong>diánoia</strong> (pensamiento discursivo, razonamiento paso a paso) a la <strong>nóesis</strong> (intelección directa, intuición intelectual).<br><br>
-
-            <strong>Cómo funciona el ascenso:</strong><br>
-            • La razón usa los <strong>supuestos</strong> (<em>hypothéseis</em>) como <strong>peldaños y trampolines</strong><br>
-            • Sube progresivamente eliminando los supuestos<br>
-            • Busca alcanzar el <strong>principio de todo</strong>, que es <strong>no supuesto</strong> (anhypótheton)<br>
-            • Este principio supremo es la <strong>Idea del Bien</strong><br><br>
-
-            <strong>La Idea del Bien:</strong><br>
-            • Es el <strong>objeto de estudio supremo</strong><br>
-            • Es el <strong>fundamento</strong> de la existencia y esencia de todas las cosas inteligibles<br>
-            • Es como el <strong>Sol</strong> del mundo inteligible<br>
-            • Solo los filósofos que completan este ascenso pueden conocerla
+            Descartes encontró tres motivos para dudar. Primero, los <strong>sentidos</strong> a veces nos <strong>engañan</strong>, como el palo que parece quebrado dentro del agua: no conviene confiar del todo en quien nos engañó una vez.<br><br>Segundo, el <strong>sueño</strong>: mientras soñamos creemos que todo es real, y no hay una señal segura para distinguir la <strong>vigilia</strong> del sueño. Tercero, el <strong>genio maligno</strong>: ¿y si un ser poderoso nos engañara incluso cuando sumamos 2 + 2?
           </p>
         </div>
 
@@ -424,33 +330,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Ascenso dialéctico: de lo múltiple a lo Uno, hasta la Idea del Bien.
+            💡 Sentidos, sueño y genio maligno.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el ascenso dialéctico:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es el objetivo final del ascenso dialéctico según Platón?</p>
+          <p>¿Qué plantea la hipótesis del genio maligno?</p>
         </div>
         <div class="options-container">
-          <div class="option">Conocer el mundo sensible</div>
-          <div class="option">Ganar debates</div>
-          <div class="option" data-correct="true">Alcanzar la Idea del Bien, el principio no supuesto de todo</div>
-          <div class="option">Memorizar todas las Ideas</div>
+          <div class="option">Que los sentidos siempre dicen la verdad</div>
+          <div class="option">Que los sueños son siempre reales</div>
+          <div class="option">Que nunca nos equivocamos al sumar</div>
+          <div class="option" data-correct="true">Que un ser poderoso podría engañarnos incluso en la matemática</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 7: DIALÉCTICA PLATÓNICA - DESCENSO -->
-    <div class="study-section" data-section="dialectica-platon-descenso">
+    <!-- 7. Pienso, luego existo -->
+    <div class="study-section" data-section="cogito">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⬇️ La Dialéctica Platónica: Descenso y Deber Social</h3>
+          <h3>💡 Pienso, luego existo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -458,29 +364,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El segundo movimiento de la dialéctica platónica es el <strong>Proceso Descendente (Katábasis)</strong>.<br><br>
-            
-            <strong>¿En qué consiste el descenso?</strong><br>
-            Es la <strong>deducción racional de las Formas</strong>. Una vez que el filósofo ha alcanzado el principio no hipotético (la Idea del Bien), debe <strong>descender</strong> nuevamente.<br><br>
-
-            <strong>Propósito del descenso:</strong><br>
-            El descenso tiene una <strong>implicación ético-política</strong>. El filósofo que ha visto la verdad tiene el <strong>deber moral</strong> de:<br>
-            • <strong>Regresar</strong> al mundo de las apariencias (la caverna)<br>
-            • <strong>Reorientar la mirada</strong> de los demás ciudadanos<br>
-            • <strong>Educar</strong> y guiar a la sociedad<br>
-            • Aplicar el conocimiento del Bien a la <strong>organización política</strong><br><br>
-
-            <strong>Conexión con la Alegoría de la Caverna:</strong><br>
-            Recordemos que en la alegoría, el prisionero liberado que ve el Sol (la Idea del Bien) debe <strong>volver a la caverna</strong> para liberar a sus compañeros. Este es el descenso dialéctico.<br><br>
-
-            <strong>La dialéctica completa:</strong><br>
-            <strong>Ascenso:</strong> De lo múltiple → lo Uno (contemplación)<br>
-            <strong>Descenso:</strong> De lo Uno → lo múltiple (aplicación práctica)<br><br>
-
-            Sin el descenso, la filosofía sería una actividad <strong>egoísta</strong> de contemplación pura. El filósofo tiene la <strong>responsabilidad social</strong> de compartir la sabiduría y mejorar la ciudad, aunque esto implique riesgo y dificultad.
+            Después de dudar de todo, Descartes encontró algo que resiste cualquier duda. Puedo dudar de mi cuerpo y del mundo, pero mientras dudo, estoy <strong>pensando</strong>; y si pienso, <strong>existo</strong>. Aunque un genio maligno me engañe, para ser engañado tengo que existir.<br><br>Así llegó a su primera verdad: «<strong>Pienso, luego existo</strong>» (<em>cogito, ergo sum</em>). El <strong>cogito</strong> es una verdad <strong>clara y distinta</strong>, y sobre ella Descartes quiso reconstruir todo el conocimiento.
           </p>
         </div>
 
@@ -491,33 +378,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Descenso: aplicar la sabiduría para educar y mejorar la sociedad.
+            💡 La verdad que resiste la duda.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el descenso dialéctico:</p>
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Por qué el filósofo debe realizar el descenso dialéctico según Platón?</p>
+          <p>¿Por qué el cogito resiste la duda?</p>
         </div>
         <div class="options-container">
-          <div class="option">Para escapar de la Idea del Bien</div>
-          <div class="option">Porque no puede permanecer contemplando</div>
-          <div class="option" data-correct="true">Por deber moral de educar a los ciudadanos y aplicar el conocimiento a la política</div>
-          <div class="option">Para olvidar lo que aprendió</div>
+          <div class="option">Porque lo confirman los sentidos</div>
+          <div class="option">Porque es un sueño muy real</div>
+          <div class="option" data-correct="true">Porque para dudar o ser engañado tengo que pensar, y si pienso, existo</div>
+          <div class="option">Porque lo enseñaban en la escuela</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 8: DIALÉCTICA ARISTOTÉLICA -->
-    <div class="study-section" data-section="dialectica-aristoteles">
+    <!-- 8. Las cuatro reglas del método -->
+    <div class="study-section" data-section="reglas">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>📚 La Dialéctica Aristotélica: Argumentación de lo Opinable</h3>
+          <h3>📏 Las cuatro reglas del método</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -525,30 +412,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Aristóteles</strong>, quien estudió 20 años en la Academia de Platón, transformó la dialéctica dándole un enfoque más práctico y metodológico.<br><br>
-            
-            En su obra <em>Tópicos</em>, Aristóteles ofrece un <strong>manual</strong> sobre cómo llevar a cabo el método dialéctico.<br><br>
-
-            <strong>Definición aristotélica de dialéctica:</strong><br>
-            Es un <strong>procedimiento racional no demostrativo</strong>. Se trata de una forma de <strong>argumentación deductiva</strong> que parte de cosas <strong>plausibles</strong> (opinables), a diferencia de la demostración científica, que parte de cosas verdaderas.<br><br>
-
-            <strong>Diferencia clave:</strong><br>
-            • <strong>Demostración científica:</strong> Parte de premisas <strong>verdaderas</strong> y necesarias<br>
-            • <strong>Dialéctica:</strong> Parte de premisas <strong>plausibles</strong> u opinables (éndoxa)<br><br>
-
-            <strong>Funciones de la dialéctica aristotélica:</strong><br><br>
-
-            <strong>1. Para ejercitarse:</strong> Entrenar la mente en el razonamiento<br>
-            <strong>2. Para las conversaciones:</strong> Forzar al interlocutor a <strong>modificar</strong> lo que no enuncie bien<br>
-            <strong>3. Para los conocimientos en filosofía:</strong> Ayuda a <strong>discernir</strong> más fácilmente lo verdadero y lo falso en cada cosa<br><br>
-
-            <strong>Posición reducida:</strong><br>
-            Aristóteles <strong>disocia dialéctica y filosofía</strong>, reduciéndola a una <em>"lógica de lo opinable"</em>. Su fin primario no es la verdad suprema (como en Platón), sino la <strong>victoria en un combate de agudezas</strong>, aunque también busca alcanzar la verdad en cada conclusión.<br><br>
-
-            La dialéctica vuelve a una posición más <strong>humilde</strong> y <strong>práctica</strong>.
+            En el <em>Discurso del método</em>, Descartes propuso cuatro reglas. <strong>Evidencia</strong>: no aceptar nada como verdadero si no es claro y distinto. <strong>Análisis</strong>: dividir cada problema en tantas partes como se pueda.<br><br><strong>Síntesis</strong>: ordenar los pensamientos de lo más simple a lo más complejo. <strong>Enumeración</strong>: revisar todo al final, para estar seguro de no haber omitido nada. Son útiles hasta hoy para estudiar o resolver un problema difícil.
           </p>
         </div>
 
@@ -559,33 +426,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Aristóteles: dialéctica parte de lo plausible, no de lo verdadero.
+            💡 Evidencia, análisis, síntesis y enumeración.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la dialéctica aristotélica:</p>
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿De qué parte la dialéctica según Aristóteles?</p>
+          <p>¿Qué pide la regla del análisis?</p>
         </div>
         <div class="options-container">
-          <div class="option">De premisas verdaderas y necesarias</div>
-          <div class="option">De la Idea del Bien</div>
-          <div class="option" data-correct="true">De cosas plausibles u opinables (éndoxa)</div>
-          <div class="option">De experimentos científicos</div>
+          <div class="option" data-correct="true">Dividir cada problema en tantas partes como se pueda</div>
+          <div class="option">Aceptar todo lo que dicen los demás</div>
+          <div class="option">No revisar nunca lo que se hizo</div>
+          <div class="option">Empezar siempre por lo más complicado</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 9: MÉTODO CARTESIANO -->
-    <div class="study-section" data-section="metodo-cartesiano">
+    <!-- 9. El diálogo: pensar con otros -->
+    <div class="study-section" data-section="dialogo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🤔 El Método Cartesiano: La Duda Metódica</h3>
+          <h3>💬 El diálogo: pensar con otros</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -593,33 +460,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            En la <strong>Modernidad</strong> (siglo XVII), el filósofo <strong>René Descartes</strong> popularizó un método radicalmente diferente: la <strong>duda metódica</strong>.<br><br>
-            
-            <strong>Contexto histórico:</strong><br>
-            Descartes vivió en una época de gran incertidumbre. Las guerras religiosas, los avances científicos y las controversias filosóficas generaban dudas sobre qué conocimientos eran realmente seguros.<br><br>
-
-            <strong>Objetivo del método cartesiano:</strong><br>
-            Encontrar <strong>verdades seguras, tangibles y fácticas</strong> de las cuales no sea posible dudar en absoluto, para <strong>fundamentar el conocimiento</strong> con absoluta garantía.<br><br>
-
-            <strong>Procedimiento de la duda metódica:</strong><br>
-            Consiste en <strong>descartar</strong> cualquier supuesto del que se pueda dudar, por mínima que sea la duda. Es una duda <strong>radical y sistemática</strong>.<br><br>
-
-            <strong>Pasos de la duda:</strong><br>
-            <strong>1.</strong> Dudar de los <strong>sentidos</strong> (a veces nos engañan)<br>
-            <strong>2.</strong> Dudar del <strong>mundo externo</strong> (podríamos estar soñando)<br>
-            <strong>3.</strong> Dudar de las <strong>verdades matemáticas</strong> (un genio maligno podría engañarnos)<br><br>
-
-            <strong>El Principio Fundamental: Cogito, ergo sum</strong><br>
-            Después de dudar de todo, Descartes encuentra una verdad <strong>indudable</strong>:<br><br>
-
-            <em>"Pienso, luego existo"</em> (<strong>Cogito, ergo sum</strong>)<br><br>
-
-            Aunque dude de todo, <strong>no puedo dudar de que estoy dudando</strong>, y si dudo, <strong>pienso</strong>, y si pienso, <strong>existo</strong>. Esta es la primera y más cierta verdad.<br><br>
-
-            <strong>Nota histórica:</strong> Ideas similares habían sido formuladas antes por Gómez Pereira (1554) y San Agustín de Hipona (<em>"Si me engaño, existo"</em>).
+            La segunda herramienta es el <strong>diálogo</strong>. Desde <strong>Sócrates</strong>, la filosofía se hace conversando: uno pregunta, el otro responde, y juntos revisan lo que creen. Este método se llama <strong>dialéctica</strong>.<br><br>En el diálogo nadie es dueño de la verdad: se la busca entre todos. Una idea que resiste las <strong>objeciones</strong> de otros sale más fuerte; una que no las resiste, hay que corregirla. Pensar solo es útil, pero pensar con otros nos muestra lo que no veíamos.
           </p>
         </div>
 
@@ -630,33 +474,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Descartes: dudar de todo hasta encontrar lo indudable.
+            💡 Buscar la verdad entre todos.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el método cartesiano:</p>
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué significa <em>"Cogito, ergo sum"</em>?</p>
+          <p>¿Para qué sirve el diálogo en filosofía?</p>
         </div>
         <div class="options-container">
-          <div class="option">Dudo, luego no existo</div>
-          <div class="option">Siento, luego soy</div>
-          <div class="option" data-correct="true">Pienso, luego existo</div>
-          <div class="option">Creo, luego soy feliz</div>
+          <div class="option">Para ganarle al otro como sea</div>
+          <div class="option" data-correct="true">Para buscar juntos la verdad, revisando lo que creemos con las objeciones de otros</div>
+          <div class="option">Para repetir lo que dice el que más sabe</div>
+          <div class="option">Para evitar pensar</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 10: PRINCIPIOS LÓGICOS -->
-    <div class="study-section" data-section="principios-logicos">
+    <!-- 10. Las reglas del buen diálogo -->
+    <div class="study-section" data-section="reglas-dialogo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ Los Tres Principios Lógicos Fundamentales</h3>
+          <h3>🤝 Las reglas del buen diálogo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -664,33 +508,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Aristóteles formuló los principios más fundamentales del razonamiento, llamándolos <strong>axiomas</strong> (requisitos previos de toda argumentación y acción). Estos son los pilares de la lógica clásica.<br><br>
-            
-            <strong>1. Principio de No Contradicción:</strong><br>
-            Es <strong>imposible</strong> que un mismo atributo se dé y no se dé <strong>simultáneamente</strong> en el mismo sujeto y en el mismo sentido.<br><br>
-
-            <strong>Ejemplo:</strong> Esta mesa no puede ser y no ser blanca al mismo tiempo y en el mismo sentido.<br><br>
-
-            Es el <strong>principio más seguro de todos</strong>, ya que se emplea implícitamente en todas las pruebas. Sin él, no podría haber conocimiento.<br><br>
-
-            <strong>2. Principio de Identidad:</strong><br>
-            Toda cosa es <strong>idéntica a sí misma</strong>.<br><br>
-
-            <strong>Ejemplo:</strong> A = A. Un árbol es un árbol. Sócrates es Sócrates.<br><br>
-
-            Este principio establece que cada cosa tiene su propia identidad estable y determinada.<br><br>
-
-            <strong>3. Principio del Tercero Excluido:</strong><br>
-            Una cosa <strong>es o no es</strong>, sin <strong>graduaciones</strong> intermedias de validez.<br><br>
-
-            <strong>Ejemplo:</strong> O esta puerta está abierta o está cerrada (no puede estar "medio abierta" lógicamente, aunque físicamente sí).<br><br>
-
-            No hay una tercera opción entre ser y no ser. O una proposición es verdadera o es falsa.<br><br>
-
-            Estos tres principios son los <strong>fundamentos</strong> de todo razonamiento lógico válido y no pueden ser demostrados porque toda demostración los presupone.
+            No toda conversación es un diálogo filosófico. Hacen falta algunas reglas: <strong>escuchar</strong> de verdad antes de responder; dar <strong>razones</strong>, no gritos ni insultos; y aceptar que podemos estar <strong>equivocados</strong>.<br><br>Otra regla importante es el <strong>principio de caridad</strong>: interpretar lo que dice el otro de la mejor manera posible, y no deformarlo para que sea más fácil atacarlo. En un buen diálogo no gana el que habla más fuerte, sino el <strong>mejor argumento</strong>.
           </p>
         </div>
 
@@ -701,33 +522,81 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Tres axiomas: No Contradicción, Identidad, Tercero Excluido.
+            💡 Escuchar, razonar y ser justo con el otro.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre los principios lógicos:</p>
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué afirma el Principio del Tercero Excluido?</p>
+          <p>¿Qué pide el principio de caridad?</p>
         </div>
         <div class="options-container">
-          <div class="option">Que todo es relativo</div>
-          <div class="option">Que A es igual a B</div>
-          <div class="option" data-correct="true">Que una cosa es o no es, sin término medio</div>
-          <div class="option">Que todo puede ser y no ser al mismo tiempo</div>
+          <div class="option">Darle siempre la razón al otro</div>
+          <div class="option">Regalarle algo al que gana el debate</div>
+          <div class="option">Hablar más fuerte que el otro</div>
+          <div class="option" data-correct="true">Interpretar lo que dice el otro de la mejor manera posible</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 11: DEDUCCIÓN E INDUCCIÓN -->
+    <!-- 11. Argumentar: premisas y conclusión -->
+    <div class="study-section" data-section="argumento">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧱 Argumentar: premisas y conclusión</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Las razones se ordenan en <strong>argumentos</strong>. Un argumento tiene <strong>premisas</strong>, las razones de las que partimos, y una <strong>conclusión</strong>, lo que queremos probar. «Todos los seres humanos merecen respeto; los inmigrantes son seres humanos; por lo tanto, merecen respeto».<br><br>Para evaluar un argumento hay que preguntar dos cosas: ¿las premisas son <strong>verdaderas</strong>? y ¿la conclusión se <strong>sigue</strong> de ellas? Opinar es decir lo que pienso; argumentar es mostrar <strong>por qué</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Mostrar por qué.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué diferencia hay entre opinar y argumentar?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">No hay ninguna diferencia</div>
+          <div class="option">Argumentar es gritar más fuerte</div>
+          <div class="option" data-correct="true">Opinar es decir lo que pienso; argumentar es mostrar por qué, con premisas</div>
+          <div class="option">Opinar es siempre falso</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Deducción e inducción -->
     <div class="study-section" data-section="deduccion-induccion">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 Tipos de Razonamiento: Deducción e Inducción</h3>
+          <h3>🔄 Deducción e inducción</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -735,39 +604,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Los filósofos emplean diferentes métodos argumentativos. Los dos más importantes son la <strong>deducción</strong> y la <strong>inducción</strong>.<br><br>
-            
-            <strong>1. Deducción (Silogismo):</strong><br>
-            Es un discurso en el cual, establecidas ciertas <strong>premisas generales</strong>, resulta necesariamente una <strong>conclusión específica</strong>. Va de <strong>lo General a lo Particular</strong>.<br><br>
-
-            <strong>Características de la deducción:</strong><br>
-            • Si las premisas son verdaderas, la conclusión <strong>debe ser verdadera</strong><br>
-            • Es un razonamiento <strong>necesario</strong><br>
-            • Proporciona <strong>certeza</strong> lógica<br><br>
-
-            <strong>Ejemplo clásico:</strong><br>
-            <strong>Premisa Mayor:</strong> Todos los hombres son mortales<br>
-            <strong>Premisa Menor:</strong> Sócrates es hombre<br>
-            <strong>Conclusión:</strong> Por lo tanto, Sócrates es mortal<br><br>
-
-            <strong>2. Inducción (Comprobación):</strong><br>
-            Es un argumento que va de <strong>lo particular a lo universal</strong>, desde las cosas singulares hasta lo general.<br><br>
-
-            <strong>Características de la inducción:</strong><br>
-            • La conclusión es <strong>probable</strong>, no necesariamente verdadera<br>
-            • Se basa en la <strong>observación</strong> de casos particulares<br>
-            • Es el método de las <strong>ciencias empíricas</strong><br><br>
-
-            <strong>Ejemplo:</strong><br>
-            <strong>Observación 1:</strong> Este cisne es blanco<br>
-            <strong>Observación 2:</strong> Ese cisne es blanco<br>
-            <strong>Observación 3:</strong> Aquel cisne es blanco<br>
-            <strong>Conclusión inductiva:</strong> Probablemente, todos los cisnes son blancos<br><br>
-
-            <strong>Limitación:</strong> La inducción puede llevar a conclusiones falsas (existen cisnes negros). Nunca proporciona certeza absoluta.
+            Hay dos grandes formas de razonar. La <strong>deducción</strong> va de lo <strong>general</strong> a lo <strong>particular</strong>: si todos los metales conducen la electricidad y el cobre es un metal, el cobre conduce. Si las premisas son verdaderas, la conclusión es <strong>segura</strong>.<br><br>La <strong>inducción</strong> va de casos particulares a una conclusión general: «todos los cisnes que vi son blancos; entonces todos los cisnes son blancos». Es muy útil, pero solo <strong>probable</strong>: un día apareció un cisne negro.
           </p>
         </div>
 
@@ -778,7 +618,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Deducción: general a particular. Inducción: particular a general.
+            💡 De lo general a lo particular, y al revés.
           </div>
         </div>
       </div>
@@ -786,25 +626,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre deducción e inducción:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la principal diferencia entre deducción e inducción?</p>
+          <p>¿Por qué la inducción solo da conclusiones probables?</p>
         </div>
         <div class="options-container">
-          <div class="option">No hay diferencia entre ellas</div>
-          <div class="option">La deducción es incorrecta y la inducción correcta</div>
-          <div class="option" data-correct="true">La deducción va de lo general a lo particular; la inducción de lo particular a lo general</div>
-          <div class="option">Ambas proporcionan certeza absoluta</div>
+          <div class="option" data-correct="true">Porque generaliza a partir de casos, y puede aparecer uno que no cumpla</div>
+          <div class="option">Porque va de lo general a lo particular</div>
+          <div class="option">Porque nunca usa ejemplos</div>
+          <div class="option">Porque siempre es falsa</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 12: A PRIORI Y A POSTERIORI -->
-    <div class="study-section" data-section="a-priori-posteriori">
+    <!-- 13. Las falacias: trampas del razonamiento -->
+    <div class="study-section" data-section="falacias">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔬 Argumentos A Priori y A Posteriori</h3>
+          <h3>🪤 Las falacias: trampas del razonamiento</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -812,40 +652,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Además de los métodos lógicos formales, los argumentos también se distinguen por su relación con la <strong>experiencia</strong>.<br><br>
-            
-            <strong>Argumentos A Priori:</strong><br>
-            Son conocimientos <strong>independientes de la experiencia</strong>. No necesitan de la observación empírica para ser verdaderos.<br><br>
-
-            <strong>Características de lo a priori:</strong><br>
-            • Son <strong>necesarios</strong> (no pueden ser de otra manera)<br>
-            • Son <strong>universales</strong> (valen en todos los casos)<br>
-            • Se obtienen por la <strong>razón pura</strong><br><br>
-
-            <strong>Ejemplos:</strong><br>
-            • <em>"Todos los triángulos tienen tres lados"</em> (verdad matemática)<br>
-            • <em>"El todo es mayor que las partes"</em> (verdad lógica)<br>
-            • <em>"2 + 2 = 4"</em> (verdad matemática)<br><br>
-
-            Estas verdades no necesitan ser comprobadas empíricamente porque son <strong>necesariamente verdaderas</strong> por la razón.<br><br>
-
-            <strong>Argumentos A Posteriori:</strong><br>
-            Son conocimientos <strong>basados en la evidencia empírica</strong>. Dependen de la observación y la experiencia.<br><br>
-
-            <strong>Características de lo a posteriori:</strong><br>
-            • Son <strong>contingentes</strong> (podrían ser de otra manera)<br>
-            • Son <strong>particulares</strong> (se refieren a casos específicos)<br>
-            • Están <strong>conectados con el mundo real</strong><br><br>
-
-            <strong>Ejemplos:</strong><br>
-            • <em>"El agua hierve a 100°C"</em> (verdad empírica)<br>
-            • <em>"Los cisnes son blancos"</em> (observación, aunque puede ser falsa)<br>
-            • <em>"Hoy está lloviendo"</em> (hecho observable)<br><br>
-
-            Estas verdades necesitan ser <strong>comprobadas</strong> mediante la experiencia y la observación.
+            Una <strong>falacia</strong> es un razonamiento que <strong>parece</strong> correcto pero no lo es. El <strong>ataque a la persona</strong> (<em>ad hominem</em>) critica a quien habla en lugar de su argumento: «no le creas, es un vago». El <strong>hombre de paja</strong> deforma lo que dijo el otro para atacarlo más fácil.<br><br>También es común la <strong>generalización apresurada</strong>: «me atendió mal un médico, todos son malos». Y la apelación a la <strong>mayoría</strong>: «si todos lo hacen, está bien».
           </p>
         </div>
 
@@ -856,33 +666,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 <em>A priori</em>: independiente de experiencia. <em>A posteriori</em>: basado en experiencia.
+            💡 Parecen correctas, pero no lo son.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre <em>a priori</em> y <em>a posteriori</em>:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál de estos es un conocimiento <em>a priori</em>?</p>
+          <p>«No le hagas caso a lo que dice sobre el cambio climático, si ni terminó la secundaria». ¿Qué falacia es?</p>
         </div>
         <div class="options-container">
-          <div class="option">Hoy está lloviendo</div>
-          <div class="option">Los cisnes son blancos</div>
-          <div class="option" data-correct="true">Todos los triángulos tienen tres lados</div>
-          <div class="option">El agua hierve a 100°C</div>
+          <div class="option">Generalización apresurada</div>
+          <div class="option">Una deducción correcta</div>
+          <div class="option">El principio de caridad</div>
+          <div class="option" data-correct="true">Ataque a la persona (ad hominem)</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 13: INVESTIGACIÓN Y ÉTICA -->
-    <div class="study-section" data-section="investigacion-etica">
+    <!-- 14. La crítica: atrévete a pensar -->
+    <div class="study-section" data-section="critica">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎓 La Investigación Filosófica Hoy: Virtudes y Ética</h3>
+          <h3>🔍 La crítica: atrévete a pensar</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -890,37 +700,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>investigación filosófica</strong> es un proceso sistemático de actividades intelectuales orientadas al descubrimiento o generación de un saber. Dado que la cuestión del método no está completamente zanjada, se podría decir que hay <strong>tantos métodos filosóficos como filósofos</strong>.<br><br>
-            
-            <strong>Virtudes del buen investigador filosófico:</strong><br><br>
-
-            <strong>1. Rigurosidad y objetividad:</strong><br>
-            Abordar el tema de estudio con precisión y sin sesgos personales.<br><br>
-
-            <strong>2. Integridad intelectual:</strong><br>
-            Ser honesto y humilde. Reconocer los límites del propio conocimiento.<br><br>
-
-            <strong>3. Curiosidad intelectual y creatividad:</strong><br>
-            Mantener la mente abierta y buscar nuevas perspectivas.<br><br>
-
-            <strong>¿Cómo se investiga en filosofía?</strong><br>
-            La investigación filosófica requiere <strong>leer</strong> lo que otros han escrito, para averiguar qué es interesante y establecer resultados usando los métodos del campo. <strong>Leer un texto es repensarlo</strong>, y repensar es pensar.<br><br>
-
-            <strong>El Plagio y la Ética:</strong><br>
-            La investigación filosófica está sometida a <strong>criterios éticos</strong>. Presentar el trabajo ajeno como propio (<strong>plagio</strong>) es un robo y un fraude, siendo una de las faltas más graves en la vida académica.<br><br>
-
-            <strong>Reglas fundamentales:</strong><br>
-            • <strong>Dar crédito</strong> al trabajo de otros<br>
-            • Las citas deben ser <strong>fieles</strong> (respetar el sentido del texto)<br>
-            • Las citas deben ser <strong>verificables</strong> (identificar autor y fuente)<br><br>
-
-            <strong>Pensamiento Independiente:</strong><br>
-            Lo esencial para la investigación no es ser <strong>original</strong> (la originalidad no es una exigencia), sino tener un <strong>"pensamiento independiente"</strong>. Esto significa pensar por uno mismo, aunque se llegue a conclusiones similares a otros.<br><br>
-
-            La investigación es una actividad profundamente <strong>social y ética</strong>. El investigador se une a una comunidad en busca de un bien común.
+            La tercera herramienta es la <strong>crítica</strong>. Criticar no es hablar mal de algo: viene del griego <em>kríno</em>, «<strong>separar</strong>, juzgar». Es examinar algo para separar lo que tiene fundamento de lo que no, y conocer sus <strong>límites</strong>.<br><br>En el siglo XVIII, <strong>Immanuel Kant</strong> resumió el espíritu de la <strong>Ilustración</strong> con un lema: «<strong>Sapere aude</strong>», «¡atrévete a pensar por ti mismo!». Para él, crecer es salir de la <strong>minoría de edad</strong>: dejar de depender de que otros piensen por nosotros.
           </p>
         </div>
 
@@ -931,30 +714,127 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Investigar: leer, repensar, ser riguroso y éticamente responsable.
+            💡 Separar lo fundado de lo infundado.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🏆 Verificación final</h4>
-          <p>Síntesis sobre la investigación filosófica:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es lo más esencial en la investigación filosófica?</p>
+          <p>¿Qué significa el lema «Sapere aude» de Kant?</p>
         </div>
         <div class="options-container">
-          <div class="option">Ser completamente original siempre</div>
-          <div class="option">Copiar ideas de otros sin citarlas</div>
-          <div class="option" data-correct="true">Tener pensamiento independiente, rigor y responsabilidad ética</div>
-          <div class="option">No leer a otros filósofos</div>
+          <div class="option">Obedecé siempre a los que saben</div>
+          <div class="option" data-correct="true">¡Atrévete a pensar por ti mismo!</div>
+          <div class="option">Hablá mal de todo</div>
+          <div class="option">No pienses, sentí</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Pensamiento crítico hoy -->
+    <div class="study-section" data-section="pensamiento-critico">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📱 Pensamiento crítico hoy</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Hoy recibimos más información que nunca, y no toda es confiable. El <strong>pensamiento crítico</strong> nos ayuda a no creer cualquier cosa: preguntar quién lo dice, con qué <strong>pruebas</strong>, y <strong>verificar</strong> en otras <strong>fuentes</strong> antes de compartir.<br><br>También implica mirar nuestras propias trampas. El <strong>sesgo de confirmación</strong> es la tendencia a creer solo lo que coincide con lo que ya pensamos. Ser crítico es aplicarse la duda a uno mismo, no solo a los demás.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Verificar y revisarse a uno mismo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el sesgo de confirmación?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Verificar una noticia en varias fuentes</div>
+          <div class="option">Un tipo de silogismo</div>
+          <div class="option" data-correct="true">La tendencia a creer solo lo que coincide con lo que ya pensamos</div>
+          <div class="option">Dudar de todo lo que pensamos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Síntesis: duda, diálogo y crítica -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏆 Síntesis: duda, diálogo y crítica</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El método filosófico es un camino que empieza en el <strong>asombro</strong> y convierte lo obvio en <strong>problema</strong>. La <strong>duda metódica</strong> de Descartes pone a prueba lo que creemos hasta encontrar algo firme: el cogito.<br><br>El <strong>diálogo</strong> nos hace pensar con otros, con razones y escucha; los <strong>argumentos</strong> bien construidos nos protegen de las <strong>falacias</strong>; y la <strong>crítica</strong> nos invita a pensar por nosotros mismos. No son solo herramientas para filósofos: sirven para vivir mejor.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Síntesis final: todos los conceptos integrados.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la síntesis del método filosófico?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Partir del asombro y usar la duda, el diálogo y la crítica para pensar con razones</div>
+          <div class="option">Creer todo lo que dice la mayoría</div>
+          <div class="option">Repetir de memoria lo que dicen los libros</div>
+          <div class="option">Evitar las preguntas difíciles</div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

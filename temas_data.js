@@ -221,7 +221,7 @@ const TOPICS = {
     platon: {
         youtubeId: '0cqb5BBcctY',
         startTime: 1,
-        endTime: 541, // 9 minutos
+        endTime: 601, // 2026-11-24: hasta 10:00 para cubrir los 16 huecos del cloze (antes cortaba en 9:01)
         title: 'Platón: ideas, alma y política',
         duration: '14:00'
     },
@@ -230,7 +230,7 @@ const TOPICS = {
         // youtubeId: 'jAnCP68Ch1s',
         youtubeId: 'K0Dn-_ZhmyM',
         startTime: 1,
-        endTime: 391, // 6 minutos y 30 segundos
+        endTime: 1021, // 2026-11-24: hasta 17:00 para cubrir los 16 huecos del cloze (antes cortaba en 6:31)
         title: 'Aristóteles: El concepto de Sustancia',
         duration: '18:30'
     },
@@ -238,9 +238,9 @@ const TOPICS = {
     metodo: {
         youtubeId: 'sdGQcNaz4JM',
         startTime: 1,
-        endTime: 721, // 12 minutos
+        endTime: 471, // 2026-11-24: hasta 7:50, donde termina el cloze (antes pedía ver 12 minutos)
         title: 'El Método Filosófico: La Duda Metódica',
-        duration: '12:00'
+        duration: '7:50'
     },
     // 1.7 - Ramas Clásicas: Metafísica, Ética y Lógica
     ramas: {
@@ -271,6 +271,24 @@ const TOPICS = {
       socrates: {
         filosofo: 'Sócrates',
         icono: '🧠',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      platon: {
+        filosofo: 'Platón',
+        icono: '🌌',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      aristoteles: {
+        filosofo: 'Aristóteles',
+        icono: '📐',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      metodo: {
+        filosofo: 'René Descartes',
+        icono: '🔎',
         notaAprobacion: 6,
         minimoActividad: 60
       },

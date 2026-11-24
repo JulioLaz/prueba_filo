@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Platón · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Platón (Unidad I). Versión 2.0 (2026-11-24): sistema completo con 15 pares, centrado en las Ideas y la caverna. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Platón
+    window.MapaSystemConfig = {
+      tema: 'platon',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Academia", definition: "Escuela de filosofía que Platón fundó en Atenas en el 387 a. C." },
+        { term: "Idea", definition: "Realidad universal, eterna e inmutable que capta la razón." },
+        { term: "Mundo Sensible", definition: "Nivel de las cosas materiales y cambiantes que captan los sentidos." },
+        { term: "Mundo Inteligible", definition: "Nivel de las Ideas, que solo capta la razón." },
+        { term: "Participación", definition: "Relación de las cosas con las Ideas: son copias que las imitan." },
+        { term: "Demiurgo", definition: "Artesano divino que modeló el mundo mirando las Ideas." },
+        { term: "Idea del Bien", definition: "La Idea suprema: permite conocer las demás y les da su ser." },
+        { term: "Símil del Sol", definition: "El Bien es para la razón lo que el Sol es para los ojos." },
+        { term: "Línea Dividida", definition: "Imagen de los cuatro grados del conocimiento." },
+        { term: "Doxa", definition: "Opinión: conocimiento del mundo sensible (imaginación y creencia)." },
+        { term: "Episteme", definition: "Ciencia: conocimiento de lo inteligible (pensamiento e inteligencia)." },
+        { term: "Alegoría de la Caverna", definition: "Relato de prisioneros que toman las sombras por la realidad." },
+        { term: "Conversión", definition: "Periagogé: educar es girar la mirada hacia la luz." },
+        { term: "Dialéctica", definition: "Método de diálogo que asciende de idea en idea hasta el Bien." },
+        { term: "Rey Filósofo", definition: "Gobernante ideal: el que conoce la Idea del Bien." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🌌'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🌌']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🌌 Platón</span></div>
+      </div>
+      <h3 class="sub">El mundo de las Ideas y la caverna</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Platón">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Platón</div>
+            <div class="desc">Buscó algo <strong>firme</strong> en un mundo que cambia: las <strong>Ideas</strong>. La <strong>caverna</strong> muestra el camino de las sombras a la luz del <strong>Bien</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Vida de Platón">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Vida de Platón</div>
+                <div class="desc">Atenas, 427–347 a. C.: de la <strong>política</strong> a la filosofía.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Discípulo de Sócrates"><div class="toggle" style="visibility: hidden;"></div><div class="title">Discípulo de Sócrates</div><div class="desc">La <strong>condena</strong> de su maestro le cambió la vida.</div></div></li>
+                <li><div class="node" data-title="Viajes"><div class="toggle" style="visibility: hidden;"></div><div class="title">Viajes</div><div class="desc">Egipto, Italia y <strong>Siracusa</strong>.</div></div></li>
+                <li><div class="node" data-title="La Academia"><div class="toggle" style="visibility: hidden;"></div><div class="title">La Academia</div><div class="desc">Primera gran escuela de filosofía (387 a. C.).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Heráclito y Parménides">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Heráclito y Parménides</div>
+                <div class="desc">El problema que Platón heredó.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Todo cambia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Todo cambia</div><div class="desc">Heráclito: nadie se baña dos veces en el mismo río.</div></div></li>
+                <li><div class="node" data-title="Nada cambia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Nada cambia</div><div class="desc">Parménides: el verdadero ser es <strong>inmutable</strong>.</div></div></li>
+                <li><div class="node" data-title="La solución"><div class="toggle" style="visibility: hidden;"></div><div class="title">La solución</div><div class="desc">Las cosas cambian; las <strong>Ideas</strong> no.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Teoría de las Ideas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Teoría de las Ideas</div>
+                <div class="desc">Lo común a muchas cosas existe por sí mismo.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Qué es una Idea"><div class="toggle" style="visibility: hidden;"></div><div class="title">Qué es una Idea</div><div class="desc"><strong>Universal</strong>, eterna, inmutable y perfecta.</div></div></li>
+                <li><div class="node" data-title="El círculo perfecto"><div class="toggle" style="visibility: hidden;"></div><div class="title">El círculo perfecto</div><div class="desc">Lo conocemos con la <strong>razón</strong>, no en el pizarrón.</div></div></li>
+                <li><div class="node" data-title="Participación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Participación</div><div class="desc">Las cosas son <strong>copias</strong> de las Ideas.</div></div></li>
+                <li><div class="node" data-title="El Demiurgo"><div class="toggle" style="visibility: hidden;"></div><div class="title">El Demiurgo</div><div class="desc">Modeló el mundo mirando las Ideas (<em>Timeo</em>).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Dos Niveles de Realidad">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Dos Niveles de Realidad</div>
+                <div class="desc">Dualismo ontológico.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Mundo sensible"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mundo sensible</div><div class="desc">Material, múltiple y <strong>cambiante</strong>: lo captan los sentidos.</div></div></li>
+                <li><div class="node" data-title="Mundo inteligible"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mundo inteligible</div><div class="desc">Las Ideas: lo capta la <strong>razón</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Idea del Bien">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Idea del Bien</div>
+                <div class="desc">En la cima de la <strong>jerarquía</strong> de las Ideas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Símil del Sol"><div class="toggle" style="visibility: hidden;"></div><div class="title">Símil del Sol</div><div class="desc">Como el Sol da <strong>luz</strong> y vida, el Bien da conocimiento y ser.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Línea Dividida">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Línea Dividida</div>
+                <div class="desc">Cuatro grados del conocimiento.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Doxa"><div class="toggle" style="visibility: hidden;"></div><div class="title">Doxa</div><div class="desc">Opinión: <strong>imaginación</strong> (eikasía) y <strong>creencia</strong> (pístis).</div></div></li>
+                <li><div class="node" data-title="Episteme"><div class="toggle" style="visibility: hidden;"></div><div class="title">Episteme</div><div class="desc">Ciencia: <strong>pensamiento</strong> (diánoia) e <strong>inteligencia</strong> (nóesis).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Alegoría de la Caverna">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Alegoría de la Caverna</div>
+                <div class="desc">El camino de la ignorancia al saber (<em>La República</em>).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Los prisioneros"><div class="toggle" style="visibility: hidden;"></div><div class="title">Los prisioneros</div><div class="desc">Creen que las <strong>sombras</strong> son toda la realidad.</div></div></li>
+                <li><div class="node" data-title="La liberación"><div class="toggle" style="visibility: hidden;"></div><div class="title">La liberación</div><div class="desc">Salir duele: un <strong>ascenso</strong> gradual.</div></div></li>
+                <li><div class="node" data-title="Ver el Sol"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ver el Sol</div><div class="desc">El Sol es la <strong>Idea del Bien</strong>.</div></div></li>
+                <li><div class="node" data-title="El regreso"><div class="toggle" style="visibility: hidden;"></div><div class="title">El regreso</div><div class="desc">Lo rechazan, como a <strong>Sócrates</strong>.</div></div></li>
+                <li><div class="node" data-title="La caverna hoy"><div class="toggle" style="visibility: hidden;"></div><div class="title">La caverna hoy</div><div class="desc">Noticias falsas, prejuicios y <strong>pantallas</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Educación y Dialéctica">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Educación y Dialéctica</div>
+                <div class="desc">Cómo se sale de la caverna.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Girar la mirada"><div class="toggle" style="visibility: hidden;"></div><div class="title">Girar la mirada</div><div class="desc">Educar es una <strong>conversión</strong>, no llenar un vaso.</div></div></li>
+                <li><div class="node" data-title="Matemática"><div class="toggle" style="visibility: hidden;"></div><div class="title">Matemática</div><div class="desc">Enseña a pensar sin los sentidos.</div></div></li>
+                <li><div class="node" data-title="Dialéctica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dialéctica</div><div class="desc">Asciende de idea en idea hasta el <strong>Bien</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Ciudad Justa">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Ciudad Justa</div>
+                <div class="desc">La República: cada grupo cumple su función.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Tres grupos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tres grupos</div><div class="desc"><strong>Productores</strong>, <strong>guardianes</strong> y <strong>gobernantes</strong>.</div></div></li>
+                <li><div class="node" data-title="Rey filósofo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Rey filósofo</div><div class="desc">Debe gobernar quien <strong>conoce el Bien</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Academia</h4><p>Escuela de filosofía que Platón fundó en Atenas en el 387 a. C.</p></article>
+          <article class="term"><h4>Idea</h4><p>Realidad universal, eterna e inmutable que capta la razón.</p></article>
+          <article class="term"><h4>Mundo Sensible</h4><p>Nivel de las cosas materiales y cambiantes que captan los sentidos.</p></article>
+          <article class="term"><h4>Mundo Inteligible</h4><p>Nivel de las Ideas, que solo capta la razón.</p></article>
+          <article class="term"><h4>Participación</h4><p>Relación de las cosas con las Ideas: son copias que las imitan.</p></article>
+          <article class="term"><h4>Demiurgo</h4><p>Artesano divino que modeló el mundo mirando las Ideas.</p></article>
+          <article class="term"><h4>Idea del Bien</h4><p>La Idea suprema: permite conocer las demás y les da su ser.</p></article>
+          <article class="term"><h4>Símil del Sol</h4><p>El Bien es para la razón lo que el Sol es para los ojos.</p></article>
+          <article class="term"><h4>Línea Dividida</h4><p>Imagen de los cuatro grados del conocimiento.</p></article>
+          <article class="term"><h4>Doxa</h4><p>Opinión: conocimiento del mundo sensible (imaginación y creencia).</p></article>
+          <article class="term"><h4>Episteme</h4><p>Ciencia: conocimiento de lo inteligible (pensamiento e inteligencia).</p></article>
+          <article class="term"><h4>Alegoría de la Caverna</h4><p>Relato de prisioneros que toman las sombras por la realidad.</p></article>
+          <article class="term"><h4>Conversión</h4><p>Periagogé: educar es girar la mirada hacia la luz.</p></article>
+          <article class="term"><h4>Dialéctica</h4><p>Método de diálogo que asciende de idea en idea hasta el Bien.</p></article>
+          <article class="term"><h4>Rey Filósofo</h4><p>Gobernante ideal: el que conoce la Idea del Bien.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de Platón.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Salir de la caverna</summary>
+      <div class="content">
+        <h4>Preguntas para pasar de la doxa a la episteme</h4>
+        <ul>
+          <li><strong>Sombras:</strong> ¿Lo que creo es verdad o solo lo vi y lo repito?</li>
+          <li><strong>Idea:</strong> ¿Qué tienen en común todos los casos, más allá de un ejemplo?</li>
+          <li><strong>Línea dividida:</strong> ¿Estoy opinando o puedo dar razones?</li>
+          <li><strong>Dialéctica:</strong> ¿Qué preguntas me ayudan a revisar lo que pienso?</li>
+          <li><strong>Regreso:</strong> ¿Cómo puedo ayudar a otros a ver lo que yo descubrí?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

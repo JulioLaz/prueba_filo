@@ -144,6 +144,8 @@ console.log('📚 Cargando sistema de modal educativo...');
       'pragmatismo': '🔧',
       'antropocentrismo': '👤',
       'dualismo': '🕊️',
+      'platon': '🌌',
+      'metodo': '🔎',
       'antropologia': '🌱',
       'existencialismo': '🤔',
       'estoicismo': '🗿',

@@ -3,33 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Platón: Ideas, Caverna y Conocimiento</title>
+  <!--
+    Material de lectura — Platón: El Mundo de las Ideas y la Caverna. Unidad I.
+    17 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-24): reescrito en 17 secciones cortas (antes 14 muy largas). Se centra en las Ideas, la línea dividida, la caverna, la dialéctica y la República; el alma (anámnesis, cuerpo-cárcel, carro alado) queda para «Dualismo Platónico», Unidad II.
+  -->
+  <title>Platón: El Mundo de las Ideas y la Caverna</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
   <script src="../../js/celebration.js" defer></script>
-  
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Platón
     window.ReadAloudSystemConfig = {
-      tema: 'Platón: Ideas, Caverna y Conocimiento',
-      threshold: 0.80,
-      sections: 14, // 14 secciones completas
+      tema: 'Platón: El Mundo de las Ideas y la Caverna',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 17,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=platon',
-      celebrationEmojis: ['💡', '🏛️', '🔦', '☀️', '📚', '🧠', '👁️', '✨'],
-      
+      celebrationEmojis: ['🌌', '☀️', '🔦', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'platón': ['platónico', 'discípulo de sócrates'],
-        'ideas': ['formas', 'esencias', 'paradigmas'],
-        'caverna': ['alegoría', 'mito de la caverna'],
-        'dualismo': ['dos mundos', 'sensible e inteligible'],
-        'episteme': ['ciencia', 'conocimiento verdadero'],
-        'doxa': ['opinión', 'conocimiento sensible'],
-        'anámnesis': ['reminiscencia', 'recuerdo'],
-        'bien': ['idea suprema', 'sol'],
-        'alma': ['psyché', 'inmortal'],
-        'justicia': ['armonía', 'orden']
+        'platon': ['platón'],
+        'socrates': ['sócrates'],
+        'heraclito': ['heráclito'],
+        'parmenides': ['parménides'],
+        'eikasia': ['eikasía', 'icasia'],
+        'pistis': ['pístis'],
+        'dianoia': ['diánoia', 'dianoya'],
+        'noesis': ['nóesis'],
+        'episteme': ['epistéme'],
+        'doxa': ['doxa', 'docsa'],
+        'periagoge': ['periagogé'],
+        'methexis': ['méthexis', 'metexis'],
+        'mimesis': ['mímesis'],
+        'eidos': ['eidos', 'eídos'],
+        'timeo': ['timeo'],
+        'demiurgo': ['demiurgo'],
+        'siracusa': ['siracusa']
       }
     };
   </script>
@@ -39,21 +52,21 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 14 secciones</span>
+        <span id="progress-counter">0 / 17 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>💡 Platón: Ideas, Caverna y Conocimiento</h1>
-    <p><em>Exploración completa del dualismo platónico, la teoría de las Ideas, la alegoría de la caverna, el conocimiento como recuerdo y el Estado ideal gobernado por filósofos.</em></p>
+    <h1>🌌 Platón: El Mundo de las Ideas y la Caverna</h1>
+    <p><em>Platón buscó algo firme en un mundo que cambia: la <strong>teoría de las Ideas</strong>, la <strong>Idea del Bien</strong> y el símil del Sol, la <strong>línea dividida</strong>, la <strong>alegoría de la caverna</strong>, la educación como giro de la mirada, la <strong>dialéctica</strong> y el <strong>rey filósofo</strong>.</em></p>
 
-    <!-- SECCIÓN 1: INTRODUCCIÓN -->
-    <div class="study-section active" data-section="introduccion">
+    <!-- 1. Platón, de político a filósofo -->
+    <div class="study-section active" data-section="vida">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎓 Introducción: Platón y el Dualismo</h3>
+          <h3>🏛️ Platón, de político a filósofo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -61,17 +74,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Platón</strong> (427-347 a.C.) es uno de los filósofos más influyentes de la historia, cuya obra sentó las bases de gran parte de la <strong>filosofía occidental</strong>. Fue discípulo de <strong>Sócrates</strong> y maestro de <strong>Aristóteles</strong>.<br><br>
-            
-            La clave para comprender a Platón es entender que él percibía la realidad y el conocimiento bajo una perspectiva <strong>dualista</strong>, es decir, que existen <strong>dos ámbitos o "mundos"</strong> fundamentalmente distintos.<br><br>
-
-            <strong>¿Por qué dos mundos?</strong><br>
-            Platón buscaba resolver un problema fundamental: ¿cómo puede existir conocimiento universal y verdadero en un mundo donde todo cambia constantemente? Su respuesta fue revolucionaria: la verdadera realidad no es este mundo cambiante que percibimos, sino un mundo de <strong>esencias eternas e inmutables</strong> que solo podemos captar con la razón.<br><br>
-
-            Esta visión dualista atraviesa toda su filosofía: hay dos mundos, dos tipos de realidad, dos formas de conocimiento, dos aspectos del ser humano. Comprender este dualismo es la llave para entender todo el pensamiento platónico.
+            <strong>Platón</strong> (427–347 a. C.) nació en <strong>Atenas</strong>, en una familia aristocrática, y de joven quería dedicarse a la <strong>política</strong>. Pero fue discípulo de <strong>Sócrates</strong>, y la condena a muerte de su maestro lo marcó: si la ciudad mataba al hombre más justo, algo andaba muy mal.<br><br>Viajó por Egipto, Italia y <strong>Siracusa</strong>, y al volver fundó la <strong>Academia</strong> (387 a. C.), la primera gran escuela de filosofía. Escribió <strong>diálogos</strong>, casi siempre con Sócrates como protagonista.
           </p>
         </div>
 
@@ -82,7 +88,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Platón: dos mundos para explicar la verdad y el cambio.
+            💡 La muerte de Sócrates lo cambió todo.
           </div>
         </div>
       </div>
@@ -90,25 +96,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la introducción a Platón:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la característica fundamental del pensamiento de Platón?</p>
+          <p>¿Qué hecho cambió el rumbo de la vida de Platón?</p>
         </div>
         <div class="options-container">
-          <div class="option">Que todo es material y cambiante</div>
-          <div class="option" data-correct="true">Su visión dualista: existen dos mundos o ámbitos de realidad</div>
-          <div class="option">Que no existe conocimiento verdadero</div>
-          <div class="option">Que solo importa el mundo sensible</div>
+          <div class="option" data-correct="true">La condena a muerte de su maestro Sócrates</div>
+          <div class="option">Un viaje a Egipto donde aprendió astronomía</div>
+          <div class="option">Una derrota de Atenas en los Juegos Olímpicos</div>
+          <div class="option">La fundación del Liceo por Aristóteles</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 2: MUNDO SENSIBLE -->
-    <div class="study-section" data-section="mundo-sensible">
+    <!-- 2. Un problema heredado: Heráclito y Parménides -->
+    <div class="study-section" data-section="cambio">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>👁️ El Mundo Sensible: El Mundo que Percibimos</h3>
+          <h3>🌊 Un problema heredado: Heráclito y Parménides</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -116,24 +122,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>Teoría de las Ideas</strong> (o Teoría de las Formas) es el núcleo central de la filosofía platónica. Para Platón, la realidad se divide en dos esferas principales. La primera es el <strong>Mundo Sensible</strong>.<br><br>
-            
-            <strong>¿Qué es el Mundo Sensible?</strong><br>
-            Este es el mundo que captamos a través de los <strong>sentidos</strong>: la vista, el oído, el tacto, el gusto y el olfato. Es el mundo que nos rodea cotidianamente.<br><br>
-
-            <strong>Características del Mundo Sensible:</strong><br>
-            • Es <strong>visible y material</strong><br>
-            • Está en <strong>continuo cambio</strong> (<em>devenir</em>), como había señalado Heráclito<br>
-            • Es una realidad de <strong>rango inferior</strong><br>
-            • Es una <strong>copia imperfecta</strong> del verdadero mundo<br>
-            • Contiene objetos <strong>particulares, mutables y contingentes</strong> (este caballo específico, esta mesa específica)<br><br>
-
-            <strong>Ejemplo:</strong> Cuando vemos un caballo, lo que percibimos es un caballo individual, que nació, crecerá, envejecerá y morirá. Es imperfecto, cambiante y temporal. Este caballo particular pertenece al Mundo Sensible.<br><br>
-
-            Para Platón, este mundo no es la <strong>verdadera realidad</strong>, sino solo una sombra o reflejo de algo superior.
+            Platón heredó una discusión de los presocráticos. <strong>Heráclito</strong> decía que <strong>todo cambia</strong>: nadie se baña dos veces en el mismo río. <strong>Parménides</strong>, en cambio, afirmaba que el verdadero ser <strong>no cambia</strong> y que el movimiento es una ilusión de los sentidos.<br><br>Platón pensó que los dos tenían algo de razón. Las cosas que vemos cambian, como decía Heráclito; pero tiene que haber algo <strong>eterno e inmutable</strong>, como decía Parménides, para que podamos conocer. Ese algo son las <strong>Ideas</strong>.
           </p>
         </div>
 
@@ -144,33 +136,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Mundo Sensible: lo que percibimos con los sentidos, cambiante e imperfecto.
+            💡 Lo que cambia y lo que no cambia.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Mundo Sensible:</p>
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál de estas características corresponde al Mundo Sensible?</p>
+          <p>¿Cómo resolvió Platón la discusión entre Heráclito y Parménides?</p>
         </div>
         <div class="options-container">
-          <div class="option">Eterno e inmutable</div>
-          <div class="option">Solo captable por la razón</div>
-          <div class="option" data-correct="true">Visible, material, cambiante y percibido por los sentidos</div>
-          <div class="option">La verdadera realidad</div>
+          <div class="option">Le dio la razón solo a Heráclito: todo cambia y nada es eterno</div>
+          <div class="option" data-correct="true">Las cosas sensibles cambian, pero las Ideas son eternas e inmutables</div>
+          <div class="option">Dijo que el arché de todo es el agua</div>
+          <div class="option">Afirmó que no se puede conocer nada</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 3: MUNDO INTELIGIBLE -->
-    <div class="study-section" data-section="mundo-inteligible">
+    <!-- 3. ¿Qué es una Idea? -->
+    <div class="study-section" data-section="idea">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧠 El Mundo Inteligible: El Mundo de las Ideas</h3>
+          <h3>💡 ¿Qué es una Idea?</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -178,32 +170,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La segunda esfera de la realidad es el <strong>Mundo Inteligible</strong> o <strong>Mundo de las Ideas</strong>. Este es el mundo de la <strong>verdad</strong>.<br><br>
-            
-            <strong>¿Qué es el Mundo Inteligible?</strong><br>
-            Este mundo solo puede ser captado por el <strong>entendimiento o la razón</strong> (<em>nous</em>), no por los sentidos. Es invisible, pero más real que el mundo sensible.<br><br>
-
-            <strong>¿Qué son las Ideas (o Formas)?</strong><br>
-            Las Ideas son entidades <strong>extramentales</strong> (existen fuera de nuestra mente), <strong>objetivas</strong> y <strong>reales</strong>. No son pensamientos en nuestra cabeza, sino realidades supremas.<br><br>
-
-            <strong>Características de las Ideas:</strong><br>
-            • Son <strong>inmutables</strong> (no cambian)<br>
-            • Son <strong>eternas</strong> (no tienen principio ni fin)<br>
-            • Son <strong>absolutas</strong> (perfectas en sí mismas)<br>
-            • Son <strong>simples</strong> (no tienen partes)<br>
-            • Son <strong>universales</strong> (no particulares)<br><br>
-
-            Estas características son las mismas que Parménides atribuía al Ser.<br><br>
-
-            <strong>Función de las Ideas:</strong><br>
-            • Son las <strong>esencias</strong> o la verdadera realidad de las cosas sensibles<br>
-            • Son los <strong>modelos</strong> (<em>paradigmas</em>) de las cosas que vemos<br>
-            • Son las <strong>causas formales y finales</strong> de los objetos del mundo sensible<br><br>
-
-            <strong>Ejemplo:</strong> La Idea de Caballo es eterna, perfecta, inmutable. Es el modelo del cual todos los caballos individuales son copias imperfectas.
+            Pensá en muchas cosas bellas: una canción, un paisaje, una persona. Son distintas, pero todas tienen algo en común: son bellas. Para Platón, eso común es la <strong>Idea</strong> de Belleza, la Belleza en sí.<br><br>Una Idea (<em>eidos</em>) no es un pensamiento de nuestra cabeza: es una realidad que existe por sí misma. Es <strong>universal</strong> (una para muchas cosas), <strong>eterna</strong>, <strong>inmutable</strong> y <strong>perfecta</strong>. Los ojos ven cosas bellas; solo la <strong>razón</strong> capta la Belleza.
           </p>
         </div>
 
@@ -214,33 +184,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Mundo Inteligible: las Ideas eternas, inmutables y perfectas.
+            💡 Lo común a muchas cosas.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Mundo Inteligible:</p>
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cómo podemos captar el Mundo Inteligible según Platón?</p>
+          <p>Para Platón, ¿qué es una Idea?</p>
         </div>
         <div class="options-container">
-          <div class="option">A través de los cinco sentidos</div>
-          <div class="option">Mirando las sombras en la caverna</div>
-          <div class="option" data-correct="true">A través de la razón o el entendimiento (<em>nous</em>)</div>
-          <div class="option">Es imposible captarlo</div>
+          <div class="option">Un pensamiento que se le ocurre a cada persona</div>
+          <div class="option">Una cosa material que se ve con los ojos</div>
+          <div class="option" data-correct="true">Una realidad universal, eterna e inmutable que se capta con la razón</div>
+          <div class="option">Una opinión que cambia según la época</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 4: LA IDEA DEL BIEN -->
-    <div class="study-section" data-section="idea-bien">
+    <!-- 4. El círculo perfecto -->
+    <div class="study-section" data-section="circulo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>☀️ La Idea del Bien: La Idea Suprema</h3>
+          <h3>⭕ El círculo perfecto</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -248,33 +218,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            En la cima de la jerarquía de las Ideas se encuentra la <strong>Idea del Bien</strong>, la más importante de todas las Ideas.<br><br>
-            
-            <strong>¿Qué es la Idea del Bien?</strong><br>
-            La Idea del Bien es el <strong>principio supremo</strong> que da sentido e inteligibilidad a todo lo real. Es la causa de la verdad y de la existencia de todas las demás Ideas.<br><br>
-
-            <strong>Función de la Idea del Bien:</strong><br>
-            • Es la <strong>fuente de toda verdad</strong><br>
-            • Da <strong>existencia</strong> a todas las demás Ideas<br>
-            • Permite que nuestra mente <strong>conozca</strong> las Ideas<br>
-            • Es el <strong>fin último</strong> de todo conocimiento filosófico<br>
-            • Es el <strong>fundamento del orden</strong> del universo<br><br>
-
-            <strong>La Analogía del Sol:</strong><br>
-            Platón compara la Idea del Bien con el <strong>Sol</strong>:<br><br>
-
-            Así como el Sol en el mundo visible:<br>
-            • Ilumina los objetos y permite que los veamos<br>
-            • Da vida y sustenta la existencia de los seres<br><br>
-
-            La Idea del Bien en el mundo inteligible:<br>
-            • Ilumina las Ideas y permite que las conozcamos<br>
-            • Da existencia y orden a toda la realidad<br><br>
-
-            Sin la Idea del Bien, no podría haber conocimiento verdadero ni existencia ordenada. Es el <strong>principio último</strong> de toda la filosofía platónica.
+            Un ejemplo de la geometría ayuda a entenderlo. Dibujá un círculo en el pizarrón: por más cuidado que pongas, nunca será perfecto, y con el tiempo se borra. Sin embargo, sabés qué es un círculo perfecto: todos sus puntos están a la misma distancia del centro.<br><br>Ese <strong>círculo perfecto</strong> no está en el pizarrón: lo conocés con la <strong>razón</strong>. Por eso Platón admiraba la <strong>matemática</strong>: muestra que hay verdades que no dependen de lo que vemos. En la Academia decían: «Que no entre nadie que no sepa <strong>geometría</strong>».
           </p>
         </div>
 
@@ -285,33 +232,177 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 La Idea del Bien es como el Sol: ilumina y da existencia.
+            💡 Ningún círculo dibujado es perfecto.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la Idea del Bien:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué muestra el ejemplo del círculo dibujado en el pizarrón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que los círculos dibujados son perfectos</div>
+          <div class="option" data-correct="true">Que conocemos con la razón un círculo perfecto que no vemos en ningún lado</div>
+          <div class="option">Que la geometría no sirve para la filosofía</div>
+          <div class="option">Que solo existe lo que se puede dibujar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Dos niveles de realidad -->
+    <div class="study-section" data-section="dos-mundos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌍 Dos niveles de realidad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Con la teoría de las Ideas, Platón divide la realidad en dos. El <strong>mundo sensible</strong> es el que captan los sentidos: cosas materiales, <strong>múltiples</strong> y <strong>cambiantes</strong>, que nacen y mueren. El <strong>mundo inteligible</strong> es el de las Ideas: únicas, eternas e inmutables, que solo capta la razón.<br><br>No son dos lugares en un mapa, sino dos grados de realidad. Lo más real no es lo que se toca, sino lo que <strong>no cambia</strong>: las Ideas. Esta división se llama <strong>dualismo ontológico</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Lo sensible y lo inteligible.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué diferencia hay entre el mundo sensible y el mundo inteligible?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El sensible es material y cambiante; el inteligible es el de las Ideas eternas que capta la razón</div>
+          <div class="option">El sensible es el de los dioses; el inteligible, el de los animales</div>
+          <div class="option">Son dos países que Platón visitó en sus viajes</div>
+          <div class="option">No hay diferencia: los dos se captan con los sentidos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Copias de las Ideas -->
+    <div class="study-section" data-section="participacion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🪞 Copias de las Ideas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            ¿Qué relación hay entre los dos mundos? Las cosas sensibles son <strong>copias</strong> imperfectas de las Ideas. Una silla es silla porque <strong>participa</strong> de la Idea de silla; un acto es justo porque participa de la Justicia. Platón llama a esto <strong>participación</strong> (<em>méthexis</em>) e <strong>imitación</strong> (<em>mímesis</em>).<br><br>En el diálogo <em>Timeo</em> lo cuenta como un mito: un artesano divino, el <strong>Demiurgo</strong>, modeló el mundo mirando las Ideas, como un escultor que copia un modelo.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Copia y modelo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué relación tienen las cosas sensibles con las Ideas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Son más reales que las Ideas</div>
+          <div class="option">Las Ideas son copias de las cosas</div>
+          <div class="option">No tienen ninguna relación</div>
+          <div class="option" data-correct="true">Son copias imperfectas que participan de las Ideas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. La Idea suprema y el símil del Sol -->
+    <div class="study-section" data-section="bien">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>☀️ La Idea suprema y el símil del Sol</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Las Ideas forman una <strong>jerarquía</strong>, y en la cima está la Idea del <strong>Bien</strong>, la más importante de todas. Para explicarla, Platón usa el <strong>símil del Sol</strong>, en <em>La República</em>.<br><br>Así como el Sol da <strong>luz</strong> para que los ojos vean las cosas y hace que las plantas crezcan, el Bien hace que la razón pueda <strong>conocer</strong> las demás Ideas y les da su <strong>ser</strong>. Sin luz no vemos; sin el Bien no hay conocimiento verdadero.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El Bien es como el Sol.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Por qué Platón compara la Idea del Bien con el Sol?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque ambos son calientes</div>
-          <div class="option">Porque ambos están en el cielo</div>
-          <div class="option" data-correct="true">Porque así como el Sol ilumina y da vida, la Idea del Bien ilumina el conocimiento y da existencia</div>
-          <div class="option">Porque ambos son amarillos</div>
+          <div class="option">Porque el Bien es una estrella del cielo</div>
+          <div class="option">Porque el Sol es la Idea más pequeña</div>
+          <div class="option" data-correct="true">Porque, como el Sol ilumina y da vida, el Bien permite conocer las Ideas y les da su ser</div>
+          <div class="option">Porque el Bien solo existe de día</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 5: ALEGORÍA DE LA CAVERNA - PARTE 1 -->
-    <div class="study-section" data-section="caverna-parte1">
+    <!-- 8. Los grados del conocimiento -->
+    <div class="study-section" data-section="linea">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔦 La Alegoría de la Caverna (Parte 1): Los Prisioneros</h3>
+          <h3>📏 Los grados del conocimiento</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -319,25 +410,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para explicar la situación humana respecto al conocimiento y la verdad, Platón utilizó la célebre <strong>Alegoría de la Caverna</strong> al principio del Libro VII de <em>La República</em>. Es la metáfora más famosa de toda la historia de la filosofía.<br><br>
-            
-            <strong>La Escena Inicial:</strong><br>
-            Imagina una caverna subterránea con una entrada hacia la luz. Dentro hay prisioneros que han estado encadenados desde su nacimiento, con el cuello y las piernas atadas, de modo que solo pueden mirar hacia la pared del fondo.<br><br>
-
-            Detrás de ellos, a cierta distancia, hay un <strong>fuego</strong> encendido. Entre el fuego y los prisioneros hay un muro, como el que usan los titiriteros para mostrar sus figuras.<br><br>
-
-            Por detrás del muro pasan personas llevando objetos, estatuas de personas y animales. El fuego proyecta las <strong>sombras</strong> de estos objetos en la pared que los prisioneros miran.<br><br>
-
-            <strong>¿Qué representan los prisioneros?</strong><br>
-            Los prisioneros representan a los <strong>seres humanos</strong> que viven en el <strong>Mundo Sensible</strong>, atrapados en la ignorancia.<br><br>
-
-            <strong>¿Qué representan las sombras?</strong><br>
-            Las sombras representan el conocimiento más superficial: las <strong>imágenes, reflejos y apariencias</strong> que percibimos con los sentidos. Este nivel de conocimiento se llama <strong>imaginación</strong> (<em>eikasía</em>).<br><br>
-
-            Los prisioneros consideran estas sombras como la <strong>única verdad</strong>, porque nunca han visto nada más.
+            Para mostrar cómo se pasa de la ignorancia a la sabiduría, Platón imagina una línea <strong>dividida</strong>. La parte baja es la <strong>doxa</strong> (opinión), sobre el mundo sensible: primero la <strong>imaginación</strong> (<em>eikasía</em>), que ve sombras y reflejos; después la <strong>creencia</strong> (<em>pístis</em>), que ve las cosas.<br><br>La parte alta es la <strong>episteme</strong> (ciencia), sobre lo inteligible: el <strong>pensamiento</strong> (<em>diánoia</em>) de la matemática y, arriba de todo, la <strong>inteligencia</strong> (<em>nóesis</em>), que capta las Ideas y el Bien.
           </p>
         </div>
 
@@ -348,7 +424,199 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Los prisioneros creen que las sombras son la realidad.
+            💡 De la opinión a la ciencia.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es el grado más alto de conocimiento en la línea dividida?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La inteligencia (nóesis), que capta las Ideas y el Bien</div>
+          <div class="option">La imaginación (eikasía), que ve sombras</div>
+          <div class="option">La creencia (pístis), que ve las cosas</div>
+          <div class="option">La opinión de la mayoría</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. La caverna (1): los prisioneros -->
+    <div class="study-section" data-section="caverna1">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔦 La caverna (1): los prisioneros</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En <em>La República</em>, Platón cuenta una <strong>alegoría</strong>. Imaginá unos <strong>prisioneros</strong> encadenados desde niños en el fondo de una <strong>caverna</strong>, mirando la pared. Detrás de ellos arde un <strong>fuego</strong>, y entre el fuego y ellos pasan personas llevando objetos.<br><br>Los prisioneros solo ven las <strong>sombras</strong> de esos objetos en la pared y escuchan ecos. Como nunca vieron otra cosa, creen que las sombras son <strong>toda la realidad</strong>. Así vivimos cuando no pensamos: tomamos apariencias por verdades.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Sombras en la pared.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué creen los prisioneros de la caverna?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que el fuego es un dios</div>
+          <div class="option" data-correct="true">Que las sombras de la pared son toda la realidad</div>
+          <div class="option">Que están soñando y pronto despertarán</div>
+          <div class="option">Que afuera hay un mundo mejor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. La caverna (2): la liberación -->
+    <div class="study-section" data-section="caverna2">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⛓️ La caverna (2): la liberación</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Un día, alguien <strong>libera</strong> a un prisionero y lo obliga a darse vuelta. Ve el fuego y los objetos, y la luz le <strong>duele</strong> en los ojos: quiere volver a sus sombras, que le resultan más cómodas.<br><br>Después lo arrastran por una cuesta empinada hacia la <strong>salida</strong>. Afuera, la luz lo enceguece. Poco a poco se acostumbra: primero mira sombras y reflejos en el agua, luego las cosas, de noche las estrellas, y al final el <strong>Sol</strong>. Aprender cuesta: es un <strong>ascenso</strong> doloroso.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Salir duele.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué el prisionero liberado quiere volver a sus sombras?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque afuera hace frío</div>
+          <div class="option">Porque extraña a los que llevan los objetos</div>
+          <div class="option">Porque las sombras son más reales que las cosas</div>
+          <div class="option" data-correct="true">Porque la luz le duele y las sombras le resultan más cómodas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. La caverna (3): ver el Sol -->
+    <div class="study-section" data-section="caverna3">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌞 La caverna (3): ver el Sol</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Cuando por fin puede mirar el <strong>Sol</strong>, el liberado entiende todo: el Sol da la luz, las estaciones y la vida, y es la causa de lo que veía en la caverna. Siente <strong>lástima</strong> por sus antiguos compañeros, que siguen creyendo en sombras.<br><br>Cada elemento tiene un significado: la caverna es el <strong>mundo sensible</strong>; las sombras, las apariencias; el exterior, el <strong>mundo inteligible</strong>; y el Sol, la <strong>Idea del Bien</strong>. El camino hacia afuera es la <strong>educación</strong> filosófica.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Qué significa cada cosa.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>En la alegoría de la caverna, ¿qué representa el Sol?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El fuego de la caverna</div>
+          <div class="option">El mundo sensible</div>
+          <div class="option" data-correct="true">La Idea del Bien</div>
+          <div class="option">La opinión de la mayoría</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. La caverna (4): el regreso -->
+    <div class="study-section" data-section="caverna4">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>↩️ La caverna (4): el regreso</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El liberado podría quedarse afuera, feliz, pero vuelve a la caverna para <strong>liberar</strong> a los demás. Al entrar, sus ojos no ven bien en la oscuridad y los prisioneros se <strong>burlan</strong> de él: dicen que salir le arruinó la vista.<br><br>Cuando intenta desatarlos, se <strong>enojan</strong>, y si pudieran, lo <strong>matarían</strong>. Platón está pensando en <strong>Sócrates</strong>: quiso sacar a los atenienses de la ignorancia y lo condenaron a muerte. Liberar a otros es un deber, pero tiene un precio.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El que vuelve es Sócrates.
           </div>
         </div>
       </div>
@@ -356,25 +624,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la Alegoría de la Caverna:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué representan los prisioneros encadenados en la caverna?</p>
+          <p>¿En quién piensa Platón cuando cuenta que los prisioneros matarían al que vuelve a liberarlos?</p>
         </div>
         <div class="options-container">
-          <div class="option">Los filósofos que conocen la verdad</div>
-          <div class="option">Los dioses del Olimpo</div>
-          <div class="option" data-correct="true">Los seres humanos atrapados en la ignorancia del Mundo Sensible</div>
-          <div class="option">Los maestros de Platón</div>
+          <div class="option" data-correct="true">En Sócrates, condenado por querer sacar a Atenas de la ignorancia</div>
+          <div class="option">En Heráclito, que vivía solo</div>
+          <div class="option">En Aristóteles, su discípulo</div>
+          <div class="option">En el Demiurgo</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 6: ALEGORÍA DE LA CAVERNA - PARTE 2 -->
-    <div class="study-section" data-section="caverna-parte2">
+    <!-- 13. La caverna hoy -->
+    <div class="study-section" data-section="hoy">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🚶 La Alegoría de la Caverna (Parte 2): La Liberación</h3>
+          <h3>📱 La caverna hoy</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -382,28 +650,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>La Liberación:</strong><br>
-            Supongamos que uno de los prisioneros es <strong>liberado</strong> y <strong>obligado</strong> a levantarse, volver el cuello y mirar hacia la luz del fuego. Al principio, este proceso es <strong>doloroso</strong> y la luz lo deslumbra.<br><br>
-
-            Platón dice que el prisionero es <em>"obligado"</em> porque <strong>el saber es costoso</strong> y no se hace de buena gana. La búsqueda de la verdad requiere esfuerzo.<br><br>
-
-            Luego, el prisionero es <strong>arrastrado</strong> por una pendiente áspera hasta salir de la caverna y llegar al exterior, donde hay <strong>luz solar</strong>.<br><br>
-
-            <strong>El Ascenso Gradual:</strong><br>
-            Una vez fuera, el prisionero no puede mirar directamente el Sol. Debe acostumbrarse gradualmente:<br>
-            <strong>1.</strong> Primero ve las <strong>sombras</strong> de las cosas reales (árboles, montañas)<br>
-            <strong>2.</strong> Luego ve los <strong>reflejos</strong> en el agua<br>
-            <strong>3.</strong> Después ve las <strong>cosas mismas</strong> (los objetos reales)<br>
-            <strong>4.</strong> Finalmente, ve el <strong>Sol</strong> mismo<br><br>
-
-            <strong>¿Qué representa este ascenso?</strong><br>
-            La salida de la caverna representa el <strong>ascenso del alma</strong> desde el Mundo Sensible hacia el <strong>Mundo Inteligible</strong> y la verdad. Es el proceso de <strong>educación filosófica</strong>.<br><br>
-
-            <strong>¿Qué representa el Sol?</strong><br>
-            El Sol que el prisionero ve al final representa la <strong>Idea del Bien</strong>, el fundamento de todo conocimiento verdadero.
+            La alegoría sigue vigente. Las «sombras» pueden ser <strong>noticias falsas</strong>, publicidad, <strong>prejuicios</strong> o lo que repiten las redes sin que nadie lo piense. A veces vivimos mirando una <strong>pantalla</strong> como los prisioneros la pared.<br><br>Salir de la caverna no es tirar el celular: es <strong>preguntarse</strong> si lo que creemos es verdad, buscar razones y no conformarse con las apariencias. Como al prisionero, al principio incomoda: es más fácil quedarse con lo que todos opinan.
           </p>
         </div>
 
@@ -414,33 +664,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 La liberación es dolorosa: el conocimiento requiere esfuerzo.
+            💡 Nuestras propias sombras.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la liberación:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué representa el Sol que el prisionero ve al salir de la caverna?</p>
+          <p>¿Qué sería hoy salir de la caverna?</p>
         </div>
         <div class="options-container">
-          <div class="option">El fuego dentro de la caverna</div>
-          <div class="option">Las sombras en la pared</div>
-          <div class="option" data-correct="true">La Idea del Bien, fundamento de todo conocimiento</div>
-          <div class="option">El Mundo Sensible</div>
+          <div class="option">Tirar el celular e irse a vivir al campo</div>
+          <div class="option">Creer todo lo que dicen las redes</div>
+          <div class="option">Repetir lo que opina la mayoría</div>
+          <div class="option" data-correct="true">Preguntarse si lo que creemos es verdad y buscar razones, sin conformarse con las apariencias</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 7: ALEGORÍA DE LA CAVERNA - PARTE 3 -->
-    <div class="study-section" data-section="caverna-parte3">
+    <!-- 14. Educar es girar la mirada -->
+    <div class="study-section" data-section="educacion">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>↩️ La Alegoría de la Caverna (Parte 3): El Retorno</h3>
+          <h3>🔄 Educar es girar la mirada</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -448,25 +698,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>El Deber del Retorno:</strong><br>
-            El prisionero liberado, que ahora conoce la verdad, tiene el <strong>deber moral</strong> de <strong>regresar a la caverna</strong> para intentar <em>"liberar"</em> a sus antiguos compañeros.<br><br>
-
-            Al volver, sus ojos deben <strong>acostumbrarse nuevamente a la oscuridad</strong>. Al principio, no verá bien las sombras y los otros prisioneros se burlarán de él, diciendo que su viaje al exterior lo ha arruinado.<br><br>
-
-            <strong>El Rechazo y el Peligro:</strong><br>
-            Si el prisionero liberado intenta <strong>desencadenar</strong> a los demás y hacerlos subir hacia la luz, estos:<br>
-            • Se <strong>reirían</strong> de él<br>
-            • Lo considerarían un <strong>loco</strong><br>
-            • Serían capaces de <strong>matarlo</strong> si pudieran liberarse<br><br>
-
-            <strong>La Alusión a Sócrates:</strong><br>
-            Platón hace aquí una clara <strong>alusión al esfuerzo de Sócrates</strong> por ayudar a los hombres a llegar a la verdad y a su <strong>condena a muerte</strong>. Sócrates fue el filósofo que regresó a la caverna para iluminar a los demás, y fue ejecutado por ello.<br><br>
-
-            <strong>El Mensaje:</strong><br>
-            El filósofo tiene una <strong>responsabilidad social</strong>: no debe quedarse contemplando la verdad en soledad, sino volver a la sociedad para <strong>educar y guiar</strong> a los demás, aunque esto implique riesgo y rechazo.
+            Para Platón, educar no es <strong>llenar</strong> una cabeza vacía, como quien llena un vaso. Todos tenemos la capacidad de conocer, como todos tenemos ojos; el problema es que miramos hacia el lado equivocado.<br><br>La educación es una <strong>conversión</strong> (<em>periagogé</em>): un <strong>giro</strong> de toda la persona, que deja de mirar las sombras y se orienta hacia la luz. El maestro no pone la verdad: ayuda a dar vuelta la mirada, como el que libera al prisionero.
           </p>
         </div>
 
@@ -477,33 +712,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 El filósofo debe regresar para educar, como hizo Sócrates.
+            💡 No llenar, sino girar.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el retorno a la caverna:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿A quién alude Platón cuando habla del prisionero que regresa y es rechazado?</p>
+          <p>Para Platón, ¿qué es educar?</p>
         </div>
         <div class="options-container">
-          <div class="option">A los sofistas que enseñaban retórica</div>
-          <div class="option">A Aristóteles, su discípulo</div>
-          <div class="option" data-correct="true">A Sócrates, quien fue condenado a muerte por intentar iluminar a los demás</div>
-          <div class="option">A los presocráticos</div>
+          <div class="option">Llenar una cabeza vacía con datos</div>
+          <div class="option" data-correct="true">Girar la mirada desde las sombras hacia la luz</div>
+          <div class="option">Repetir de memoria lo que dice el maestro</div>
+          <div class="option">Enseñar solo oficios prácticos</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 8: TEORÍA DEL CONOCIMIENTO -->
-    <div class="study-section" data-section="teoria-conocimiento">
+    <!-- 15. La dialéctica: el camino hacia las Ideas -->
+    <div class="study-section" data-section="dialectica">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>📊 El Viaje del Conocimiento: Doxa y Episteme</h3>
+          <h3>🪜 La dialéctica: el camino hacia las Ideas</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -511,30 +746,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Platón sostiene que a cada mundo le corresponde un <strong>tipo de conocimiento</strong>:<br><br>
-            
-            <strong>Al Mundo Sensible le corresponde la Opinión</strong> (<strong>Doxa</strong>):<br>
-            • Es un conocimiento que puede contener <strong>error</strong><br>
-            • Es <strong>mutable</strong> (cambia)<br>
-            • No es conocimiento verdadero, sino creencia<br><br>
-
-            <strong>Al Mundo Inteligible le corresponde la Ciencia</strong> (<strong>Episteme</strong>):<br>
-            • Es conocimiento <strong>cierto</strong><br>
-            • Es <strong>universal</strong> (vale para todos)<br>
-            • Es <strong>infalible</strong> (no puede equivocarse)<br><br>
-
-            <strong>Los Grados de la Opinión (Doxa):</strong><br>
-            <strong>1. Imaginación</strong> (<em>Eikasía</em>): El conocimiento más bajo. Capta solo imágenes, sombras y reflejos. Como los prisioneros viendo sombras en la pared.<br><br>
-
-            <strong>2. Creencia</strong> (<em>Pístis</em>): Un nivel superior. Capta los objetos sensibles mismos (no solo sus imágenes). Como ver el árbol real, no solo su sombra.<br><br>
-
-            <strong>Los Grados de la Ciencia (Episteme):</strong><br>
-            <strong>3. Razón Discursiva</strong> (<em>Diánoia</em>): Capta las esencias matemáticas y geométricas, a menudo usando diagramas visibles o hipótesis. Es el conocimiento de las matemáticas.<br><br>
-
-            <strong>4. Razón Pura o Intelección</strong> (<em>Noesis</em>): Es el grado <strong>más alto</strong> de conocimiento. Capta directamente las Ideas supremas, especialmente la <strong>Idea del Bien</strong>. Es el conocimiento filosófico supremo.
+            ¿Cómo se sube de las sombras a las Ideas? Primero con la <strong>matemática</strong>, que acostumbra a pensar sin depender de los sentidos. Pero el camino más alto es la <strong>dialéctica</strong>.<br><br>La dialéctica nace del diálogo socrático: preguntar, dar razones, revisar definiciones y descartar las que se contradicen. Así la razón <strong>asciende</strong> de idea en idea, sin usar imágenes, hasta llegar a la <strong>Idea del Bien</strong>. Para Platón es la ciencia más alta, la que domina el <strong>filósofo</strong>.
           </p>
         </div>
 
@@ -545,33 +760,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Doxa (opinión) para lo sensible; Episteme (ciencia) para lo inteligible.
+            💡 Subir de idea en idea.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el conocimiento:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es el grado más alto de conocimiento según Platón?</p>
+          <p>¿Qué es la dialéctica para Platón?</p>
         </div>
         <div class="options-container">
-          <div class="option">Imaginación (<em>Eikasía</em>)</div>
-          <div class="option">Creencia (<em>Pístis</em>)</div>
-          <div class="option">Razón Discursiva (<em>Diánoia</em>)</div>
-          <div class="option" data-correct="true">Razón Pura o Intelección (<em>Noesis</em>)</div>
+          <div class="option">El arte de convencer con discursos bonitos</div>
+          <div class="option">El estudio de las sombras de la caverna</div>
+          <div class="option" data-correct="true">El método de diálogo y razonamiento con el que la razón asciende hasta la Idea del Bien</div>
+          <div class="option">Un tipo de gimnasia para el cuerpo</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 9: REMINISCENCIA -->
-    <div class="study-section" data-section="reminiscencia">
+    <!-- 16. La ciudad justa y el rey filósofo -->
+    <div class="study-section" data-section="republica">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>💭 Teoría de la Reminiscencia: Conocer es Recordar</h3>
+          <h3>🏛️ La ciudad justa y el rey filósofo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -579,25 +794,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Una de las doctrinas más fascinantes de Platón es la <strong>Teoría de la Reminiscencia</strong> (o <em>anámnēsis</em>). Según esta teoría, <strong>conocer es recordar</strong>.<br><br>
-            
-            <strong>¿Cómo funciona la Reminiscencia?</strong><br><br>
-
-            <strong>1. El alma es inmortal:</strong> Antes de unirse al cuerpo, el alma existió en un <strong>lugar celeste</strong> (<em>tópos ouranos</em>) donde contempló directamente las <strong>Ideas</strong> en toda su perfección.<br><br>
-
-            <strong>2. El olvido al nacer:</strong> Al <strong>encarnarse en un cuerpo</strong>, el alma <strong>olvida</strong> todo lo que sabía. El cuerpo es como una prisión que oscurece el conocimiento del alma.<br><br>
-
-            <strong>3. El recuerdo a través de lo sensible:</strong> Sin embargo, el contacto con los <strong>objetos sensibles</strong> (que son copias de las Ideas) actúa como un <strong>estímulo</strong> que provoca el <strong>recuerdo</strong> (<em>anámnēsis</em>) de esos originales.<br><br>
-
-            <strong>Ejemplo:</strong> Cuando vemos un círculo dibujado imperfectamente en la arena, recordamos la Idea perfecta de Círculo que nuestra alma conoció antes de nacer.<br><br>
-
-            <strong>La Dialéctica:</strong><br>
-            El método adecuado para ascender en el conocimiento y <strong>recordar las Ideas</strong> es la <strong>Dialéctica</strong>. Este método filosófico busca afinidades entre Ideas hasta alcanzar la Idea del Bien.<br><br>
-
-            Esta teoría explica por qué podemos conocer verdades universales y eternas a pesar de vivir en un mundo cambiante: porque ya las conocíamos antes de nacer.
+            Platón nunca dejó de pensar en la política. En <em>La República</em> imagina una ciudad justa con tres grupos: los <strong>productores</strong> (campesinos, artesanos, comerciantes), los <strong>guardianes</strong>, que la defienden, y los <strong>gobernantes</strong>.<br><br>¿Quién debe gobernar? El que conoce el Bien: el <strong>rey filósofo</strong>. Los males de las ciudades no terminarán hasta que los filósofos gobiernen o los gobernantes filosofen. La ciudad es <strong>justa</strong> cuando cada grupo cumple su función.
           </p>
         </div>
 
@@ -608,33 +808,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Conocer es recordar lo que el alma conoció antes de nacer.
+            💡 Gobierna el que conoce el Bien.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la Reminiscencia:</p>
+          <h4>✅ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>Según la Teoría de la Reminiscencia, ¿por qué podemos conocer las Ideas?</p>
+          <p>Según La República, ¿quién debe gobernar la ciudad?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque los dioses nos las revelan</div>
-          <div class="option">Porque las inventamos con nuestra imaginación</div>
-          <div class="option" data-correct="true">Porque nuestra alma las conoció antes de nacer y las recuerda</div>
-          <div class="option">Porque las percibimos con los sentidos</div>
+          <div class="option" data-correct="true">El filósofo, porque conoce la Idea del Bien</div>
+          <div class="option">El más rico de la ciudad</div>
+          <div class="option">El mejor guerrero</div>
+          <div class="option">Cualquiera, elegido por sorteo</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 10: DUALISMO ANTROPOLÓGICO -->
-    <div class="study-section" data-section="dualismo-antropologico">
+    <!-- 17. Síntesis: de las sombras a la luz -->
+    <div class="study-section" data-section="sintesis">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>👤 El Ser Humano: Dualismo Cuerpo-Alma</h3>
+          <h3>🏆 Síntesis: de las sombras a la luz</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -642,29 +842,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Platón aplica su dualismo también a la <strong>naturaleza humana</strong>. El ser humano está compuesto por dos elementos distintos y opuestos: <strong>Cuerpo</strong> y <strong>Alma</strong>.<br><br>
-            
-            <strong>El Cuerpo</strong> (<em>sóma</em>):<br>
-            • Pertenece al <strong>Mundo Sensible</strong><br>
-            • Es <strong>material</strong> y visible<br>
-            • Es <strong>corruptible</strong> (se desgasta y muere)<br>
-            • Es <strong>temporal</strong> (tiene principio y fin)<br>
-            • Es la <em>"cárcel del alma"</em> que la limita<br><br>
-
-            <strong>El Alma</strong> (<em>psyché</em>):<br>
-            • Es afín al <strong>Mundo Inteligible</strong><br>
-            • Es <strong>inmaterial</strong> e invisible<br>
-            • Es <strong>simple</strong> (no tiene partes que puedan separarse)<br>
-            • Es <strong>inmortal</strong> (no muere jamás)<br>
-            • Es lo que <strong>realmente somos</strong><br><br>
-
-            <strong>La Unión Accidental:</strong><br>
-            La unión del alma con el cuerpo es <strong>accidental y transitoria</strong>. El alma existía antes de nacer y seguirá existiendo después de la muerte del cuerpo. El cuerpo es visto como una prisión que el alma debe soportar temporalmente.<br><br>
-
-            <strong>El Objetivo:</strong> Durante la vida, el alma debe intentar <strong>purificarse</strong> mediante la filosofía y la práctica de la virtud, para poder regresar al Mundo Inteligible después de la muerte.
+            Platón buscó algo firme en un mundo que cambia. Lo encontró en las <strong>Ideas</strong>: realidades eternas que capta la razón, de las que las cosas sensibles son <strong>copias</strong>. En la cima está la <strong>Idea del Bien</strong>, como el Sol.<br><br>La <strong>alegoría de la caverna</strong> resume el camino: de las sombras de la <strong>doxa</strong> a la luz de la <strong>episteme</strong>, gracias a la educación y la <strong>dialéctica</strong>. Y quien sale tiene el deber de volver: el filósofo debe ayudar a gobernar la ciudad.
           </p>
         </div>
 
@@ -675,307 +856,31 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Dualismo: alma inmortal + cuerpo mortal = ser humano.
+            💡 Síntesis final: todos los conceptos integrados.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el dualismo antropológico:</p>
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cómo describe Platón la relación entre el cuerpo y el alma?</p>
+          <p>¿Cuál es la síntesis del pensamiento de Platón en este tema?</p>
         </div>
         <div class="options-container">
-          <div class="option">El cuerpo es más importante que el alma</div>
-          <div class="option">Ambos son igualmente inmortales</div>
-          <div class="option" data-correct="true">El cuerpo es la "cárcel" temporal del alma inmortal</div>
-          <div class="option">El alma no existe sin el cuerpo</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 11: LAS TRES PARTES DEL ALMA -->
-    <div class="study-section" data-section="tres-partes-alma">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🐎 Las Tres Partes del Alma: El Mito del Carro Alado</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            En diálogos como el <em>Fedro</em>, Platón describe al alma a través del <strong>Mito del Carro Alado</strong> para explicar sus funciones y el conflicto interno humano.<br><br>
-            
-            <strong>El Mito:</strong> El alma es como un carro alado conducido por un auriga (conductor) que dirige dos caballos: uno blanco y dócil, otro negro y rebelde.<br><br>
-
-            <strong>1. Alma Racional</strong> (<em>Logistikón</em>):<br>
-            • <strong>Representación:</strong> El Auriga (conductor)<br>
-            • <strong>Función:</strong> Mente e inteligencia, debe <strong>gobernar</strong> las otras partes<br>
-            • <strong>Virtud:</strong> <strong>Prudencia</strong> (<em>Phrónesis</em>) - capacidad de deliberar correctamente<br>
-            • <strong>Ubicación:</strong> La cabeza<br><br>
-
-            <strong>2. Alma Irascible</strong> (<em>Thymoeides</em>):<br>
-            • <strong>Representación:</strong> El Caballo Bueno (blanco)<br>
-            • <strong>Función:</strong> La voluntad, impulsos nobles, honor, coraje<br>
-            • <strong>Virtud:</strong> <strong>Fortaleza o Valor</strong> (<em>Andreía</em>) - mantener el ánimo alto frente a la adversidad<br>
-            • <strong>Ubicación:</strong> El pecho<br><br>
-
-            <strong>3. Alma Concupiscible</strong> (<em>Epithymetikón</em>):<br>
-            • <strong>Representación:</strong> El Caballo Malo (negro)<br>
-            • <strong>Función:</strong> Los deseos, apetitos sensibles y placeres corporales<br>
-            • <strong>Virtud:</strong> <strong>Templanza o Moderación</strong> (<em>Sophrosyne</em>) - ordenar racionalmente los placeres<br>
-            • <strong>Ubicación:</strong> El abdomen<br><br>
-
-            <strong>El Equilibrio:</strong> La vida virtuosa se alcanza cuando el auriga (razón) logra dirigir armoniosamente a los dos caballos, manteniendo el control del rebelde y aprovechando la nobleza del obediente.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Tres partes: razón (auriga), voluntad (caballo bueno), deseos (caballo malo).
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre las tres partes del alma:</p>
-        </div>
-        <div class="question">
-          <p>En el Mito del Carro Alado, ¿qué representa el auriga (conductor)?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Los deseos y apetitos corporales</div>
-          <div class="option">La voluntad y el coraje</div>
-          <div class="option" data-correct="true">La razón que debe gobernar las otras partes del alma</div>
-          <div class="option">El cuerpo material</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 12: ÉTICA PLATÓNICA -->
-    <div class="study-section" data-section="etica">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>⚖️ Ética Platónica: Justicia y Felicidad</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            La ética platónica es <strong>eudemonista</strong>, lo que significa que el <strong>fin último</strong> que todos buscamos es la <strong>felicidad</strong> (<em>eudaimonía</em>).<br><br>
-            
-            <strong>Las Cuatro Virtudes Cardinales:</strong><br><br>
-
-            <strong>1. Prudencia</strong> (<em>Phrónesis</em>):<br>
-            Virtud del alma racional. Es la capacidad de deliberar correctamente sobre lo bueno y lo malo.<br><br>
-
-            <strong>2. Fortaleza o Valor</strong> (<em>Andreía</em>):<br>
-            Virtud del alma irascible. Es mantener el ánimo alto frente a la adversidad y defender lo correcto.<br><br>
-
-            <strong>3. Templanza o Moderación</strong> (<em>Sophrosyne</em>):<br>
-            Virtud del alma concupiscible. Es ordenar racionalmente los placeres y deseos.<br><br>
-
-            <strong>4. Justicia</strong> (<em>Dikaiosyne</em>):<br>
-            Es la <strong>virtud suprema</strong>. La Justicia es el <strong>orden y la armonía adecuados</strong> entre las tres partes del alma, donde <strong>cada una cumple su función</strong>.<br><br>
-
-            Cuando la razón gobierna, la voluntad obedece y apoya, y los deseos están moderados, entonces el alma es justa y la persona es virtuosa.<br><br>
-
-            <strong>Intelectualismo Moral:</strong><br>
-            Siguiendo a Sócrates, Platón sostiene que <strong>la virtud consiste en el saber</strong>. Si una persona actúa mal, es por <strong>ignorancia</strong> (<em>ágnoia</em>) de lo que es realmente el Bien. La perfección moral es el resultado de la <strong>perfección intelectual</strong>.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Justicia: armonía entre las tres partes del alma.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la ética platónica:</p>
-        </div>
-        <div class="question">
-          <p>¿Qué es la Justicia según Platón?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Dar a cada uno lo que posee</div>
-          <div class="option">La virtud del alma irascible</div>
-          <div class="option" data-correct="true">El orden y armonía entre las tres partes del alma, donde cada una cumple su función</div>
-          <div class="option">La igualdad económica entre todos</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 13: EL ESTADO IDEAL - ESTRUCTURA -->
-    <div class="study-section" data-section="estado-ideal">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🏛️ El Estado Ideal: El Rey Filósofo (Parte 1)</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            Platón consideraba que el objetivo último de la filosofía era <strong>político</strong>. En <em>La República</em> describe su <strong>Estado Ideal</strong>, que se basa en el principio de que la estructura del Estado debe <strong>corresponderse con la estructura del alma individual</strong>.<br><br>
-            
-            <strong>Correlación Estructural:</strong><br>
-            Así como el alma tiene tres partes, la sociedad debe tener tres clases sociales. Cada clase corresponde a una parte del alma y debe ejercer su función específica.<br><br>
-
-            <strong>Las Tres Clases Sociales:</strong><br><br>
-
-            <strong>1. Gobernantes-Filósofos:</strong><br>
-            • <strong>Función:</strong> Dirigir y gobernar la ciudad<br>
-            • <strong>Virtud:</strong> Prudencia/Sabiduría<br>
-            • <strong>Corresponde a:</strong> Alma Racional<br>
-            • <strong>Características:</strong> Han completado la educación filosófica y conocen la Idea del Bien<br><br>
-
-            <strong>2. Guerreros-Guardianes:</strong><br>
-            • <strong>Función:</strong> Defender la ciudad de enemigos externos e internos<br>
-            • <strong>Virtud:</strong> Fortaleza/Valor<br>
-            • <strong>Corresponde a:</strong> Alma Irascible<br>
-            • <strong>Características:</strong> Valientes, disciplinados, leales<br><br>
-
-            <strong>3. Productores (Artesanos, Agricultores, Comerciantes):</strong><br>
-            • <strong>Función:</strong> Producir bienes y satisfacer las necesidades materiales<br>
-            • <strong>Virtud:</strong> Templanza/Moderación<br>
-            • <strong>Corresponde a:</strong> Alma Concupiscible<br>
-            • <strong>Características:</strong> Trabajan para el sustento de la ciudad
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Tres clases: filósofos (gobiernan), guardianes (defienden), productores (trabajan).
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Estado Ideal:</p>
-        </div>
-        <div class="question">
-          <p>¿Qué clase social debe gobernar según Platón?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Los más ricos y poderosos</div>
-          <div class="option">Los guerreros más valientes</div>
-          <div class="option" data-correct="true">Los filósofos que conocen la Idea del Bien</div>
-          <div class="option">Los comerciantes más exitosos</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 14: EL REY FILÓSOFO -->
-    <div class="study-section" data-section="rey-filosofo">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>👑 El Estado Ideal: El Rey Filósofo (Parte 2)</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            <strong>¿Por qué deben gobernar los filósofos?</strong><br><br>
-            
-            El gobierno debe recaer en los <strong>Gobernantes-Filósofos</strong> porque solo aquel que <strong>conoce el Bien y la Justicia en sí misma</strong> (es decir, el que ha completado el camino del conocimiento, como el prisionero liberado que ve el Sol) puede gobernar justamente la <em>polis</em>.<br><br>
-
-            <strong>La Justicia Social:</strong><br>
-            La <strong>Justicia en el Estado</strong> se logra cuando cada estamento cumple su función específica:<br>
-            • Los filósofos gobiernan con sabiduría<br>
-            • Los guardianes defienden con valor<br>
-            • Los productores trabajan con moderación<br><br>
-
-            Cuando cada clase hace lo suyo y no interfiere en las funciones de las otras, la ciudad es <strong>justa y armoniosa</strong>, igual que el alma justa.<br><br>
-
-            <strong>La Educación del Gobernante:</strong><br>
-            Los futuros gobernantes deben pasar por un <strong>riguroso proceso educativo</strong>:<br>
-            • Estudiar matemáticas y geometría<br>
-            • Practicar la dialéctica filosófica<br>
-            • Contemplar la Idea del Bien<br>
-            • Regresar a gobernar (como el prisionero que vuelve a la caverna)<br><br>
-
-            <strong>El Dilema:</strong> Los verdaderos filósofos no <strong>desean</strong> gobernar (prefieren contemplar las Ideas), pero <strong>deben</strong> hacerlo por deber moral hacia la comunidad. Es su obligación regresar a la caverna.<br><br>
-
-            Esta visión política de Platón es <strong>aristocrática</strong> (gobierno de los mejores preparados) y se opone a la democracia directa ateniense, que él consideraba que ponía el poder en manos de personas sin preparación.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Los filósofos deben gobernar porque conocen el Bien.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🏆 Verificación final</h4>
-          <p>Síntesis sobre el Rey Filósofo:</p>
-        </div>
-        <div class="question">
-          <p>¿Por qué los verdaderos filósofos deben gobernar aunque no lo deseen?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Porque quieren poder y riqueza</div>
-          <div class="option">Porque es la única forma de hacerse famosos</div>
-          <div class="option" data-correct="true">Por deber moral hacia la comunidad, como el prisionero que debe regresar a la caverna</div>
-          <div class="option">Porque los obligan por la fuerza</div>
+          <div class="option">Solo existe lo que vemos y tocamos</div>
+          <div class="option">Hay que quedarse en la caverna porque es más cómodo</div>
+          <div class="option">El conocimiento verdadero es imposible</div>
+          <div class="option" data-correct="true">Las Ideas eternas son lo más real, y la educación y la dialéctica nos llevan de las sombras a la luz del Bien</div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

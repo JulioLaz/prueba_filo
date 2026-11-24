@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Platón y del resumen final del tema «Platón: El Mundo de las Ideas y la Caverna». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Platón",
+  "tema": "Platón: la teoría de las Ideas, la Idea del Bien, la línea dividida, la alegoría de la caverna y el rey filósofo",
+  "intro": "Platón (427–347 a. C.), discípulo de Sócrates, buscó algo firme en un mundo que cambia: las Ideas, realidades eternas que capta la razón, con la Idea del Bien en la cima. La línea dividida y la alegoría de la caverna muestran el camino de la opinión a la ciencia, gracias a la educación y la dialéctica; por eso, en La República, debe gobernar el filósofo.",
+  "conceptosClave": "Idea, mundo sensible, mundo inteligible, participación, Demiurgo, Idea del Bien, símil del Sol, línea dividida, doxa, episteme, alegoría de la caverna, conversión, dialéctica, rey filósofo, Academia",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "caverna_entrada",
+      "texto": "Platón recibe al alumno en la entrada de una cueva oscura y le pregunta si está seguro de que lo que ve todos los días no son sombras."
+    },
+    {
+      "id": "pizarron",
+      "texto": "Platón dibuja un círculo en una tablilla, lo mira con disgusto porque no le salió perfecto, y le pregunta al alumno dónde está, entonces, el círculo perfecto."
+    },
+    {
+      "id": "siracusa",
+      "texto": "Platón vuelve cansado de Siracusa, donde intentó sin éxito que el tirano gobernara como filósofo, y decide examinar al alumno para ver si al menos alguien aprendió algo."
+    },
+    {
+      "id": "geometria",
+      "texto": "Platón señala el cartel de la Academia, «Que no entre nadie que no sepa geometría», y le dice al alumno que hoy lo deja pasar si sabe de Ideas."
+    },
+    {
+      "id": "sol",
+      "texto": "Platón saca al alumno al patio a pleno sol, le advierte que no mire el Sol de frente y le promete explicarle por qué el Bien se parece a él."
+    },
+    {
+      "id": "republica",
+      "texto": "Platón está escribiendo La República y necesita un interlocutor: le pide al alumno que lo ayude a pensar cómo sería una ciudad justa."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "vida",
+      "titulo": "Platón, de político a filósofo",
+      "guia": "Preguntar quién fue Platón y por qué la muerte de Sócrates fue decisiva en su vida.",
+      "claves": "Platón (427–347 a. C.), ateniense de familia aristocrática, quería dedicarse a la política. Fue discípulo de Sócrates; su condena le mostró que la ciudad estaba mal gobernada. Viajó por Egipto, Italia y Siracusa y fundó la Academia (387 a. C.). Escribió diálogos con Sócrates como protagonista.",
+      "resumen": "Platón quería ser político, pero la condena a muerte de su maestro Sócrates lo llevó a la filosofía. Viajó, fundó la Academia en Atenas y escribió diálogos.",
+      "palabras": [
+        "Sócrates",
+        "Academia",
+        "política",
+        "diálogos",
+        "Atenas"
+      ],
+      "ejemplo": "Es como alguien que quiere entrar a la política, ve una injusticia enorme y decide primero pensar cómo debería ser una sociedad justa."
+    },
+    {
+      "id": "cambio",
+      "titulo": "Heráclito, Parménides y la solución de Platón",
+      "guia": "Preguntar qué discusión heredó Platón de los presocráticos y cómo la resolvió.",
+      "claves": "Heráclito: todo cambia (el río). Parménides: el verdadero ser no cambia y el movimiento es ilusión. Platón: las cosas sensibles cambian (Heráclito), pero para conocer debe haber algo eterno e inmutable (Parménides): las Ideas.",
+      "resumen": "Heráclito decía que todo cambia y Parménides que el verdadero ser no cambia. Platón les dio la razón a los dos: las cosas cambian, pero las Ideas son eternas e inmutables.",
+      "palabras": [
+        "Heráclito",
+        "Parménides",
+        "cambio",
+        "inmutable",
+        "Ideas"
+      ],
+      "ejemplo": "Tu cuerpo cambia todos los años, pero sabés qué es «ser humano»: eso que no cambia sería la Idea."
+    },
+    {
+      "id": "idea",
+      "titulo": "¿Qué es una Idea?",
+      "guia": "Preguntar qué es una Idea para Platón, con sus características y un ejemplo (Belleza, círculo).",
+      "claves": "La Idea (eidos) es lo común a muchas cosas (la Belleza en sí, lo común a todas las cosas bellas). No es un pensamiento subjetivo: existe por sí misma. Es universal, eterna, inmutable y perfecta, y se capta con la razón. Ejemplo: ningún círculo dibujado es perfecto, pero la razón conoce el círculo perfecto; por eso admiraba la matemática («Que no entre nadie que no sepa geometría»).",
+      "resumen": "Una Idea es lo común a muchas cosas, como la Belleza en sí. Es universal, eterna, inmutable y perfecta, y solo la capta la razón, como el círculo perfecto que nunca podemos dibujar.",
+      "palabras": [
+        "Idea",
+        "universal",
+        "eterna",
+        "inmutable",
+        "razón"
+      ],
+      "ejemplo": "Hay millones de perros distintos, pero todos son perros: lo que tienen en común es la Idea de perro."
+    },
+    {
+      "id": "dos_mundos",
+      "titulo": "Dos niveles de realidad",
+      "guia": "Preguntar cómo divide Platón la realidad y qué es lo más real.",
+      "claves": "Mundo sensible: captado por los sentidos, material, múltiple, cambiante, nace y muere. Mundo inteligible: las Ideas, únicas, eternas, inmutables, captadas por la razón. No son dos lugares sino dos grados de realidad; lo más real es lo que no cambia. Se llama dualismo ontológico.",
+      "resumen": "Platón distingue el mundo sensible, de cosas materiales y cambiantes que vemos, y el mundo inteligible, de Ideas eternas que capta la razón. Lo más real son las Ideas.",
+      "palabras": [
+        "mundo sensible",
+        "mundo inteligible",
+        "sentidos",
+        "razón",
+        "dualismo ontológico"
+      ],
+      "ejemplo": "Una foto de tu perro es menos real que tu perro; para Platón, tu perro es menos real que la Idea de perro."
+    },
+    {
+      "id": "participacion",
+      "titulo": "Participación e imitación",
+      "guia": "Preguntar qué relación hay entre las cosas sensibles y las Ideas, y qué es el Demiurgo.",
+      "claves": "Las cosas sensibles son copias imperfectas de las Ideas: son lo que son porque participan (méthexis) e imitan (mímesis) las Ideas. Una silla participa de la Idea de silla; un acto justo, de la Justicia. En el Timeo, el Demiurgo, artesano divino, modela el mundo mirando las Ideas como modelo.",
+      "resumen": "Las cosas son copias imperfectas que participan de las Ideas. En el Timeo, un artesano divino, el Demiurgo, modeló el mundo mirando las Ideas.",
+      "palabras": [
+        "copias",
+        "participación",
+        "imitación",
+        "Demiurgo",
+        "Timeo"
+      ],
+      "ejemplo": "Como un dibujante que copia un modelo: el dibujo se parece, pero nunca es igual al original."
+    },
+    {
+      "id": "bien",
+      "titulo": "La Idea del Bien y el símil del Sol",
+      "guia": "Preguntar cuál es la Idea suprema y cómo la explica Platón con el Sol.",
+      "claves": "Las Ideas forman una jerarquía; en la cima está la Idea del Bien. Símil del Sol (La República): como el Sol da luz para que los ojos vean y hace crecer las plantas, el Bien permite que la razón conozca las Ideas y les da su ser. Sin el Bien no hay conocimiento verdadero.",
+      "resumen": "La Idea más alta es la del Bien. Platón la compara con el Sol: así como el Sol da luz para ver y vida a las plantas, el Bien permite conocer las demás Ideas y les da su ser.",
+      "palabras": [
+        "Idea del Bien",
+        "jerarquía",
+        "símil del Sol",
+        "luz",
+        "conocer"
+      ],
+      "ejemplo": "Sin luz, aunque tengas buena vista, no ves nada: sin el Bien, la razón no conoce."
+    },
+    {
+      "id": "linea",
+      "titulo": "La línea dividida",
+      "guia": "Preguntar cuáles son los grados del conocimiento y qué diferencia hay entre doxa y episteme.",
+      "claves": "Línea dividida: doxa (opinión, sobre lo sensible) = eikasía (imaginación: sombras y reflejos) + pístis (creencia: las cosas). Episteme (ciencia, sobre lo inteligible) = diánoia (pensamiento matemático) + nóesis (inteligencia: las Ideas y el Bien). Es un ascenso de la ignorancia a la sabiduría.",
+      "resumen": "La línea dividida tiene dos partes. Abajo, la doxa u opinión: imaginación y creencia. Arriba, la episteme o ciencia: pensamiento matemático e inteligencia, que capta las Ideas.",
+      "palabras": [
+        "doxa",
+        "episteme",
+        "eikasía",
+        "pístis",
+        "nóesis"
+      ],
+      "ejemplo": "Creer algo porque lo viste en un video es doxa; entender por qué es así, con razones, es episteme."
+    },
+    {
+      "id": "caverna",
+      "titulo": "La caverna: los prisioneros",
+      "guia": "Preguntar cómo empieza la alegoría y qué creen los prisioneros.",
+      "claves": "En La República: prisioneros encadenados desde niños en el fondo de una caverna, mirando la pared; detrás arde un fuego y pasan personas con objetos. Solo ven sombras y oyen ecos, y creen que son toda la realidad. Así vivimos cuando no pensamos: tomamos apariencias por verdades.",
+      "resumen": "En la alegoría, unos prisioneros encadenados solo ven sombras en la pared, proyectadas por un fuego, y creen que son toda la realidad. Así vivimos cuando tomamos las apariencias por verdades.",
+      "palabras": [
+        "prisioneros",
+        "caverna",
+        "sombras",
+        "fuego",
+        "apariencias"
+      ],
+      "ejemplo": "Alguien que solo conoce el mundo por un video editado cree que eso es todo lo que pasó."
+    },
+    {
+      "id": "liberacion",
+      "titulo": "La liberación y el Sol",
+      "guia": "Preguntar qué le pasa al prisionero liberado y qué significa cada elemento.",
+      "claves": "Al liberado le duele la luz y quiere volver a las sombras. Lo arrastran por una cuesta hacia la salida; afuera se acostumbra de a poco: sombras, reflejos, cosas, estrellas y por último el Sol. Significado: caverna = mundo sensible; sombras = apariencias; exterior = mundo inteligible; Sol = Idea del Bien; el camino = educación filosófica.",
+      "resumen": "Al liberado le duele la luz: aprender cuesta. Sube de a poco hasta ver el Sol. La caverna es el mundo sensible, el exterior el inteligible y el Sol la Idea del Bien.",
+      "palabras": [
+        "liberación",
+        "ascenso",
+        "Sol",
+        "Idea del Bien",
+        "educación"
+      ],
+      "ejemplo": "Como cuando te enterás de que algo que creías era falso: al principio molesta y preferirías no saberlo."
+    },
+    {
+      "id": "regreso",
+      "titulo": "El regreso y la caverna hoy",
+      "guia": "Preguntar por qué vuelve el liberado, cómo lo reciben, a quién representa y qué serían hoy las sombras.",
+      "claves": "El liberado vuelve para liberar a los demás; no ve bien en la oscuridad, se burlan de él, y si pudieran lo matarían: Platón piensa en Sócrates, condenado por querer sacar a Atenas de la ignorancia. Liberar a otros es un deber. Hoy las sombras pueden ser noticias falsas, publicidad, prejuicios, lo que repiten las redes; salir es preguntarse si lo que creemos es verdad y buscar razones.",
+      "resumen": "El que salió vuelve para liberar a los demás, pero se burlan de él y quieren matarlo, como a Sócrates. Hoy las sombras pueden ser las noticias falsas o los prejuicios.",
+      "palabras": [
+        "regreso",
+        "Sócrates",
+        "deber",
+        "noticias falsas",
+        "prejuicios"
+      ],
+      "ejemplo": "Querer convencer a un grupo de que una noticia viral es falsa puede hacerte quedar mal con todos."
+    },
+    {
+      "id": "educacion",
+      "titulo": "Educar y la dialéctica",
+      "guia": "Preguntar qué es educar para Platón y cuál es el camino más alto hacia las Ideas.",
+      "claves": "Educar no es llenar una cabeza vacía: todos pueden conocer, pero miran hacia el lado equivocado. Es una conversión (periagogé): girar toda la persona de las sombras a la luz. El camino: primero la matemática (pensar sin los sentidos) y después la dialéctica, que nace del diálogo socrático (preguntar, dar razones, descartar contradicciones) y asciende de idea en idea hasta el Bien. Es la ciencia del filósofo.",
+      "resumen": "Para Platón, educar no es llenar la cabeza, sino girar la mirada hacia la luz. El camino pasa por la matemática y llega a la dialéctica, que sube de idea en idea hasta el Bien.",
+      "palabras": [
+        "conversión",
+        "girar la mirada",
+        "matemática",
+        "dialéctica",
+        "Idea del Bien"
+      ],
+      "ejemplo": "Un buen profe no te da la respuesta: te hace las preguntas para que la veas vos."
+    },
+    {
+      "id": "republica",
+      "titulo": "La ciudad justa y el rey filósofo",
+      "guia": "Preguntar cómo es la ciudad justa de La República y por qué debe gobernar el filósofo.",
+      "claves": "La República: tres grupos, productores (campesinos, artesanos, comerciantes), guardianes (defensa) y gobernantes. Debe gobernar el rey filósofo, porque conoce el Bien; los males no terminan hasta que los filósofos gobiernen o los gobernantes filosofen. Justicia = cada grupo cumple su función. Relación con la caverna: el que salió debe volver a gobernar.",
+      "resumen": "En La República la ciudad justa tiene productores, guardianes y gobernantes, y cada grupo cumple su función. Debe gobernar el rey filósofo, porque conoce el Bien.",
+      "palabras": [
+        "La República",
+        "productores",
+        "guardianes",
+        "rey filósofo",
+        "justicia"
+      ],
+      "ejemplo": "Para manejar un barco elegís al que sabe navegar, no al más popular: Platón piensa igual sobre gobernar."
+    }
+  ],
+  "casos": [
+    {
+      "id": "noticia_viral",
+      "texto": "En el grupo del curso circula un video que todos comparten como verdadero, pero nadie revisó de dónde salió.",
+      "claves": "Relacionar con la caverna: las sombras como apariencias; doxa frente a episteme; salir de la caverna es preguntar y buscar razones."
+    },
+    {
+      "id": "burla",
+      "texto": "Una compañera investigó y descubrió que el video era falso, pero cuando lo dijo, todos se burlaron de ella.",
+      "claves": "Aplicar el regreso del liberado: rechazo y burla, como a Sócrates; el deber de liberar a otros y su precio."
+    },
+    {
+      "id": "cancion_bella",
+      "texto": "Discuten en clase si una canción es «linda» o no, y alguien dice que la belleza es solo cuestión de gustos.",
+      "claves": "Explicar la Idea de Belleza: universal, eterna, lo común a todas las cosas bellas; diferencia con la opinión (doxa)."
+    },
+    {
+      "id": "profe_respuestas",
+      "texto": "Un profesor da todas las respuestas para copiar; otro hace preguntas hasta que los alumnos llegan solos.",
+      "claves": "Comparar con la educación como conversión (girar la mirada) frente a llenar una cabeza vacía; dialéctica."
+    },
+    {
+      "id": "delegado",
+      "texto": "El curso tiene que elegir delegado: unos quieren al más popular, otros al que mejor conoce los problemas de la escuela.",
+      "claves": "Aplicar el rey filósofo: debe gobernar el que conoce el Bien; ciudad justa, cada uno en su función; posibles críticas."
+    },
+    {
+      "id": "matematica",
+      "texto": "Un compañero dice que la matemática no sirve para nada porque «los círculos perfectos no existen».",
+      "claves": "Usar el ejemplo del círculo perfecto: no está en el mundo sensible pero la razón lo conoce; mundo inteligible; matemática como preparación para la dialéctica."
+    },
+    {
+      "id": "cambio_cuerpo",
+      "texto": "Te mirás en fotos de cuando tenías 5 años y no te parecés en nada, pero seguís siendo vos.",
+      "claves": "Relacionar con Heráclito (todo cambia) y Parménides (algo permanece); la solución de Platón: lo sensible cambia, lo inteligible no."
+    },
+    {
+      "id": "comodidad",
+      "texto": "Un amigo prefiere no enterarse de cosas incómodas: «para qué saber, si así estoy bien».",
+      "claves": "Relacionar con el prisionero que quiere volver a las sombras porque la luz duele; el esfuerzo de aprender; el valor de conocer la verdad."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "sombras",
+      "texto": "¿Qué «sombras» de tu vida diaria creés que tomamos por realidad?"
+    },
+    {
+      "id": "salir",
+      "texto": "¿Alguna vez descubriste que algo que creías era falso? ¿Cómo te sentiste?"
+    },
+    {
+      "id": "gobernar",
+      "texto": "¿Estás de acuerdo con que gobierne el que más sabe? ¿Qué riesgos ves?"
+    },
+    {
+      "id": "educar",
+      "texto": "¿Qué profe o persona te ayudó a «girar la mirada» y ver algo de otra manera?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Platón, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Por qué la muerte de Sócrates cambió la vida de Platón?",
+    "¿Cómo resolvió Platón la discusión entre Heráclito y Parménides?",
+    "¿Qué es una Idea? Explicalo con el ejemplo del círculo o de la belleza.",
+    "¿Qué diferencia hay entre el mundo sensible y el mundo inteligible?",
+    "Explicá el símil del Sol.",
+    "¿Cuáles son los cuatro grados de la línea dividida?",
+    "Contá la alegoría de la caverna y explicá qué significa cada parte.",
+    "¿Por qué, para Platón, debe gobernar el filósofo?"
+  ]
+}

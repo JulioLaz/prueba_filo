@@ -13,6 +13,9 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | origen (Unidad I) | 15 | 13 | 8 / 55 | MILETO + 6 | 29 / 15 | 12 | Tales de Mileto |
 | presocraticos (Unidad I) | 16 | 13 | 8 / 55 | PRINCIPIO + 9 | 28 / 15 | 11 | Heráclito |
 | socrates (Unidad I) | 16 | 13 | 8 / 50 | SOCRATES + 8 | 28 / 15 | 16 | Sócrates |
+| platon (Unidad I) | 17 | 13 | 8 / 52 | CAVERNA + 7 | 35 / 15 | 16 | Platón |
+| aristoteles (Unidad I) | 17 | 13 | 8 / 54 | SILOGISMO + 9 | 34 / 15 | 16 | Aristóteles |
+| metodo (Unidad I) | 16 | 13 | 8 / 55 | CRITICA + 7 | 33 / 15 | 5 | René Descartes |
 | dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 | antropologia_aristoteles (Unidad II) | 16 | 13 | 8 / 55 | SUSTANCIA + 9 | 39 / 15 | 12 | Aristóteles |
 

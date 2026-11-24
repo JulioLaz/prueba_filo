@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Aristóteles y del resumen final del tema «Aristóteles: La Lógica y la Sustancia». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Aristóteles",
+  "tema": "Aristóteles: los grados del saber, la lógica y el silogismo, la sustancia, materia y forma, acto y potencia y las cuatro causas",
+  "intro": "Aristóteles (384–322 a. C.), discípulo de Platón y fundador del Liceo, rechazó las Ideas separadas y partió de lo sensible. Ordenó los saberes, creó la lógica (el Órganon y el silogismo) y explicó la realidad con la sustancia, materia y forma, acto y potencia y las cuatro causas.",
+  "conceptosClave": "Liceo, grados del saber, ciencias teóricas, prácticas y productivas, Órganon, concepto, juicio, silogismo, término medio, validez, no contradicción, categorías, sustancia, accidentes, hilemorfismo, acto y potencia, cuatro causas, primer motor inmóvil",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "biblioteca",
+      "texto": "Aristóteles está ordenando los rollos de su biblioteca del Liceo por materias y le pide al alumno que lo ayude: antes de acomodarlos, quiere saber qué aprendió de cada saber."
+    },
+    {
+      "id": "silogismo_puerta",
+      "texto": "En la puerta del aula, Aristóteles escribe: «Todo el que entra razona bien; vos entrás; luego...». Le pide al alumno que complete la conclusión antes de empezar."
+    },
+    {
+      "id": "raya",
+      "texto": "Aristóteles está examinando un pez raya que le trajeron unos pescadores de Lesbos y le dice al alumno que, mientras lo observa, lo va a examinar a él también."
+    },
+    {
+      "id": "cielo_noche",
+      "texto": "Es de noche y Aristóteles mira las estrellas girar en el cielo; le pregunta al alumno qué las mueve y le propone empezar desde el principio."
+    },
+    {
+      "id": "tablilla",
+      "texto": "Aristóteles escribe en una tablilla las diez categorías y tacha nueve: le dice al alumno que solo una es la más importante, y que va a averiguar si sabe cuál."
+    },
+    {
+      "id": "calcis",
+      "texto": "Aristóteles prepara su partida de Atenas hacia Calcis, diciendo que no dejará que la ciudad peque dos veces contra la filosofía; antes de irse, quiere examinar a un último alumno."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "vida",
+      "titulo": "El Estagirita",
+      "guia": "Preguntar quién fue Aristóteles: de dónde era, dónde estudió, a quién enseñó y qué escuela fundó.",
+      "claves": "Nació en Estagira (384 a. C.), por eso «el Estagirita». A los 17 fue a Atenas y estudió veinte años en la Academia de Platón. Fue maestro de Alejandro Magno. En el 335 a. C. fundó el Liceo; enseñaba caminando (peripatéticos). Escribió sobre lógica, física, biología, ética, política, retórica y arte.",
+      "resumen": "Aristóteles nació en Estagira, estudió veinte años en la Academia de Platón, fue maestro de Alejandro Magno y fundó el Liceo, donde enseñaba caminando con sus alumnos.",
+      "palabras": [
+        "Estagira",
+        "Academia",
+        "Alejandro Magno",
+        "Liceo",
+        "peripatéticos"
+      ],
+      "ejemplo": "Imaginá una clase que se da caminando por el patio: así eran las clases del Liceo."
+    },
+    {
+      "id": "critica",
+      "titulo": "Amigo de Platón, más amigo de la verdad",
+      "guia": "Preguntar en qué se aparta Aristóteles de Platón y qué significa la frase sobre la verdad.",
+      "claves": "Respetaba a Platón pero priorizaba la verdad. Rechazó las Ideas separadas en otro mundo: duplicar la realidad no explica nada. La forma está en las cosas mismas (la caballidad en cada caballo). Hay que conocer partiendo del mundo sensible.",
+      "resumen": "Aristóteles respetaba a Platón, pero no aceptó que las Ideas estuvieran separadas en otro mundo: para él la forma está en las cosas, y hay que conocer partiendo de lo que vemos.",
+      "palabras": [
+        "Platón",
+        "verdad",
+        "Ideas separadas",
+        "forma",
+        "mundo sensible"
+      ],
+      "ejemplo": "Podés querer mucho a un profe y aun así decirle, con respeto, que en algo se equivocó."
+    },
+    {
+      "id": "conocer",
+      "titulo": "De los sentidos a la ciencia",
+      "guia": "Preguntar cuáles son los grados del saber y qué distingue a la ciencia.",
+      "claves": "«Todos los hombres desean por naturaleza saber» (Metafísica). Grados: sensación (captar con los sentidos), experiencia (recordar muchas sensaciones), técnica o téchne (saber usar la experiencia para hacer), ciencia (conocer el porqué, las causas). Ej.: la cocinera con experiencia sabe que algo funciona; el científico sabe por qué.",
+      "resumen": "El saber tiene grados: sensación, experiencia, técnica y ciencia. La experiencia sabe que algo funciona; la ciencia sabe por qué, porque conoce las causas.",
+      "palabras": [
+        "sensación",
+        "experiencia",
+        "técnica",
+        "ciencia",
+        "porqué"
+      ],
+      "ejemplo": "Saber que el pan crece en el horno es experiencia; saber que es por la levadura y el calor es ciencia."
+    },
+    {
+      "id": "ciencias",
+      "titulo": "Un mapa de los saberes",
+      "guia": "Preguntar cómo clasificó Aristóteles las ciencias y cómo trabajaba como biólogo.",
+      "claves": "Teóricas (saber por saber, lo necesario): matemática, física, metafísica o filosofía primera. Prácticas (guían la acción, lo posible): ética y política. Productivas (hacer o fabricar): retórica y poética. Como biólogo, en Lesbos observó y clasificó cientos de animales en géneros y especies: padre de la biología.",
+      "resumen": "Aristóteles dividió los saberes en teóricos (matemática, física, metafísica), prácticos (ética y política) y productivos (retórica y poética). También observó y clasificó animales: es el padre de la biología.",
+      "palabras": [
+        "teóricas",
+        "prácticas",
+        "productivas",
+        "metafísica",
+        "biología"
+      ],
+      "ejemplo": "Las materias de tu escuela se parecen a esa división: algunas son para entender, otras para convivir y otras para hacer."
+    },
+    {
+      "id": "logica",
+      "titulo": "La lógica: el Órganon",
+      "guia": "Preguntar qué es la lógica, por qué se llama Órganon y cuáles son las tres operaciones del pensamiento.",
+      "claves": "Padre de la lógica. Órganon = instrumento: herramienta de todas las ciencias. Estudia la forma de los razonamientos, sin importar el contenido, para saber si están bien construidos. Tres operaciones: concepto (capta qué es algo), juicio (une o separa conceptos afirmando o negando; verdadero o falso) y razonamiento (enlaza juicios para concluir uno nuevo).",
+      "resumen": "La lógica es el Órganon, el instrumento para pensar bien. Estudia tres operaciones: el concepto capta qué es algo, el juicio afirma o niega y el razonamiento saca conclusiones.",
+      "palabras": [
+        "Órganon",
+        "instrumento",
+        "concepto",
+        "juicio",
+        "razonamiento"
+      ],
+      "ejemplo": "La lógica es como la gramática del pensamiento: no te dice qué pensar, sino cómo pensar bien."
+    },
+    {
+      "id": "silogismo",
+      "titulo": "El silogismo",
+      "guia": "Pedir que arme o analice un silogismo e identifique premisas, conclusión y término medio.",
+      "claves": "Silogismo: dos premisas y una conclusión que se sigue necesariamente. «Todos los hombres son mortales; Sócrates es hombre; luego, Sócrates es mortal». Términos: sujeto de la conclusión (Sócrates), predicado (mortal) y término medio (hombre), que está en las dos premisas y no en la conclusión; es el puente.",
+      "resumen": "Un silogismo tiene dos premisas y una conclusión. Tiene tres términos: sujeto, predicado y término medio, que aparece en las premisas y no en la conclusión.",
+      "palabras": [
+        "silogismo",
+        "premisas",
+        "conclusión",
+        "término medio",
+        "necesariamente"
+      ],
+      "ejemplo": "Todos los alumnos de 5.º tienen examen; Ana es de 5.º; luego, Ana tiene examen."
+    },
+    {
+      "id": "validez",
+      "titulo": "Válido no es lo mismo que verdadero",
+      "guia": "Preguntar qué diferencia hay entre un razonamiento válido y uno verdadero, con un ejemplo.",
+      "claves": "Válido: la forma es correcta (si las premisas fueran verdaderas, la conclusión también). Verdadero: el juicio dice lo que pasa en la realidad. «Todos los peces vuelan; el tiburón es un pez; luego, vuela» es válido con premisa falsa. Para una conclusión segura: buena forma + premisas verdaderas.",
+      "resumen": "Un razonamiento es válido si su forma es correcta, y un juicio es verdadero si coincide con la realidad. Se puede razonar bien a partir de algo falso: por eso hacen falta las dos cosas.",
+      "palabras": [
+        "válido",
+        "verdadero",
+        "forma",
+        "premisa falsa",
+        "conclusión"
+      ],
+      "ejemplo": "«Todos los que usan anteojos son genios; Juan usa anteojos; luego, Juan es genio»: está bien armado, pero la primera premisa es falsa."
+    },
+    {
+      "id": "principios",
+      "titulo": "Los primeros principios",
+      "guia": "Preguntar por qué la ciencia necesita axiomas y qué dice el principio de no contradicción.",
+      "claves": "La ciencia demuestra unas verdades a partir de otras más simples, pero no se puede demostrar todo (regreso infinito). Hay primeros principios o axiomas, evidentes, que no necesitan demostración. El más firme: principio de no contradicción, es imposible que algo sea y no sea al mismo tiempo y en el mismo sentido.",
+      "resumen": "La ciencia demuestra, pero tiene que partir de primeros principios o axiomas que no se demuestran. El más firme es el de no contradicción: algo no puede ser y no ser a la vez y en el mismo sentido.",
+      "palabras": [
+        "demostrar",
+        "axiomas",
+        "primeros principios",
+        "no contradicción",
+        "evidente"
+      ],
+      "ejemplo": "Si alguien dice «estoy y no estoy en mi casa», sabés que algo anda mal sin necesidad de demostración."
+    },
+    {
+      "id": "categorias",
+      "titulo": "Sustancia, accidentes y categorías",
+      "guia": "Preguntar qué estudia la metafísica, qué son las categorías y qué diferencia hay entre sustancia y accidente.",
+      "claves": "Metafísica o filosofía primera: el ser en cuanto ser; «ser» se dice de muchas maneras. Diez categorías: sustancia (ousía, lo que algo es) y nueve accidentes (cantidad, cualidad, relación, lugar, tiempo, posición, posesión, acción, pasión). La sustancia existe por sí; los accidentes, en una sustancia (el color pálido de Sócrates). Sustancia primera: el individuo; segunda: especie o género. Lo más real es el individuo.",
+      "resumen": "La metafísica estudia el ser, que se dice de diez maneras o categorías. La principal es la sustancia, que existe por sí misma; las otras nueve son accidentes, que existen en una sustancia.",
+      "palabras": [
+        "metafísica",
+        "categorías",
+        "sustancia",
+        "accidentes",
+        "individuo"
+      ],
+      "ejemplo": "Que te cortes el pelo cambia un accidente; seguís siendo la misma persona, la misma sustancia."
+    },
+    {
+      "id": "hilemorfismo",
+      "titulo": "Materia y forma",
+      "guia": "Preguntar qué es el hilemorfismo con el ejemplo de la estatua y en qué se diferencia de Platón.",
+      "claves": "Toda sustancia tiene dos principios inseparables: materia (hyle), aquello de lo que está hecha, y forma (morphé), lo que la hace ser lo que es. Estatua de bronce: materia = bronce; forma = figura. La materia sin forma no es nada determinado; la forma no existe sin materia. Aristóteles pone las «Ideas» dentro de las cosas.",
+      "resumen": "Toda sustancia es materia y forma: en una estatua de bronce, el bronce es la materia y la figura es la forma. Esa forma está dentro de las cosas, no en otro mundo.",
+      "palabras": [
+        "hilemorfismo",
+        "materia",
+        "forma",
+        "estatua",
+        "inseparables"
+      ],
+      "ejemplo": "Con la misma masa podés hacer una pizza o una empanada: la materia es igual, cambia la forma."
+    },
+    {
+      "id": "acto_potencia",
+      "titulo": "Acto y potencia",
+      "guia": "Preguntar cómo explica Aristóteles el cambio frente a Parménides.",
+      "claves": "Parménides: el cambio es imposible, nada viene de la nada. Aristóteles: acto (lo que algo ya es) y potencia (lo que puede llegar a ser). Semilla = árbol en potencia; bebé = adulto en potencia. Cambio o movimiento = paso de la potencia al acto: lo nuevo ya estaba como posibilidad.",
+      "resumen": "Para explicar el cambio, Aristóteles distingue acto, lo que algo ya es, y potencia, lo que puede llegar a ser. Cambiar es pasar de la potencia al acto, como la semilla que se hace árbol.",
+      "palabras": [
+        "acto",
+        "potencia",
+        "cambio",
+        "Parménides",
+        "semilla"
+      ],
+      "ejemplo": "Vos sos, en potencia, alguien que sabe tocar la guitarra: practicando lo hacés acto."
+    },
+    {
+      "id": "causas_cosmos",
+      "titulo": "Las cuatro causas y el cosmos",
+      "guia": "Preguntar cuáles son las cuatro causas con un ejemplo, y cómo era el cosmos de Aristóteles con el primer motor inmóvil.",
+      "claves": "Saber es conocer las causas: material (de qué), formal (qué es), eficiente (quién lo hizo), final (para qué). Mesa: madera, diseño, carpintero, comer o estudiar. Teleología: en la naturaleza todo tiende a un fin. Cosmos: Tierra inmóvil en el centro; mundo sublunar (tierra, agua, aire, fuego; nace y muere) y supralunar (éter, perfecto, circular). Todo lo que se mueve es movido por otro; la cadena no es infinita: primer motor inmóvil, mueve sin ser movido, atrayendo como fin.",
+      "resumen": "Toda cosa tiene cuatro causas: material, formal, eficiente y final. En el cosmos, debajo de la Luna todo cambia y arriba todo es perfecto, y todo lo mueve el primer motor inmóvil, que atrae como un fin.",
+      "palabras": [
+        "causa material",
+        "causa final",
+        "teleología",
+        "sublunar",
+        "primer motor inmóvil"
+      ],
+      "ejemplo": "Tu mochila: la tela es la material, su diseño la formal, la fábrica la eficiente y llevar tus cosas la final."
+    }
+  ],
+  "casos": [
+    {
+      "id": "razonamiento_trampa",
+      "texto": "En una discusión, alguien dice: «Todos los que estudian mucho son aburridos; vos estudiás mucho; así que sos aburrido».",
+      "claves": "Analizar como silogismo: forma válida pero premisa falsa; distinguir validez de verdad; término medio."
+    },
+    {
+      "id": "contradiccion",
+      "texto": "Un compañero dice en la misma charla que el examen fue fácil y que fue imposible, refiriéndose a lo mismo.",
+      "claves": "Aplicar el principio de no contradicción: no se puede afirmar y negar lo mismo a la vez y en el mismo sentido; pedir que aclare los sentidos."
+    },
+    {
+      "id": "abuela_remedio",
+      "texto": "Tu abuela sabe que cierto té calma el dolor de panza, pero no sabe explicar por qué; un médico sí.",
+      "claves": "Distinguir experiencia y ciencia: la ciencia conoce el porqué, las causas; grados del saber."
+    },
+    {
+      "id": "gente_no_cambia",
+      "texto": "Una amiga dice que «la gente no cambia nunca».",
+      "claves": "Usar acto y potencia: el cambio como paso de la potencia al acto; y sustancia y accidentes: qué cambia y qué permanece."
+    },
+    {
+      "id": "celular_causas",
+      "texto": "Te piden explicar «por qué existe» tu celular.",
+      "claves": "Aplicar las cuatro causas: material, formal, eficiente y final; ciencia como conocer por las causas; teleología."
+    },
+    {
+      "id": "describir_amigo",
+      "texto": "Tenés que describir a un amigo: alto, simpático, de 17 años, sentado en el banco, con buzo rojo.",
+      "claves": "Distinguir la sustancia (la persona) de los accidentes (cantidad, cualidad, tiempo, lugar, posición, posesión); categorías."
+    },
+    {
+      "id": "ideas_platon",
+      "texto": "Un compañero que estudió Platón dice que la «Idea de árbol» está en otro mundo.",
+      "claves": "Exponer la crítica de Aristóteles: la forma está en las cosas; hilemorfismo; partir de lo sensible; «amigo de Platón, más amigo de la verdad»."
+    },
+    {
+      "id": "clasificar_apuntes",
+      "texto": "Tenés todos los apuntes del año mezclados y no encontrás nada.",
+      "claves": "Relacionar con el método de Aristóteles: observar, comparar y clasificar en géneros y especies; clasificación de las ciencias."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "maestro",
+      "texto": "¿Alguna vez no estuviste de acuerdo con alguien que admirás? ¿Cómo lo manejaste?"
+    },
+    {
+      "id": "potencia",
+      "texto": "¿Qué cosa tenés hoy «en potencia» que te gustaría hacer acto?"
+    },
+    {
+      "id": "razonar",
+      "texto": "¿Te pasó de convencerte de algo con un razonamiento que después resultó falso?"
+    },
+    {
+      "id": "observar",
+      "texto": "¿Qué cosa de la naturaleza te gustaría observar y entender mejor?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Aristóteles, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿En qué se diferencia Aristóteles de Platón respecto de las Ideas?",
+    "Explicá los grados del saber con un ejemplo.",
+    "¿Cómo clasificó Aristóteles las ciencias?",
+    "¿Qué es el Órganon y cuáles son las tres operaciones del pensamiento?",
+    "Armá un silogismo y señalá el término medio.",
+    "¿Qué diferencia hay entre un razonamiento válido y uno verdadero?",
+    "Explicá la diferencia entre sustancia y accidente con un ejemplo.",
+    "Explicá las cuatro causas de un objeto que uses todos los días."
+  ]
+}

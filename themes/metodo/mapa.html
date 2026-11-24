@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>El Método Filosófico · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — El Método Filosófico (Unidad I). Versión 2.0 (2026-11-24): sistema completo con 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para El Método Filosófico
+    window.MapaSystemConfig = {
+      tema: 'metodo',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Método", definition: "Del griego méthodos: camino para llegar a una meta." },
+        { term: "Asombro", definition: "Thaumázein: detenerse ante lo obvio y preguntar por qué." },
+        { term: "Problematizar", definition: "Convertir algo obvio en una pregunta que va a la raíz." },
+        { term: "Duda Escéptica", definition: "Concluye que no se puede conocer nada con certeza." },
+        { term: "Duda Metódica", definition: "Duda de todo para encontrar algo indudable." },
+        { term: "Genio Maligno", definition: "Hipótesis de un ser que podría engañarnos hasta en la matemática." },
+        { term: "Cogito", definition: "«Pienso, luego existo»: la primera verdad de Descartes." },
+        { term: "Análisis", definition: "Regla de Descartes: dividir cada problema en partes." },
+        { term: "Dialéctica", definition: "Buscar la verdad dialogando, desde Sócrates." },
+        { term: "Principio de Caridad", definition: "Interpretar lo que dice el otro de la mejor manera posible." },
+        { term: "Argumento", definition: "Premisas que llevan a una conclusión." },
+        { term: "Inducción", definition: "De casos particulares a una conclusión general y probable." },
+        { term: "Falacia", definition: "Razonamiento que parece correcto pero no lo es." },
+        { term: "Sapere Aude", definition: "Lema de Kant: ¡atrévete a pensar por ti mismo!" },
+        { term: "Sesgo de Confirmación", definition: "Creer solo lo que coincide con lo que ya pensamos." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🔎'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🔎']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🔎 El Método Filosófico</span></div>
+      </div>
+      <h3 class="sub">Duda, diálogo y crítica</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="El Método Filosófico">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">El Método Filosófico</div>
+            <div class="desc">Un <strong>camino</strong> que empieza en el asombro y avanza con la <strong>duda</strong>, el <strong>diálogo</strong> y la <strong>crítica</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="¿Qué es un Método?">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">¿Qué es un Método?</div>
+                <div class="desc"><em>Méthodos</em>: un <strong>camino</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Sin laboratorio"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sin laboratorio</div><div class="desc">Preguntas, <strong>razón</strong> y argumentos.</div></div></li>
+                <li><div class="node" data-title="Tres herramientas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tres herramientas</div><div class="desc"><strong>Duda</strong>, <strong>diálogo</strong> y <strong>crítica</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Punto de Partida">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Punto de Partida</div>
+                <div class="desc">La filosofía nace del <strong>asombro</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Asombro"><div class="toggle" style="visibility: hidden;"></div><div class="title">Asombro</div><div class="desc">Detenerse ante lo <strong>obvio</strong>.</div></div></li>
+                <li><div class="node" data-title="Problematizar"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problematizar</div><div class="desc">De «¿qué hora es?» a «¿qué es el tiempo?».</div></div></li>
+                <li><div class="node" data-title="Pregunta filosófica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pregunta filosófica</div><div class="desc"><strong>Radical</strong> y <strong>universal</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Duda">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Duda</div>
+                <div class="desc">Suspender el juicio hasta tener razones.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Escéptica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Escéptica</div><div class="desc">No se puede conocer nada.</div></div></li>
+                <li><div class="node" data-title="Metódica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Metódica</div><div class="desc">Dudar para encontrar algo <strong>indudable</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Descartes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Descartes</div>
+                <div class="desc">Buscó para la filosofía la <strong>certeza</strong> de la matemática.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Los sentidos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Los sentidos</div><div class="desc">A veces <strong>engañan</strong>.</div></div></li>
+                <li><div class="node" data-title="El sueño"><div class="toggle" style="visibility: hidden;"></div><div class="title">El sueño</div><div class="desc">No distinguimos con seguridad la <strong>vigilia</strong>.</div></div></li>
+                <li><div class="node" data-title="Genio maligno"><div class="toggle" style="visibility: hidden;"></div><div class="title">Genio maligno</div><div class="desc">Podría engañarnos hasta al sumar.</div></div></li>
+                <li><div class="node" data-title="El cogito"><div class="toggle" style="visibility: hidden;"></div><div class="title">El cogito</div><div class="desc">«<strong>Pienso, luego existo</strong>».</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Las Cuatro Reglas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Las Cuatro Reglas</div>
+                <div class="desc"><em>Discurso del método</em> (1637).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Evidencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Evidencia</div><div class="desc">Solo lo <strong>claro y distinto</strong>.</div></div></li>
+                <li><div class="node" data-title="Análisis"><div class="toggle" style="visibility: hidden;"></div><div class="title">Análisis</div><div class="desc"><strong>Dividir</strong> el problema.</div></div></li>
+                <li><div class="node" data-title="Síntesis"><div class="toggle" style="visibility: hidden;"></div><div class="title">Síntesis</div><div class="desc">De lo <strong>simple</strong> a lo complejo.</div></div></li>
+                <li><div class="node" data-title="Enumeración"><div class="toggle" style="visibility: hidden;"></div><div class="title">Enumeración</div><div class="desc"><strong>Revisar</strong> todo al final.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Diálogo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Diálogo</div>
+                <div class="desc">Pensar con otros: la <strong>dialéctica</strong> de Sócrates.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Reglas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Reglas</div><div class="desc"><strong>Escuchar</strong>, dar razones, aceptar el error.</div></div></li>
+                <li><div class="node" data-title="Principio de caridad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Principio de caridad</div><div class="desc">Interpretar al otro de la <strong>mejor</strong> manera.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Argumentar">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Argumentar</div>
+                <div class="desc">Mostrar <strong>por qué</strong>, no solo opinar.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Premisas y conclusión"><div class="toggle" style="visibility: hidden;"></div><div class="title">Premisas y conclusión</div><div class="desc">¿Son <strong>verdaderas</strong>? ¿La conclusión se <strong>sigue</strong>?</div></div></li>
+                <li><div class="node" data-title="Deducción"><div class="toggle" style="visibility: hidden;"></div><div class="title">Deducción</div><div class="desc">De lo general a lo particular: <strong>segura</strong>.</div></div></li>
+                <li><div class="node" data-title="Inducción"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inducción</div><div class="desc">De los casos a lo general: <strong>probable</strong>.</div></div></li>
+                <li><div class="node" data-title="Falacias"><div class="toggle" style="visibility: hidden;"></div><div class="title">Falacias</div><div class="desc"><strong>Ad hominem</strong>, hombre de paja, generalización apresurada.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Crítica">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Crítica</div>
+                <div class="desc"><em>Kríno</em>: <strong>separar</strong> y juzgar.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Kant"><div class="toggle" style="visibility: hidden;"></div><div class="title">Kant</div><div class="desc">«<strong>Sapere aude</strong>»: salir de la minoría de edad.</div></div></li>
+                <li><div class="node" data-title="Pensamiento crítico hoy"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pensamiento crítico hoy</div><div class="desc"><strong>Verificar</strong> fuentes antes de compartir.</div></div></li>
+                <li><div class="node" data-title="Sesgo de confirmación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sesgo de confirmación</div><div class="desc">Aplicarse la <strong>duda</strong> a uno mismo.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Método</h4><p>Del griego méthodos: camino para llegar a una meta.</p></article>
+          <article class="term"><h4>Asombro</h4><p>Thaumázein: detenerse ante lo obvio y preguntar por qué.</p></article>
+          <article class="term"><h4>Problematizar</h4><p>Convertir algo obvio en una pregunta que va a la raíz.</p></article>
+          <article class="term"><h4>Duda Escéptica</h4><p>Concluye que no se puede conocer nada con certeza.</p></article>
+          <article class="term"><h4>Duda Metódica</h4><p>Duda de todo para encontrar algo indudable.</p></article>
+          <article class="term"><h4>Genio Maligno</h4><p>Hipótesis de un ser que podría engañarnos hasta en la matemática.</p></article>
+          <article class="term"><h4>Cogito</h4><p>«Pienso, luego existo»: la primera verdad de Descartes.</p></article>
+          <article class="term"><h4>Análisis</h4><p>Regla de Descartes: dividir cada problema en partes.</p></article>
+          <article class="term"><h4>Dialéctica</h4><p>Buscar la verdad dialogando, desde Sócrates.</p></article>
+          <article class="term"><h4>Principio de Caridad</h4><p>Interpretar lo que dice el otro de la mejor manera posible.</p></article>
+          <article class="term"><h4>Argumento</h4><p>Premisas que llevan a una conclusión.</p></article>
+          <article class="term"><h4>Inducción</h4><p>De casos particulares a una conclusión general y probable.</p></article>
+          <article class="term"><h4>Falacia</h4><p>Razonamiento que parece correcto pero no lo es.</p></article>
+          <article class="term"><h4>Sapere Aude</h4><p>Lema de Kant: ¡atrévete a pensar por ti mismo!</p></article>
+          <article class="term"><h4>Sesgo de Confirmación</h4><p>Creer solo lo que coincide con lo que ya pensamos.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás las herramientas del método filosófico.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar con método</summary>
+      <div class="content">
+        <h4>Preguntas para usar las herramientas de la filosofía</h4>
+        <ul>
+          <li><strong>Asombro:</strong> ¿Qué doy por obvio sin habérmelo preguntado nunca?</li>
+          <li><strong>Duda:</strong> ¿Qué razones tengo para creer esto? ¿Podría estar equivocado?</li>
+          <li><strong>Diálogo:</strong> ¿Entendí bien lo que dijo el otro antes de responder?</li>
+          <li><strong>Argumento:</strong> ¿Mis premisas son verdaderas y la conclusión se sigue?</li>
+          <li><strong>Crítica:</strong> ¿Quién lo dice, con qué pruebas y en qué otras fuentes lo verifiqué?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

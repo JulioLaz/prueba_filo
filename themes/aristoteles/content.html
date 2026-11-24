@@ -3,33 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aristóteles: Lógica, Metafísica y Ética</title>
+  <!--
+    Material de lectura — Aristóteles: La Lógica y la Sustancia. Unidad I.
+    17 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-24): reescrito en 17 secciones cortas (antes 15 muy largas). Se centra en el saber, la lógica y la sustancia; el alma queda para «Antropología de Aristóteles» (Unidad II) y la ética para «Aristóteles: Lo Bueno es la Felicidad» (Unidad III).
+  -->
+  <title>Aristóteles: La Lógica y la Sustancia</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
   <script src="../../js/celebration.js" defer></script>
-  
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Aristóteles
     window.ReadAloudSystemConfig = {
-      tema: 'Aristóteles: Lógica, Metafísica y Ética',
-      threshold: 0.80,
-      sections: 15, // 15 secciones completas
+      tema: 'Aristóteles: La Lógica y la Sustancia',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 17,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=aristoteles',
-      celebrationEmojis: ['🤔', '🏛️', '📚', '⚖️', '🧠', '🎯', '🔬', '✨'],
-      
+      celebrationEmojis: ['📐', '🧩', '🌰', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'aristóteles': ['aristotélico', 'estagirita'],
-        'sustancia': ['ousía', 'ser primero'],
-        'hilemorfismo': ['materia y forma', 'hýle y eîdos'],
-        'potencia': ['dýnamis', 'capacidad de ser'],
-        'acto': ['enérgeia', 'realidad'],
-        'eudaimonía': ['felicidad', 'plenitud'],
-        'virtud': ['areté', 'excelencia'],
-        'término medio': ['justo medio', 'mesotes'],
-        'silogismo': ['razonamiento deductivo'],
-        'órganon': ['herramienta lógica']
+        'aristoteles': ['aristóteles'],
+        'platon': ['platón'],
+        'socrates': ['sócrates'],
+        'parmenides': ['parménides'],
+        'organon': ['órganon', 'organon'],
+        'peripateticos': ['peripatéticos'],
+        'techne': ['téchne', 'tecne'],
+        'ousia': ['ousía', 'usía'],
+        'hilemorfismo': ['hilemorfismo'],
+        'hyle': ['hile', 'hyle'],
+        'morphe': ['morfé', 'morphé'],
+        'telos': ['télos', 'telos'],
+        'teleologia': ['teleología'],
+        'eter': ['éter'],
+        'silogismo': ['silogismo'],
+        'estagira': ['estagira'],
+        'lesbos': ['lesbos']
       }
     };
   </script>
@@ -39,21 +52,21 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 15 secciones</span>
+        <span id="progress-counter">0 / 17 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>🤔 Aristóteles: Lógica, Metafísica y Ética</h1>
-    <p><em>Del discípulo de Platón al fundador de la lógica: exploración completa de las causas del ser, el hilemorfismo, las virtudes y la búsqueda de la felicidad.</em></p>
+    <h1>📐 Aristóteles: La Lógica y la Sustancia</h1>
+    <p><em>El <strong>Estagirita</strong> quiso entender el mundo partiendo de lo que vemos: los grados del saber, la clasificación de las ciencias, la <strong>lógica</strong> y el <strong>silogismo</strong>, la <strong>sustancia</strong> y las categorías, <strong>materia y forma</strong>, <strong>acto y potencia</strong> y las <strong>cuatro causas</strong>.</em></p>
 
-    <!-- SECCIÓN 1: INTRODUCCIÓN -->
-    <div class="study-section active" data-section="introduccion">
+    <!-- 1. El Estagirita -->
+    <div class="study-section active" data-section="vida">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>📖 Introducción: El Discípulo que Superó al Maestro</h3>
+          <h3>🏛️ El Estagirita</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -61,21 +74,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Aristóteles</strong> fue un filósofo griego nacido en <strong>Estagira</strong> en el año 384 a.C. Fue discípulo de <strong>Platón</strong> en la Academia durante <strong>veinte años</strong>, aunque posteriormente se separó de la doctrina de las Ideas de su maestro.<br><br>
-            
-            Más tarde, fundó su propia escuela en Atenas, conocida como el <strong>Liceo</strong> o <strong>Peripato</strong> (de <em>peripatein</em>, "pasear", porque enseñaba caminando). Su pensamiento es fundamental en la historia de Occidente, siendo considerado el <strong>fundador de la lógica</strong>.<br><br>
-
-            <strong>La Diferencia con Platón:</strong><br>
-            Mientras Platón creía en dos mundos (el sensible y el inteligible), Aristóteles afirmaba que <strong>solo existe un mundo: el sensible</strong>. Las formas o esencias no están separadas en un mundo aparte, sino que están <strong>presentes en las cosas mismas</strong>.<br><br>
-
-            <strong>Las Tres Ramas del Saber:</strong><br>
-            La vasta obra de Aristóteles se clasifica en tres grandes áreas:<br>
-            <strong>1. Ciencias Teóricas:</strong> Buscan el saber por sí mismo (Metafísica, Física)<br>
-            <strong>2. Ciencias Prácticas:</strong> Buscan el saber para la conducta moral (Ética, Política)<br>
-            <strong>3. Ciencias Productivas:</strong> Buscan el saber para producir objetos (Poética, Retórica)
+            <strong>Aristóteles</strong> nació en <strong>Estagira</strong> en el 384 a. C.; por eso lo llaman «el Estagirita». A los 17 años fue a Atenas y estudió veinte años en la <strong>Academia</strong> de Platón. Después fue maestro del joven <strong>Alejandro Magno</strong>.<br><br>En el 335 a. C. fundó su propia escuela, el <strong>Liceo</strong>. Enseñaba caminando con sus alumnos, que por eso fueron llamados <strong>peripatéticos</strong> («los que pasean»). Escribió sobre casi todo: lógica, física, biología, ética, política, retórica y arte.
           </p>
         </div>
 
@@ -86,7 +88,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Aristóteles: discípulo de Platón, fundador de la lógica.
+            💡 De Estagira al Liceo.
           </div>
         </div>
       </div>
@@ -94,25 +96,217 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la introducción a Aristóteles:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál fue la principal diferencia entre Aristóteles y Platón?</p>
+          <p>¿Qué escuela fundó Aristóteles en Atenas?</p>
         </div>
         <div class="options-container">
-          <div class="option">Aristóteles creía en tres mundos</div>
-          <div class="option" data-correct="true">Aristóteles afirmaba que solo existe el mundo sensible, con las formas en las cosas mismas</div>
-          <div class="option">Aristóteles no creía en las Ideas</div>
-          <div class="option">Ambos tenían las mismas ideas</div>
+          <div class="option" data-correct="true">El Liceo, donde enseñaba caminando con sus alumnos</div>
+          <div class="option">La Academia, donde enseñaba Platón</div>
+          <div class="option">El Jardín de Epicuro</div>
+          <div class="option">La Escuela de Mileto</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 2: LA LÓGICA - ÓRGANON -->
+    <!-- 2. Amigo de Platón, más amigo de la verdad -->
+    <div class="study-section" data-section="critica">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 Amigo de Platón, más amigo de la verdad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles admiraba a Platón, pero se dice que afirmaba: «Soy amigo de Platón, pero más amigo de la <strong>verdad</strong>». No aceptó que las Ideas existieran <strong>separadas</strong> de las cosas, en otro mundo.<br><br>Para él, duplicar la realidad no explica nada. La <strong>forma</strong> de algo, lo que lo hace ser lo que es, está <strong>en las cosas mismas</strong>: la «caballidad» está en cada caballo. Por eso hay que conocer partiendo de lo que vemos, del <strong>mundo sensible</strong>, y no huir de él.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Las formas están en las cosas.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿En qué se aparta Aristóteles de Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Afirma que las Ideas son más reales que las cosas</div>
+          <div class="option" data-correct="true">Rechaza que las Ideas existan separadas: la forma está en las cosas mismas</div>
+          <div class="option">Dice que los sentidos siempre engañan</div>
+          <div class="option">Cree que conocer es recordar lo que vio el alma</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. De los sentidos a la ciencia -->
+    <div class="study-section" data-section="conocer">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👁️ De los sentidos a la ciencia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Su obra <em>Metafísica</em> empieza así: «Todos los hombres desean por naturaleza <strong>saber</strong>». Y el saber tiene grados. Primero está la <strong>sensación</strong>: captar algo con los sentidos. Si la recordamos muchas veces, se forma la <strong>experiencia</strong>.<br><br>Luego viene la <strong>técnica</strong> (<em>téchne</em>): saber usar la experiencia para hacer algo. Lo más alto es la <strong>ciencia</strong>: conocer el <strong>porqué</strong>, las causas. Una cocinera con experiencia sabe que un remedio funciona; el científico sabe por qué.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Sensación, experiencia, técnica y ciencia.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es el grado más alto del saber para Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La sensación, que capta lo que vemos</div>
+          <div class="option">La experiencia, que recuerda muchas sensaciones</div>
+          <div class="option" data-correct="true">La ciencia, que conoce el porqué de las cosas</div>
+          <div class="option">La opinión de la mayoría</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Un mapa de los saberes -->
+    <div class="study-section" data-section="ciencias">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📚 Un mapa de los saberes</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles fue el primero en ordenar todos los saberes. Las <strong>ciencias teóricas</strong> buscan saber por saber y tratan de lo <strong>necesario</strong>, lo que no puede ser de otra manera: la matemática, la física y la <strong>metafísica</strong> o filosofía primera.<br><br>Las <strong>ciencias prácticas</strong> guían la acción y tratan de lo posible: la <strong>ética</strong> y la <strong>política</strong>. Las <strong>ciencias productivas</strong> enseñan a hacer o fabricar algo: la retórica y la poética. Este orden se usó durante siglos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Teóricas, prácticas y productivas.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué estudian las ciencias teóricas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Cómo fabricar objetos útiles</div>
+          <div class="option" data-correct="true">Lo necesario, para saber por saber: matemática, física y metafísica</div>
+          <div class="option">Cómo convencer a un público</div>
+          <div class="option">Solo la ética y la política</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Observar y clasificar -->
+    <div class="study-section" data-section="biologia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔭 Observar y clasificar</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            A diferencia de Platón, Aristóteles miraba con atención el mundo natural. En la isla de Lesbos estudió peces, aves e insectos, y describió y clasificó cientos de <strong>animales</strong> según sus rasgos. Por eso se lo considera el padre de la <strong>biología</strong>.<br><br>Su método era <strong>observar</strong> muchos casos, compararlos y buscar lo que tienen en común. Clasificar es agrupar las cosas en <strong>géneros</strong> y <strong>especies</strong>: «perro» es una especie del género «animal». Esa manera de ordenar aparece también en su lógica.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Mirar, comparar, agrupar.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué se considera a Aristóteles el padre de la biología?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Porque observó, describió y clasificó cientos de animales</div>
+          <div class="option">Porque inventó el microscopio</div>
+          <div class="option">Porque descubrió las células</div>
+          <div class="option">Porque escribió mitos sobre animales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. La lógica: el Órganon -->
     <div class="study-section" data-section="organon">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔧 La Lógica: El Órganon (Instrumento)</h3>
+          <h3>🔧 La lógica: el Órganon</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -120,30 +314,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para Aristóteles, la lógica es una <strong>herramienta o instrumento</strong> (<em>Órganon</em>) necesaria para acceder a la filosofía y la ciencia. Sin la lógica, no podemos pensar correctamente.<br><br>
-            
-            El <em>Órganon</em> contiene <strong>seis tratados</strong> que establecen la estructura del razonamiento válido. Aristóteles fue el primero en sistematizar las reglas del pensamiento correcto.<br><br>
-
-            <strong>Las Tres Operaciones del Conocimiento:</strong><br><br>
-
-            <strong>1. Aprehensión Simple:</strong><br>
-            • Captación de la naturaleza de las cosas<br>
-            • Produce <strong>Conceptos o Términos</strong><br>
-            • Ejemplo: el concepto de "perro"<br><br>
-
-            <strong>2. Juicio:</strong><br>
-            • Relaciona los conceptos en <strong>Proposiciones</strong><br>
-            • Solo las proposiciones pueden ser verdaderas o falsas<br>
-            • Ejemplo: "Este perro es grande" (S es P)<br><br>
-
-            <strong>3. Raciocinio:</strong><br>
-            • Proceso por el cual pasamos de juicios conocidos (premisas) a otros desconocidos (conclusión)<br>
-            • Es el proceso del <strong>razonamiento</strong><br><br>
-
-            La lógica aristotélica estudia principalmente el <strong>raciocinio</strong>, es decir, cómo construir argumentos válidos que nos lleven de premisas verdaderas a conclusiones verdaderas.
+            Aristóteles es el <strong>padre de la lógica</strong>. Sus obras de lógica se reunieron con el nombre de <strong>Órganon</strong>, que en griego significa «<strong>instrumento</strong>». La lógica no es una ciencia más: es la herramienta que usan todas las ciencias para pensar bien.<br><br>La lógica estudia la <strong>forma</strong> de los razonamientos, sin importar de qué hablan. Permite saber si un razonamiento está <strong>bien construido</strong> o si es un error, aunque suene convincente.
           </p>
         </div>
 
@@ -154,33 +328,81 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 La lógica es el instrumento para pensar correctamente.
+            💡 Una herramienta para pensar.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Órganon:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la segunda operación del conocimiento según Aristóteles?</p>
+          <p>¿Por qué la lógica se llama Órganon?</p>
         </div>
         <div class="options-container">
-          <div class="option">Aprehensión Simple</div>
-          <div class="option" data-correct="true">Juicio (relacionar conceptos en proposiciones)</div>
-          <div class="option">Raciocinio</div>
-          <div class="option">Silogismo</div>
+          <div class="option">Porque estudia los órganos del cuerpo</div>
+          <div class="option">Porque es un instrumento musical griego</div>
+          <div class="option">Porque solo sirve para la política</div>
+          <div class="option" data-correct="true">Porque es el instrumento que usan todas las ciencias para pensar bien</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 3: EL SILOGISMO -->
+    <!-- 7. Concepto, juicio y razonamiento -->
+    <div class="study-section" data-section="operaciones">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧩 Concepto, juicio y razonamiento</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Aristóteles, pensar tiene tres operaciones. El <strong>concepto</strong> capta qué es algo: «hombre», «mortal». El <strong>juicio</strong> une o separa conceptos, afirmando o negando: «el hombre es mortal». Un juicio puede ser verdadero o falso.<br><br>El <strong>razonamiento</strong> enlaza juicios para sacar uno nuevo: si sé que todos los hombres son mortales y que Sócrates es hombre, puedo <strong>concluir</strong> que Sócrates es mortal. Así avanzamos de lo que sabemos a lo que no sabíamos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Captar, afirmar, concluir.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué hace un juicio según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Capta qué es algo sin afirmar nada</div>
+          <div class="option">Saca una conclusión de otras dos</div>
+          <div class="option" data-correct="true">Une o separa conceptos, afirmando o negando algo</div>
+          <div class="option">Decide si alguien es culpable</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. El silogismo -->
     <div class="study-section" data-section="silogismo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧩 El Silogismo: El Razonamiento Perfecto</h3>
+          <h3>📐 El silogismo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -188,26 +410,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La noción central del sistema lógico de Aristóteles es el <strong>Silogismo</strong> (<em>sullogismos</em>). Es un discurso en el cual, una vez establecidas ciertas <strong>premisas</strong>, la <strong>conclusión</strong> resulta necesariamente.<br><br>
-            
-            <strong>Ejemplo Clásico de Silogismo:</strong><br>
-            <strong>Premisa Mayor:</strong> Todos los hombres son mortales<br>
-            <strong>Premisa Menor:</strong> Sócrates es hombre<br>
-            <strong>Conclusión:</strong> Por lo tanto, Sócrates es mortal<br><br>
-
-            Si las premisas son verdaderas y el razonamiento es válido, la conclusión <strong>debe ser verdadera necesariamente</strong>.<br><br>
-
-            <strong>Lógica Formal:</strong><br>
-            El tratado <em>Primeros Analíticos</em> desarrolla la teoría y técnica del silogismo, lo que hoy conocemos como <strong>lógica formal</strong>. Esta estudia la <strong>forma correcta</strong> del razonamiento, independientemente del contenido específico.<br><br>
-
-            <strong>La Ciencia (Episteme):</strong><br>
-            El tratado <em>Analíticos Posteriores</em> se ocupa de la <strong>demostración</strong> o razonamiento empleado por las ciencias. Para Aristóteles, la ciencia es el <strong>conocimiento cierto por las causas</strong>.<br><br>
-
-            <strong>La Inducción:</strong><br>
-            Además del silogismo (que va de lo universal a lo particular), Aristóteles reconoce la <strong>inducción</strong>: el proceso por el cual se llega a los <strong>primeros principios universales</strong> partiendo de la experiencia y los fenómenos particulares.
+            El razonamiento perfecto es el <strong>silogismo</strong>: tiene dos <strong>premisas</strong> y una <strong>conclusión</strong> que se sigue necesariamente de ellas. «Todos los hombres son mortales; Sócrates es hombre; luego, Sócrates es mortal».<br><br>Tiene tres términos: el <strong>sujeto</strong> de la conclusión («Sócrates»), el <strong>predicado</strong> («mortal») y el <strong>término medio</strong> («hombre»), que aparece en las dos premisas pero no en la conclusión. El término medio es el puente que une a los otros dos.
           </p>
         </div>
 
@@ -218,33 +424,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Silogismo: de premisas verdaderas a conclusión necesaria.
+            💡 Dos premisas y una conclusión.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el silogismo:</p>
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es un silogismo según Aristóteles?</p>
+          <p>En el silogismo sobre Sócrates, ¿cuál es el término medio?</p>
         </div>
         <div class="options-container">
-          <div class="option">Una opinión personal sobre un tema</div>
-          <div class="option">Una pregunta sin respuesta</div>
-          <div class="option" data-correct="true">Un razonamiento donde la conclusión resulta necesariamente de las premisas</div>
-          <div class="option">Un tipo de poema griego</div>
+          <div class="option" data-correct="true">«Hombre», que está en las premisas pero no en la conclusión</div>
+          <div class="option">«Sócrates», el sujeto de la conclusión</div>
+          <div class="option">«Mortal», el predicado de la conclusión</div>
+          <div class="option">«Luego», la palabra que une las premisas</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 4: LA METAFÍSICA - INTRODUCCIÓN -->
-    <div class="study-section" data-section="metafisica-intro">
+    <!-- 9. Válido no es lo mismo que verdadero -->
+    <div class="study-section" data-section="validez">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🌌 La Metafísica: La Filosofía Primera</h3>
+          <h3>✅ Válido no es lo mismo que verdadero</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -252,26 +458,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>Metafísica</strong> (o <em>"filosofía primera"</em>) es la ciencia más elevada para Aristóteles, pues busca las realidades y principios más fundamentales.<br><br>
-            
-            <strong>Las Cuatro Definiciones de la Metafísica:</strong><br><br>
-
-            <strong>1. Ciencia de las Primeras Causas y Principios:</strong><br>
-            Busca explicar la realidad a partir de sus fundamentos últimos.<br><br>
-
-            <strong>2. Ciencia del Ente en Cuanto Ente (Ontología):</strong><br>
-            Se ocupa de la realidad en su totalidad y de los atributos que le pertenecen. Estudia <em>"el ser en tanto que ser"</em> (<em>tó ón héi ón</em>).<br><br>
-
-            <strong>3. Ciencia de la Sustancia (Ousía):</strong><br>
-            Para Aristóteles, <strong>"Ser se dice en muchos sentidos"</strong> (<em>tò dé ón légetai pollachôs</em>), pero el sentido fundamental es <strong>ser sustancia</strong>. La sustancia es lo que existe por sí mismo.<br><br>
-
-            <strong>4. Ciencia de la Sustancia Separada e Inmóvil (Teología):</strong><br>
-            Estudia a Dios como el ser supremo, inmaterial e inmóvil.<br><br>
-
-            Estas cuatro definiciones no son contradictorias, sino <strong>complementarias</strong>. Todas describen aspectos de la misma ciencia suprema que busca comprender la realidad en su nivel más profundo.
+            La lógica separa dos cosas. Un razonamiento es <strong>válido</strong> si su <strong>forma</strong> es correcta: si las premisas fueran verdaderas, la conclusión tendría que serlo. Un juicio es <strong>verdadero</strong> si dice lo que pasa en la realidad.<br><br>«Todos los peces vuelan; el tiburón es un pez; luego, el tiburón vuela» es un razonamiento válido, pero con una premisa <strong>falsa</strong>. Para llegar a una conclusión segura hacen falta las dos cosas: buena forma y premisas verdaderas.
           </p>
         </div>
 
@@ -282,33 +472,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Metafísica: la ciencia que estudia el ser en tanto que ser.
+            💡 Forma correcta y premisas verdaderas.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la Metafísica:</p>
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es el sentido fundamental del ser según Aristóteles?</p>
+          <p>¿Qué pasa con «Todos los peces vuelan; el tiburón es un pez; luego, el tiburón vuela»?</p>
         </div>
         <div class="options-container">
-          <div class="option">Ser Idea</div>
-          <div class="option">Ser accidente</div>
-          <div class="option" data-correct="true">Ser sustancia (<em>ousía</em>)</div>
-          <div class="option">Ser apariencia</div>
+          <div class="option">Es inválido porque la conclusión es falsa</div>
+          <div class="option" data-correct="true">Es un razonamiento válido, pero tiene una premisa falsa</div>
+          <div class="option">Es válido y su conclusión es verdadera</div>
+          <div class="option">No es un razonamiento</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 5: PRINCIPIO DE NO CONTRADICCIÓN -->
-    <div class="study-section" data-section="no-contradiccion">
+    <!-- 10. Demostrar: los primeros principios -->
+    <div class="study-section" data-section="principios">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚠️ El Principio de No Contradicción</h3>
+          <h3>🧱 Demostrar: los primeros principios</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -316,25 +506,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El <strong>Principio de No Contradicción</strong> es, para Aristóteles, el principio más seguro y fundamental de todo el conocimiento.<br><br>
-            
-            <strong>Formulación del Principio:</strong><br>
-            Es <strong>imposible</strong> que un mismo atributo se dé y no se dé <strong>simultáneamente</strong> en el mismo sujeto y en el mismo sentido.<br><br>
-
-            <strong>Ejemplo Simple:</strong><br>
-            No puede ser que esta mesa sea <strong>y no sea</strong> blanca al mismo tiempo y en el mismo sentido. O es blanca o no es blanca, pero no ambas cosas a la vez.<br><br>
-
-            <strong>¿Por qué es tan importante?</strong><br>
-            • Es el <strong>fundamento de todo razonamiento</strong><br>
-            • Sin él, no podría haber conocimiento ni ciencia<br>
-            • No puede ser demostrado, porque toda demostración lo presupone<br>
-            • Es el principio más <strong>evidente</strong> para la razón<br>
-            • Quien lo niega, en realidad no puede afirmar nada con sentido<br><br>
-
-            <strong>Implicación:</strong> Este principio nos dice que la realidad tiene una <strong>estructura lógica coherente</strong>. Las cosas no pueden ser y no ser al mismo tiempo de la misma manera. La realidad es inteligible porque respeta este principio básico.
+            Para Aristóteles, la ciencia <strong>demuestra</strong>: prueba unas verdades a partir de otras más simples. Pero no se puede demostrar todo, porque nunca terminaríamos. Hay que llegar a <strong>primeros principios</strong> o <strong>axiomas</strong>: verdades evidentes que no necesitan demostración.<br><br>El más firme es el <strong>principio de no contradicción</strong>: es imposible que algo <strong>sea y no sea</strong> al mismo tiempo y en el mismo sentido. Nadie puede pensar en serio que una puerta está abierta y cerrada a la vez.
           </p>
         </div>
 
@@ -345,33 +520,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 No se puede ser y no ser al mismo tiempo y en el mismo sentido.
+            💡 Lo que no necesita demostración.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Principio de No Contradicción:</p>
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué afirma el Principio de No Contradicción?</p>
+          <p>¿Qué afirma el principio de no contradicción?</p>
         </div>
         <div class="options-container">
-          <div class="option">Todo cambia constantemente</div>
-          <div class="option">Solo existen las Ideas</div>
-          <div class="option" data-correct="true">Es imposible que algo sea y no sea al mismo tiempo y en el mismo sentido</div>
-          <div class="option">La realidad no es inteligible</div>
+          <div class="option">Que todo se puede demostrar</div>
+          <div class="option">Que dos personas nunca deben discutir</div>
+          <div class="option">Que todo cambia constantemente</div>
+          <div class="option" data-correct="true">Que algo no puede ser y no ser al mismo tiempo y en el mismo sentido</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 6: LAS CUATRO CAUSAS -->
-    <div class="study-section" data-section="cuatro-causas">
+    <!-- 11. La filosofía primera: el ser y las categorías -->
+    <div class="study-section" data-section="categorias">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎯 Las Cuatro Causas del Ser</h3>
+          <h3>🌌 La filosofía primera: el ser y las categorías</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -379,38 +554,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Aristóteles desarrolló la <strong>Doctrina de las Cuatro Causas</strong> para explicar por qué las cosas son como son. Todo lo que llega a ser, es <strong>por una causa</strong>.<br><br>
-            
-            <strong>Las Cuatro Causas (con el ejemplo de una estatua):</strong><br><br>
-
-            <strong>1. Causa Material:</strong><br>
-            • Aquello <strong>a partir de lo cual</strong> se produce algo<br>
-            • El sustrato o materia<br>
-            • <strong>Ejemplo:</strong> El mármol de la estatua<br>
-            • Se relaciona con la <strong>Potencia</strong> (capacidad de ser algo)<br><br>
-
-            <strong>2. Causa Formal:</strong><br>
-            • La <strong>esencia</strong> o lo que hace que una cosa sea lo que es<br>
-            • La forma o estructura<br>
-            • <strong>Ejemplo:</strong> La forma humana que tiene la estatua (Hermes, Afrodita)<br>
-            • Es lo que define y determina la cosa<br><br>
-
-            <strong>3. Causa Eficiente:</strong><br>
-            • El <strong>agente</strong> que inicia el cambio<br>
-            • Quien o qué produce la cosa<br>
-            • <strong>Ejemplo:</strong> El escultor que talla la estatua<br>
-            • Es el motor del cambio<br><br>
-
-            <strong>4. Causa Final:</strong><br>
-            • Aquello <strong>para lo cual</strong> se realiza el cambio<br>
-            • El fin, objetivo o propósito<br>
-            • <strong>Ejemplo:</strong> Embellecer la ciudad o honrar a un dios<br>
-            • Es la causa <strong>más importante</strong> y a la que se ordenan las demás<br><br>
-
-            Comprender algo plenamente significa conocer sus <strong>cuatro causas</strong>. La ciencia busca explicar las cosas a través de estas causas.
+            La <strong>metafísica</strong> o filosofía primera estudia el <strong>ser</strong> en cuanto ser. Aristóteles notó que «ser» se dice de muchas maneras: «es un caballo», «es blanco», «es alto», «está en el campo».<br><br>Esas maneras son las diez <strong>categorías</strong>. La primera y más importante es la <strong>sustancia</strong> (<em>ousía</em>): lo que algo es. Las otras nueve son <strong>accidentes</strong>: cantidad, cualidad, relación, lugar, tiempo, posición, posesión, acción y pasión.
           </p>
         </div>
 
@@ -421,7 +568,55 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Cuatro causas: material, formal, eficiente y final.
+            💡 El ser se dice de muchas maneras.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la categoría más importante según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La cantidad, cuánto mide algo</div>
+          <div class="option">El lugar, dónde está algo</div>
+          <div class="option" data-correct="true">La sustancia, lo que algo es</div>
+          <div class="option">El tiempo, cuándo existe algo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Sustancia y accidentes -->
+    <div class="study-section" data-section="sustancia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧍 Sustancia y accidentes</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>sustancia</strong> existe <strong>por sí misma</strong>; los accidentes existen <strong>en</strong> una sustancia. El color pálido no anda suelto: siempre es el color de alguien. Si Sócrates se broncea, cambia un accidente, pero sigue siendo Sócrates.<br><br>Aristóteles distingue la <strong>sustancia primera</strong>, cada individuo concreto (este caballo, Sócrates), y la <strong>sustancia segunda</strong>, la especie o el género que se dice de ellos («caballo», «hombre»). Lo más real es el <strong>individuo</strong>, no una Idea separada.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Lo que existe por sí y lo que existe en otro.
           </div>
         </div>
       </div>
@@ -429,25 +624,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre las Cuatro Causas:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>En el ejemplo de la estatua, ¿qué representa el escultor?</p>
+          <p>¿Qué diferencia hay entre sustancia y accidente?</p>
         </div>
         <div class="options-container">
-          <div class="option">La causa material</div>
-          <div class="option">La causa formal</div>
-          <div class="option" data-correct="true">La causa eficiente</div>
-          <div class="option">La causa final</div>
+          <div class="option" data-correct="true">La sustancia existe por sí misma; el accidente existe en una sustancia</div>
+          <div class="option">El accidente existe por sí mismo; la sustancia, en otro</div>
+          <div class="option">La sustancia es lo que cambia y el accidente lo que permanece</div>
+          <div class="option">Son lo mismo con distinto nombre</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 7: HILEMORFISMO -->
+    <!-- 13. Materia y forma -->
     <div class="study-section" data-section="hilemorfismo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 Hilemorfismo: Materia y Forma</h3>
+          <h3>🗿 Materia y forma</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -455,30 +650,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El <strong>Hilemorfismo</strong> (de <em>hýle</em>, "materia", y <em>morphé</em>, "forma") es la teoría aristotélica que explica que todas las sustancias sensibles se componen de <strong>Materia</strong> y <strong>Forma</strong>.<br><br>
-            
-            <strong>La Materia (Hýle):</strong><br>
-            • Es el <strong>sustrato</strong> o principio indeterminado<br>
-            • Es el <strong>potencial</strong> de la cosa<br>
-            • Por sí sola, no es nada determinado<br>
-            • Necesita la forma para ser algo concreto<br>
-            • Es lo que <strong>permanece</strong> en el cambio<br><br>
-
-            <strong>La Forma (Eîdos o Morphé):</strong><br>
-            • Es la <strong>esencia</strong> o estructura de la cosa<br>
-            • Es el <strong>acto</strong> que determina la materia<br>
-            • Es lo que hace que algo sea <strong>lo que es</strong><br>
-            • Da definición y realidad a la materia<br>
-            • Es el principio activo y determinante<br><br>
-
-            <strong>Ejemplo del Bronce y la Estatua:</strong><br>
-            • El <strong>bronce</strong> es la materia (puede ser estatua, espada, escudo)<br>
-            • La <strong>forma de Hermes</strong> es lo que determina que ese bronce específico sea una estatua de Hermes<br><br>
-
-            Materia y forma son <strong>inseparables</strong> en las sustancias sensibles. No existe materia sin forma (sería pura indeterminación) ni forma separada de la materia (excepto en Dios). Esta unión es lo que constituye las cosas concretas que existen en el mundo.
+            ¿De qué está hecha una sustancia? De dos principios inseparables: <strong>materia</strong> y <strong>forma</strong>. Esta teoría se llama <strong>hilemorfismo</strong> (<em>hyle</em>, materia; <em>morphé</em>, forma).<br><br>En una <strong>estatua</strong> de bronce, la materia es el bronce, aquello de lo que está hecha; la forma es la figura que la hace ser estatua de alguien. La materia sin forma no es nada determinado, y la forma no existe sin materia. Así, Aristóteles pone las «Ideas» de Platón <strong>dentro</strong> de las cosas.
           </p>
         </div>
 
@@ -489,33 +664,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Hilemorfismo: materia (potencia) + forma (acto) = sustancia.
+            💡 De qué está hecho y qué es.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Hilemorfismo:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es la materia según Aristóteles?</p>
+          <p>En una estatua de bronce, ¿qué es la forma?</p>
         </div>
         <div class="options-container">
-          <div class="option">La forma perfecta de las cosas</div>
-          <div class="option">Una Idea en el mundo inteligible</div>
-          <div class="option" data-correct="true">El sustrato indeterminado que tiene potencial de ser algo</div>
-          <div class="option">El motor inmóvil</div>
+          <div class="option">El bronce del que está hecha</div>
+          <div class="option">El escultor que la hizo</div>
+          <div class="option">El lugar donde está la estatua</div>
+          <div class="option" data-correct="true">La figura que la hace ser estatua de alguien</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 8: ACTO Y POTENCIA -->
+    <!-- 14. Acto y potencia: explicar el cambio -->
     <div class="study-section" data-section="acto-potencia">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚡ Acto y Potencia: La Explicación del Movimiento</h3>
+          <h3>🌰 Acto y potencia: explicar el cambio</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -523,31 +698,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Los conceptos de <strong>Acto</strong> y <strong>Potencia</strong> son fundamentales para explicar el <strong>cambio</strong> y el <strong>movimiento</strong> en la filosofía aristotélica.<br><br>
-            
-            <strong>La Potencia (Dýnamis):</strong><br>
-            • Es la <strong>capacidad de ser</strong> algo<br>
-            • Es lo que <strong>aún no es</strong>, pero <strong>puede llegar a ser</strong><br>
-            • Es el ser en posibilidad<br>
-            • <strong>Ejemplo:</strong> Una semilla tiene la potencia de ser un árbol<br><br>
-
-            <strong>El Acto (Enérgeia):</strong><br>
-            • Es la <strong>perfección</strong> o realización de la potencia<br>
-            • Es lo que <strong>ya es</strong> actualmente<br>
-            • Es el ser en realidad<br>
-            • <strong>Ejemplo:</strong> El árbol desarrollado es el acto de la semilla<br><br>
-
-            <strong>El Movimiento Explicado:</strong><br>
-            El movimiento o cambio es el <strong>paso de la potencia al acto</strong>. Es la actualización de lo que estaba en potencia.<br>
-            • La semilla <strong>(potencia)</strong> se convierte en árbol <strong>(acto)</strong><br>
-            • El bloque de mármol <strong>(potencia)</strong> se convierte en estatua <strong>(acto)</strong><br>
-            • El agua fría <strong>(potencia)</strong> se convierte en agua caliente <strong>(acto)</strong><br><br>
-
-            <strong>Prioridad del Acto:</strong><br>
-            Para Aristóteles, el <strong>acto tiene prioridad absoluta</strong> sobre la potencia. Lo que está en acto es <strong>más perfecto</strong> que lo que está solo en potencia. La potencia solo se entiende en relación al acto.
+            Parménides decía que el cambio es imposible: algo no puede venir de la nada. Aristóteles respondió con dos conceptos. El <strong>acto</strong> es lo que algo ya es; la <strong>potencia</strong>, lo que puede llegar a ser.<br><br>Una <strong>semilla</strong> es árbol en potencia; un bebé es adulto en potencia. El <strong>cambio</strong> o movimiento es el paso de la potencia al acto. No surge de la nada: lo que llega a ser ya estaba como posibilidad. Así se explica que el mundo cambie sin caer en contradicción.
           </p>
         </div>
 
@@ -558,33 +712,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Movimiento: paso de la potencia al acto.
+            💡 Lo que es y lo que puede ser.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre Acto y Potencia:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es el movimiento según Aristóteles?</p>
+          <p>¿Qué es el cambio para Aristóteles?</p>
         </div>
         <div class="options-container">
           <div class="option">Una ilusión de los sentidos</div>
-          <div class="option">El cambio del acto a la potencia</div>
-          <div class="option" data-correct="true">El paso de la potencia al acto, la actualización de lo posible</div>
-          <div class="option">El desplazamiento en el espacio</div>
+          <div class="option" data-correct="true">El paso de la potencia al acto</div>
+          <div class="option">Algo que surge de la nada</div>
+          <div class="option">El paso del acto a la nada</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 9: MOTOR INMÓVIL -->
-    <div class="study-section" data-section="motor-inmovil">
+    <!-- 15. Las cuatro causas -->
+    <div class="study-section" data-section="causas">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🌟 El Primer Motor Inmóvil: Dios</h3>
+          <h3>🎯 Las cuatro causas</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -592,30 +746,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La Metafísica de Aristóteles demuestra la existencia de un ser supremo: el <strong>Primer Motor Inmóvil</strong>, que Aristóteles identifica con <strong>Dios</strong>.<br><br>
-            
-            <strong>El Argumento:</strong><br>
-            • Todo lo que se mueve es movido por otro<br>
-            • No puede haber una cadena infinita de motores<br>
-            • Por lo tanto, debe existir un <strong>Primer Motor</strong> que mueve sin ser movido<br><br>
-
-            <strong>Características del Primer Motor Inmóvil:</strong><br>
-            • Es <strong>inmaterial</strong> (puro espíritu)<br>
-            • Es <strong>inmóvil</strong> (no cambia)<br>
-            • Su naturaleza es <strong>pura actualidad</strong> (acto puro, sin potencia)<br>
-            • Es <strong>eterno</strong> (no tiene principio ni fin)<br>
-            • Es <strong>perfecto</strong> (no le falta nada)<br>
-            • Su actividad es el <strong>pensamiento que se piensa a sí mismo</strong><br><br>
-
-            <strong>¿Cómo mueve el Motor Inmóvil?</strong><br>
-            No mueve como una <strong>causa eficiente</strong> (empujando), sino como una <strong>causa final</strong> (atrayendo). Mueve como <strong>objeto de amor y deseo</strong>.<br><br>
-
-            <strong>Ejemplo:</strong> Como el amado mueve al amante sin moverse él mismo, solo por ser deseado. El universo se mueve hacia la perfección por deseo de imitar a Dios, aunque Dios permanece inmóvil en su perfección.<br><br>
-
-            Este ser supremo es la <strong>causa final</strong> que ordena todo el cosmos.
+            Para Aristóteles, saber es conocer las <strong>causas</strong>, y toda cosa tiene cuatro. En una mesa: la causa <strong>material</strong> es la madera, de qué está hecha; la <strong>formal</strong>, su diseño, qué es; la <strong>eficiente</strong>, el carpintero, quién la hizo; la <strong>final</strong>, comer o estudiar, para qué existe.<br><br>La causa final es muy importante: Aristóteles piensa que en la naturaleza todo tiende a un <strong>fin</strong>. La semilla crece para ser árbol. Esta idea se llama <strong>teleología</strong> (<em>télos</em>, fin).
           </p>
         </div>
 
@@ -626,33 +760,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 El Motor Inmóvil mueve como objeto de amor y deseo.
+            💡 De qué, qué, quién y para qué.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el Primer Motor Inmóvil:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cómo mueve el Primer Motor Inmóvil al universo?</p>
+          <p>En una mesa, ¿cuál es la causa eficiente?</p>
         </div>
         <div class="options-container">
-          <div class="option">Empujando físicamente todas las cosas</div>
-          <div class="option">Creando el mundo de la nada</div>
-          <div class="option" data-correct="true">Como causa final, atrayendo como objeto de amor y deseo</div>
-          <div class="option">Destruyendo y recreando constantemente</div>
+          <div class="option">La madera de la que está hecha</div>
+          <div class="option">El diseño que la hace ser mesa</div>
+          <div class="option" data-correct="true">El carpintero que la hizo</div>
+          <div class="option">Comer o estudiar sobre ella</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 10: ÉTICA - EUDAIMONÍA -->
-    <div class="study-section" data-section="eudaimonia">
+    <!-- 16. El cosmos y el primer motor inmóvil -->
+    <div class="study-section" data-section="cosmos">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>😊 La Ética: En Busca de la Felicidad (Eudaimonía)</h3>
+          <h3>🌍 El cosmos y el primer motor inmóvil</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -660,28 +794,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>Ética</strong> de Aristóteles, desarrollada en la <em>Ética a Nicómaco</em>, constituye la <strong>ciencia práctica</strong> enfocada en orientar el obrar humano hacia el bien. No es puramente teórica, sino que busca que el hombre se vuelva virtuoso y bueno.<br><br>
-            
-            <strong>El Fin Último: La Eudaimonía</strong><br>
-            Toda acción y elección tienden a algún bien. El <strong>Fin Último</strong> (<em>Telos</em>) de la vida humana es la <strong>Felicidad</strong> (<em>Eudaimonía</em>).<br><br>
-
-            <strong>¿Qué NO es la Eudaimonía?</strong><br>
-            La felicidad aristotélica <strong>NO</strong> se refiere a:<br>
-            • Placeres corporales<br>
-            • Honores o fama<br>
-            • Riquezas materiales<br><br>
-
-            <strong>¿Qué ES la Eudaimonía?</strong><br>
-            La verdadera felicidad es:<br>
-            • <strong>Autárquica</strong> (autosuficiente, no depende de bienes externos)<br>
-            • Lograda a través del <strong>propio obrar</strong><br>
-            • La <strong>actividad del alma según la virtud</strong><br>
-            • Y si hay muchas virtudes, según la <strong>más excelente y perfecta</strong><br><br>
-
-            Para Aristóteles, la felicidad suprema se alcanza mediante la <strong>contemplación</strong> (<em>theoría</em>), la actividad intelectual más elevada. Sin embargo, también requiere ciertos bienes externos mínimos (salud, amigos, recursos) y una vida completa.
+            Aristóteles imaginó un universo con la Tierra inmóvil en el centro, rodeada de esferas. Debajo de la Luna está el <strong>mundo sublunar</strong>: hecho de tierra, agua, aire y fuego, donde todo nace, cambia y muere. Arriba, el <strong>mundo supralunar</strong>: hecho de <strong>éter</strong>, perfecto, con movimientos circulares.<br><br>Todo lo que se mueve es movido por otro, pero la cadena no puede ser infinita. Debe haber un <strong>primer motor inmóvil</strong>, que mueve sin ser movido, atrayendo como un fin, como lo amado atrae al que ama.
           </p>
         </div>
 
@@ -692,33 +808,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 <em>Eudaimonía</em>: actividad del alma según la virtud más perfecta.
+            💡 Debajo y arriba de la Luna.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la <em>Eudaimonía</em>:</p>
+          <h4>✅ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es la <em>Eudaimonía</em> según Aristóteles?</p>
+          <p>¿Cómo mueve el primer motor inmóvil al universo?</p>
         </div>
         <div class="options-container">
-          <div class="option">La acumulación de riquezas</div>
-          <div class="option">Los placeres corporales intensos</div>
-          <div class="option" data-correct="true">La actividad del alma según la virtud más perfecta</div>
-          <div class="option">La fama y el reconocimiento público</div>
+          <div class="option" data-correct="true">Atrayendo como un fin, sin ser movido</div>
+          <div class="option">Empujando las esferas con las manos</div>
+          <div class="option">Moviéndose más rápido que las estrellas</div>
+          <div class="option">Creando el universo de la nada</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 11: LAS VIRTUDES ÉTICAS -->
-    <div class="study-section" data-section="virtudes-eticas">
+    <!-- 17. Síntesis: pensar con orden -->
+    <div class="study-section" data-section="sintesis">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ Las Virtudes Éticas: El Término Medio</h3>
+          <h3>🏆 Síntesis: pensar con orden</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -726,38 +842,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>virtud</strong> (<em>areté</em>) es el <strong>hábito</strong> por el cual el hombre se hace bueno y realiza bien su función. Aristóteles distingue dos tipos de virtudes. Las primeras son las <strong>Virtudes Éticas (o Morales)</strong>.<br><br>
-            
-            <strong>Características de las Virtudes Éticas:</strong><br>
-            • Se adquieren por la <strong>costumbre o hábito</strong> (no por enseñanza)<br>
-            • Son virtudes del <strong>carácter</strong><br>
-            • Se relacionan con las acciones y las pasiones<br>
-            • Requieren <strong>práctica repetida</strong><br><br>
-
-            <strong>La Doctrina del Término Medio:</strong><br>
-            Las virtudes éticas se definen por el <strong>término medio</strong> (<em>mesotes</em>) entre dos vicios: uno por <strong>exceso</strong> y otro por <strong>defecto</strong>.<br><br>
-
-            <strong>Ejemplos del Término Medio:</strong><br><br>
-
-            <strong>Valentía:</strong><br>
-            • <strong>Defecto:</strong> Cobardía (demasiado miedo)<br>
-            • <strong>VIRTUD:</strong> Valentía (justo medio)<br>
-            • <strong>Exceso:</strong> Temeridad (falta de miedo)<br><br>
-
-            <strong>Generosidad:</strong><br>
-            • <strong>Defecto:</strong> Tacañería (dar muy poco)<br>
-            • <strong>VIRTUD:</strong> Generosidad (justo medio)<br>
-            • <strong>Exceso:</strong> Prodigalidad (dar demasiado)<br><br>
-
-            <strong>Templanza:</strong><br>
-            • <strong>Defecto:</strong> Insensibilidad (no sentir placer)<br>
-            • <strong>VIRTUD:</strong> Templanza (justo medio)<br>
-            • <strong>Exceso:</strong> Desenfreno (exceso de placer)<br><br>
-
-            El término medio no es un punto matemático igual para todos, sino el <strong>justo equilibrio</strong> que cada persona debe encontrar según sus circunstancias.
+            Aristóteles quiso entender el mundo partiendo de lo que vemos. Ordenó los saberes y creó la <strong>lógica</strong>, el instrumento para razonar bien: concepto, juicio y <strong>silogismo</strong>, con la diferencia entre validez y verdad.<br><br>En su <strong>metafísica</strong>, lo más real es la <strong>sustancia</strong> individual, compuesta de <strong>materia y forma</strong>. Con <strong>acto y potencia</strong> explicó el cambio, y con las <strong>cuatro causas</strong>, el porqué de las cosas. Fue la base de la ciencia durante casi dos mil años.
           </p>
         </div>
 
@@ -768,317 +856,31 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Virtud ética: término medio entre dos vicios.
+            💡 Síntesis final: todos los conceptos integrados.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre las virtudes éticas:</p>
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Qué es la valentía según la doctrina del término medio?</p>
+          <p>¿Cuál es la síntesis del pensamiento de Aristóteles en este tema?</p>
         </div>
         <div class="options-container">
-          <div class="option">El exceso de miedo</div>
-          <div class="option">La ausencia total de miedo</div>
-          <div class="option" data-correct="true">El justo medio entre la cobardía y la temeridad</div>
-          <div class="option">Una virtud intelectual</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 12: VIRTUDES DIANOÉTICAS -->
-    <div class="study-section" data-section="virtudes-dianoeticas">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🧠 Las Virtudes Dianoéticas: Prudencia y Sabiduría</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            Las <strong>Virtudes Dianoéticas</strong> (o Intelectuales) son virtudes del entendimiento y la razón.<br><br>
-            
-            <strong>Características de las Virtudes Dianoéticas:</strong><br>
-            • Se adquieren por la <strong>enseñanza e instrucción</strong> (no por hábito)<br>
-            • Son virtudes de la <strong>razón</strong><br>
-            • Perfeccionan la capacidad intelectual<br>
-            • Requieren <strong>estudio y aprendizaje</strong><br><br>
-
-            <strong>Las Dos Virtudes Dianoéticas Principales:</strong><br><br>
-
-            <strong>1. La Prudencia (Phrónesis):</strong><br>
-            • Es la más importante para la <strong>acción práctica</strong><br>
-            • Es la cualidad práctica del entendimiento<br>
-            • Permite <strong>deliberar correctamente</strong> para obrar bien<br>
-            • Ayuda a encontrar el <strong>término medio</strong> en cada circunstancia<br>
-            • Es la sabiduría práctica que guía la conducta moral<br>
-            • <strong>Ejemplo:</strong> Saber cuándo y cómo actuar valientemente en una situación específica<br><br>
-
-            <strong>2. La Sabiduría (Sophía):</strong><br>
-            • Es la virtud <strong>más perfecta</strong><br>
-            • Es fuente de la <strong>felicidad más alta</strong><br>
-            • Se manifiesta en la <strong>contemplación</strong> (<em>theoría</em>)<br>
-            • Es el conocimiento de las realidades supremas y eternas<br>
-            • Es la actividad más divina del ser humano<br>
-            • <strong>Ejemplo:</strong> La contemplación filosófica de las verdades eternas<br><br>
-
-            La <strong>prudencia</strong> dirige la acción práctica, mientras que la <strong>sabiduría</strong> alcanza el conocimiento teórico más elevado. Ambas son necesarias para la vida plena.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Prudencia: guía la acción. Sabiduría: contempla la verdad.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre las virtudes dianoéticas:</p>
-        </div>
-        <div class="question">
-          <p>¿Cuál es la función de la prudencia (<em>phrónesis</em>)?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Contemplar las verdades eternas</div>
-          <div class="option">Acumular riquezas</div>
-          <div class="option" data-correct="true">Deliberar correctamente para obrar bien y encontrar el término medio</div>
-          <div class="option">Desarrollar el cuerpo físico</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 13: ACCIÓN Y VOLUNTAD -->
-    <div class="study-section" data-section="accion-voluntad">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🎭 Acción Voluntaria y Elección</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            Aristóteles <strong>supera el intelectualismo</strong> socrático al introducir el elemento <strong>volitivo</strong> (la voluntad) en la ética.<br><br>
-            
-            <strong>El Acto Humano Virtuoso:</strong><br>
-            Para Aristóteles, no basta con <strong>conocer el bien</strong> (como decía Sócrates). Es necesario también <strong>quererlo</strong> y <strong>elegirlo libremente</strong>.<br><br>
-
-            <strong>Proceso del Acto Virtuoso:</strong><br>
-            <strong>1. Voluntad:</strong> El deseo racional movido por el bien<br>
-            <strong>2. Deliberación:</strong> Reflexión sobre los medios para alcanzar el fin<br>
-            <strong>3. Elección:</strong> Decisión libre de actuar<br><br>
-
-            <strong>Acción Voluntaria vs. Involuntaria:</strong><br><br>
-
-            <strong>Acción Voluntaria:</strong><br>
-            • Se origina en el agente mismo<br>
-            • Se hace con <strong>conocimiento</strong> de las circunstancias<br>
-            • Es <strong>libre</strong><br>
-            • El agente es <strong>responsable</strong> de ella<br><br>
-
-            <strong>Acción Involuntaria:</strong><br>
-            • Se hace por <strong>fuerza externa</strong><br>
-            • Se hace por <strong>ignorancia</strong> invencible<br>
-            • El agente <strong>no es responsable</strong> de ella<br><br>
-
-            <strong>Importancia:</strong><br>
-            La ética se relaciona con la <strong>contingencia</strong> de las acciones humanas. Nuestras acciones no están determinadas: tenemos <strong>libertad</strong> para elegir y, por tanto, somos <strong>responsables</strong> de nuestros actos.<br><br>
-
-            Solo las acciones voluntarias pueden ser virtuosas o viciosas. No puede haber mérito moral sin libertad.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Acto virtuoso: voluntad + deliberación + elección libre.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la acción voluntaria:</p>
-        </div>
-        <div class="question">
-          <p>¿Qué añade Aristóteles al intelectualismo socrático?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Que el conocimiento es suficiente para la virtud</div>
-          <div class="option">Que los dioses determinan nuestras acciones</div>
-          <div class="option" data-correct="true">El elemento volitivo: la voluntad, la deliberación y la elección libre</div>
-          <div class="option">Que no somos responsables de nuestros actos</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 14: POLÍTICA -->
-    <div class="study-section" data-section="politica">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🏛️ La Política: La Ciencia Arquitectónica</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            Para Aristóteles, la <strong>Política</strong> es la ciencia <em>"arquitectónica"</em> u ordenadora que busca el <strong>bien vivir</strong> (<em>eudaimonía</em>) de los ciudadanos.<br><br>
-            
-            <strong>¿Por qué es "arquitectónica"?</strong><br>
-            Porque organiza y ordena las demás ciencias y actividades humanas hacia el bien común. Es la ciencia suprema de las ciencias prácticas.<br><br>
-
-            <strong>El Fin de la Ciudad (Polis):</strong><br>
-            El objetivo de la ciudad no es solo la <strong>supervivencia</strong> o el <strong>comercio</strong>, sino que sus ciudadanos logren la <strong>felicidad</strong>. La ciudad existe para el <strong>bien vivir</strong>, no solo para el vivir.<br><br>
-
-            <strong>El Ser Humano como "Animal Político":</strong><br>
-            Aristóteles afirma que el hombre es por naturaleza un <em>"animal político"</em> (<strong>zóon politikón</strong>). Esto significa que:<br>
-            • Estamos <strong>naturalmente inclinados</strong> a vivir en comunidad<br>
-            • Solo en la <em>polis</em> podemos desarrollar plenamente nuestra humanidad<br>
-            • La ciudad es <strong>natural</strong>, no convencional<br>
-            • Quien vive fuera de la ciudad es o una bestia o un dios<br><br>
-
-            <strong>El Papel del Político:</strong><br>
-            El político debe:<br>
-            • Orientar su gobierno a la <strong>buena conducta</strong> (<em>praxis</em>) de los ciudadanos<br>
-            • Promover la <strong>virtud</strong> entre los ciudadanos<br>
-            • Organizar la <strong>educación</strong>, que es fundamental para la vida política<br>
-            • Buscar el <strong>bien común</strong>, no el bien particular<br><br>
-
-            La ética individual y la política están <strong>inseparablemente unidas</strong>. No hay ciudadano virtuoso sin ciudad justa, ni ciudad justa sin ciudadanos virtuosos.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Política: ciencia que busca la felicidad de los ciudadanos.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la Política:</p>
-        </div>
-        <div class="question">
-          <p>¿Qué significa que el hombre es un "animal político" según Aristóteles?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Que todos debemos ser políticos profesionales</div>
-          <div class="option">Que podemos vivir solos sin problemas</div>
-          <div class="option" data-correct="true">Que estamos naturalmente inclinados a vivir en comunidad (polis)</div>
-          <div class="option">Que debemos evitar la vida en sociedad</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECCIÓN 15: POÉTICA Y RETÓRICA -->
-    <div class="study-section" data-section="poetica-retorica">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🎭 Poética y Retórica: Las Artes Productivas</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            Las <strong>Ciencias Productivas</strong> (o <em>Poiéticas</em>) son aquellas que buscan el saber para <strong>producir objetos o artefactos</strong>. Las dos principales son la <strong>Poética</strong> y la <strong>Retórica</strong>.<br><br>
-            
-            <strong>La Poética:</strong><br>
-            Trata del <strong>arte de componer</strong>, especialmente tragedias. Aristóteles escribió el primer tratado sistemático sobre teoría literaria.<br><br>
-
-            <strong>Características de la Tragedia:</strong><br>
-            • Representa acciones nobles y serias<br>
-            • Produce la <strong>Catarsis</strong> (<em>kátharsis</em>): la <strong>purificación de las pasiones</strong> (compasión y miedo)<br>
-            • A través de la catarsis, el espectador alcanza un mayor nivel de <strong>conocimiento sobre el error humano</strong><br>
-            • La tragedia tiene valor educativo y moral<br><br>
-
-            <strong>La Retórica:</strong><br>
-            Es el arte de construir <strong>discursos persuasivos</strong>. Está ligada a la dialéctica (el arte de argumentar).<br><br>
-
-            <strong>Características de la Retórica:</strong><br>
-            • El elemento persuasivo principal es el <strong>argumento</strong> (razonamiento), conocido como <strong>Entimema</strong><br>
-            • Un entimema es un <strong>silogismo retórico</strong> (incompleto o probable)<br>
-            • Se aplica a cuestiones <strong>variables</strong> de la conducta humana<br>
-            • Es útil para la deliberación política y judicial<br>
-            • Debe usarse para persuadir hacia el bien, no para engañar<br><br>
-
-            Ambas artes son importantes porque permiten al ser humano <strong>expresarse</strong>, <strong>persuadir</strong> y <strong>educar</strong> mediante la palabra y la representación.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 Poética: catarsis. Retórica: persuasión mediante argumentos.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🏆 Verificación final</h4>
-          <p>Síntesis sobre Poética y Retórica:</p>
-        </div>
-        <div class="question">
-          <p>¿Qué es la catarsis según Aristóteles?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Una forma de razonamiento lógico</div>
-          <div class="option">Una virtud dianoética</div>
-          <div class="option" data-correct="true">La purificación de las pasiones que produce la tragedia</div>
-          <div class="option">El término medio entre dos vicios</div>
+          <div class="option">Huir del mundo sensible para contemplar las Ideas separadas</div>
+          <div class="option">Creer que el cambio es una ilusión</div>
+          <div class="option">Rechazar la lógica porque no sirve para la ciencia</div>
+          <div class="option" data-correct="true">Partir de lo sensible y razonar con lógica para conocer las sustancias y sus causas</div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

@@ -1,0 +1,78 @@
+{
+  "id": "platon",
+  "meta": {
+    "title": "Platón: El Mundo de las Ideas y la Caverna",
+    "author": "Platón",
+    "icon": "🌌",
+    "gradient": "linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)",
+    "difficulty": "basico",
+    "category": "Filosofía Antigua",
+    "description": "La teoría de las Ideas, los dos niveles de realidad, la Idea del Bien y el símil del Sol, la línea dividida, la alegoría de la caverna, la educación, la dialéctica y el rey filósofo.",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 17,
+      "timeEstimate": 14,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 16,
+      "timeEstimate": 12
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 7,
+      "centralWord": "CAVERNA",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 35,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#9C27B0",
+  "notes": {
+    "realValues": "v2.0 (2026-11-24): material 17 secciones, cuestionario 13, caza 8 niveles / 52, crucigrama CAVERNA + 7, mapa 35 nodos / 15 pares, cloze 16."
+  }
+}

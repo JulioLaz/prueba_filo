@@ -1,0 +1,78 @@
+{
+  "id": "aristoteles",
+  "meta": {
+    "title": "Aristóteles: La Lógica y la Sustancia",
+    "author": "Aristóteles",
+    "icon": "📐",
+    "gradient": "linear-gradient(135deg, #607D8B 0%, #9E9E9E 100%)",
+    "difficulty": "basico",
+    "category": "Filosofía Antigua",
+    "description": "Los grados del saber, la clasificación de las ciencias, la lógica (Órganon, silogismo, validez), los primeros principios, la sustancia y las categorías, materia y forma, acto y potencia, las cuatro causas y el cosmos.",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 17,
+      "timeEstimate": 14,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 16,
+      "timeEstimate": 15
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 9,
+      "centralWord": "SILOGISMO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 34,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#607D8B",
+  "notes": {
+    "realValues": "v2.0 (2026-11-24): material 17 secciones, cuestionario 13, caza 8 niveles / 54, crucigrama SILOGISMO + 9, mapa 34 nodos / 15 pares, cloze 16."
+  }
+}

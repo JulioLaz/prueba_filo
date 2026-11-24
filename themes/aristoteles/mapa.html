@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Aristóteles · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Aristóteles (Unidad I). Versión 2.0 (2026-11-24): sistema completo con 15 pares, centrado en la lógica y la sustancia. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Aristóteles
+    window.MapaSystemConfig = {
+      tema: 'aristoteles',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Liceo", definition: "Escuela que fundó Aristóteles en Atenas; sus alumnos, los peripatéticos." },
+        { term: "Ciencia", definition: "El grado más alto del saber: conocer el porqué, las causas." },
+        { term: "Órganon", definition: "La lógica como instrumento de todas las ciencias." },
+        { term: "Juicio", definition: "Une o separa conceptos afirmando o negando; es verdadero o falso." },
+        { term: "Silogismo", definition: "Razonamiento de dos premisas y una conclusión necesaria." },
+        { term: "Término Medio", definition: "Une los términos en las premisas y no aparece en la conclusión." },
+        { term: "Validez", definition: "Corrección de la forma de un razonamiento, distinta de la verdad." },
+        { term: "No Contradicción", definition: "Principio: algo no puede ser y no ser a la vez y en el mismo sentido." },
+        { term: "Categorías", definition: "Las diez maneras en que se dice el ser." },
+        { term: "Sustancia", definition: "Lo que existe por sí mismo: la categoría principal." },
+        { term: "Accidente", definition: "Lo que existe en una sustancia, como el color o el tamaño." },
+        { term: "Hilemorfismo", definition: "Toda sustancia es materia y forma." },
+        { term: "Acto y Potencia", definition: "Lo que algo es y lo que puede ser: explican el cambio." },
+        { term: "Cuatro Causas", definition: "Material, formal, eficiente y final." },
+        { term: "Primer Motor Inmóvil", definition: "Mueve el universo sin ser movido, atrayendo como un fin." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '📐'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '📐']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>📐 Aristóteles</span></div>
+      </div>
+      <h3 class="sub">La lógica y la sustancia</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Aristóteles">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Aristóteles</div>
+            <div class="desc">Partió de lo <strong>sensible</strong>: ordenó los saberes, creó la <strong>lógica</strong> y explicó la <strong>sustancia</strong>, el cambio y sus <strong>causas</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Vida de Aristóteles">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Vida de Aristóteles</div>
+                <div class="desc">El <strong>Estagirita</strong> (384–322 a. C.).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="La Academia"><div class="toggle" style="visibility: hidden;"></div><div class="title">La Academia</div><div class="desc">Veinte años como alumno de <strong>Platón</strong>.</div></div></li>
+                <li><div class="node" data-title="Alejandro Magno"><div class="toggle" style="visibility: hidden;"></div><div class="title">Alejandro Magno</div><div class="desc">Fue su maestro.</div></div></li>
+                <li><div class="node" data-title="El Liceo"><div class="toggle" style="visibility: hidden;"></div><div class="title">El Liceo</div><div class="desc">Su escuela: los <strong>peripatéticos</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Crítica a Platón">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Crítica a Platón</div>
+                <div class="desc">«Amigo de Platón, pero más amigo de la <strong>verdad</strong>».</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Sin Ideas separadas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sin Ideas separadas</div><div class="desc">La <strong>forma</strong> está en las cosas mismas.</div></div></li>
+                <li><div class="node" data-title="Partir de lo sensible"><div class="toggle" style="visibility: hidden;"></div><div class="title">Partir de lo sensible</div><div class="desc">Conocer el mundo, no huir de él.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Grados del Saber">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Grados del Saber</div>
+                <div class="desc">«Todos los hombres desean por naturaleza saber».</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Sensación y experiencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sensación y experiencia</div><div class="desc">Captar y <strong>recordar</strong>.</div></div></li>
+                <li><div class="node" data-title="Técnica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Técnica</div><div class="desc">Saber <strong>hacer</strong> (téchne).</div></div></li>
+                <li><div class="node" data-title="Ciencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ciencia</div><div class="desc">Conocer el <strong>porqué</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Mapa de los Saberes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Mapa de los Saberes</div>
+                <div class="desc">Primera clasificación de las ciencias.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Teóricas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Teóricas</div><div class="desc">Lo <strong>necesario</strong>: matemática, física, metafísica.</div></div></li>
+                <li><div class="node" data-title="Prácticas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Prácticas</div><div class="desc">La acción: <strong>ética</strong> y <strong>política</strong>.</div></div></li>
+                <li><div class="node" data-title="Productivas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Productivas</div><div class="desc">Hacer: <strong>retórica</strong> y poética.</div></div></li>
+                <li><div class="node" data-title="Biología"><div class="toggle" style="visibility: hidden;"></div><div class="title">Biología</div><div class="desc">Observó y <strong>clasificó</strong> cientos de animales.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Lógica">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Lógica</div>
+                <div class="desc">El <strong>Órganon</strong>: instrumento de todas las ciencias.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Tres operaciones"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tres operaciones</div><div class="desc"><strong>Concepto</strong>, <strong>juicio</strong> y <strong>razonamiento</strong>.</div></div></li>
+                <li><div class="node" data-title="Silogismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Silogismo</div><div class="desc">Dos <strong>premisas</strong> y una conclusión; el <strong>término medio</strong> las une.</div></div></li>
+                <li><div class="node" data-title="Validez y verdad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Validez y verdad</div><div class="desc">Buena <strong>forma</strong> y premisas verdaderas.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Primeros Principios">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Primeros Principios</div>
+                <div class="desc">La ciencia <strong>demuestra</strong> desde axiomas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="No contradicción"><div class="toggle" style="visibility: hidden;"></div><div class="title">No contradicción</div><div class="desc">Nada puede <strong>ser y no ser</strong> a la vez.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Metafísica">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Metafísica</div>
+                <div class="desc">Filosofía primera: el <strong>ser</strong> en cuanto ser.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Categorías"><div class="toggle" style="visibility: hidden;"></div><div class="title">Categorías</div><div class="desc">Diez maneras de decir el ser.</div></div></li>
+                <li><div class="node" data-title="Sustancia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sustancia</div><div class="desc">Existe <strong>por sí</strong>: primera (individuo) y segunda (especie).</div></div></li>
+                <li><div class="node" data-title="Accidentes"><div class="toggle" style="visibility: hidden;"></div><div class="title">Accidentes</div><div class="desc">Existen <strong>en</strong> una sustancia.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Cambio">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Cambio</div>
+                <div class="desc">Respuesta a <strong>Parménides</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Materia y forma"><div class="toggle" style="visibility: hidden;"></div><div class="title">Materia y forma</div><div class="desc">Hilemorfismo: el bronce y la <strong>figura</strong> de la estatua.</div></div></li>
+                <li><div class="node" data-title="Acto y potencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Acto y potencia</div><div class="desc">La <strong>semilla</strong> es árbol en potencia.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Causas y Cosmos">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Causas y Cosmos</div>
+                <div class="desc">Saber es conocer las <strong>causas</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Cuatro causas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cuatro causas</div><div class="desc">Material, formal, eficiente y <strong>final</strong>.</div></div></li>
+                <li><div class="node" data-title="Sublunar y supralunar"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sublunar y supralunar</div><div class="desc">Lo que cambia y lo <strong>perfecto</strong> (éter).</div></div></li>
+                <li><div class="node" data-title="Primer motor inmóvil"><div class="toggle" style="visibility: hidden;"></div><div class="title">Primer motor inmóvil</div><div class="desc">Mueve sin ser movido, como un <strong>fin</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Liceo</h4><p>Escuela que fundó Aristóteles en Atenas; sus alumnos, los peripatéticos.</p></article>
+          <article class="term"><h4>Ciencia</h4><p>El grado más alto del saber: conocer el porqué, las causas.</p></article>
+          <article class="term"><h4>Órganon</h4><p>La lógica como instrumento de todas las ciencias.</p></article>
+          <article class="term"><h4>Juicio</h4><p>Une o separa conceptos afirmando o negando; es verdadero o falso.</p></article>
+          <article class="term"><h4>Silogismo</h4><p>Razonamiento de dos premisas y una conclusión necesaria.</p></article>
+          <article class="term"><h4>Término Medio</h4><p>Une los términos en las premisas y no aparece en la conclusión.</p></article>
+          <article class="term"><h4>Validez</h4><p>Corrección de la forma de un razonamiento, distinta de la verdad.</p></article>
+          <article class="term"><h4>No Contradicción</h4><p>Principio: algo no puede ser y no ser a la vez y en el mismo sentido.</p></article>
+          <article class="term"><h4>Categorías</h4><p>Las diez maneras en que se dice el ser.</p></article>
+          <article class="term"><h4>Sustancia</h4><p>Lo que existe por sí mismo: la categoría principal.</p></article>
+          <article class="term"><h4>Accidente</h4><p>Lo que existe en una sustancia, como el color o el tamaño.</p></article>
+          <article class="term"><h4>Hilemorfismo</h4><p>Toda sustancia es materia y forma.</p></article>
+          <article class="term"><h4>Acto y Potencia</h4><p>Lo que algo es y lo que puede ser: explican el cambio.</p></article>
+          <article class="term"><h4>Cuatro Causas</h4><p>Material, formal, eficiente y final.</p></article>
+          <article class="term"><h4>Primer Motor Inmóvil</h4><p>Mueve el universo sin ser movido, atrayendo como un fin.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de la lógica y la metafísica de Aristóteles.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar con orden</summary>
+      <div class="content">
+        <h4>Preguntas para razonar como Aristóteles</h4>
+        <ul>
+          <li><strong>Observar:</strong> ¿Qué veo realmente, antes de opinar?</li>
+          <li><strong>Clasificar:</strong> ¿En qué se parece y en qué se diferencia de otras cosas?</li>
+          <li><strong>Razonar:</strong> ¿Mi conclusión se sigue de las premisas? ¿Las premisas son verdaderas?</li>
+          <li><strong>Sustancia:</strong> ¿Qué es esto en sí y qué le pasa solo por accidente?</li>
+          <li><strong>Causas:</strong> ¿De qué está hecho, qué es, quién lo hizo y para qué existe?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

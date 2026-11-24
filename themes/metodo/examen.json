@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con René Descartes y del resumen final del tema «El Método Filosófico: Duda, Diálogo y Crítica». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "René Descartes",
+  "tema": "El método filosófico: el asombro, la duda metódica y el cogito, el diálogo, la argumentación, las falacias y la crítica",
+  "intro": "La filosofía no tiene laboratorio: piensa con preguntas y argumentos. Empieza con el asombro, y sus herramientas son la duda (como la duda metódica de Descartes, que llega al «pienso, luego existo»), el diálogo con reglas y buenos argumentos sin falacias, y la crítica, que pide atreverse a pensar por uno mismo.",
+  "conceptosClave": "método, asombro, problematizar, duda escéptica, duda metódica, genio maligno, cogito, reglas del método, dialéctica, principio de caridad, argumento, deducción, inducción, falacia, sapere aude, pensamiento crítico",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "estufa",
+      "texto": "Descartes está sentado junto a una estufa en un cuarto de Alemania, en pleno invierno, y le cuenta al alumno que ahí se le ocurrió su método; lo invita a pensar con él."
+    },
+    {
+      "id": "cama",
+      "texto": "Descartes todavía está en la cama a media mañana, como le gustaba, porque dice que ahí piensa mejor; desde la almohada empieza a hacerle preguntas al alumno."
+    },
+    {
+      "id": "cera",
+      "texto": "Descartes acerca un trozo de cera al fuego, lo mira derretirse y cambiar de forma, y le pregunta al alumno si puede confiar en lo que ven sus ojos."
+    },
+    {
+      "id": "sueno",
+      "texto": "Descartes le pregunta al alumno, muy serio, cómo sabe que no está soñando este examen ahora mismo."
+    },
+    {
+      "id": "suecia",
+      "texto": "Descartes llega tiritando del palacio de la reina Cristina de Suecia, que lo hace dar clases a las cinco de la mañana con mucho frío; pide al alumno una conversación más cálida."
+    },
+    {
+      "id": "discurso",
+      "texto": "Descartes le muestra al alumno un ejemplar recién impreso del Discurso del método y le propone comprobar si sus reglas sirven para conversar sobre filosofía."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "metodo",
+      "titulo": "¿Qué es un método filosófico?",
+      "guia": "Preguntar qué significa «método» y cuáles son las herramientas de la filosofía.",
+      "claves": "Método viene de méthodos: camino para llegar a una meta. La filosofía no tiene laboratorio: sus herramientas son las preguntas, la razón y los argumentos. Tres herramientas principales: la duda (pone a prueba lo que creemos), el diálogo (pensar con otros) y la crítica (revisar razones y límites).",
+      "resumen": "Método significa camino. La filosofía no usa laboratorios: sus herramientas son las preguntas, la razón y los argumentos, sobre todo la duda, el diálogo y la crítica.",
+      "palabras": [
+        "método",
+        "camino",
+        "duda",
+        "diálogo",
+        "crítica"
+      ],
+      "ejemplo": "Como una receta: no es la comida, sino el camino para llegar a ella."
+    },
+    {
+      "id": "asombro",
+      "titulo": "El asombro y la pregunta filosófica",
+      "guia": "Preguntar de dónde nace la filosofía y qué es problematizar.",
+      "claves": "Platón y Aristóteles: la filosofía nace del asombro (thaumázein), detenerse ante lo obvio y preguntar por qué. Problematizar: convertir lo obvio en problema («¿qué hora es?» → «¿qué es el tiempo?»). La pregunta filosófica es radical (va a la raíz), universal (vale para todos) y no se responde con un dato ni un experimento.",
+      "resumen": "La filosofía nace del asombro ante lo obvio. El primer paso es problematizar: convertir lo obvio en una pregunta radical y universal, que no se responde con un dato.",
+      "palabras": [
+        "asombro",
+        "thaumázein",
+        "problematizar",
+        "radical",
+        "universal"
+      ],
+      "ejemplo": "«¿Cuánto falta para el recreo?» es una pregunta común; «¿por qué el tiempo pasa más lento cuando me aburro?» empieza a ser filosófica."
+    },
+    {
+      "id": "duda",
+      "titulo": "Duda escéptica y duda metódica",
+      "guia": "Preguntar qué es dudar y qué diferencia hay entre la duda escéptica y la metódica.",
+      "claves": "Dudar es suspender el juicio hasta tener razones. Duda escéptica: concluye que no se puede conocer nada con certeza, y se queda ahí. Duda metódica (Descartes): usa la duda como herramienta, cuestiona todo lo que se pueda para encontrar algo indudable sobre lo cual construir.",
+      "resumen": "La duda escéptica concluye que no se puede conocer nada. La duda metódica de Descartes duda de todo para encontrar algo indudable y construir sobre eso.",
+      "palabras": [
+        "duda escéptica",
+        "duda metódica",
+        "suspender el juicio",
+        "indudable",
+        "herramienta"
+      ],
+      "ejemplo": "Revisar todas las piezas de una torre que se cae para quedarte solo con las firmes y volver a construir."
+    },
+    {
+      "id": "descartes",
+      "titulo": "Descartes y su búsqueda de certeza",
+      "guia": "Preguntar quién fue Descartes, qué le preocupaba y qué quería lograr.",
+      "claves": "René Descartes (1596–1650), filósofo y matemático francés. Estudió en los mejores colegios pero sentía que mucho de lo aprendido era dudoso: los sabios no se ponían de acuerdo. Admiraba la matemática (clara y segura) y quiso darle esa certeza a la filosofía. Discurso del método (1637): derribar todas las creencias y reconstruir el conocimiento sobre bases firmes.",
+      "resumen": "Descartes fue un filósofo y matemático francés. Quiso darle a la filosofía la certeza de la matemática: en el Discurso del método propuso derribar todas sus creencias y empezar de cero.",
+      "palabras": [
+        "Descartes",
+        "matemática",
+        "certeza",
+        "Discurso del método",
+        "empezar de cero"
+      ],
+      "ejemplo": "Como cuando tu celular anda mal y lo reseteás de fábrica para reinstalar solo lo que funciona."
+    },
+    {
+      "id": "motivos",
+      "titulo": "Los tres motivos para dudar",
+      "guia": "Preguntar cuáles son los motivos de duda de Descartes y qué pone en duda cada uno.",
+      "claves": "1) Los sentidos a veces engañan (palo quebrado en el agua): no conviene confiar del todo en quien nos engañó una vez. 2) El sueño: mientras soñamos todo parece real; no hay señal segura para distinguir vigilia y sueño (duda del mundo exterior). 3) El genio maligno: un ser poderoso podría engañarnos incluso en la matemática (2 + 2).",
+      "resumen": "Descartes duda de los sentidos porque a veces engañan; del mundo, porque no puede distinguir con seguridad la vigilia del sueño; y hasta de la matemática, por la hipótesis del genio maligno.",
+      "palabras": [
+        "sentidos",
+        "sueño",
+        "vigilia",
+        "genio maligno",
+        "engaño"
+      ],
+      "ejemplo": "Hay sueños tan reales que al despertar tardás unos segundos en saber si pasó de verdad."
+    },
+    {
+      "id": "cogito",
+      "titulo": "Pienso, luego existo",
+      "guia": "Preguntar cuál es la primera verdad de Descartes y por qué resiste toda duda.",
+      "claves": "Puedo dudar del cuerpo y del mundo, pero mientras dudo, pienso; y si pienso, existo. Aunque el genio maligno me engañe, para ser engañado tengo que existir. «Pienso, luego existo» (cogito, ergo sum): verdad clara y distinta, base para reconstruir el conocimiento.",
+      "resumen": "Aunque dude de todo, mientras dudo estoy pensando, y si pienso, existo. Esa es la primera verdad de Descartes: «pienso, luego existo», el cogito.",
+      "palabras": [
+        "cogito",
+        "pienso",
+        "existo",
+        "claro y distinto",
+        "indudable"
+      ],
+      "ejemplo": "Si alguien te dice «no existís», para escucharlo y dudar ya tenés que existir."
+    },
+    {
+      "id": "reglas",
+      "titulo": "Las cuatro reglas del método",
+      "guia": "Preguntar cuáles son las cuatro reglas de Descartes y pedir que las aplique a un problema.",
+      "claves": "Discurso del método: evidencia (aceptar solo lo claro y distinto), análisis (dividir el problema en partes), síntesis (ordenar de lo simple a lo complejo), enumeración (revisar todo al final para no omitir nada). Útiles para estudiar o resolver problemas.",
+      "resumen": "Las reglas de Descartes son: evidencia, aceptar solo lo claro; análisis, dividir el problema; síntesis, ordenar de lo simple a lo complejo; y enumeración, revisar todo.",
+      "palabras": [
+        "evidencia",
+        "análisis",
+        "síntesis",
+        "enumeración",
+        "claro y distinto"
+      ],
+      "ejemplo": "Para preparar una prueba: dividís el tema, empezás por lo fácil, avanzás a lo difícil y repasás todo al final."
+    },
+    {
+      "id": "dialogo",
+      "titulo": "El diálogo y sus reglas",
+      "guia": "Preguntar por qué la filosofía se hace dialogando y cuáles son las reglas de un buen diálogo.",
+      "claves": "Desde Sócrates, la filosofía se hace conversando: preguntar, responder y revisar juntos (dialéctica). Nadie es dueño de la verdad; una idea que resiste las objeciones sale más fuerte. Reglas: escuchar, dar razones (no gritos ni insultos), aceptar que podemos estar equivocados, principio de caridad (interpretar al otro de la mejor manera, no deformarlo). Gana el mejor argumento, no el que grita más.",
+      "resumen": "La filosofía se hace dialogando, desde Sócrates: es la dialéctica. Un buen diálogo exige escuchar, dar razones, aceptar el error y aplicar el principio de caridad.",
+      "palabras": [
+        "diálogo",
+        "dialéctica",
+        "objeciones",
+        "escuchar",
+        "principio de caridad"
+      ],
+      "ejemplo": "Una discusión en el grupo de WhatsApp donde todos gritan en mayúsculas no es un diálogo filosófico."
+    },
+    {
+      "id": "argumentar",
+      "titulo": "Argumentar: premisas y conclusión",
+      "guia": "Preguntar qué es un argumento, cómo se evalúa y qué diferencia hay con una opinión.",
+      "claves": "Argumento: premisas (razones de las que partimos) y conclusión (lo que queremos probar). Evaluarlo: ¿las premisas son verdaderas? ¿La conclusión se sigue de ellas? Opinar es decir lo que pienso; argumentar es mostrar por qué.",
+      "resumen": "Un argumento tiene premisas y una conclusión. Para evaluarlo hay que ver si las premisas son verdaderas y si la conclusión se sigue de ellas. Argumentar es mostrar por qué.",
+      "palabras": [
+        "argumento",
+        "premisas",
+        "conclusión",
+        "opinar",
+        "por qué"
+      ],
+      "ejemplo": "«Me gusta el fútbol» es una opinión; explicar por qué el deporte en equipo enseña a cooperar ya es argumentar."
+    },
+    {
+      "id": "razonar",
+      "titulo": "Deducción e inducción",
+      "guia": "Preguntar qué diferencia hay entre deducción e inducción, con ejemplos, y cuál da conclusiones seguras.",
+      "claves": "Deducción: de lo general a lo particular (todos los metales conducen; el cobre es metal; el cobre conduce); si las premisas son verdaderas, la conclusión es segura. Inducción: de casos particulares a una conclusión general (todos los cisnes que vi son blancos → todos los cisnes son blancos); útil pero solo probable (cisne negro).",
+      "resumen": "La deducción va de lo general a lo particular y su conclusión es segura si las premisas son verdaderas. La inducción generaliza a partir de casos y su conclusión es solo probable.",
+      "palabras": [
+        "deducción",
+        "inducción",
+        "general",
+        "particular",
+        "probable"
+      ],
+      "ejemplo": "«Las últimas cinco pruebas de este profe fueron fáciles, entonces la próxima también» es una inducción: puede fallar."
+    },
+    {
+      "id": "falacias",
+      "titulo": "Las falacias",
+      "guia": "Pedir que identifique y explique falacias con ejemplos (ataque a la persona, hombre de paja, generalización apresurada, mayoría).",
+      "claves": "Falacia: razonamiento que parece correcto pero no lo es. Ataque a la persona (ad hominem): critica a quien habla y no su argumento. Hombre de paja: deforma lo que dijo el otro para atacarlo. Generalización apresurada: de un caso a todos. Apelación a la mayoría: «si todos lo hacen, está bien».",
+      "resumen": "Una falacia parece un buen razonamiento pero no lo es. Por ejemplo: atacar a la persona en lugar de su argumento, deformar lo que dijo el otro, generalizar con un solo caso o decir que algo está bien porque todos lo hacen.",
+      "palabras": [
+        "falacia",
+        "ad hominem",
+        "hombre de paja",
+        "generalización apresurada",
+        "mayoría"
+      ],
+      "ejemplo": "«No le hagas caso sobre la dieta, si ella también come golosinas» ataca a la persona, no al argumento."
+    },
+    {
+      "id": "critica",
+      "titulo": "La crítica y el pensamiento crítico",
+      "guia": "Preguntar qué significa criticar en filosofía, qué es el «sapere aude» de Kant y cómo se aplica el pensamiento crítico hoy.",
+      "claves": "Criticar viene de kríno: separar, juzgar; examinar para separar lo fundado de lo infundado y conocer límites. Kant (siglo XVIII, Ilustración): «sapere aude», atrévete a pensar por ti mismo; salir de la minoría de edad, dejar de depender de que otros piensen por nosotros. Hoy: preguntar quién lo dice y con qué pruebas, verificar fuentes antes de compartir, vigilar el sesgo de confirmación (creer solo lo que coincide con lo que ya pensamos); aplicarse la duda a uno mismo.",
+      "resumen": "Criticar es separar lo que tiene fundamento de lo que no. Kant pedía «sapere aude»: atreverse a pensar por uno mismo. Hoy eso significa verificar fuentes y cuidarse del sesgo de confirmación.",
+      "palabras": [
+        "crítica",
+        "sapere aude",
+        "minoría de edad",
+        "verificar fuentes",
+        "sesgo de confirmación"
+      ],
+      "ejemplo": "Antes de reenviar una noticia que te indigna, buscar si otros medios confiables dicen lo mismo."
+    }
+  ],
+  "casos": [
+    {
+      "id": "noticia_falsa",
+      "texto": "Te llega un audio que dice que mañana no hay clases por una alerta, y todos lo reenvían.",
+      "claves": "Aplicar el pensamiento crítico: quién lo dice, con qué pruebas, verificar fuentes; duda metódica; no confiar en lo que todos repiten."
+    },
+    {
+      "id": "insulto_debate",
+      "texto": "En un debate sobre el uso del celular en el aula, alguien dice: «Vos no podés opinar, si siempre te llevás materias».",
+      "claves": "Identificar la falacia de ataque a la persona (ad hominem); reglas del buen diálogo; discutir el argumento y no a la persona."
+    },
+    {
+      "id": "todos_lo_hacen",
+      "texto": "Un amigo dice que copiarse en la prueba está bien porque todos lo hacen.",
+      "claves": "Identificar la apelación a la mayoría como falacia; dar razones; argumentar con premisas y conclusión."
+    },
+    {
+      "id": "generalizar",
+      "texto": "Después de un partido, alguien dice que todos los hinchas del otro equipo son violentos porque uno le tiró una botella.",
+      "claves": "Identificar la generalización apresurada; diferencia entre inducción y deducción; conclusión probable frente a segura."
+    },
+    {
+      "id": "tema_dificil",
+      "texto": "Tenés que preparar un trabajo enorme y no sabés por dónde empezar.",
+      "claves": "Aplicar las cuatro reglas de Descartes: evidencia, análisis, síntesis y enumeración."
+    },
+    {
+      "id": "realidad_virtual",
+      "texto": "Probaste unos lentes de realidad virtual tan reales que por un momento te olvidaste de que no era el mundo de verdad.",
+      "claves": "Relacionar con el argumento del sueño y el genio maligno; los sentidos engañan; qué queda indudable: el cogito."
+    },
+    {
+      "id": "caricatura",
+      "texto": "En una discusión, tu compañera dice que hay que bajar el uso de plástico, y otro responde: «Ah, ¿querés que volvamos a vivir en cavernas?».",
+      "claves": "Identificar la falacia del hombre de paja; principio de caridad; reglas del buen diálogo."
+    },
+    {
+      "id": "influencer",
+      "texto": "Un amigo hace todo lo que recomienda un influencer, sin preguntarse si tiene razón.",
+      "claves": "Aplicar el sapere aude de Kant y la minoría de edad; pensamiento crítico; sesgo de confirmación."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "obvio",
+      "texto": "¿Qué cosa que todos dan por obvia te gustaría poner en duda?"
+    },
+    {
+      "id": "indudable",
+      "texto": "¿Hay algo de lo que estés completamente seguro? ¿Por qué?"
+    },
+    {
+      "id": "dialogo",
+      "texto": "¿Recordás una discusión en la que cambiaste de opinión? ¿Qué te convenció?"
+    },
+    {
+      "id": "falacias",
+      "texto": "¿Qué falacia escuchás más seguido en las redes o en la escuela?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Descartes, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué es un método y cuáles son las tres herramientas de la filosofía?",
+    "¿Qué es problematizar? Dá un ejemplo de pregunta filosófica.",
+    "¿Qué diferencia hay entre la duda escéptica y la duda metódica?",
+    "Explicá los tres motivos para dudar de Descartes.",
+    "¿Por qué «pienso, luego existo» resiste toda duda?",
+    "¿Cuáles son las reglas de un buen diálogo?",
+    "Explicá la diferencia entre deducción e inducción con ejemplos.",
+    "Dá un ejemplo de falacia y explicá por qué es una trampa."
+  ]
+}
