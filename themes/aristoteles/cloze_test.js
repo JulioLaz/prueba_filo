@@ -1,4 +1,6 @@
-// themes/etica_aristoteles/cloze_test.js - Aristóteles ACTUALIZADO
+// themes/aristoteles/cloze_test.js — Cloze del video «Aristóteles» (0:00–17:00).
+// v1.1 (2026-11-24): revisado con la transcripción del video: todos los huecos coinciden con sus tiempos.
+//   Acepta 17 o 18 años (el material dice 17 o 18) y «zoon politikon» ya no es hueco (el video no lo dice).
 window.CLOZE_TEST = {
   title: "Cloze — Aristóteles (0:00—17:00)",
   items: [
@@ -21,7 +23,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a2",
-      text: "2- Cuando tenía [[18]] años fue enviado a [[Atenas]] a estudiar en la [[Academia]] de [[Platón|Platon]], donde permaneció [[20]] años. En el año [[335]] a.C. fundó el [[Liceo]].",
+      text: "2- Cuando tenía [[18|17]] años fue enviado a [[Atenas]] a estudiar en la [[Academia]] de [[Platón|Platon]], donde permaneció [[20]] años. En el año [[335]] a.C. fundó el [[Liceo]].",
       feedbackOK: "¡Perfecto! Conoces su formación y la fundación del Liceo.",
       feedbackKO: "Recuerda: 18 años a Atenas, 20 años en la Academia, fundó el Liceo en 335 a.C.",
       videoHints: [
@@ -232,7 +234,7 @@ window.CLOZE_TEST = {
     },
     {
       id: "a16",
-      text: "16- La virtud [[ética|etica]] es el [[hábito|habito]] [[electivo]] que elige el [[término medio]] entre dos extremos (lo haría el hombre [[prudente]]). Las virtudes [[dianoéticas]] son [[prácticas|practicas]] (prudencia, arte) y [[teóricas|teoricas]] (intuición, ciencia, sabiduría). El hombre es [[animal político|animal politico]] ([[zoon politikon]]), necesita vivir en [[comunidad]].",
+      text: "16- La virtud [[ética|etica]] es el [[hábito|habito]] [[electivo]] que elige el [[término medio]] entre dos extremos (lo haría el hombre [[prudente]]). Las virtudes [[dianoéticas]] son [[prácticas|practicas]] (prudencia, arte) y [[teóricas|teoricas]] (intuición, ciencia, sabiduría). El hombre es [[animal político|animal politico]] (zoon politikon), necesita vivir en [[comunidad]].",
       feedbackOK: "¡Correcto! Has captado la ética aristotélica: término medio, prudencia, animal político.",
       feedbackKO: "Recuerda: virtud ética = hábito del término medio; hombre = animal político.",
       videoHints: [
@@ -245,7 +247,6 @@ window.CLOZE_TEST = {
         "💡 Opciones: teóricas | especulativas | contemplativas | prácticas | activas | productivas",
         "💡 Opciones: prácticas | activas | productivas | teóricas | especulativas | contemplativas",
         "💡 Opciones: animal racional | ser pensante | homo sapiens | animal político | zoon logon | ser social",
-        "💡 Opciones: homo politicus | ser político | ciudadano | zoon politikon | animal social | politikon zoon",
         "💡 Opciones: soledad | aislamiento | individualismo | comunidad | autonomía | independencia"
       ],
       videoSegment: { start: 960, end: 1015 } // 16:02 - 16:55
