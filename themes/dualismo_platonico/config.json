@@ -31,9 +31,9 @@
       "timeEstimate": 10
     },
     "cloze": {
-      "enabled": false,
-      "items": 0,
-      "timeEstimate": 12
+      "enabled": true,
+      "items": 14,
+      "timeEstimate": 8
     },
     "cruci": {
       "enabled": true,
@@ -73,12 +73,12 @@
   "prerequisites": [],
   "color": "#805ad5",
   "notes": {
-    "realValues": "Tema nuevo (2026-11-24). Video y cloze pendientes: falta elegir el video.",
+    "realValues": "Tema nuevo (2026-11-24). Video pP53wnoy3Vc con cloze de 14 ítems.",
     "validation": {
       "material": "16 secciones en content.html",
       "quiz": "13 preguntas en quiz.js (DUALISMO_PLATONICO_THEME)",
       "concepts": "8 niveles / 55 conceptos en conceptos.js",
-      "cloze": "pendiente (sin video)",
+      "cloze": "14 ítems en cloze_test.js, en el orden del video (0:00-2:45)",
       "cruci": "9 palabras: DUALISMO + IDEAS, AURIGA, ANAMNESIS, TEMPLANZA, INTELIGIBLE, SENTIDOS, MUERTE, CUERPO",
       "mapa": "34 nodos y 15 pares en mapa.html"
     }

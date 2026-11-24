@@ -10,7 +10,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | hedonismo | 16 | 14 | 8 / 45 | PLACER + 6 | 30 / 15 | 15 | Epicuro |
 | utilitarismo | 8 | 12 | 8 / 44 | FELICIDAD + 9 | 43 / 15 | 15 | J. S. Mill |
 | etica | 17 | 12 | 8 / 51 | LIBERTAD + 8 | 48 / 15 | 23 | Sócrates |
-| dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | sin video (pendiente) | Platón |
+| dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 
 **Regla general de contenido:** todo lo que se pregunta o se busca en una actividad (cuestionario, caza, crucigrama, mapa, examen) **tiene que estar en el material del tema**. Es el error que más apareció: palabras de crucigrama que el tema no trabaja, material copiado de otro tema, preguntas «según el texto» sin texto.
 

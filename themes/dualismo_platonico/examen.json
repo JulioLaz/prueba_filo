@@ -1,6 +1,6 @@
 {
-  "_info": "Banco del examen oral con Platón y del resumen final del tema «El dualismo platónico». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): tema nuevo; mientras el tema no tenga video, el examen no lo pide.",
-  "version": "1.0.0",
+  "_info": "Banco del examen oral con Platón y del resumen final del tema «El dualismo platónico». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.1.0 (2026-11-24): tema nuevo; con video, el examen pide también el video.",
+  "version": "1.1.0",
   "filosofo": "Platón",
   "tema": "El dualismo platónico: el alma prisionera del cuerpo (Fedón, Fedro, Menón, República)",
   "intro": "Platón (427–347 a. C.), discípulo de Sócrates, pensó al ser humano como un alma inmortal encerrada en un cuerpo mortal. El alma viene del Mundo de las Ideas, olvidó lo que sabía al caer en el cuerpo y puede recordarlo con la filosofía. Vivir bien es que la razón gobierne y que el alma se libere del dominio del cuerpo.",
@@ -11,6 +11,7 @@
   "actividadesRequeridas": [
     "quiz",
     "caza",
+    "video",
     "cruci",
     "material",
     "mapa"

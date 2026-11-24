@@ -106,6 +106,13 @@ const TOPICS = {
 };
 
     const VIDEO_CONFIG = {
+      dualismo_platonico: { // https://www.youtube.com/watch?v=pP53wnoy3Vc (teXin - Educación Virtual)
+        youtubeId: 'pP53wnoy3Vc',
+        startTime: 1,
+        endTime: 165,
+        title: 'Dualismo antropológico de Platón: cuerpo y alma',
+        duration: '2:45'
+      },
       etica: {
         youtubeId: 'eHIDwx6J-lA',
         startTime: 1,
