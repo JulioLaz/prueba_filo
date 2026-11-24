@@ -80,6 +80,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-24: Sócrates: cloze revisado con la transcripción del video (las 16 frases coinciden). Se corrigieron los tiempos (la mayoría cortaba antes de la respuesta) y el video pide 7:16, lo que dura (antes 7:30). Con esto quedan revisados contra sus videos los clozes de los seis temas de la Unidad I.
 - 2026-11-24: Presocráticos: cloze revisado con la transcripción del video (las 11 frases coinciden). Se corrigieron tiempos que cortaban antes de la respuesta (dioses y vida de Tales, condensación, Amor y Odio, el Noûs); «Odio» acepta «Discordia» y el material nombra las dos.
 - 2026-11-24: Origen: cloze revisado con la transcripción del video «Del mito al logos» (6:28). Las 12 frases coinciden con el video; se corrigieron los tiempos (varias empezaban tarde o cortaban antes) y el video pide 6:28 (antes 11 minutos, más de lo que dura).
 - 2026-11-24: Platón: cloze revisado con la transcripción del video. 7 frases apuntaban a otro momento del video y 5 cortaban antes de terminar; «anamnesis» dejó de ser hueco (el video no la dice) y se acepta «concupiscible». El material usa también los nombres del video (conjetura; trabajadores y soldados).

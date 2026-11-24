@@ -1,5 +1,7 @@
 // themes/socrates/cloze_test.js
 // CLOZE TEST — Sócrates: vida, método y ética
+// v1.1 (2026-11-24): tiempos de las 16 frases revisados con la transcripción del video (7:16);
+//   la mayoría cortaba antes de la respuesta (Martin Luther King, vocero, almohada, virtud, violándola...).
 
 window.CLOZE_TEST = {
   title: "Cloze — Sócrates: vida, método y ética",
@@ -15,7 +17,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando se dice que Sócrates marcó un antes y un después.",
         "💡 Luego se menciona que fue maestro de Platón y su influencia enorme."
       ],
-      videoSegment: { start: 18, end: 35 } // ≈ 00:18–00:35
+      videoSegment: { start: 18, end: 36 } // 0:19 - 0:37 (transcripción)
     },
 
     // 2) Influencia en Gandhi y Martin Luther King
@@ -29,7 +31,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cuando se nombra a Gandhi y a Martin Luther King.",
         "💡 Se dice que ellos reconocen y asumen los valores de Sócrates."
       ],
-      videoSegment: { start: 37, end: 49 } // ≈ 00:37–00:49
+      videoSegment: { start: 35, end: 56 } // 0:36 - 0:57 (transcripción)
     },
 
     // 3) Dificultad para conocer su pensamiento (no escribió, fuentes diversas)
@@ -43,7 +45,7 @@ window.CLOZE_TEST = {
         "💡 La primera razón es que hacía filosofía oral y no escribía.",
         "💡 Luego se explica que lo conocemos por textos de otros autores."
       ],
-      videoSegment: { start: 56, end: 74 } // ≈ 00:56–01:14
+      videoSegment: { start: 55, end: 83 } // 0:56 - 1:24 (transcripción)
     },
 
     // 4) Aristófanes vs Platón: charlatán vs portavoz
@@ -57,7 +59,7 @@ window.CLOZE_TEST = {
         "💡 Allí se dice que lo ridiculiza como un simple charlatán.",
         "💡 Después se explica que Platón lo usa como portavoz de su propia filosofía."
       ],
-      videoSegment: { start: 79, end: 95 } // ≈ 01:19–01:35
+      videoSegment: { start: 76, end: 108 } // 1:17 - 1:49 (transcripción)
     },
 
     // 5) Anécdota de la esposa y el consejo de casarse
@@ -71,7 +73,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la anécdota del cubo de agua y su comentario irónico.",
         "💡 Luego aparece el consejo 'Cásate...' y la broma sobre hacerse filósofo."
       ],
-      videoSegment: { start: 94, end: 130 } // ≈ 01:34–02:10
+      videoSegment: { start: 121, end: 149 } // 2:02 - 2:30 (transcripción)
     },
 
     // 6) Intelectualismo ético: quien hace el mal es ignorante
@@ -85,7 +87,7 @@ window.CLOZE_TEST = {
         "💡 A continuación se formula la idea de que quien hace el mal es porque no conoce el bien.",
         "💡 Se dice que si viera el bien, lo preferiría."
       ],
-      videoSegment: { start: 153, end: 163 } // ≈ 02:33–02:43
+      videoSegment: { start: 148, end: 164 } // 2:29 - 2:45 (transcripción)
     },
 
     // 7) Ejemplo del estafador y la buena conciencia
@@ -99,7 +101,7 @@ window.CLOZE_TEST = {
         "💡 Escucha cómo se analizan las consecuencias para él y para los demás.",
         "💡 Fíjate en la frase: 'la mejor almohada para dormir es una buena conciencia'."
       ],
-      videoSegment: { start: 166, end: 214 } // ≈ 02:46–03:34
+      videoSegment: { start: 165, end: 223 } // 2:46 - 3:44 (transcripción)
     },
 
     // 8) Preferir sufrir injusticia antes que cometerla
@@ -113,7 +115,7 @@ window.CLOZE_TEST = {
         "💡 Está unida a la idea de la buena conciencia.",
         "💡 Volverá a aparecer al final cuando se narre su muerte."
       ],
-      videoSegment: { start: 222, end: 230 } // ≈ 03:42–03:50
+      videoSegment: { start: 219, end: 233 } // 3:40 - 3:54 (transcripción)
     },
 
     // 9) Felicidad interior: orden y equilibrio del alma
@@ -127,7 +129,7 @@ window.CLOZE_TEST = {
         "💡 Luego niega que la felicidad esté en las posesiones.",
         "💡 Termina definiéndola como orden y equilibrio del ánimo y de la razón."
       ],
-      videoSegment: { start: 233, end: 247 } // ≈ 03:53–04:07
+      videoSegment: { start: 231, end: 255 } // 3:52 - 4:16 (transcripción)
     },
 
     // 10) Método socrático: solo sé que no sé nada, ironía y mayéutica
@@ -141,7 +143,7 @@ window.CLOZE_TEST = {
         "💡 Aparece la frase 'Solo sé que no sé nada'.",
         "💡 Luego se nombran los dos momentos: irónico-refutativo y mayéutico."
       ],
-      videoSegment: { start: 250, end: 270 } // ≈ 04:10–04:30
+      videoSegment: { start: 253, end: 275 } // 4:14 - 4:36 (transcripción)
     },
 
     // 11) Parte irónica: ejemplo del cavernícola machista
@@ -155,7 +157,7 @@ window.CLOZE_TEST = {
         "💡 Se le pide que explique su tesis y se le plantean preguntas críticas.",
         "💡 El objetivo es que llegue a ver la inconsistencia de su propia postura."
       ],
-      videoSegment: { start: 270, end: 326 } // ≈ 04:30–05:26
+      videoSegment: { start: 274, end: 332 } // 4:35 - 5:33 (transcripción)
     },
 
     // 12) Mayéutica: hacer nacer el conocimiento
@@ -169,7 +171,7 @@ window.CLOZE_TEST = {
         "💡 Se recuerda que la madre de Sócrates era matrona.",
         "💡 Luego se dice que Sócrates no da su opinión, sino que hace preguntas hasta que el otro llega a sus conclusiones."
       ],
-      videoSegment: { start: 333, end: 360 } // ≈ 05:33–06:00
+      videoSegment: { start: 331, end: 360 } // 5:32 - 6:01 (transcripción)
     },
 
     // 13) Qué es el alma para Sócrates
@@ -183,7 +185,7 @@ window.CLOZE_TEST = {
         "💡 Luego define el alma como razón y yo consciente.",
         "💡 Se insiste en la dimensión intelectual y moral del alma."
       ],
-      videoSegment: { start: 361, end: 378 } // ≈ 06:01–06:18
+      videoSegment: { start: 359, end: 384 } // 6:00 - 6:25 (transcripción)
     },
 
     // 14) Vicio como ignorancia y cuidado del alma
@@ -197,7 +199,7 @@ window.CLOZE_TEST = {
         "💡 Luego se contrasta el uso de la palabra en los sofistas y en Sócrates.",
         "💡 Finalmente se insiste en cuidar el alma-conocimiento más que el cuerpo y las riquezas."
       ],
-      videoSegment: { start: 381, end: 405 } // ≈ 06:21–06:45
+      videoSegment: { start: 377, end: 409 } // 6:18 - 6:50 (transcripción)
     },
 
     // 15) Condena a muerte y fidelidad a la ley
@@ -211,7 +213,7 @@ window.CLOZE_TEST = {
         "💡 Escucha las acusaciones y la condena a muerte.",
         "💡 Luego se cuenta que se niega a huir por fidelidad a la ley."
       ],
-      videoSegment: { start: 408, end: 430 } // ≈ 06:48–07:10
+      videoSegment: { start: 408, end: 433 } // 6:49 - 7:14 (transcripción)
     },
 
     // 16) Cierre: preferir sufrir injusticia antes que cometerla (repetición final)
@@ -225,7 +227,7 @@ window.CLOZE_TEST = {
         "💡 Conecta con su idea anterior sobre sufrir y cometer injusticias.",
         "💡 Funciona como cierre y desafío para el espectador."
       ],
-      videoSegment: { start: 431, end: 438 } // ≈ 07:11–07:18
+      videoSegment: { start: 427, end: 436 } // 7:08 - 7:17 (transcripción)
     }
   ]
 };

@@ -213,9 +213,9 @@ const TOPICS = {
         youtubeId: 'OD7klEUAq1Y',
         // youtubeId: '81l43tKcMxQ',
         startTime: 1,
-        endTime: 451, // 7 minutos y 30 segundos
+        endTime: 437, // 2026-11-24: el video dura 7:16 (antes pedía 7:30)
         title: 'La mayéutica de Sócrates',
-        duration: '7:30'
+        duration: '7:16'
     },
     // 1.4 - Platón: Mundo de las Ideas y Conocimiento
     platon: {
