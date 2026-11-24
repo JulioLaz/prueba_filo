@@ -1,5 +1,7 @@
 // themes/presocraticos/cloze_test.js
 // CLOZE TEST — Presocráticos (una frase por pensador)
+// v1.1 (2026-11-24): tiempos de las 11 frases revisados con la transcripción del video; varias cortaban
+//   antes de la respuesta (dioses y vida de Tales, condensación, Amor y Odio, el Noûs). «Odio» acepta «Discordia».
 
 window.CLOZE_TEST = {
   title: "Cloze — Presocráticos: una frase por pensador",
@@ -15,7 +17,7 @@ window.CLOZE_TEST = {
         "💡 Justo después se explica que el arjé es el agua.",
         "💡 Luego se menciona que pensaba que todo está lleno de dioses y de vida."
       ],
-      videoSegment: { start: 103, end: 123 } // ≈ 01:43
+      videoSegment: { start: 104, end: 142 } // 1:45 - 2:23 (transcripción)
     },
 
     // 2) Anaximandro
@@ -29,7 +31,7 @@ window.CLOZE_TEST = {
         "💡 Allí se describe como caótico, amorfo e indeterminado.",
         "💡 Se explica que lo llamó ápeiron, que significa 'sin límites'."
       ],
-      videoSegment: { start: 213, end: 233 } // ≈ 03:33
+      videoSegment: { start: 214, end: 227 } // 3:35 - 3:48 (transcripción)
     },
 
     // 3) Anaxímenes
@@ -43,7 +45,7 @@ window.CLOZE_TEST = {
         "💡 Se dice que vuelve a un arjé físico concreto: el aire.",
         "💡 Luego se explica el mecanismo de rarefacción y condensación."
       ],
-      videoSegment: { start: 249, end: 299 } // ≈ 04:09
+      videoSegment: { start: 248, end: 304 } // 4:09 - 5:05 (transcripción)
     },
 
     // 4) Pitágoras
@@ -57,7 +59,7 @@ window.CLOZE_TEST = {
         "💡 Tras la parte 'secta medio religiosa', se explica qué pensaban sobre la realidad.",
         "💡 Allí se dice que la realidad estaba compuesta de números: el arjé es el número."
       ],
-      videoSegment: { start: 347, end: 357 } // ≈ 05:47
+      videoSegment: { start: 346, end: 357 } // 5:47 - 5:58 (transcripción)
     },
 
     // 5) Jenófanes
@@ -71,7 +73,7 @@ window.CLOZE_TEST = {
         "💡 Se menciona que son imaginaciones vulgares viciadas de antropomorfismo.",
         "💡 Luego viene esta definición positiva de Dios según Jenófanes."
       ],
-      videoSegment: { start: 440, end: 455 } // ≈ 07:20
+      videoSegment: { start: 440, end: 455 } // 7:21 - 7:36 (transcripción)
     },
 
     // 6) Heráclito
@@ -85,7 +87,7 @@ window.CLOZE_TEST = {
         "💡 Se menciona explícitamente el cambio o flujo universal de todas las cosas.",
         "💡 Luego se añade 'Panta rhei', 'Todo fluye'."
       ],
-      videoSegment: { start: 518, end: 526 } // ≈ 08:38
+      videoSegment: { start: 514, end: 547 } // 8:35 - 9:08 (transcripción)
     },
 
     // 7) Parménides
@@ -99,7 +101,7 @@ window.CLOZE_TEST = {
         "💡 Se concluye que lo único que existe es el Ser.",
         "💡 Todo lo demás se presenta como ilusión, apariencia u opinión."
       ],
-      videoSegment: { start: 652, end: 667 } // ≈ 10:52
+      videoSegment: { start: 652, end: 669 } // 10:53 - 11:10 (transcripción)
     },
 
     // 8) Zenón de Elea
@@ -113,13 +115,13 @@ window.CLOZE_TEST = {
         "💡 Se presenta a Zenón de Elea como el más famoso.",
         "💡 Luego se menciona que intentó reforzar la tesis con diversas paradojas."
       ],
-      videoSegment: { start: 713, end: 721 } // ≈ 11:53
+      videoSegment: { start: 710, end: 721 } // 11:51 - 12:02 (transcripción)
     },
 
     // 9) Empédocles
     {
       id: "pr9",
-      text: "Empédocles de [[Agrigento]] propuso que los arjés o [[principios]] eran [[cuatro]], los cuatro [[elementos]]: la [[tierra]], el [[agua]], el [[aire]] y el [[fuego]], y que el [[cambio]] se explica por la [[mezcla]] y [[separación|separacion]] de estos elementos bajo la lucha entre el [[Amor]] y el [[Odio]].",
+      text: "Empédocles de [[Agrigento]] propuso que los arjés o [[principios]] eran [[cuatro]], los cuatro [[elementos]]: la [[tierra]], el [[agua]], el [[aire]] y el [[fuego]], y que el [[cambio]] se explica por la [[mezcla]] y [[separación|separacion]] de estos elementos bajo la lucha entre el [[Amor]] y el [[Odio|Discordia]].",
       feedbackOK: "Muy bien. Ahí está el esquema de cuatro elementos y las fuerzas del Amor y el Odio.",
       feedbackKO: "Piensa en cuatro elementos como arjés y en las dos fuerzas que los mezclan y separan.",
       videoHints: [
@@ -127,7 +129,7 @@ window.CLOZE_TEST = {
         "💡 Se enumeran los cuatro elementos: tierra, agua, aire y fuego.",
         "💡 Luego se introduce el Amor y el Odio como fuerzas cósmicas."
       ],
-      videoSegment: { start: 771, end: 800 } // ≈ 12:51
+      videoSegment: { start: 770, end: 807 } // 12:51 - 13:28 (transcripción)
     },
 
     // 10) Anaxágoras
@@ -141,7 +143,7 @@ window.CLOZE_TEST = {
         "💡 Se explica que cada cosa contiene todas las cosas del universo en distinta proporción.",
         "💡 Después se introduce el Noûs o Intelecto cósmico que ordena la mezcla originaria."
       ],
-      videoSegment: { start: 893, end: 965 } // ≈ 14:53
+      videoSegment: { start: 894, end: 969 } // 14:55 - 16:10 (transcripción)
     },
 
     // 11) Leucipo y Demócrito (atomistas)
@@ -155,7 +157,7 @@ window.CLOZE_TEST = {
         "💡 Se explica que los arjés son dos y a la vez infinitos.",
         "💡 Luego se define el átomo como unidad mínima e indivisible de materia."
       ],
-      videoSegment: { start: 987, end: 1020 } // ≈ 16:27
+      videoSegment: { start: 987, end: 1019 } // 16:28 - 17:00 (transcripción)
     }
   ]
 };
