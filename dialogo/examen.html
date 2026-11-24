@@ -20,7 +20,8 @@
   - Al terminar (y en "Último intento") muestra la devolución de cada pregunta: qué estuvo
     bien, orientación sobre lo que faltó, nivel por criterio, qué repasar del resumen final
     y si esa idea vuelve en el próximo intento (las 2 más flojas vuelven).
-  Versión: v1.2.0 (2026-11-19) — devolución pedagógica por pregunta (requiere functions V8.3)
+  Versión: v1.2.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
+  v1.2.0 (2026-11-19) — devolución pedagógica por pregunta (requiere functions V8.3)
   v1.1.0 (2026-10-28) — se habilita con 60% en cada actividad (antes 80% de promedio)
   v1.0.0 (2026-10-27)
 -->
@@ -204,9 +205,12 @@
     // ── Utilidades ─────────────────────────────────────────────
     const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // Texto de la IA: solo se permiten <strong>, <em> y <br>
+    // Texto de la IA: los párrafos <p> (que a veces manda el modelo) se pasan a saltos de línea
     const htmlSeguro = (s) => escapeHtml(s)
       .replace(/&lt;(\/?)(strong|em|b|i)&gt;/gi, '<$1$2>')
-      .replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+      .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+      .replace(/&lt;\/p&gt;\s*&lt;p(\s[^&]*)?&gt;/gi, '<br><br>')
+      .replace(/&lt;\/?p(\s[^&]*)?&gt;/gi, '');
     const urlTema = (pagina) => {
       const u = new URL(pagina, location);
       u.searchParams.set('tema', tema);

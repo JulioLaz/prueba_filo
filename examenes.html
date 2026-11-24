@@ -10,7 +10,8 @@
   - Datos: colección examenes (la escribe la Cloud Function del examen).
 
   Uso: examenes.html?tema=<id>
-  Versión: v1.1.0 (2026-11-19) — muestra la devolución al alumno de cada pregunta y qué ideas
+  Versión: v1.1.1 (2026-11-24) — los párrafos <p> de la IA ya no se ven como texto
+  v1.1.0 (2026-11-19) — muestra la devolución al alumno de cada pregunta y qué ideas
     se repiten o vuelven en el próximo intento (functions V8.3)
   v1.0.0 (2026-10-27)
 -->
@@ -96,7 +97,8 @@
     let examenes = [];
 
     const escapeHtml = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const htmlSeguro = (s) => escapeHtml(s).replace(/&lt;(\/?)(strong|em|b|i)&gt;/gi, '<$1$2>').replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+    const htmlSeguro = (s) => escapeHtml(s).replace(/&lt;(\/?)(strong|em|b|i)&gt;/gi, '<$1$2>').replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+      .replace(/&lt;\/p&gt;\s*&lt;p(\s[^&]*)?&gt;/gi, '<br><br>').replace(/&lt;\/?p(\s[^&]*)?&gt;/gi, '');
     const fmtNota = (n) => Number(n).toLocaleString('es-AR', { maximumFractionDigits: 1 });
     const fmtFecha = (ms) => ms ? new Date(ms).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : '—';
     const ESTADOS = { en_curso: 'En curso', corrigiendo: 'Sin corregir', finalizado: 'Finalizado', abandonado: 'Abandonado' };
