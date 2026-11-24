@@ -1,4 +1,11 @@
 const TOPICS = {
+  dualismo_platonico: {
+    icon: '🕊️',
+    name: 'Platón',
+    desc: 'El alma prisionera del cuerpo: dos mundos, anámnesis y las tres partes del alma. (Ej. Fedón, Fedro)',
+    biography: 'Filósofo griego (427–347 a. C.), discípulo de Sócrates y fundador de la Academia. Sostuvo que el ser humano es un alma inmortal encerrada en un cuerpo mortal, que conocer es recordar las Ideas (anámnesis) y que filosofar es aprender a morir. Obras: Fedón, Fedro, Menón, República.'
+  },
+
   cassirer: {
     icon: '🎭',
     name: 'Ernst Cassirer',
@@ -228,6 +235,12 @@ const TOPICS = {
     // tema se aprueba con eso Y el examen aprobado (nota ≥ notaAprobacion).
     // El banco de preguntas está en themes/<tema>/examen.json (lo lee la Cloud Function).
     const EXAMEN_CONFIG = {
+      dualismo_platonico: {
+        filosofo: 'Platón',
+        icono: '🕊️',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
       etica_aristoteles: {
         filosofo: 'Aristóteles',
         icono: '🏛️',

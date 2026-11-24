@@ -43,6 +43,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 | Tema | Estado |
 |---|---|
+| `dualismo_platonico` (nuevo) | ✅ Material 16 · cuestionario 13 · caza 8 niveles / 55 · crucigrama DUALISMO + 8 · mapa 34 nodos / 15 pares · examen con Platón y resumen final. ❌ **Video + cloze pendientes**: falta elegir el video (al agregarlo: `VIDEO_CONFIG`, `cloze_test.js` y sumar `"video"` a `actividadesRequeridas` en `examen.json`). |
 | `sartre` | 🟡 Material de solo 3 secciones (`config.json` dice 8) y al terminar redirige a `antropocentrismo`. Cuestionario de 10. Caza de 6 niveles con negritas. Mapa del sistema viejo (sin juego de pares). ❌ Crucigrama, ❌ cloze, sin video. |
 | `cassirer` | 🟡 Solo cuestionario (10) y caza (2 niveles con negritas; `config.json` dice 5). El material está en `content/cassirer.html`. ❌ Crucigrama, mapa y cloze. |
 
@@ -70,10 +71,11 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 - **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: **V8.3** (2026-11-19: devolución por pregunta e ideas flojas que vuelven en el intento siguiente). Los cambios en `examen.json` no necesitan publicar.
 - **Reglas** (`firestore.rules` v1.1.0): se pegan a mano en Firebase Console → Firestore → Reglas. Sin confirmar que estén pegadas.
-- **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill y Sócrates).
+- **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill, Sócrates y Platón).
 
 ## Historial reciente
 
+- 2026-11-24: tema nuevo de la Unidad II, «El Dualismo Platónico» (`dualismo_platonico`), ampliado desde el resumen del docente: material, cuestionario, caza, crucigrama, mapa, examen con Platón y resumen final. Sin video todavía (el examen no lo pide hasta que se agregue).
 - 2026-11-19: cazas de la Unidad 3 revisadas: las 7 se juegan completas. Conceptos emparejados (si una palabra es concepto, su gemela del párrafo también) en Utilitarismo, Hedonismo, Kant, Pragmatismo y Aristóteles, y ocultos muy generales reemplazados.
 - 2026-11-19: caza de conceptos: ayuda en el motor v1.3 (3 errores seguidos iluminan un concepto oculto pendiente). Ética y Moral v2.1: el párrafo 2 trababa con «latín» y «mos» ocultos; ahora «mos, moris», «carácter» y «hábitos».
 - 2026-11-19: grupo nuevo «Taller» en el inicio (filtro y tarjeta). Copia del taller de cierre «Lo que traje, lo que me llevo» en `taller/taller.html` v2.6 (original en el repo `emociones`): abre en el paso de `?paso=N`; la tarjeta abre en el 6 (El bambú).

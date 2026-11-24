@@ -1,0 +1,301 @@
+{
+  "_info": "Banco del examen oral con Platón y del resumen final del tema «El dualismo platónico». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): tema nuevo; mientras el tema no tenga video, el examen no lo pide.",
+  "version": "1.0.0",
+  "filosofo": "Platón",
+  "tema": "El dualismo platónico: el alma prisionera del cuerpo (Fedón, Fedro, Menón, República)",
+  "intro": "Platón (427–347 a. C.), discípulo de Sócrates, pensó al ser humano como un alma inmortal encerrada en un cuerpo mortal. El alma viene del Mundo de las Ideas, olvidó lo que sabía al caer en el cuerpo y puede recordarlo con la filosofía. Vivir bien es que la razón gobierne y que el alma se libere del dominio del cuerpo.",
+  "conceptosClave": "dualismo, cuerpo, alma, Mundo Sensible, Mundo Inteligible, Ideas, participación, carro alado, anámnesis, soma-sema, doxa, episteme, parte racional, irascible, concupiscible, sabiduría, fortaleza, templanza, justicia, kátharsis",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "academia",
+      "texto": "Platón recibe al alumno en la puerta de la Academia, en los jardines de Academo, a las afueras de Atenas, y le cuenta que allí se viene a pensar, no a repetir: hoy quiere escuchar qué recuerda su alma."
+    },
+    {
+      "id": "socrates",
+      "texto": "Platón recuerda el día en que su maestro Sócrates bebió la cicuta, tranquilo y conversando con sus amigos, y le pregunta al alumno si se animaría a pensar con la misma serenidad."
+    },
+    {
+      "id": "remo",
+      "texto": "Platón está en el puerto del Pireo mirando un remo que parece doblado bajo el agua; lo señala y le dice al alumno que empiecen por ahí: no todo es lo que parece."
+    },
+    {
+      "id": "carrera",
+      "texto": "Platón acaba de ver una carrera de carros en la que un auriga perdió el control de un caballo; dice que le recordó cómo funciona el alma y le propone al alumno conversar sobre eso."
+    },
+    {
+      "id": "esclavo",
+      "texto": "Platón cuenta que Sócrates le hizo preguntas de geometría a un joven esclavo que nunca había estudiado, y le advierte al alumno que hoy él también va a hacerle preguntas para ver qué recuerda."
+    },
+    {
+      "id": "realidad_virtual",
+      "texto": "Platón ve al alumno con un casco de realidad virtual y se ríe: le dice que ese aparato explica mejor que muchos libros lo que él quiso decir sobre el cuerpo y el alma."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "dualismo",
+      "titulo": "Cuerpo y alma: el dualismo",
+      "guia": "Preguntar qué es el ser humano para Platón y cómo son el cuerpo y el alma.",
+      "claves": "El ser humano es la unión accidental y temporal de dos realidades opuestas. El cuerpo es material, imperfecto, cambiante y mortal; el alma es inmaterial, racional, perfecta e inmortal, y es lo que verdaderamente somos. El alma cayó en el cuerpo y quedó atrapada en él.",
+      "resumen": "Para Platón somos dos cosas opuestas unidas por un tiempo: un cuerpo material que cambia y muere, y un alma inmaterial, racional e inmortal. Lo que verdaderamente somos es el alma: el cuerpo es como el avatar de un videojuego.",
+      "palabras": [
+        "dualismo",
+        "cuerpo",
+        "alma",
+        "inmortal",
+        "unión accidental"
+      ],
+      "ejemplo": "Con el casco de realidad virtual sentís que sos el personaje, pero al sacártelo sabés que sos el jugador: así son el cuerpo y el alma para Platón."
+    },
+    {
+      "id": "dos_mundos",
+      "titulo": "Los dos mundos: sensible e inteligible",
+      "guia": "Preguntar qué mundos distingue Platón, qué hay en cada uno y con qué se conoce cada uno.",
+      "claves": "Mundo Sensible: físico, se capta con los sentidos, todo cambia y muere. Mundo Inteligible o de las Ideas: invisible, se capta solo con la razón, allí están las Ideas o Esencias (la Belleza en sí, la Justicia en sí, el Bien), perfectas, eternas e inmutables. Las Ideas no son pensamientos de nuestra cabeza, sino realidades.",
+      "resumen": "Platón distingue dos mundos. El Mundo Sensible es el que vemos y tocamos: todo cambia y muere. El Mundo Inteligible o de las Ideas solo se capta con la razón: allí están las Ideas, perfectas y eternas, como la Belleza en sí o la Justicia en sí.",
+      "palabras": [
+        "Mundo Sensible",
+        "Mundo Inteligible",
+        "Ideas",
+        "razón",
+        "sentidos"
+      ],
+      "ejemplo": "Tu celular nuevo se raya y envejece (Mundo Sensible); la idea de «justicia» que usás para juzgar si algo es justo no se raya ni envejece (Mundo Inteligible)."
+    },
+    {
+      "id": "participacion",
+      "titulo": "Las cosas como copias de las Ideas",
+      "guia": "Preguntar qué relación hay entre las cosas que vemos y las Ideas, con algún ejemplo.",
+      "claves": "Las cosas sensibles son copias imperfectas de las Ideas, que son sus modelos perfectos. Las cosas participan de las Ideas: una manzana es roja porque participa de la Idea de Rojo; una acción es justa porque refleja la Idea de Justicia.",
+      "resumen": "Las cosas que vemos son copias imperfectas de las Ideas: participan de ellas. Una acción es justa porque refleja la Idea de Justicia. Por eso admirar una foto linda no es lo mismo que entender qué es la Belleza en sí.",
+      "palabras": [
+        "copias",
+        "participación",
+        "modelos",
+        "Belleza en sí",
+        "imperfecto"
+      ],
+      "ejemplo": "Una foto de un paisaje en Instagram es copia del paisaje, y el paisaje es copia de la Belleza en sí: una copia de una copia."
+    },
+    {
+      "id": "carro_alado",
+      "titulo": "El mito del carro alado y la caída del alma",
+      "guia": "Pedir que cuente el mito del carro alado y qué le pasó al alma al caer.",
+      "claves": "En el Fedro, el alma es un carro con alas guiado por un auriga y tirado por dos caballos (uno noble y obediente, otro rebelde). Antes de nacer contemplaba las Ideas. Por el descontrol del caballo negro pierde las alas, cae al Mundo Sensible y se encarna en un cuerpo; el choque con la materia le hace olvidar lo que sabía.",
+      "resumen": "En el mito del carro alado, el alma era un carro con alas que contemplaba las Ideas. Por el descontrol del caballo negro perdió las alas, cayó al Mundo Sensible y se encarnó en un cuerpo. El golpe fue tan fuerte que olvidó todo lo que había visto.",
+      "palabras": [
+        "carro alado",
+        "auriga",
+        "caballo negro",
+        "encarnación",
+        "olvido"
+      ],
+      "ejemplo": "Como cuando alguien se distrae manejando y choca: después del golpe no recuerda bien qué pasó antes."
+    },
+    {
+      "id": "anamnesis",
+      "titulo": "Anámnesis: aprender es recordar",
+      "guia": "Preguntar qué es aprender según Platón y cómo lo muestra con el esclavo del Menón.",
+      "claves": "Como el alma contempló las Ideas antes de nacer, el conocimiento no entra desde afuera: aprender es recordar (anámnesis o reminiscencia). En el Menón, un esclavo que nunca estudió geometría resuelve un problema respondiendo preguntas de Sócrates: el saber estaba dormido en su alma.",
+      "resumen": "Para Platón aprender no es recibir información nueva, sino recordar lo que el alma ya vio en el Mundo de las Ideas: eso es la anámnesis. Las buenas preguntas despiertan ese saber, como hizo Sócrates con el esclavo del Menón.",
+      "palabras": [
+        "anámnesis",
+        "reminiscencia",
+        "recordar",
+        "Menón",
+        "olvido"
+      ],
+      "ejemplo": "Cuando el profe explica un tema y de golpe «hacés clic», para Platón tu alma está recordando algo que ya sabía."
+    },
+    {
+      "id": "soma_sema",
+      "titulo": "Soma-sema: el cuerpo como cárcel",
+      "guia": "Preguntar qué significa «soma - sema» y por qué el cuerpo sería una cárcel para el alma.",
+      "claves": "Soma-sema: el cuerpo (soma) es la tumba o cárcel (sema) del alma. Es una cárcel por tres razones: el engaño de los sentidos, la esclavitud de las necesidades y la distracción del alma. Las tres le impiden pensar con libertad y buscar la verdad.",
+      "resumen": "«Soma - sema» es un juego de palabras griego: el cuerpo es la tumba o cárcel del alma. Platón da tres razones: los sentidos engañan, las necesidades esclavizan y los antojos distraen al alma de buscar la verdad.",
+      "palabras": [
+        "soma",
+        "sema",
+        "cárcel",
+        "tumba",
+        "prisionero"
+      ],
+      "ejemplo": "Es como estar encerrado en tu pieza con el celular sonando sin parar: estás ahí, pero no podés pensar en otra cosa."
+    },
+    {
+      "id": "sentidos",
+      "titulo": "El engaño de los sentidos: doxa y episteme",
+      "guia": "Preguntar por qué los sentidos engañan, con un ejemplo, y qué diferencia hay entre doxa y episteme.",
+      "claves": "Los sentidos solo muestran apariencias y fallan (el remo recto parece doblado bajo el agua, el espejismo parece agua). Lo que se apoya en los sentidos es opinión (doxa) y puede engañar; el conocimiento verdadero de las Ideas es ciencia (episteme) y se alcanza con la razón.",
+      "resumen": "Los sentidos nos muestran apariencias y a veces engañan, como el remo que parece doblado en el agua. Por eso Platón distingue la doxa (opinión basada en los sentidos) de la episteme (ciencia, el conocimiento verdadero que se alcanza con la razón).",
+      "palabras": [
+        "sentidos",
+        "apariencias",
+        "doxa",
+        "episteme",
+        "razón"
+      ],
+      "ejemplo": "Una foto con filtro parece la realidad, pero no lo es: quedarse con lo que se ve es doxa."
+    },
+    {
+      "id": "necesidades",
+      "titulo": "Esclavitud de las necesidades y distracción del alma",
+      "guia": "Preguntar por qué quien vive para complacer al cuerpo no es libre según Platón.",
+      "claves": "El cuerpo tiene hambre, sed, sueño, dolor y deseos de placer; para satisfacerlo trabajamos, nos estresamos y buscamos dinero, fama o poder (esclavitud de las necesidades). Si el alma se ocupa solo de calmar antojos, se olvida de reflexionar (distracción). Quien vive solo para complacer al cuerpo no es libre: es esclavo de sus impulsos, aunque crea ser libre.",
+      "resumen": "El cuerpo pide comida, descanso y placer, y para darle todo eso buscamos dinero, fama o poder. Si el alma vive solo para calmar esos antojos, se olvida de pensar. Por eso, para Platón, quien obedece siempre a sus impulsos no es libre: es su esclavo.",
+      "palabras": [
+        "necesidades",
+        "impulsos",
+        "esclavitud",
+        "distracción",
+        "libertad"
+      ],
+      "ejemplo": "Quedarse hasta las 3 de la mañana en TikTok parece libertad, pero quien no puede dejar el celular es esclavo del impulso."
+    },
+    {
+      "id": "tres_partes",
+      "titulo": "Las tres partes del alma",
+      "guia": "Preguntar cuáles son las tres partes del alma, dónde se ubican y qué figura del carro alado representa a cada una.",
+      "claves": "Parte racional (cabeza): piensa, razona, busca la verdad y decide; es el auriga. Parte irascible (pecho): voluntad, coraje, indignación ante la injusticia; es el caballo blanco, noble y obediente. Parte concupiscible (vientre): instintos, apetitos, placeres físicos; es el caballo negro, rebelde y desobediente.",
+      "resumen": "El alma tiene tres partes: la racional, en la cabeza, que piensa y decide (el auriga); la irascible, en el pecho, que es la voluntad y el coraje (el caballo blanco); y la concupiscible, en el vientre, que son los apetitos y placeres (el caballo negro).",
+      "palabras": [
+        "parte racional",
+        "parte irascible",
+        "parte concupiscible",
+        "auriga",
+        "caballos"
+      ],
+      "ejemplo": "Sabés que tenés que estudiar (razón), te da bronca dejarte vencer (irascible) y querés seguir mirando series (concupiscible): las tres partes en pelea."
+    },
+    {
+      "id": "virtudes",
+      "titulo": "Una virtud para cada parte del alma",
+      "guia": "Preguntar qué virtud corresponde a cada parte del alma y qué significa cada una.",
+      "claves": "Parte racional: sabiduría o prudencia (saber qué conviene hacer). Parte irascible: fortaleza o valor (sostener lo que la razón decide, aunque cueste). Parte concupiscible: templanza o autocontrol (moderar los apetitos sin dejarse arrastrar).",
+      "resumen": "Cada parte del alma bien orientada tiene su virtud: la razón, la sabiduría; la voluntad, la fortaleza o valor; los apetitos, la templanza o autocontrol.",
+      "palabras": [
+        "sabiduría",
+        "prudencia",
+        "fortaleza",
+        "templanza",
+        "autocontrol"
+      ],
+      "ejemplo": "Decir «no» a una previa el día antes de un examen importante, y sostenerlo aunque te insistan, es templanza con ayuda de la fortaleza."
+    },
+    {
+      "id": "justicia",
+      "titulo": "La justicia como armonía interior",
+      "guia": "Preguntar qué es la justicia en el alma según Platón y qué pasa cuando falta.",
+      "claves": "La justicia es la armonía interior: cada parte del alma cumple su función; la razón gobierna, la voluntad la apoya y entre ambas dominan y educan a los apetitos. Si el caballo negro toma el control, la persona cae en el caos, la adicción o el descontrol. La justicia empieza dentro de cada uno, no es solo una regla social.",
+      "resumen": "Para Platón una persona es justa cuando hay orden en su alma: la razón manda, la voluntad la apoya y los apetitos se educan. Si mandan los apetitos, llega el descontrol. La justicia no es solo cumplir reglas: empieza adentro.",
+      "palabras": [
+        "justicia",
+        "armonía interior",
+        "gobierno de la razón",
+        "apetitos",
+        "descontrol"
+      ],
+      "ejemplo": "Un equipo donde el capitán dirige, los que tienen garra lo apoyan y nadie juega para sí mismo: así es un alma justa."
+    },
+    {
+      "id": "aprender_a_morir",
+      "titulo": "Filosofar es aprender a morir: la purificación",
+      "guia": "Preguntar qué significa «filosofar es aprender a morir», por qué la muerte no es una tragedia y qué es la kátharsis.",
+      "claves": "La muerte es la liberación del alma, que es inmortal (Sócrates en el Fedón, sereno ante la cicuta). Pero un alma pegada a placeres y vicios sigue pesada y atada a la materia. Filosofar es aprender a morir: no desear la muerte, sino purificarse (kátharsis) en vida: liberarse del dominio del cuerpo, pensar en abstracto y practicar el desapego de lo material para buscar la verdad, la justicia y el bien.",
+      "resumen": "Para Platón la muerte libera al alma, pero solo si se preparó. «Filosofar es aprender a morir» no es desear la muerte: es purificar el alma (kátharsis) desde hoy, soltando lo material y buscando la verdad, la justicia y el bien.",
+      "palabras": [
+        "muerte",
+        "liberación",
+        "kátharsis",
+        "purificación",
+        "desapego"
+      ],
+      "ejemplo": "Dejar de medir tu valor por las zapatillas que tenés o los likes que recibís es un pequeño ejercicio de desapego, de «aprender a morir»."
+    }
+  ],
+  "casos": [
+    {
+      "id": "seguidores",
+      "texto": "Una compañera dice que lo más importante de su vida es tener un cuerpo perfecto para las fotos de Instagram, aunque eso le quite tiempo para todo lo demás.",
+      "claves": "Distinguir cuerpo (material, cambia, envejece) y alma (lo que verdaderamente somos); las fotos como copias de copias y apariencias; la esclavitud de las necesidades y la distracción del alma; proponer qué sería cuidar el alma sin despreciar el cuerpo."
+    },
+    {
+      "id": "examen_trabado",
+      "texto": "Mañana tenés un examen decisivo. Tenés sueño, hambre y el celular no para de vibrar. Sabés lo que tenés que hacer, pero no te podés concentrar.",
+      "claves": "Identificar al cuerpo como cárcel (necesidades y distracción); las tres partes del alma en conflicto (razón sabe, concupiscible tira, irascible puede ayudar); qué virtudes harían falta (templanza, fortaleza) y cómo lograr la armonía interior."
+    },
+    {
+      "id": "rumor",
+      "texto": "Ves una foto en un grupo de WhatsApp que parece mostrar a un compañero robando en un kiosco. Todos lo dan por cierto y empiezan a burlarse de él.",
+      "claves": "Aplicar el engaño de los sentidos y la diferencia entre doxa (opinión basada en lo que parece) y episteme (conocimiento con razones); no quedarse en las apariencias; la parte irascible como indignación ante la injusticia y la razón como guía."
+    },
+    {
+      "id": "profe_explica",
+      "texto": "Un compañero dice que no tiene sentido ir a la escuela si, como dice Platón, ya sabemos todo desde antes de nacer.",
+      "claves": "Explicar la anámnesis: el alma sabía pero olvidó al encarnarse; aprender es recordar y requiere esfuerzo; el papel del maestro como quien pregunta y despierta (Sócrates y el esclavo del Menón)."
+    },
+    {
+      "id": "apuesta",
+      "texto": "Un amigo empezó a apostar online «para divertirse» y ahora no puede parar: pide plata prestada y miente en su casa.",
+      "claves": "El caballo negro (parte concupiscible) tomando el control: descontrol y adicción; falta de templanza; la justicia como armonía interior perdida; cómo la razón (auriga) y la voluntad (caballo blanco) pueden recuperar las riendas; la esclavitud de los impulsos."
+    },
+    {
+      "id": "abuela",
+      "texto": "Murió la abuela de una amiga y ella te pregunta, llorando, si la muerte es el final de todo.",
+      "claves": "Exponer con respeto la idea de Platón: el alma es inmortal y la muerte es la liberación del alma, no una tragedia; Sócrates sereno en el Fedón; reconocer que es una postura filosófica y que el dolor es humano; filosofar como preparación."
+    },
+    {
+      "id": "ropa",
+      "texto": "Te encanta la ropa de marca y gastás todo lo que tenés en zapatillas. Un amigo te dice que sos esclavo de las marcas; vos decís que sos libre de comprar lo que quieras.",
+      "claves": "Esclavitud de las necesidades y de los impulsos frente a la libertad verdadera según Platón; desapego de lo material (dinero, fama, objetos) como parte de la purificación; qué es lo verdaderamente valioso (verdad, justicia, bien)."
+    },
+    {
+      "id": "injusticia_aula",
+      "texto": "Un profesor trata mal a un compañero delante de todos. Sentís bronca, pero no sabés si decir algo o quedarte callado.",
+      "claves": "La parte irascible (indignación ante la injusticia, coraje) como aliada de la razón; la fortaleza como virtud; que la razón guíe cómo y cuándo actuar (sabiduría) para no caer en el descontrol; la justicia como orden interior que se proyecta en la acción."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "caballo_negro",
+      "texto": "¿En qué situación de tu vida sentís que el caballo negro tira más fuerte? ¿Qué podría hacer tu auriga para recuperar las riendas?"
+    },
+    {
+      "id": "clic",
+      "texto": "¿Te pasó alguna vez de entender algo de golpe, como si lo hubieras sabido siempre? ¿Creés que Platón tenía razón con la anámnesis?"
+    },
+    {
+      "id": "apariencias",
+      "texto": "¿Qué cosa creíste por lo que viste (en redes, en persona) y después descubriste que era falsa? ¿Qué te enseñó?"
+    },
+    {
+      "id": "libre",
+      "texto": "¿Te considerás libre? Según Platón, ¿qué impulso tuyo te quita más libertad?"
+    },
+    {
+      "id": "valioso",
+      "texto": "Si tuvieras que «soltar» algo material para enfocarte en lo valioso, ¿qué sería? ¿Por qué?"
+    }
+  ],
+  "practica": [
+    "Un compañero dice que somos solo un cuerpo y que al morir no queda nada. ¿Qué le respondería Platón?",
+    "Explicá con tus palabras la diferencia entre el Mundo Sensible y el Mundo Inteligible, con un ejemplo propio.",
+    "¿Por qué una acción justa de un amigo no es la Justicia en sí? Usá la idea de participación.",
+    "Contá el mito del carro alado y explicá qué representa cada personaje.",
+    "Si aprender es recordar, ¿para qué sirve un buen profesor según Platón?",
+    "Dá un ejemplo actual de las tres razones por las que el cuerpo es una cárcel del alma.",
+    "Describí una persona justa y una injusta según la teoría de las tres partes del alma.",
+    "¿Por qué «filosofar es aprender a morir» no significa desear la muerte?"
+  ]
+}

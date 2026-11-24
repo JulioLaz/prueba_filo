@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--
+    Material de lectura — El dualismo platónico (el alma prisionera del cuerpo). Unidad II.
+    16 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 1.0 (2026-11-24): tema nuevo, ampliado desde el resumen del docente.
+  -->
+  <title>El dualismo platónico</title>
+  <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    window.ReadAloudSystemConfig = {
+      tema: 'El dualismo platónico',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=dualismo_platonico',
+      celebrationEmojis: ['🕊️', '🧠', '📜', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
+      synonymMap: {
+        'platon': ['platón'],
+        'anamnesis': ['reminiscencia', 'recordar'],
+        'katharsis': ['catarsis', 'purificación'],
+        'soma': ['cuerpo'],
+        'sema': ['tumba', 'cárcel'],
+        'doxa': ['opinión'],
+        'episteme': ['epistemé', 'ciencia'],
+        'auriga': ['conductor'],
+        'concupiscible': ['concupiscente', 'apetitos'],
+        'irascible': ['iracible', 'voluntad'],
+        'inteligible': ['ideas'],
+        'fedon': ['fedón'],
+        'menon': ['menón'],
+        'cicuta': ['veneno'],
+        'templanza': ['autocontrol', 'moderación'],
+        'fortaleza': ['valor', 'coraje']
+      }
+    };
+  </script>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 16 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <h1>🕊️ El dualismo platónico</h1>
+    <p><em>El <strong>alma prisionera del cuerpo</strong>: los <strong>dos mundos</strong>, el <strong>mito del carro alado</strong>, la <strong>anámnesis</strong>, el cuerpo como <strong>cárcel</strong>, las <strong>tres partes del alma</strong>, la <strong>justicia</strong> como armonía interior y la filosofía como <strong>preparación para la muerte</strong>.</em></p>
+
+    <!-- 1. El jugador y el avatar: ¿qué somos? -->
+    <div class="study-section active" data-section="introduccion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎮 El jugador y el avatar: ¿qué somos?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Imaginá que jugás un videojuego de realidad virtual. Con el casco puesto sentís que estás adentro: movés a tu personaje, sentís peligro, frío o calor. Pero al sacarte el casco te das cuenta de que no sos el personaje de la pantalla: sos la persona real que está en su habitación.<br><br>Para <strong>Platón</strong>, filósofo griego del siglo IV a. C., el ser humano es algo parecido: una <strong>unión accidental y temporal</strong> de dos realidades opuestas, el <strong>cuerpo</strong> y el <strong>alma</strong>. Esta postura se llama <strong>dualismo platónico</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Pensá en la diferencia entre el avatar y el jugador.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el ser humano según el dualismo platónico?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Una unión accidental y temporal de dos realidades opuestas: el cuerpo y el alma</div>
+          <div class="option">Un cuerpo biológico que piensa gracias al cerebro y desaparece al morir</div>
+          <div class="option">Un alma sola, porque el cuerpo es una ilusión que no existe</div>
+          <div class="option">Una máquina perfecta en la que cuerpo y alma son la misma cosa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Platón, el discípulo de Sócrates -->
+    <div class="study-section" data-section="platon">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏛️ Platón, el discípulo de Sócrates</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Platón nació en Atenas hacia el 427 a. C. y fue <strong>discípulo de Sócrates</strong>. Cuando su maestro fue condenado a muerte en el 399 a. C., Platón quedó marcado: ¿cómo podía una ciudad matar al hombre más justo? Años después fundó la <strong>Academia</strong>, la primera escuela de filosofía de Occidente.<br><br>Escribió sus obras en forma de <strong>diálogos</strong>, casi siempre con Sócrates como protagonista. En el <em>Fedón</em>, el <em>Fedro</em>, el <em>Menón</em> y la <em>República</em> explica qué es el alma, de dónde viene y cómo debe vivir el ser humano.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Prestá atención a la escuela que fundó y a la forma de sus obras.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué escuela fundó Platón y cómo escribió sus obras?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Fundó el Liceo y escribió tratados sin personajes</div>
+          <div class="option" data-correct="true">Fundó la Academia y escribió diálogos, casi siempre con Sócrates como protagonista</div>
+          <div class="option">No fundó ninguna escuela y solo enseñó en la plaza, sin escribir</div>
+          <div class="option">Fundó la Academia y escribió poemas épicos sobre los dioses</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Cuerpo y alma: dos realidades opuestas -->
+    <div class="study-section" data-section="cuerpo-alma">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧍 Cuerpo y alma: dos realidades opuestas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El <strong>cuerpo</strong> es la parte material del ser humano: es imperfecto, cambia, envejece y muere. Es como la pantalla o el avatar del videojuego. El <strong>alma</strong>, en cambio, es inmaterial, perfecta, <strong>inmortal</strong> y racional: es el «jugador real».<br><br>Para Platón el alma no pertenece a este mundo material: cayó en él y quedó <strong>atrapada</strong> dentro del cuerpo como en una cárcel. Por eso el objetivo de la vida no es complacer al cuerpo, sino usar la <strong>filosofía</strong> y el pensamiento para liberar al alma y buscar la <strong>verdad</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Compará las características del cuerpo y las del alma.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es el objetivo de la vida según Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Complacer al cuerpo, porque es lo único que tenemos seguro</div>
+          <div class="option">Cuidar la salud del cuerpo para que el alma no muera</div>
+          <div class="option" data-correct="true">Usar la filosofía y el pensamiento para liberar al alma y buscar la verdad</div>
+          <div class="option">Olvidarse del alma, porque no pertenece a este mundo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Los dos mundos: sensible e inteligible -->
+    <div class="study-section" data-section="dos-mundos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌍 Los dos mundos: sensible e inteligible</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para explicar dónde estaba el alma antes de nacer, Platón distingue dos mundos. El <strong>Mundo Sensible</strong> es el mundo físico que captamos con los cinco sentidos: todo en él es imperfecto, cambia y muere; una flor se marchita y una persona justa comete errores.<br><br>El <strong>Mundo Inteligible</strong> es una dimensión invisible que solo se capta con la <strong>razón</strong>. También se lo llama <strong>Mundo de las Ideas</strong>: allí existen las Ideas puras o <strong>Esencias</strong>: la Belleza en sí, la Justicia en sí y, por encima de todas, el <strong>Bien</strong>. Son realidades perfectas, eternas e inmutables.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Un mundo se capta con los sentidos; el otro, solo con la razón.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Con qué se capta el Mundo Inteligible o Mundo de las Ideas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Con los cinco sentidos, como cualquier objeto físico</div>
+          <div class="option" data-correct="true">Solo con la razón, porque es una dimensión invisible</div>
+          <div class="option">Con la imaginación, porque las Ideas son inventos de cada persona</div>
+          <div class="option">Con instrumentos científicos, como el telescopio</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Las cosas son copias de las Ideas -->
+    <div class="study-section" data-section="participacion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🍎 Las cosas son copias de las Ideas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Las Ideas no son pensamientos que tenemos en la cabeza: son <strong>modelos</strong> reales y perfectos. Las cosas del Mundo Sensible son <strong>copias imperfectas</strong> de esos modelos. Una manzana es roja porque <strong>participa</strong> de la Idea de Rojo; una acción es justa porque refleja la Idea de Justicia.<br><br>Pensá en una foto de un paisaje en Instagram: es una copia del paisaje. A su vez, ese paisaje es una copia imperfecta de la <strong>Belleza en sí</strong>. Admirar la foto en el celular no es lo mismo que entender qué es la Belleza en su origen.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Fijate en el ejemplo de la foto: copia de una copia.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué relación hay entre las cosas del Mundo Sensible y las Ideas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Las cosas son copias imperfectas que participan de las Ideas</div>
+          <div class="option">Las Ideas son copias de las cosas que vemos todos los días</div>
+          <div class="option">Las cosas y las Ideas son exactamente iguales</div>
+          <div class="option">Las Ideas son solo pensamientos que inventamos al mirar las cosas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. El mito del carro alado: la caída del alma -->
+    <div class="study-section" data-section="carro-alado">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🪽 El mito del carro alado: la caída del alma</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En el diálogo <em>Fedro</em>, Platón cuenta un mito. Antes de nacer, el alma era como un <strong>carro con alas</strong> que recorría el cielo contemplando las Ideas. Un <strong>auriga</strong> (conductor) guiaba dos caballos: uno noble y obediente, otro rebelde y torpe.<br><br>Cuando el caballo negro se descontrola, el carro pierde altura, el alma pierde sus alas y <strong>cae</strong> al Mundo Sensible. Allí se <strong>encarna</strong> en un cuerpo físico. El choque con la materia es como un trauma: el alma <strong>olvida</strong> todo lo que había contemplado.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Seguí el recorrido del alma: contempla, cae, se encarna y olvida.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Según el mito del carro alado, ¿por qué cae el alma al Mundo Sensible?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque el auriga decide bajar a la Tierra para conocerla</div>
+          <div class="option">Porque los dioses la castigan sin ningún motivo</div>
+          <div class="option">Porque el caballo blanco se cansa de obedecer</div>
+          <div class="option" data-correct="true">Porque el caballo rebelde se descontrola y el alma pierde sus alas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Anámnesis: aprender es recordar -->
+    <div class="study-section" data-section="anamnesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💡 Anámnesis: aprender es recordar</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Como el alma ya contempló las Ideas antes de nacer, el conocimiento no entra desde afuera. Aprender no es adquirir información nueva, sino <strong>recordar</strong>: eso es la <strong>anámnesis</strong> o reminiscencia.<br><br>En el diálogo <em>Menón</em>, Sócrates le hace preguntas a un esclavo que nunca estudió geometría, y el joven termina resolviendo un problema por sí mismo. Para Platón, eso prueba que el saber estaba dormido en su alma. Cuando un profesor te explica algo y «hacés clic», tu alma está recordando lo que ya sabía.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Concepto clave: anámnesis.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es aprender según la teoría de la anámnesis?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Memorizar datos nuevos que nunca habíamos conocido</div>
+          <div class="option">Copiar lo que muestran los sentidos sin cuestionarlo</div>
+          <div class="option" data-correct="true">Recordar lo que el alma ya contempló en el Mundo de las Ideas</div>
+          <div class="option">Inventar ideas nuevas con la imaginación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Soma-sema: el cuerpo como cárcel -->
+    <div class="study-section" data-section="soma-sema">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⛓️ Soma-sema: el cuerpo como cárcel</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Platón usa un juego de palabras en griego: «<strong>soma - sema</strong>», que significa «el cuerpo (soma) es la <strong>tumba</strong> o <strong>cárcel</strong> (sema) del alma». Mientras vivimos, el alma está encerrada en el cuerpo como un prisionero en su celda.<br><br>¿Por qué el cuerpo sería una cárcel? Platón da tres razones: el <strong>engaño de los sentidos</strong>, la <strong>esclavitud de las necesidades</strong> y la <strong>distracción del alma</strong>. Las tres impiden que el alma piense con libertad y busque la verdad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Recordá las tres razones por las que el cuerpo es una cárcel.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa la expresión griega «soma - sema»?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El cuerpo es la tumba o cárcel del alma</div>
+          <div class="option">El alma es la cárcel del cuerpo</div>
+          <div class="option">El cuerpo y el alma son lo mismo</div>
+          <div class="option">El cuerpo es el templo sagrado donde el alma descansa feliz</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. La trampa de los sentidos -->
+    <div class="study-section" data-section="sentidos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👁️ La trampa de los sentidos</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Los <strong>sentidos</strong> (vista, oído, tacto) solo nos muestran <strong>apariencias</strong>. Nos hacen creer que lo material es lo más importante porque es lo que tocamos. Pero los sentidos fallan: un remo recto parece doblado bajo el agua y un espejismo en la ruta parece un charco.<br><br>Por eso Platón distingue la <strong>opinión</strong> (<em>doxa</em>), que se apoya en los sentidos y puede engañarnos, de la <strong>ciencia</strong> (<em>episteme</em>), el conocimiento verdadero de las Ideas, que se alcanza con la razón.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Distinguí opinión (doxa) y ciencia (episteme).
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué diferencia hay entre la doxa y la episteme?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La doxa es conocimiento verdadero; la episteme es opinión basada en los sentidos</div>
+          <div class="option" data-correct="true">La doxa es opinión basada en los sentidos; la episteme es conocimiento verdadero alcanzado con la razón</div>
+          <div class="option">Las dos se apoyan en los sentidos y nunca se equivocan</div>
+          <div class="option">La doxa es la ciencia de los números y la episteme la de los animales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Esclavos del cuerpo: necesidades y distracción -->
+    <div class="study-section" data-section="necesidades">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🍔 Esclavos del cuerpo: necesidades y distracción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El cuerpo tiene hambre, sed, sueño, frío, dolor y deseos de placer. Para satisfacerlo, el ser humano trabaja, se estresa y busca dinero, fama o poder: es la <strong>esclavitud de las necesidades</strong>.<br><br>Además, cada vez que el alma se dedica solo a calmar los antojos del cuerpo, se olvida de reflexionar y buscar la verdad: es la <strong>distracción del alma</strong>. El cuerpo encadena la mente a lo inmediato y superficial. Quien vive solo para complacer a su cuerpo no es <strong>libre</strong>, aunque crea serlo: es esclavo de sus <strong>impulsos</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 ¿Ceder siempre a los antojos nos hace más libres?
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué quien vive solo para complacer al cuerpo no es libre, según Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque las leyes de la ciudad le prohíben disfrutar</div>
+          <div class="option">Porque el placer es siempre un pecado castigado por los dioses</div>
+          <div class="option">Porque es libre solo quien tiene mucho dinero y poder</div>
+          <div class="option" data-correct="true">Porque es esclavo de sus impulsos y se olvida de buscar la verdad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Las tres partes del alma -->
+    <div class="study-section" data-section="tres-partes">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧠 Las tres partes del alma</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para explicar cómo funcionamos por dentro, Platón afirma que el alma tiene tres partes. El <strong>alma racional</strong>, en la cabeza, piensa, razona, busca la verdad y toma decisiones. El <strong>alma irascible</strong>, en el pecho, es la fuerza de voluntad, el coraje y la indignación ante la injusticia. El <strong>alma concupiscible</strong>, en el vientre, reúne los instintos, los apetitos y los placeres físicos.<br><br>En el mito del carro alado, la razón es el <strong>auriga</strong>, la parte irascible es el <strong>caballo blanco</strong> y la concupiscible, el <strong>caballo negro</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Ubicá cada parte: cabeza, pecho y vientre.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué representa el auriga en el mito del carro alado?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La parte concupiscible, que busca placeres</div>
+          <div class="option">La parte irascible, que siente coraje e indignación</div>
+          <div class="option" data-correct="true">La parte racional del alma, que conduce el carro</div>
+          <div class="option">El cuerpo, que arrastra al alma hacia abajo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Una virtud para cada parte del alma -->
+    <div class="study-section" data-section="virtudes">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏅 Una virtud para cada parte del alma</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Cuando cada parte del alma está bien orientada, aparece su virtud. La parte racional desarrolla la <strong>sabiduría</strong> o prudencia: saber qué conviene hacer. La parte irascible desarrolla la <strong>fortaleza</strong> o valor: sostener lo que la razón decide, aunque cueste. La parte concupiscible desarrolla la <strong>templanza</strong> o autocontrol: moderar los apetitos sin dejarse arrastrar por ellos.<br><br>El caballo blanco es noble y obedece al conductor; el caballo negro es rebelde y desobediente, por eso necesita ser educado.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Sabiduría, fortaleza y templanza: una para cada parte.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué virtud corresponde a la parte concupiscible del alma?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La templanza o autocontrol</div>
+          <div class="option">La sabiduría o prudencia</div>
+          <div class="option">La fortaleza o valor</div>
+          <div class="option">La indignación ante la injusticia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. La justicia: armonía interior -->
+    <div class="study-section" data-section="justicia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ La justicia: armonía interior</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Una persona es justa y equilibrada cuando cada parte del alma cumple su función. La <strong>razón</strong>, como el auriga, toma el mando; la <strong>voluntad</strong>, como el caballo blanco, la apoya; y juntas dominan y educan a los <strong>apetitos</strong>, el caballo negro.<br><br>A esa <strong>armonía interior</strong> Platón la llama <strong>justicia</strong>. Si el caballo negro toma el control y arrastra al carro, la persona cae en el caos, la adicción o el descontrol. La justicia no es solo una regla social: empieza dentro de cada uno.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 La justicia es el orden entre las tres partes del alma.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuándo una persona es justa según Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Cuando los apetitos dirigen y la razón obedece</div>
+          <div class="option">Cuando cada parte del alma hace lo que quiere sin control</div>
+          <div class="option">Cuando cumple las leyes aunque por dentro viva en descontrol</div>
+          <div class="option" data-correct="true">Cuando la razón gobierna, apoyada por la voluntad, y juntas educan a los apetitos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Filosofar es aprender a morir -->
+    <div class="study-section" data-section="aprender-a-morir">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🕊️ Filosofar es aprender a morir</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Si el cuerpo es una cárcel, la muerte física no es el final ni una tragedia: es la <strong>liberación</strong> del alma. En el diálogo <em>Fedón</em>, Sócrates conversa tranquilo con sus amigos antes de beber la <strong>cicuta</strong>, porque confía en que su alma es inmortal.<br><br>Pero no cualquier alma se libera al morir. Un alma que vivió pegada a los placeres, la codicia y los vicios sigue «pesada» y atada a la materia. Por eso Platón dice: «<strong>Filosofar es aprender a morir</strong>». No significa desear la muerte, sino prepararse desde hoy.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 La muerte libera al alma, pero solo si se preparó.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué la muerte física no es una tragedia para Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque el alma muere junto con el cuerpo y ya no sufre</div>
+          <div class="option" data-correct="true">Porque es la liberación del alma, que es inmortal</div>
+          <div class="option">Porque todas las almas se liberan igual, sin importar cómo vivieron</div>
+          <div class="option">Porque así lo ordenó la ciudad de Atenas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. La purificación (kátharsis) -->
+    <div class="study-section" data-section="purificacion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💧 La purificación (kátharsis)</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aprender a morir significa <strong>purificación</strong>, en griego <strong>kátharsis</strong>. Es entrenar al alma desde hoy para liberarse del dominio del cuerpo. Es aprender a pensar de forma <strong>abstracta</strong>, sin depender de las apariencias. Y es practicar el <strong>desapego</strong> de lo material (dinero, fama, objetos) para enfocarse en lo verdaderamente valioso: la verdad, la justicia y el bien.<br><br>El filósofo «ensaya» la muerte en vida: mantiene el cuerpo bajo control para que su alma pueda volar libre a través del pensamiento.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Kátharsis: entrenar al alma para soltarse del cuerpo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la purificación (kátharsis) para Platón?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Buscar la forma de terminar con la vida física cuanto antes</div>
+          <div class="option">Bañarse en el río para limpiar el cuerpo</div>
+          <div class="option" data-correct="true">Entrenar al alma para liberarse del dominio del cuerpo y enfocarse en lo valioso</div>
+          <div class="option">Descansar y evitar todo esfuerzo intelectual</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Síntesis: el alma prisionera del cuerpo -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏆 Síntesis: el alma prisionera del cuerpo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Platón el ser humano es un <strong>alma inmortal</strong> y racional encerrada en un <strong>cuerpo</strong> material y mortal. El alma viene del Mundo de las Ideas, pero al caer al Mundo Sensible olvidó lo que sabía; por eso aprender es <strong>recordar</strong>.<br><br>El cuerpo es su <strong>cárcel</strong>: engaña con los sentidos, esclaviza con las necesidades y distrae. La salida es la <strong>filosofía</strong>: que la razón gobierne a la voluntad y a los apetitos para lograr la <strong>justicia</strong> interior, y purificar el alma, porque filosofar es aprender a morir.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Síntesis final: todos los conceptos integrados.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la síntesis del dualismo platónico?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">El alma inmortal está presa en el cuerpo y la filosofía la libera, con la razón al mando</div>
+          <div class="option">El cuerpo es lo más valioso y el alma solo sirve para moverlo</div>
+          <div class="option">Aprender es acumular datos que entran por los sentidos</div>
+          <div class="option">La felicidad está en complacer todos los deseos del cuerpo</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🚀 SISTEMA MODULAR -->
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
+
+</body>
+</html>

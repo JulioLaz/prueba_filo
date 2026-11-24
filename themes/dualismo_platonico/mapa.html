@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Dualismo Platónico · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — El dualismo platónico (Unidad II). Versión 1.0 (2026-11-24): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para el Dualismo Platónico
+    window.MapaSystemConfig = {
+      tema: 'dualismo_platonico',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Dualismo", definition: "El ser humano es la unión accidental y temporal de dos realidades opuestas: cuerpo y alma." },
+        { term: "Mundo Sensible", definition: "Mundo físico que captamos con los sentidos: todo cambia, se deteriora y muere." },
+        { term: "Mundo Inteligible", definition: "Dimensión invisible de esencias perfectas y eternas que solo capta la razón." },
+        { term: "Participación", definition: "Relación de las cosas con sus modelos: una manzana es roja porque toma algo del Rojo en sí." },
+        { term: "Carro Alado", definition: "Mito del Fedro: un auriga y dos caballos; por un descontrol, el alma pierde las alas y cae." },
+        { term: "Anámnesis", definition: "Aprender es recordar lo que el alma contempló antes de nacer." },
+        { term: "Soma-Sema", definition: "Juego de palabras griego: el cuerpo es la tumba o cárcel del alma." },
+        { term: "Doxa", definition: "Opinión basada en los sentidos: se queda en las apariencias y puede engañar." },
+        { term: "Episteme", definition: "Ciencia: conocimiento verdadero de las Ideas, alcanzado con la razón." },
+        { term: "Parte Racional", definition: "Piensa y decide desde la cabeza; es el auriga y su virtud es la sabiduría." },
+        { term: "Parte Irascible", definition: "Voluntad y coraje desde el pecho; es el caballo blanco y su virtud es la fortaleza." },
+        { term: "Parte Concupiscible", definition: "Apetitos y placeres desde el vientre; es el caballo negro y su virtud es la templanza." },
+        { term: "Justicia", definition: "Armonía interior: la razón gobierna, la voluntad la apoya y los apetitos se educan." },
+        { term: "Kátharsis", definition: "Purificación: entrenar al alma para soltarse del dominio del cuerpo." },
+        { term: "Aprender a Morir", definition: "Lo que es filosofar para Platón: prepararse en vida para la liberación del alma." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🕊️'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🕊️']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🕊️ Dualismo Platónico</span></div>
+      </div>
+      <h3 class="sub">El alma prisionera del cuerpo</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Dualismo Platónico">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Dualismo Platónico</div>
+            <div class="desc">El ser humano es un <strong>alma inmortal</strong> encerrada en un <strong>cuerpo mortal</strong>; la <strong>filosofía</strong> la libera guiada por la <strong>razón</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Platón y sus Diálogos">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Platón y sus Diálogos</div>
+                <div class="desc">Filósofo griego (427–347 a. C.), <strong>discípulo de Sócrates</strong>. Escribió <strong>diálogos</strong>: <em>Fedón</em>, <em>Fedro</em>, <em>Menón</em>, <em>República</em>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="La Academia"><div class="toggle" style="visibility: hidden;"></div><div class="title">La Academia</div><div class="desc">Escuela que fundó en Atenas: la <strong>primera escuela de filosofía</strong> de Occidente.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Cuerpo y Alma">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Cuerpo y Alma</div>
+                <div class="desc">Dos realidades <strong>opuestas</strong> unidas de forma <strong>accidental y temporal</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Cuerpo (el avatar)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cuerpo (el avatar)</div><div class="desc"><strong>Material</strong>, imperfecto, cambiante y <strong>mortal</strong>.</div></div></li>
+                <li><div class="node" data-title="Alma (el jugador real)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Alma (el jugador real)</div><div class="desc"><strong>Inmaterial</strong>, racional, perfecta e <strong>inmortal</strong>: lo que verdaderamente somos.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Los Dos Mundos">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Los Dos Mundos</div>
+                <div class="desc">Para explicar de dónde viene el alma, Platón distingue el <strong>Mundo Sensible</strong> y el <strong>Mundo Inteligible</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Mundo Sensible"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mundo Sensible</div><div class="desc">Se capta con los <strong>sentidos</strong>: todo cambia, se deteriora y muere (la flor se marchita).</div></div></li>
+                <li><div class="node" data-title="Mundo Inteligible (de las Ideas)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mundo Inteligible (de las Ideas)</div><div class="desc">Se capta solo con la <strong>razón</strong>: Ideas perfectas, eternas e inmutables (Belleza, Justicia, Bien).</div></div></li>
+                <li><div class="node" data-title="Participación y Copias"><div class="toggle" style="visibility: hidden;"></div><div class="title">Participación y Copias</div><div class="desc">Las cosas son <strong>copias imperfectas</strong> que participan de las Ideas (la foto, el paisaje, la Belleza en sí).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Mito del Carro Alado">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Mito del Carro Alado</div>
+                <div class="desc">En el <em>Fedro</em>: el alma es un carro con alas que contemplaba las Ideas, guiado por un <strong>auriga</strong> y dos caballos.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Caída y Encarnación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Caída y Encarnación</div><div class="desc">Por el descontrol del <strong>caballo negro</strong>, el alma pierde las alas, cae y se encarna en un cuerpo.</div></div></li>
+                <li><div class="node" data-title="Olvido"><div class="toggle" style="visibility: hidden;"></div><div class="title">Olvido</div><div class="desc">El choque con la materia es un trauma: el alma <strong>olvida</strong> lo que había contemplado.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Anámnesis (Reminiscencia)">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Anámnesis (Reminiscencia)</div>
+                <div class="desc">Aprender no es recibir información nueva sino <strong>recordar</strong> lo que el alma ya sabía.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="El esclavo del Menón"><div class="toggle" style="visibility: hidden;"></div><div class="title">El esclavo del Menón</div><div class="desc">Con preguntas de Sócrates, un joven que nunca estudió geometría <strong>resuelve</strong> un problema: el saber estaba dormido en su alma.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Soma-Sema: el Cuerpo como Cárcel">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Soma-Sema: el Cuerpo como Cárcel</div>
+                <div class="desc">«El cuerpo (soma) es la <strong>tumba o cárcel</strong> (sema) del alma.» Tres razones:</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Engaño de los Sentidos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Engaño de los Sentidos</div><div class="desc">Solo muestran <strong>apariencias</strong>: el remo parece doblado, el espejismo parece agua.</div></div></li>
+                <li><div class="node" data-title="Esclavitud de las Necesidades"><div class="toggle" style="visibility: hidden;"></div><div class="title">Esclavitud de las Necesidades</div><div class="desc">Hambre, sed, placer: para satisfacerlos buscamos <strong>dinero, fama o poder</strong>.</div></div></li>
+                <li><div class="node" data-title="Distracción del Alma"><div class="toggle" style="visibility: hidden;"></div><div class="title">Distracción del Alma</div><div class="desc">Por calmar antojos, el alma se olvida de reflexionar: quien vive así <strong>no es libre</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Opinión y Ciencia">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Opinión y Ciencia</div>
+                <div class="desc">Dos formas de saber: una se apoya en los sentidos y la otra en la <strong>razón</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Doxa (opinión)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Doxa (opinión)</div><div class="desc">Saber basado en los sentidos: se queda en las <strong>apariencias</strong> y puede engañar.</div></div></li>
+                <li><div class="node" data-title="Episteme (ciencia)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Episteme (ciencia)</div><div class="desc">Conocimiento <strong>verdadero</strong> de las Ideas, alcanzado con la razón.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Las Tres Partes del Alma">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Las Tres Partes del Alma</div>
+                <div class="desc">Tres fuerzas internas, representadas en el carro alado. Cada una tiene su <strong>virtud</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Racional · cabeza"><div class="toggle" style="visibility: hidden;"></div><div class="title">Racional · cabeza</div><div class="desc">Piensa y decide. Es el <strong>auriga</strong>. Virtud: <strong>sabiduría</strong> o prudencia.</div></div></li>
+                <li><div class="node" data-title="Irascible · pecho"><div class="toggle" style="visibility: hidden;"></div><div class="title">Irascible · pecho</div><div class="desc">Voluntad, coraje, indignación. Es el <strong>caballo blanco</strong>. Virtud: <strong>fortaleza</strong> o valor.</div></div></li>
+                <li><div class="node" data-title="Concupiscible · vientre"><div class="toggle" style="visibility: hidden;"></div><div class="title">Concupiscible · vientre</div><div class="desc">Instintos, apetitos, placeres. Es el <strong>caballo negro</strong>. Virtud: <strong>templanza</strong> o autocontrol.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Justicia: Armonía Interior">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Justicia: Armonía Interior</div>
+                <div class="desc">La razón <strong>gobierna</strong>, la voluntad la <strong>apoya</strong> y entre ambas <strong>educan</strong> a los apetitos.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Descontrol"><div class="toggle" style="visibility: hidden;"></div><div class="title">Descontrol</div><div class="desc">Si el caballo negro toma las riendas: <strong>caos, adicción</strong> y desorden.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Filosofar es Aprender a Morir">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Filosofar es Aprender a Morir</div>
+                <div class="desc">La muerte no es una tragedia: es la <strong>liberación del alma</strong>, que es inmortal.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Sócrates en el Fedón"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sócrates en el Fedón</div><div class="desc">Conversa tranquilo antes de beber la <strong>cicuta</strong>: confía en la inmortalidad del alma.</div></div></li>
+                <li><div class="node" data-title="El Alma Pesada"><div class="toggle" style="visibility: hidden;"></div><div class="title">El Alma Pesada</div><div class="desc">Quien vivió pegado a placeres y vicios sigue <strong>atado a la materia</strong> al morir.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Purificación (kátharsis)">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Purificación (kátharsis)</div>
+                <div class="desc">Entrenar al alma <strong>desde hoy</strong> para liberarse del dominio del cuerpo.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Pensamiento Abstracto"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pensamiento Abstracto</div><div class="desc">Pensar sin depender de las <strong>apariencias</strong>.</div></div></li>
+                <li><div class="node" data-title="Desapego"><div class="toggle" style="visibility: hidden;"></div><div class="title">Desapego</div><div class="desc">Soltar dinero, fama y objetos para buscar la <strong>verdad, la justicia y el bien</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Dualismo</h4><p>El ser humano es la unión accidental y temporal de dos realidades opuestas: cuerpo y alma.</p></article>
+          <article class="term"><h4>Mundo Sensible</h4><p>Mundo físico que captamos con los sentidos: todo cambia, se deteriora y muere.</p></article>
+          <article class="term"><h4>Mundo Inteligible</h4><p>Dimensión invisible de esencias perfectas y eternas que solo capta la razón.</p></article>
+          <article class="term"><h4>Participación</h4><p>Relación de las cosas con sus modelos: una manzana es roja porque toma algo del Rojo en sí.</p></article>
+          <article class="term"><h4>Carro Alado</h4><p>Mito del Fedro: un auriga y dos caballos; por un descontrol, el alma pierde las alas y cae.</p></article>
+          <article class="term"><h4>Anámnesis</h4><p>Aprender es recordar lo que el alma contempló antes de nacer.</p></article>
+          <article class="term"><h4>Soma-Sema</h4><p>Juego de palabras griego: el cuerpo es la tumba o cárcel del alma.</p></article>
+          <article class="term"><h4>Doxa</h4><p>Opinión basada en los sentidos: se queda en las apariencias y puede engañar.</p></article>
+          <article class="term"><h4>Episteme</h4><p>Ciencia: conocimiento verdadero de las Ideas, alcanzado con la razón.</p></article>
+          <article class="term"><h4>Parte Racional</h4><p>Piensa y decide desde la cabeza; es el auriga y su virtud es la sabiduría.</p></article>
+          <article class="term"><h4>Parte Irascible</h4><p>Voluntad y coraje desde el pecho; es el caballo blanco y su virtud es la fortaleza.</p></article>
+          <article class="term"><h4>Parte Concupiscible</h4><p>Apetitos y placeres desde el vientre; es el caballo negro y su virtud es la templanza.</p></article>
+          <article class="term"><h4>Justicia</h4><p>Armonía interior: la razón gobierna, la voluntad la apoya y los apetitos se educan.</p></article>
+          <article class="term"><h4>Kátharsis</h4><p>Purificación: entrenar al alma para soltarse del dominio del cuerpo.</p></article>
+          <article class="term"><h4>Aprender a Morir</h4><p>Lo que es filosofar para Platón: prepararse en vida para la liberación del alma.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales del dualismo platónico.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar al estilo platónico</summary>
+      <div class="content">
+        <h4>Preguntas para liberar al alma</h4>
+        <ul>
+          <li><strong>Apariencia o esencia:</strong> ¿Esto es lo que parece, o es solo una copia de algo más verdadero?</li>
+          <li><strong>Doxa o episteme:</strong> ¿Lo sé por los sentidos y la opinión, o lo comprendí con la razón?</li>
+          <li><strong>Las riendas:</strong> ¿Quién decide ahora: mi razón, mi voluntad o mis apetitos?</li>
+          <li><strong>Cárcel o libertad:</strong> ¿Esta costumbre me ata al cuerpo o deja libre al alma para pensar?</li>
+          <li><strong>Lo valioso:</strong> ¿Busco dinero, fama u objetos, o la verdad, la justicia y el bien?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

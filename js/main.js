@@ -4,6 +4,7 @@
 //   Aprobado/Completo los completa js/progreso-tarjetas.js con datos de Firebase
 // 2026-11-19: grupo nuevo «Taller» (difficulty 'TALLER'): abre su contentFile,
 //   el taller de cierre «Lo que traje, lo que me llevo» desde el punto 6 (El bambú)
+// 2026-11-24: tema nuevo de la Unidad II, «El Dualismo Platónico» (dualismo_platonico)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -112,6 +113,19 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         // prerequisites: ['aristoteles'],
         color: '#009688',
         contentFile: 'themes/ramas/content.html'
+    },
+    {
+        id: 'dualismo_platonico',
+        title: 'El Dualismo Platónico: El Alma Prisionera del Cuerpo',
+        description: 'Para Platón somos un alma inmortal encerrada en un cuerpo: los dos mundos, la anámnesis, el cuerpo como cárcel, las tres partes del alma y la filosofía como preparación para la muerte.',
+        icon: '🕊️',
+        gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 13,
+        prerequisites: [],
+        color: '#805ad5',
+        contentFile: 'themes/dualismo_platonico/content.html'
     },
     {
         id: "cassirer",

@@ -143,6 +143,7 @@ console.log('📚 Cargando sistema de modal educativo...');
       'hedonismo': '🌸',
       'pragmatismo': '🔧',
       'antropocentrismo': '👤',
+      'dualismo': '🕊️',
       'existencialismo': '🤔',
       'estoicismo': '🗿',
       'nihilismo': '🕳️'
