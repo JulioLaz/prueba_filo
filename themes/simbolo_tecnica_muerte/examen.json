@@ -1,0 +1,301 @@
+{
+  "_info": "Banco del examen oral con Ernst Cassirer y del resumen final del tema «Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo; el examen lo toma Ernst Cassirer, que también conversa sobre Maliandi y Savater. Sin video todavía: cuando se agregue, sumar \"video\" a actividadesRequeridas.",
+  "version": "1.0.0",
+  "filosofo": "Ernst Cassirer",
+  "tema": "¿Qué nos hace humanos? El animal simbólico (Cassirer), el animal técnico (Maliandi) y el ser que sabe que va a morir (Savater)",
+  "intro": "Tres respuestas del siglo XX a qué nos hace humanos. Para Ernst Cassirer somos el animal simbólico: vivimos en un universo de lenguaje, mito, arte y ciencia. Para Ricardo Maliandi somos el animal técnico: seres carenciales que sobreviven con prótesis y deben usar su poder con responsabilidad. Para Fernando Savater somos el ser que sabe que va a morir, y esa finitud es la raíz de la libertad.",
+  "conceptosClave": "animal simbólico, círculo funcional, sistema simbólico, señal, símbolo, formas simbólicas, ser carencial, prótesis, racionalidad instrumental, ética convergente, responsabilidad, ser mortal, muerte intransferible, finitud, proyecto vital",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "biblioteca_warburg",
+      "texto": "Cassirer camina entre los estantes de la biblioteca Warburg, en Hamburgo, llenos de libros de mitos, arte y ciencia, y le dice al alumno que ahí está la prueba de que somos animales simbólicos."
+    },
+    {
+      "id": "garrapata",
+      "texto": "Cassirer le muestra al alumno el dibujo de una garrapata de un libro de Uexküll y le pregunta qué mundo habrá en su cabeza, y cuál hay en la del alumno."
+    },
+    {
+      "id": "exilio",
+      "texto": "Cassirer guarda sus libros en una valija antes de partir al exilio, porque el nazismo lo obliga a dejar Alemania, y le dice al alumno que lo único que nadie puede quitarle son sus símbolos."
+    },
+    {
+      "id": "campana",
+      "texto": "Cassirer hace sonar una campanita y le pregunta al alumno si ese sonido es una señal o un símbolo, antes de empezar la conversación."
+    },
+    {
+      "id": "martillo",
+      "texto": "Cassirer encuentra un martillo sobre la mesa y le cuenta al alumno que un colega argentino diría que ese objeto es una prótesis: le propone conversar sobre lo que nos hace humanos."
+    },
+    {
+      "id": "reloj",
+      "texto": "Cassirer mira su reloj de bolsillo y dice que el tiempo de cada vida es limitado, como recuerda un filósofo español; por eso no hay que desperdiciar esta conversación."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "pregunta",
+      "titulo": "¿Qué nos hace humanos?",
+      "guia": "Preguntar qué definiciones del ser humano trabaja el tema y por qué no alcanza la de animal racional.",
+      "claves": "Aristóteles: animal racional. En el siglo XX: Cassirer, animal simbólico; Maliandi, animal técnico; Savater, el animal que sabe que va a morir. Las tres respuestas se complementan.",
+      "resumen": "El tema compara tres respuestas a qué nos hace humanos: somos animales simbólicos (Cassirer), técnicos (Maliandi) y que saben que van a morir (Savater).",
+      "palabras": [
+        "animal racional",
+        "animal simbólico",
+        "animal técnico",
+        "ser mortal",
+        "complementan"
+      ],
+      "ejemplo": "Un perro, un celular y un cementerio: los tres dicen algo de lo humano."
+    },
+    {
+      "id": "cassirer",
+      "titulo": "Cassirer y los límites del animal racional",
+      "guia": "Preguntar por qué Cassirer considera estrecha la definición de animal racional.",
+      "claves": "Cassirer (1874–1945), alemán, exiliado por el nazismo, Antropología filosófica (1944). La definición de animal racional es verdadera pero estrecha: deja afuera mito, poesía, ritos religiosos y arte, que no son errores de la razón sino maneras legítimas de entender el mundo.",
+      "resumen": "Para Cassirer, decir que somos animales racionales es verdad, pero se queda corto: el mito, la poesía, los ritos y el arte también son formas de entender el mundo.",
+      "palabras": [
+        "Cassirer",
+        "animal racional",
+        "estrecha",
+        "mito",
+        "arte"
+      ],
+      "ejemplo": "Una canción que te hace llorar no es irracional: es otra manera de comprender lo que te pasa."
+    },
+    {
+      "id": "circulo",
+      "titulo": "El círculo funcional y el sistema simbólico",
+      "guia": "Preguntar qué es el círculo funcional de Uexküll y qué agrega el ser humano.",
+      "claves": "Uexküll: cada animal vive en un círculo funcional con sistema receptor (capta estímulos) y sistema efector (responde). Ej.: la garrapata. La reacción es inmediata. En el ser humano aparece un tercer eslabón, el sistema simbólico: interpretamos con palabras, imágenes, números y relatos; esa demora nos instala en una nueva dimensión: animal symbolicum.",
+      "resumen": "Los animales viven en un círculo de estímulo y respuesta. El ser humano agrega un sistema simbólico: entre lo que le pasa y lo que hace, interpreta con palabras e imágenes.",
+      "palabras": [
+        "círculo funcional",
+        "receptor",
+        "efector",
+        "sistema simbólico",
+        "Uexküll"
+      ],
+      "ejemplo": "Si alguien te grita, no reaccionás como un reflejo: pensás qué quiso decir y por qué."
+    },
+    {
+      "id": "senal_simbolo",
+      "titulo": "Señal y símbolo",
+      "guia": "Pedir que distinga señal y símbolo con ejemplos.",
+      "claves": "Señal: mundo físico, relación fija y directa con lo que indica (humo-fuego; campana de Pavlov). Símbolo: mundo del sentido, universal, móvil y convencional; permite hablar de lo ausente, del pasado, del futuro y de lo posible.",
+      "resumen": "Una señal tiene una relación fija con algo presente, como el humo con el fuego. Un símbolo es móvil: con palabras podemos hablar de lo que no está, del pasado y del futuro.",
+      "palabras": [
+        "señal",
+        "símbolo",
+        "fija",
+        "móvil",
+        "ausente"
+      ],
+      "ejemplo": "Un semáforo en rojo es una señal; la palabra «libertad» en un discurso es un símbolo."
+    },
+    {
+      "id": "formas",
+      "titulo": "Las formas simbólicas y la cultura",
+      "guia": "Preguntar cuáles son las formas simbólicas, qué significa que la cultura es autoliberación y cuál es su riesgo.",
+      "claves": "Universo simbólico tejido por formas simbólicas: mito y religión, lenguaje, arte, historia, ciencia. Cada una es un lente; no hay realidad en sí sin mediación: conocer es interpretar. La cultura es proceso de autoliberación (construimos nuestro mundo). Riesgo: símbolos rígidos, mito cerrado, dogma.",
+      "resumen": "Vivimos en un universo de símbolos: mito, religión, lenguaje, arte, historia y ciencia. La cultura nos libera, pero los símbolos pueden volverse un dogma que impide pensar.",
+      "palabras": [
+        "formas simbólicas",
+        "lenguaje",
+        "interpretar",
+        "autoliberación",
+        "dogma"
+      ],
+      "ejemplo": "Un mismo atardecer lo explica la ciencia, lo pinta el arte y lo cuenta un mito: tres lentes distintos."
+    },
+    {
+      "id": "carencial",
+      "titulo": "El ser carencial",
+      "guia": "Preguntar por qué Maliandi, siguiendo a Gehlen, ve al ser humano como un ser carencial.",
+      "claves": "Maliandi (1930–2023), filósofo argentino, especialista en ética. Gehlen: ser carencial (Mängelwesen). Los animales nacen especializados (garras, pelaje, alas, instintos seguros); el ser humano nace indefenso, sin pelaje ni garras, con instintos débiles: viene incompleto.",
+      "resumen": "Siguiendo a Gehlen, Maliandi dice que somos seres carenciales: nacemos sin garras, sin pelaje y sin instintos seguros que nos digan qué hacer.",
+      "palabras": [
+        "Maliandi",
+        "Gehlen",
+        "ser carencial",
+        "instintos",
+        "incompleto"
+      ],
+      "ejemplo": "Un potrillo camina a las horas de nacer; un bebé humano necesita años de cuidado."
+    },
+    {
+      "id": "protesis",
+      "titulo": "La técnica como prótesis",
+      "guia": "Preguntar por qué la técnica es condición de supervivencia y qué significa que es una prótesis.",
+      "claves": "La técnica no es un lujo: es condición de supervivencia. El animal se adapta al medio; el ser humano transforma el medio. La técnica es una prótesis, extensión del cuerpo (Ernst Kapp): el martillo prolonga el puño, la rueda el paso, la computadora la memoria.",
+      "resumen": "Como somos carenciales, la técnica es nuestra forma de sobrevivir: transformamos el medio. Funciona como una prótesis: el martillo prolonga el puño y la computadora la memoria.",
+      "palabras": [
+        "técnica",
+        "supervivencia",
+        "prótesis",
+        "Kapp",
+        "transformar el medio"
+      ],
+      "ejemplo": "Tus anteojos, tu celular y tu abrigo son prótesis: completan lo que tu cuerpo no tiene."
+    },
+    {
+      "id": "razon",
+      "titulo": "Una razón conflictiva",
+      "guia": "Preguntar cuáles son las dos dimensiones de la razón según Maliandi y por qué la vida humana es conflictiva.",
+      "claves": "La razón es bidimensional: fundamentación (principios universales, orden, permanencia) y crítica (cuestiona lo establecido, atiende lo particular, exige cambio). Ambas necesarias: conflictividad estructural. La técnica es donde el conflicto se intensifica: innovar y conservar.",
+      "resumen": "Para Maliandi la razón tiene dos dimensiones: la fundamentación, que busca orden, y la crítica, que pide cambio. Las dos son necesarias, y por eso vivimos en conflicto.",
+      "palabras": [
+        "fundamentación",
+        "crítica",
+        "conflicto",
+        "orden",
+        "cambio"
+      ],
+      "ejemplo": "Querer que las reglas del curso sean claras y a la vez querer cambiarlas cuando son injustas: las dos cosas son razonables."
+    },
+    {
+      "id": "ambivalencia",
+      "titulo": "El doble filo de la técnica",
+      "guia": "Preguntar por qué la técnica es ambivalente y qué diferencia hay entre racionalidad instrumental y valorativa.",
+      "claves": "Toda técnica amplía lo que podemos hacer y multiplica la capacidad de destruir (lo que cura puede servir para una bomba). Peligro: que la racionalidad instrumental (calcular medios eficaces) desplace a la racionalidad valorativa (juzgar si el fin es bueno). Saber cómo no dice si debemos.",
+      "resumen": "La técnica sirve para construir y para destruir. El peligro es pensar solo en cómo hacer las cosas (razón instrumental) y no en si está bien hacerlas (razón valorativa).",
+      "palabras": [
+        "ambivalente",
+        "racionalidad instrumental",
+        "racionalidad valorativa",
+        "medios",
+        "fines"
+      ],
+      "ejemplo": "Una app puede conectarte con amigos o volverte adicto: depende de para qué se diseñe."
+    },
+    {
+      "id": "responsabilidad",
+      "titulo": "Responsabilidad y ética convergente",
+      "guia": "Preguntar por qué la técnica actual exige una ética nueva (Jonas) y qué propone la ética convergente.",
+      "claves": "Hans Jonas, El principio de responsabilidad: la ética tradicional pensaba en acciones cercanas (el prójimo, el hoy). La técnica actual (ingeniería genética, inteligencia artificial, energía nuclear, crisis ecológica) tiene efectos irreversibles y planetarios que afectan a generaciones futuras. Ética convergente: equilibrar innovación (crítica, cambio) y conservación de las condiciones de la vida (fundamentación).",
+      "resumen": "Como la técnica de hoy tiene efectos enormes e irreversibles, Maliandi, siguiendo a Jonas, pide una ética convergente: innovar sin destruir las condiciones de vida de los que vendrán.",
+      "palabras": [
+        "Jonas",
+        "irreversibles",
+        "generaciones futuras",
+        "ética convergente",
+        "inteligencia artificial"
+      ],
+      "ejemplo": "Tirar plástico al mar hoy afecta a personas que todavía no nacieron."
+    },
+    {
+      "id": "mortal",
+      "titulo": "Savater: el ser que sabe que va a morir",
+      "guia": "Preguntar qué distingue al ser humano frente a la muerte y cómo la descubrimos.",
+      "claves": "Savater (1947), Ética para Amador, Las preguntas de la vida. Los animales mueren pero no saben que van a morir; viven en presente continuo. El ser humano lo sabe: esa certeza es punto de partida del pensamiento. Dos descubrimientos: muerte del otro (escándalo de la ausencia; ritos funerarios, memoria, cultura) y muerte propia (intransferible: nadie puede morir en mi lugar), que nos instala en el tiempo.",
+      "resumen": "Para Savater, los animales mueren sin saberlo; nosotros sabemos que vamos a morir. Lo descubrimos con la muerte de otros, que origina los ritos y la memoria, y con la certeza de la propia, que es intransferible.",
+      "palabras": [
+        "saber que morimos",
+        "muerte del otro",
+        "ritos funerarios",
+        "muerte propia",
+        "intransferible"
+      ],
+      "ejemplo": "Un velorio o una foto en un altar son maneras humanas de responder a la muerte de alguien querido."
+    },
+    {
+      "id": "finitud",
+      "titulo": "Finitud, libertad y proyecto",
+      "guia": "Preguntar por qué la inmortalidad quitaría valor a la vida y cómo la finitud funda la libertad.",
+      "claves": "Contra el tópico pesimista: la inmortalidad aboliría el valor; con tiempo infinito todo se posterga, nada es urgente ni pide compromiso. La escasez del tiempo da peso a las elecciones: elegir es renunciar. La conciencia de la finitud es raíz de la libertad: hacerse cargo de la existencia como proyecto vital, obra abierta. La muerte es el marco que da forma y urgencia. Además: la técnica es simbólica, símbolos y técnica nacen frente a la muerte, y una vida finita exige responsabilidad técnica.",
+      "resumen": "Si fuéramos inmortales, todo podría postergarse y nada tendría valor. Como el tiempo es limitado, cada elección importa: la finitud nos hace libres y convierte la vida en un proyecto.",
+      "palabras": [
+        "inmortalidad",
+        "escasez del tiempo",
+        "libertad",
+        "proyecto vital",
+        "renunciar"
+      ],
+      "ejemplo": "Si las vacaciones no terminaran nunca, ¿te apurarías a hacer el viaje que soñás?"
+    }
+  ],
+  "casos": [
+    {
+      "id": "emoji",
+      "texto": "Un amigo te manda un emoji de corazón roto y entendés al instante que pasó algo, aunque no te dijo nada.",
+      "claves": "Distinguir señal y símbolo: el emoji es un símbolo convencional que habla de algo ausente; sistema simbólico; universo simbólico."
+    },
+    {
+      "id": "bandera",
+      "texto": "En un partido, alguien quema la bandera del otro equipo y se arma una pelea, aunque «es solo un trapo».",
+      "claves": "Mostrar el poder de los símbolos y de las formas simbólicas; riesgo de símbolos rígidos o dogmas; cultura como autoliberación."
+    },
+    {
+      "id": "celular_cuerpo",
+      "texto": "Te olvidaste el celular y sentís que te falta una parte del cuerpo.",
+      "claves": "Aplicar la técnica como prótesis (Kapp, Maliandi) y el ser carencial; reflexionar sobre la dependencia técnica y la ambivalencia."
+    },
+    {
+      "id": "ia_tarea",
+      "texto": "Una inteligencia artificial puede hacer tus trabajos prácticos en segundos.",
+      "claves": "Aplicar la ambivalencia de la técnica, racionalidad instrumental frente a valorativa y la responsabilidad; ética convergente."
+    },
+    {
+      "id": "edicion_genetica",
+      "texto": "Un laboratorio propone modificar genes de bebés para que sean más inteligentes.",
+      "claves": "Aplicar el principio de responsabilidad de Jonas y la ética convergente de Maliandi: efectos irreversibles, generaciones futuras, innovar y conservar."
+    },
+    {
+      "id": "abuelo",
+      "texto": "Murió tu abuelo y la familia se reúne a recordar historias y mirar fotos.",
+      "claves": "Aplicar la muerte del otro según Savater: ritos funerarios, memoria y cultura como resistencia al olvido; símbolos frente a la muerte."
+    },
+    {
+      "id": "inmortal_app",
+      "texto": "Una empresa promete que en el futuro podrás vivir para siempre subiendo tu mente a una computadora.",
+      "claves": "Aplicar el argumento de Savater sobre la inmortalidad (todo se posterga, nada tiene valor) y la finitud como raíz de la libertad; cruzar con la técnica de Maliandi."
+    },
+    {
+      "id": "postergar",
+      "texto": "Siempre decís «el año que viene empiezo» con eso que te gustaría hacer.",
+      "claves": "Relacionar con la escasez del tiempo, la libertad y el proyecto vital de Savater: elegir es renunciar; la muerte como marco y urgencia."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "simbolo",
+      "texto": "¿Qué símbolo (palabra, canción, objeto) es muy importante para vos? ¿Por qué?"
+    },
+    {
+      "id": "protesis",
+      "texto": "¿Qué técnica usás todos los días como una «prótesis»? ¿Podrías vivir sin ella?"
+    },
+    {
+      "id": "limite",
+      "texto": "¿Hay algo que la técnica pueda hacer pero que no deberíamos hacer? Dá un ejemplo."
+    },
+    {
+      "id": "tiempo",
+      "texto": "Si supieras que te queda poco tiempo, ¿qué cambiarías de tu vida?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerles una sola pregunta a Cassirer, Maliandi o Savater, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Por qué Cassirer dice que «animal racional» es una definición estrecha?",
+    "Explicá el círculo funcional y qué agrega el sistema simbólico.",
+    "¿Qué diferencia hay entre una señal y un símbolo? Dá ejemplos.",
+    "¿Qué significa que el ser humano es un ser carencial y que la técnica es una prótesis?",
+    "¿Qué diferencia hay entre la racionalidad instrumental y la valorativa?",
+    "¿Qué propone la ética convergente de Maliandi?",
+    "Según Savater, ¿por qué saber que vamos a morir nos hace humanos?",
+    "¿Por qué la inmortalidad le quitaría valor a la vida, según Savater?"
+  ]
+}

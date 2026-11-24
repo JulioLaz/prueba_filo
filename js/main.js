@@ -143,19 +143,20 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         color: '#2f855a',
         contentFile: 'themes/antropologia_aristoteles/content.html'
     },
+    // 2026-11-24: reemplaza la tarjeta «Ernst Cassirer: El ser humano como animal simbólico»
+    // (id "cassirer"); Cassirer queda dentro de este tema junto con Maliandi y Savater.
     {
-        id: "cassirer",
-        title: "Ernst Cassirer: El ser humano como animal simbólico",
-        description: "Explora la antropología filosófica de Cassirer: el hombre como creador de símbolos, el lenguaje, el arte, el mito y la cultura como mediaciones de nuestra vida humana.",
-        icon: "🎭",
-        gradient: "linear-gradient(135deg, #6a85b6 0%, #bac8e0 100%)",
-        difficulty: "UNIDAD_II",
-        questions: 10,
-        timeEstimate: 10,
+        id: 'simbolo_tecnica_muerte',
+        title: 'Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?',
+        description: 'Tres respuestas del siglo XX: el animal simbólico (Cassirer), el animal técnico y su responsabilidad (Maliandi) y el ser que sabe que va a morir (Savater).',
+        icon: '🧩',
+        gradient: 'linear-gradient(135deg, #805ad5 0%, #2b6cb0 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 15,
         prerequisites: [],
-        color: "#6a85b6",
-        contentFile: "content/cassirer.html"
-
+        color: '#805ad5',
+        contentFile: 'themes/simbolo_tecnica_muerte/content.html'
     },
     {
         id: "sartre",

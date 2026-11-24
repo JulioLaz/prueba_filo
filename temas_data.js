@@ -13,6 +13,13 @@ const TOPICS = {
     biography: 'Filósofo griego (384–322 a. C.), discípulo de Platón durante veinte años y fundador del Liceo. Rechazó el dualismo de su maestro: para él el alma es la forma del cuerpo, una sola sustancia con él. Definió al ser humano como animal racional y animal político. Obras: Acerca del alma, Política, Ética a Nicómaco.'
   },
 
+  simbolo_tecnica_muerte: {
+    icon: '🧩',
+    name: 'Cassirer, Maliandi y Savater',
+    desc: 'Tres respuestas a qué nos hace humanos: el animal simbólico, el animal técnico y el ser que sabe que va a morir. (Ej. Antropología filosófica, Ética: dilemas y convergencias, Las preguntas de la vida)',
+    biography: 'Ernst Cassirer (1874–1945), filósofo alemán exiliado por el nazismo: el ser humano vive en un universo de símbolos (lenguaje, mito, arte, ciencia). Ricardo Maliandi (1930–2023), filósofo argentino: somos seres carenciales que sobrevivimos gracias a la técnica, y por eso necesitamos una ética de la responsabilidad. Fernando Savater (1947), filósofo español: saber que vamos a morir nos hace humanos y libres.'
+  },
+
   cassirer: {
     icon: '🎭',
     name: 'Ernst Cassirer',
@@ -289,6 +296,12 @@ const TOPICS = {
       metodo: {
         filosofo: 'René Descartes',
         icono: '🔎',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      simbolo_tecnica_muerte: {
+        filosofo: 'Ernst Cassirer',
+        icono: '🧩',
         notaAprobacion: 6,
         minimoActividad: 60
       },

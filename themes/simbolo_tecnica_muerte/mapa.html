@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Símbolo, Técnica y Muerte · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Símbolo, Técnica y Muerte (Unidad II). Versión 1.0 (2026-11-24): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Símbolo, Técnica y Muerte
+    window.MapaSystemConfig = {
+      tema: 'simbolo_tecnica_muerte',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Animal Simbólico", definition: "Definición de Cassirer: vivimos en un universo de símbolos." },
+        { term: "Círculo Funcional", definition: "Estímulo y respuesta: el mundo cerrado de cada animal (Uexküll)." },
+        { term: "Sistema Simbólico", definition: "Tercer eslabón entre estímulo y respuesta, propio del ser humano." },
+        { term: "Señal", definition: "Relación fija con algo presente, como el humo con el fuego." },
+        { term: "Símbolo", definition: "Universal y móvil: permite hablar de lo ausente." },
+        { term: "Formas Simbólicas", definition: "Mito y religión, lenguaje, arte, historia y ciencia." },
+        { term: "Ser Carencial", definition: "Nace sin garras, pelaje ni instintos seguros (Gehlen)." },
+        { term: "Prótesis Técnica", definition: "La técnica como extensión del cuerpo: el martillo prolonga el puño." },
+        { term: "Razón Instrumental", definition: "Calcula los medios más eficaces, sin juzgar el fin." },
+        { term: "Ética Convergente", definition: "Equilibra la innovación con el cuidado de la vida." },
+        { term: "Responsabilidad", definition: "Cuidar las consecuencias de la técnica, también para el futuro (Jonas)." },
+        { term: "Ser Mortal", definition: "Para Savater, el animal que sabe que va a morir." },
+        { term: "Muerte Intransferible", definition: "Nadie puede morir en mi lugar." },
+        { term: "Finitud", definition: "El tiempo limitado que da valor y urgencia a las elecciones." },
+        { term: "Proyecto Vital", definition: "La vida como obra abierta que construimos al elegir." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🧩'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🧩']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🧩 Símbolo, Técnica y Muerte</span></div>
+      </div>
+      <h3 class="sub">¿Qué nos hace humanos?</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="¿Qué nos hace humanos?">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">¿Qué nos hace humanos?</div>
+            <div class="desc">Tres respuestas: el <strong>animal simbólico</strong> (Cassirer), el <strong>animal técnico</strong> (Maliandi) y el ser que <strong>sabe que va a morir</strong> (Savater).</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="La Pregunta">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Pregunta</div>
+                <div class="desc">¿Qué tenemos que no tenga ningún otro animal?</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Animal racional"><div class="toggle" style="visibility: hidden;"></div><div class="title">Animal racional</div><div class="desc">La respuesta clásica de <strong>Aristóteles</strong>.</div></div></li>
+                <li><div class="node" data-title="Tres respuestas nuevas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tres respuestas nuevas</div><div class="desc"><strong>Símbolo</strong>, <strong>técnica</strong> y <strong>muerte</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Cassirer: Animal Simbólico">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Cassirer: Animal Simbólico</div>
+                <div class="desc">Ernst Cassirer (1874–1945), <em>Antropología filosófica</em>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="La razón no alcanza"><div class="toggle" style="visibility: hidden;"></div><div class="title">La razón no alcanza</div><div class="desc">Deja afuera <strong>mito</strong>, poesía, ritos y arte.</div></div></li>
+                <li><div class="node" data-title="Círculo funcional"><div class="toggle" style="visibility: hidden;"></div><div class="title">Círculo funcional</div><div class="desc"><strong>Receptor</strong> y <strong>efector</strong> (Uexküll).</div></div></li>
+                <li><div class="node" data-title="Sistema simbólico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sistema simbólico</div><div class="desc">Un <strong>tercer eslabón</strong>: interpretamos.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Señal y Símbolo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Señal y Símbolo</div>
+                <div class="desc">Dos maneras de remitir a algo.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Señal"><div class="toggle" style="visibility: hidden;"></div><div class="title">Señal</div><div class="desc">Relación <strong>fija</strong>: el humo, la campana de Pavlov.</div></div></li>
+                <li><div class="node" data-title="Símbolo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Símbolo</div><div class="desc">Universal y <strong>móvil</strong>: habla de lo ausente.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Universo Simbólico">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Universo Simbólico</div>
+                <div class="desc">Conocer es <strong>interpretar</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Formas simbólicas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Formas simbólicas</div><div class="desc">Mito, religión, <strong>lenguaje</strong>, arte, historia, ciencia.</div></div></li>
+                <li><div class="node" data-title="Autoliberación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Autoliberación</div><div class="desc">La cultura construye nuestro propio mundo.</div></div></li>
+                <li><div class="node" data-title="Riesgo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Riesgo</div><div class="desc">Símbolos rígidos: el <strong>dogma</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Maliandi: Animal Técnico">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Maliandi: Animal Técnico</div>
+                <div class="desc">Ricardo Maliandi (1930–2023), filósofo argentino.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Ser carencial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ser carencial</div><div class="desc">Sin garras ni <strong>instintos</strong> seguros (Gehlen).</div></div></li>
+                <li><div class="node" data-title="Prótesis"><div class="toggle" style="visibility: hidden;"></div><div class="title">Prótesis</div><div class="desc">La técnica <strong>extiende</strong> el cuerpo (Kapp).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Razón y Técnica">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Razón y Técnica</div>
+                <div class="desc">Una razón <strong>conflictiva</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Fundamentación y crítica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Fundamentación y crítica</div><div class="desc">Orden y <strong>cambio</strong>: dos dimensiones.</div></div></li>
+                <li><div class="node" data-title="Doble filo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Doble filo</div><div class="desc">Instrumental frente a <strong>valorativa</strong>.</div></div></li>
+                <li><div class="node" data-title="Ética convergente"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ética convergente</div><div class="desc">Responsabilidad con las <strong>generaciones futuras</strong> (Jonas).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Savater: Ser Mortal">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Savater: Ser Mortal</div>
+                <div class="desc">Fernando Savater (1947), <em>Las preguntas de la vida</em>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Saber que morimos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Saber que morimos</div><div class="desc">Los animales mueren sin <strong>saberlo</strong>.</div></div></li>
+                <li><div class="node" data-title="La muerte del otro"><div class="toggle" style="visibility: hidden;"></div><div class="title">La muerte del otro</div><div class="desc">Ritos funerarios y <strong>memoria</strong>.</div></div></li>
+                <li><div class="node" data-title="La muerte propia"><div class="toggle" style="visibility: hidden;"></div><div class="title">La muerte propia</div><div class="desc"><strong>Intransferible</strong>: nadie muere por mí.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Finitud y Libertad">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Finitud y Libertad</div>
+                <div class="desc">La muerte como <strong>marco</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="¿Inmortales?"><div class="toggle" style="visibility: hidden;"></div><div class="title">¿Inmortales?</div><div class="desc">Todo podría <strong>postergarse</strong>.</div></div></li>
+                <li><div class="node" data-title="Proyecto vital"><div class="toggle" style="visibility: hidden;"></div><div class="title">Proyecto vital</div><div class="desc">Elegir es <strong>renunciar</strong>: la vida como obra abierta.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Tres Miradas Juntas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Tres Miradas Juntas</div>
+                <div class="desc">Se necesitan entre sí.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Técnica simbólica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Técnica simbólica</div><div class="desc">Toda herramienta encierra un <strong>saber</strong>.</div></div></li>
+                <li><div class="node" data-title="Frente a la muerte"><div class="toggle" style="visibility: hidden;"></div><div class="title">Frente a la muerte</div><div class="desc">Símbolos y técnica para <strong>trascender</strong> y proteger.</div></div></li>
+                <li><div class="node" data-title="Responsabilidad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Responsabilidad</div><div class="desc">Una vida finita exige usar bien el <strong>poder técnico</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Animal Simbólico</h4><p>Definición de Cassirer: vivimos en un universo de símbolos.</p></article>
+          <article class="term"><h4>Círculo Funcional</h4><p>Estímulo y respuesta: el mundo cerrado de cada animal (Uexküll).</p></article>
+          <article class="term"><h4>Sistema Simbólico</h4><p>Tercer eslabón entre estímulo y respuesta, propio del ser humano.</p></article>
+          <article class="term"><h4>Señal</h4><p>Relación fija con algo presente, como el humo con el fuego.</p></article>
+          <article class="term"><h4>Símbolo</h4><p>Universal y móvil: permite hablar de lo ausente.</p></article>
+          <article class="term"><h4>Formas Simbólicas</h4><p>Mito y religión, lenguaje, arte, historia y ciencia.</p></article>
+          <article class="term"><h4>Ser Carencial</h4><p>Nace sin garras, pelaje ni instintos seguros (Gehlen).</p></article>
+          <article class="term"><h4>Prótesis Técnica</h4><p>La técnica como extensión del cuerpo: el martillo prolonga el puño.</p></article>
+          <article class="term"><h4>Razón Instrumental</h4><p>Calcula los medios más eficaces, sin juzgar el fin.</p></article>
+          <article class="term"><h4>Ética Convergente</h4><p>Equilibra la innovación con el cuidado de la vida.</p></article>
+          <article class="term"><h4>Responsabilidad</h4><p>Cuidar las consecuencias de la técnica, también para el futuro (Jonas).</p></article>
+          <article class="term"><h4>Ser Mortal</h4><p>Para Savater, el animal que sabe que va a morir.</p></article>
+          <article class="term"><h4>Muerte Intransferible</h4><p>Nadie puede morir en mi lugar.</p></article>
+          <article class="term"><h4>Finitud</h4><p>El tiempo limitado que da valor y urgencia a las elecciones.</p></article>
+          <article class="term"><h4>Proyecto Vital</h4><p>La vida como obra abierta que construimos al elegir.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos de Cassirer, Maliandi y Savater.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar lo humano</summary>
+      <div class="content">
+        <h4>Preguntas para mirarte con estos tres filósofos</h4>
+        <ul>
+          <li><strong>Símbolo:</strong> ¿Qué palabras, imágenes o relatos uso para entender lo que me pasa?</li>
+          <li><strong>Señal o símbolo:</strong> ¿Reacciono por reflejo o me detengo a interpretar?</li>
+          <li><strong>Técnica:</strong> ¿Esta herramienta me sirve, o yo le sirvo a ella?</li>
+          <li><strong>Responsabilidad:</strong> ¿Qué consecuencias tendrá esto para los que vienen después?</li>
+          <li><strong>Finitud:</strong> Si mi tiempo es limitado, ¿en qué quiero usarlo?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

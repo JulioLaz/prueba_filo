@@ -1,0 +1,74 @@
+{
+  "id": "simbolo_tecnica_muerte",
+  "meta": {
+    "title": "Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?",
+    "author": "Ernst Cassirer, Ricardo Maliandi y Fernando Savater",
+    "icon": "🧩",
+    "gradient": "linear-gradient(135deg, #805ad5 0%, #2b6cb0 100%)",
+    "difficulty": "intermedio",
+    "category": "Antropología Filosófica",
+    "description": "Tres respuestas del siglo XX a qué nos hace humanos: el animal simbólico (Cassirer), el animal técnico y la ética convergente (Maliandi) y el ser que sabe que va a morir (Savater).",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 18,
+      "timeEstimate": 15,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": false,
+      "items": 0,
+      "timeEstimate": 0
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 7,
+      "centralWord": "SIMBOLO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 33,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#805ad5",
+  "notes": {
+    "realValues": "v1.0 (2026-11-24): material 18 secciones, cuestionario 13, caza 8 niveles / 53, crucigrama SIMBOLO + 7, mapa 33 nodos / 15 pares. Sin video ni cloze todavía."
+  }
+}

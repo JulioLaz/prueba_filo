@@ -46,7 +46,8 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `dualismo_platonico` (nuevo) | ✅ Material 16 · cuestionario 13 · caza 8 niveles / 55 · crucigrama DUALISMO + 8 · mapa 34 nodos / 15 pares · video + cloze de 14 huecos (teXin, 2:45; falta mirar a mano que cada hueco coincida con el video) · examen con Platón y resumen final. |
 | `antropologia_aristoteles` (nuevo) | ✅ Material 16 · cuestionario 13 · caza 8 niveles / 55 · crucigrama SUSTANCIA + 9 · mapa 39 nodos / 15 pares · video + cloze de 12 frases / 24 huecos (FILOSOFÍA: APRENDE Y APRUEBA, 0:23-5:27; falta mirar a mano que cada hueco coincida con el video) · examen con Aristóteles y resumen final. |
 | `sartre` | 🟡 Material de solo 3 secciones (`config.json` dice 8) y al terminar redirige a `antropocentrismo`. Cuestionario de 10. Caza de 6 niveles con negritas. Mapa del sistema viejo (sin juego de pares). ❌ Crucigrama, ❌ cloze, sin video. |
-| `cassirer` | 🟡 Solo cuestionario (10) y caza (2 niveles con negritas; `config.json` dice 5). El material está en `content/cassirer.html`. ❌ Crucigrama, mapa y cloze. |
+| `simbolo_tecnica_muerte` (nuevo) | ✅ «Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?»: Cassirer (animal simbólico), Maliandi (animal técnico, ética convergente) y Savater (el ser que sabe que va a morir), ampliado desde la guía del docente. Material 18 · cuestionario 13 · caza 8 niveles / 53 · crucigrama SIMBOLO + 7 · mapa 33 nodos / 15 pares · examen con Ernst Cassirer y resumen final. **Falta:** video y cloze (el docente busca el video; mientras tanto el examen no lo pide). |
+| `cassirer` | ⛔ Sin tarjeta desde 2026-11-24: la reemplazó `simbolo_tecnica_muerte`. Sus archivos quedan (`themes/cassirer`, `content/cassirer.html`) y en el panel de progreso aparece como «Ernst Cassirer (tarjeta anterior)» si hay alumnos con avances. |
 
 ## Unidad 1
 
@@ -80,6 +81,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-24: tema nuevo de la Unidad II, «Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?» (`simbolo_tecnica_muerte`), que reúne a Cassirer, Maliandi y Savater, con todas las actividades y examen con Cassirer; reemplaza la tarjeta vieja de Cassirer. Sin video todavía.
 - 2026-11-24: Sócrates: cloze revisado con la transcripción del video (las 16 frases coinciden). Se corrigieron los tiempos (la mayoría cortaba antes de la respuesta) y el video pide 7:16, lo que dura (antes 7:30). Con esto quedan revisados contra sus videos los clozes de los seis temas de la Unidad I.
 - 2026-11-24: Presocráticos: cloze revisado con la transcripción del video (las 11 frases coinciden). Se corrigieron tiempos que cortaban antes de la respuesta (dioses y vida de Tales, condensación, Amor y Odio, el Noûs); «Odio» acepta «Discordia» y el material nombra las dos.
 - 2026-11-24: Origen: cloze revisado con la transcripción del video «Del mito al logos» (6:28). Las 12 frases coinciden con el video; se corrigieron los tiempos (varias empezaban tarde o cortaban antes) y el video pide 6:28 (antes 11 minutos, más de lo que dura).

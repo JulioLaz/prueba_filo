@@ -18,6 +18,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | metodo (Unidad I) | 16 | 13 | 8 / 55 | CRITICA + 7 | 33 / 15 | 13 | René Descartes |
 | dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 | antropologia_aristoteles (Unidad II) | 16 | 13 | 8 / 55 | SUSTANCIA + 9 | 39 / 15 | 12 | Aristóteles |
+| simbolo_tecnica_muerte (Unidad II) | 18 | 13 | 8 / 53 | SIMBOLO + 7 | 33 / 15 | — (sin video) | Ernst Cassirer |
 
 **Regla general de contenido:** todo lo que se pregunta o se busca en una actividad (cuestionario, caza, crucigrama, mapa, examen) **tiene que estar en el material del tema**. Es el error que más apareció: palabras de crucigrama que el tema no trabaja, material copiado de otro tema, preguntas «según el texto» sin texto.
 
