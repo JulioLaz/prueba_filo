@@ -6,6 +6,7 @@
 //   el taller de cierre «Lo que traje, lo que me llevo» desde el punto 6 (El bambú)
 // 2026-11-24: tema nuevo de la Unidad II, «El Dualismo Platónico» (dualismo_platonico)
 // 2026-11-24: tema nuevo de la Unidad II, «Antropología de Aristóteles» (antropologia_aristoteles)
+// 2026-11-24: Origen revisado (13 preguntas, contentFile corregido a themes/origen)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -25,11 +26,11 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         icon: '📜',
         gradient: 'linear-gradient(135deg, #1e90ff 0%, #00bfff 100%)',
         difficulty: 'UNIDAD_I',
-        questions: 10,
-        timeEstimate: 10,
+        questions: 13,
+        timeEstimate: 12,
         prerequisites: [],
         color: '#1e90ff',
-        contentFile: 'themes/origen_filosofia/content.html'
+        contentFile: 'themes/origen/content.html'
     },
     {
         id: 'presocraticos',

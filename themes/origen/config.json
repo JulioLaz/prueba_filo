@@ -1,6 +1,5 @@
 {
   "id": "origen",
-
   "meta": {
     "title": "Origen de la Filosofía: Del Mito al Logos",
     "author": "Presocráticos",
@@ -9,27 +8,26 @@
     "difficulty": "basico",
     "category": "Filosofía Antigua",
     "description": "El nacimiento de la filosofía occidental en el siglo VI a.C.: la etimología, el paso del mito al logos y la búsqueda del arché en los primeros filósofos presocráticos.",
-    "lastUpdated": "2026-03-20"
+    "lastUpdated": "2026-11-24"
   },
-
   "activities": {
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 10,
-      "timeEstimate": 10,
+      "sections": 15,
+      "timeEstimate": 12,
       "script": "../../js/readaloud-system.js"
     },
     "quiz": {
       "enabled": true,
-      "questions": 10,
-      "timeLimit": 40,
+      "questions": 13,
+      "timeLimit": 50,
       "timeEstimate": 12,
       "passingScore": 70
     },
     "concepts": {
       "enabled": true,
-      "levels": 5,
+      "levels": 8,
       "timeEstimate": 10
     },
     "cloze": {
@@ -39,17 +37,17 @@
     },
     "cruci": {
       "enabled": true,
-      "words": 6,
+      "words": 7,
       "centralWord": "MILETO",
       "timeEstimate": 8
     },
     "mapa": {
       "enabled": true,
-      "nodes": 30,
-      "timeEstimate": 8
+      "nodes": 29,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
     }
   },
-
   "files": {
     "material": {
       "page": "content.html",
@@ -72,12 +70,10 @@
       "page": "mapa.html"
     }
   },
-
   "prerequisites": [],
   "color": "#1e90ff",
-
   "notes": {
-    "realValues": "✅ Creado 2026-03-20",
+    "realValues": "v2.0 (2026-11-24): material 15 secciones, cuestionario 13 (ORIGEN_THEME), caza 8 niveles / 55, crucigrama MILETO + 6 (ASOMBRO por COSMOS), mapa 29 nodos con 15 pares, cloze 12.",
     "validation": {
       "material": "10 secciones en content.html (window.ReadAloudSystemConfig.sections)",
       "quiz": "10 preguntas en quiz.js (ORIGEN_FILOSOFIA_THEME.questions)",

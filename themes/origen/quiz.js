@@ -1,201 +1,359 @@
 // ========================================
-// 📜 TEMA: ORIGEN DE LA FILOSOFÍA - DEL MITO AL LOGOS
+// 📜 TEMA: ORIGEN DE LA FILOSOFÍA: DEL MITO AL LOGOS
 // ========================================
-// 📚 Unidad I: ¿Qué es filosofía?
+// 📚 Unidad I: ¿Qué es la Filosofía?
+// Cuestionario de 13 preguntas de 5 opciones; cada una se responde con el material
+// (themes/origen/content.html).
+// Versión 2.0 (2026-11-24): 13 preguntas alineadas con el material v2.0; variable ORIGEN_THEME (antes ORIGEN_FILOSOFIA_THEME, que el motor no encontraba).
 
 const themeLoadStart = performance.now();
 
-const ORIGEN_FILOSOFIA_THEME = {
+const ORIGEN_THEME = {
     id: 'origen',
     title: 'Origen de la Filosofía: Del Mito al Logos',
-    description: 'El nacimiento de la filosofía occidental, el paso del mito al logos y la búsqueda del arché en los filósofos presocráticos.',
+    description: 'Etimología, asombro, el nacimiento de la filosofía en Mileto, el paso del mito al logos y la búsqueda del arché.',
     icon: '📜',
     gradient: 'linear-gradient(135deg, #1e90ff 0%, #00bfff 100%)',
-    difficulty: 'basico',
-    timeLimit: 40,
+    difficulty: 'intermedio',
+    timeLimit: 50,
     contentFile: 'themes/origen/content.html',
 
     metadata: {
         author: 'Cuestionarios de Filosofía',
-        version: '1.0',
-        lastUpdated: '2026-03-20',
+        version: '2.0',
+        lastUpdated: '2026-11-24',
         category: 'Filosofía Antigua',
         prerequisites: [],
         learningObjectives: [
-            'Comprender la etimología y significado de la filosofía',
-            'Identificar el contexto histórico del nacimiento de la filosofía',
-            'Distinguir el pensamiento mítico del pensamiento racional (logos)',
-            'Explicar el concepto de arché y sus tres sentidos',
-            'Conocer las propuestas de los filósofos de la Escuela de Mileto',
-            'Identificar las ideas de Pitágoras, Heráclito y Parménides'
+            'Explicar la etimología de la palabra filosofía y el papel del asombro',
+            'Reconocer las condiciones que favorecieron el nacimiento de la filosofía en Mileto',
+            'Diferenciar la explicación mítica de la racional (mito y logos)',
+            'Definir el arché y comparar las respuestas de los primeros filósofos'
         ]
     },
 
 questions: [
   {
     id: 'origen_001',
-    question: '¿Cuál es la etimología correcta de la palabra "filosofía"?',
+    question: "¿Qué actitud está en el origen de la filosofía, según el material?",
     answers: [
-      { text: 'De "filein" (amar) y "sophia" (sabiduría): amor por la sabiduría.', correct: true, explanation: 'Correcto. Filosofía significa literalmente "amor por la sabiduría". El filósofo no posee la verdad, sino que la busca.' },
-      { text: 'De "filein" (amar) y "logos" (razón): amor por la razón.', correct: false, explanation: 'Logos significa razón, pero la raíz correcta es sophia (sabiduría).' },
-      { text: 'De "physis" (naturaleza) y "sophia" (sabiduría): sabiduría natural.', correct: false, explanation: 'Physis refiere a la naturaleza, pero no forma parte de la etimología de filosofía.' },
-      { text: 'De "philos" (amigo) y "mythos" (mito): amigo del mito.', correct: false, explanation: 'Mythos refiere al mito, no a la raíz que forma filosofía.' },
-      { text: 'De "polis" (ciudad) y "sofia" (sabio): sabio de la ciudad.', correct: false, explanation: 'Polis refiere a la ciudad griega, pero no forma parte de la etimología de filosofía.' }
+      { text: "El miedo a los dioses, que obligaba a buscar explicaciones para calmar su enojo.", correct: false,
+        explanation: "El miedo llevaba al mito, no a la filosofía." },
+      { text: "El asombro: una curiosidad radical que lleva a cuestionar las certezas de todos los días.", correct: true,
+        explanation: "Correcto. Quien se asombra no se conforma con lo que «siempre se dijo» y busca razones." },
+      { text: "La obediencia a la tradición, que conserva lo que dijeron los antepasados.", correct: false,
+        explanation: "La filosofía cuestiona la tradición en lugar de repetirla." },
+      { text: "El aburrimiento de los ricos, que no tenían nada mejor que hacer en su tiempo libre.", correct: false,
+        explanation: "El ocio ayudó, pero la actitud filosófica es el asombro." },
+      { text: "La necesidad de ganar dinero enseñando a otros a hablar bien en público.", correct: false,
+        explanation: "Eso describe más bien a los sofistas, que llegaron después." }
     ],
-    hint: 'Philo = amor; sophia = sabiduría.',
+    hint: "¿Qué sentimos cuando algo nos parece extraño y nos preguntamos «¿por qué?»?",
+    difficulty: 'basico',
+    topic: 'Asombro'
+  },
+  {
+    id: 'origen_002',
+    question: "¿Cuál es la etimología de la palabra «filosofía»?",
+    answers: [
+      { text: "Del griego philo (amor) y sophía (sabiduría): amor por la sabiduría.", correct: true,
+        explanation: "Correcto. Por eso el filósofo busca la sabiduría; no la posee." },
+      { text: "Del latín filum (hilo) y sophia (saber): el hilo que une todos los saberes.", correct: false,
+        explanation: "La palabra es griega y philo significa amor." },
+      { text: "Del griego philo (verdad) y sophía (dioses): la verdad que revelan los dioses.", correct: false,
+        explanation: "Philo es amor y sophía es sabiduría." },
+      { text: "Del griego phobos (miedo) y sophía (sabiduría): el miedo a no saber.", correct: false,
+        explanation: "No viene de phobos sino de philo." },
+      { text: "Del griego philo (amor) y logos (razón): el amor a la razón.", correct: false,
+        explanation: "La segunda parte es sophía (sabiduría), no logos." }
+    ],
+    hint: "Philo + sophía.",
     difficulty: 'basico',
     topic: 'Etimología'
   },
   {
-    id: 'origen_002',
-    question: '¿Por qué Pitágoras rechazó el título de "sabio" que le ofreció el general León de Fliunte?',
+    id: 'origen_003',
+    question: "¿Por qué Pitágoras rechazó que León de Fliunte lo llamara sabio?",
     answers: [
-      { text: 'Porque consideraba que solo los dioses podían ser verdaderamente sabios y él era un simple buscador.', correct: true, explanation: 'Pitágoras se llamó a sí mismo "filósofo" (amante de la sabiduría), distinguiendo al que sabe del que desea saber.' },
-      { text: 'Porque era matemático y prefería ese título.', correct: false, explanation: 'Aunque era matemático, la razón del rechazo fue filosófica, no profesional.' },
-      { text: 'Porque no le gustaba hablar en público.', correct: false, explanation: 'La razón fue filosófica: la distinción entre poseer y amar la sabiduría.' },
-      { text: 'Porque la sabiduría no tenía valor en su época.', correct: false, explanation: 'En la Grecia clásica, la sabiduría era muy valorada.' },
-      { text: 'Porque León de Fliunte era su enemigo político.', correct: false, explanation: 'No existe esa relación; la anécdota versa sobre la distinción entre sabio y filósofo.' }
+      { text: "Porque le parecía un título demasiado humilde para alguien de su fama.", correct: false,
+        explanation: "Fue al revés: le parecía demasiado para un ser humano." },
+      { text: "Porque consideraba que solo los dioses son sabios; él amaba la sabiduría y aspiraba a ella.", correct: true,
+        explanation: "Correcto. Así nació la palabra «filósofo»." },
+      { text: "Porque en Grecia estaba prohibido llamar sabio a un matemático.", correct: false,
+        explanation: "No existía tal prohibición." },
+      { text: "Porque prefería que lo llamaran rey o general, como a León.", correct: false,
+        explanation: "Pitágoras eligió «filósofo», no un título de poder." },
+      { text: "Porque no le interesaba el conocimiento sino solo la gloria de los juegos.", correct: false,
+        explanation: "En su comparación, los filósofos van a los juegos a comprender, no por gloria." }
     ],
-    hint: 'Solo los dioses son verdaderamente sabios.',
+    hint: "¿Quiénes son los únicos verdaderamente sabios para Pitágoras?",
     difficulty: 'basico',
-    topic: 'Pitágoras y el término'
+    topic: 'Pitágoras'
   },
   {
-    id: 'origen_003',
-    question: '¿Cuál de los siguientes factores NO contribuyó al surgimiento de la filosofía en Mileto?',
+    id: 'origen_004',
+    question: "Pitágoras comparó la vida con los juegos de Olimpia. ¿Quiénes son los filósofos en esa comparación?",
     answers: [
-      { text: 'Una casta sacerdotal poderosa que controlaba el pensamiento.', correct: true, explanation: 'Precisamente la AUSENCIA de un dogma religioso impuesto fue uno de los factores que permitió el pensamiento libre en Mileto.' },
-      { text: 'La prosperidad económica y el ocio que permitía la reflexión.', correct: false, explanation: 'Este fue un factor clave: la riqueza comercial de Mileto daba tiempo libre para pensar.' },
-      { text: 'La apertura cultural y el contacto con otros pueblos.', correct: false, explanation: 'El cosmopolitismo de Mileto fomentó el cuestionamiento de creencias.' },
-      { text: 'La ausencia de dogmas religiosos rígidos.', correct: false, explanation: 'La religión griega politeísta no tenía dogmas impuestos, lo que favoreció el pensamiento libre.' },
-      { text: 'El contacto comercial con Babilonia y Egipto.', correct: false, explanation: 'Ese intercambio cultural fue un factor que enriqueció el pensamiento griego.' }
+      { text: "Los atletas que compiten para ganar la corona de laurel.", correct: false,
+        explanation: "Ellos buscan gloria." },
+      { text: "Los comerciantes que van a vender sus productos al público.", correct: false,
+        explanation: "Ellos buscan ganancias." },
+      { text: "Los que van solo a mirar y comprender lo que pasa.", correct: true,
+        explanation: "Correcto. El filósofo busca comprender, no gloria ni ganancias." },
+      { text: "Los jueces que deciden quién gana cada prueba.", correct: false,
+        explanation: "La comparación de Pitágoras no menciona a los jueces." },
+      { text: "Los que se quedan en su casa porque no les interesan los juegos.", correct: false,
+        explanation: "Los filósofos sí van: para observar y comprender." }
     ],
-    hint: '¿Qué faltaba en Mileto que en otras culturas sí existía?',
+    hint: "Unos van por gloria, otros por ganancias... ¿y los demás?",
+    difficulty: 'intermedio',
+    topic: 'Pitágoras'
+  },
+  {
+    id: 'origen_005',
+    question: "¿Por qué la filosofía nació en Mileto y no en otro lugar?",
+    answers: [
+      { text: "Porque era una ciudad aislada, sin contacto con otros pueblos.", correct: false,
+        explanation: "Al contrario: estaba en contacto con Babilonia y Egipto." },
+      { text: "Porque tenía una casta sacerdotal poderosa que obligaba a estudiar.", correct: false,
+        explanation: "No había casta sacerdotal que impusiera dogmas; eso ayudó." },
+      { text: "Porque era pobre y la gente necesitaba pensar para sobrevivir.", correct: false,
+        explanation: "Era próspera: el comercio dio ocio para pensar." },
+      { text: "Por su prosperidad comercial, que dio ocio; su apertura cultural y una religión sin dogmas.", correct: true,
+        explanation: "Correcto. Comercio, ocio, mezcla de culturas y libertad de pensamiento." },
+      { text: "Porque allí vivía Sócrates, que fundó la filosofía.", correct: false,
+        explanation: "Sócrates vivió después, en Atenas." }
+    ],
+    hint: "Pensá en el puerto, el tiempo libre y la religión griega.",
     difficulty: 'intermedio',
     topic: 'Contexto histórico'
   },
   {
-    id: 'origen_004',
-    question: 'El paso "del mito al logos" representa fundamentalmente…',
+    id: 'origen_006',
+    question: "¿Cuál de estos factores NO contribuyó al nacimiento de la filosofía en Mileto?",
     answers: [
-      { text: 'El abandono de las explicaciones sobrenaturales por explicaciones racionales y argumentadas.', correct: true, explanation: 'El logos es el pensamiento racional que reemplaza al mito como forma de explicar la realidad, usando causas naturales en lugar de dioses.' },
-      { text: 'El reemplazo de la democracia por la tiranía en Grecia.', correct: false, explanation: 'Este cambio es político, no filosófico. El mito al logos es un giro en el pensamiento.' },
-      { text: 'El abandono repentino de todas las creencias religiosas.', correct: false, explanation: 'Fue un proceso progresivo, no un abandono repentino. Fue una racionalización del mito.' },
-      { text: 'El descubrimiento de la escritura y los libros.', correct: false, explanation: 'Aunque la escritura ayudó, el paso del mito al logos es un cambio en el tipo de explicación, no en el soporte.' },
-      { text: 'El paso de la filosofía a la ciencia moderna.', correct: false, explanation: 'La ciencia moderna surgió siglos después; esto es el inicio de la filosofía en el siglo VI a.C.' }
+      { text: "El comercio con Babilonia y Egipto.", correct: false,
+        explanation: "Sí contribuyó: puso en contacto distintas culturas." },
+      { text: "El ocio, el tiempo libre de una parte de la población.", correct: false,
+        explanation: "Sí contribuyó: daba tiempo para pensar." },
+      { text: "La mezcla de culturas y creencias de una ciudad cosmopolita.", correct: false,
+        explanation: "Sí contribuyó: invitaba a comparar y dudar." },
+      { text: "La costumbre del debate público entre ciudadanos.", correct: false,
+        explanation: "Sí contribuyó: había que dar razones." },
+      { text: "Una casta sacerdotal poderosa que imponía dogmas.", correct: true,
+        explanation: "Correcto. No existía: su ausencia es la que favoreció la filosofía." }
     ],
-    hint: 'Logos = razón vs. Mito = narración de dioses.',
+    hint: "Buscá lo que habría frenado la libertad de pensar.",
+    difficulty: 'intermedio',
+    topic: 'Contexto histórico'
+  },
+  {
+    id: 'origen_007',
+    question: "¿Qué es un mito y cómo explicaba la naturaleza?",
+    answers: [
+      { text: "Un relato imaginativo con dioses y seres sobrenaturales, que se creía sin discutir.", correct: true,
+        explanation: "Correcto. Por ejemplo, el trueno como enojo de Zeus." },
+      { text: "Una teoría científica comprobada con experimentos en un laboratorio.", correct: false,
+        explanation: "El mito no usa experimentos." },
+      { text: "Un argumento racional que cualquiera podía criticar en la plaza.", correct: false,
+        explanation: "Eso describe al logos." },
+      { text: "Una mentira que los sacerdotes inventaban para engañar al pueblo.", correct: false,
+        explanation: "El mito daba sentido y unía a la comunidad; no era simplemente una mentira." },
+      { text: "Un cálculo matemático sobre los astros y las estaciones.", correct: false,
+        explanation: "El mito narra; no calcula." }
+    ],
+    hint: "Pensá en Homero y Hesíodo.",
+    difficulty: 'basico',
+    topic: 'Mito'
+  },
+  {
+    id: 'origen_008',
+    question: "El paso «del mito al logos» representa fundamentalmente...",
+    answers: [
+      { text: "El reemplazo de unos dioses por otros más modernos y poderosos.", correct: false,
+        explanation: "No se cambian dioses: se buscan causas naturales." },
+      { text: "El paso de las explicaciones sobrenaturales a las explicaciones racionales.", correct: true,
+        explanation: "Correcto. Del relato sobre dioses a las causas naturales y los argumentos." },
+      { text: "El abandono total de toda pregunta sobre el origen del mundo.", correct: false,
+        explanation: "Las preguntas siguen; cambia la forma de responderlas." },
+      { text: "La prohibición de los poemas de Homero y Hesíodo en Mileto.", correct: false,
+        explanation: "No hubo prohibición: fue un proceso gradual." },
+      { text: "La vuelta a las tradiciones antiguas frente a las ideas nuevas.", correct: false,
+        explanation: "Es al revés: es una ruptura con la tradición." }
+    ],
+    hint: "Mito: relato con dioses. Logos: razón.",
     difficulty: 'basico',
     topic: 'Del mito al logos'
   },
   {
-    id: 'origen_005',
-    question: 'El término griego "arché" tiene un triple significado. ¿Cuál de estas opciones lo expresa correctamente?',
-    answers: [
-      { text: 'Origen, substrato y causa de todo lo real.', correct: true, explanation: 'Arché significa: (1) origen — de dónde surgen los seres; (2) substrato — de qué están hechos; (3) causa — qué produce cambio y movimiento.' },
-      { text: 'Pasado, presente y futuro de los seres.', correct: false, explanation: 'Esas son categorías temporales, no el significado de arché.' },
-      { text: 'Cuerpo, alma y espíritu en la visión griega.', correct: false, explanation: 'Esas son partes del ser humano en la antropología griega, no el significado de arché.' },
-      { text: 'Mito, razón y dioses como fuentes de verdad.', correct: false, explanation: 'Esas son fuentes de explicación, no el significado de arché.' },
-      { text: 'Número, fuego y agua como elementos básicos.', correct: false, explanation: 'Esos son propuestas concretas de arché, no su definición.' }
-    ],
-    hint: '¿De dónde vienen, de qué están hechas y qué mueve las cosas?',
-    difficulty: 'basico',
-    topic: 'El arché'
-  },
-  {
-    id: 'origen_006',
-    question: '¿Por qué se considera a Tales de Mileto el primer filósofo de la Historia?',
-    answers: [
-      { text: 'Porque fue el primero en proponer una explicación racional y natural del origen del universo, sin recurrir a dioses.', correct: true, explanation: 'Tales propuso que el arché es el agua, una explicación basada en un elemento natural observable, no en fuerzas sobrenaturales.' },
-      { text: 'Porque escribió el primer libro de filosofía conocido.', correct: false, explanation: 'Tales no dejó escritos; su pensamiento fue transmitido por otros.' },
-      { text: 'Porque fue el maestro de Sócrates y Platón.', correct: false, explanation: 'Tales es anterior a Sócrates por más de un siglo.' },
-      { text: 'Porque descubrió el agua como elemento químico.', correct: false, explanation: 'Tales propuso el agua como principio filosófico, no como descubrimiento químico.' },
-      { text: 'Porque fundó la primera escuela filosófica oficial.', correct: false, explanation: 'Aunque sus discípulos forman la Escuela de Mileto, la razón de su primacía es haber dado la primera explicación racional.' }
-    ],
-    hint: 'El primero en explicar sin dioses.',
-    difficulty: 'basico',
-    topic: 'Tales de Mileto'
-  },
-  {
-    id: 'origen_007',
-    question: '¿Qué diferencia fundamentalmente el arché de Anaximandro del de Tales?',
-    answers: [
-      { text: 'Tales eligió un elemento concreto (agua) y Anaximandro propuso uno abstracto (ápeiron, lo indefinido).', correct: true, explanation: 'Anaximandro argumentó que el arché no puede ser un elemento existente porque se oponen entre sí; propuso lo indefinido e ilimitado (ápeiron).' },
-      { text: 'Tales eligió el fuego y Anaximandro eligió el agua.', correct: false, explanation: 'Es al revés: Tales propuso el agua; el fuego fue propuesta de Heráclito.' },
-      { text: 'Tales usaba el logos y Anaximandro usaba el mito.', correct: false, explanation: 'Ambos son filósofos que usan el logos; solo difieren en qué proponen como arché.' },
-      { text: 'Anaximandro rechazó la búsqueda del arché.', correct: false, explanation: 'Anaximandro buscó el arché; fue él quien usó formalmente el término por primera vez.' },
-      { text: 'Tales propuso el ápeiron y Anaximandro el agua.', correct: false, explanation: 'Es exactamente al revés.' }
-    ],
-    hint: 'Concreto vs. abstracto como principio.',
-    difficulty: 'intermedio',
-    topic: 'Anaximandro'
-  },
-  {
-    id: 'origen_008',
-    question: 'Según Anaxímenes, ¿cómo se transforma el aire en otros elementos?',
-    answers: [
-      { text: 'Por rarefacción (hacerse menos denso) se convierte en fuego; por condensación (hacerse más denso) en viento, agua, tierra y piedras.', correct: true, explanation: 'Anaxímenes explicó que el aire se transforma en todos los elementos mediante procesos cuantitativos: más o menos densidad.' },
-      { text: 'Por la intervención de los dioses que moldean el aire.', correct: false, explanation: 'Anaxímenes busca una explicación racional, no mítica o divina.' },
-      { text: 'Mezclándose con el ápeiron de Anaximandro.', correct: false, explanation: 'El ápeiron es la propuesta de Anaximandro, no un ingrediente activo en la teoría de Anaxímenes.' },
-      { text: 'Por la acción del calor solar sobre el aire.', correct: false, explanation: 'El mecanismo propuesto es rarefacción y condensación, no el calor solar específicamente.' },
-      { text: 'Por la combinación del agua y el fuego.', correct: false, explanation: 'Anaxímenes parte del aire, no de la combinación de otros elementos.' }
-    ],
-    hint: 'Más denso → sólido. Menos denso → fuego.',
-    difficulty: 'intermedio',
-    topic: 'Anaxímenes'
-  },
-  {
     id: 'origen_009',
-    question: 'Heráclito es conocido por afirmar que "nadie se baña dos veces en el mismo río". ¿Qué idea filosófica expresa esta frase?',
+    question: "¿Cómo fue el paso del mito al logos?",
     answers: [
-      { text: 'Que todo está en constante cambio o devenir; nada permanece idéntico a sí mismo.', correct: true, explanation: 'El devenir (flujo constante) es el núcleo de la filosofía de Heráclito. El rio cambia y la persona también cambia.' },
-      { text: 'Que el agua (arché) nunca es la misma.', correct: false, explanation: 'Aunque usa el rio como imagen, no se trata de una afirmación sobre el agua como arché (eso es Tales).' },
-      { text: 'Que es imposible conocer la realidad por los sentidos.', correct: false, explanation: 'Esa es más la posición de Parménides; Heráclito habla del cambio, no de los límites del conocimiento sensible.' },
-      { text: 'Que el tiempo destruye todas las cosas.', correct: false, explanation: 'No es el tiempo como destructor, sino el cambio continuo como esencia de la realidad.' },
-      { text: 'Que el ser humano no puede repetir sus experiencias.', correct: false, explanation: 'La frase apunta a la naturaleza cambiante de la realidad, no a la psicología humana.' }
+      { text: "Un cambio de un día para el otro, decretado por los gobernantes de Mileto.", correct: false,
+        explanation: "No fue un decreto ni un salto repentino." },
+      { text: "Un proceso gradual: una racionalización del mito que buscó causas naturales y las discutió en público.", correct: true,
+        explanation: "Correcto. Los primeros filósofos todavía usaban imágenes, pero buscaban razones." },
+      { text: "Una guerra entre sacerdotes y filósofos que ganaron los filósofos.", correct: false,
+        explanation: "No hubo tal guerra en Grecia." },
+      { text: "Un descubrimiento casual de Tales mientras miraba el mar.", correct: false,
+        explanation: "Fue un proceso histórico con varias condiciones." },
+      { text: "Un regreso al mito después de fracasar con la razón.", correct: false,
+        explanation: "Es el camino inverso al que describe el material." }
     ],
-    hint: 'El río cambia y tú cambias: todo fluye.',
+    hint: "¿Fue un salto o un camino?",
     difficulty: 'intermedio',
-    topic: 'Heráclito y el devenir'
+    topic: 'Del mito al logos'
   },
   {
     id: 'origen_010',
-    question: 'Parménides afirmó "el ser es y el no ser no es". ¿Qué consecuencia tiene esta idea?',
+    question: "El término griego «arché» tiene un triple sentido. ¿Cuál es?",
     answers: [
-      { text: 'Que el cambio y el movimiento son ilusiones de los sentidos; solo el ser inmutable y eterno es real.', correct: true, explanation: 'Para Parménides, si el ser es, no puede cambiar (dejaría de ser lo que es). El cambio es solo apariencia sensible, no verdad racional.' },
-      { text: 'Que todos los seres vivos morirán inevitablemente.', correct: false, explanation: 'No es una afirmación biológica sino metafísica sobre la naturaleza del ser.' },
-      { text: 'Que el ser humano no puede conocer nada con certeza.', correct: false, explanation: 'Parménides es más bien racionalista: la razón conoce el ser inmutable.' },
-      { text: 'Que el agua es el único elemento real.', correct: false, explanation: 'Eso sería la posición de Tales; Parménides habla del ser en general, no de elementos.' },
-      { text: 'Que la filosofía debe abandonar la razón y volver al mito.', correct: false, explanation: 'Parménides apela a la razón (logos) para conocer el ser; es lo opuesto al retorno al mito.' }
+      { text: "Comienzo, medio y final de cada historia.", correct: false,
+        explanation: "No se refiere a la estructura de un relato." },
+      { text: "Dios, alma y mundo.", correct: false,
+        explanation: "El arché es un principio natural, no esos tres temas." },
+      { text: "Origen, sustrato y causa de todas las cosas.", correct: true,
+        explanation: "Correcto. De qué surge todo, de qué está hecho y qué produce el cambio." },
+      { text: "Agua, aire y fuego, los tres elementos.", correct: false,
+        explanation: "Esos son posibles respuestas sobre el arché, no su significado." },
+      { text: "Pasado, presente y futuro del universo.", correct: false,
+        explanation: "El arché no es una división del tiempo." }
     ],
-    hint: 'Si cambia, deja de ser lo que era. Por tanto, el cambio es ilusión.',
+    hint: "De dónde surge, de qué está hecho y qué lo mueve.",
+    difficulty: 'basico',
+    topic: 'Arché'
+  },
+  {
+    id: 'origen_011',
+    question: "¿Por qué se considera a Tales de Mileto el primer filósofo y por qué eligió el agua?",
+    answers: [
+      { text: "Porque escribió los primeros mitos, y eligió el agua porque era sagrada.", correct: false,
+        explanation: "Tales no escribió mitos: dio una respuesta racional." },
+      { text: "Porque fue el primero en responder racionalmente qué es el arché; eligió el agua porque es esencial para la vida y cambia de estado.", correct: true,
+        explanation: "Correcto. Es un arché concreto y observable." },
+      { text: "Porque inventó la palabra filosofía, y eligió el agua porque vivía junto al mar.", correct: false,
+        explanation: "La palabra se atribuye a Pitágoras." },
+      { text: "Porque fue maestro de Sócrates, y eligió el agua por consejo de los dioses.", correct: false,
+        explanation: "Tales vivió mucho antes que Sócrates." },
+      { text: "Porque descubrió el ápeiron, y eligió el agua porque es indeterminada.", correct: false,
+        explanation: "El ápeiron es de Anaximandro." }
+    ],
+    hint: "Primera respuesta racional; agua: vida y cambio de estado.",
+    difficulty: 'basico',
+    topic: 'Tales'
+  },
+  {
+    id: 'origen_012',
+    question: "¿Qué diferencia el arché de Anaximandro del de Tales y Anaxímenes?",
+    answers: [
+      { text: "Anaximandro propuso un arché abstracto, el ápeiron (lo indeterminado); Tales y Anaxímenes, uno concreto (agua y aire).", correct: true,
+        explanation: "Correcto. Para Anaximandro los elementos se oponen y se anulan, así que el principio debe ser indeterminado." },
+      { text: "Anaximandro eligió el fuego; Tales y Anaxímenes eligieron el número.", correct: false,
+        explanation: "El fuego es de Heráclito y el número de Pitágoras." },
+      { text: "No hay diferencia: los tres eligieron el agua.", correct: false,
+        explanation: "Solo Tales eligió el agua." },
+      { text: "Anaximandro eligió un dios; los otros dos eligieron elementos.", correct: false,
+        explanation: "El ápeiron no es un dios, sino un principio indeterminado." },
+      { text: "Anaximandro eligió el aire, que se condensa; los otros, el agua.", correct: false,
+        explanation: "El aire es de Anaxímenes." }
+    ],
+    hint: "Concreto o abstracto.",
+    difficulty: 'intermedio',
+    topic: 'Escuela de Mileto'
+  },
+  {
+    id: 'origen_013',
+    question: "¿Qué separa a Heráclito de Parménides?",
+    answers: [
+      { text: "Heráclito dice que nada cambia; Parménides, que todo cambia.", correct: false,
+        explanation: "Es al revés." },
+      { text: "Heráclito destaca el devenir, todo cambia; Parménides afirma que el ser no cambia y el cambio es ilusión de los sentidos.", correct: true,
+        explanation: "Correcto. «Nadie se baña dos veces en el mismo río» frente a «el ser es y el no ser no es»." },
+      { text: "Los dos dicen que el arché es el número.", correct: false,
+        explanation: "El número es el arché de Pitágoras." },
+      { text: "Heráclito confía solo en la razón y Parménides solo en los sentidos.", correct: false,
+        explanation: "Parménides es el que confía solo en la razón." },
+      { text: "Ninguno de los dos se preguntó por la naturaleza.", correct: false,
+        explanation: "Los dos son presocráticos y piensan la naturaleza." }
+    ],
+    hint: "¿Quién dijo que nadie se baña dos veces en el mismo río?",
     difficulty: 'avanzado',
-    topic: 'Parménides y el ser'
+    topic: 'Heráclito y Parménides'
   }
 ],
 
     stats: {
-        totalQuestions: 10,
-        estimatedTime: 12,
-        difficultyBreakdown: { basico: 5, intermedio: 4, avanzado: 1 },
-        topicBreakdown: {
+        totalQuestions: 13,
+        estimatedTime: 15,
+        difficultyDistribution: {
+            basico: 7,
+            intermedio: 5,
+            avanzado: 1
+        },
+        topicDistribution: {
+            'Asombro': 1,
             'Etimología': 1,
-            'Pitágoras y el término': 1,
-            'Contexto histórico': 1,
-            'Del mito al logos': 1,
-            'El arché': 1,
-            'Tales de Mileto': 1,
-            'Anaximandro': 1,
-            'Anaxímenes': 1,
-            'Heráclito y el devenir': 1,
-            'Parménides y el ser': 1
+            'Pitágoras': 2,
+            'Contexto histórico': 2,
+            'Mito': 1,
+            'Del mito al logos': 2,
+            'Arché': 1,
+            'Tales': 1,
+            'Escuela de Mileto': 1,
+            'Heráclito y Parménides': 1
         }
     }
 };
 
+// ========================================
+// 🔧 VALIDACIÓN DEL TEMA
+// ========================================
+
+function validateTheme() {
+    const requiredFields = ['id', 'title', 'questions'];
+    const missingFields = requiredFields.filter(field => !ORIGEN_THEME[field]);
+    if (missingFields.length > 0) {
+        console.error(`❌ Faltan campos requeridos: ${missingFields.join(', ')}`);
+        return false;
+    }
+    const invalidQuestions = ORIGEN_THEME.questions.filter((q, index) => {
+        if (!q.id || !q.question || !q.answers || !q.hint) {
+            console.error(`❌ Pregunta ${index + 1} inválida: faltan campos requeridos`);
+            return true;
+        }
+        if (q.answers.length !== 5) {
+            console.error(`❌ Pregunta ${index + 1}: debe tener exactamente 5 respuestas`);
+            return true;
+        }
+        if (q.answers.filter(a => a.correct).length !== 1) {
+            console.error(`❌ Pregunta ${index + 1}: debe tener exactamente 1 respuesta correcta`);
+            return true;
+        }
+        return false;
+    });
+    if (invalidQuestions.length > 0) {
+        console.error(`❌ ${invalidQuestions.length} preguntas inválidas encontradas`);
+        return false;
+    }
+    console.log('✅ Tema del origen de la filosofía validado correctamente');
+    return true;
+}
+
+function getThemeStats() {
+    return {
+        ...ORIGEN_THEME.stats,
+        validationPassed: validateTheme(),
+        loadTime: performance.now() - themeLoadStart
+    };
+}
+
+if (!validateTheme()) {
+    console.error('❌ Error al cargar el tema del origen de la filosofía');
+    throw new Error('Tema del origen de la filosofía inválido');
+}
+
+console.log(`✅ Tema del origen de la filosofía cargado: ${ORIGEN_THEME.questions.length} preguntas`);
+
 if (typeof window !== 'undefined') {
-    window.ORIGEN_FILOSOFIA_THEME = ORIGEN_FILOSOFIA_THEME;
-    // quiz-engine.js busca la variable <TEMA>_THEME (tema = "origen")
-    window.ORIGEN_THEME = ORIGEN_FILOSOFIA_THEME;
-    console.log('✅ Tema Origen de la Filosofía cargado:', ORIGEN_FILOSOFIA_THEME.questions.length, 'preguntas');
+    window.ORIGEN_THEME = ORIGEN_THEME;
 }
