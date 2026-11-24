@@ -1,4 +1,7 @@
-// themes/platon/cloze_test.js - Platón ACTUALIZADO
+// themes/platon/cloze_test.js — Cloze del video «Platón: ideas, alma y política» (0:00–10:00).
+// v1.1 (2026-11-24): revisado con la transcripción del video: se corrigieron los tiempos de las 16 frases
+//   (7 apuntaban a otro momento y 5 cortaban antes de terminar), «anamnesis» ya no es hueco (el video no la
+//   dice; se acepta como respuesta de «reminiscencia») y se acepta «concupiscible», la palabra del video.
 window.CLOZE_TEST = {
   title: "Cloze — Platón: Ideas, Alma y Política (0:00—10:00)",
   items: [
@@ -14,7 +17,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: ignora | rechaza | olvida | conoce | critica | cuestiona",
         "💡 Opciones: arte | ciencia | técnica | disciplina | profesión | oficio"
       ],
-      videoSegment: { start: 3, end: 15 } // 0:05 - 0:15 (restado 2 seg)
+      videoSegment: { start: 0, end: 18 } // 0:00 - 0:19 (transcripción)
     },
     {
       id: "p2",
@@ -31,7 +34,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: injusticia | desigualdad | tiranía | justicia | opresión | inequidad",
         "💡 Opciones: diferentes | diversos | únicos | iguales | desiguales | distintos"
       ],
-      videoSegment: { start: 17, end: 34 } // 0:19 - 0:34 (restado 2 seg)
+      videoSegment: { start: 18, end: 40 } // 0:19 - 0:41 (transcripción)
     },
     {
       id: "p3",
@@ -48,7 +51,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: Liceo | Gimnasio | Ágora | Academia | Pórtico | Jardín",
         "💡 Opciones: tratados | poemas | ensayos | diálogos | cartas | discursos"
       ],
-      videoSegment: { start: 37, end: 59 } // 0:39 - 0:59 (restado 2 seg)
+      videoSegment: { start: 39, end: 66 } // 0:40 - 1:07 (transcripción)
     },
     {
       id: "p4",
@@ -68,7 +71,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: física | astronomía | geometría | matemáticas | aritmética | álgebra",
         "💡 Opciones: poesía | retórica | gimnasia | música | danza | teatro"
       ],
-      videoSegment: { start: 59, end: 90 } // 1:01 - 1:30 (restado 2 seg)
+      videoSegment: { start: 62, end: 102 } // 1:03 - 1:43 (transcripción)
     },
     {
       id: "p5",
@@ -85,7 +88,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: cambiantes | variables | mutables | inmutables | temporales | perecederos",
         "💡 Opciones: realidades | planos | dimensiones | mundos | niveles | esferas"
       ],
-      videoSegment: { start: 113, end: 135 } // 1:55 - 2:15 (restado 2 seg)
+      videoSegment: { start: 111, end: 135 } // 1:52 - 2:16 (transcripción)
     },
     {
       id: "p6",
@@ -106,7 +109,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: fealdad | verdad | utilidad | belleza | bondad | perfección",
         "💡 Opciones: mal | fealdad | injusticia | bien | vicio | error"
       ],
-      videoSegment: { start: 134, end: 175 } // 2:16 - 2:55 (restado 2 seg)
+      videoSegment: { start: 155, end: 201 } // 2:36 - 3:22 (transcripción)
     },
     {
       id: "p7",
@@ -122,7 +125,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: monista | pluralista | holista | dualista | unitario | integral",
         "💡 Opciones: realidades | planos | dimensiones | mundos | esferas | niveles"
       ],
-      videoSegment: { start: 133, end: 210 } // 2:15 - 3:30 (ajustado)
+      videoSegment: { start: 212, end: 234 } // 3:33 - 3:55 (transcripción)
     },
     {
       id: "p8",
@@ -138,7 +141,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: niveles | escalones | etapas | grados | fases | estadios",
         "💡 Opciones: imperfecto | deficiente | inferior | perfecto | limitado | incompleto"
       ],
-      videoSegment: { start: 231, end: 245 } // 3:53 - 4:05 (restado 2 seg)
+      videoSegment: { start: 232, end: 245 } // 3:53 - 4:06 (transcripción)
     },
     {
       id: "p9",
@@ -156,11 +159,11 @@ window.CLOZE_TEST = {
         "💡 Opciones: pensamiento | razón | entendimiento | inteligencia | comprensión | juicio",
         "💡 Opciones: retórica | sofística | mayéutica | dialéctica | erística | oratoria"
       ],
-      videoSegment: { start: 244, end: 270 } // 4:06 - 4:30 (restado 2 seg)
+      videoSegment: { start: 244, end: 274 } // 4:05 - 4:35 (transcripción)
     },
     {
       id: "p10",
-      text: "10- El que conoce es el hombre, compuesto de [[materia]] (mortal) y [[alma]] (inmortal). El conocimiento es [[recordar]] lo que el alma vio en el mundo de las ideas: esto es la teoría de la [[reminiscencia]] o [[anamnesis]], el [[saber]] es [[recordar]].",
+      text: "10- El que conoce es el hombre, compuesto de [[materia]] (mortal) y [[alma]] (inmortal). El conocimiento es [[recordar]] lo que el alma vio en el mundo de las ideas: esto es la teoría de la [[reminiscencia|anamnesis]], el [[saber]] es [[recordar]].",
       feedbackOK: "¡Correcto! Has captado el dualismo antropológico y la teoría de la reminiscencia.",
       feedbackKO: "Recuerda: cuerpo mortal + alma inmortal; conocer = recordar (anamnesis).",
       videoHints: [
@@ -168,30 +171,29 @@ window.CLOZE_TEST = {
         "💡 Opciones: materia | cuerpo | espíritu | alma | mente | psique",
         "💡 Opciones: aprender | descubrir | investigar | recordar | observar | experimentar",
         "💡 Opciones: metempsicosis | transmigración | reencarnación | reminiscencia | inmortalidad | anamnesis",
-        "💡 Opciones: reminiscencia | recuerdo | memoria | anamnesis | evocación | rememoración",
         "💡 Opciones: ignorar | olvidar | desconocer | saber | dudar | imaginar",
         "💡 Opciones: aprender | descubrir | olvidar | recordar | inventar | crear"
       ],
-      videoSegment: { start: 300, end: 320 } // 5:02 - 5:20 (restado 2 seg)
+      videoSegment: { start: 298, end: 340 } // 4:59 - 5:41 (transcripción)
     },
     {
       id: "p11",
-      text: "11- En el mito del [[carro]] [[alado]], el [[alma]] tiene tres funciones: la [[racional]] (cabeza del auriga, dirige), la [[irascible]] (caballo blanco, [[defensa]] e [[ira]]) y la [[concupiscente]] (caballo negro, [[nutrición]] y [[deseos]], se desboca y provoca la caída).",
+      text: "11- En el mito del [[carro]] [[alado]], el [[alma]] tiene tres funciones: la [[racional]] (el auriga, que dirige el carro), la [[irascible]] (caballo blanco, [[defensa]] e [[ira]]) y la [[concupiscible|concupiscente]] (caballo negro, [[nutrición]] y [[deseos]], se desboca y provoca la caída).",
       feedbackOK: "¡Perfecto! Has descrito las tres partes del alma con el mito del carro alado.",
-      feedbackKO: "Recuerda: racional (auriga), irascible (caballo blanco), concupiscente (caballo negro).",
+      feedbackKO: "Recuerda: racional (auriga), irascible (caballo blanco), concupiscible (caballo negro).",
       videoHints: [
         "💡 Opciones: barco | nave | caballo | carro | trineo | carruaje",
         "💡 Opciones: marino | terrestre | acuático | alado | subterráneo | celeste",
         "💡 Opciones: cuerpo | materia | espíritu | alma | mente | psique",
         "💡 Opciones: emocional | apetitiva | vegetativa | racional | sensitiva | locomotriz",
-        "💡 Opciones: concupiscente | apetitiva | vegetativa | irascible | racional | sensitiva",
+        "💡 Opciones: concupiscible | apetitiva | vegetativa | irascible | racional | sensitiva",
         "💡 Opciones: ataque | agresión | violencia | defensa | conquista | invasión",
         "💡 Opciones: amor | alegría | tristeza | ira | miedo | esperanza",
-        "💡 Opciones: racional | irascible | vegetativa | concupiscente | sensitiva | apetitiva",
+        "💡 Opciones: racional | irascible | vegetativa | concupiscible | sensitiva | apetitiva",
         "💡 Opciones: reproducción | respiración | circulación | nutrición | digestión | crecimiento",
         "💡 Opciones: necesidades | voluntades | aspiraciones | deseos | apetitos | impulsos"
       ],
-      videoSegment: { start: 359, end: 390 } // 6:01 - 6:30 (restado 2 seg)
+      videoSegment: { start: 359, end: 391 } // 6:00 - 6:32 (transcripción)
     },
     {
       id: "p12",
@@ -207,7 +209,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: poetas | políticos | guerreros | filósofos | artistas | comerciantes",
         "💡 Opciones: cinco | siete | ocho | diez | doce | quince"
       ],
-      videoSegment: { start: 398, end: 415 } // 6:40 - 6:55 (restado 2 seg)
+      videoSegment: { start: 420, end: 433 } // 7:01 - 7:14 (transcripción)
     },
     {
       id: "p13",
@@ -222,7 +224,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: mal | privado | individual | bien | particular | egoísta",
         "💡 Opciones: privado | particular | individual | común | propio | personal"
       ],
-      videoSegment: { start: 434, end: 450 } // 7:16 - 7:30 (restado 2 seg)
+      videoSegment: { start: 451, end: 469 } // 7:32 - 7:50 (transcripción)
     },
     {
       id: "p14",
@@ -237,7 +239,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: comerciantes | artesanos | campesinos | trabajadores | esclavos | productores",
         "💡 Opciones: prudencia | justicia | fortaleza | templanza | sabiduría | valentía"
       ],
-      videoSegment: { start: 482, end: 500 } // 8:04 - 8:20 (restado 2 seg)
+      videoSegment: { start: 480, end: 498 } // 8:01 - 8:19 (transcripción)
     },
     {
       id: "p15",
@@ -255,7 +257,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: economía | salud | defensa | educación | comercio | religión",
         "💡 Opciones: políticos | guerreros | comerciantes | filósofos | sacerdotes | artesanos"
       ],
-      videoSegment: { start: 518, end: 545 } // 8:40 - 9:05 (restado 2 seg)
+      videoSegment: { start: 498, end: 515 } // 8:19 - 8:36 (transcripción)
     },
     {
       id: "p16",
@@ -272,7 +274,7 @@ window.CLOZE_TEST = {
         "💡 Opciones: amigo | aliado | defensor | enemigo | partidario | seguidor",
         "💡 Opciones: cerrada | autoritaria | totalitaria | abierta | dictatorial | represiva"
       ],
-      videoSegment: { start: 568, end: 595 } // 9:30 - 9:55 (restado 2 seg)
+      videoSegment: { start: 568, end: 596 } // 9:29 - 9:57 (transcripción)
     }
   ]
 };
