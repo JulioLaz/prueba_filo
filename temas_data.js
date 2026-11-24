@@ -238,9 +238,9 @@ const TOPICS = {
     metodo: {
         youtubeId: 'sdGQcNaz4JM',
         startTime: 1,
-        endTime: 471, // 2026-11-24: hasta 7:50, donde termina el cloze (antes pedía ver 12 minutos)
+        endTime: 493, // 2026-11-24: video completo (8:12); el cloze de 13 frases lo recorre entero (antes pedía ver 12 minutos)
         title: 'El Método Filosófico: La Duda Metódica',
-        duration: '7:50'
+        duration: '8:12'
     },
     // 1.7 - Ramas Clásicas: Metafísica, Ética y Lógica
     ramas: {

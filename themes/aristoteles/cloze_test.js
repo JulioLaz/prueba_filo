@@ -274,7 +274,7 @@ window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
   
-  const config = window.VIDEO_CONFIG?.etica_aristoteles;
+  const config = window.VIDEO_CONFIG?.aristoteles;
   if (!config) return null;
   
   const actualStart = config.startTime + item.videoSegment.start;

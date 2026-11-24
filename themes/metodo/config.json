@@ -32,8 +32,8 @@
     },
     "cloze": {
       "enabled": true,
-      "items": 5,
-      "timeEstimate": 10
+      "items": 13,
+      "timeEstimate": 12
     },
     "cruci": {
       "enabled": true,
@@ -73,6 +73,6 @@
   "prerequisites": [],
   "color": "#FF5722",
   "notes": {
-    "realValues": "v2.0 (2026-11-24): material 16 secciones, cuestionario 13, caza 8 niveles / 55, crucigrama CRITICA + 7, mapa 33 nodos / 15 pares, cloze 5."
+    "realValues": "v2.0 (2026-11-24): material 16 secciones, cuestionario 13, caza 8 niveles / 55, crucigrama CRITICA + 7, mapa 33 nodos / 15 pares, cloze 13 (con la transcripción del video)."
   }
 }
