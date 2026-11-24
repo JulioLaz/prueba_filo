@@ -78,6 +78,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-24: `tools/limpieza/limpiar_progreso.cjs` (se corre en la PC del docente con la clave de administrador): informa documentos por año y registros de progreso de temas que ya no existen; borra solo con `--borrar-obsoletos` o `--borrar-anteriores-a AAAA` y confirmando con SI (nunca toca `users`). Al 2026-11-24 había 3 registros obsoletos: `etica_de_aristoteles`, `dialectica_asombro_y_el_metodo_filosofico` y uno de `pragmatismo` sin actividad.
 - 2026-11-24: functions V8.5. Los registros mostraron Gemini con 503 (sobrecarga de Google), Gemma gratis con 429 (saturado) y Nemotron vacío (gastaba todo en razonar). Ahora: hasta 3 vueltas con espera (4 s y 10 s) a los modelos saturados, OpenRouter con razonamiento bajo, 3 respaldos más de Gemini y corrección con 8192 tokens.
 - 2026-11-24: examen: los párrafos <p> de la IA ya no se ven como texto; functions V8.4 (más tiempo para corregir: hasta 200 s probando modelos) y botón «Corregir» en el panel docente para los exámenes «Sin corregir». Requiere `firebase deploy --only functions`.
 - 2026-11-24: lectura en voz alta (motor v1.2): cada error del micrófono muestra al alumno los pasos para resolverlo (navegador, permiso, micrófono ocupado, internet, voz baja, lectura rápida).
