@@ -1,0 +1,78 @@
+{
+  "id": "presocraticos",
+  "meta": {
+    "title": "Los Presocráticos: El Arché y la Naturaleza",
+    "author": "Presocráticos",
+    "icon": "🌊",
+    "gradient": "linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%)",
+    "difficulty": "basico",
+    "category": "Filosofía Antigua",
+    "description": "Los primeros filósofos y la búsqueda del arché: monistas de Mileto, pitagóricos, Jenófanes, Heráclito, Parménides y Zenón, los pluralistas y los atomistas.",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 16,
+      "timeEstimate": 13,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 11,
+      "timeEstimate": 10
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 10,
+      "centralWord": "PRINCIPIO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 28,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#4CAF50",
+  "notes": {
+    "realValues": "v2.0 (2026-11-24): material 16 secciones, cuestionario 13, caza 8 niveles / 55, crucigrama PRINCIPIO + 9, mapa 28 nodos / 15 pares, cloze 11 (video hasta 17:02)."
+  }
+}

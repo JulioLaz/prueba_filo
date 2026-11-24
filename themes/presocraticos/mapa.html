@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Los Presocráticos · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Los Presocráticos (Unidad I). Versión 1.0 (2026-11-24): tema nuevo en el mapa, sistema completo con 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Los Presocráticos
+    window.MapaSystemConfig = {
+      tema: 'presocraticos',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Arché", definition: "Principio u origen de todas las cosas, que no necesita de otra cosa para existir." },
+        { term: "Monismo", definition: "Postura que afirma una única sustancia fundamental." },
+        { term: "Pluralismo", definition: "Postura que propone varios principios para explicar el cambio." },
+        { term: "Ápeiron", definition: "Lo indefinido e ilimitado: arché de Anaximandro." },
+        { term: "Rarefacción", definition: "El aire se hace menos denso y se vuelve fuego (Anaxímenes)." },
+        { term: "Condensación", definition: "El aire se hace más denso y se vuelve viento, agua, tierra y piedras." },
+        { term: "Número", definition: "Arché de los pitagóricos: la realidad tiene estructura matemática." },
+        { term: "Panta Rhei", definition: "«Todo fluye»: máxima de Heráclito sobre el cambio constante." },
+        { term: "Logos", definition: "Para Heráclito, la ley universal que ordena el cambio." },
+        { term: "Ser", definition: "Para Parménides, lo único real: es, no nace, no muere y no cambia." },
+        { term: "Paradojas", definition: "Razonamientos de Zenón que muestran que el movimiento lleva a absurdos." },
+        { term: "Cuatro Raíces", definition: "Tierra, agua, aire y fuego, unidos por el Amor y separados por la Discordia." },
+        { term: "Nous", definition: "Mente ordenadora y pura que puso en marcha el orden del cosmos (Anaxágoras)." },
+        { term: "Átomos", definition: "Partículas indivisibles, eternas y de muchas formas (Leucipo y Demócrito)." },
+        { term: "Vacío", definition: "Espacio necesario para que los átomos puedan moverse." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🌊'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🌊']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🌊 Los Presocráticos</span></div>
+      </div>
+      <h3 class="sub">El arché y la naturaleza</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Los Presocráticos">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Los Presocráticos</div>
+            <div class="desc">Los primeros filósofos buscaron con la razón el <strong>arché</strong>: del <strong>monismo</strong> al <strong>pluralismo</strong>, entre el <strong>cambio</strong> y el <strong>ser</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="¿Quiénes fueron?">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">¿Quiénes fueron?</div>
+                <div class="desc">Filósofos griegos <strong>anteriores a Sócrates</strong>, desde Tales (585 a. C.).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Investigación racional"><div class="toggle" style="visibility: hidden;"></div><div class="title">Investigación racional</div><div class="desc">Explicaron la naturaleza <strong>sin mitos</strong>.</div></div></li>
+                <li><div class="node" data-title="La gran pregunta"><div class="toggle" style="visibility: hidden;"></div><div class="title">La gran pregunta</div><div class="desc">¿Cuál es el <strong>arché</strong> del universo?</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Monistas de Mileto">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Monistas de Mileto</div>
+                <div class="desc">Un <strong>único</strong> principio de todas las cosas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Tales: el agua"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tales: el agua</div><div class="desc">Todo lo vivo es <strong>húmedo</strong>; el agua cambia de estado.</div></div></li>
+                <li><div class="node" data-title="Anaximandro: el ápeiron"><div class="toggle" style="visibility: hidden;"></div><div class="title">Anaximandro: el ápeiron</div><div class="desc">Lo <strong>indefinido</strong>: los elementos opuestos se anulan.</div></div></li>
+                <li><div class="node" data-title="Anaxímenes: el aire"><div class="toggle" style="visibility: hidden;"></div><div class="title">Anaxímenes: el aire</div><div class="desc"><strong>Rarefacción</strong> (fuego) y <strong>condensación</strong> (viento, agua, tierra, piedras).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Pitagóricos">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Pitagóricos</div>
+                <div class="desc">Comunidad de <strong>Pitágoras de Samos</strong>: matemática, música y religión.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Todo es número"><div class="toggle" style="visibility: hidden;"></div><div class="title">Todo es número</div><div class="desc">El universo tiene <strong>estructura matemática</strong>.</div></div></li>
+                <li><div class="node" data-title="Transmigración"><div class="toggle" style="visibility: hidden;"></div><div class="title">Transmigración</div><div class="desc">Las almas pasan de un cuerpo a otro (idea que retomará Platón).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Jenófanes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Jenófanes</div>
+                <div class="desc">Criticó a los dioses de <strong>Homero y Hesíodo</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Dioses a imagen humana"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dioses a imagen humana</div><div class="desc">«Si los bueyes tuvieran manos, pintarían dioses-bueyes».</div></div></li>
+                <li><div class="node" data-title="Un solo dios"><div class="toggle" style="visibility: hidden;"></div><div class="title">Un solo dios</div><div class="desc">Sin <strong>figura</strong> ni <strong>cuerpo</strong> humano.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Heráclito, el Oscuro">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Heráclito, el Oscuro</div>
+                <div class="desc">El <strong>fuego</strong> como metáfora del cambio constante.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Panta rhei"><div class="toggle" style="visibility: hidden;"></div><div class="title">Panta rhei</div><div class="desc"><strong>Todo fluye</strong>: nadie se baña dos veces en el mismo río.</div></div></li>
+                <li><div class="node" data-title="Lucha de opuestos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Lucha de opuestos</div><div class="desc">«La guerra (<em>pólemos</em>) es el padre de todas las cosas».</div></div></li>
+                <li><div class="node" data-title="Logos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Logos</div><div class="desc">Ley universal que <strong>ordena</strong> el cambio.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Eléatas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Eléatas</div>
+                <div class="desc">El <strong>ser</strong> no cambia: el cambio es ilusión.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Parménides"><div class="toggle" style="visibility: hidden;"></div><div class="title">Parménides</div><div class="desc">«<strong>El ser es, y el no ser no es</strong>»: inmutable, como una esfera; inaugura la metafísica.</div></div></li>
+                <li><div class="node" data-title="Zenón"><div class="toggle" style="visibility: hidden;"></div><div class="title">Zenón</div><div class="desc"><strong>Paradojas</strong>: Aquiles y la tortuga, la dicotomía.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Pluralistas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Pluralistas</div>
+                <div class="desc">Varios principios para resolver el choque entre Heráclito y Parménides.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Empédocles"><div class="toggle" style="visibility: hidden;"></div><div class="title">Empédocles</div><div class="desc"><strong>Cuatro raíces</strong> movidas por el <strong>Amor</strong> y la <strong>Discordia</strong>.</div></div></li>
+                <li><div class="node" data-title="Anaxágoras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Anaxágoras</div><div class="desc">Infinitas <strong>semillas</strong>, «todo está en todo», ordenadas por el <strong>nous</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Atomistas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Atomistas</div>
+                <div class="desc"><strong>Leucipo y Demócrito</strong>: todo es átomos y vacío.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Átomos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Átomos</div><div class="desc">Partículas <strong>indivisibles</strong> que chocan y se agrupan.</div></div></li>
+                <li><div class="node" data-title="Vacío"><div class="toggle" style="visibility: hidden;"></div><div class="title">Vacío</div><div class="desc">Necesario para el <strong>movimiento</strong>.</div></div></li>
+                <li><div class="node" data-title="Materialismo y determinismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Materialismo y determinismo</div><div class="desc">Hasta el alma es de átomos; «nada ocurre por azar».</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Arché</h4><p>Principio u origen de todas las cosas, que no necesita de otra cosa para existir.</p></article>
+          <article class="term"><h4>Monismo</h4><p>Postura que afirma una única sustancia fundamental.</p></article>
+          <article class="term"><h4>Pluralismo</h4><p>Postura que propone varios principios para explicar el cambio.</p></article>
+          <article class="term"><h4>Ápeiron</h4><p>Lo indefinido e ilimitado: arché de Anaximandro.</p></article>
+          <article class="term"><h4>Rarefacción</h4><p>El aire se hace menos denso y se vuelve fuego (Anaxímenes).</p></article>
+          <article class="term"><h4>Condensación</h4><p>El aire se hace más denso y se vuelve viento, agua, tierra y piedras.</p></article>
+          <article class="term"><h4>Número</h4><p>Arché de los pitagóricos: la realidad tiene estructura matemática.</p></article>
+          <article class="term"><h4>Panta Rhei</h4><p>«Todo fluye»: máxima de Heráclito sobre el cambio constante.</p></article>
+          <article class="term"><h4>Logos</h4><p>Para Heráclito, la ley universal que ordena el cambio.</p></article>
+          <article class="term"><h4>Ser</h4><p>Para Parménides, lo único real: es, no nace, no muere y no cambia.</p></article>
+          <article class="term"><h4>Paradojas</h4><p>Razonamientos de Zenón que muestran que el movimiento lleva a absurdos.</p></article>
+          <article class="term"><h4>Cuatro Raíces</h4><p>Tierra, agua, aire y fuego, unidos por el Amor y separados por la Discordia.</p></article>
+          <article class="term"><h4>Nous</h4><p>Mente ordenadora y pura que puso en marcha el orden del cosmos (Anaxágoras).</p></article>
+          <article class="term"><h4>Átomos</h4><p>Partículas indivisibles, eternas y de muchas formas (Leucipo y Demócrito).</p></article>
+          <article class="term"><h4>Vacío</h4><p>Espacio necesario para que los átomos puedan moverse.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de los presocráticos.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar como un presocrático</summary>
+      <div class="content">
+        <h4>Preguntas para buscar el arché</h4>
+        <ul>
+          <li><strong>Unidad:</strong> ¿Qué tienen en común todas estas cosas distintas?</li>
+          <li><strong>Cambio:</strong> ¿Qué cambia y qué permanece en lo que observo?</li>
+          <li><strong>Sentidos y razón:</strong> ¿Lo que veo es así, o la razón me muestra otra cosa?</li>
+          <li><strong>Opuestos:</strong> ¿Qué opuestos están en tensión en esta situación?</li>
+          <li><strong>Causas:</strong> ¿Busco una causa natural, sin recurrir a lo sobrenatural?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

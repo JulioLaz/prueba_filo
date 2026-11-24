@@ -7,6 +7,7 @@
 // 2026-11-24: tema nuevo de la Unidad II, «El Dualismo Platónico» (dualismo_platonico)
 // 2026-11-24: tema nuevo de la Unidad II, «Antropología de Aristóteles» (antropologia_aristoteles)
 // 2026-11-24: Origen revisado (13 preguntas, contentFile corregido a themes/origen)
+// 2026-11-24: Presocráticos y Sócrates completos (13 preguntas cada uno)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -39,8 +40,8 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         icon: '🌊',
         gradient: 'linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%)',
         difficulty: 'UNIDAD_I',
-        questions: 10,
-        timeEstimate: 10,
+        questions: 13,
+        timeEstimate: 13,
         prerequisites: [],
         // prerequisites: ['origen'],
         color: '#4CAF50',

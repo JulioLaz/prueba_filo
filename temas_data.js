@@ -204,9 +204,9 @@ const TOPICS = {
     presocraticos: {
         youtubeId: 'vlIM-okP9I0',
         startTime: 1,
-        endTime: 601, // 10 minutos
+        endTime: 1023, // 2026-11-24: hasta 17:03 para cubrir los 11 huecos del cloze (antes cortaba en 10:01)
         title: 'Los Filósofos Presocráticos (Resumen Fácil)',
-        duration: '10:00'
+        duration: '17:03'
     },
     // 1.3 - El Giro Antropológico: Sócrates
     socrates: {
