@@ -274,6 +274,20 @@
             text-align: center;
         }
 
+        /* v1.2 (2026-11-24): pasos para resolver cada error del micrófono */
+        .reading-error strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .reading-error-pasos {
+            text-align: left;
+            margin: 0;
+            padding-left: 20px;
+            color: #ffcdd2;
+            line-height: 1.5;
+        }
+
         /* Verificación de comprensión */
         .comprehension-check {
             background: #2d2d2d;

@@ -78,6 +78,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-24: lectura en voz alta (motor v1.2): cada error del micrófono muestra al alumno los pasos para resolverlo (navegador, permiso, micrófono ocupado, internet, voz baja, lectura rápida).
 - 2026-11-24: examen oral y resumen final en Origen (Tales de Mileto), Presocráticos (Heráclito de Éfeso) y Sócrates (Sócrates). Desde ahora esos temas se aprueban con 60% en cada actividad y el examen aprobado.
 - 2026-11-24: Sócrates completo (v2.0): material en 16 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama SOCRATES, mapa con 15 pares. Los cuestionarios de Origen, Presocráticos, Sócrates, Dualismo y Antropología de Aristóteles se probaron cargando en el navegador.
 - 2026-11-24: Presocráticos completo (v2.0): material en 16 secciones cortas con Pitágoras y Jenófanes, cuestionario de 13, caza de 8 niveles, crucigrama PRINCIPIO, mapa con 15 pares y video estirado hasta el último hueco del cloze.

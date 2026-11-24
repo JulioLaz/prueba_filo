@@ -696,7 +696,10 @@
 // })();
 
 /* readaloud-system.js - Sistema Modular de Lectura en Voz Alta
- * Versión: 1.1 - CÁLCULO DE SECCIONES CORREGIDO
+ * Versión: 1.2 (2026-11-24) - cada error del micrófono muestra qué hacer (navegador, permiso,
+ *   micrófono ocupado, internet, voz baja, lectura rápida) y, si el navegador no tiene
+ *   reconocimiento de voz, un aviso con los pasos (detecta WhatsApp/Instagram/iPhone).
+ * Versión anterior: 1.1 - CÁLCULO DE SECCIONES CORREGIDO
  * Uso: Incluir en cualquier content.html con configuración específica
  */
 
@@ -736,17 +739,71 @@
         }
     };
 
+    // ===== Ayudas para el alumno: qué hacer ante cada problema del micrófono (v1.2)
+    const UA = navigator.userAgent || '';
+    const EN_APP = /Instagram|FBAN|FBAV|FB_IAB|WhatsApp|Line\/|TikTok|Snapchat|; wv\)/i.test(UA);
+    const EN_IPHONE = /iPhone|iPad|iPod/i.test(UA);
+    const AYUDAS = {
+        'no-soportado': {
+            titulo: EN_APP ? 'Abriste el material desde otra app (WhatsApp, Instagram...) y ahí el micrófono no funciona.'
+                  : EN_IPHONE ? 'En iPhone el reconocimiento de voz suele fallar.'
+                  : 'Este navegador no reconoce la voz.',
+            pasos: EN_APP ? ['Tocá los tres puntos (⋮) y elegí «Abrir en Chrome», o copiá el link y pegalo en Chrome.', 'Si no tenés Chrome, instalalo desde la tienda de aplicaciones.']
+                 : EN_IPHONE ? ['Abrí el material en Safari y actualizá el iPhone a la última versión.', 'Activá el dictado: Ajustes → General → Teclado → Activar dictado.', 'Si sigue sin andar, usá una computadora o un celular Android con Chrome.']
+                 : ['Abrí el material en Google Chrome o en Microsoft Edge.', 'Firefox no tiene reconocimiento de voz.']
+        },
+        'not-allowed': {
+            titulo: 'El navegador no tiene permiso para usar el micrófono.',
+            pasos: ['Tocá el candado (🔒) al lado de la dirección de la página.', 'En «Micrófono» elegí «Permitir» y recargá la página.', 'En Android, revisá también: Ajustes → Aplicaciones → Chrome → Permisos → Micrófono → Permitir.']
+        },
+        'service-not-allowed': {
+            titulo: 'El navegador no deja usar el reconocimiento de voz.',
+            pasos: ['Abrí el material en Google Chrome o Edge (no desde WhatsApp ni Instagram).', 'Revisá que el micrófono esté permitido (candado 🔒 al lado de la dirección).', 'En iPhone, activá el dictado: Ajustes → General → Teclado → Activar dictado.']
+        },
+        'audio-capture': {
+            titulo: 'No se encuentra el micrófono o lo está usando otra app.',
+            pasos: ['Cerrá llamadas, Meet, Zoom o audios de WhatsApp abiertos.', 'Si usás auriculares Bluetooth, desconectalos y probá con el micrófono del celular.', 'Volvé a tocar el micrófono.']
+        },
+        'network': {
+            titulo: 'No hay conexión: el reconocimiento de voz necesita internet.',
+            pasos: ['Revisá que tengas internet.', 'Si estás en el wifi de la escuela, probá con datos móviles (a veces esa red lo bloquea).', 'Volvé a tocar el micrófono.']
+        },
+        'no-speech': {
+            titulo: 'No se escuchó tu voz.',
+            pasos: ['Hablá más fuerte, con el celular o la compu cerca.', 'Buscá un lugar sin ruido.', 'Volvé a tocar el micrófono y empezá a leer enseguida.']
+        },
+        'reading-too-fast': {
+            titulo: 'Estás leyendo muy rápido.',
+            pasos: ['Leé más despacio y pronunciando cada palabra.', 'Volvé a tocar el micrófono y seguí desde donde ibas.']
+        },
+        'otro': {
+            titulo: 'Hubo un problema con el reconocimiento de voz.',
+            pasos: ['Volvé a tocar el micrófono.', 'Si se repite, recargá la página (en la compu, Ctrl + F5).', 'Revisá tu conexión a internet y que estés usando Chrome o Edge.']
+        }
+    };
+    const LISTA = (pasos) => '<ul class="reading-error-pasos">' + pasos.map(p => `<li>${p}</li>`).join('') + '</ul>';
+
     // Verificar soporte de SpeechRecognition
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
+
     if (!SpeechRecognition) {
         console.warn('[ReadAloud] SpeechRecognition no soportado en este navegador');
-        document.addEventListener('DOMContentLoaded', () => {
+        const marcarNoSoportado = () => {
+            const ayuda = AYUDAS['no-soportado'];
             document.querySelectorAll('.mic-button').forEach(btn => {
                 btn.disabled = true;
                 btn.querySelector('.mic-text').textContent = 'Micrófono no soportado';
+                const controles = btn.closest('.reading-controls') || btn.parentNode;
+                if (controles && !controles.querySelector('.reading-error')) {
+                    const aviso = document.createElement('div');
+                    aviso.className = 'reading-error';
+                    aviso.innerHTML = `<strong>${ayuda.titulo}</strong>${LISTA(ayuda.pasos)}`;
+                    controles.appendChild(aviso);
+                }
             });
-        });
+        };
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcarNoSoportado);
+        else marcarNoSoportado();
         return;
     }
 
@@ -1178,6 +1235,8 @@
         }
 
         startListening() {
+            const avisoPrevio = this.paragraph.closest('.reading-area').querySelector('.reading-error');
+            if (avisoPrevio) avisoPrevio.remove();
             try {
                 this.recognition.start();
                 this.isListening = true;
@@ -1357,47 +1416,27 @@
 
         onError(error) {
             console.error('[ReadAloud] Error:', error);
-            
+
             this.stopListening();
-            
-            let errorMessage;
-            switch (error) {
-                case 'no-speech':
-                    errorMessage = 'No se detectó voz. Verifica tu micrófono.';
-                    break;
-                case 'audio-capture':
-                    errorMessage = 'Error de micrófono. Verifica permisos.';
-                    break;
-                case 'not-allowed':
-                    errorMessage = 'Permiso de micrófono denegado.';
-                    break;
-                case 'reading-too-fast':
-                    errorMessage = 'Lectura muy rápida. Lee más despacio.';
-                    break;
-                default:
-                    errorMessage = 'Error de reconocimiento. Intenta nuevamente.';
-            }
-            
-            this.showError(errorMessage);
+
+            // 'aborted' ocurre al detener el micrófono: no es un problema del alumno
+            if (error === 'aborted') return;
+            this.showError(AYUDAS[error] || AYUDAS.otro);
         }
 
-        showError(message) {
-            const existingError = this.paragraph.closest('.reading-area').querySelector('.reading-error');
+        showError(ayuda) {
+            const area = this.paragraph.closest('.reading-area');
+            const existingError = area.querySelector('.reading-error');
             if (existingError) {
                 existingError.remove();
             }
 
+            // Queda visible hasta que el alumno vuelva a tocar el micrófono
             const errorEl = document.createElement('div');
             errorEl.className = 'reading-error';
-            errorEl.textContent = message;
-            
-            this.paragraph.closest('.reading-area').appendChild(errorEl);
-            
-            setTimeout(() => {
-                if (errorEl.parentNode) {
-                    errorEl.remove();
-                }
-            }, 5000);
+            if (typeof ayuda === 'string') errorEl.textContent = ayuda;
+            else errorEl.innerHTML = `<strong>${ayuda.titulo}</strong>${LISTA(ayuda.pasos)}`;
+            area.appendChild(errorEl);
         }
 
         animateWordConfirmation(element) {

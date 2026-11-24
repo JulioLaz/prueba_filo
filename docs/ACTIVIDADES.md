@@ -35,6 +35,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
   - Material copiado de otro tema (Ética y Moral tenía el de «El Método»).
   - `redirectTo` apuntando a otro tema (Kant va a `etica-kantiana`, Sartre a `antropocentrismo`).
   - `sections` o `config.json` desactualizados respecto de las secciones reales.
+- **Ayuda ante errores del micrófono (motor v1.2):** cada error muestra qué hacer y queda visible hasta volver a tocar el micrófono: navegador sin reconocimiento de voz (detecta si se abrió desde WhatsApp/Instagram o en iPhone), permiso denegado, micrófono ocupado, sin internet, no se escuchó la voz y lectura muy rápida (más de 4 palabras por segundo).
 - **Resumen para la carpeta:** `resumen_material.html` (preguntas y respuestas de las verificaciones).
 - **Prueba:** `ver_material.mjs`. La lectura en voz alta no se puede probar automáticamente.
 
