@@ -15,7 +15,8 @@
  *   2) en otra:          node tools/pruebas/examen_funciones.cjs [tema]   (por defecto etica_aristoteles)
  * Opcional: EXAMEN_ADMIN_EMAIL=<email del admin> para probar también el acceso de admin
  * (el email no se escribe en este archivo).
- * Versión: v1.2.0 (2026-11-24) — examenCorregir: el docente corrige un examen «Sin corregir» (functions V8.4)
+ * Versión: v1.3.0 (2026-11-24) — IA saturada: reintenta con espera y responde en otra vuelta (functions V8.5)
+ * v1.2.0 (2026-11-24) — examenCorregir: el docente corrige un examen «Sin corregir» (functions V8.4)
  * v1.1.0 (2026-11-19) — devolución por pregunta e ideas flojas que vuelven (functions V8.3)
  */
 process.env.FIRESTORE_EMULATOR_HOST = '127.0.0.1:8080';
@@ -115,11 +116,19 @@ async function main_examen_funciones() {
   check('7) tras repreguntar, no repregunta otra vez y pasa a la 2', rr.paso === 1 && rr.repregunta === false && llamadas[0].sistema.includes('No repreguntes'));
   check('   markdown **x** → <strong>', rr.mensaje.includes('<strong>hábito</strong>'));
 
-  guion = Array(6).fill({ status: 503 });
+  guion = Array(100).fill({ status: 503 });
   const antes = (await db.doc(`examenes/${r1.examenId}`).get()).data();
   const e8 = await esperarError(llamar('examenResponder', alumno, { examenId: r1.examenId, respuesta: 'Se forma practicando' }), 'unavailable');
   const desp = (await db.doc(`examenes/${r1.examenId}`).get()).data();
   check('8) IA caída → unavailable, no se guarda la respuesta y se libera el bloqueo', e8 === true && desp.turnos.length === antes.turnos.length && desp.procesandoHasta === 0, e8);
+  const modelosTotales = new Set(llamadas.map((l) => l.url + (l.body.model || ''))).size;
+  check('   probó todos los modelos y les dio más de una vuelta', modelosTotales >= 9 && llamadas.length > modelosTotales, `${llamadas.length} llamadas, ${modelosTotales} modelos`);
+  llamadas = [];
+  guion = [...Array(modelosTotales).fill({ status: 503 }), { texto: '[REPREGUNTA] Ahora sí: ¿me das un ejemplo?' }];
+  const t8 = Date.now();
+  rr = await llamar('examenResponder', alumno, { examenId: r1.examenId, respuesta: 'Se forma practicando' });
+  check('8b) todos saturados en la 1ª vuelta → espera y responde en la 2ª', rr.repregunta === true && rr.paso === 1 && Date.now() - t8 >= 3500, `${Date.now() - t8} ms`);
+  check('   a OpenRouter le pide razonamiento bajo', llamadas.some((l) => l.url.includes('openrouter') && l.body.reasoning?.effort === 'low'));
   guion = [];
   await db.doc(`examenes/${r1.examenId}`).update({ procesandoHasta: Date.now() + 60000 });
   check('9) doble envío mientras procesa → aborted', await esperarError(llamar('examenResponder', alumno, { examenId: r1.examenId, respuesta: 'hola' }), 'aborted') === true);
@@ -150,7 +159,7 @@ async function main_examen_funciones() {
   const ejes2 = (await db.doc(`examenes/${r2.examenId}`).get()).data().plan.preguntas.filter((p) => p.tipo === 'eje').map((p) => p.id);
   check('14) 2º intento: ejes distintos a los del 1º', r2.examenId !== r1.examenId && ejes2.every((e) => !ejes1.includes(e)) && r2.intentosRestantes === 0, ejes2.join(','));
   for (let i = 0; i < 5; i++) { guion = [{ texto: 'Sigamos.' }]; await llamar('examenResponder', alumno, { examenId: r2.examenId, respuesta: 'no sé' }); }
-  guion = [{ texto: '[FIN]' }, ...Array(6).fill({ status: 500 })];
+  guion = [{ texto: '[FIN]' }, ...Array(100).fill({ status: 500 })];
   rr = await llamar('examenResponder', alumno, { examenId: r2.examenId, respuesta: 'no sé' });
   check('15) corrección caída → queda "corrigiendo" sin perder respuestas', rr.estado === 'corrigiendo');
   s = await llamar('examenEstado', alumno, { tema: T });

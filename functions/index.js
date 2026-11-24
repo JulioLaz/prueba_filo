@@ -10,6 +10,9 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.5 (2026-11-24): modelos saturados (503/429/500): espera y otra vuelta, hasta 3;
+ *   OpenRouter con razonamiento bajo (Nemotron devolvía vacío por gastar todo en pensar);
+ *   más respaldos de Gemini (2.5 flash-lite, 2.5 flash, 2.0 flash) y corrección con 8192 tokens.
  * V8.4 (2026-11-24): más tiempo para corregir (examenResponder 300 s; la corrección prueba
  *   modelos hasta 200 s, antes 80 s) y examenCorregir: el docente corrige desde examenes.html
  *   un examen que quedó «Sin corregir» (la IA no respondió al terminar).
@@ -64,6 +67,11 @@ const MODELOS_GEMINI = [
   "gemini-flash-lite-latest",
   "gemini-3.5-flash-lite",
   "gemini-flash-latest",
+  // Respaldos (V8.5): cuando uno está saturado (503) otro suele responder; si alguno
+  // ya no existe, falla al instante (404) y se pasa al siguiente.
+  "gemini-2.5-flash-lite",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
 ];
 // OpenRouter: los modelos ":free" cambian seguido; ver la lista con
 // GET https://openrouter.ai/api/v1/models y actualizar si hace falta.
@@ -609,6 +617,9 @@ async function llamarOpenRouter(modelo, clave, sistema, conversacion, opciones =
       ],
       max_tokens: opciones.maxTokens || MAX_TOKENS_RESPUESTA,
       temperature: opciones.temperature ?? 0.7,
+      // V8.5: los modelos que «piensan» (p. ej. Nemotron) gastaban todo en razonar y
+      // devolvían vacío; con esfuerzo bajo y sin devolver el razonamiento llegan a responder.
+      reasoning: {effort: "low", exclude: true},
     }),
   }, opciones.timeoutMs);
   if (!res.ok) throw errorModelo(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`, res.status);
@@ -625,40 +636,63 @@ async function llamarOpenRouter(modelo, clave, sistema, conversacion, opciones =
 
 /**
  * Prueba los modelos en orden (Gemini y luego OpenRouter) hasta que uno responda.
+ * V8.5: si un modelo está saturado (503, 429 o 500), espera unos segundos y le da otra
+ * vuelta (hasta 3 vueltas, sin pasar el límite de tiempo). Cada intento usa como máximo
+ * el tiempo que queda, así la función no se pasa de su límite.
  * Devuelve {texto, tokens, finishReason, proveedor, modelo, ms}; si ninguno
  * responde lanza HttpsError("unavailable").
  * opciones: {maxTokens, temperature, json, timeoutMs, limiteMs, validar}.
  *   validar(texto) → valor o null: si devuelve null, la respuesta se descarta
  *   (formato inválido) y se prueba el modelo siguiente; el valor queda en r.valor.
  */
+const ESPERAS_ENTRE_VUELTAS_MS = [4000, 10000];  // antes de la 2ª y de la 3ª vuelta
+const MIN_TIEMPO_INTENTO_MS = 4000;              // con menos tiempo restante no se empieza otro intento
+const esSaturado = (error) => [429, 500, 503].includes(error.status);
+const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function llamarIA({sistema, conversacion, claveGemini, claveOpenRouter, opciones = {}}) {
-  const intentos = [
+  let pendientes = [
     ...(claveGemini ? MODELOS_GEMINI.map((m) => ({proveedor: "gemini", modelo: m})) : []),
     ...(claveOpenRouter ? MODELOS_OPENROUTER.map((m) => ({proveedor: "openrouter", modelo: m})) : []),
   ];
   const fallas = [];
+  const limite = opciones.limiteMs || LIMITE_TOTAL_MS;
   const inicioTotal = Date.now();
-  for (const {proveedor, modelo} of intentos) {
-    if (Date.now() - inicioTotal > (opciones.limiteMs || LIMITE_TOTAL_MS)) {
-      fallas.push("límite de tiempo total alcanzado");
-      break;
+  const restante = () => limite - (Date.now() - inicioTotal);
+
+  for (let vuelta = 0; pendientes.length && vuelta <= ESPERAS_ENTRE_VUELTAS_MS.length; vuelta++) {
+    if (vuelta > 0) {
+      const espera = ESPERAS_ENTRE_VUELTAS_MS[vuelta - 1];
+      if (restante() - espera < MIN_TIEMPO_INTENTO_MS) break;
+      logger.info(`🔁 Modelos saturados: vuelta ${vuelta + 1} en ${espera / 1000} s (${pendientes.length} modelo/s)`);
+      await esperar(espera);
     }
-    const inicio = Date.now();
-    try {
-      const r = proveedor === "gemini" ?
-        await llamarGemini(modelo, claveGemini, sistema, conversacion, opciones) :
-        await llamarOpenRouter(modelo, claveOpenRouter, sistema, conversacion, opciones);
-      if (opciones.validar) {
-        r.valor = opciones.validar(r.texto);
-        if (r.valor == null) throw errorModelo("formato de respuesta inválido", "formato");
+    const saturados = [];
+    for (const {proveedor, modelo} of pendientes) {
+      if (restante() < MIN_TIEMPO_INTENTO_MS) {
+        fallas.push("límite de tiempo total alcanzado");
+        break;
       }
-      if (fallas.length) logger.info(`↪️ Respondió el respaldo ${proveedor}/${modelo} tras ${fallas.length} falla(s)`);
-      return {...r, proveedor, modelo, ms: Date.now() - inicio};
-    } catch (error) {
-      const motivo = error.name === "AbortError" ? "timeout" : error.message;
-      logger.warn(`⚠️ ${proveedor}/${modelo} no respondió: ${motivo}`);
-      fallas.push(`${modelo}: ${motivo}`);
+      const inicio = Date.now();
+      const opcionesIntento = {...opciones, timeoutMs: Math.min(opciones.timeoutMs || TIMEOUT_MODELO_MS, restante())};
+      try {
+        const r = proveedor === "gemini" ?
+          await llamarGemini(modelo, claveGemini, sistema, conversacion, opcionesIntento) :
+          await llamarOpenRouter(modelo, claveOpenRouter, sistema, conversacion, opcionesIntento);
+        if (opciones.validar) {
+          r.valor = opciones.validar(r.texto);
+          if (r.valor == null) throw errorModelo("formato de respuesta inválido", "formato");
+        }
+        if (fallas.length) logger.info(`↪️ Respondió el respaldo ${proveedor}/${modelo} tras ${fallas.length} falla(s)`);
+        return {...r, proveedor, modelo, ms: Date.now() - inicio};
+      } catch (error) {
+        const motivo = error.name === "AbortError" ? "timeout" : error.message;
+        logger.warn(`⚠️ ${proveedor}/${modelo} no respondió (vuelta ${vuelta + 1}): ${motivo}`);
+        fallas.push(`${modelo}: ${motivo}`);
+        if (esSaturado(error)) saturados.push({proveedor, modelo});
+      }
     }
+    pendientes = saturados;
   }
   logger.error(`❌ Ningún modelo respondió: ${fallas.join(" | ")}`);
   throw new HttpsError("unavailable", "El filósofo no está disponible en este momento. Probá de nuevo en un minuto.");
@@ -778,7 +812,7 @@ const PUNTOS_POR_PREGUNTA = 8;        // 4 criterios × 2 puntos
 const CRITERIOS = ["comprension", "vocabulario", "aplicacion", "argumentacion"];
 const EJES_A_REPETIR = 2;             // ideas flojas que vuelven en el intento siguiente
 const OPCIONES_TURNO = {maxTokens: 700, temperature: 0.8};
-const OPCIONES_CORRECCION = {maxTokens: 4096, temperature: 0.2, json: true, timeoutMs: 40000, limiteMs: 200000};
+const OPCIONES_CORRECCION = {maxTokens: 8192, temperature: 0.2, json: true, timeoutMs: 40000, limiteMs: 200000};
 const BLOQUEO_CORRECCION_MS = 290000; // la función tiene 300 s: una respuesta o corrección por vez
 
 const bancosCache = new Map();
