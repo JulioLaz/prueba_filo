@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Aristóteles y del resumen final del tema «Antropología de Aristóteles» (Unidad II). El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): tema nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Aristóteles",
+  "tema": "Antropología de Aristóteles: el ser humano como unidad de cuerpo y alma (hilemorfismo), comparada con el dualismo de Platón",
+  "intro": "Aristóteles (384–322 a. C.), discípulo de Platón, pensó al ser humano como una sola sustancia: el cuerpo es la materia y el alma es la forma que lo organiza y le da vida. Por eso el alma es mortal, tiene funciones vegetativas, sensitivas y racionales, y conoce a partir de los sentidos. El ser humano es un animal racional y político que busca la felicidad viviendo conforme a la razón.",
+  "conceptosClave": "hilemorfismo, materia (hylé), forma (morphé), unión sustancial, potencia, acto, acto primero, alma vegetativa, sensitiva y racional, una sola alma, abstracción, entendimiento agente, zoon lógon échon, zoon politikón, polis, teleología, eudaimonía, virtudes éticas y dianoéticas",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "paseo",
+      "texto": "Aristóteles invita al alumno a caminar con él por los jardines del Liceo: así enseñaba, paseando, y por eso a sus discípulos los llamaban peripatéticos."
+    },
+    {
+      "id": "academia",
+      "texto": "Aristóteles recuerda sus veinte años en la Academia de Platón y repite, sonriendo, que es amigo de Platón pero más amigo de la verdad: hoy quiere ver si el alumno entiende en qué se separó de su maestro."
+    },
+    {
+      "id": "estatua",
+      "texto": "Aristóteles sale del taller de un escultor de Atenas con un trozo de bronce en la mano y le pregunta al alumno qué le falta a ese bronce para ser una estatua."
+    },
+    {
+      "id": "semilla",
+      "texto": "Aristóteles tiene una semilla de olivo en la palma de la mano y le dice al alumno que en esa semilla hay todo un árbol: quiere empezar el examen por ahí."
+    },
+    {
+      "id": "lesbos",
+      "texto": "Aristóteles vuelve de la isla de Lesbos, donde pasó meses observando peces, pulpos y aves, y le cuenta al alumno que estudiando a los seres vivos entendió mejor qué es el alma."
+    },
+    {
+      "id": "ojo",
+      "texto": "Aristóteles señala el ojo de una estatua de mármol y le pregunta al alumno si ese ojo ve; dice que con esa pregunta se entiende casi todo lo que van a conversar."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "platon_aristoteles",
+      "titulo": "De Platón a Aristóteles",
+      "guia": "Preguntar en qué se diferencia la idea de ser humano de Aristóteles de la de Platón.",
+      "claves": "Platón: unión accidental y conflictiva de un alma inmortal y un cuerpo cárcel; alma tripartita; conocer es recordar. Aristóteles: una sola sustancia (unión sustancial), el alma es la forma del cuerpo, es mortal, es una sola con tres funciones y el conocimiento empieza en los sentidos.",
+      "resumen": "Aristóteles fue alumno de Platón, pero pensó distinto. Para Platón el alma inmortal está presa en el cuerpo. Para Aristóteles cuerpo y alma forman una sola realidad: el alma es la forma del cuerpo y no puede vivir sin él.",
+      "palabras": [
+        "Platón",
+        "Aristóteles",
+        "dualismo",
+        "hilemorfismo",
+        "una sola realidad"
+      ],
+      "ejemplo": "Platón diría que sos un jugador dentro de un avatar; Aristóteles, que sos una sola persona de carne y alma."
+    },
+    {
+      "id": "hilemorfismo",
+      "titulo": "Materia y forma: el hilemorfismo",
+      "guia": "Pedir que explique qué es el hilemorfismo con el ejemplo de la estatua u otro propio.",
+      "claves": "Todo ser natural está compuesto de materia (hylé), aquello de lo que está hecho, y forma (morphé), lo que hace que sea lo que es. En la estatua, el bronce es la materia y la figura es la forma. En el ser humano, el cuerpo es la materia y el alma la forma.",
+      "resumen": "Para Aristóteles todo ser natural tiene materia (hylé), aquello de lo que está hecho, y forma (morphé), lo que lo hace ser lo que es. En una estatua, el bronce es la materia y la figura, la forma. En nosotros, el cuerpo es la materia y el alma, la forma.",
+      "palabras": [
+        "hilemorfismo",
+        "materia",
+        "forma",
+        "hylé",
+        "morphé"
+      ],
+      "ejemplo": "Una torta: la harina, los huevos y el azúcar son la materia; la receta y la figura que toma son la forma."
+    },
+    {
+      "id": "union_sustancial",
+      "titulo": "La unión sustancial",
+      "guia": "Preguntar qué significa que cuerpo y alma formen una unión sustancial y por qué no es una unión accidental.",
+      "claves": "El ser humano no son dos cosas juntas (como un piloto en un avión) sino una única sustancia con dos principios inseparables. Unión sustancial frente a la unión accidental de Platón. Cuerpo y alma no se pelean ni se encierran: forman una persona viva que siente, piensa y actúa como un todo.",
+      "resumen": "Cuerpo y alma no son dos cosas pegadas, como un piloto dentro de un avión: forman una única sustancia. Por eso Aristóteles habla de unión sustancial, y no de unión accidental como Platón.",
+      "palabras": [
+        "unión sustancial",
+        "unión accidental",
+        "sustancia",
+        "inseparables",
+        "un todo"
+      ],
+      "ejemplo": "Cuando te duele la panza antes de una prueba, no sufre «tu cuerpo» por un lado y «vos» por otro: sufrís vos entero."
+    },
+    {
+      "id": "potencia_acto",
+      "titulo": "Potencia y acto",
+      "guia": "Preguntar qué son la potencia y el acto, con un ejemplo, y cómo se aplican al cuerpo y al alma.",
+      "claves": "Potencia: capacidad de llegar a ser algo (la semilla es un árbol en potencia). Acto: esa capacidad realizada (el árbol crecido). El cuerpo tiene la vida en potencia; el alma es el acto que la realiza.",
+      "resumen": "La potencia es la capacidad de llegar a ser algo y el acto es esa capacidad realizada: la semilla es un árbol en potencia y el árbol crecido es el acto. El cuerpo puede vivir (potencia) y el alma hace que viva de verdad (acto).",
+      "palabras": [
+        "potencia",
+        "acto",
+        "capacidad",
+        "semilla",
+        "realización"
+      ],
+      "ejemplo": "Vos sos médico, músico o docente en potencia: estudiando y practicando, eso se vuelve acto."
+    },
+    {
+      "id": "alma_forma",
+      "titulo": "El alma como forma del cuerpo",
+      "guia": "Preguntar qué es el alma para Aristóteles, qué significa «acto primero» y qué muestra el ejemplo del ojo.",
+      "claves": "El alma (psyché) es el acto primero de un cuerpo natural que tiene la vida en potencia: lo que organiza, anima y da vida al cuerpo. Todo ser vivo tiene alma. Si el ojo fuera un animal, la vista sería su alma: el ojo es la materia y ver es su forma; uno no tiene sentido sin el otro. Un cadáver tiene la materia pero no la forma de ser vivo.",
+      "resumen": "El alma es lo que organiza, anima y da vida al cuerpo: su acto primero. Aristóteles lo explica así: si el ojo fuera un animal, la vista sería su alma. Ni el ojo sirve sin la vista, ni la vista existe sin el ojo.",
+      "palabras": [
+        "alma",
+        "psyché",
+        "acto primero",
+        "ojo y vista",
+        "principio de vida"
+      ],
+      "ejemplo": "Un celular sin batería tiene todas sus piezas, pero no funciona: le falta lo que lo hace andar."
+    },
+    {
+      "id": "mortalidad",
+      "titulo": "¿El alma es inmortal?",
+      "guia": "Preguntar si para Aristóteles el alma sobrevive a la muerte, por qué rechaza la transmigración y qué duda deja abierta.",
+      "claves": "Si el alma es la forma de un cuerpo, no existe sin él: muere con el cuerpo, como la vista cuando se destruye el ojo. Rechaza la transmigración porque cada alma es la forma de un cuerpo concreto. Solo deja abierta una duda: el entendimiento agente, que capta lo universal, sería eterno y separado, pero no es el alma personal.",
+      "resumen": "Para Aristóteles el alma muere con el cuerpo, porque es su forma. Por eso no acepta que un alma pase de un cuerpo a otro (transmigración). Solo deja una duda: el entendimiento agente, la parte del intelecto que capta lo universal, podría ser eterno, pero no es el «yo» de cada uno.",
+      "palabras": [
+        "alma mortal",
+        "transmigración",
+        "cuerpo concreto",
+        "entendimiento agente",
+        "universal"
+      ],
+      "ejemplo": "Una llave hecha para una cerradura no abre otra puerta: así es cada alma con su cuerpo."
+    },
+    {
+      "id": "escala",
+      "titulo": "La escala de las almas: vegetativa y sensitiva",
+      "guia": "Preguntar qué tipos de alma distingue Aristóteles, qué seres los tienen y qué funciones cumplen.",
+      "claves": "Todo ser vivo tiene alma, ordenada en una escala. Vegetativa (plantas, animales, humanos): nutrición, crecimiento, reproducción. Sensitiva (animales y humanos): percepción, deseo o apetito, movimiento local. Cada nivel superior incluye los anteriores.",
+      "resumen": "Aristóteles ordena las almas como escalones. La vegetativa (plantas, animales y humanos) se nutre, crece y se reproduce. La sensitiva (animales y humanos) además percibe, desea y se mueve de lugar.",
+      "palabras": [
+        "alma vegetativa",
+        "alma sensitiva",
+        "nutrición",
+        "percepción",
+        "movimiento local"
+      ],
+      "ejemplo": "Tu planta de la ventana crece hacia la luz (vegetativa); tu gato oye la lata y corre a la cocina (sensitiva)."
+    },
+    {
+      "id": "alma_racional",
+      "titulo": "El alma racional: una sola alma",
+      "guia": "Preguntar qué funciones tiene el alma racional y cuántas almas tiene el ser humano.",
+      "claves": "El alma racional o intelectiva es exclusiva del ser humano: pensamiento abstracto, lenguaje, deliberación moral y búsqueda de la verdad. El ser humano no tiene tres almas sino una sola alma racional que también cumple las funciones vegetativas y sensitivas.",
+      "resumen": "El alma racional es propia del ser humano: piensa en abstracto, habla, delibera qué conviene hacer y busca la verdad. No tenemos tres almas: una sola alma racional cumple también las funciones vegetativas y sensitivas.",
+      "palabras": [
+        "alma racional",
+        "pensamiento abstracto",
+        "lenguaje",
+        "deliberación",
+        "una sola alma"
+      ],
+      "ejemplo": "En el almuerzo digerís (vegetativa), sentís el sabor (sensitiva) y discutís con tu familia un tema del noticiero (racional): todo con la misma alma."
+    },
+    {
+      "id": "conocimiento",
+      "titulo": "Cómo conocemos: sentidos y abstracción",
+      "guia": "Preguntar cómo se conoce según Aristóteles y en qué se diferencia de la reminiscencia de Platón.",
+      "claves": "Aristóteles rechaza la reminiscencia. Al nacer la mente es como una tablilla de cera sin escribir. El conocimiento empieza en los sentidos; después el intelecto abstrae lo común de muchos casos concretos y llega a lo universal (de muchos perros, qué es un perro). «Nada hay en el intelecto que no haya pasado antes por los sentidos».",
+      "resumen": "Para Aristóteles no nacemos sabiendo: la mente es como una tablilla de cera en blanco. Conocemos a partir de los sentidos, y el intelecto hace la abstracción: de muchos casos concretos saca lo común, lo universal.",
+      "palabras": [
+        "sentidos",
+        "abstracción",
+        "tablilla de cera",
+        "intelecto",
+        "universal"
+      ],
+      "ejemplo": "Un bebé ve muchos perros distintos y un día dice «perro» al ver uno nuevo: ya abstrajo qué es un perro."
+    },
+    {
+      "id": "animal_racional",
+      "titulo": "Animal racional: el logos",
+      "guia": "Preguntar qué significa zoon lógon échon y qué diferencia hay entre la voz animal y la palabra humana.",
+      "claves": "Zoon lógon échon: el ser vivo que tiene logos (palabra, razón, capacidad de argumentar). Los animales tienen voz para expresar placer o dolor; el ser humano usa la palabra para deliberar sobre lo justo y lo injusto, lo bueno y lo malo.",
+      "resumen": "El ser humano es animal racional (zoon lógon échon): tiene logos, palabra y razón. Los animales usan la voz para expresar placer o dolor; nosotros usamos la palabra para discutir qué es justo o injusto, bueno o malo.",
+      "palabras": [
+        "animal racional",
+        "zoon lógon échon",
+        "logos",
+        "voz",
+        "palabra"
+      ],
+      "ejemplo": "Tu perro llora si lo retan, pero no puede discutir si el reto fue justo; vos sí."
+    },
+    {
+      "id": "animal_politico",
+      "titulo": "Animal político: la polis",
+      "guia": "Preguntar qué significa zoon politikón, qué es la polis y qué quiere decir «bestia o dios».",
+      "claves": "El ser humano es social por naturaleza (zoon politikón). Solo en la comunidad (polis) desarrolla plenamente el lenguaje, la moral y su fin. Las dos definiciones van juntas: el logos sirve para convivir y decidir con otros. Quien vive fuera de la sociedad por naturaleza es una bestia o un dios.",
+      "resumen": "Somos animales políticos (zoon politikón): sociales por naturaleza. Solo en la polis, la comunidad, desarrollamos el lenguaje y la moral. Por eso, quien vive fuera de la sociedad por naturaleza «es una bestia o un dios».",
+      "palabras": [
+        "animal político",
+        "zoon politikón",
+        "polis",
+        "comunidad",
+        "bestia o dios"
+      ],
+      "ejemplo": "Nadie aprende a hablar solo: aprendemos el lenguaje y lo justo conviviendo con otros."
+    },
+    {
+      "id": "fin_felicidad",
+      "titulo": "El fin del ser humano: felicidad y virtudes",
+      "guia": "Preguntar cuál es el fin del ser humano, qué es la teleología y qué virtudes hacen falta.",
+      "claves": "Teleología: todo tiende a un fin (telos). El fin humano es la felicidad (eudaimonía): realizar bien la actividad propia, vivir conforme a la razón, no acumular placeres ni riquezas. Virtudes éticas: término medio, por hábito (valentía entre cobardía y temeridad). Virtudes dianoéticas: por enseñanza; prudencia (phrónesis) y sabiduría (sophía), la contemplación como felicidad más alta.",
+      "resumen": "Para Aristóteles todo tiende a un fin. El del ser humano es la felicidad (eudaimonía): vivir conforme a la razón. Para eso hacen falta virtudes éticas, que se forman con el hábito, y dianoéticas, como la prudencia y la sabiduría, que se aprenden con la enseñanza.",
+      "palabras": [
+        "teleología",
+        "eudaimonía",
+        "vivir conforme a la razón",
+        "virtudes éticas",
+        "virtudes dianoéticas"
+      ],
+      "ejemplo": "Un buen arquero es el que acierta; una buena vida humana es la que usa bien la razón."
+    }
+  ],
+  "casos": [
+    {
+      "id": "cerebro",
+      "texto": "Un compañero dice que el alma no existe, que somos solo un cerebro y un cuerpo, y que cuando el cuerpo muere se termina todo.",
+      "claves": "Comparar con Aristóteles: el alma no es una cosa aparte sino la forma del cuerpo (lo que lo hace vivir y funcionar); para Aristóteles también muere con el cuerpo; diferencia con Platón; ejemplo del ojo y la vista o del cadáver."
+    },
+    {
+      "id": "reencarnacion",
+      "texto": "Una amiga cree en la reencarnación y dice que en otra vida fue una princesa egipcia.",
+      "claves": "Explicar por qué Aristóteles rechaza la transmigración (cada alma es la forma de un cuerpo concreto, como la llave y la cerradura) y por qué Platón sí la aceptaba; respetar la creencia distinguiéndola de la postura filosófica."
+    },
+    {
+      "id": "celular_cuerpo",
+      "texto": "Alguien dice que el cuerpo es como una funda de celular: algo que el alma usa y podría cambiar.",
+      "claves": "Mostrar que eso se parece al dualismo platónico (unión accidental) y no al hilemorfismo; explicar la unión sustancial, materia y forma, y que el alma no es un pasajero ni un piloto."
+    },
+    {
+      "id": "robot",
+      "texto": "En una serie aparece un robot que habla, juega al ajedrez y dice que tiene sentimientos. Tus amigos discuten si tiene alma.",
+      "claves": "Usar la definición de alma como principio de vida y la escala (nutrición, crecimiento, reproducción; percepción y deseo; razón); discutir si el robot cumple esas funciones; logos como deliberación sobre lo justo; no hay respuesta única pero hay que usar los conceptos."
+    },
+    {
+      "id": "isla",
+      "texto": "Un influencer dice que lo mejor sería vivir solo en una isla, sin depender de nadie ni respetar ninguna regla.",
+      "claves": "Aplicar el zoon politikón: somos sociales por naturaleza, nos realizamos en la polis; frase «bestia o dios»; el lenguaje y la moral se desarrollan con otros."
+    },
+    {
+      "id": "tiktok_aprender",
+      "texto": "Un compañero dice que para aprender no hace falta mirar nada: basta con pensar fuerte o, si no, mirar un video de un minuto.",
+      "claves": "Explicar el conocimiento según Aristóteles: empieza en los sentidos y la experiencia, luego el intelecto abstrae lo común de muchos casos; tablilla de cera; diferencia con la reminiscencia platónica; la abstracción necesita muchos casos y trabajo."
+    },
+    {
+      "id": "talento",
+      "texto": "Te dicen que tenés talento para la música, pero nunca practicás y tampoco te interesa estudiar.",
+      "claves": "Aplicar potencia y acto (el talento es potencia; la práctica lo vuelve acto); virtudes éticas por hábito y dianoéticas por enseñanza; la felicidad como actividad, no como capacidad sin usar."
+    },
+    {
+      "id": "felicidad_compras",
+      "texto": "Una amiga dice que es feliz cada vez que se compra algo nuevo, pero a los dos días ya quiere otra cosa.",
+      "claves": "Distinguir placer y riqueza de la eudaimonía; la felicidad como vivir conforme a la razón y realizar la actividad propia del ser humano; teleología; papel de las virtudes (templanza como término medio)."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "potencia_propia",
+      "texto": "¿Qué capacidad tuya está todavía «en potencia»? ¿Qué tendrías que hacer para que pase a «acto»?"
+    },
+    {
+      "id": "unidad",
+      "texto": "¿Te sentís más cerca de Platón (alma presa en el cuerpo) o de Aristóteles (cuerpo y alma unidos)? ¿Por qué?"
+    },
+    {
+      "id": "palabra",
+      "texto": "¿En qué situación usaste la palabra para discutir algo justo o injusto con otros? ¿Cómo te fue?"
+    },
+    {
+      "id": "comunidad",
+      "texto": "¿Qué cosa importante de vos aprendiste gracias a otras personas y no solo?"
+    },
+    {
+      "id": "felicidad",
+      "texto": "Si la felicidad es vivir conforme a la razón, ¿qué cambiarías de tu forma de vivir?"
+    }
+  ],
+  "practica": [
+    "Explicá con un ejemplo propio qué son la materia y la forma.",
+    "¿Por qué para Aristóteles el ser humano no es «un piloto dentro de un avión»?",
+    "¿Qué significa que el alma sea el acto primero de un cuerpo que tiene la vida en potencia?",
+    "¿Por qué el alma es mortal para Aristóteles y qué duda deja abierta con el entendimiento agente?",
+    "Compará una planta, un perro y una persona según la escala de las almas.",
+    "¿En qué se diferencia el conocimiento según Aristóteles de la reminiscencia de Platón?",
+    "¿Cómo se relacionan las definiciones de animal racional y animal político?",
+    "¿Por qué la felicidad no es acumular placeres para Aristóteles? ¿Qué virtudes hacen falta?"
+  ]
+}

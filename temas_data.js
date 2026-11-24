@@ -6,6 +6,13 @@ const TOPICS = {
     biography: 'Filósofo griego (427–347 a. C.), discípulo de Sócrates y fundador de la Academia. Sostuvo que el ser humano es un alma inmortal encerrada en un cuerpo mortal, que conocer es recordar las Ideas (anámnesis) y que filosofar es aprender a morir. Obras: Fedón, Fedro, Menón, República.'
   },
 
+  antropologia_aristoteles: {
+    icon: '🌱',
+    name: 'Aristóteles',
+    desc: 'El ser humano como unidad de cuerpo y alma: materia y forma, la escala de las almas, animal racional y político. (Ej. Acerca del alma, Política)',
+    biography: 'Filósofo griego (384–322 a. C.), discípulo de Platón durante veinte años y fundador del Liceo. Rechazó el dualismo de su maestro: para él el alma es la forma del cuerpo, una sola sustancia con él. Definió al ser humano como animal racional y animal político. Obras: Acerca del alma, Política, Ética a Nicómaco.'
+  },
+
   cassirer: {
     icon: '🎭',
     name: 'Ernst Cassirer',
@@ -106,6 +113,13 @@ const TOPICS = {
 };
 
     const VIDEO_CONFIG = {
+      antropologia_aristoteles: { // https://www.youtube.com/watch?v=jgEC-kr73XQ (FILOSOFÍA: APRENDE Y APRUEBA); arranca después del saludo
+        youtubeId: 'jgEC-kr73XQ',
+        startTime: 23,
+        endTime: 327,
+        title: 'Antropología de Aristóteles',
+        duration: '5:27'
+      },
       dualismo_platonico: { // https://www.youtube.com/watch?v=pP53wnoy3Vc (teXin - Educación Virtual)
         youtubeId: 'pP53wnoy3Vc',
         startTime: 1,
@@ -242,6 +256,12 @@ const TOPICS = {
     // tema se aprueba con eso Y el examen aprobado (nota ≥ notaAprobacion).
     // El banco de preguntas está en themes/<tema>/examen.json (lo lee la Cloud Function).
     const EXAMEN_CONFIG = {
+      antropologia_aristoteles: {
+        filosofo: 'Aristóteles',
+        icono: '🌱',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
       dualismo_platonico: {
         filosofo: 'Platón',
         icono: '🕊️',

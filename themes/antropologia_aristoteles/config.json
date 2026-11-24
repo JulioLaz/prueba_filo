@@ -1,0 +1,86 @@
+{
+  "id": "antropologia_aristoteles",
+  "meta": {
+    "title": "Aristóteles: El Ser Humano como Unidad de Cuerpo y Alma",
+    "author": "Aristóteles",
+    "icon": "🌱",
+    "gradient": "linear-gradient(135deg, #2f855a 0%, #805ad5 100%)",
+    "difficulty": "intermedio",
+    "category": "Antropología Filosófica",
+    "description": "La antropología de Aristóteles: el hilemorfismo (materia y forma), el alma como forma del cuerpo, la escala de las almas, el animal racional y político, y su diferencia con Platón.",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 16,
+      "timeEstimate": 13,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 15,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 12,
+      "timeEstimate": 10
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 10,
+      "centralWord": "SUSTANCIA",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 39,
+      "gameMatchPairs": 15,
+      "timeEstimate": 10
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#2f855a",
+  "notes": {
+    "realValues": "Tema nuevo (2026-11-24). Video jgEC-kr73XQ (0:23-5:27) con cloze de 12 ítems.",
+    "validation": {
+      "material": "16 secciones en content.html",
+      "quiz": "13 preguntas en quiz.js (ANTROPOLOGIA_ARISTOTELES_THEME)",
+      "concepts": "8 niveles / 55 conceptos en conceptos.js",
+      "cloze": "12 ítems (24 huecos) en cloze_test.js",
+      "cruci": "10 palabras: SUSTANCIA + SENSITIVA, NUTRICION, POLIS, ACTO, MATERIA, POTENCIA, ABSTRACCION, VEGETATIVA, FORMA",
+      "mapa": "39 nodos y 15 pares en mapa.html"
+    }
+  }
+}

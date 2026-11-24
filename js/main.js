@@ -5,6 +5,7 @@
 // 2026-11-19: grupo nuevo «Taller» (difficulty 'TALLER'): abre su contentFile,
 //   el taller de cierre «Lo que traje, lo que me llevo» desde el punto 6 (El bambú)
 // 2026-11-24: tema nuevo de la Unidad II, «El Dualismo Platónico» (dualismo_platonico)
+// 2026-11-24: tema nuevo de la Unidad II, «Antropología de Aristóteles» (antropologia_aristoteles)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -126,6 +127,19 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         prerequisites: [],
         color: '#805ad5',
         contentFile: 'themes/dualismo_platonico/content.html'
+    },
+    {
+        id: 'antropologia_aristoteles',
+        title: 'Aristóteles: El Ser Humano como Unidad de Cuerpo y Alma',
+        description: 'El hilemorfismo: el cuerpo es la materia y el alma la forma. Potencia y acto, la escala de las almas, el animal racional y político, y en qué se diferencia de Platón.',
+        icon: '🌱',
+        gradient: 'linear-gradient(135deg, #2f855a 0%, #805ad5 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 13,
+        prerequisites: [],
+        color: '#2f855a',
+        contentFile: 'themes/antropologia_aristoteles/content.html'
     },
     {
         id: "cassirer",

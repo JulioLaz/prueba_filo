@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Antropología de Aristóteles · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Antropología de Aristóteles (Unidad II). Versión 1.0 (2026-11-24): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para la Antropología de Aristóteles
+    window.MapaSystemConfig = {
+      tema: 'antropologia_aristoteles',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Hilemorfismo", definition: "Teoría según la cual todo ser natural está compuesto por materia y forma." },
+        { term: "Materia (hylé)", definition: "Aquello de lo que algo está hecho: el bronce de la estatua, el cuerpo del ser humano." },
+        { term: "Forma (morphé)", definition: "Lo que hace que algo sea lo que es: la figura de la estatua, el alma del ser humano." },
+        { term: "Unión Sustancial", definition: "Cuerpo y alma forman una única sustancia, con dos principios inseparables." },
+        { term: "Potencia", definition: "Capacidad de llegar a ser algo: la semilla respecto del árbol." },
+        { term: "Acto", definition: "Capacidad ya realizada: el árbol crecido; el alma respecto del cuerpo." },
+        { term: "Alma Vegetativa", definition: "Nutrición, crecimiento y reproducción: plantas, animales y humanos." },
+        { term: "Alma Sensitiva", definition: "Percepción, deseo y movimiento local: animales y humanos." },
+        { term: "Alma Racional", definition: "Pensamiento abstracto, lenguaje y deliberación: solo el ser humano." },
+        { term: "Abstracción", definition: "El intelecto separa lo común de muchos casos que dieron los sentidos." },
+        { term: "Entendimiento Agente", definition: "Parte más alta del intelecto, que capta lo universal: la única duda abierta sobre algo eterno." },
+        { term: "Zoon Lógon Échon", definition: "El ser vivo que tiene palabra y razón para deliberar sobre lo justo." },
+        { term: "Zoon Politikón", definition: "Ser social por naturaleza, que solo se realiza en la polis." },
+        { term: "Teleología", definition: "Todo en la naturaleza tiende a un fin (telos)." },
+        { term: "Eudaimonía", definition: "Felicidad: realizar bien la actividad propia del ser humano, vivir conforme a la razón." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🌱'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🌱']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🌱 Antropología de Aristóteles</span></div>
+      </div>
+      <h3 class="sub">Cuerpo y alma: una sola sustancia</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Antropología de Aristóteles">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Antropología de Aristóteles</div>
+            <div class="desc">El ser humano es <strong>una sola sustancia</strong>: el cuerpo es la <strong>materia</strong> y el alma, la <strong>forma</strong>. Es un <strong>animal racional y político</strong> que busca la <strong>felicidad</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Aristóteles y Platón">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Aristóteles y Platón</div>
+                <div class="desc">Aristóteles (384–322 a. C.) estudió <strong>veinte años</strong> en la Academia de Platón, pero pensó distinto sobre el ser humano.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="El Liceo"><div class="toggle" style="visibility: hidden;"></div><div class="title">El Liceo</div><div class="desc">Escuela que fundó Aristóteles en Atenas.</div></div></li>
+                <li><div class="node" data-title="Amigo de la verdad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Amigo de la verdad</div><div class="desc">«Soy amigo de Platón, pero <strong>más amigo de la verdad</strong>».</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Hilemorfismo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Hilemorfismo</div>
+                <div class="desc">Todo ser natural es <strong>materia</strong> (<em>hylé</em>) y <strong>forma</strong> (<em>morphé</em>).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Materia (hylé)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Materia (hylé)</div><div class="desc">Aquello de lo que algo está hecho. En el ser humano: el <strong>cuerpo</strong>.</div></div></li>
+                <li><div class="node" data-title="Forma (morphé)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Forma (morphé)</div><div class="desc">Lo que hace que algo sea lo que es. En el ser humano: el <strong>alma</strong>.</div></div></li>
+                <li><div class="node" data-title="La estatua de bronce"><div class="toggle" style="visibility: hidden;"></div><div class="title">La estatua de bronce</div><div class="desc">El bronce es la materia; la figura del atleta, la forma.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Unión Sustancial">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Unión Sustancial</div>
+                <div class="desc">Cuerpo y alma forman <strong>una única sustancia</strong>, no dos cosas juntas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="No es un piloto en un avión"><div class="toggle" style="visibility: hidden;"></div><div class="title">No es un piloto en un avión</div><div class="desc">El alma no maneja al cuerpo desde afuera: juntos son <strong>una persona viva</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Potencia y Acto">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Potencia y Acto</div>
+                <div class="desc"><strong>Potencia</strong>: capacidad de llegar a ser. <strong>Acto</strong>: capacidad realizada.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="La semilla y el árbol"><div class="toggle" style="visibility: hidden;"></div><div class="title">La semilla y el árbol</div><div class="desc">La semilla es un árbol <strong>en potencia</strong>; el árbol crecido es el <strong>acto</strong>.</div></div></li>
+                <li><div class="node" data-title="El alma, acto primero"><div class="toggle" style="visibility: hidden;"></div><div class="title">El alma, acto primero</div><div class="desc">«Acto primero de un cuerpo natural que tiene la <strong>vida en potencia</strong>».</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Alma como Forma del Cuerpo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Alma como Forma del Cuerpo</div>
+                <div class="desc">El alma (<em>psyché</em>) <strong>organiza, anima y da vida</strong> al cuerpo. Todo ser vivo tiene alma.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Si el ojo fuera un animal"><div class="toggle" style="visibility: hidden;"></div><div class="title">Si el ojo fuera un animal</div><div class="desc">…la <strong>vista</strong> sería su alma: el ojo es la materia y ver es su forma.</div></div></li>
+                <li><div class="node" data-title="El cadáver"><div class="toggle" style="visibility: hidden;"></div><div class="title">El cadáver</div><div class="desc">Tiene la misma materia, pero ya no la <strong>forma</strong> de ser vivo.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Mortalidad del Alma">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Mortalidad del Alma</div>
+                <div class="desc">Si el alma es la forma de un cuerpo, <strong>muere con él</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Sin transmigración"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sin transmigración</div><div class="desc">Cada alma es la forma de un <strong>cuerpo concreto</strong>: no pasa a otro.</div></div></li>
+                <li><div class="node" data-title="Entendimiento agente"><div class="toggle" style="visibility: hidden;"></div><div class="title">Entendimiento agente</div><div class="desc">Capta lo universal y sería <strong>eterno y separado</strong>; no es el «yo» personal.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Escala de las Almas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Escala de las Almas</div>
+                <div class="desc">Cada nivel superior <strong>incluye</strong> las funciones de los anteriores.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Vegetativa · plantas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Vegetativa · plantas</div><div class="desc"><strong>Nutrición</strong>, <strong>crecimiento</strong> y <strong>reproducción</strong>.</div></div></li>
+                <li><div class="node" data-title="Sensitiva · animales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sensitiva · animales</div><div class="desc">Además: <strong>percepción</strong>, <strong>deseo</strong> y <strong>movimiento local</strong>.</div></div></li>
+                <li><div class="node" data-title="Racional · ser humano"><div class="toggle" style="visibility: hidden;"></div><div class="title">Racional · ser humano</div><div class="desc">Además: <strong>pensamiento abstracto</strong>, <strong>lenguaje</strong> y <strong>deliberación</strong> moral.</div></div></li>
+                <li><div class="node" data-title="Una sola alma"><div class="toggle" style="visibility: hidden;"></div><div class="title">Una sola alma</div><div class="desc">El ser humano no tiene tres almas: una sola alma racional cumple las <strong>tres funciones</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Cómo Conocemos">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Cómo Conocemos</div>
+                <div class="desc">El conocimiento <strong>empieza en los sentidos</strong>, no en el recuerdo de las Ideas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Tablilla de cera"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tablilla de cera</div><div class="desc">Al nacer, la mente es como una tablilla <strong>sin nada escrito</strong>.</div></div></li>
+                <li><div class="node" data-title="Abstracción"><div class="toggle" style="visibility: hidden;"></div><div class="title">Abstracción</div><div class="desc">El intelecto separa <strong>lo común</strong> de muchos casos: de muchos perros, qué es un perro.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Animal Racional (zoon lógon échon)">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Animal Racional (zoon lógon échon)</div>
+                <div class="desc">El ser vivo que tiene <strong>logos</strong>: palabra, razón y capacidad de argumentar.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Voz y palabra"><div class="toggle" style="visibility: hidden;"></div><div class="title">Voz y palabra</div><div class="desc">La <strong>voz</strong> expresa placer o dolor; la <strong>palabra</strong> delibera sobre lo justo y lo injusto.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Animal Político (zoon politikón)">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Animal Político (zoon politikón)</div>
+                <div class="desc">Social <strong>por naturaleza</strong>: solo en la <strong>polis</strong> se realiza.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Bestia o dios"><div class="toggle" style="visibility: hidden;"></div><div class="title">Bestia o dios</div><div class="desc">Quien vive fuera de la sociedad por naturaleza: o le falta lo humano, o no lo necesita.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Teleología y Felicidad">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Teleología y Felicidad</div>
+                <div class="desc">Todo tiende a un <strong>fin</strong> (<em>telos</em>). El fin humano es la <strong>eudaimonía</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Vivir conforme a la razón"><div class="toggle" style="visibility: hidden;"></div><div class="title">Vivir conforme a la razón</div><div class="desc">No es acumular placeres ni riquezas: es realizar bien la <strong>actividad propia</strong> del ser humano.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Virtudes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Virtudes</div>
+                <div class="desc">Hacen falta para vivir conforme a la razón.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Éticas · carácter"><div class="toggle" style="visibility: hidden;"></div><div class="title">Éticas · carácter</div><div class="desc"><strong>Término medio</strong> entre dos vicios (valentía entre cobardía y temeridad); por <strong>hábito</strong>.</div></div></li>
+                <li><div class="node" data-title="Dianoéticas · intelecto"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dianoéticas · intelecto</div><div class="desc">Por <strong>enseñanza</strong>: prudencia (<em>phrónesis</em>) y sabiduría (<em>sophía</em>).</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Platón frente a Aristóteles">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Platón frente a Aristóteles</div>
+                <div class="desc">Dos respuestas a la pregunta por el ser humano.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Platón: dualismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Platón: dualismo</div><div class="desc">Unión <strong>accidental</strong>; alma inmortal y tripartita; conocer es <strong>recordar</strong>.</div></div></li>
+                <li><div class="node" data-title="Aristóteles: hilemorfismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Aristóteles: hilemorfismo</div><div class="desc">Unión <strong>sustancial</strong>; alma mortal, una con tres funciones; conocer empieza en los <strong>sentidos</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Hilemorfismo</h4><p>Teoría según la cual todo ser natural está compuesto por materia y forma.</p></article>
+          <article class="term"><h4>Materia (hylé)</h4><p>Aquello de lo que algo está hecho: el bronce de la estatua, el cuerpo del ser humano.</p></article>
+          <article class="term"><h4>Forma (morphé)</h4><p>Lo que hace que algo sea lo que es: la figura de la estatua, el alma del ser humano.</p></article>
+          <article class="term"><h4>Unión Sustancial</h4><p>Cuerpo y alma forman una única sustancia, con dos principios inseparables.</p></article>
+          <article class="term"><h4>Potencia</h4><p>Capacidad de llegar a ser algo: la semilla respecto del árbol.</p></article>
+          <article class="term"><h4>Acto</h4><p>Capacidad ya realizada: el árbol crecido; el alma respecto del cuerpo.</p></article>
+          <article class="term"><h4>Alma Vegetativa</h4><p>Nutrición, crecimiento y reproducción: plantas, animales y humanos.</p></article>
+          <article class="term"><h4>Alma Sensitiva</h4><p>Percepción, deseo y movimiento local: animales y humanos.</p></article>
+          <article class="term"><h4>Alma Racional</h4><p>Pensamiento abstracto, lenguaje y deliberación: solo el ser humano.</p></article>
+          <article class="term"><h4>Abstracción</h4><p>El intelecto separa lo común de muchos casos que dieron los sentidos.</p></article>
+          <article class="term"><h4>Entendimiento Agente</h4><p>Parte más alta del intelecto, que capta lo universal: la única duda abierta sobre algo eterno.</p></article>
+          <article class="term"><h4>Zoon Lógon Échon</h4><p>El ser vivo que tiene palabra y razón para deliberar sobre lo justo.</p></article>
+          <article class="term"><h4>Zoon Politikón</h4><p>Ser social por naturaleza, que solo se realiza en la polis.</p></article>
+          <article class="term"><h4>Teleología</h4><p>Todo en la naturaleza tiende a un fin (telos).</p></article>
+          <article class="term"><h4>Eudaimonía</h4><p>Felicidad: realizar bien la actividad propia del ser humano, vivir conforme a la razón.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de la antropología de Aristóteles.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Mirar al ser humano como Aristóteles</summary>
+      <div class="content">
+        <h4>Preguntas para pensar con el hilemorfismo</h4>
+        <ul>
+          <li><strong>Materia y forma:</strong> ¿De qué está hecho esto y qué lo hace ser lo que es?</li>
+          <li><strong>Potencia y acto:</strong> ¿Qué capacidad tengo y qué hago para realizarla?</li>
+          <li><strong>Escalones del alma:</strong> ¿Estoy usando solo lo vegetativo y lo sensitivo, o también la razón?</li>
+          <li><strong>Sentidos y abstracción:</strong> ¿Qué observé y qué conclusión general saco de muchos casos?</li>
+          <li><strong>Logos y polis:</strong> ¿Uso la palabra para discutir con otros qué es justo?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

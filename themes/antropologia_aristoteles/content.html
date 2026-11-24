@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--
+    Material de lectura — Antropología de Aristóteles (el hilemorfismo). Unidad II.
+    16 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 1.0 (2026-11-24): tema nuevo, ampliado desde la guía del docente.
+  -->
+  <title>Antropología de Aristóteles</title>
+  <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    window.ReadAloudSystemConfig = {
+      tema: 'Antropología de Aristóteles',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=antropologia_aristoteles',
+      celebrationEmojis: ['🌱', '🧠', '📜', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
+      synonymMap: {
+        'aristoteles': ['estagirita'],
+        'platon': ['platón'],
+        'hyle': ['hile', 'materia'],
+        'morphe': ['morfe', 'forma'],
+        'hilemorfismo': ['ilemorfismo'],
+        'psyche': ['psique', 'alma'],
+        'zoon': ['zoón', 'son'],
+        'logon': ['logos'],
+        'echon': ['ejon', 'econ'],
+        'politikon': ['politicón', 'político'],
+        'phronesis': ['frónesis', 'prudencia'],
+        'sophia': ['sofía', 'sabiduría'],
+        'eudaimonia': ['eudemonía', 'felicidad'],
+        'telos': ['fin'],
+        'teleologia': ['teleología'],
+        'polis': ['ciudad']
+      }
+    };
+  </script>
+</head>
+<body>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 16 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <h1>🌱 Antropología de Aristóteles</h1>
+    <p><em>El ser humano como <strong>una sola sustancia</strong>: <strong>materia y forma</strong>, <strong>potencia y acto</strong>, el alma como <strong>forma del cuerpo</strong>, la <strong>escala de las almas</strong>, el conocimiento que empieza en los <strong>sentidos</strong>, el <strong>animal racional y político</strong> y la <strong>felicidad</strong>. Siempre comparado con Platón.</em></p>
+
+    <!-- 1. De Platón a Aristóteles -->
+    <div class="study-section active" data-section="platon-aristoteles">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔄 De Platón a Aristóteles</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Aristóteles</strong> (384–322 a. C.) estudió veinte años en la Academia de <strong>Platón</strong>. Admiraba a su maestro, pero no compartía todo: se le atribuye la frase «soy amigo de Platón, pero más amigo de la verdad». Más tarde fundó su propia escuela en Atenas, el <strong>Liceo</strong>.<br><br>Platón veía al ser humano como un alma inmortal atrapada en un cuerpo. Aristóteles, más atento a la naturaleza y a los seres vivos, propone otra respuesta: el ser humano es <strong>una sola realidad</strong>, en la que cuerpo y alma no se pueden separar.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Compará la respuesta del maestro y la del discípulo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿En qué se aparta Aristóteles de Platón al pensar al ser humano?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Para Aristóteles cuerpo y alma forman una sola realidad que no se puede separar</div>
+          <div class="option">Para Aristóteles el alma es inmortal y está atrapada en el cuerpo</div>
+          <div class="option">Aristóteles piensa exactamente lo mismo que Platón</div>
+          <div class="option">Para Aristóteles el ser humano es solo un cuerpo, sin alma</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Materia y forma: el hilemorfismo -->
+    <div class="study-section" data-section="hilemorfismo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧱 Materia y forma: el hilemorfismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para explicar cualquier cosa, Aristóteles distingue dos principios. La <strong>materia</strong> (en griego <em>hylé</em>) es aquello de lo que algo está hecho. La <strong>forma</strong> (<em>morphé</em>) es lo que hace que esa materia sea tal cosa y no otra.<br><br>Pensá en una estatua de bronce: el bronce es la materia y la figura del atleta es la forma. Sin bronce no hay estatua, y un bloque de bronce sin figura tampoco lo es. De la unión de esas dos palabras griegas viene el nombre de su teoría: <strong>hilemorfismo</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Hylé = materia; morphé = forma.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>En una estatua de bronce, ¿qué es la materia y qué es la forma?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La figura es la materia y el bronce es la forma</div>
+          <div class="option" data-correct="true">El bronce es la materia y la figura del atleta es la forma</div>
+          <div class="option">El escultor es la materia y la estatua es la forma</div>
+          <div class="option">La estatua no tiene materia ni forma: es solo una idea</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Una sola sustancia: la unión sustancial -->
+    <div class="study-section" data-section="union-sustancial">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤝 Una sola sustancia: la unión sustancial</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aplicado al ser humano, el hilemorfismo dice que el <strong>cuerpo es la materia</strong> y el <strong>alma es la forma</strong>. No somos «dos cosas juntas», como un piloto dentro de un avión: somos una <strong>única sustancia</strong> compuesta por dos principios inseparables.<br><br>Por eso Aristóteles habla de <strong>unión sustancial</strong>, y no de unión accidental como Platón. El cuerpo y el alma no se pelean ni se encierran: juntos forman a una persona viva, que siente, piensa y actúa como un todo.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 No es un piloto en un avión: es una sola persona.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa que cuerpo y alma formen una unión sustancial?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que el alma está encerrada en el cuerpo como en una cárcel</div>
+          <div class="option">Que son dos cosas distintas que se juntan por un tiempo</div>
+          <div class="option" data-correct="true">Que forman una única sustancia con dos principios inseparables</div>
+          <div class="option">Que el cuerpo maneja al alma como un piloto maneja un avión</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Potencia y acto -->
+    <div class="study-section" data-section="potencia-acto">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌰 Potencia y acto</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles explica el cambio con dos conceptos más. La <strong>potencia</strong> es la capacidad de llegar a ser algo; el <strong>acto</strong> es esa capacidad ya realizada. Una semilla es un árbol en potencia; el árbol crecido es el acto. Un alumno que no sabe leer es lector en potencia; cuando lee, es lector en acto.<br><br>En el ser vivo, el cuerpo es la potencia: tiene la capacidad de vivir. El alma es el acto: lo que hace que esa capacidad se realice y el cuerpo viva de verdad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Semilla y árbol: potencia y acto.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Según el par potencia y acto, ¿qué son el cuerpo y el alma?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El cuerpo es acto y el alma es potencia</div>
+          <div class="option" data-correct="true">El cuerpo es potencia, capacidad de vivir, y el alma es acto, la vida realizada</div>
+          <div class="option">Los dos son potencia, porque nunca terminan de realizarse</div>
+          <div class="option">Los dos son acto, porque ya existen desde siempre</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. El alma, forma del cuerpo -->
+    <div class="study-section" data-section="acto-primero">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌱 El alma, forma del cuerpo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles define al alma (en griego <em>psyché</em>) como «el <strong>acto primero</strong> de un cuerpo natural que tiene la vida en potencia». Dicho simple: el cuerpo tiene la capacidad de vivir, pero es el alma la que la vuelve efectiva.<br><br>El alma no es una cosa escondida adentro del cuerpo: es lo que lo <strong>organiza</strong>, lo <strong>anima</strong> y le da vida. Por eso todo ser vivo tiene alma, incluso una planta. Un cadáver tiene la misma materia que antes, pero ya no tiene forma de ser vivo: perdió su alma.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Acto primero: lo que vuelve efectiva la capacidad de vivir.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué hace el alma en el cuerpo según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Lo organiza, lo anima y le da vida: es su forma</div>
+          <div class="option">Lo castiga y lo encierra para purificarse</div>
+          <div class="option">Lo abandona para irse a otro cuerpo</div>
+          <div class="option">Nada: el alma y el cuerpo no tienen relación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Si el ojo fuera un animal -->
+    <div class="study-section" data-section="ojo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👁️ Si el ojo fuera un animal</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles usa una comparación famosa: <strong>si el ojo fuera un animal, la vista sería su alma</strong>. El ojo es la materia y la capacidad de ver es su forma. Un ojo que ya no ve, como el de una estatua o el de un dibujo, solo es ojo de nombre.<br><br>Lo mismo pasa con nosotros: el alma no es un pasajero del cuerpo, sino lo que el cuerpo es capaz de hacer cuando está vivo. Ni el ojo tiene sentido sin la vista, ni la vista existe sin el ojo.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El ojo es la materia; la vista, la forma.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué quiere mostrar la comparación del ojo y la vista?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que el alma mira al cuerpo desde afuera</div>
+          <div class="option">Que los ojos son la parte más importante del cuerpo</div>
+          <div class="option">Que la vista engaña y por eso hay que desconfiar del cuerpo</div>
+          <div class="option" data-correct="true">Que el alma es al cuerpo lo que la vista al ojo: no se pueden separar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. ¿El alma es inmortal? -->
+    <div class="study-section" data-section="mortalidad">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚰️ ¿El alma es inmortal?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Si el alma es la forma de un cuerpo, no puede existir sin él: así como la vista desaparece cuando se destruye el ojo, el alma humana deja de existir cuando el cuerpo muere. Para Aristóteles el <strong>alma es mortal</strong>. Por eso rechaza la <strong>transmigración</strong>: cada alma es la forma de un <strong>cuerpo concreto</strong> y no puede pasar a otro.<br><br>Solo deja abierta una duda: el <strong>entendimiento agente</strong>, la parte del intelecto que capta lo universal, sería eterno y separado. Pero no es el alma personal de cada uno: no recuerda ni sobrevive como un «yo».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Sin ojo no hay vista; sin cuerpo no hay alma.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué Aristóteles rechaza la transmigración de las almas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque las almas nunca se separan de los dioses</div>
+          <div class="option">Porque el alma es inmortal y se queda en el Mundo de las Ideas</div>
+          <div class="option" data-correct="true">Porque cada alma es la forma de un cuerpo concreto y no puede pasar a otro</div>
+          <div class="option">Porque las almas solo pueden pasar a cuerpos de animales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. El alma vegetativa -->
+    <div class="study-section" data-section="vegetativa">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌿 El alma vegetativa</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Todo ser vivo tiene alma, pero no todas las almas hacen lo mismo. Aristóteles las ordena en una <strong>escala</strong>, como los escalones de una escalera.<br><br>El primer escalón es el <strong>alma vegetativa</strong>, la que tienen las plantas, los animales y los humanos. Sus funciones son tres: la <strong>nutrición</strong> (alimentarse), el <strong>crecimiento</strong> y la <strong>reproducción</strong>. Una planta de lechuga se alimenta, crece y da semillas, pero no ve ni se desplaza. Cuando digerís el almuerzo sin pensarlo, también está trabajando tu parte vegetativa.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Primer escalón: nutrición, crecimiento y reproducción.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuáles son las funciones del alma vegetativa?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Nutrición, crecimiento y reproducción</div>
+          <div class="option">Percepción, deseo y movimiento local</div>
+          <div class="option">Pensamiento, lenguaje y deliberación</div>
+          <div class="option">Valentía, templanza y prudencia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. El alma sensitiva -->
+    <div class="study-section" data-section="sensitiva">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🐾 El alma sensitiva</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El segundo escalón es el <strong>alma sensitiva</strong>, propia de los animales y de los humanos. Incluye todo lo vegetativo y agrega tres funciones nuevas: la <strong>percepción</strong> por los sentidos, el <strong>deseo</strong> o apetito (buscar lo agradable y huir de lo que daña) y el <strong>movimiento local</strong>, es decir, desplazarse de un lugar a otro.<br><br>Un perro huele la comida, la desea y corre hacia ella: percibe, desea y se mueve. Una planta, en cambio, no puede hacer ninguna de esas tres cosas.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Segundo escalón: percibir, desear y moverse.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué funciones agrega el alma sensitiva a las vegetativas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La nutrición, el crecimiento y la reproducción</div>
+          <div class="option" data-correct="true">La percepción por los sentidos, el deseo o apetito y el movimiento local</div>
+          <div class="option">El pensamiento abstracto y el lenguaje</div>
+          <div class="option">La contemplación de las Ideas eternas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. El alma racional: una sola alma -->
+    <div class="study-section" data-section="racional">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧠 El alma racional: una sola alma</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El escalón más alto es el <strong>alma racional</strong> o intelectiva, exclusiva del ser humano. Sus funciones son el <strong>pensamiento abstracto</strong>, el <strong>lenguaje</strong>, la <strong>deliberación moral</strong> (pensar qué conviene hacer) y la búsqueda de la verdad.<br><br>Ojo: el ser humano <strong>no tiene tres almas</strong>, sino una sola alma racional que también cumple las funciones vegetativas y sensitivas. Como en una escalera, cada nivel superior incluye a los anteriores: nos nutrimos como las plantas, sentimos como los animales y, además, pensamos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Una sola alma con tres funciones.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuántas almas tiene el ser humano según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Tres almas distintas: vegetativa, sensitiva y racional</div>
+          <div class="option">Ninguna: el alma es solo de las plantas y los animales</div>
+          <div class="option">Dos almas: una buena y una mala que se pelean</div>
+          <div class="option" data-correct="true">Una sola alma racional, que también cumple las funciones vegetativas y sensitivas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Conocer: de los sentidos al intelecto -->
+    <div class="study-section" data-section="conocimiento">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📚 Conocer: de los sentidos al intelecto</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Platón conocer era recordar las Ideas. Aristóteles no cree en esa reminiscencia: al nacer, la mente es como una <strong>tablilla de cera</strong> sin nada escrito. El conocimiento <strong>empieza en los sentidos</strong>: vemos, tocamos, oímos.<br><br>Después, el <strong>intelecto</strong> hace la <strong>abstracción</strong>: separa lo común de muchos casos concretos. Al ver muchos perros distintos, la mente capta qué es un perro en general. Sus seguidores lo resumieron así: nada hay en el intelecto que no haya pasado antes por los sentidos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Primero los sentidos, después la abstracción.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo conocemos según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Recordamos las Ideas que el alma vio antes de nacer</div>
+          <div class="option">Desconfiamos de los sentidos y pensamos sin mirar el mundo</div>
+          <div class="option" data-correct="true">Empezamos por los sentidos y el intelecto abstrae lo común de muchos casos</div>
+          <div class="option">Nacemos sabiendo todo y la experiencia nos hace olvidar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Animal racional: el ser que tiene logos -->
+    <div class="study-section" data-section="logos">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🗣️ Animal racional: el ser que tiene logos</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles define al ser humano como <strong>animal racional</strong>, en griego <em>zoon lógon échon</em>: «el ser vivo que tiene logos». <strong>Logos</strong> significa a la vez palabra, razón y capacidad de argumentar.<br><br>Los animales tienen <strong>voz</strong>: con sonidos expresan placer o dolor. El ser humano tiene <strong>palabra</strong>: con el lenguaje puede deliberar sobre lo justo y lo injusto, lo bueno y lo malo. Un perro puede aullar de dolor, pero no puede discutir si un castigo fue justo.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Voz para el placer y el dolor; palabra para lo justo y lo injusto.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué diferencia hay entre la voz de los animales y el logos humano?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La voz expresa placer o dolor; el logos permite deliberar sobre lo justo y lo injusto</div>
+          <div class="option">No hay diferencia: los animales también discuten qué es justo</div>
+          <div class="option">El logos sirve solo para expresar dolor más fuerte</div>
+          <div class="option">La voz es racional y el logos es puro instinto</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Animal político: la vida en la polis -->
+    <div class="study-section" data-section="politico">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏛️ Animal político: la vida en la polis</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Aristóteles también define al ser humano como <strong>animal político</strong> o social, <em>zoon politikón</em>: somos sociales <strong>por naturaleza</strong>. Solo dentro de la comunidad, la <strong>polis</strong> o ciudad, podemos desarrollar plenamente el lenguaje, la moral y alcanzar nuestro fin.<br><br>Las dos definiciones van juntas: el logos sirve para convivir y decidir con otros qué es justo. Por eso, quien vive fuera de la sociedad por naturaleza, dice Aristóteles, «<strong>es una bestia o un dios</strong>»: o le falta lo humano, o no lo necesita.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El logos se desarrolla en la polis.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué quiere decir que quien vive fuera de la sociedad «es una bestia o un dios»?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que los que viven solos son siempre peligrosos</div>
+          <div class="option">Que los dioses viven en las ciudades griegas</div>
+          <div class="option">Que la sociedad convierte a las personas en bestias</div>
+          <div class="option" data-correct="true">Que el ser humano necesita la comunidad para ser plenamente humano</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Todo tiende a un fin: la felicidad -->
+    <div class="study-section" data-section="teleologia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎯 Todo tiende a un fin: la felicidad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Aristóteles todo en la naturaleza tiende a un fin: la semilla tiende a ser árbol. Esta mirada se llama <strong>teleología</strong> (de <em>telos</em>, fin). El ser humano también tiene un fin último: la <strong>felicidad</strong> o <em>eudaimonía</em>.<br><br>La felicidad no consiste en acumular placeres ni riquezas, sino en realizar bien la actividad propia del ser humano: <strong>vivir conforme a la razón</strong>. Así como un buen músico es el que toca bien, una buena vida humana es la que usa bien la razón, durante toda la vida.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Telos = fin. El fin humano es la felicidad.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿En qué consiste la felicidad (eudaimonía) según Aristóteles?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">En acumular la mayor cantidad posible de placeres</div>
+          <div class="option" data-correct="true">En realizar bien la actividad propia del ser humano: vivir conforme a la razón</div>
+          <div class="option">En tener muchas riquezas y fama</div>
+          <div class="option">En recordar las Ideas que el alma vio antes de nacer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Virtudes éticas y dianoéticas -->
+    <div class="study-section" data-section="virtudes">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚖️ Virtudes éticas y dianoéticas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para vivir conforme a la razón hacen falta virtudes. Las <strong>virtudes éticas</strong>, del carácter, son el <strong>término medio</strong> entre dos extremos viciosos: la valentía está entre la cobardía y la temeridad. Se adquieren con el <strong>hábito</strong>, repitiendo actos.<br><br>Las <strong>virtudes dianoéticas</strong>, intelectuales, se adquieren con la enseñanza y el estudio. Se destacan la <strong>prudencia</strong> (<em>phrónesis</em>), saber deliberar bien en la vida práctica, y la <strong>sabiduría</strong> (<em>sophía</em>), el conocimiento contemplativo, que Aristóteles considera la forma más alta de felicidad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Éticas por hábito; dianoéticas por enseñanza.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo se adquieren las virtudes éticas y las dianoéticas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Las dos se heredan al nacer</div>
+          <div class="option">Las éticas, por estudio; las dianoéticas, por hábito</div>
+          <div class="option" data-correct="true">Las éticas, por hábito; las dianoéticas, por enseñanza y estudio</div>
+          <div class="option">Ninguna se adquiere: son regalos de los dioses</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Síntesis: Platón y Aristóteles frente a frente -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏆 Síntesis: Platón y Aristóteles frente a frente</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para <strong>Platón</strong>, cuerpo y alma forman una unión accidental y conflictiva: el cuerpo es la cárcel de un alma inmortal, tripartita, que conoce recordando. Para <strong>Aristóteles</strong>, forman una <strong>unión sustancial</strong>: el alma es la forma del cuerpo, es mortal, es una sola con tres funciones (vegetativa, sensitiva y racional) y conoce a partir de los sentidos.<br><br>El ser humano es un <strong>animal racional y político</strong>, que alcanza la felicidad viviendo conforme a la razón, con virtudes, en comunidad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Síntesis final: compará las dos respuestas.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál de estas comparaciones es correcta?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Platón: unión accidental y alma inmortal; Aristóteles: unión sustancial y alma mortal</div>
+          <div class="option">Platón: unión sustancial y alma mortal; Aristóteles: unión accidental y alma inmortal</div>
+          <div class="option">Los dos dicen que el alma tiene tres partes que se pelean</div>
+          <div class="option">Los dos dicen que conocer es recordar las Ideas</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🚀 SISTEMA MODULAR -->
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
+
+</body>
+</html>
