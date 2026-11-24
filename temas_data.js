@@ -256,6 +256,24 @@ const TOPICS = {
     // tema se aprueba con eso Y el examen aprobado (nota ≥ notaAprobacion).
     // El banco de preguntas está en themes/<tema>/examen.json (lo lee la Cloud Function).
     const EXAMEN_CONFIG = {
+      origen: {
+        filosofo: 'Tales de Mileto',
+        icono: '📜',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      presocraticos: {
+        filosofo: 'Heráclito de Éfeso',
+        icono: '🌊',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      socrates: {
+        filosofo: 'Sócrates',
+        icono: '🧠',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
       antropologia_aristoteles: {
         filosofo: 'Aristóteles',
         icono: '🌱',

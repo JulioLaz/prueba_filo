@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Tales de Mileto y del resumen final del tema «Origen de la Filosofía». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Tales de Mileto",
+  "tema": "Origen de la Filosofía: del asombro al paso del mito al logos y la búsqueda del arché",
+  "intro": "La filosofía nació en el siglo VI a. C. en Mileto, cuando algunos griegos, movidos por el asombro, dejaron de explicar el mundo con mitos y empezaron a buscar causas naturales con la razón: el paso del mito al logos. La primera gran pregunta fue por el arché, el principio de todas las cosas, y Tales de Mileto fue el primero en responderla.",
+  "conceptosClave": "asombro, filosofía, philo, sophía, Pitágoras, Mileto, ocio, dogma, mito, logos, arché, physis, Tales, agua, ápeiron, aire, número, devenir, ser",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "eclipse",
+      "texto": "Tales recuerda que predijo un eclipse de sol en el 585 a. C. y que la gente se asustó pensando que era un castigo de los dioses; le pregunta al alumno si él lo explicaría con un mito o con razones."
+    },
+    {
+      "id": "pozo",
+      "texto": "Tales cuenta, riéndose de sí mismo, que una vez se cayó en un pozo por ir mirando las estrellas y una sirvienta se burló de él; dice que el asombro a veces hace tropezar, pero vale la pena."
+    },
+    {
+      "id": "piramides",
+      "texto": "Tales vuelve de Egipto, donde midió la altura de una pirámide usando solo su sombra, y le dice al alumno que hoy también van a medir algo: cuánto aprendió."
+    },
+    {
+      "id": "puerto",
+      "texto": "Tales está en el puerto de Mileto viendo llegar barcos de Egipto y Babilonia, y le pregunta al alumno por qué cree que justo ahí empezó a pensar la filosofía."
+    },
+    {
+      "id": "agua",
+      "texto": "Tales llena una copa de agua del río y la levanta frente al alumno: dice que en esa copa está, para él, el principio de todo, y quiere saber si el alumno entiende por qué."
+    },
+    {
+      "id": "olivos",
+      "texto": "Tales cuenta que, previendo una buena cosecha de aceitunas, alquiló todas las prensas de aceite de Mileto y ganó mucho dinero, solo para demostrar que los filósofos no piensan por falta de habilidad práctica."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "asombro",
+      "titulo": "El asombro: donde empieza la filosofía",
+      "guia": "Preguntar con qué actitud empieza la filosofía y por qué.",
+      "claves": "La filosofía nace del asombro: una curiosidad radical ante lo que nos rodea, que lleva a preguntar «por qué» y a cuestionar lo de todos los días. Quien se asombra busca razones con pensamiento crítico y no se conforma con «lo que siempre se dijo».",
+      "resumen": "La filosofía empieza con el asombro: esa curiosidad que nos hace preguntar «¿por qué las cosas son así?». Quien se asombra ya no se conforma con lo de siempre y busca razones.",
+      "palabras": [
+        "asombro",
+        "curiosidad radical",
+        "pensamiento crítico",
+        "preguntar",
+        "certezas"
+      ],
+      "ejemplo": "Mirar el cielo de noche y preguntarte qué hay más allá, en lugar de pasar de largo."
+    },
+    {
+      "id": "etimologia",
+      "titulo": "Filosofía: amor por la sabiduría",
+      "guia": "Preguntar qué significa la palabra filosofía y qué dice eso sobre el filósofo.",
+      "claves": "Filosofía viene del griego philo (amor, tendencia a) y sophía (sabiduría): amor por la sabiduría. El filósofo no posee la verdad, la busca; reconoce que no lo sabe todo. Se pregunta por los principios primeros de la realidad.",
+      "resumen": "Filosofía significa «amor por la sabiduría» (philo + sophía). Por eso el filósofo no es el que ya sabe todo, sino el que busca saber.",
+      "palabras": [
+        "filosofía",
+        "philo",
+        "sophía",
+        "amor por la sabiduría",
+        "buscar la verdad"
+      ],
+      "ejemplo": "Un buen hincha ama a su equipo aunque no gane siempre: el filósofo ama la sabiduría aunque nunca la tenga completa."
+    },
+    {
+      "id": "pitagoras",
+      "titulo": "Pitágoras y la palabra «filósofo»",
+      "guia": "Pedir que cuente por qué Pitágoras se llamó filósofo y no sabio, con la comparación de los juegos.",
+      "claves": "Pitágoras rechazó que lo llamaran sabio (sophós): solo los dioses son sabios; él amaba la sabiduría (filósofo). Comparó la vida con los juegos de Olimpia: unos van por gloria, otros por ganancias y los filósofos, a mirar y comprender.",
+      "resumen": "Cuando lo llamaron sabio, Pitágoras dijo que solo los dioses lo son: él era un «filósofo», alguien que ama la sabiduría. En los juegos, unos buscan gloria, otros ganancias, y el filósofo, comprender.",
+      "palabras": [
+        "Pitágoras",
+        "sabio",
+        "filósofo",
+        "dioses",
+        "comprender"
+      ],
+      "ejemplo": "En un recital, unos van a vender remeras, otros a que los vean, y otros a escuchar de verdad: esos serían los filósofos."
+    },
+    {
+      "id": "mileto",
+      "titulo": "Mileto: la cuna de la razón",
+      "guia": "Preguntar dónde y cuándo nació la filosofía y qué condiciones lo hicieron posible.",
+      "claves": "Nació en el siglo VI a. C. en Jonia (Asia Menor), en Mileto: puerto rico y comercial en contacto con Babilonia y Egipto. La prosperidad dio ocio (tiempo libre para pensar) y la ciudad era cosmopolita, con muchas culturas y creencias que invitaban a comparar y dudar.",
+      "resumen": "La filosofía nació en el siglo VI a. C. en Mileto, un puerto rico de Jonia. El comercio trajo prosperidad y tiempo libre (ocio) para pensar, y la mezcla de culturas invitaba a comparar y dudar.",
+      "palabras": [
+        "Mileto",
+        "Jonia",
+        "comercio",
+        "ocio",
+        "cosmopolita"
+      ],
+      "ejemplo": "Cuando conocés gente de otros países, empezás a preguntarte por qué tus costumbres son como son."
+    },
+    {
+      "id": "sin_dogma",
+      "titulo": "Una religión sin dogmas y el debate público",
+      "guia": "Preguntar por qué la religión griega no frenó a la filosofía y qué papel tuvo el debate.",
+      "claves": "La religión griega era politeísta y no tenía una casta sacerdotal poderosa que impusiera dogmas ni un libro sagrado. Eso permitió una mentalidad abierta y la libre especulación. Además los ciudadanos estaban acostumbrados al debate público y a dar razones.",
+      "resumen": "En Grecia no había sacerdotes que impusieran verdades indiscutibles (dogmas). Por eso se podía pensar con libertad, y en la ciudad se discutía en público dando razones.",
+      "palabras": [
+        "dogma",
+        "casta sacerdotal",
+        "politeísmo",
+        "libertad de pensar",
+        "debate público"
+      ],
+      "ejemplo": "Si en tu escuela estuviera prohibido preguntar, nadie se animaría a pensar distinto."
+    },
+    {
+      "id": "mito",
+      "titulo": "El mito: explicar con relatos",
+      "guia": "Preguntar qué es un mito, con un ejemplo, y qué función cumplía.",
+      "claves": "Un mito es un relato imaginativo con dioses y seres sobrenaturales (Homero, Hesíodo) que explicaba el origen del mundo y los fenómenos naturales (el trueno, enojo de Zeus). Daba sentido y unía a la comunidad, pero no se discutía: se creía y se repetía.",
+      "resumen": "Antes de la filosofía, el mundo se explicaba con mitos: relatos de dioses, como los de Homero y Hesíodo. El trueno era el enojo de Zeus. El mito daba sentido, pero no se discutía.",
+      "palabras": [
+        "mito",
+        "relato",
+        "dioses",
+        "Homero",
+        "Hesíodo"
+      ],
+      "ejemplo": "Decir que hubo un terremoto porque «los dioses se enojaron» es una explicación mítica."
+    },
+    {
+      "id": "logos",
+      "titulo": "El logos: explicar con razones",
+      "guia": "Preguntar qué significa logos y qué caracteriza a una explicación racional.",
+      "claves": "Logos significa palabra, razón y discurso: el pensamiento racional y crítico. Busca causas naturales que se puedan observar y argumentar, sin recurrir a dioses. Una explicación racional se demuestra con argumentos, se somete a crítica y se corrige si aparece una razón mejor.",
+      "resumen": "Logos es palabra y razón. Una explicación racional busca causas naturales y da argumentos que los demás pueden discutir; si alguien trae una razón mejor, se corrige.",
+      "palabras": [
+        "logos",
+        "razón",
+        "causas naturales",
+        "argumentos",
+        "crítica"
+      ],
+      "ejemplo": "Explicar el terremoto por el movimiento de las placas, y aceptar corregirlo si aparece un dato nuevo, es pensar con logos."
+    },
+    {
+      "id": "mito_logos",
+      "titulo": "Del mito al logos",
+      "guia": "Preguntar qué fue el paso del mito al logos y cómo se produjo.",
+      "claves": "El nacimiento de la filosofía es el paso del mito al logos: de explicaciones sobrenaturales a explicaciones racionales. No fue un salto repentino sino un proceso gradual, una racionalización del mito: al principio se usaban imágenes y se hablaba de lo divino, pero se buscaban causas naturales y se discutían en público.",
+      "resumen": "El paso del mito al logos fue ir de los relatos sobre dioses a las explicaciones racionales. No pasó de un día para otro: fue un proceso gradual, una racionalización del mito.",
+      "palabras": [
+        "mito",
+        "logos",
+        "proceso gradual",
+        "racionalización",
+        "explicación racional"
+      ],
+      "ejemplo": "Como cuando de chico creías en algo y, de a poco, empezaste a buscarle una explicación."
+    },
+    {
+      "id": "arche",
+      "titulo": "El arché: el primer problema",
+      "guia": "Preguntar qué buscaban los presocráticos y qué significa arché.",
+      "claves": "Los presocráticos (anteriores a Sócrates) se preguntaron por la physis (naturaleza) y buscaron su arché, el principio de todo. Arché tiene triple sentido: origen (de qué surge todo), sustrato (de qué está hecho) y causa (qué produce el cambio). Buscaban reducir la multiplicidad a una unidad: así nació la cosmología.",
+      "resumen": "Los primeros filósofos buscaron el arché, el principio de la naturaleza. Arché significa origen (de dónde viene todo), sustrato (de qué está hecho) y causa (qué lo hace cambiar).",
+      "palabras": [
+        "arché",
+        "physis",
+        "origen",
+        "sustrato",
+        "causa"
+      ],
+      "ejemplo": "Preguntar de qué está hecho todo, desde una piedra hasta tu cuerpo, es preguntar por el arché."
+    },
+    {
+      "id": "tales",
+      "titulo": "Tales de Mileto: el agua",
+      "guia": "Preguntar por qué Tales es el primer filósofo y por qué eligió el agua.",
+      "claves": "Tales es el primer filósofo porque fue el primero en dar una respuesta racional (sin dioses) a la pregunta por el arché. Eligió el agua: es esencial para la vida, cambia de estado (sólido, líquido, gaseoso) y todo lo vivo parece nacer de lo húmedo. Es un arché concreto y observable.",
+      "resumen": "Tales es el primer filósofo: el primero que respondió con razones qué es el arché. Dijo que es el agua, porque es necesaria para la vida, cambia de estado y todo lo vivo es húmedo.",
+      "palabras": [
+        "Tales",
+        "primer filósofo",
+        "agua",
+        "arché concreto",
+        "explicación racional"
+      ],
+      "ejemplo": "Una planta sin agua se seca: Tales miraba cosas así para pensar que todo viene del agua."
+    },
+    {
+      "id": "milesios",
+      "titulo": "Anaximandro y Anaxímenes",
+      "guia": "Preguntar qué propusieron Anaximandro y Anaxímenes y en qué se diferencian de Tales.",
+      "claves": "Anaximandro propuso el ápeiron (lo indeterminado, ilimitado, eterno): un arché abstracto, porque los elementos son opuestos y se anulan (el agua apaga el fuego). Anaxímenes volvió a un arché concreto, el aire: por rarefacción se vuelve fuego y por condensación viento, nubes, agua, tierra y piedras. Con Tales forman la Escuela de Mileto.",
+      "resumen": "Anaximandro dijo que el arché es el ápeiron, algo indeterminado, porque los elementos se anulan entre sí. Anaxímenes eligió el aire, que se transforma por rarefacción y condensación. Con Tales forman la Escuela de Mileto.",
+      "palabras": [
+        "Anaximandro",
+        "ápeiron",
+        "Anaxímenes",
+        "aire",
+        "rarefacción y condensación"
+      ],
+      "ejemplo": "El vapor de la ducha se condensa en el espejo: Anaxímenes explicaba todo con procesos así."
+    },
+    {
+      "id": "otros_caminos",
+      "titulo": "Pitágoras, Heráclito y Parménides",
+      "guia": "Preguntar qué propusieron Pitágoras, Heráclito y Parménides, y en qué se oponen los dos últimos.",
+      "claves": "Pitágoras: el arché es el número, el universo tiene estructura matemática. Heráclito: el fuego y el devenir, todo cambia («nadie se baña dos veces en el mismo río»). Parménides: «el ser es y el no ser no es»; el cambio es ilusión de los sentidos; confía solo en la razón e inaugura la metafísica.",
+      "resumen": "Pitágoras dijo que todo es número. Heráclito, que todo cambia: nadie se baña dos veces en el mismo río. Parménides, al revés: el ser no cambia y el cambio es una ilusión de los sentidos.",
+      "palabras": [
+        "número",
+        "Heráclito",
+        "devenir",
+        "Parménides",
+        "ser"
+      ],
+      "ejemplo": "Vos cambiás todos los días y a la vez seguís siendo vos: Heráclito miraría lo primero y Parménides lo segundo."
+    }
+  ],
+  "casos": [
+    {
+      "id": "horoscopo",
+      "texto": "Una compañera decide no presentarse a una prueba porque el horóscopo dijo que iba a ser un mal día.",
+      "claves": "Distinguir una explicación mítica o sin razones de una explicación racional (logos); pedir causas y argumentos; mostrar el valor del pensamiento crítico sin burlarse."
+    },
+    {
+      "id": "cadena",
+      "texto": "Te llega por WhatsApp una cadena que dice que si no la reenviás te va a pasar algo malo.",
+      "claves": "Aplicar el paso del mito al logos: preguntar por causas naturales, pedir pruebas, no aceptar algo solo porque se repite; el asombro como actitud de preguntar."
+    },
+    {
+      "id": "siempre_asi",
+      "texto": "En tu familia hay una costumbre que nadie sabe explicar, y cuando preguntás te dicen «porque siempre fue así».",
+      "claves": "Usar el asombro y el pensamiento crítico; comparar con la ausencia de dogmas en Grecia y el debate público; buscar fundamentos racionales con respeto."
+    },
+    {
+      "id": "todo_sabe",
+      "texto": "Un compañero dice que no necesita estudiar filosofía porque ya sabe todo lo importante.",
+      "claves": "Aplicar la etimología (amor por la sabiduría) y la respuesta de Pitágoras: solo los dioses son sabios; el filósofo busca; reconocer lo que no sabemos."
+    },
+    {
+      "id": "de_que",
+      "texto": "En la clase de química te preguntás de qué está hecho todo lo que existe.",
+      "claves": "Relacionar con la búsqueda del arché (origen, sustrato y causa) y las respuestas de Tales, Anaximandro, Anaxímenes, Pitágoras; valorar la pregunta como filosófica."
+    },
+    {
+      "id": "cambio",
+      "texto": "Te reencontrás con un amigo de la infancia y sentís que es el mismo pero a la vez muy distinto.",
+      "claves": "Aplicar Heráclito (devenir, todo cambia, el río) y Parménides (el ser no cambia, el cambio es ilusión); argumentar qué parte cambia y cuál permanece."
+    },
+    {
+      "id": "explicacion_facil",
+      "texto": "Un influencer explica un fenómeno natural con una historia muy linda pero sin ninguna prueba, y tiene millones de seguidores.",
+      "claves": "Comparar mito (relato que da sentido pero no se discute) y logos (causas naturales y argumentos); la cantidad de seguidores no es una razón."
+    },
+    {
+      "id": "multicultural",
+      "texto": "En tu curso hay compañeros de distintos países y religiones, y surgen discusiones sobre quién tiene razón.",
+      "claves": "Relacionar con Mileto cosmopolita: la mezcla de culturas invita a comparar y dudar; el debate público con razones como forma de convivir y pensar."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "asombro_propio",
+      "texto": "¿Qué cosa de todos los días te asombró alguna vez y te hizo preguntar «por qué»?"
+    },
+    {
+      "id": "mito_actual",
+      "texto": "¿Qué «mito» actual (una creencia sin razones) te parece que mucha gente acepta sin pensar?"
+    },
+    {
+      "id": "sabio",
+      "texto": "¿Te parece bien la respuesta de Pitágoras de que nadie es del todo sabio? ¿Por qué?"
+    },
+    {
+      "id": "arche_propio",
+      "texto": "Si tuvieras que elegir un arché, ¿cuál elegirías y por qué?"
+    },
+    {
+      "id": "cambiar_idea",
+      "texto": "¿Te pasó cambiar de opinión porque alguien te dio una razón mejor? ¿Cómo fue?"
+    }
+  ],
+  "practica": [
+    "Explicá con tus palabras qué es el asombro y por qué con él empieza la filosofía.",
+    "¿Qué significa la palabra filosofía y qué dice eso sobre el filósofo?",
+    "¿Por qué la filosofía nació en Mileto y no en otro lugar?",
+    "Dá un ejemplo de explicación mítica y otro de explicación racional del mismo fenómeno.",
+    "¿Por qué decimos que el paso del mito al logos fue gradual?",
+    "¿Qué significa arché? Explicá sus tres sentidos con un ejemplo.",
+    "Compará los arché de Tales, Anaximandro y Anaxímenes.",
+    "¿En qué se oponen Heráclito y Parménides?"
+  ]
+}

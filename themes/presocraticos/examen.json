@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Heráclito de Éfeso y del resumen final del tema «Los Presocráticos». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Heráclito de Éfeso",
+  "tema": "Los Presocráticos: la búsqueda del arché, del monismo de Mileto a Heráclito, Parménides, los pluralistas y los atomistas",
+  "intro": "Los presocráticos fueron los primeros filósofos griegos: buscaron con la razón el arché, el principio de todas las cosas. Los de Mileto propusieron uno solo (monismo); Heráclito dijo que todo cambia, ordenado por el logos, y Parménides que el ser no cambia. Los pluralistas y los atomistas intentaron resolver ese choque.",
+  "conceptosClave": "arché, monismo, pluralismo, Tales, agua, ápeiron, aire, rarefacción, condensación, número, Jenófanes, fuego, panta rhei, devenir, opuestos, logos, ser, Parménides, Zenón, paradojas, cuatro raíces, Amor, Discordia, nous, átomos, vacío",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "templo",
+      "texto": "Heráclito está en el templo de Artemisa en Éfeso, donde dejó guardado su libro para que solo lo leyeran quienes se esforzaran; le dice al alumno que hoy va a ver si es de esos."
+    },
+    {
+      "id": "rio",
+      "texto": "Heráclito invita al alumno a meter los pies en el río Caístro y le pregunta si es el mismo río que ayer: con esa pregunta empieza el examen."
+    },
+    {
+      "id": "dados",
+      "texto": "Heráclito está jugando a los dados con unos chicos frente al templo; dice que prefiere eso a hacer leyes para Éfeso, y que hoy jugará a hacerle preguntas al alumno."
+    },
+    {
+      "id": "hogar",
+      "texto": "Unos visitantes se sorprenden de encontrar a Heráclito calentándose junto al fuego de una cocina; él les dice «pasen, que aquí también hay dioses», y le propone al alumno empezar hablando del fuego."
+    },
+    {
+      "id": "oscuro",
+      "texto": "Heráclito le cuenta al alumno que lo llaman «el Oscuro» porque sus frases son difíciles, y le promete que hoy va a hablar claro... o casi."
+    },
+    {
+      "id": "parmenides",
+      "texto": "Heráclito acaba de enterarse de que en Elea un tal Parménides dice que nada cambia; se ríe y le pide al alumno que lo ayude a ordenar quién dijo qué entre los primeros filósofos."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "presocraticos_arche",
+      "titulo": "¿Quiénes fueron los presocráticos y qué buscaban?",
+      "guia": "Preguntar quiénes fueron los presocráticos, por qué se llaman así y qué es el arché.",
+      "claves": "Filósofos griegos desde Tales (hacia el 585 a. C.) hasta la época de Sócrates; se llaman así por ser anteriores a él. Iniciaron una investigación racional de la naturaleza sin mitos. Buscaban el arché: principio u origen de todo, que según Aristóteles no necesita de otra cosa para existir.",
+      "resumen": "Los presocráticos son los filósofos anteriores a Sócrates. Explicaron la naturaleza con la razón, sin mitos, y buscaron el arché: el principio u origen de todas las cosas.",
+      "palabras": [
+        "presocráticos",
+        "Sócrates",
+        "arché",
+        "principio",
+        "investigación racional"
+      ],
+      "ejemplo": "Preguntarte de qué está hecho todo el universo es hacer la pregunta de los presocráticos."
+    },
+    {
+      "id": "monismo",
+      "titulo": "El monismo de Mileto",
+      "guia": "Preguntar qué es el monismo y quiénes lo defendieron.",
+      "claves": "Monismo (de monos, «uno»): la postura que afirma una única sustancia fundamental como arché. La defendieron los filósofos de la Escuela de Mileto: Tales (agua), Anaximandro (ápeiron) y Anaxímenes (aire).",
+      "resumen": "El monismo dice que todo viene de un único principio. Lo defendieron los de Mileto: Tales, Anaximandro y Anaxímenes, aunque cada uno eligió un arché distinto.",
+      "palabras": [
+        "monismo",
+        "monos",
+        "Escuela de Mileto",
+        "única sustancia",
+        "arché"
+      ],
+      "ejemplo": "Como si todos los platos de un menú salieran de un solo ingrediente."
+    },
+    {
+      "id": "tales",
+      "titulo": "Tales: el agua",
+      "guia": "Preguntar por qué Tales eligió el agua y qué tiene de nuevo su explicación.",
+      "claves": "Tales dio la primera explicación natural del universo, sin dioses. El agua es el arché: el alimento y las semillas son húmedos, el calor vive de lo húmedo, el agua cambia de estado y es esencial para la vida. Es un principio material y concreto.",
+      "resumen": "Tales dijo que todo viene del agua: el alimento y las semillas son húmedos, el agua cambia de estado y sin ella no hay vida. Fue la primera explicación de la naturaleza sin dioses.",
+      "palabras": [
+        "Tales",
+        "agua",
+        "húmedo",
+        "cambio de estado",
+        "principio material"
+      ],
+      "ejemplo": "Una semilla seca no germina; con agua, sí."
+    },
+    {
+      "id": "anaximandro",
+      "titulo": "Anaximandro: el ápeiron",
+      "guia": "Preguntar qué es el ápeiron y con qué argumento lo propone Anaximandro.",
+      "claves": "El ápeiron es lo indefinido, ilimitado, eterno e imperecedero. Ningún elemento puede ser el arché porque los elementos se oponen y se anulan (fuego contra agua, aire contra tierra); el principio debe no tener cualidades propias y engendrar todo sin favorecer a ninguno. Primer arché abstracto, más allá de lo físico.",
+      "resumen": "Anaximandro dijo que el arché es el ápeiron, algo indefinido e ilimitado. Su razón: los elementos se oponen y se anulan, así que el principio no puede ser ninguno de ellos.",
+      "palabras": [
+        "Anaximandro",
+        "ápeiron",
+        "indefinido",
+        "opuestos",
+        "abstracto"
+      ],
+      "ejemplo": "Si el agua apaga el fuego, ¿cómo podría el agua ser también el origen del fuego?"
+    },
+    {
+      "id": "anaximenes",
+      "titulo": "Anaxímenes: el aire",
+      "guia": "Preguntar por qué Anaxímenes eligió el aire y cómo explica las transformaciones.",
+      "claves": "El aire es invisible pero está en todas partes y es necesario para respirar. Se transforma por procesos observables: por rarefacción (menos denso) se vuelve fuego; por condensación (más denso), viento, nubes, agua, tierra y piedras. Completa la tríada de Mileto.",
+      "resumen": "Anaxímenes eligió el aire, que está en todas partes y respiramos. Cuando se enrarece se vuelve fuego; cuando se condensa, viento, nubes, agua, tierra y piedras.",
+      "palabras": [
+        "Anaxímenes",
+        "aire",
+        "rarefacción",
+        "condensación",
+        "transformación"
+      ],
+      "ejemplo": "El vapor se condensa en gotas en una botella fría: un proceso como el que imaginaba Anaxímenes."
+    },
+    {
+      "id": "pitagoricos",
+      "titulo": "Los pitagóricos: todo es número",
+      "guia": "Preguntar qué decían los pitagóricos sobre el arché y con qué ejemplo.",
+      "claves": "Pitágoras de Samos fundó en el sur de Italia una comunidad que unía matemática, música y religión. Para los pitagóricos el arché es el número: la realidad está compuesta de números y tiene estructura matemática (los sonidos armoniosos dependen de proporciones). Creían en la transmigración de las almas.",
+      "resumen": "Para los pitagóricos el arché es el número: el universo tiene un orden matemático. Lo vieron en la música, donde los sonidos lindos dependen de proporciones numéricas.",
+      "palabras": [
+        "Pitágoras",
+        "número",
+        "estructura matemática",
+        "proporciones",
+        "transmigración"
+      ],
+      "ejemplo": "Una guitarra afinada suena bien por proporciones entre sus cuerdas: todo es número."
+    },
+    {
+      "id": "jenofanes",
+      "titulo": "Jenófanes: contra los dioses de Homero",
+      "guia": "Preguntar qué criticó Jenófanes y qué propuso.",
+      "claves": "Jenófanes de Colofón criticó a los dioses de Homero y Hesíodo por pensarlos como humanos (roban, engañan, pelean): si los bueyes y caballos tuvieran manos, pintarían dioses con su forma. Propuso un solo dios sin figura ni cuerpo humano, que no nació como los dioses homéricos. Somete la religión a la razón.",
+      "resumen": "Jenófanes criticó que los dioses de Homero fueran como humanos, con defectos. Si los bueyes tuvieran manos, dibujarían dioses-bueyes. Para él hay un solo dios, sin cuerpo ni figura humana.",
+      "palabras": [
+        "Jenófanes",
+        "Homero",
+        "dioses humanos",
+        "un solo dios",
+        "crítica racional"
+      ],
+      "ejemplo": "Cada cultura dibuja a sus héroes parecidos a sí misma: Jenófanes ya lo había notado."
+    },
+    {
+      "id": "heraclito_cambio",
+      "titulo": "Heráclito: todo fluye",
+      "guia": "Preguntar qué sostiene Heráclito sobre el cambio, el fuego y los opuestos.",
+      "claves": "Heráclito, «el Oscuro», propuso el fuego como metáfora del cambio (solo se mantiene transformando). Panta rhei: todo fluye, devenir constante; «nadie se baña dos veces en el mismo río» (cambia el río y la persona). El cambio nace de la lucha de opuestos (luz/oscuridad, vida/muerte) que se necesitan: «la guerra (pólemos) es el padre de todas las cosas».",
+      "resumen": "Para Heráclito todo cambia: panta rhei, «todo fluye». Nadie se baña dos veces en el mismo río. El fuego es el símbolo del cambio, y el cambio nace de la lucha de los opuestos.",
+      "palabras": [
+        "Heráclito",
+        "fuego",
+        "panta rhei",
+        "devenir",
+        "opuestos"
+      ],
+      "ejemplo": "Tu cuerpo cambia todos los días, y sin embargo seguís siendo vos: así fluye todo."
+    },
+    {
+      "id": "logos",
+      "titulo": "El logos de Heráclito",
+      "guia": "Preguntar qué es el logos y por qué el cambio no es caos.",
+      "claves": "El cambio está regido por una ley universal, el logos (razón, palabra, discurso), que ordena el cosmos y equilibra los opuestos: una «armonía invisible, mejor que la visible». Es común a todos, aunque la mayoría no lo comprende y vive como si tuviera una inteligencia propia.",
+      "resumen": "El cambio no es un caos: lo ordena el logos, una ley o razón universal que equilibra los opuestos. El logos es común a todos, pero la mayoría no lo entiende.",
+      "palabras": [
+        "logos",
+        "ley universal",
+        "orden",
+        "armonía invisible",
+        "común a todos"
+      ],
+      "ejemplo": "Las estaciones cambian siempre, pero con un orden: eso se parece al logos."
+    },
+    {
+      "id": "eleatas",
+      "titulo": "Parménides y Zenón: el ser no cambia",
+      "guia": "Preguntar qué dice Parménides del ser y del cambio, y cómo lo defendió Zenón.",
+      "claves": "Parménides de Elea: «el ser es, y el no ser no es». El ser no nace ni muere, es completo, continuo, inmutable e indivisible (como una esfera). El cambio y la multiplicidad son ilusiones de los sentidos; confía en la razón; inaugura la metafísica. Zenón, su discípulo, lo defendió con paradojas (Aquiles y la tortuga, la dicotomía) que muestran que el movimiento lleva a absurdos.",
+      "resumen": "Parménides dijo lo contrario que Heráclito: el ser es y el no ser no es, así que nada cambia; el cambio es una ilusión de los sentidos. Zenón lo defendió con paradojas, como la de Aquiles y la tortuga.",
+      "palabras": [
+        "Parménides",
+        "ser",
+        "inmutable",
+        "ilusión",
+        "paradojas de Zenón"
+      ],
+      "ejemplo": "Según Zenón, para llegar a la puerta del aula primero tenés que recorrer la mitad, y la mitad de la mitad... ¿llegarías?"
+    },
+    {
+      "id": "pluralistas",
+      "titulo": "Los pluralistas: Empédocles y Anaxágoras",
+      "guia": "Preguntar qué problema resolvieron los pluralistas y qué propusieron Empédocles y Anaxágoras.",
+      "claves": "Para superar el choque Heráclito-Parménides, el pluralismo propuso varios principios. Empédocles: cuatro raíces eternas (tierra, agua, aire y fuego) que el Amor une y la Discordia separa; lo que cambia es la mezcla. Anaxágoras: infinitas semillas, «todo está en todo», y el nous, una mente pura que ordenó el cosmos con un torbellino.",
+      "resumen": "Los pluralistas propusieron varios principios. Empédocles: cuatro raíces (tierra, agua, aire y fuego) que el Amor une y la Discordia separa. Anaxágoras: infinitas semillas ordenadas por el nous, una mente.",
+      "palabras": [
+        "pluralismo",
+        "cuatro raíces",
+        "Amor y Discordia",
+        "semillas",
+        "nous"
+      ],
+      "ejemplo": "Con los mismos ladrillos podés armar casas distintas: lo que cambia es la combinación."
+    },
+    {
+      "id": "atomismo",
+      "titulo": "Leucipo y Demócrito: átomos y vacío",
+      "guia": "Preguntar qué es el atomismo y qué visión del mundo propone.",
+      "claves": "Todo está formado por átomos (indivisibles): partículas sólidas, eternas, infinitas en número y de muchas formas, que se mueven en el vacío (necesario para el movimiento). Las cosas nacen cuando los átomos se agrupan y mueren cuando se separan. Visión materialista (hasta el alma es de átomos) y determinista («nada ocurre por azar, sino por razón y necesidad»).",
+      "resumen": "Para Leucipo y Demócrito todo está hecho de átomos, partículas indivisibles que se mueven en el vacío. Es una visión materialista y determinista: nada ocurre por azar.",
+      "palabras": [
+        "átomos",
+        "vacío",
+        "indivisibles",
+        "materialismo",
+        "determinismo"
+      ],
+      "ejemplo": "Muchos siglos antes de los microscopios, Demócrito ya imaginaba que todo estaba hecho de partículas."
+    }
+  ],
+  "casos": [
+    {
+      "id": "cambio_amigo",
+      "texto": "Un amigo cambió mucho en un año: otra ropa, otros gustos, otro grupo. Otro compañero dice que «en el fondo sigue siendo el mismo».",
+      "claves": "Aplicar Heráclito (todo fluye, devenir, el río) y Parménides (el ser permanece, el cambio es ilusión); argumentar qué cambia y qué permanece; puede usar el logos como orden del cambio."
+    },
+    {
+      "id": "de_que_esta",
+      "texto": "En la clase de química estudian el átomo y alguien dice que eso lo inventaron los científicos modernos.",
+      "claves": "Explicar el atomismo de Leucipo y Demócrito (átomos, vacío, indivisibles), distinguir su método racional del experimental; mostrar que la pregunta por el arché llega hasta hoy."
+    },
+    {
+      "id": "dioses_series",
+      "texto": "En una serie aparecen dioses que se pelean por celos, roban y mienten como cualquier persona.",
+      "claves": "Aplicar la crítica de Jenófanes a los dioses antropomórficos de Homero (bueyes y caballos con manos); un solo dios sin figura humana; someter las creencias a la razón."
+    },
+    {
+      "id": "musica",
+      "texto": "Un compañero que toca la guitarra dice que la música no tiene nada que ver con la matemática.",
+      "claves": "Aplicar a los pitagóricos: el número como arché, las proporciones en los sonidos armoniosos, la estructura matemática del universo."
+    },
+    {
+      "id": "discusion_opuestos",
+      "texto": "En tu curso hay dos grupos que siempre se pelean, y un profesor dice que de esas discusiones puede salir algo bueno.",
+      "claves": "Aplicar la lucha de opuestos de Heráclito (pólemos, armonía en tensión) y el logos que la ordena; discutir si todo conflicto es bueno."
+    },
+    {
+      "id": "aquiles",
+      "texto": "Tu hermano menor te plantea la paradoja de Aquiles y la tortuga y te pide que le expliques por qué Aquiles sí la alcanza.",
+      "claves": "Exponer la paradoja de Zenón y su objetivo (defender a Parménides: el movimiento sería ilusión); distinguir lo que muestran los sentidos y lo que concluye la razón."
+    },
+    {
+      "id": "mezcla",
+      "texto": "En una clase de cocina el profesor dice que todos los platos son combinaciones de unos pocos ingredientes.",
+      "claves": "Relacionar con el pluralismo: las cuatro raíces de Empédocles que se mezclan y separan (Amor y Discordia), «todo está en todo» de Anaxágoras; cambio como mezcla."
+    },
+    {
+      "id": "azar",
+      "texto": "Una amiga dice que todo lo que le pasa es pura suerte y que nada tiene una causa.",
+      "claves": "Contrastar con el determinismo atomista («nada ocurre por azar, sino por razón y necesidad») y con el logos de Heráclito como orden; valorar la búsqueda de causas naturales."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "rio_propio",
+      "texto": "¿En qué cambiaste vos en el último año? ¿Qué sentís que sigue igual?"
+    },
+    {
+      "id": "arche_elegido",
+      "texto": "De todos los arché de los presocráticos, ¿cuál te convence más y por qué?"
+    },
+    {
+      "id": "opuestos",
+      "texto": "¿Alguna vez una discusión o un conflicto te ayudó a crecer?"
+    },
+    {
+      "id": "sentidos",
+      "texto": "¿Te pasó que los sentidos te engañaran? ¿Le darías la razón a Parménides?"
+    },
+    {
+      "id": "razon",
+      "texto": "¿Por qué creés que estos primeros filósofos son importantes para la ciencia de hoy?"
+    }
+  ],
+  "practica": [
+    "¿Qué es el arché y qué significa que los primeros filósofos fueran monistas?",
+    "Compará los arché de Tales, Anaximandro y Anaxímenes y explicá sus razones.",
+    "¿Por qué los pitagóricos decían que todo es número?",
+    "¿Qué criticó Jenófanes de los dioses de Homero?",
+    "Explicá «nadie se baña dos veces en el mismo río» y qué es el logos para Heráclito.",
+    "¿Por qué Parménides dice que el cambio es una ilusión? ¿Cómo lo defendió Zenón?",
+    "¿Cómo explicaron el cambio Empédocles y Anaxágoras?",
+    "¿Qué son los átomos y el vacío para Leucipo y Demócrito?"
+  ]
+}

@@ -10,9 +10,9 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | hedonismo | 16 | 14 | 8 / 45 | PLACER + 6 | 30 / 15 | 15 | Epicuro |
 | utilitarismo | 8 | 12 | 8 / 44 | FELICIDAD + 9 | 43 / 15 | 15 | J. S. Mill |
 | etica | 17 | 12 | 8 / 51 | LIBERTAD + 8 | 48 / 15 | 23 | Sócrates |
-| origen (Unidad I) | 15 | 13 | 8 / 55 | MILETO + 6 | 29 / 15 | 12 | — |
-| presocraticos (Unidad I) | 16 | 13 | 8 / 55 | PRINCIPIO + 9 | 28 / 15 | 11 | — |
-| socrates (Unidad I) | 16 | 13 | 8 / 50 | SOCRATES + 8 | 28 / 15 | 16 | — |
+| origen (Unidad I) | 15 | 13 | 8 / 55 | MILETO + 6 | 29 / 15 | 12 | Tales de Mileto |
+| presocraticos (Unidad I) | 16 | 13 | 8 / 55 | PRINCIPIO + 9 | 28 / 15 | 11 | Heráclito |
+| socrates (Unidad I) | 16 | 13 | 8 / 50 | SOCRATES + 8 | 28 / 15 | 16 | Sócrates |
 | dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 | antropologia_aristoteles (Unidad II) | 16 | 13 | 8 / 55 | SUSTANCIA + 9 | 39 / 15 | 12 | Aristóteles |
 

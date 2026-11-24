@@ -52,9 +52,9 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 | Tema | Estado |
 |---|---|
-| `origen` | ✅ v2.0 (2026-11-24): material 15 secciones cortas (redirige bien a `origen`), cuestionario 13 (variable `ORIGEN_THEME`: antes no cargaba), caza 8 niveles / 55 sin negritas, crucigrama MILETO + 6 (ASOMBRO por COSMOS), mapa al sistema completo (29 nodos / 15 pares), cloze 12. Sin examen. |
-| `presocraticos` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma Pitágoras y Jenófanes, que están en el video), cuestionario 13, caza 8 niveles / 55, crucigrama PRINCIPIO + 9, mapa 28 nodos / 15 pares, cloze 11 con el video hasta 17:03 (antes cortaba en 10:01). Sin examen. |
-| `socrates` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma fuentes, definiciones universales y «mejor sufrir una injusticia que cometerla», del video), cuestionario 13, caza 8 niveles / 50, crucigrama SOCRATES + 8, mapa 28 nodos / 15 pares, cloze 16. Sin examen. |
+| `origen` | ✅ v2.0 (2026-11-24): material 15 secciones cortas (redirige bien a `origen`), cuestionario 13 (variable `ORIGEN_THEME`: antes no cargaba), caza 8 niveles / 55 sin negritas, crucigrama MILETO + 6 (ASOMBRO por COSMOS), mapa al sistema completo (29 nodos / 15 pares), cloze 12. Examen con Tales de Mileto y resumen final. |
+| `presocraticos` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma Pitágoras y Jenófanes, que están en el video), cuestionario 13, caza 8 niveles / 55, crucigrama PRINCIPIO + 9, mapa 28 nodos / 15 pares, cloze 11 con el video hasta 17:03 (antes cortaba en 10:01). Examen con Heráclito y resumen final. |
+| `socrates` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma fuentes, definiciones universales y «mejor sufrir una injusticia que cometerla», del video), cuestionario 13, caza 8 niveles / 50, crucigrama SOCRATES + 8, mapa 28 nodos / 15 pares, cloze 16. Examen con Sócrates y resumen final. |
 | `aristoteles`, `metodo`, `platon` | 🟡 Solo material y `cloze_test.js` (sin video en `VIDEO_CONFIG`). ❌ Cuestionario, caza, crucigrama y mapa. |
 | `ramas` | 🟡 Solo material. |
 
@@ -74,10 +74,11 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 - **Cloud Functions:** se publican con `firebase deploy --only functions` cuando cambia `functions/index.js`. Última publicada: **V8.3** (2026-11-19: devolución por pregunta e ideas flojas que vuelven en el intento siguiente). Los cambios en `examen.json` no necesitan publicar.
 - **Reglas** (`firestore.rules` v1.1.0): se pegan a mano en Firebase Console → Firestore → Reglas. Sin confirmar que estén pegadas.
-- **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill, Sócrates, Platón y Aristóteles en la Unidad II).
+- **Exámenes con la IA real:** probados solo con respuestas simuladas (emulador). Falta rendir cada uno como alumno para ver cómo pregunta el filósofo y si la nota es razonable (Aristóteles, Epicuro, Mill, Sócrates, Platón, Aristóteles en la Unidad II, Tales, Heráclito y Sócrates en la Unidad I).
 
 ## Historial reciente
 
+- 2026-11-24: examen oral y resumen final en Origen (Tales de Mileto), Presocráticos (Heráclito de Éfeso) y Sócrates (Sócrates). Desde ahora esos temas se aprueban con 60% en cada actividad y el examen aprobado.
 - 2026-11-24: Sócrates completo (v2.0): material en 16 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama SOCRATES, mapa con 15 pares. Los cuestionarios de Origen, Presocráticos, Sócrates, Dualismo y Antropología de Aristóteles se probaron cargando en el navegador.
 - 2026-11-24: Presocráticos completo (v2.0): material en 16 secciones cortas con Pitágoras y Jenófanes, cuestionario de 13, caza de 8 niveles, crucigrama PRINCIPIO, mapa con 15 pares y video estirado hasta el último hueco del cloze.
 - 2026-11-24: Origen de la Filosofía revisado (v2.0): material en 15 secciones cortas y redirección corregida; cuestionario de 13 que ahora carga (la variable no coincidía con el id); caza de 8 niveles sin negritas; crucigrama con palabras del material; mapa con juego de 15 pares; tarjeta con 13 preguntas y `contentFile` corregido.

@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Sócrates y del resumen final del tema «Sócrates: El Giro Antropológico y la Mayéutica». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-24): examen nuevo.",
+  "version": "1.0.0",
+  "filosofo": "Sócrates",
+  "tema": "Sócrates: el giro antropológico, el método socrático (ironía y mayéutica) y el intelectualismo moral",
+  "intro": "Sócrates (470–399 a. C.) llevó la filosofía de la naturaleza al ser humano: el giro antropológico. Frente al relativismo de los sofistas, buscó con el diálogo definiciones universales, usando la ironía y la mayéutica. Enseñó que la virtud es conocimiento y que nadie hace el mal a sabiendas, y murió siendo coherente con sus ideas.",
+  "conceptosClave": "giro antropológico, sofistas, relativismo, retórica, conócete a ti mismo, alma, ironía, solo sé que no sé nada, mayéutica, definición universal, intelectualismo moral, virtud, ignorancia, eudaimonía, cicuta",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "agora",
+      "texto": "Sócrates detiene al alumno en el ágora de Atenas, descalzo como siempre, y le dice que no le va a tomar examen: solo quiere hacerle unas preguntas... muchas preguntas."
+    },
+    {
+      "id": "tabano",
+      "texto": "Sócrates espanta un tábano que pica a un caballo y le dice al alumno que él hace lo mismo con los atenienses: hoy le toca a él ser picado por sus preguntas."
+    },
+    {
+      "id": "oraculo",
+      "texto": "Sócrates vuelve a contar que el oráculo de Delfos dijo que nadie era más sabio que él, y le propone al alumno averiguar juntos qué sabe y qué no sabe."
+    },
+    {
+      "id": "jantipa",
+      "texto": "Sócrates llega todo mojado: Jantipa, su esposa, le tiró un balde de agua después de discutir. Se ríe y dice que después del trueno siempre viene la lluvia; ahora quiere conversar tranquilo con el alumno."
+    },
+    {
+      "id": "partera",
+      "texto": "Sócrates recuerda a su madre, que era partera, y le dice al alumno que hoy él también va a ayudarlo a «dar a luz» lo que aprendió."
+    },
+    {
+      "id": "banquete",
+      "texto": "Sócrates sale de un banquete en la casa de Agatón donde discutieron toda la noche sobre el amor; todavía con ganas de preguntar, invita al alumno a seguir conversando."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "giro",
+      "titulo": "El giro antropológico",
+      "guia": "Preguntar en qué consistió el giro antropológico y qué disciplina nace con él.",
+      "claves": "Los presocráticos se preguntaban por la physis y el arché; Sócrates (siglo V a. C., Atenas) pasó a preguntarse por el ser humano (ánthropos) y cómo debe vivir en sociedad. Podía aprender más de las personas que de los árboles. Nace la ética (y la filosofía política) como centro de la filosofía.",
+      "resumen": "Sócrates cambió la pregunta de la filosofía: de la naturaleza al ser humano y cómo debe vivir. Ese cambio se llama giro antropológico, y con él la ética pasa al centro.",
+      "palabras": [
+        "giro antropológico",
+        "ánthropos",
+        "physis",
+        "ética",
+        "cómo vivir"
+      ],
+      "ejemplo": "En lugar de preguntarte cómo funciona el universo, te preguntás cómo ser una buena persona."
+    },
+    {
+      "id": "fuentes",
+      "titulo": "Una vida sin libros: cómo lo conocemos",
+      "guia": "Preguntar por qué Sócrates no escribió y cómo conocemos su pensamiento.",
+      "claves": "Sócrates no escribió nada: filosofaba conversando. Lo conocemos sobre todo por Platón, que lo hizo protagonista de sus diálogos; Aristófanes lo caricaturizó como charlatán en la comedia Las nubes. Hijo de un escultor y una partera; casado con Jantipa. Gandhi y Martin Luther King lo admiraron.",
+      "resumen": "Sócrates no escribió: prefería conversar. Lo conocemos sobre todo por su discípulo Platón; el comediógrafo Aristófanes se burló de él en Las nubes.",
+      "palabras": [
+        "no escribió",
+        "Platón",
+        "diálogos",
+        "Aristófanes",
+        "Las nubes"
+      ],
+      "ejemplo": "Es como conocer a alguien solo por lo que cuentan sus amigos... y uno que se burla de él."
+    },
+    {
+      "id": "sofistas",
+      "titulo": "Los sofistas",
+      "guia": "Preguntar quiénes eran los sofistas y qué defendían.",
+      "claves": "Maestros viajeros que cobraban por enseñar retórica (hablar bien y convencer). Defendían el relativismo: no hay verdades absolutas. Protágoras: «el hombre es la medida de todas las cosas»; Gorgias dudaba de poder conocer la verdad. Les importaba el éxito personal y ganar debates más que la verdad o el bien común.",
+      "resumen": "Los sofistas cobraban por enseñar retórica, el arte de convencer. Eran relativistas: decían que no hay verdades absolutas. Protágoras: «el hombre es la medida de todas las cosas».",
+      "palabras": [
+        "sofistas",
+        "retórica",
+        "relativismo",
+        "Protágoras",
+        "persuadir"
+      ],
+      "ejemplo": "Un tutorial que te enseña a «ganar cualquier discusión», tengas razón o no, es muy sofista."
+    },
+    {
+      "id": "contraste",
+      "titulo": "Sócrates frente a los sofistas",
+      "guia": "Preguntar en qué se diferenciaba Sócrates de los sofistas.",
+      "claves": "Ambos se interesan por el ser humano, pero: Sócrates defiende verdades morales universales (no relativismo), busca la virtud y el bien común (no el éxito personal), usa el diálogo para llegar a la verdad (no la retórica para convencer) y nunca cobró. Era un reformador moral: no quería destruir las leyes, sino ciudadanos mejores.",
+      "resumen": "Sócrates buscaba la verdad y la virtud con el diálogo, y nunca cobró; los sofistas cobraban por enseñar a convencer y decían que no hay verdades universales.",
+      "palabras": [
+        "verdades universales",
+        "virtud",
+        "diálogo",
+        "no cobraba",
+        "reformador moral"
+      ],
+      "ejemplo": "Discutir para entender quién tiene razón no es lo mismo que discutir para ganar."
+    },
+    {
+      "id": "conocete",
+      "titulo": "Conócete a ti mismo",
+      "guia": "Preguntar qué lema guió a Sócrates y qué significa «una vida no examinada no merece ser vivida».",
+      "claves": "Inscripción del templo de Delfos: «Conócete a ti mismo» (gnóthi seautón). Para Sócrates la filosofía es autoconocimiento: solo sabiendo quiénes somos y qué es lo bueno podemos actuar bien. La mayoría vive guiada por opiniones y prejuicios. «Una vida no examinada no merece ser vivida».",
+      "resumen": "El lema de Sócrates era «conócete a ti mismo», del templo de Delfos. Para él, filosofar es examinarse: una vida sin reflexión no merece ser vivida.",
+      "palabras": [
+        "conócete a ti mismo",
+        "Delfos",
+        "autoconocimiento",
+        "vida examinada",
+        "prejuicios"
+      ],
+      "ejemplo": "Preguntarte por qué te enojás tanto con ciertas cosas es un pequeño ejercicio socrático."
+    },
+    {
+      "id": "alma",
+      "titulo": "El cuidado del alma",
+      "guia": "Preguntar qué es el alma para Sócrates y por qué hay que cuidarla.",
+      "claves": "En la Apología, Sócrates dice que su misión es que jóvenes y viejos se ocupen del alma antes y más que del cuerpo o las riquezas. El alma es la razón, la conciencia: lo que piensa y decide. La felicidad (eudaimonía) no está en las posesiones ni en los placeres, sino en un alma buena y sabia.",
+      "resumen": "Para Sócrates el alma es nuestra razón y conciencia, y hay que cuidarla más que al cuerpo o a las riquezas. La felicidad está en tener un alma buena, no en las posesiones.",
+      "palabras": [
+        "alma",
+        "razón",
+        "Apología",
+        "felicidad",
+        "posesiones"
+      ],
+      "ejemplo": "Pasar horas cuidando tu imagen en redes y nada pensando quién querés ser: Sócrates diría que descuidás el alma."
+    },
+    {
+      "id": "ironia",
+      "titulo": "La ironía y «solo sé que no sé nada»",
+      "guia": "Preguntar en qué consiste la ironía y de dónde viene «solo sé que no sé nada».",
+      "claves": "Ironía: primera fase del método; Sócrates finge no saber y, con preguntas simples, el otro cae en contradicciones y descubre que no sabía lo que creía. Busca destruir falsas certezas, no humillar. El oráculo de Delfos dijo que nadie era más sabio que Sócrates: su sabiduría era saber que no sabía. Sócrates como tábano que despierta a Atenas.",
+      "resumen": "Con la ironía, Sócrates fingía no saber y con preguntas mostraba que el otro tampoco sabía. El oráculo lo llamó el más sabio porque reconocía su ignorancia: «solo sé que no sé nada».",
+      "palabras": [
+        "ironía",
+        "contradicciones",
+        "falsas certezas",
+        "oráculo de Delfos",
+        "solo sé que no sé nada"
+      ],
+      "ejemplo": "Cuando alguien te pregunta «¿y por qué pensás eso?» tres veces seguidas, a veces descubrís que no sabías."
+    },
+    {
+      "id": "mayeutica",
+      "titulo": "La mayéutica",
+      "guia": "Preguntar qué es la mayéutica y de dónde viene su nombre.",
+      "claves": "Segunda fase del método: «arte de ayudar a dar a luz». La madre de Sócrates era partera; él, con preguntas bien pensadas, ayudaba al otro a «dar a luz» la verdad que llevaba dentro. El conocimiento no se impone desde afuera: cada uno lo descubre con la guía del maestro.",
+      "resumen": "La mayéutica es el arte de ayudar a «dar a luz» ideas. Como su madre era partera, Sócrates ayudaba con preguntas a que cada uno descubriera la verdad por sí mismo.",
+      "palabras": [
+        "mayéutica",
+        "partera",
+        "dar a luz",
+        "preguntas",
+        "descubrir por sí mismo"
+      ],
+      "ejemplo": "Un buen profe que no te da la respuesta sino que te pregunta hasta que la encontrás vos."
+    },
+    {
+      "id": "definiciones",
+      "titulo": "La búsqueda de definiciones universales",
+      "guia": "Preguntar qué buscaba Sócrates con preguntas como «¿qué es la justicia?».",
+      "claves": "Buscaba definiciones universales: no ejemplos («devolver lo prestado»), sino qué es la justicia en sí, lo común a todos los actos justos, válido para todos los casos y personas. Así enfrentó al relativismo sofista: si se puede definir el bien, no todo da lo mismo.",
+      "resumen": "Sócrates no se conformaba con ejemplos: preguntaba «¿qué es la justicia?» buscando una definición universal, válida para todos los casos. Así enfrentó al relativismo.",
+      "palabras": [
+        "definición universal",
+        "qué es",
+        "justicia en sí",
+        "ejemplos",
+        "relativismo"
+      ],
+      "ejemplo": "Decir «ser amigo es prestar los apuntes» es un ejemplo; ¿qué es ser amigo en sí?"
+    },
+    {
+      "id": "intelectualismo",
+      "titulo": "Intelectualismo moral: nadie hace el mal a sabiendas",
+      "guia": "Preguntar qué afirma el intelectualismo moral y por qué alguien obra mal según Sócrates.",
+      "claves": "El conocimiento del bien es la virtud: quien conoce de verdad el bien, lo hace. Por eso nadie hace el mal a sabiendas: quien obra mal lo hace por ignorancia, creyendo que obtendrá algo bueno (el que estafa cree que el dinero lo hará feliz). Al que se equivoca hay que enseñarle; la educación es el camino. La virtud se puede enseñar.",
+      "resumen": "Para Sócrates la virtud es conocimiento: quien sabe de verdad qué es el bien, lo hace. Por eso nadie hace el mal a sabiendas: el mal viene de la ignorancia, y la solución es educar.",
+      "palabras": [
+        "intelectualismo moral",
+        "virtud",
+        "conocimiento del bien",
+        "ignorancia",
+        "educación"
+      ],
+      "ejemplo": "El que copia en una prueba cree que gana algo, pero según Sócrates pierde lo más valioso: aprender."
+    },
+    {
+      "id": "injusticia",
+      "titulo": "Mejor sufrir una injusticia que cometerla",
+      "guia": "Preguntar por qué, para Sócrates, es preferible sufrir una injusticia que cometerla.",
+      "claves": "Sufrir una injusticia daña lo que tenemos (cuerpo, dinero, fama) pero no nos vuelve injustos; cometerla daña el alma, lo más valioso, y nos convierte en personas injustas. Por eso es peor cometerla.",
+      "resumen": "Sócrates decía que es mejor sufrir una injusticia que cometerla: sufrirla daña lo que tenemos, pero cometerla daña el alma y nos vuelve injustos.",
+      "palabras": [
+        "sufrir una injusticia",
+        "cometerla",
+        "alma",
+        "persona injusta",
+        "lo más valioso"
+      ],
+      "ejemplo": "Que te roben la mochila es malo; pero robar una mochila te convierte en ladrón."
+    },
+    {
+      "id": "muerte",
+      "titulo": "El juicio y la muerte de Sócrates",
+      "guia": "Preguntar de qué lo acusaron, cómo murió y por qué no escapó.",
+      "claves": "En el 399 a. C. lo acusaron de no creer en los dioses de la ciudad y de corromper a los jóvenes; un jurado lo condenó a beber cicuta. Sus amigos le prepararon la huida, pero se negó: escapar sería violar las leyes de Atenas, bajo las que había vivido, y traicionar lo que enseñaba. Murió coherente: símbolo de integridad moral.",
+      "resumen": "Acusado de no creer en los dioses y de corromper a los jóvenes, Sócrates fue condenado a beber cicuta. Pudo escapar, pero no quiso violar las leyes ni traicionar sus ideas: murió siendo coherente.",
+      "palabras": [
+        "juicio",
+        "cicuta",
+        "corromper a los jóvenes",
+        "leyes",
+        "coherencia"
+      ],
+      "ejemplo": "Ser coherente es hacer lo que decís incluso cuando te cuesta."
+    }
+  ],
+  "casos": [
+    {
+      "id": "debate_ganar",
+      "texto": "En un debate de la escuela, un compañero gana con frases ingeniosas y chicanas, aunque no tenía razón. Todos lo aplauden.",
+      "claves": "Distinguir retórica sofista (convencer, éxito) del diálogo socrático (buscar la verdad); relativismo frente a verdades universales; qué haría Sócrates (preguntar, definir)."
+    },
+    {
+      "id": "todo_relativo",
+      "texto": "Una amiga dice que «cada uno tiene su verdad» y que por eso nadie puede decir que algo está mal.",
+      "claves": "Identificar el relativismo de los sofistas (Protágoras) y la respuesta de Sócrates: definiciones universales, se puede buscar qué es el bien; argumentar con ejemplos."
+    },
+    {
+      "id": "estafa",
+      "texto": "Un conocido vende zapatillas falsas como originales y gana mucha plata. Dice que es «el más vivo».",
+      "claves": "Aplicar el intelectualismo moral: nadie hace el mal a sabiendas, obra por ignorancia creyendo que el dinero lo hará feliz; daña su alma; la educación como camino; mejor sufrir una injusticia que cometerla."
+    },
+    {
+      "id": "copiar",
+      "texto": "En una prueba podés copiar sin que nadie se entere y sacarte un diez.",
+      "claves": "Usar el cuidado del alma, «mejor sufrir una injusticia que cometerla», el intelectualismo moral y la coherencia; la felicidad no está en las notas o posesiones sino en el alma."
+    },
+    {
+      "id": "profe_respuestas",
+      "texto": "Un profesor nunca da las respuestas: solo hace preguntas, y algunos compañeros se quejan.",
+      "claves": "Explicar la mayéutica (dar a luz la verdad, descubrir por sí mismo) y la ironía (reconocer la ignorancia); valorar el diálogo frente a recibir respuestas hechas."
+    },
+    {
+      "id": "creer_saber",
+      "texto": "Un compañero opina con seguridad sobre todo, pero cuando le preguntás por qué, no sabe explicarlo.",
+      "claves": "Aplicar la ironía socrática y «solo sé que no sé nada»: las falsas certezas; el oráculo de Delfos; humildad como comienzo del conocimiento."
+    },
+    {
+      "id": "injusticia_grupo",
+      "texto": "Te echaron de un grupo de amigos por una mentira que inventó otro, y tenés ganas de vengarte inventando algo peor.",
+      "claves": "Aplicar «es preferible sufrir una injusticia que cometerla»: cometerla daña el alma; cuidado del alma; coherencia."
+    },
+    {
+      "id": "reglas_injustas",
+      "texto": "Te ponen una sanción en la escuela que te parece injusta, y un amigo te propone falsificar una firma para evitarla.",
+      "claves": "Relacionar con la decisión de Sócrates de no escapar: respeto a las leyes y coherencia; distinguir cuestionar con razones (diálogo) de violar normas; reformador moral."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "examinar",
+      "texto": "¿Qué cosa de tu vida nunca te pusiste a examinar? ¿Qué preguntas te harías?"
+    },
+    {
+      "id": "no_saber",
+      "texto": "¿Te cuesta decir «no sé»? ¿Por qué creés que Sócrates lo veía como algo bueno?"
+    },
+    {
+      "id": "alma_cuerpo",
+      "texto": "¿A qué le dedicás más tiempo: a cuidar tu imagen o a pensar quién querés ser?"
+    },
+    {
+      "id": "coherencia",
+      "texto": "¿Alguna vez hiciste algo contrario a lo que pensabas? ¿Cómo te sentiste?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Sócrates, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué cambió con el giro antropológico de Sócrates?",
+    "¿Por qué no hay libros de Sócrates y cómo lo conocemos?",
+    "Compará a Sócrates con los sofistas en tres puntos.",
+    "¿Qué significa «conócete a ti mismo» y por qué una vida no examinada no merece ser vivida?",
+    "Explicá con un ejemplo la ironía y la mayéutica.",
+    "¿Qué es una definición universal? Dá un ejemplo con la amistad o la valentía.",
+    "¿Por qué, para Sócrates, nadie hace el mal a sabiendas?",
+    "¿Por qué Sócrates no escapó de la cárcel?"
+  ]
+}
