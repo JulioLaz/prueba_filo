@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Sócrates · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Sócrates (Unidad I). Versión 1.0 (2026-11-24): tema nuevo en el mapa, sistema completo con 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Sócrates
+    window.MapaSystemConfig = {
+      tema: 'socrates',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Giro Antropológico", definition: "Cambio de la pregunta filosófica: de la naturaleza al ser humano." },
+        { term: "Sofistas", definition: "Maestros que cobraban por enseñar retórica y defendían el relativismo." },
+        { term: "Relativismo", definition: "Idea de que no hay verdades absolutas: cada uno tiene su verdad." },
+        { term: "Retórica", definition: "Arte de hablar bien y convencer." },
+        { term: "Conócete a Ti Mismo", definition: "Inscripción de Delfos que guió a Sócrates: la filosofía como autoconocimiento." },
+        { term: "Alma", definition: "Para Sócrates, nuestra razón y conciencia: lo que hay que cuidar primero." },
+        { term: "Tábano", definition: "Insecto con el que Sócrates comparaba su tarea de despertar a los atenienses." },
+        { term: "Ironía", definition: "Fingir no saber para que el otro descubra su propia ignorancia." },
+        { term: "Solo Sé que No Sé Nada", definition: "Reconocer la propia ignorancia: el comienzo del conocimiento." },
+        { term: "Mayéutica", definition: "Arte de ayudar a «dar a luz» la verdad con preguntas." },
+        { term: "Definición Universal", definition: "Lo que algo es en sí, válido para todos los casos." },
+        { term: "Intelectualismo Moral", definition: "La virtud es conocimiento: quien conoce el bien, lo hace." },
+        { term: "Ignorancia", definition: "Causa del mal según Sócrates: nadie hace el mal a sabiendas." },
+        { term: "Eudaimonía", definition: "Felicidad como plenitud del alma, no como placer o posesiones." },
+        { term: "Cicuta", definition: "Veneno con el que Sócrates fue condenado a morir en el 399 a. C." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🧠'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🧠']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🧠 Sócrates</span></div>
+      </div>
+      <h3 class="sub">El giro antropológico y la mayéutica</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Sócrates">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Sócrates</div>
+            <div class="desc">Llevó la filosofía al <strong>ser humano</strong>: con el <strong>diálogo</strong> buscó la verdad y enseñó que la <strong>virtud es conocimiento</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="El Giro Antropológico">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Giro Antropológico</div>
+                <div class="desc">De la <em>physis</em> (naturaleza) al <em>ánthropos</em> (ser humano).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Nace la ética"><div class="toggle" style="visibility: hidden;"></div><div class="title">Nace la ética</div><div class="desc">La pregunta central pasa a ser <strong>cómo vivir</strong>.</div></div></li>
+                <li><div class="node" data-title="Árboles y personas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Árboles y personas</div><div class="desc">«Puedo aprender más de las personas que de los árboles».</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Vida y Fuentes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Vida y Fuentes</div>
+                <div class="desc">Sócrates <strong>no escribió</strong>: filosofaba conversando.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Platón"><div class="toggle" style="visibility: hidden;"></div><div class="title">Platón</div><div class="desc">Su discípulo lo hizo <strong>protagonista</strong> de sus diálogos.</div></div></li>
+                <li><div class="node" data-title="Aristófanes"><div class="toggle" style="visibility: hidden;"></div><div class="title">Aristófanes</div><div class="desc">Se burló de él en la comedia <em>Las nubes</em>.</div></div></li>
+                <li><div class="node" data-title="Su influencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Su influencia</div><div class="desc">Siglos después lo admiraron <strong>Gandhi</strong> y <strong>Martin Luther King</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Los Sofistas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Los Sofistas</div>
+                <div class="desc">Maestros viajeros que <strong>cobraban</strong> por enseñar.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Retórica y éxito"><div class="toggle" style="visibility: hidden;"></div><div class="title">Retórica y éxito</div><div class="desc">Enseñaban a <strong>convencer</strong> y a ganar debates.</div></div></li>
+                <li><div class="node" data-title="Protágoras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Protágoras</div><div class="desc">«El hombre es la medida de todas las cosas»: <strong>relativismo</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Sócrates frente a los Sofistas">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Sócrates frente a los Sofistas</div>
+                <div class="desc"><strong>Verdad</strong> frente a persuasión.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Verdades universales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Verdades universales</div><div class="desc">Contra el relativismo, valores que valen para todos.</div></div></li>
+                <li><div class="node" data-title="Reformador moral"><div class="toggle" style="visibility: hidden;"></div><div class="title">Reformador moral</div><div class="desc">Nunca cobró; quería <strong>ciudadanos mejores</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Conócete a Ti Mismo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Conócete a Ti Mismo</div>
+                <div class="desc">Lema del templo de <strong>Delfos</strong>: filosofar es autoconocimiento.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Vida examinada"><div class="toggle" style="visibility: hidden;"></div><div class="title">Vida examinada</div><div class="desc">«Una vida no examinada no merece ser vivida».</div></div></li>
+                <li><div class="node" data-title="Cuidado del alma"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cuidado del alma</div><div class="desc">El alma es la <strong>razón</strong>: hay que cuidarla antes que el cuerpo.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Método: el Diálogo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Método: el Diálogo</div>
+                <div class="desc">Preguntas que hacen pensar; Sócrates como <strong>tábano</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Ironía"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ironía</div><div class="desc">Fingir no saber: aparecen las <strong>contradicciones</strong>.</div></div></li>
+                <li><div class="node" data-title="Solo sé que no sé nada"><div class="toggle" style="visibility: hidden;"></div><div class="title">Solo sé que no sé nada</div><div class="desc">El <strong>oráculo</strong> lo llamó el más sabio por reconocer su ignorancia.</div></div></li>
+                <li><div class="node" data-title="Mayéutica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mayéutica</div><div class="desc">Como su madre <strong>partera</strong>, ayudaba a «dar a luz» la verdad.</div></div></li>
+                <li><div class="node" data-title="Definiciones universales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Definiciones universales</div><div class="desc">No ejemplos: <strong>qué es</strong> la justicia en sí.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Intelectualismo Moral">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Intelectualismo Moral</div>
+                <div class="desc">El <strong>conocimiento del bien</strong> es la virtud.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Nadie hace el mal a sabiendas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Nadie hace el mal a sabiendas</div><div class="desc">El mal nace de la <strong>ignorancia</strong>; la cura es la educación.</div></div></li>
+                <li><div class="node" data-title="Sufrir o cometer"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sufrir o cometer</div><div class="desc">Es preferible <strong>sufrir</strong> una injusticia que <strong>cometerla</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Juicio y Muerte">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Juicio y Muerte</div>
+                <div class="desc">En el 399 a. C., acusado de impiedad y de corromper a los jóvenes.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="La cicuta"><div class="toggle" style="visibility: hidden;"></div><div class="title">La cicuta</div><div class="desc">Condenado a beber <strong>veneno</strong>.</div></div></li>
+                <li><div class="node" data-title="Fiel a la ley"><div class="toggle" style="visibility: hidden;"></div><div class="title">Fiel a la ley</div><div class="desc">No escapó: prefirió ser <strong>coherente</strong> con lo que enseñaba.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Giro Antropológico</h4><p>Cambio de la pregunta filosófica: de la naturaleza al ser humano.</p></article>
+          <article class="term"><h4>Sofistas</h4><p>Maestros que cobraban por enseñar retórica y defendían el relativismo.</p></article>
+          <article class="term"><h4>Relativismo</h4><p>Idea de que no hay verdades absolutas: cada uno tiene su verdad.</p></article>
+          <article class="term"><h4>Retórica</h4><p>Arte de hablar bien y convencer.</p></article>
+          <article class="term"><h4>Conócete a Ti Mismo</h4><p>Inscripción de Delfos que guió a Sócrates: la filosofía como autoconocimiento.</p></article>
+          <article class="term"><h4>Alma</h4><p>Para Sócrates, nuestra razón y conciencia: lo que hay que cuidar primero.</p></article>
+          <article class="term"><h4>Tábano</h4><p>Insecto con el que Sócrates comparaba su tarea de despertar a los atenienses.</p></article>
+          <article class="term"><h4>Ironía</h4><p>Fingir no saber para que el otro descubra su propia ignorancia.</p></article>
+          <article class="term"><h4>Solo Sé que No Sé Nada</h4><p>Reconocer la propia ignorancia: el comienzo del conocimiento.</p></article>
+          <article class="term"><h4>Mayéutica</h4><p>Arte de ayudar a «dar a luz» la verdad con preguntas.</p></article>
+          <article class="term"><h4>Definición Universal</h4><p>Lo que algo es en sí, válido para todos los casos.</p></article>
+          <article class="term"><h4>Intelectualismo Moral</h4><p>La virtud es conocimiento: quien conoce el bien, lo hace.</p></article>
+          <article class="term"><h4>Ignorancia</h4><p>Causa del mal según Sócrates: nadie hace el mal a sabiendas.</p></article>
+          <article class="term"><h4>Eudaimonía</h4><p>Felicidad como plenitud del alma, no como placer o posesiones.</p></article>
+          <article class="term"><h4>Cicuta</h4><p>Veneno con el que Sócrates fue condenado a morir en el 399 a. C.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de Sócrates.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Dialogar como Sócrates</summary>
+      <div class="content">
+        <h4>Preguntas para examinar la propia vida</h4>
+        <ul>
+          <li><strong>Ironía:</strong> ¿Estoy seguro de lo que creo saber, o solo lo repito?</li>
+          <li><strong>Definición:</strong> ¿Qué es esto en sí, más allá de un ejemplo?</li>
+          <li><strong>Mayéutica:</strong> ¿Qué preguntas me ayudan a descubrir la respuesta por mí mismo?</li>
+          <li><strong>Alma:</strong> ¿Lo que hago mejora mi alma o solo mis posesiones?</li>
+          <li><strong>Coherencia:</strong> ¿Vivo de acuerdo con lo que digo que pienso?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

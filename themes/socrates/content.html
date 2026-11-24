@@ -3,32 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sócrates y el Giro Antropológico</title>
+  <!--
+    Material de lectura — Sócrates: El Giro Antropológico y la Mayéutica. Unidad I.
+    16 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-24): reescrito en 16 secciones cortas (antes 11 muy largas); agrega las fuentes, las definiciones universales y «mejor sufrir una injusticia que cometerla», que trata el video.
+  -->
+  <title>Sócrates: El Giro Antropológico y la Mayéutica</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
   <script src="../../js/celebration.js" defer></script>
-  
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Sócrates
     window.ReadAloudSystemConfig = {
-      tema: 'Sócrates y el Giro Antropológico',
-      threshold: 0.80,
-      sections: 11, // 11 secciones completas
+      tema: 'Sócrates: El Giro Antropológico y la Mayéutica',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=socrates',
-      celebrationEmojis: ['🗣️', '🧠', '💡', '⚖️', '🏛️', '📚', '🎭', '✨'],
-      
+      celebrationEmojis: ['🧠', '💬', '🏛️', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'sócrates': ['socrático', 'maestro ateniense'],
-        'antropológico': ['humano', 'ser humano'],
-        'mayéutica': ['arte de parir', 'diálogo socrático'],
-        'ironía': ['fingir ignorancia', 'solo sé que no sé nada'],
-        'virtud': ['areté', 'excelencia moral'],
-        'intelectualismo': ['conocimiento del bien'],
-        'sofistas': ['relativismo', 'retórica'],
-        'eudaimonía': ['felicidad', 'plenitud'],
-        'polis': ['ciudad-estado', 'comunidad']
+        'socrates': ['sócrates'],
+        'anthropos': ['ántropos', 'ánthropos'],
+        'physis': ['fisis'],
+        'protagoras': ['protágoras'],
+        'aristofanes': ['aristófanes'],
+        'jantipa': ['xantipa', 'jantipa'],
+        'gnothi': ['gnozi', 'nozi'],
+        'seauton': ['seautón', 'seauton'],
+        'mayeutica': ['mayéutica'],
+        'eudaimonia': ['eudemonía', 'felicidad'],
+        'querefonte': ['querefón'],
+        'apologia': ['apología'],
+        'tabano': ['tábano'],
+        'cicuta': ['veneno']
       }
     };
   </script>
@@ -38,21 +49,21 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 11 secciones</span>
+        <span id="progress-counter">0 / 16 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>🗣️ Sócrates y el Giro Antropológico</h1>
-    <p><em>Del estudio de la naturaleza a la reflexión sobre el ser humano: el método socrático, la virtud y la búsqueda de la felicidad a través del conocimiento.</em></p>
+    <h1>🧠 Sócrates: El Giro Antropológico y la Mayéutica</h1>
+    <p><em>El <strong>giro antropológico</strong>: del cosmos al ser humano. Sócrates frente a los <strong>sofistas</strong>, el <strong>conócete a ti mismo</strong>, la <strong>ironía</strong> y la <strong>mayéutica</strong>, el <strong>intelectualismo moral</strong> y una muerte coherente con su enseñanza.</em></p>
 
-    <!-- SECCIÓN 1: INTRODUCCIÓN Y GIRO ANTROPOLÓGICO -->
-    <div class="study-section active" data-section="introduccion">
+    <!-- 1. El giro antropológico -->
+    <div class="study-section active" data-section="giro">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 Un Punto de Inflexión: El Giro Antropológico</h3>
+          <h3>🔄 El giro antropológico</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -60,16 +71,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Sócrates</strong> (469/470-399 a.C.) es reconocido como una figura central y un <strong>punto de inflexión</strong> en la historia de la filosofía. Su aparición en Atenas en el siglo V a.C. marcó un cambio fundamental conocido como el <strong>giro antropológico</strong>.<br><br>
-            
-            <strong>Antes de Sócrates:</strong> Los pensadores (llamados presocráticos) se enfocaban en la <em>naturaleza</em> (<strong>physis</strong>) y en la búsqueda del <em>arché</em> (el principio que explicaba el origen del mundo y del universo).<br><br>
-
-            <strong>El cambio de Sócrates:</strong> A partir del siglo V a.C., las explicaciones presocráticas no satisfacían a los nuevos pensadores. Sócrates introdujo este giro, dedicando su vida filosófica a la cuestión del <strong>ser humano</strong> (<em>anthropos</em>) y cómo este debía obrar en sociedad.<br><br>
-
-            Él afirmaba que había mucho que podía aprender de los hombres, a diferencia de las nubes o los árboles. Este cambio de enfoque marcó el nacimiento de la <strong>ética</strong> y la <strong>filosofía política</strong> como disciplinas centrales de la filosofía occidental.
+            Los presocráticos se preguntaban por la naturaleza (<em>physis</em>) y su arché. En el siglo V a. C., en Atenas, <strong>Sócrates</strong> (470–399 a. C.) cambió la pregunta: ya no le interesaba tanto el cosmos como el <strong>ser humano</strong> (<em>ánthropos</em>) y cómo debe vivir en sociedad.<br><br>Decía que podía aprender más de las personas que de los árboles o las nubes. Este cambio se llama <strong>giro antropológico</strong> y marca el nacimiento de la <strong>ética</strong> y la filosofía política.
           </p>
         </div>
 
@@ -80,7 +85,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sócrates cambió el foco: de la naturaleza al ser humano.
+            💡 De la naturaleza al ser humano.
           </div>
         </div>
       </div>
@@ -88,25 +93,73 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el giro antropológico:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿En qué consistió el giro antropológico que introdujo Sócrates?</p>
+          <p>¿En qué consistió el giro antropológico de Sócrates?</p>
         </div>
         <div class="options-container">
-          <div class="option">Volver a estudiar la naturaleza (<em>physis</em>)</div>
-          <div class="option" data-correct="true">Cambiar el foco del estudio de la naturaleza al estudio del ser humano y la ética</div>
-          <div class="option">Negar la existencia de los dioses</div>
-          <div class="option">Buscar el <em>arché</em> del universo</div>
+          <div class="option" data-correct="true">En pasar de estudiar la naturaleza a estudiar al ser humano y cómo debe vivir</div>
+          <div class="option">En dejar la filosofía para dedicarse a la astronomía</div>
+          <div class="option">En buscar el arché en el fuego</div>
+          <div class="option">En volver a explicar el mundo con mitos</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 2: CONTEXTO - SOFISTAS -->
+    <!-- 2. Una vida sin libros -->
+    <div class="study-section" data-section="vida-fuentes">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📜 Una vida sin libros</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Sócrates <strong>no escribió nada</strong>: prefería filosofar conversando en la plaza. Lo conocemos por otros, sobre todo por su discípulo <strong>Platón</strong>, que lo hizo protagonista de sus diálogos. El comediógrafo <strong>Aristófanes</strong>, en cambio, se burló de él en la comedia <em>Las nubes</em>, donde lo muestra como un charlatán.<br><br>Era hijo de un escultor y de una partera, y se casó con Jantipa, famosa por su carácter fuerte. Su influencia llegó lejos: siglos después, Gandhi y Martin Luther King lo admiraron.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Lo conocemos por Platón.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo conocemos el pensamiento de Sócrates?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Por los muchos libros que escribió</div>
+          <div class="option" data-correct="true">Por lo que escribieron otros, sobre todo su discípulo Platón</div>
+          <div class="option">Por las cartas que mandaba a sus alumnos</div>
+          <div class="option">Por grabaciones de sus conversaciones</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Los sofistas -->
     <div class="study-section" data-section="sofistas">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎭 El Contexto: Los Sofistas</h3>
+          <h3>🎭 Los sofistas</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -114,21 +167,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para comprender a Sócrates, es importante conocer a sus contemporáneos: los <strong>sofistas</strong>. Los sofistas eran maestros itinerantes que enseñaban <strong>retórica</strong> (el arte de hablar bien) y filosofía a cambio de dinero.<br><br>
-            
-            <strong>Características de los sofistas:</strong><br>
-            • Eran principalmente <strong>extranjeros</strong> que viajaban de ciudad en ciudad<br>
-            • <strong>Cobraban por sus enseñanzas</strong> (esto era controversial en la época)<br>
-            • Promovían el <strong>relativismo</strong>: no existen verdades absolutas<br>
-            • Enfatizaban el <strong>éxito social</strong> y político sobre la verdad moral<br>
-            • Cuestionaban las leyes tradicionales y las normas de la <em>polis</em><br><br>
-
-            <strong>Figuras destacadas:</strong> Protágoras (quien afirmó que <em>"el hombre es la medida de todas las cosas"</em>) y Gorgias (quien defendía el escepticismo radical).<br><br>
-
-            <strong>El individualismo sofista:</strong> Los sofistas promovían el éxito individual por encima del bien común, enseñando técnicas para persuadir y ganar debates, sin preocuparse necesariamente por la verdad.
+            En la misma época había en Atenas otros maestros: los <strong>sofistas</strong>. Viajaban de ciudad en ciudad y <strong>cobraban</strong> por enseñar <strong>retórica</strong>, el arte de hablar bien y convencer.<br><br>Defendían el <strong>relativismo</strong>: no hay verdades absolutas. <strong>Protágoras</strong> decía que «el hombre es la medida de todas las cosas», y <strong>Gorgias</strong> dudaba de que se pudiera conocer la verdad. Les importaba el éxito personal y ganar debates, más que la verdad o el bien común.
           </p>
         </div>
 
@@ -139,33 +181,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sofistas: relativismo y retórica para el éxito individual.
+            💡 Retórica, dinero y relativismo.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre los sofistas:</p>
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál era la principal característica del pensamiento sofista?</p>
+          <p>¿Qué defendían los sofistas?</p>
         </div>
         <div class="options-container">
-          <div class="option">Buscaban verdades morales universales</div>
-          <div class="option">No cobraban por sus enseñanzas</div>
-          <div class="option" data-correct="true">Promovían el relativismo y el éxito individual mediante la retórica</div>
-          <div class="option">Estudiaban únicamente la naturaleza</div>
+          <div class="option">Que existen verdades universales que todos deben buscar</div>
+          <div class="option">Que nunca hay que cobrar por enseñar</div>
+          <div class="option" data-correct="true">El relativismo: no hay verdades absolutas, y lo importante es convencer</div>
+          <div class="option">Que el arché es el agua</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 3: SÓCRATES VS SOFISTAS -->
-    <div class="study-section" data-section="socrates-vs-sofistas">
+    <!-- 4. Sócrates frente a los sofistas -->
+    <div class="study-section" data-section="contraste">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ Sócrates vs. Sofistas: El Gran Contraste</h3>
+          <h3>⚖️ Sócrates frente a los sofistas</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -173,28 +215,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Aunque Sócrates y los sofistas compartían el interés por el ser humano, sus filosofías eran <strong>radicalmente opuestas</strong>.<br><br>
-            
-            <strong>Sócrates defendía:</strong><br>
-            • La existencia de <strong>verdades morales universales</strong> y constantes<br>
-            • La búsqueda del <strong>bien común</strong> y la virtud<br>
-            • El <strong>autoconocimiento</strong> como camino hacia la sabiduría<br>
-            • Nunca cobró por sus enseñanzas<br>
-            • El <strong>diálogo</strong> como método para llegar a la verdad<br>
-            • La <strong>ley</strong> y el orden de la <em>polis</em> como sagrados<br><br>
-
-            <strong>Los sofistas defendían:</strong><br>
-            • El <strong>relativismo</strong>: cada persona tiene su propia verdad<br>
-            • El <strong>individualismo</strong> y el éxito personal<br>
-            • La <strong>retórica</strong> como herramienta de poder<br>
-            • Cobraban por sus enseñanzas<br>
-            • El <strong>escepticismo</strong>: no podemos conocer la verdad<br>
-            • Cuestionamiento de las leyes tradicionales<br><br>
-
-            Esta oposición fundamental hizo que Sócrates fuera visto como un <strong>reformador moral</strong> que buscaba consolidar los principios de la ciudad, mientras que los sofistas eran vistos como agentes de cambio que cuestionaban los fundamentos tradicionales.
+            Sócrates y los sofistas se interesaban por el ser humano, pero pensaban lo opuesto. Frente al relativismo, Sócrates defendía <strong>verdades morales universales</strong>. Frente al éxito personal, buscaba la <strong>virtud</strong> y el bien común. Frente a los discursos para convencer, usaba el <strong>diálogo</strong> para llegar a la verdad. Y nunca cobró por enseñar.<br><br>No quería destruir las leyes de Atenas: era un <strong>reformador moral</strong> que quería ciudadanos mejores y más conscientes.
           </p>
         </div>
 
@@ -205,33 +229,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sócrates buscaba verdades universales; los sofistas, el relativismo.
+            💡 Verdad frente a persuasión.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre las diferencias:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Cuál es la principal diferencia entre Sócrates y los sofistas?</p>
         </div>
         <div class="options-container">
-          <div class="option">Sócrates era extranjero y los sofistas eran atenienses</div>
-          <div class="option">Sócrates cobraba más que los sofistas</div>
-          <div class="option" data-correct="true">Sócrates buscaba verdades universales; los sofistas defendían el relativismo</div>
-          <div class="option">Ambos tenían las mismas ideas</div>
+          <div class="option">Sócrates cobraba más caro que los sofistas</div>
+          <div class="option" data-correct="true">Sócrates buscaba verdades universales; los sofistas, convencer y tener éxito</div>
+          <div class="option">Los sofistas buscaban la verdad y Sócrates solo quería ganar debates</div>
+          <div class="option">No había diferencias entre ellos</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 4: AUTOCONOCIMIENTO -->
-    <div class="study-section" data-section="autoconocimiento">
+    <!-- 5. Conócete a ti mismo -->
+    <div class="study-section" data-section="conocete">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔍 El Propósito de la Filosofía: Conócete a Ti Mismo</h3>
+          <h3>🔍 Conócete a ti mismo</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -239,22 +263,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para Sócrates, el camino de la filosofía consistía en encontrar la <strong>verdadera sabiduría de vida</strong>. Su enfoque se centró en la <strong>ética</strong> y la <strong>política</strong>, buscando la plenitud a través del autoexamen.<br><br>
-            
-            Una máxima fundamental que guiaba su pensamiento era el lema del <strong>oráculo de Delfos</strong>: <em>"Conócete a ti mismo"</em> (<strong>gnóthi seautón</strong>). Para Sócrates, la filosofía es, esencialmente, <strong>autoconocimiento</strong>.<br><br>
-
-            En la <em>Apología de Sócrates</em> (relatada por Platón), se registra su <strong>misión de vida</strong>: preocupar a los ciudadanos, jóvenes y viejos, para que se ocupen de su <strong>alma</strong> antes y con más empeño que de sus cuerpos, buscando que esta sea lo mejor posible.<br><br>
-
-            <strong>¿Por qué el autoconocimiento?</strong><br>
-            • Solo conociendo lo que realmente somos podemos actuar correctamente<br>
-            • El cuidado del alma es más importante que el cuidado del cuerpo<br>
-            • La vida no examinada no merece ser vivida<br>
-            • El autoconocimiento es el primer paso hacia la virtud<br><br>
-
-            Sócrates consideraba que la mayoría de las personas viven sin reflexionar sobre sí mismas, guiándose por opiniones superficiales y prejuicios.
+            En el templo de Apolo en <strong>Delfos</strong> había una inscripción que guió a Sócrates: «<strong>Conócete a ti mismo</strong>» (<em>gnóthi seautón</em>). Para él, la filosofía es ante todo <strong>autoconocimiento</strong>.<br><br>Solo si sabemos quiénes somos y qué es lo bueno podemos actuar bien. La mayoría vive sin pensar en sí misma, guiada por opiniones y prejuicios. Por eso Sócrates afirmaba que «una <strong>vida no examinada</strong> no merece ser vivida».
           </p>
         </div>
 
@@ -265,33 +277,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 "Conócete a ti mismo": el inicio de la sabiduría.
+            💡 Gnóthi seautón.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el autoconocimiento:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál era la misión de vida de Sócrates según la <em>Apología</em>?</p>
+          <p>¿Qué significa «una vida no examinada no merece ser vivida»?</p>
         </div>
         <div class="options-container">
-          <div class="option">Acumular riquezas para la ciudad</div>
-          <div class="option">Enseñar retórica a los jóvenes</div>
-          <div class="option" data-correct="true">Que los ciudadanos se ocupen de su alma y la mejoren</div>
-          <div class="option">Derrocar el gobierno de Atenas</div>
+          <div class="option" data-correct="true">Que hay que reflexionar sobre uno mismo para vivir bien</div>
+          <div class="option">Que hay que hacerse revisar por un médico cada año</div>
+          <div class="option">Que solo vale la pena vivir si uno aprueba los exámenes</div>
+          <div class="option">Que no hay que pensar en uno mismo</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 5: MÉTODO SOCRÁTICO - INTRODUCCIÓN -->
-    <div class="study-section" data-section="metodo-intro">
+    <!-- 6. El cuidado del alma -->
+    <div class="study-section" data-section="alma">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>💬 El Método Socrático: Diálogo y Verdad</h3>
+          <h3>💡 El cuidado del alma</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -299,22 +311,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Sócrates <strong>no dejó escritos</strong>. Él creía que la verdadera filosofía consistía en el <strong>diálogo</strong> y no en la mera lectura. Conocemos su pensamiento principalmente a través de los escritos de su discípulo <strong>Platón</strong>.<br><br>
-            
-            Su método se basaba en el <strong>diálogo oral</strong> e incluía dos fases principales: la <strong>ironía</strong> y la <strong>mayéutica</strong>.<br><br>
-
-            <strong>¿Por qué el diálogo?</strong><br>
-            • El diálogo es un proceso <strong>vivo y activo</strong>, no pasivo como la lectura<br>
-            • Permite el <strong>intercambio directo</strong> de ideas y la corrección mutua<br>
-            • Facilita el <strong>autoexamen</strong> y la reflexión profunda<br>
-            • Crea una <strong>comunidad de búsqueda</strong> de la verdad<br><br>
-
-            El método socrático no busca transmitir conocimientos ya hechos, sino <strong>guiar al interlocutor</strong> para que descubra por sí mismo la verdad. Este proceso se realiza mediante preguntas y respuestas cuidadosamente diseñadas.<br><br>
-
-            Sócrates comparaba su labor con la de un <strong>tábano</strong> (un insecto molesto) que picaba a la sociedad para despertarla de su letargo intelectual y moral.
+            En la <em>Apología</em>, Platón cuenta la misión que Sócrates decía tener: convencer a jóvenes y viejos de que se ocupen de su <strong>alma</strong> antes y más que de su cuerpo o de sus riquezas, para que sea lo mejor posible.<br><br>Para Sócrates el alma no es algo misterioso: es nuestra <strong>razón</strong>, nuestra conciencia, lo que piensa y decide. Por eso la <strong>felicidad</strong> no está en las posesiones ni en los placeres, sino en tener un alma buena y sabia.
           </p>
         </div>
 
@@ -325,33 +325,81 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sócrates: el diálogo como camino hacia la verdad.
+            💡 Primero el alma, después el cuerpo.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el método socrático:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Por qué Sócrates prefería el diálogo a la escritura?</p>
+          <p>¿Qué era el alma para Sócrates?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque no sabía escribir</div>
-          <div class="option">Porque la escritura era muy cara</div>
-          <div class="option" data-correct="true">Porque el diálogo es un proceso vivo y activo que permite el intercambio directo</div>
-          <div class="option">Porque los sofistas escribían demasiado</div>
+          <div class="option">Un fantasma que sale del cuerpo por la noche</div>
+          <div class="option">Una parte del cuerpo, como el corazón</div>
+          <div class="option">Un regalo de los dioses que no se puede mejorar</div>
+          <div class="option" data-correct="true">Nuestra razón y conciencia, lo que piensa y decide</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 6: LA IRONÍA SOCRÁTICA -->
+    <!-- 7. El diálogo y el tábano -->
+    <div class="study-section" data-section="dialogo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💬 El diálogo y el tábano</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Sócrates no daba clases ni escribía: <strong>dialogaba</strong>. Para él el diálogo es un proceso vivo, en el que dos personas se corrigen y buscan juntas la verdad. No quería transmitir conocimientos ya hechos, sino ayudar a que el otro <strong>descubra por sí mismo</strong>.<br><br>Se comparaba con un <strong>tábano</strong>, un insecto que pica al caballo para que no se duerma: con sus preguntas «picaba» a los atenienses para despertarlos de la comodidad de no pensar. Su método tenía dos fases: la ironía y la mayéutica.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Preguntas que despiertan.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué Sócrates se comparaba con un tábano?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque era molesto y no lo dejaban entrar a las casas</div>
+          <div class="option">Porque le gustaban los caballos</div>
+          <div class="option" data-correct="true">Porque con sus preguntas «picaba» a los atenienses para que pensaran</div>
+          <div class="option">Porque vivía en el campo, lejos de la ciudad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. La ironía socrática -->
     <div class="study-section" data-section="ironia">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>😏 La Ironía Socrática: "Solo Sé que No Sé Nada"</h3>
+          <h3>😏 La ironía socrática</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -359,23 +407,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>ironía</strong> es la <strong>primera fase</strong> del método socrático, donde el maestro <strong>simula ignorancia</strong> sobre el tema a tratar.<br><br>
-            
-            <strong>¿Cómo funciona la ironía?</strong><br>
-            Sócrates se acercaba a personas que creían saber mucho sobre un tema (justicia, valentía, belleza) y les hacía preguntas aparentemente simples. Al responder, el interlocutor descubría que sus respuestas eran <strong>contradictorias</strong> o <strong>insuficientes</strong>.<br><br>
-
-            El objetivo era que el interlocutor <strong>reconociera su propia ignorancia</strong>. La máxima famosa que refleja esta actitud es: <em>"Solo sé que no sé nada"</em>.<br><br>
-
-            <strong>El propósito de la ironía:</strong><br>
-            • <strong>Destruir las falsas certezas</strong> y los prejuicios<br>
-            • Generar <strong>humildad intelectual</strong><br>
-            • Preparar el terreno para el verdadero conocimiento<br>
-            • Actuar como un <em>"tábano para la polis"</em>, despertando a los ciudadanos<br><br>
-
-            Para Sócrates, el <strong>inicio del conocimiento</strong> es el reconocimiento humilde de la ignorancia. Solo quien sabe que no sabe puede comenzar a buscar la verdad. Quien cree que ya sabe, no tiene motivación para aprender.
+            La primera fase del método es la <strong>ironía</strong>. Sócrates <strong>fingía no saber</strong> y le pedía a alguien que se creía experto que le explicara, por ejemplo, qué es la valentía o la justicia.<br><br>Con preguntas sencillas, el interlocutor terminaba cayendo en <strong>contradicciones</strong> y descubría que no sabía lo que creía saber. El objetivo no era humillarlo, sino destruir las <strong>falsas certezas</strong> y los prejuicios, para poder empezar a buscar de verdad.
           </p>
         </div>
 
@@ -386,33 +421,81 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Ironía: reconocer la propia ignorancia es el inicio del saber.
+            💡 Fingir ignorancia para hacer pensar.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la ironía socrática:</p>
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es el objetivo principal de la ironía socrática?</p>
+          <p>¿Cuál es el objetivo de la ironía socrática?</p>
         </div>
         <div class="options-container">
-          <div class="option">Burlarse de las personas ignorantes</div>
-          <div class="option">Demostrar que Sócrates es el más sabio</div>
-          <div class="option" data-correct="true">Que el interlocutor reconozca su propia ignorancia y destruya falsas certezas</div>
-          <div class="option">Enseñar retórica a los jóvenes</div>
+          <div class="option" data-correct="true">Que el otro descubra su ignorancia y abandone sus falsas certezas</div>
+          <div class="option">Burlarse del otro para ganar el debate</div>
+          <div class="option">Demostrar que Sócrates sabía todo</div>
+          <div class="option">Cobrar por la conversación</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 7: LA MAYÉUTICA -->
+    <!-- 9. «Solo sé que no sé nada» -->
+    <div class="study-section" data-section="solo-se">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤔 «Solo sé que no sé nada»</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Un amigo de Sócrates, Querefonte, le preguntó al <strong>oráculo de Delfos</strong> si había alguien más sabio que Sócrates, y el oráculo respondió que no. Sócrates, sorprendido, habló con políticos, poetas y artesanos, y vio que creían saber cosas que no sabían.<br><br>Entonces entendió: su sabiduría era <strong>saber que no sabía</strong>. De ahí la frase «<strong>solo sé que no sé nada</strong>». Reconocer la propia ignorancia, con <strong>humildad</strong>, es el comienzo del conocimiento.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Saber que no se sabe.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué el oráculo consideraba a Sócrates el más sabio?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque había leído todos los libros de Atenas</div>
+          <div class="option" data-correct="true">Porque sabía que no sabía, mientras otros creían saber lo que ignoraban</div>
+          <div class="option">Porque era el más rico de la ciudad</div>
+          <div class="option">Porque nunca se equivocaba en nada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. La mayéutica -->
     <div class="study-section" data-section="mayeutica">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>👶 La Mayéutica: El Arte de Parir Conocimientos</h3>
+          <h3>👶 La mayéutica</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -420,24 +503,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La <strong>mayéutica</strong> (del griego <em>maieutikós</em>, <em>"perito en partos"</em>) es la <strong>segunda fase</strong> del método socrático y constituye el acto pedagógico propiamente dicho.<br><br>
-            
-            <strong>El origen del término:</strong> La madre de Sócrates era <strong>comadrona</strong> (partera), y él adaptó este arte al ámbito filosófico. Así como la comadrona ayuda a la madre a dar a luz, el filósofo ayuda al interlocutor a <em>"dar a luz"</em> el conocimiento.<br><br>
-
-            <strong>¿Qué es la mayéutica?</strong><br>
-            Es el <em>"arte de ayudar a parir conocimientos"</em>. Sócrates, mediante una serie de <strong>preguntas y respuestas</strong> cuidadosamente diseñadas, guía al interlocutor para que descubra <strong>conceptos generales</strong> y <strong>verdades</strong> que ya se encontraban <strong>latentes e inconscientes</strong> en su interior.<br><br>
-
-            <strong>Características de la mayéutica:</strong><br>
-            • No impone conocimientos desde afuera<br>
-            • <strong>Extrae</strong> el conocimiento que ya está en el interior del interlocutor<br>
-            • Usa preguntas estratégicas que llevan a la reflexión profunda<br>
-            • Busca <strong>definiciones precisas</strong> y universales<br>
-            • Facilita la formulación de <strong>verdades objetivas e intersubjetivas</strong><br><br>
-
-            El conocimiento no es algo que se transmite como si fuera un objeto, sino algo que cada persona debe <strong>descubrir por sí misma</strong> con la guía del maestro.
+            La segunda fase del método es la <strong>mayéutica</strong>, palabra griega que significa «arte de ayudar a dar a luz». La madre de Sócrates era <strong>partera</strong>, y él decía que hacía lo mismo, pero con las ideas.<br><br>Así como la partera ayuda a nacer al bebé, Sócrates, con <strong>preguntas</strong> bien pensadas, ayudaba al otro a «<strong>dar a luz</strong>» la verdad que llevaba dentro. El conocimiento no se impone desde afuera: cada uno lo descubre con la guía del maestro.
           </p>
         </div>
 
@@ -448,33 +517,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Mayéutica: ayudar a parir el conocimiento interior.
+            💡 Parir ideas.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre la mayéutica:</p>
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Por qué Sócrates llamó "mayéutica" a su método de enseñanza?</p>
+          <p>¿Por qué Sócrates llamó «mayéutica» a su método?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque su padre era médico</div>
-          <div class="option" data-correct="true">Porque su madre era comadrona y él ayudaba a "parir" conocimientos</div>
-          <div class="option">Porque estudiaba biología</div>
+          <div class="option">Porque enseñaba medicina</div>
+          <div class="option">Porque su padre era escultor</div>
           <div class="option">Porque era el nombre de su escuela</div>
+          <div class="option" data-correct="true">Porque, como su madre partera, ayudaba a otros a «dar a luz» la verdad</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 8: INTELECTUALISMO MORAL - INTRODUCCIÓN -->
-    <div class="study-section" data-section="intelectualismo-intro">
+    <!-- 11. La búsqueda de definiciones universales -->
+    <div class="study-section" data-section="definiciones">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧠 El Intelectualismo Moral: Virtud es Conocimiento</h3>
+          <h3>📐 La búsqueda de definiciones universales</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -482,22 +551,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Sócrates hizo contribuciones significativas a la <strong>ética</strong>, buscando superar el relativismo de los sofistas. Él defendía <strong>principios morales universales</strong> y constantes.<br><br>
-            
-            <strong>La Conexión entre Bien, Virtud y Felicidad:</strong><br>
-            Para Sócrates, el <strong>bien</strong> era la regla común sobre cómo debe obrar el ser humano. La <strong>vida virtuosa</strong> es la vida más perfecta y el único sendero que conduce a la <strong>felicidad</strong> (<em>eudaimonía</em>).<br><br>
-
-            La felicidad, para Sócrates, es el <strong>placer máximo</strong> que se alcanza a través de una vida de <strong>moderación</strong> y <strong>excelencia moral</strong>. No es un placer superficial o momentáneo, sino una <strong>plenitud profunda</strong> del alma.<br><br>
-
-            <strong>La Doctrina del Intelectualismo Moral:</strong><br>
-            Esta es la teoría ética central de Sócrates. Postula que:<br>
-            <strong>1.</strong> El <strong>conocimiento del bien</strong> es la <strong>virtud</strong><br>
-            <strong>2.</strong> <strong>Conocer el bien</strong> lleva necesariamente a <strong>cumplirlo</strong><br><br>
-
-            Esto significa que <strong>nadie hace el mal a sabiendas</strong>. Esta afirmación revolucionaria cambió la comprensión de la ética en Occidente.
+            Las preguntas de Sócrates tenían un objetivo preciso: encontrar <strong>definiciones universales</strong>. No le alcanzaba con ejemplos («es justo devolver lo prestado»): quería saber <strong>qué es</strong> la justicia en sí, lo que tienen en común <strong>todos</strong> los actos justos.<br><br>Una definición universal vale para todos los casos y para todas las personas. Así Sócrates enfrentó al relativismo de los sofistas: si podemos definir el bien, entonces no todo da lo mismo.
           </p>
         </div>
 
@@ -508,7 +565,55 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Intelectualismo moral: conocer el bien es practicarlo.
+            💡 ¿Qué es la justicia en sí?
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué buscaba Sócrates con sus preguntas?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Ejemplos sueltos que cambian según la persona</div>
+          <div class="option">Opiniones distintas para cada ciudad</div>
+          <div class="option" data-correct="true">Definiciones universales: qué es algo en sí, válido para todos los casos</div>
+          <div class="option">Datos sobre el origen del universo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. El intelectualismo moral -->
+    <div class="study-section" data-section="intelectualismo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧠 El intelectualismo moral</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La ética de Sócrates se llama <strong>intelectualismo moral</strong>. Sostiene dos ideas: el <strong>conocimiento del bien es la virtud</strong>, y quien conoce de verdad el bien, lo hace.<br><br>Para Sócrates, la vida virtuosa es el único camino a la <strong>felicidad</strong> (<em>eudaimonía</em>), entendida no como un placer pasajero, sino como la plenitud del alma. Saber y obrar bien van juntos: la virtud se puede <strong>enseñar</strong>, porque es un saber.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Virtud = conocimiento.
           </div>
         </div>
       </div>
@@ -516,25 +621,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el intelectualismo moral:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la tesis central del intelectualismo moral socrático?</p>
+          <p>¿Cuál es la tesis central del intelectualismo moral?</p>
         </div>
         <div class="options-container">
-          <div class="option">La virtud se hereda de los padres</div>
-          <div class="option">El bien y el mal son relativos</div>
-          <div class="option" data-correct="true">Conocer el bien es la virtud, y quien conoce el bien necesariamente lo practica</div>
-          <div class="option">La felicidad depende de la riqueza material</div>
+          <div class="option" data-correct="true">Conocer el bien es la virtud: quien lo conoce de verdad, lo hace</div>
+          <div class="option">La virtud depende de la suerte</div>
+          <div class="option">Conocer el bien no tiene relación con actuar bien</div>
+          <div class="option">La virtud es imposible de enseñar</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 9: NADIE HACE EL MAL A SABIENDAS -->
-    <div class="study-section" data-section="nadie-hace-mal">
+    <!-- 13. Nadie hace el mal a sabiendas -->
+    <div class="study-section" data-section="ignorancia">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🤔 Nadie Hace el Mal a Sabiendas: La Ignorancia</h3>
+          <h3>🚫 Nadie hace el mal a sabiendas</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -542,23 +647,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La afirmación de que <em>"nadie hace el mal a sabiendas"</em> es una de las ideas más provocativas y características de Sócrates.<br><br>
-            
-            <strong>¿Qué significa esto?</strong><br>
-            Según Sócrates, si una persona obra mal, es porque <strong>no conoce el verdadero bien</strong>, sino algo que en apariencia creía bueno. La persona está actuando por <strong>ignorancia</strong>, no por maldad intencional.<br><br>
-
-            <strong>Ejemplo:</strong> Si alguien roba, no lo hace sabiendo que robar es malo (en su sentido más profundo), sino porque cree erróneamente que robar le traerá algo bueno (riqueza, seguridad). Si comprendiera verdaderamente que robar daña su alma y le impide alcanzar la felicidad, no robaría.<br><br>
-
-            <strong>Consecuencias de esta doctrina:</strong><br>
-            • <strong>Al que se equivoca no hay que castigarlo, sino instruirlo</strong><br>
-            • La educación es la clave para la mejora moral<br>
-            • El <strong>mayor mal</strong> para Sócrates era la <strong>ignorancia</strong><br>
-            • La maldad no existe como intención deliberada, sino como <strong>error de juicio</strong><br><br>
-
-            Esta visión optimista sobre la naturaleza humana implica que todos podemos mejorar mediante la educación y el autoconocimiento. El camino hacia la virtud es el camino del conocimiento.
+            De esa idea sale una frase provocadora: «<strong>nadie hace el mal a sabiendas</strong>». Quien obra mal lo hace por <strong>ignorancia</strong>: cree que eso le traerá algo bueno. El que estafa para ganar dinero cree que el dinero lo hará feliz, pero se equivoca: daña su alma.<br><br>Por eso, para Sócrates, al que se equivoca no hay que solo castigarlo, sino <strong>enseñarle</strong>. El mayor mal es la ignorancia, y la <strong>educación</strong> es el camino para mejorar.
           </p>
         </div>
 
@@ -569,33 +661,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 El mal se hace por ignorancia, no por maldad intencional.
+            💡 El mal es un error de conocimiento.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre el mal y la ignorancia:</p>
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>Según Sócrates, ¿por qué una persona comete acciones malas?</p>
+          <p>Según Sócrates, ¿por qué alguien obra mal?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque es naturalmente malvada</div>
-          <div class="option">Porque los dioses la castigan</div>
-          <div class="option" data-correct="true">Porque actúa por ignorancia del verdadero bien</div>
-          <div class="option">Porque quiere hacer daño intencionalmente</div>
+          <div class="option">Porque nace malo y no puede cambiar</div>
+          <div class="option">Porque los dioses lo obligan</div>
+          <div class="option">Porque conoce el bien y prefiere el mal</div>
+          <div class="option" data-correct="true">Por ignorancia: cree que lo que hace le traerá algo bueno</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 10: SÓCRATES Y LA POLIS -->
-    <div class="study-section" data-section="socrates-polis">
+    <!-- 14. Mejor sufrir una injusticia que cometerla -->
+    <div class="study-section" data-section="injusticia">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🏛️ Sócrates y la Polis: El Deber Social</h3>
+          <h3>⚖️ Mejor sufrir una injusticia que cometerla</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -603,20 +695,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El pensamiento socrático siempre tuvo una <strong>dimensión social</strong>. Sócrates creía que el bien personal no se alcanza en la mera individualidad, sino en el reconocimiento de que somos <strong>miembros de una sociedad</strong>.<br><br>
-            
-            <strong>Su Postura Política:</strong><br>
-            Sócrates fue visto como un <strong>tradicionalista político</strong> y se opuso a las tendencias sofísticas, defendiendo los principios fundamentales de la <em>polis</em> (ciudad-estado).<br><br>
-
-            • Creía que era necesario <strong>reformar la conciencia de los ciudadanos</strong> mediante una preparación técnica, moral y política<br>
-            • Su enfoque no era <strong>derribar la ciudad</strong>, sino <strong>consolidar sus principios fundamentales</strong><br>
-            • A diferencia de los sofistas, <strong>nunca cobró por sus enseñanzas</strong><br>
-            • Criticaba la democracia ateniense de su tiempo por la <strong>inconsciencia del vulgo</strong> y la irresponsabilidad de algunos líderes<br><br>
-
-            Sócrates no era un revolucionario que buscara destruir el orden establecido, sino un <strong>reformador moral</strong> que quería que los ciudadanos fueran mejores y más conscientes de sus deberes hacia la comunidad.
+            Sócrates sostuvo otra idea que sorprendía a todos: «es <strong>preferible sufrir una injusticia</strong> antes que <strong>cometerla</strong>».<br><br>¿Por qué? Porque sufrir una injusticia daña lo que tenemos (el cuerpo, el dinero, la fama), pero no nos vuelve injustos. En cambio, cometer una injusticia daña lo más valioso: el <strong>alma</strong>. Quien comete injusticias se convierte en una persona injusta, y eso es peor que cualquier pérdida.
           </p>
         </div>
 
@@ -627,33 +709,33 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sócrates: reformador moral que consolidaba los principios de la <em>polis</em>.
+            💡 Lo peor es dañar el propio alma.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>Sobre Sócrates y la <em>polis</em>:</p>
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál era el objetivo político de Sócrates?</p>
+          <p>¿Por qué es preferible sufrir una injusticia que cometerla, según Sócrates?</p>
         </div>
         <div class="options-container">
-          <div class="option">Derribar el gobierno de Atenas</div>
-          <div class="option">Promover el individualismo sofista</div>
-          <div class="option" data-correct="true">Reformar la conciencia de los ciudadanos y consolidar los principios de la <em>polis</em></div>
-          <div class="option">Establecerse como tirano de Atenas</div>
+          <div class="option">Porque sufrirla da más fama</div>
+          <div class="option" data-correct="true">Porque cometerla daña el alma y nos vuelve injustos</div>
+          <div class="option">Porque las leyes castigan más a la víctima</div>
+          <div class="option">Porque no hay diferencia entre sufrirla y cometerla</div>
         </div>
       </div>
     </div>
 
-    <!-- SECCIÓN 11: FIDELIDAD A LA LEY Y MUERTE -->
-    <div class="study-section" data-section="muerte-socrates">
+    <!-- 15. El juicio y la muerte de Sócrates -->
+    <div class="study-section" data-section="muerte">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ Fidelidad a la Ley: La Muerte de Sócrates</h3>
+          <h3>🏛️ El juicio y la muerte de Sócrates</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -661,28 +743,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Sócrates demostró una <strong>fidelidad absoluta</strong> a la ley de su ciudad, incluso cuando esta ley lo condenaba a muerte.<br><br>
-            
-            <strong>El Juicio:</strong> En el año 399 a.C., Sócrates fue acusado de:<br>
-            • <strong>Impiedad</strong> (no creer en los dioses de la ciudad)<br>
-            • <strong>Corromper a la juventud</strong> con sus enseñanzas<br><br>
-
-            Fue condenado a muerte por envenenamiento con <strong>cicuta</strong>.<br><br>
-
-            <strong>La Decisión de Sócrates:</strong> A pesar de tener la oportunidad de escapar de la cárcel (sus amigos habían sobornado a los guardias), Sócrates <strong>se negó a huir</strong>.<br><br>
-
-            <strong>Sus argumentos:</strong><br>
-            • Escapar significaría una <strong>violación de la ley</strong><br>
-            • Las leyes de la ciudad eran incluso <strong>más respetables y sagradas</strong> que el padre o la madre<br>
-            • Había vivido toda su vida bajo esas leyes y disfrutado de sus beneficios<br>
-            • No podía, en el último momento, <strong>traicionar sus principios</strong><br><br>
-
-            Su sacrificio fue un <strong>acto voluntario</strong> en aras de una doctrina que predicaba la <strong>íntegra sumisión</strong> a la ciudad y a sus leyes inviolables. Prefirió morir siendo coherente con sus enseñanzas que vivir contradiciendo sus principios.<br><br>
-
-            Su muerte lo convirtió en un <strong>mártir de la filosofía</strong> y en un símbolo eterno de la integridad moral.
+            En el 399 a. C., Sócrates fue <strong>acusado</strong> de no creer en los dioses de la ciudad y de <strong>corromper a los jóvenes</strong>. Un jurado lo condenó a morir bebiendo <strong>cicuta</strong>, un veneno.<br><br>Sus amigos le prepararon la huida, pero se negó: escapar sería violar las <strong>leyes</strong> de Atenas, bajo las que había vivido toda su vida. Prefirió morir siendo <strong>coherente</strong> con lo que enseñaba antes que vivir traicionándolo. Se volvió un símbolo de la integridad moral.
           </p>
         </div>
 
@@ -693,30 +757,79 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Sócrates prefirió morir siendo fiel a sus principios.
+            💡 Fiel a la ley hasta el final.
           </div>
         </div>
       </div>
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🏆 Verificación final</h4>
-          <p>Síntesis sobre la muerte de Sócrates:</p>
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Por qué Sócrates se negó a escapar de la cárcel cuando tuvo la oportunidad?</p>
+          <p>¿Por qué Sócrates no quiso escapar de la cárcel?</p>
         </div>
         <div class="options-container">
-          <div class="option">Porque estaba enfermo y no podía caminar</div>
-          <div class="option">Porque no tenía dinero para huir</div>
-          <div class="option" data-correct="true">Porque escapar violaría la ley y traicionaría sus principios de fidelidad a la <em>polis</em></div>
-          <div class="option">Porque quería ser un mártir famoso</div>
+          <div class="option">Porque no tenía amigos que lo ayudaran</div>
+          <div class="option">Porque pensaba que lo iban a perdonar</div>
+          <div class="option" data-correct="true">Porque escapar violaría las leyes y traicionaría lo que enseñaba</div>
+          <div class="option">Porque tenía miedo de viajar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Síntesis: Sócrates, el tábano de Atenas -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏆 Síntesis: Sócrates, el tábano de Atenas</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Con Sócrates la filosofía dio el <strong>giro antropológico</strong>: del cosmos al ser humano. Frente al relativismo de los sofistas, buscó <strong>definiciones universales</strong> con el diálogo: la <strong>ironía</strong> destruye falsas certezas y la <strong>mayéutica</strong> ayuda a dar a luz la verdad.<br><br>Su ética, el <strong>intelectualismo moral</strong>, dice que la virtud es conocimiento y que nadie hace el mal a sabiendas. Cuidar el alma, conocerse a sí mismo y ser coherente hasta la muerte: ese es su legado.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Síntesis final: todos los conceptos integrados.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la síntesis del pensamiento de Sócrates?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Buscar con el diálogo la verdad sobre el ser humano, porque la virtud es conocimiento</div>
+          <div class="option">Ganar debates con la retórica y cobrar por enseñar</div>
+          <div class="option">Explicar el mundo con el agua y el aire</div>
+          <div class="option">Escapar de la ley cuando conviene</div>
         </div>
       </div>
     </div>
 
   </main>
 
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

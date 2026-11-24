@@ -1,0 +1,78 @@
+{
+  "id": "socrates",
+  "meta": {
+    "title": "Sócrates: El Giro Antropológico y la Mayéutica",
+    "author": "Sócrates",
+    "icon": "🧠",
+    "gradient": "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
+    "difficulty": "basico",
+    "category": "Filosofía Antigua",
+    "description": "El giro antropológico, los sofistas, el conócete a ti mismo, la ironía y la mayéutica, las definiciones universales, el intelectualismo moral y la muerte de Sócrates.",
+    "lastUpdated": "2026-11-24"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 16,
+      "timeEstimate": 13,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 16,
+      "timeEstimate": 10
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 9,
+      "centralWord": "SOCRATES",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 28,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#FFD700",
+  "notes": {
+    "realValues": "v2.0 (2026-11-24): material 16 secciones, cuestionario 13, caza 8 niveles / 50, crucigrama SOCRATES + 8, mapa 28 nodos / 15 pares, cloze 16."
+  }
+}
