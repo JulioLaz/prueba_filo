@@ -1,4 +1,6 @@
 // themes/origen/cloze_test.js - CLOZE TEST “Del mito al Logos”
+// v1.1 (2026-11-24): tiempos de las 12 frases revisados con la transcripción del video (6:28):
+//   varias empezaban tarde o cortaban antes de terminar (p. ej., la última llega hasta el final).
 
 window.CLOZE_TEST = {
   title: "Cloze — Del mito al Logos (0:00–6:30)",
@@ -13,7 +15,7 @@ window.CLOZE_TEST = {
         "💡 Fíjate cuando se menciona que se busca 'sentido', pero no desde la razón.",
         "💡 Escucha el momento en que se contraponen explícitamente 'razón' y 'mito'."
       ],
-      videoSegment: { start: 3, end: 22 } // 00:03–00:22 aprox.
+      videoSegment: { start: 0, end: 20 } // 0:00 - 0:21 (transcripción)
     },
     {
       id: "o2",
@@ -25,7 +27,7 @@ window.CLOZE_TEST = {
         "💡 Va inmediatamente después de mencionar el mito como forma inicial de sentido.",
         "💡 Es una frase muy corta y contundente del narrador."
       ],
-      videoSegment: { start: 19, end: 26 } // 00:19–00:26
+      videoSegment: { start: 19, end: 26 } // 0:20 - 0:27 (transcripción)
     },
     {
       id: "o3",
@@ -37,7 +39,7 @@ window.CLOZE_TEST = {
         "💡 Presta atención a la cadena de expresiones: insurrección, ruptura, traición, crimen.",
         "💡 Es el cierre del bloque de introducción antes de hablar del 'tránsito heroico'."
       ],
-      videoSegment: { start: 24, end: 39 } // 00:24–00:39
+      videoSegment: { start: 24, end: 37 } // 0:25 - 0:38 (transcripción)
     },
     {
       id: "o4",
@@ -49,7 +51,7 @@ window.CLOZE_TEST = {
         "💡 Allí se menciona literalmente 'del mito al Logos'.",
         "💡 También se contraponen 'superstición' y 'filosofía'."
       ],
-      videoSegment: { start: 34, end: 49 } // 00:34–00:49
+      videoSegment: { start: 36, end: 43 } // 0:37 - 0:44 (transcripción)
     },
     {
       id: "o5",
@@ -61,7 +63,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la continuación sobre 'forma de entender el mundo'.",
         "💡 Luego se explica por qué 'no había lugar para la duda'."
       ],
-      videoSegment: { start: 61, end: 80 } // 01:01–01:20 aprox.
+      videoSegment: { start: 54, end: 76 } // 0:55 - 1:17 (transcripción)
     },
     {
       id: "o6",
@@ -73,7 +75,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la enumeración de funciones sociales y políticas del mito.",
         "💡 Fíjate en la expresión 'justificaba lo injustificable'."
       ],
-      videoSegment: { start: 76, end: 91 } // 01:16–01:31
+      videoSegment: { start: 75, end: 90 } // 1:16 - 1:31 (transcripción)
     },
     {
       id: "o7",
@@ -85,7 +87,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la frase sobre dispositivos de poder.",
         "💡 Luego se explica quién controla a los hombres al tener acceso a los dioses."
       ],
-      videoSegment: { start: 100, end: 115 } // 01:40–01:55 aprox.
+      videoSegment: { start: 94, end: 109 } // 1:35 - 1:50 (transcripción)
     },
     {
       id: "o8",
@@ -97,7 +99,7 @@ window.CLOZE_TEST = {
         "💡 Fíjate qué verbo se usa frente a 'narrar'.",
         "💡 Es la transición hacia la necesidad de una explicación racional."
       ],
-      videoSegment: { start: 119, end: 134 } // 01:59–02:14
+      videoSegment: { start: 120, end: 128 } // 2:01 - 2:09 (transcripción)
     },
     {
       id: "o9",
@@ -109,7 +111,7 @@ window.CLOZE_TEST = {
         "💡 Luego aparece Tales de Mileto y la idea de que todo procede del agua.",
         "💡 Se dice explícitamente que se rompe el ciclo del relato sagrado."
       ],
-      videoSegment: { start: 133, end: 160 } // 02:13–02:40 aprox.
+      videoSegment: { start: 127, end: 161 } // 2:08 - 2:42 (transcripción)
     },
     {
       id: "o10",
@@ -121,7 +123,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la descripción de la duda metódica y el 'encantamiento' de las creencias heredadas.",
         "💡 Termina con la frase contundente: 'Pensar es traicionar la tribu'."
       ],
-      videoSegment: { start: 194, end: 209 } // 03:14–03:29
+      videoSegment: { start: 189, end: 211 } // 3:10 - 3:32 (transcripción)
     },
     {
       id: "o11",
@@ -133,7 +135,7 @@ window.CLOZE_TEST = {
         "💡 Luego se contraponen fe y razón, revelación y argumentación.",
         "💡 Más adelante se compara el miedo de la religión a la razón con el miedo del tirano a la libertad."
       ],
-      videoSegment: { start: 223, end: 245 } // 03:43–04:05 aprox.
+      videoSegment: { start: 224, end: 263 } // 3:45 - 4:24 (transcripción)
     },
     {
       id: "o12",
@@ -145,7 +147,7 @@ window.CLOZE_TEST = {
         "💡 Escucha la idea de que el paso del mito al Logos es una conquista frágil.",
         "💡 El cierre menciona que la libertad de pensar es un 'crimen' contra los dioses."
       ],
-      videoSegment: { start: 308, end: 335 } // 05:08–05:35 aprox.
+      videoSegment: { start: 308, end: 388 } // 5:09 - 6:29 (transcripción)
     }
   ]
 };

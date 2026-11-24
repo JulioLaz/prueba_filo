@@ -52,7 +52,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 | Tema | Estado |
 |---|---|
-| `origen` | ✅ v2.0 (2026-11-24): material 15 secciones cortas (redirige bien a `origen`), cuestionario 13 (variable `ORIGEN_THEME`: antes no cargaba), caza 8 niveles / 55 sin negritas, crucigrama MILETO + 6 (ASOMBRO por COSMOS), mapa al sistema completo (29 nodos / 15 pares), cloze 12. Examen con Tales de Mileto y resumen final. |
+| `origen` | ✅ v2.0 (2026-11-24): material 15 secciones cortas (redirige bien a `origen`), cuestionario 13 (variable `ORIGEN_THEME`: antes no cargaba), caza 8 niveles / 55 sin negritas, crucigrama MILETO + 6 (ASOMBRO por COSMOS), mapa al sistema completo (29 nodos / 15 pares), cloze 12, revisado con la transcripción del video (6:28). Examen con Tales de Mileto y resumen final. |
 | `presocraticos` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma Pitágoras y Jenófanes, que están en el video), cuestionario 13, caza 8 niveles / 55, crucigrama PRINCIPIO + 9, mapa 28 nodos / 15 pares, cloze 11 con el video hasta 17:03 (antes cortaba en 10:01). Examen con Heráclito y resumen final. |
 | `socrates` | ✅ v2.0 (2026-11-24): material 16 secciones cortas (suma fuentes, definiciones universales y «mejor sufrir una injusticia que cometerla», del video), cuestionario 13, caza 8 niveles / 50, crucigrama SOCRATES + 8, mapa 28 nodos / 15 pares, cloze 16. Examen con Sócrates y resumen final. |
 | `platon` | ✅ v2.0 (2026-11-24): material 17 secciones cortas centradas en las Ideas, el símil del Sol, la línea dividida, la caverna (en 4 partes y «la caverna hoy»), educar como girar la mirada, la dialéctica y el rey filósofo. El alma (anámnesis, cuerpo-cárcel, carro alado, muerte) queda para `dualismo_platonico`. Cuestionario 13, caza 8 niveles / 52, crucigrama CAVERNA + 7, mapa 35 nodos / 15 pares, cloze 16 (video hasta 10:00; antes cortaba en 9:01). Examen con Platón y resumen final. El video y su cloze sí hablan del alma y de la reminiscencia. Cloze **revisado con la transcripción del video** (2026-11-24): tiempos corregidos en las 16 frases. |
@@ -80,6 +80,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-24: Origen: cloze revisado con la transcripción del video «Del mito al logos» (6:28). Las 12 frases coinciden con el video; se corrigieron los tiempos (varias empezaban tarde o cortaban antes) y el video pide 6:28 (antes 11 minutos, más de lo que dura).
 - 2026-11-24: Platón: cloze revisado con la transcripción del video. 7 frases apuntaban a otro momento del video y 5 cortaban antes de terminar; «anamnesis» dejó de ser hueco (el video no la dice) y se acepta «concupiscible». El material usa también los nombres del video (conjetura; trabajadores y soldados).
 - 2026-11-24: Método: cloze nuevo de 13 frases con la transcripción del video (antes 5 y sin pistas visibles); el video se mira completo (8:12).
 - 2026-11-24: Aristóteles (Unidad I): cloze revisado con la transcripción del video (los 16 coinciden). Se alinearon material y video: llegó a la Academia con 17 o 18 años, y la especie (sustancia segunda) no es una Idea separada (se quitó «lo más real es el individuo», que contradecía el video). «Zoon politikon» dejó de ser hueco porque el video no lo dice.

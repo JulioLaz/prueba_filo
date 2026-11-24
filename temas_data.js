@@ -194,9 +194,9 @@ const TOPICS = {
     origen: {
       youtubeId: '4-6_Rmf6nh0',          // Del Mito al Logos: El Nacimiento de la Razón
       startTime: 1,
-      endTime: 660,                       // ≈11:00
+      endTime: 389,                       // 2026-11-24: el video dura 6:28 (antes pedía 11 minutos)
       title: 'Del Mito al Logos: Etimología y origen histórico',
-      duration: '11:00'
+      duration: '6:28'
     },
 
 
