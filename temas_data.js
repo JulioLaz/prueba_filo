@@ -183,12 +183,12 @@ const TOPICS = {
         title: 'Sartre: existencia, libertad y angustia',
         duration: '4:19'
       },
-      etica: {
+      etica: { // 2026-11-25: cloze revisado con la transcripción; el video se mira completo (10:31)
         youtubeId: 'eHIDwx6J-lA',
         startTime: 1,
-        endTime: 576,
+        endTime: 632,
         title: 'Ética y Moral',
-        duration: '10:33'
+        duration: '10:31'
       }, // https://www.youtube.com/shorts/0s73cG7fJoA
       etica_aristoteles: {
         youtubeId: 'qYU0hTprTAc',

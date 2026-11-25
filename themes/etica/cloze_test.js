@@ -1,4 +1,9 @@
-// themes/etica_y_moral/cloze_test.js - Diferencias entre Ética y Moral
+// themes/etica/cloze_test.js
+// Cloze — Diferencias entre ética y moral. Video eHIDwx6J-lA (10:31): 26 frases en el orden del
+// video, con sus tiempos (videoSegment contado desde startTime = 1) y una pista de opciones por hueco.
+// Versión 2.0 (2026-11-25): revisado con la transcripción: tramos con los tiempos reales, suma el
+//   Juramento Hipocrático y los ejemplos finales de comportamiento moral, y el link al video
+//   funciona (buscaba VIDEO_CONFIG.etica_y_moral).
 window.CLOZE_TEST = {
   title: "Cloze — Ética y Moral (0:00—10:31)",
   items: [
@@ -8,9 +13,9 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! Muchas veces se confunden estos conceptos.",
       feedbackKO: "Piensa en cómo se usan comúnmente estos términos.",
       videoHints: [
-        "💡 Opciones: diferenciada | separada | opuesta | indistinta | contraria | distinta"
+        "💡 Opciones: distinta | diferenciada | indistinta | contraria | separada | opuesta"
       ],
-      videoSegment: { start: 0, end: 16 } // 0:00 - 0:16 (inicio, no se resta)
+      videoSegment: { start: 0, end: 16 } // 0:01 - 0:17
     },
     {
       id: "em2",
@@ -18,11 +23,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! Has captado la diferencia fundamental: filosofía vs vida cotidiana.",
       feedbackKO: "Recuerda: una es teórica, la otra práctica.",
       videoHints: [
-        "💡 Opciones: sociología | psicología | antropología | filosofía | teología | economía",
-        "💡 Opciones: teórica | abstracta | académica | diaria | especulativa | conceptual",
-        "💡 Opciones: teoría | especulación | abstracción | práctica | reflexión | contemplación"
+        "💡 Opciones: antropología | teología | psicología | filosofía | economía | sociología",
+        "💡 Opciones: académica | diaria | especulativa | teórica | abstracta | conceptual",
+        "💡 Opciones: abstracción | práctica | contemplación | especulación | teoría | reflexión"
       ],
-      videoSegment: { start: 14, end: 26 } // 0:14 - 0:26 (15.92 - 2)
+      videoSegment: { start: 15, end: 27 } // 0:16 - 0:28
     },
     {
       id: "em3",
@@ -30,22 +35,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente síntesis! Ética = reflexión, Moral = acción.",
       feedbackKO: "Piensa en la distinción: pensar vs vivir.",
       videoHints: [
-        "💡 Opciones: sentida | vivida | practicada | pensada | experimentada | realizada",
-        "💡 Opciones: pensada | reflexionada | teorizada | vivida | conceptualizada | especulada"
+        "💡 Opciones: vivida | practicada | experimentada | pensada | realizada | sentida",
+        "💡 Opciones: reflexionada | teorizada | pensada | conceptualizada | vivida | especulada"
       ],
-      videoSegment: { start: 24, end: 33 } // 0:24 - 0:33 (25.76 - 2)
+      videoSegment: { start: 21, end: 33 } // 0:22 - 0:34
     },
     {
       id: "em4",
-      text: "4- La ética es la búsqueda del [[bien]], de la realización personal en armonía con nosotros seres humanos, e implica una relación dinámica entre nuestros [[valores]] y los de la [[sociedad]].",
+      text: "4- La ética es la búsqueda del [[bien]], de la realización personal en armonía con los otros seres humanos, e implica una relación dinámica entre nuestros [[valores]] y los de la [[sociedad]].",
       feedbackOK: "¡Correcto! La ética busca el bien personal en relación con la sociedad.",
       feedbackKO: "Piensa en qué busca la ética y cómo se relaciona con lo social.",
       videoHints: [
-        "💡 Opciones: mal | placer | poder | bien | riqueza | honor",
-        "💡 Opciones: deseos | placeres | valores | necesidades | instintos | pasiones",
-        "💡 Opciones: naturaleza | individuo | Estado | sociedad | familia | religión"
+        "💡 Opciones: bien | poder | riqueza | placer | honor | mal",
+        "💡 Opciones: instintos | valores | necesidades | deseos | pasiones | placeres",
+        "💡 Opciones: sociedad | familia | Estado | naturaleza | individuo | religión"
       ],
-      videoSegment: { start: 59, end: 76 } // 0:59 - 1:16 (61.68 - 2)
+      videoSegment: { start: 60, end: 74 } // 1:01 - 1:15
     },
     {
       id: "em5",
@@ -53,10 +58,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! La ética aristotélica busca la felicidad como fin último.",
       feedbackKO: "Recuerda qué es el fin último según Aristóteles.",
       videoHints: [
-        "💡 Opciones: virtud | placer | honor | felicidad | poder | riqueza",
-        "💡 Opciones: evitarla | rechazarla | ignorarla | alcanzarla | abandonarla | negarla"
+        "💡 Opciones: placer | poder | felicidad | riqueza | virtud | honor",
+        "💡 Opciones: evitarla | alcanzarla | ignorarla | abandonarla | rechazarla | negarla"
       ],
-      videoSegment: { start: 74, end: 90 } // 1:14 - 1:30 (76.56 - 2)
+      videoSegment: { start: 73, end: 92 } // 1:14 - 1:33
     },
     {
       id: "em6",
@@ -64,11 +69,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! Has captado la pregunta central y el objeto de estudio de la ética.",
       feedbackKO: "Piensa en la pregunta fundamental de la ética.",
       videoHints: [
-        "💡 Opciones: qué debemos saber | qué existe | por qué existimos | cómo debemos vivir | qué es real | qué es verdad",
-        "💡 Opciones: leyes naturales | hechos científicos | teoremas matemáticos | principios morales | dogmas religiosos | normas jurídicas",
-        "💡 Opciones: bello | verdadero | útil | bueno | placentero | conveniente"
+        "💡 Opciones: qué debemos saber | cómo debemos vivir | qué existe | qué es verdad | qué es real | por qué existimos",
+        "💡 Opciones: teoremas matemáticos | dogmas religiosos | leyes naturales | normas jurídicas | principios morales | hechos científicos",
+        "💡 Opciones: bello | verdadero | bueno | útil | placentero | conveniente"
       ],
-      videoSegment: { start: 94, end: 111 } // 1:34 - 1:51 (96.56 - 2)
+      videoSegment: { start: 95, end: 111 } // 1:36 - 1:52
     },
     {
       id: "em7",
@@ -76,10 +81,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! Conoces el origen etimológico de la palabra ética.",
       feedbackKO: "Recuerda de qué lengua antigua proviene la palabra ética.",
       videoHints: [
-        "💡 Opciones: latín | hebreo | árabe | griego | sánscrito | egipcio",
-        "💡 Opciones: ciencia de las leyes | estudio de la verdad | teoría del conocimiento | filosofía de las costumbres | análisis de la belleza | lógica del pensamiento"
+        "💡 Opciones: griego | hebreo | sánscrito | latín | egipcio | árabe",
+        "💡 Opciones: ciencia de las leyes | lógica del pensamiento | análisis de la belleza | filosofía de las costumbres | teoría del conocimiento | estudio de la verdad"
       ],
-      videoSegment: { start: 112, end: 132 } // 1:52 - 2:12 (114.64 - 2)
+      videoSegment: { start: 113, end: 132 } // 1:54 - 2:13
     },
     {
       id: "em8",
@@ -87,11 +92,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! Has identificado los valores fundamentales de la ética personal.",
       feedbackKO: "Piensa en las distinciones morales básicas que hace la ética.",
       videoHints: [
-        "💡 Opciones: placer | útil | verdadero | bien | bello | conveniente",
-        "💡 Opciones: bien | placer | verdad | mal | belleza | utilidad",
-        "💡 Opciones: útil | placentero | conveniente | justo | verdadero | bello"
+        "💡 Opciones: conveniente | bello | útil | verdadero | bien | placer",
+        "💡 Opciones: placer | verdad | bien | mal | belleza | utilidad",
+        "💡 Opciones: justo | placentero | bello | útil | verdadero | conveniente"
       ],
-      videoSegment: { start: 132, end: 155 } // 2:12 - 2:35 (134.04 - 2)
+      videoSegment: { start: 133, end: 155 } // 2:14 - 2:36
     },
     {
       id: "em9",
@@ -99,10 +104,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! La ética es una reflexión individual y personal.",
       feedbackKO: "Recuerda: la ética es una reflexión íntima de cada persona.",
       videoHints: [
-        "💡 Opciones: colectiva | social | pública | personal | grupal | comunitaria",
-        "💡 Opciones: sociedad | grupo | comunidad | individuo | colectivo | Estado"
+        "💡 Opciones: colectiva | pública | social | grupal | comunitaria | personal",
+        "💡 Opciones: colectivo | Estado | grupo | sociedad | comunidad | individuo"
       ],
-      videoSegment: { start: 153, end: 165 } // 2:33 - 2:45 (155.64 - 2)
+      videoSegment: { start: 154, end: 164 } // 2:35 - 2:45
     },
     {
       id: "em10",
@@ -110,11 +115,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! Los códigos éticos profesionales regulan la conducta laboral.",
       feedbackKO: "Piensa en cómo se regula la ética en el ámbito profesional.",
       videoHints: [
-        "💡 Opciones: leyes penales | normas civiles | reglamentos administrativos | códigos éticos | decretos gubernamentales | ordenanzas municipales",
-        "💡 Opciones: pensamiento | creencia | opinión | conducta | fe | ideología",
-        "💡 Opciones: opcional | sugerido | recomendado | obligatorio | voluntario | discrecional"
+        "💡 Opciones: reglamentos administrativos | decretos gubernamentales | códigos éticos | leyes penales | ordenanzas municipales | normas civiles",
+        "💡 Opciones: fe | pensamiento | ideología | conducta | opinión | creencia",
+        "💡 Opciones: sugerido | recomendado | opcional | discrecional | obligatorio | voluntario"
       ],
-      videoSegment: { start: 165, end: 204 } // 2:45 - 3:24 (167.08 - 2)
+      videoSegment: { start: 173, end: 196 } // 2:54 - 3:17
     },
     {
       id: "em11",
@@ -122,10 +127,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! La ética es reflexión teórica sobre la moralidad.",
       feedbackKO: "Recuerda: la ética es teórica, la moral es práctica.",
       videoHints: [
-        "💡 Opciones: práctica | empírica | concreta | teórica | aplicada | experimental",
-        "💡 Opciones: legalidad | religiosidad | economía | moralidad | política | ciencia"
+        "💡 Opciones: experimental | empírica | práctica | concreta | teórica | aplicada",
+        "💡 Opciones: legalidad | moralidad | religiosidad | política | economía | ciencia"
       ],
-      videoSegment: { start: 204, end: 227 } // 3:24 - 3:47 (206.36 - 2)
+      videoSegment: { start: 205, end: 227 } // 3:26 - 3:48
     },
     {
       id: "em12",
@@ -133,22 +138,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! Has captado que ética y moral pueden chocar.",
       feedbackKO: "Piensa en cómo la ética personal puede oponerse a la moral social.",
       videoHints: [
-        "💡 Opciones: armonía | acuerdo | consenso | conflicto | concordancia | unidad",
-        "💡 Opciones: libertad de expresión | derecho al voto | pena de muerte | igualdad de género | educación pública | seguridad social"
+        "💡 Opciones: unidad | consenso | concordancia | armonía | conflicto | acuerdo",
+        "💡 Opciones: igualdad de género | educación pública | seguridad social | libertad de expresión | pena de muerte | derecho al voto"
       ],
-      videoSegment: { start: 225, end: 243 } // 3:45 - 4:03 (227.60 - 2)
+      videoSegment: { start: 226, end: 242 } // 3:47 - 4:03
     },
     {
       id: "em13",
-      text: "13- La ética es [[constante]], no suele cambiar con el tiempo y regula el comportamiento humano desde cada [[persona]] y desde su propia [[consciencia]].",
+      text: "13- La ética es [[constante]], no suele cambiar con el tiempo y regula el comportamiento humano desde cada [[persona]] y desde su propia [[conciencia|consciencia]].",
       feedbackOK: "¡Correcto! La ética tiene pretensión de universalidad y permanencia.",
       feedbackKO: "Piensa en cómo la ética se mantiene a lo largo del tiempo.",
       videoHints: [
-        "💡 Opciones: variable | cambiante | relativa | constante | temporal | efímera",
-        "💡 Opciones: sociedad | Estado | religión | persona | grupo | comunidad",
-        "💡 Opciones: costumbre | tradición | ley | consciencia | norma | regla"
+        "💡 Opciones: efímera | cambiante | temporal | variable | constante | relativa",
+        "💡 Opciones: Estado | grupo | sociedad | persona | religión | comunidad",
+        "💡 Opciones: costumbre | ley | tradición | conciencia | regla | norma"
       ],
-      videoSegment: { start: 266, end: 281 } // 4:26 - 4:41 (268.80 - 2)
+      videoSegment: { start: 268, end: 280 } // 4:29 - 4:41
     },
     {
       id: "em14",
@@ -156,123 +161,157 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! Has identificado el documento ético universal por excelencia.",
       feedbackKO: "Recuerda el documento de la ONU sobre derechos fundamentales.",
       videoHints: [
-        "💡 Opciones: Carta de las Naciones Unidas | Declaración de Independencia | Código de Hammurabi | Declaración Universal de Derechos Humanos | Constitución Europea | Tratado de Versalles",
-        "💡 Opciones: 1945 | 1946 | 1947 | 1948 | 1949 | 1950"
+        "💡 Opciones: Tratado de Versalles | Declaración de Independencia | Código de Hammurabi | Declaración Universal de Derechos Humanos | Carta de las Naciones Unidas | Constitución Europea",
+        "💡 Opciones: 1947 | 1950 | 1949 | 1948 | 1946 | 1945"
       ],
-      videoSegment: { start: 281, end: 316 } // 4:41 - 5:16 (283.08 - 2)
+      videoSegment: { start: 282, end: 316 } // 4:43 - 5:17
+    },
+    {
+      id: "em24",
+      text: "15- Otro ejemplo clásico de código ético laboral es el [[Juramento Hipocrático|juramento hipocratico]], que realizan los profesionales de la [[medicina]] al terminar sus estudios y que está vigente desde hace más de [[2.000|2000|dos mil]] años.",
+      feedbackOK: "Correcto. Un código ético profesional muy antiguo.",
+      feedbackKO: "Revisá el segundo ejemplo de ética.",
+      videoHints: [
+        "💡 Opciones: Juramento Hipocrático | Juramento Olímpico | Tratado de Paz | Manifiesto Comunista | Código de Hammurabi | Contrato Social",
+        "💡 Opciones: arquitectura | política | ingeniería | abogacía | medicina | docencia",
+        "💡 Opciones: 50 | 2.000 | 10 | 100 | 20 | 300"
+      ],
+      videoSegment: { start: 316, end: 337 } // 5:17 - 5:38
     },
     {
       id: "em15",
-      text: "15- La moral se refiere a los códigos de [[normas]] impuestos por una [[sociedad]] para regular la [[conducta]] o el comportamiento de los individuos.",
+      text: "16- La moral se refiere a los códigos de [[normas]] impuestos por una [[sociedad]] para regular la [[conducta]] o el comportamiento de los individuos.",
       feedbackOK: "¡Excelente! Has captado la definición de moral como código social.",
       feedbackKO: "Piensa en qué es la moral: normas sociales de comportamiento.",
       videoHints: [
-        "💡 Opciones: teorías | reflexiones | especulaciones | normas | ideas | conceptos",
-        "💡 Opciones: individuo | persona | filósofo | sociedad | pensador | sabio",
-        "💡 Opciones: pensamiento | reflexión | teoría | conducta | especulación | meditación"
+        "💡 Opciones: teorías | normas | especulaciones | reflexiones | ideas | conceptos",
+        "💡 Opciones: pensador | individuo | persona | sociedad | sabio | filósofo",
+        "💡 Opciones: conducta | teoría | reflexión | meditación | especulación | pensamiento"
       ],
-      videoSegment: { start: 376, end: 395 } // 6:16 - 6:35 (378.32 - 2)
+      videoSegment: { start: 377, end: 394 } // 6:18 - 6:35
     },
     {
       id: "em16",
-      text: "16- Se dice que una persona es moral cuando actúa de acuerdo con las [[normas]], [[costumbres]] y valores de su sociedad, aunque estos pueden estar en contradicción con la [[ética]] de esa misma persona.",
+      text: "17- Se dice que una persona es moral cuando actúa de acuerdo con las [[normas]], [[costumbres]] y valores de su sociedad, aunque estos pueden estar en contradicción con la [[ética]] de esa misma persona.",
       feedbackOK: "¡Correcto! Una persona puede ser moral pero no ética, o viceversa.",
       feedbackKO: "Reflexiona sobre la posible contradicción entre moral y ética.",
       videoHints: [
-        "💡 Opciones: teorías | reflexiones | especulaciones | normas | ideas | principios",
-        "💡 Opciones: teorías | especulaciones | reflexiones | costumbres | conceptos | abstracciones",
-        "💡 Opciones: religión | política | ley | ética | economía | ciencia"
+        "💡 Opciones: normas | ideas | principios | reflexiones | teorías | especulaciones",
+        "💡 Opciones: especulaciones | teorías | abstracciones | conceptos | reflexiones | costumbres",
+        "💡 Opciones: ética | economía | ley | política | religión | ciencia"
       ],
-      videoSegment: { start: 392, end: 408 } // 6:32 - 6:48 (394.80 - 2)
+      videoSegment: { start: 393, end: 407 } // 6:34 - 6:48
     },
     {
       id: "em17",
-      text: "17- Según Paul Ricoeur, la ética versa sobre lo que es [[bueno]], mientras la moral trata sobre lo que es [[obligatorio]].",
+      text: "18- Según Paul Ricoeur, la ética versa sobre lo que es [[bueno]], mientras la moral trata sobre lo que es [[obligatorio]].",
       feedbackOK: "¡Perfecto! Distinción clave: bien vs obligación.",
       feedbackKO: "Recuerda la diferencia según Ricoeur: bueno vs obligatorio.",
       videoHints: [
-        "💡 Opciones: útil | placentero | conveniente | bueno | verdadero | bello",
-        "💡 Opciones: opcional | sugerido | recomendado | obligatorio | voluntario | discrecional"
+        "💡 Opciones: verdadero | bueno | conveniente | útil | bello | placentero",
+        "💡 Opciones: discrecional | sugerido | voluntario | recomendado | opcional | obligatorio"
       ],
-      videoSegment: { start: 405, end: 418 } // 6:45 - 6:58 (407.68 - 2)
+      videoSegment: { start: 407, end: 415 } // 6:48 - 6:56
     },
     {
       id: "em18",
-      text: "18- Etimología: Moral proviene del [[latín]] moralis, que deriva de mos-moris y puede traducirse como [[costumbre]], principios y reglas que rigen la vida social.",
+      text: "19- Etimología: Moral proviene del [[latín]] moralis, que deriva de mos-moris y puede traducirse como [[costumbre]], principios y reglas que rigen la vida social.",
       feedbackOK: "¡Excelente! Conoces el origen etimológico de la palabra moral.",
       feedbackKO: "Recuerda de qué lengua antigua proviene la palabra moral.",
       videoHints: [
-        "💡 Opciones: griego | hebreo | árabe | latín | sánscrito | egipcio",
-        "💡 Opciones: razón | verdad | ley | costumbre | deber | derecho"
+        "💡 Opciones: griego | sánscrito | egipcio | latín | árabe | hebreo",
+        "💡 Opciones: ley | deber | razón | derecho | verdad | costumbre"
       ],
-      videoSegment: { start: 417, end: 432 } // 6:57 - 7:12 (419.56 - 2)
+      videoSegment: { start: 414, end: 431 } // 6:55 - 7:12
     },
     {
       id: "em19",
-      text: "19- Los códigos morales se aplican a la [[vida cotidiana]] y a la conducta diaria, nos dice cómo es el modo correcto de actuar en cada [[situación]] y lugar.",
+      text: "20- Los códigos morales se aplican a la [[vida cotidiana]] y a la conducta diaria, nos dice cómo es el modo correcto de actuar en cada [[situación]] y lugar.",
       feedbackOK: "¡Correcto! La moral es práctica y contextual.",
       feedbackKO: "Piensa en dónde se aplica la moral: en la vida diaria.",
       videoHints: [
-        "💡 Opciones: teoría abstracta | especulación filosófica | reflexión académica | vida cotidiana | contemplación pura | pensamiento teórico",
-        "💡 Opciones: teoría | abstracción | especulación | situación | concepto | reflexión"
+        "💡 Opciones: teoría abstracta | contemplación pura | reflexión académica | pensamiento teórico | especulación filosófica | vida cotidiana",
+        "💡 Opciones: concepto | situación | abstracción | reflexión | teoría | especulación"
       ],
-      videoSegment: { start: 431, end: 453 } // 7:11 - 7:33 (433.44 - 2)
+      videoSegment: { start: 430, end: 442 } // 7:11 - 7:23
     },
     {
       id: "em20",
-      text: "20- Faltar al código moral suele acarrear [[sanciones]] sociales y penales en algunos casos. Ejemplos: los testigos de Jehová en la Segunda Guerra Mundial fueron [[presos]] por negarse a tomar un fusil.",
+      text: "21- Faltar al código moral suele acarrear [[sanciones]] sociales y penales en algunos casos. Ejemplos: los testigos de Jehová en la Segunda Guerra Mundial fueron [[presos]] por negarse a tomar un fusil.",
       feedbackOK: "¡Perfecto! Has captado que violar la moral tiene consecuencias sociales.",
       feedbackKO: "Piensa en qué pasa cuando alguien viola las normas morales de una sociedad.",
       videoHints: [
-        "💡 Opciones: premios | elogios | reconocimientos | sanciones | honores | recompensas",
-        "💡 Opciones: liberados | homenajeados | premiados | presos | condecorados | exaltados"
+        "💡 Opciones: premios | honores | recompensas | sanciones | elogios | reconocimientos",
+        "💡 Opciones: condecorados | presos | exaltados | homenajeados | liberados | premiados"
       ],
-      videoSegment: { start: 452, end: 474 } // 7:32 - 7:54 (454.36 - 2)
+      videoSegment: { start: 453, end: 473 } // 7:34 - 7:54
     },
     {
       id: "em21",
-      text: "21- La moral tiende a ser [[normativa]], a reflejarse en reglamentos y prohibiciones, como algunos preceptos recogidos en textos judeocristianos como los [[10 mandamientos|diez mandamientos]].",
+      text: "22- La moral tiende a ser [[normativa]], a reflejarse en reglamentos y prohibiciones, como algunos preceptos recogidos en textos judeocristianos como los [[10 mandamientos|diez mandamientos]].",
       feedbackOK: "¡Excelente! La moral se expresa en normas y mandatos concretos.",
       feedbackKO: "Piensa en cómo se manifiesta la moral: en reglas y prohibiciones.",
       videoHints: [
-        "💡 Opciones: reflexiva | especulativa | teórica | normativa | contemplativa | abstracta",
-        "💡 Opciones: 7 pecados capitales | 12 apóstoles | 4 evangelios | 10 mandamientos | 5 pilares | 8 nobles verdades"
+        "💡 Opciones: normativa | abstracta | reflexiva | teórica | especulativa | contemplativa",
+        "💡 Opciones: 5 pilares | 4 evangelios | 12 apóstoles | 7 pecados capitales | 10 mandamientos | 8 nobles verdades"
       ],
-      videoSegment: { start: 489, end: 504 } // 8:09 - 8:24 (491.92 - 2)
+      videoSegment: { start: 491, end: 503 } // 8:12 - 8:24
     },
     {
       id: "em22",
-      text: "22- Los códigos morales pueden [[variar]] en el tiempo y el espacio. En una misma cultura, los valores morales se van [[modificando]] de acuerdo con las dinámicas y los distintos procesos sociales.",
+      text: "23- Los códigos morales pueden [[variar]] en el tiempo y el espacio. En una misma cultura, los valores morales se van [[modificando]] de acuerdo con las dinámicas y los distintos procesos sociales.",
       feedbackOK: "¡Correcto! La moral es relativa y cambiante, a diferencia de la ética.",
       feedbackKO: "Reflexiona sobre cómo la moral cambia con el tiempo y el lugar.",
       videoHints: [
-        "💡 Opciones: permanecer | mantenerse | fijarse | variar | estabilizarse | consolidarse",
-        "💡 Opciones: manteniéndose | conservándose | preservándose | modificando | fijándose | estabilizándose"
+        "💡 Opciones: fijarse | estabilizarse | mantenerse | consolidarse | permanecer | variar",
+        "💡 Opciones: manteniéndose | estabilizándose | preservándose | modificando | conservándose | fijándose"
       ],
-      videoSegment: { start: 532, end: 557 } // 8:52 - 9:17 (534.56 - 2)
+      videoSegment: { start: 531, end: 550 } // 8:52 - 9:11
     },
     {
       id: "em23",
-      text: "23- Diferentes valores morales pueden convivir en una misma [[sociedad]] bajo una misma ética. La moral no es [[uniforme]] ni perenne.",
+      text: "24- Diferentes valores morales pueden convivir en una misma [[sociedad]] bajo una misma ética. La moral no es [[uniforme]] ni perenne.",
       feedbackOK: "¡Perfecto! Has captado la pluralidad moral dentro de una misma sociedad.",
       feedbackKO: "Piensa en cómo diferentes morales coexisten en una sociedad.",
       videoHints: [
-        "💡 Opciones: persona | individuo | familia | sociedad | religión | nación",
-        "💡 Opciones: diversa | plural | heterogénea | uniforme | variada | múltiple"
+        "💡 Opciones: familia | sociedad | individuo | nación | religión | persona",
+        "💡 Opciones: variada | heterogénea | diversa | múltiple | plural | uniforme"
       ],
-      videoSegment: { start: 548, end: 571 } // 9:08 - 9:31 (550.48 - 2)
+      videoSegment: { start: 549, end: 572 } // 9:10 - 9:33
+    },
+    {
+      id: "em25",
+      text: "25- Ejemplos de comportamiento moral: la [[cortesía|cortesia]] verbal, o no mentir, a menos que se trate de una mentira socialmente [[aceptada]], como decirle a un enfermo terminal que va a [[mejorarse]].",
+      feedbackOK: "Exacto. Una mentira piadosa que la sociedad acepta.",
+      feedbackKO: "Revisá los ejemplos de comportamiento moral.",
+      videoHints: [
+        "💡 Opciones: cortesía | violencia | timidez | ironía | pereza | rapidez",
+        "💡 Opciones: prohibida | castigada | olvidada | escrita | aceptada | pagada",
+        "💡 Opciones: enojarse | operarse | morir | mejorarse | casarse | mudarse"
+      ],
+      videoSegment: { start: 572, end: 596 } // 9:33 - 9:57
+    },
+    {
+      id: "em26",
+      text: "26- Coherencia en la vida pública y privada: ser [[honrados]] en el trabajo y en la vida diaria, devolver el cambio de más o buscar al propietario de una [[cartera]] encontrada; y si se es funcionario, combatir la [[corrupción|corrupcion]].",
+      feedbackOK: "Muy bien. Así termina el video.",
+      feedbackKO: "Revisá el final del video.",
+      videoHints: [
+        "💡 Opciones: rápidos | astutos | callados | famosos | ricos | honrados",
+        "💡 Opciones: carta | cartera | llave | casa | mascota | bicicleta",
+        "💡 Opciones: eficiencia | educación | corrupción | honestidad | puntualidad | cultura"
+      ],
+      videoSegment: { start: 595, end: 631 } // 9:56 - 10:32
     }
   ]
 };
 
-// Sistema de pistas mejorado con sopa de palabras
+// Pistas escalonadas: una por hueco, con opciones para elegir
 window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoHints) return null;
-  
   const maxHints = item.videoHints.length;
   if (hintLevel >= maxHints) return null;
-  
   return {
     hint: item.videoHints[hintLevel],
     hasMore: hintLevel < maxHints - 1,
@@ -280,23 +319,19 @@ window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   };
 };
 
-// Función para generar link directo al momento del video
+// Link directo al momento del video
 window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
-  
-  const config = window.VIDEO_CONFIG?.etica_y_moral;
+  const config = window.VIDEO_CONFIG?.etica;
   if (!config) return null;
-  
   const actualStart = config.startTime + item.videoSegment.start;
   return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${actualStart}s`;
 };
 
-// Función auxiliar para parsear las opciones de la sopa de palabras
+// Extrae las opciones del formato "💡 Opciones: a | b | ..."
 window.CLOZE_TEST.parseHintOptions = function(hintText) {
-  // Extrae las opciones del formato "💡 Opciones: opción1 | opción2 | ..."
   const match = hintText.match(/💡 Opciones: (.+)/);
   if (!match) return null;
-  
   return match[1].split('|').map(opt => opt.trim());
 };
