@@ -207,11 +207,11 @@ const TOPICS = {
         // type: 'short'
       },
       utilitarismo: { //https://youtu.be/YU19bTA656I?si=ns1OzYx5AZyJPQKV
-        youtubeId: 'YU19bTA656I',
+        youtubeId: 'YU19bTA656I', // 2026-11-25: cloze revisado con la transcripción; termina antes de la despedida
         startTime: 1,
-        endTime: 127,
+        endTime: 117,
         title: 'Utilitarismo',
-        duration: '2:07',
+        duration: '1:57',
         // type: 'short'
       },
       pragmatismo: { // https://youtu.be/jHix800gjVQ?si=CXmquX1hq3CiA3fa
