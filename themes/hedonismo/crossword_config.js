@@ -1,58 +1,96 @@
-console.log('📋 Iniciando carga de configuración del crucigrama de Hedonismo...');
+// themes/hedonismo/crossword_config.js
+// Crucigrama — Hedonismo (Epicuro). Central SERENIDAD y una palabra por letra, todas del material,
+// con sección y frase para las pistas escalonadas.
+// Versión 3.0 (2026-11-25): rehecho (antes PLACER con 6 palabras, sin sección ni frase, y con
+//   CONTEMPLACION, REFLEXION y LIBERTAD, que el material no trabaja).
+console.log('📋 Iniciando carga de configuración del crucigrama...');
 const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Hedonismo Filosófico: El Placer como Fundamento de la Vida",
-    
+    title: "Hedonismo: el placer según Epicuro",
+
     // Palabra central vertical (se normaliza automáticamente)
-    central: "PLACER",
-    
+    central: "SERENIDAD",
+
     // Palabras horizontales que cruzan con la central
-    // crossIndex indica qué letra de la central usar (0-5 para PLACER)
+    // crossIndex indica qué letra de la central usar (0-8 para SERENIDAD)
     entries: [
       {
-        answer: "PRUDENCIA",
-        clue: "Sabiduría práctica que permite elegir qué placeres buscar y cuáles evitar",
-        crossIndex: 0 // Cruce en la 'P' de PLACER
+        answer: "DIOSES",
+        clue: "Según Epicuro, existen pero viven felices y no intervienen en los asuntos humanos",
+        seccion: "😱 Dos grandes temores: dioses y muerte",
+        frase: "Sobre los _____, afirma que existen pero viven felices y no intervienen en asuntos humanos.",
+        crossIndex: 0 // Cruce en la 'S' de SERENIDAD
       },
       {
-        answer: "LIBERTAD",
-        clue: "Estado de quien no está esclavizado por deseos compulsivos ni temores irracionales",
-        crossIndex: 1 // Cruce en la 'L' de PLACER
+        answer: "EPICURO",
+        clue: "Filósofo griego (341–270 a. C.) para quien el placer es ausencia de dolor",
+        seccion: "🏛️ Epicuro de Samos: vida y escuela",
+        frase: "_____ (341–270 a. C.) enseñó en Atenas.",
+        crossIndex: 1 // Cruce en la 'E' de SERENIDAD
+      },
+      {
+        answer: "JARDIN",
+        clue: "Escuela y comunidad de Epicuro, que integró mujeres y esclavos",
+        seccion: "🏛️ Epicuro de Samos: vida y escuela",
+        frase: "Enseñó en Atenas y fundó el _____, comunidad que valoró la amistad e integró mujeres y esclavos.",
+        crossIndex: 2 // Cruce en la 'R' de SERENIDAD
+      },
+      {
+        answer: "MUERTE",
+        clue: "Uno de los dos grandes temores: «no es nada para nosotros»",
+        seccion: "😱 Dos grandes temores: dioses y muerte",
+        frase: "Sobre la _____: mientras vivimos no la sentimos; cuando llega, ya no sentimos.",
+        crossIndex: 3 // Cruce en la 'E' de SERENIDAD
+      },
+      {
+        answer: "VANOS",
+        clue: "Deseos que hay que eliminar, como la fama eterna",
+        seccion: "📚 Conocer necesidades y ordenar deseos",
+        frase: "Deseos naturales y necesarios, naturales no necesarios (lujos) y _____ (fama eterna).",
+        crossIndex: 4 // Cruce en la 'N' de SERENIDAD
+      },
+      {
+        answer: "AUTARQUIA",
+        clue: "Autosuficiencia razonable: depender menos de caprichos externos",
+        seccion: "🏛️ Autarquía → Ataraxia → Felicidad",
+        frase: "La _____ es autosuficiencia razonable: depender menos de caprichos externos.",
+        crossIndex: 5 // Cruce en la 'I' de SERENIDAD
+      },
+      {
+        answer: "PRUDENCIA",
+        clue: "Sabiduría práctica inseparable de la vida de placer que propone Epicuro",
+        seccion: "🔍 Malentendidos históricos",
+        frase: "Una vida de placer continuo y calculado, inseparable de _____, belleza y justicia.",
+        crossIndex: 6 // Cruce en la 'D' de SERENIDAD
       },
       {
         answer: "ATARAXIA",
-        clue: "Estado de imperturbabilidad y serenidad mental que buscaba Epicuro",
-        crossIndex: 2 // Cruce en la 'A' de PLACER
+        clue: "Imperturbabilidad mental: el estado ideal para Epicuro",
+        seccion: "🧘 Ataraxia: estado ideal",
+        frase: "_____ es imperturbabilidad mental: equilibrio y lucidez frente a lo que ocurre.",
+        crossIndex: 7 // Cruce en la 'A' de SERENIDAD
       },
       {
-        answer: "CONTEMPLACION",
-        clue: "Actividad intelectual que proporciona placer duradero y elevado",
-        crossIndex: 3 // Cruce en la 'C' de PLACER
-      },
-      {
-        answer: "EQUILIBRIO",
-        clue: "Balance entre satisfacer necesidades y evitar excesos dañinos",
-        crossIndex: 4 // Cruce en la 'E' de PLACER
-      },
-      {
-        answer: "REFLEXION",
-        clue: "Pensamiento cuidadoso sobre qué nos hace realmente felices",
-        crossIndex: 5 // Cruce en la 'R' de PLACER
+        answer: "CALIDAD",
+        clue: "Para Epicuro, pesa más que la cantidad de placeres",
+        seccion: "🌟 Síntesis y legado del epicureísmo",
+        frase: "La _____ pesa más que la cantidad de placeres.",
+        crossIndex: 8 // Cruce en la 'D' de SERENIDAD
       }
     ],
-    
+
     // Texto para el prompt de respuesta
     promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-    
+
     // Configuración de sonidos (rutas relativas desde crossword.html)
     sounds: {
       correct: "sound/collect_points.mp3",
-      wrong: "sound/negative_beep.mp3", 
+      wrong: "sound/negative_beep.mp3",
       complete: "sound/fin_caza.mp3"
     },
-    
+
     // Opciones del juego
     options: {
       showHints: true,
@@ -62,23 +100,23 @@ try {
       showProgressBar: true,
       enableTimer: true
     },
-    
+
     // Información educativa adicional
     educational: {
-      introduction: "El hedonismo es una corriente filosófica que considera el placer como el fundamento de una vida plena.",
-      conclusion: "Epicuro nos enseñó que la verdadera felicidad no está en los placeres inmediatos, sino en la serenidad y la sabiduría.",
-      keyWords: ["hedonismo", "epicuro", "ataraxia", "placer", "serenidad"]
+      introduction: "Para Epicuro, el placer verdadero es la serenidad: no sufrir en el cuerpo ni en el alma. Completá el crucigrama con los conceptos del hedonismo.",
+      conclusion: "¡Alcanzaste la ataraxia! Repasaste los dioses, a Epicuro, el Jardín, la muerte, los deseos vanos, la autarquía, la prudencia, la ataraxia y la calidad de los placeres.",
+      keyWords: ["DIOSES", "EPICURO", "JARDIN", "MUERTE", "VANOS", "AUTARQUIA", "PRUDENCIA", "ATARAXIA", "CALIDAD"]
     },
-    
+
     // Metadatos para debug
     metadata: {
-      version: "2.0_hedonismo_secundaria",
+      version: "2.0_secundaria", // 2026-11-24: palabras del material, con seccion y frase para las pistas escalonadas
       created: new Date().toISOString(),
-      theme: "hedonismo-filosofico-secundaria",
-      totalWords: 6,
-      difficulty: "intermediate",
+      theme: "hedonismo-serenidad-secundaria",
+      totalWords: 9,
+      difficulty: "beginner-intermediate",
       targetAudience: "estudiantes-secundaria",
-      educationalLevel: "15-18 años"
+      educationalLevel: "14-18 años"
     }
   };
 
@@ -146,7 +184,7 @@ try {
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
   console.log(`📊 Resumen: "${config.title}"`);
-  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   📝 ${config.entries.length} palabras - Central: "${config.central}"`);
   console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
   console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
   
@@ -155,7 +193,7 @@ try {
   const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
   
   console.log(`📈 Estadísticas:`);
-  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📏 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
   console.log(`   📏 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
   
   // Log para debug (solo en desarrollo)

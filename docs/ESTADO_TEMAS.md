@@ -9,7 +9,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | Tema | Material | Cuestionario | Caza | Crucigrama | Mapa | Video + cloze | Examen + resumen |
 |---|---|---|---|---|---|---|---|
 | `etica_aristoteles` (**referencia**) | ✅ 15 | ✅ 13 | ✅ 8 niveles | ✅ VIRTUD | ✅ 28 / 15 pares | ✅ 17 | ✅ Aristóteles |
-| `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ PLACER | ✅ 30 / 15 | ✅ 15 (*) | ✅ Epicuro |
+| `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ SERENIDAD | ✅ 30 / 15 | ✅ 15 (*) | ✅ Epicuro |
 | `utilitarismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ FELICIDAD | ✅ 33 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | 🟡 23 (**) | ✅ Sócrates |
 | `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 20 | ✅ Kant |
@@ -87,6 +87,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Hedonismo: crucigrama rehecho con central SERENIDAD y 9 palabras del material (DIOSES, EPICURO, JARDIN, MUERTE, VANOS, AUTARQUIA, PRUDENCIA, ATARAXIA, CALIDAD), cada una con sección y frase para las pistas. Antes: PLACER con 6 palabras, tres que el material no trabaja (CONTEMPLACION, REFLEXION, LIBERTAD). En el material, la frase de los dioses se reordenó («Sobre los dioses, Epicuro afirma que existen…») para que la pista no muestre el nombre de Epicuro.
 - 2026-11-25: Utilitarismo completo (v2.0): material de 18 secciones (antes 8), cuestionario de 13, caza de 8 niveles, crucigrama FELICIDAD rehecho y mapa con 15 pares; el examen con Mill no cambia. Con esto, los siete temas de la Unidad III tienen examen.
 - 2026-11-25: Antropocentrismo completo (v2.0): material de 19 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama HUMANISMO, mapa con 15 pares y examen con Pico della Mirandola.
 - 2026-11-25: Pragmatismo completo (v2.0): material de 18 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama UTILIDAD, mapa con 15 pares y examen con William James.
@@ -119,7 +120,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 - 2026-11-19: cazas de la Unidad 3 revisadas: las 7 se juegan completas. Conceptos emparejados (si una palabra es concepto, su gemela del párrafo también) en Utilitarismo, Hedonismo, Kant, Pragmatismo y Aristóteles, y ocultos muy generales reemplazados.
 - 2026-11-19: caza de conceptos: ayuda en el motor v1.3 (3 errores seguidos iluminan un concepto oculto pendiente). Ética y Moral v2.1: el párrafo 2 trababa con «latín» y «mos» ocultos; ahora «mos, moris», «carácter» y «hábitos».
 - 2026-11-19: grupo nuevo «Taller» en el inicio (filtro y tarjeta). Copia del taller de cierre «Lo que traje, lo que me llevo» en `taller/taller.html` v2.6 (original en el repo `emociones`): abre en el paso de `?paso=N`; la tarjeta abre en el 6 (El bambú).
-- 2026-11-19: motor del crucigrama v3.2 (teclado en el celular, sin adelantar la respuesta, se puede verificar un error con letras verdes/rojas, lista de definiciones, «Otra palabra», guía con la letra del cruce, recuerda las resueltas). Probado en los 7 crucigramas de la Unidad 3 y en Origen. Pistas escalonadas (motor v3.3): automáticas desde el material en todos; revisadas a mano en Aristóteles. **Pendiente:** rehacer el contenido de los crucigramas de Utilitarismo, Pragmatismo, Antropocentrismo, Hedonismo y Kant (hechos el 2026-11-25 salvo Hedonismo).
+- 2026-11-19: motor del crucigrama v3.2 (teclado en el celular, sin adelantar la respuesta, se puede verificar un error con letras verdes/rojas, lista de definiciones, «Otra palabra», guía con la letra del cruce, recuerda las resueltas). Probado en los 7 crucigramas de la Unidad 3 y en Origen. Pistas escalonadas (motor v3.3): automáticas desde el material en todos; revisadas a mano en Aristóteles. **Pendiente:** rehacer el contenido de los crucigramas de Utilitarismo, Pragmatismo, Antropocentrismo, Hedonismo y Kant (todos hechos el 2026-11-25).
 - 2026-11-19: examen oral más pedagógico (functions V8.3): devolución de cada pregunta y las 2 ideas más flojas vuelven en el intento siguiente.
 - 2026-11-19: Ética y Moral completa (material propio, mapa al sistema completo, crucigrama nuevo, examen con Sócrates y resumen final). Videos de Kant, Antropocentrismo y Ética y Moral corregidos. Cazas de Kant, Pragmatismo, Antropocentrismo y Ética y Moral rehechas con 8 niveles. Pruebas automáticas guardadas en `tools/pruebas/`. Documentación en `CLAUDE.md` y `docs/`.
 - 2026-10-27/28: Hedonismo y Utilitarismo revisados con examen oral; regla del 60% por actividad en temas con examen; corrección del guardado del video y del conteo del crucigrama.
