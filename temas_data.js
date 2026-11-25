@@ -30,8 +30,8 @@ const TOPICS = {
   sartre: {
     icon: '🌀',
     name: 'Jean-Paul Sartre',
-    desc: 'Libertad ineludible, angustia y mala fe. (Ej. *El ser y la nada*)',
-    biography: 'Filósofo y escritor francés (1905–1980), figura del existencialismo. Sostuvo que “la existencia precede a la esencia”: estamos condenados a ser libres; la mala fe es el autoengaño para huir de esa responsabilidad. Obras: *El ser y la nada*, *El existencialismo es un humanismo*.'
+    desc: 'La existencia precede a la esencia: condenados a ser libres, angustia, mala fe y autenticidad. (Ej. El ser y la nada, El existencialismo es un humanismo)',
+    biography: 'Filósofo, novelista y dramaturgo francés (1905–1980), figura del existencialismo. Sostuvo que «la existencia precede a la esencia»: no hay naturaleza humana previa, somos lo que hacemos y estamos condenados a ser libres; la mala fe es el autoengaño para huir de esa responsabilidad. Compañero de Simone de Beauvoir; rechazó el Premio Nobel en 1964. Obras: La náusea, El ser y la nada, El existencialismo es un humanismo.'
   },
 
   etica: {
@@ -296,6 +296,12 @@ const TOPICS = {
       metodo: {
         filosofo: 'René Descartes',
         icono: '🔎',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      sartre: {
+        filosofo: 'Jean-Paul Sartre',
+        icono: '🌀',
         notaAprobacion: 6,
         minimoActividad: 60
       },

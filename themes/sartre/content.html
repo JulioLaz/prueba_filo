@@ -1,255 +1,829 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jean-Paul Sartre - Lectura Guiada</title>
-    <link rel="stylesheet" href="../../css/celebration.css">
-    <link rel="stylesheet" href="../../css/readaloud.css">
-    <script src="../../js/celebration.js" defer></script>
-    
-    <!-- 🔧 CONFIGURACIÓN DEL TEMA -->
-    <script>
-        // Configuración específica para este tema
-        window.ReadAloudSystemConfig = {
-            tema: 'Sartre',
-            threshold: 0.85, // 85% de lectura requerida
-            sections: 3,
-            soundsPath: '../../sound/',
-            redirectTo: '../../tema.html?tema=antropocentrismo',
-            celebrationEmojis: ['🎊', '🎉', '⭐', '🌟'],
-            
-            // Sinónimos específicos para Sartre (opcional)
-            synonymMap: {
-                'existencialismo': ['filosofía existencial'],
-                'libertad': ['autonomía', 'libre albedrío'],
-                'responsabilidad': ['compromiso', 'deber'],
-                'angustia': ['ansiedad', 'inquietud'],
-                'esencia': ['naturaleza', 'ser'],
-                'existencia': ['vida', 'ser'],
-                'elección': ['decisión', 'opción', 'elección'],
-                'conciencia': ['conocimiento', 'percepción'],
-                'nada': ['vacío', 'nihil'],
-                'proyecto': ['plan', 'propósito']
-            }
-        };
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--
+    Material de lectura — Jean-Paul Sartre: El ser humano es libertad. Unidad II.
+    16 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-25): reescrito en 16 secciones cortas (antes 3, y al terminar redirigía a antropocentrismo): existencia y esencia, proyecto, libertad, responsabilidad, angustia, desamparo, desesperación, mala fe, en-sí y para-sí, la mirada del otro, compromiso y autenticidad.
+  -->
+  <title>Jean-Paul Sartre: El ser humano es libertad</title>
+  <link rel="stylesheet" href="../../css/content.css">
+  <link rel="stylesheet" href="../../css/readaloud.css">
+  <link rel="stylesheet" href="../../css/celebration.css">
+  <script src="../../js/celebration.js" defer></script>
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
+  <script>
+    window.ReadAloudSystemConfig = {
+      tema: 'Jean-Paul Sartre: El ser humano es libertad',
+      threshold: 0.80, // 80% de lectura requerida
+      sections: 16,
+      soundsPath: '../../sound/',
+      redirectTo: '../../tema.html?tema=sartre',
+      celebrationEmojis: ['🌀', '⛓️', '🎭', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
+      synonymMap: {
+        'sartre': ['sart', 'sartr'],
+        'beauvoir': ['bovuar', 'bovoar', 'bobuar'],
+        'dostoievski': ['dostoyevski', 'dostoievsky'],
+        'engagement': ['angashmán', 'engagement'],
+        'cortapapeles': ['cortapapeles'],
+        'existencialismo': ['existencialismo']
+      }
+    };
+  </script>
 </head>
 <body>
-    <main class="material-dark">
-        <div class="progress-header">
-            <div class="progress-text">
-                <span>Progreso de Comprensión</span>
-                <span id="progress-counter">0 / 3 secciones</span>
+  <main class="material-dark">
+    <div class="progress-header">
+      <div class="progress-text">
+        <span>Progreso de Comprensión</span>
+        <span id="progress-counter">0 / 16 secciones</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <h1>🌀 Jean-Paul Sartre: El ser humano es libertad</h1>
+    <p><em>Para Sartre <strong>la existencia precede a la esencia</strong>: no hay una naturaleza humana previa, somos lo que hacemos. Estamos <strong>condenados a ser libres</strong>, y esa libertad trae angustia, desamparo y desesperación, la tentación de la <strong>mala fe</strong> y el desafío de la <strong>autenticidad</strong>.</em></p>
+
+    <!-- 1. Sartre y el existencialismo -->
+    <div class="study-section active" data-section="vida">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌀 Sartre y el existencialismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
 
-        <h1>Jean-Paul Sartre — el ser humano es el ser libre</h1>
-
-        <!-- Sección 1: Introducción -->
-        <div class="study-section active" data-section="intro">
-            <div class="reading-area">
-                <div class="reading-header">
-                    <h3>📚 Lectura Obligatoria</h3>
-                    <div class="reading-progress">
-                        <div class="progress-bar-reading">
-                            <div class="progress-fill-reading"></div>
-                        </div>
-                        <span class="progress-text-reading">0% leído</span>
-                    </div>
-                </div>
-                
-                <div class="readaloud-container">
-                    <p class="readaloud" data-lang="es-AR">
-                        El <strong>existencialismo sartreano</strong> afirma que 
-                        <strong>la existencia precede a la esencia</strong>: primero 
-                        existimos y luego, mediante nuestras <strong>elecciones</strong>, 
-                        nos definimos. No hay una "naturaleza humana" prefijada que nos 
-                        dicte quiénes somos.<br><br>
-                        De ahí la tesis: <strong>estamos condenados a ser libres</strong>. 
-                        La libertad no es un privilegio cómodo sino una 
-                        <strong>carga de responsabilidad</strong> que nos expone a la 
-                        <strong>angustia</strong>, el <strong>desamparo</strong> y la 
-                        <strong>desesperación</strong>.
-                    </p>
-                </div>
-
-                <div class="reading-controls">
-                    <button class="mic-button" type="button">
-                        <span class="mic-icon">🎤</span>
-                        <span class="mic-text">Comenzar Lectura</span>
-                    </button>
-                    <div class="reading-status">Presiona el micrófono para comenzar</div>
-                    <div class="reading-hint">
-                        💡 Lee en voz alta cada frase. Se marcará en verde lo que hayas leído correctamente.
-                    </div>
-                </div>
-            </div>
-
-            <div class="comprehension-check" style="display: none;">
-                <div class="check-header">
-                    <h4>🧠 Verificación de Comprensión</h4>
-                    <p>Ahora que has leído el texto, responde:</p>
-                </div>
-                <div class="question">
-                    <p>¿Cuál es la idea central del existencialismo sartreano?</p>
-                </div>
-                <div class="options-container">
-                    <div class="option" data-correct="true">
-                        La libertad en Sartre es inevitable y genera responsabilidad total sobre nuestros actos
-                    </div>
-                    <div class="option">
-                        Los seres humanos tienen una esencia predeterminada que guía sus elecciones
-                    </div>
-                    <div class="option">
-                        La angustia es un sentimiento negativo que debemos evitar completamente
-                    </div>
-                    <div class="option">
-                        Sartre defiende que podemos escapar de la responsabilidad de elegir
-                    </div>
-                </div>
-            </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            <strong>Jean-Paul Sartre</strong> (1905–1980) fue un filósofo, novelista y dramaturgo francés. Vivió la Segunda Guerra Mundial y estuvo preso de los nazis. Escribió la novela <em>La náusea</em> y su gran obra filosófica, <em>El ser y la nada</em> (1943). Compartió su vida con la filósofa Simone de <strong>Beauvoir</strong>.<br><br>Es la figura principal del <strong>existencialismo</strong>, la filosofía que pone en el centro la existencia concreta y la <strong>libertad</strong>. En 1964 rechazó el Premio Nobel de Literatura.
+          </p>
         </div>
 
-        <!-- Sección 2: Contexto -->
-        <div class="study-section" data-section="contexto">
-            <div class="reading-area">
-                <div class="reading-header">
-                    <h3>🌍 Contexto Histórico</h3>
-                    <div class="reading-progress">
-                        <div class="progress-bar-reading">
-                            <div class="progress-fill-reading"></div>
-                        </div>
-                        <span class="progress-text-reading">0% leído</span>
-                    </div>
-                </div>
-                
-                <div class="readaloud-container">
-                    <p class="readaloud" data-lang="es-AR">
-                        Tras las <strong>Guerras Mundiales</strong>, el optimismo racionalista quedó 
-                        herido. Sartre responde que el ser humano no tiene un guion previo: 
-                        <strong>se hace a sí mismo en sus actos</strong>.<br><br>
-                        
-                        Elige incluso cuando aparenta no elegir. Por eso: la 
-                        <strong>existencia es superior a la esencia</strong> - no hay modelo 
-                        previo de lo humano. Tenemos una <strong>libertad inevitable</strong> 
-                        de la que no podemos "salirnos". Cada elección implica una 
-                        <strong>responsabilidad radical</strong> porque cada elección 
-                        "propone" a otros un modo de ser.
-                    </p>
-                </div>
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Filósofo de la libertad.
+          </div>
+        </div>
+      </div>
 
-                <div class="reading-controls">
-                    <button class="mic-button" type="button">
-                        <span class="mic-icon">🎤</span>
-                        <span class="mic-text">Comenzar Lectura</span>
-                    </button>
-                    <div class="reading-status">Presiona el micrófono para comenzar</div>
-                    <div class="reading-hint">
-                        💡 Lee despacio y con claridad para mejor reconocimiento.
-                    </div>
-                </div>
-            </div>
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué pone en el centro el existencialismo de Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">La existencia concreta y la libertad del ser humano</div>
+          <div class="option">El estudio de los átomos</div>
+          <div class="option">La obediencia a la tradición</div>
+          <div class="option">El destino escrito por los dioses</div>
+        </div>
+      </div>
+    </div>
 
-            <div class="comprehension-check" style="display: none;">
-                <div class="check-header">
-                    <h4>🎯 Verificación de Comprensión</h4>
-                    <p>Basándote en lo que acabas de leer:</p>
-                </div>
-                <div class="question">
-                    <p>¿Qué significa que "la existencia precede a la esencia"?</p>
-                </div>
-                <div class="options-container">
-                    <div class="option" data-correct="true">
-                        El ser humano se define a través de sus actos, no por una naturaleza preestablecida
-                    </div>
-                    <div class="option">
-                        Las Guerras Mundiales no influyeron en el pensamiento existencialista
-                    </div>
-                    <div class="option">
-                        Sartre defiende que hay situaciones donde realmente no elegimos
-                    </div>
-                    <div class="option">
-                        Cada persona debe seguir un modelo universal de comportamiento humano
-                    </div>
-                </div>
+    <!-- 2. El cortapapeles: primero la esencia -->
+    <div class="study-section" data-section="cortapapeles">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>✂️ El cortapapeles: primero la esencia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
             </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
         </div>
 
-        <!-- Sección 3: Ontología -->
-        <div class="study-section" data-section="ontologia">
-            <div class="reading-area">
-                <div class="reading-header">
-                    <h3>🧩 Ontología Básica</h3>
-                    <div class="reading-progress">
-                        <div class="progress-bar-reading">
-                            <div class="progress-fill-reading"></div>
-                        </div>
-                        <span class="progress-text-reading">0% leído</span>
-                    </div>
-                </div>
-                
-                <div class="readaloud-container">
-                    <p class="readaloud" data-lang="es-AR">
-                        Sartre distingue niveles del ser para explicar la libertad:<br><br>
-                        
-                        <strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras 
-                        ni proyectos. Un árbol "es", sin preguntarse por su ser.<br><br>
-                        
-                        <strong>Ser para sí</strong>: la conciencia humana; no es "plena", 
-                        se abre como posibilidad. Puede negarse a sí misma, reinterpretarse, 
-                        apartarse de lo dado.<br><br>
-                        
-                        <strong>La nada</strong>: distancia interna que la conciencia introduce 
-                        en lo real. Ese "hueco" hace posible <strong>elegir</strong> y no 
-                        reaccionar mecánicamente. La libertad no es una propiedad adicional: 
-                        <strong>es la estructura misma del para sí</strong>.
-                    </p>
-                </div>
-
-                <div class="reading-controls">
-                    <button class="mic-button" type="button">
-                        <span class="mic-icon">🎤</span>
-                        <span class="mic-text">Comenzar Lectura</span>
-                    </button>
-                    <div class="reading-status">Presiona el micrófono para comenzar</div>
-                    <div class="reading-hint">
-                        💡 Este es un texto conceptual. Lee con atención cada término.
-                    </div>
-                </div>
-            </div>
-
-            <div class="comprehension-check" style="display: none;">
-                <div class="check-header">
-                    <h4>🔬 Verificación de Comprensión</h4>
-                    <p>Sobre los conceptos ontológicos de Sartre:</p>
-                </div>
-                <div class="question">
-                    <p>¿Qué caracteriza al "ser-para-sí" según Sartre?</p>
-                </div>
-                <div class="options-container">
-                    <div class="option" data-correct="true">
-                        La conciencia humana se caracteriza por su apertura a posibilidades
-                    </div>
-                    <div class="option">
-                        El ser-en-sí y el ser-para-sí son conceptos equivalentes
-                    </div>
-                    <div class="option">
-                        Los objetos tienen la misma estructura ontológica que los seres humanos
-                    </div>
-                    <div class="option">
-                        La libertad es una característica que se puede agregar o quitar del ser humano
-                    </div>
-                </div>
-            </div>
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En su conferencia <em>El existencialismo es un humanismo</em> (1945), Sartre da un ejemplo. Un artesano que fabrica un <strong>cortapapeles</strong> primero tiene en la cabeza qué es y para qué sirve: su <strong>esencia</strong>. Después lo fabrica.<br><br>En un objeto, la esencia precede a la existencia: antes de existir, ya está definido. Si un Dios creador hubiera fabricado al ser humano, nos pasaría lo mismo: tendríamos una <strong>naturaleza humana</strong> fijada de antemano.
+          </p>
         </div>
-    </main>
 
-    <!-- 🚀 SISTEMA MODULAR - Solo esta línea hace toda la magia -->
-    <script src="../../js/readaloud-system.js"></script>
-    <script type="module" src="../../js/material-firebase.js"></script>
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Primero el plan, después el objeto.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>En el ejemplo del cortapapeles, ¿qué viene primero?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">La existencia: el objeto aparece y después se decide qué es</div>
+          <div class="option" data-correct="true">La esencia: el artesano sabe qué es y para qué sirve antes de fabricarlo</div>
+          <div class="option">El precio del objeto</div>
+          <div class="option">El papel que va a cortar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. La existencia precede a la esencia -->
+    <div class="study-section" data-section="existencia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🚶 La existencia precede a la esencia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Con el ser humano pasa lo contrario. Sartre es <strong>ateo</strong>: si no hay un Dios que nos haya pensado antes, no hay una naturaleza humana previa. Por eso la <strong>existencia precede a la esencia</strong>.<br><br>Primero existimos, aparecemos en el mundo, y después nos definimos por lo que hacemos. Al nacer no somos nada determinado. Como dice Sartre: «el hombre no es otra cosa que lo que él se <strong>hace</strong>».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Primero existimos, después nos definimos.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa que en el ser humano «la existencia precede a la esencia»?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que nacemos con una naturaleza ya fijada</div>
+          <div class="option">Que Dios decide quiénes somos</div>
+          <div class="option" data-correct="true">Que primero existimos y después nos definimos por lo que hacemos</div>
+          <div class="option">Que la esencia es más importante que la existencia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. El ser humano es un proyecto -->
+    <div class="study-section" data-section="proyecto">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📝 El ser humano es un proyecto</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Si no hay una esencia previa, el ser humano es un <strong>proyecto</strong>: algo que se lanza hacia el futuro y se va haciendo. No somos una piedra ni una planta, que ya son lo que son: somos lo que <strong>elegimos</strong> ser.<br><br>Nadie nace valiente o cobarde, generoso o egoísta: nos volvemos así con nuestros <strong>actos</strong>. Por eso Sartre dice que el ser humano será, ante todo, lo que haya proyectado ser.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Nos hacemos con nuestros actos.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Según Sartre, ¿cómo llega alguien a ser valiente?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Naciendo con un carácter valiente</div>
+          <div class="option" data-correct="true">Con sus actos: nadie nace valiente, se hace valiente actuando</div>
+          <div class="option">Por decisión de los dioses</div>
+          <div class="option">Por los genes de su familia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Condenados a ser libres -->
+    <div class="study-section" data-section="condenados">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⛓️ Condenados a ser libres</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Sartre tiene una frase famosa: «el hombre está <strong>condenado a ser libre</strong>». Condenado, porque no se creó a sí mismo ni eligió nacer. Libre, porque una vez arrojado al mundo es <strong>responsable</strong> de todo lo que hace.<br><br>No podemos dejar de elegir: incluso <strong>no elegir</strong> es una elección. Quedarse quieto, obedecer o dejar que otros decidan también son maneras de elegir. La libertad no es un regalo que podamos devolver: es nuestra condición.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 No elegir también es elegir.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué Sartre dice que estamos «condenados» a ser libres?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Porque no elegimos nacer, pero no podemos dejar de elegir y somos responsables de lo que hacemos</div>
+          <div class="option">Porque la libertad es un castigo de la ley</div>
+          <div class="option">Porque solo los presos piensan en la libertad</div>
+          <div class="option">Porque nunca podemos elegir nada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Responsables de todos -->
+    <div class="study-section" data-section="responsabilidad">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌍 Responsables de todos</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Sartre, la <strong>responsabilidad</strong> es enorme. Al elegir qué hacer con mi vida, no elijo solo para mí: elijo una <strong>imagen del ser humano</strong> tal como creo que debe ser.<br><br>Si decido casarme y tener hijos, o comprometerme con una causa, estoy diciendo con mis actos que así vale la pena vivir. Por eso Sartre afirma que, al elegirme, elijo al hombre: soy responsable de mí mismo y de <strong>todos</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Al elegirme, elijo al hombre.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué, según Sartre, somos responsables de todos al elegir?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque las leyes nos obligan a cuidar a todos</div>
+          <div class="option">Porque los demás eligen por nosotros</div>
+          <div class="option">Porque la responsabilidad es solo individual</div>
+          <div class="option" data-correct="true">Porque al elegir proponemos con nuestros actos una imagen de cómo debe ser el ser humano</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. La angustia -->
+    <div class="study-section" data-section="angustia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>😰 La angustia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Quien toma conciencia de esa responsabilidad total siente <strong>angustia</strong>. No es miedo a algo concreto, sino el vértigo de saber que todo depende de mi elección y que no hay nadie que decida por mí.<br><br>Sartre pone el ejemplo de un jefe militar que debe mandar soldados al ataque: sabe que de su orden dependen muchas vidas. Hay que preguntarse: ¿qué pasaría si todos hicieran lo mismo? La angustia no paraliza: es la condición misma de la <strong>acción</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El vértigo de la libertad.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la angustia para Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El miedo a un animal peligroso</div>
+          <div class="option">Una enfermedad que hay que curar con remedios</div>
+          <div class="option" data-correct="true">La conciencia de que todo depende de mi elección y que soy responsable de ella</div>
+          <div class="option">La tristeza por algo que ya pasó</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. El desamparo -->
+    <div class="study-section" data-section="desamparo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏚️ El desamparo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Si Dios no existe, no hay valores escritos en el cielo que nos digan qué hacer. Sartre recuerda una frase de Dostoievski: «Si Dios no existiera, todo estaría permitido». Estamos solos, sin <strong>excusas</strong>: eso es el <strong>desamparo</strong>.<br><br>Un alumno de Sartre debía elegir entre unirse a la resistencia o quedarse a cuidar a su madre. Ninguna moral le daba la respuesta. Sartre le dijo: «Sos libre, elegí, es decir, <strong>inventá</strong>».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Sin valores escritos, sin excusas.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el desamparo para Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Estar solos para elegir, sin valores fijados de antemano ni excusas</div>
+          <div class="option">Vivir en la calle sin casa</div>
+          <div class="option">Que la familia nos abandone</div>
+          <div class="option">Tener a alguien que decida siempre por nosotros</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. La desesperación -->
+    <div class="study-section" data-section="desesperacion">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎲 La desesperación</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            La <strong>desesperación</strong> no significa estar deprimido. Significa actuar sin esperar garantías: solo contamos con lo que depende de nuestra <strong>voluntad</strong> y con las probabilidades que hacen posible nuestra acción.<br><br>No puedo estar seguro de que otros continúen lo que empiezo, ni de que el mundo salga como quiero. Igual tengo que <strong>actuar</strong> y comprometerme. Sartre dice que hay que obrar <strong>sin esperanza</strong>: no por pesimismo, sino porque no hay nada asegurado.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Actuar sin garantías.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa la desesperación en Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Estar triste todo el tiempo</div>
+          <div class="option" data-correct="true">Actuar contando solo con lo que depende de nosotros, sin garantías</div>
+          <div class="option">Rendirse y no hacer nada</div>
+          <div class="option">Esperar que otros resuelvan los problemas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. La mala fe -->
+    <div class="study-section" data-section="mala-fe">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🎭 La mala fe</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Como la libertad angustia, muchas veces intentamos huir de ella. Sartre llama <strong>mala fe</strong> a ese <strong>autoengaño</strong>: mentirnos a nosotros mismos para no hacernos cargo de lo que elegimos.<br><br>En <em>El ser y la nada</em> describe a un <strong>mozo</strong> de café que actúa de mozo de manera exagerada, como si no pudiera ser otra cosa. También son mala fe frases como «yo soy así», «no tuve opción» o «la culpa es de las circunstancias».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Mentirse para no elegir.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál de estas frases es un ejemplo de mala fe?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">«Elegí esto y me hago cargo»</div>
+          <div class="option">«Me equivoqué y voy a corregirlo»</div>
+          <div class="option">«Puedo elegir otra cosa»</div>
+          <div class="option" data-correct="true">«Yo soy así, no puedo cambiar»</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. El ser en-sí y el ser para-sí -->
+    <div class="study-section" data-section="en-si-para-si">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🪨 El ser en-sí y el ser para-sí</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En <em>El ser y la nada</em>, Sartre distingue dos modos de ser. El <strong>ser en-sí</strong> es el de las cosas: una piedra es lo que es, maciza, completa, sin posibilidades.<br><br>El <strong>ser para-sí</strong> es el de la <strong>conciencia</strong> humana: nunca coincide del todo consigo misma, siempre está abierta a lo que todavía no es. Por eso es libertad. La mala fe consiste justamente en querer ser una cosa, un en-sí, para no tener que elegir.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Cosas y conciencia.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué diferencia hay entre el ser en-sí y el ser para-sí?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El en-sí es la conciencia y el para-sí es la piedra</div>
+          <div class="option">Son dos nombres para lo mismo</div>
+          <div class="option" data-correct="true">El en-sí es el de las cosas, completo; el para-sí es la conciencia, abierta y libre</div>
+          <div class="option">El para-sí es el ser de los animales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. La mirada del otro -->
+    <div class="study-section" data-section="mirada">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👀 La mirada del otro</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Los otros también cuentan. Cuando alguien me <strong>mira</strong>, me descubro desde afuera: siento <strong>vergüenza</strong> o orgullo, porque el otro me ve como un objeto y me juzga.<br><br>El otro limita mi libertad, pero también lo necesito para saber quién soy. En su obra de teatro <em>A puerta cerrada</em>, Sartre escribe: «el <strong>infierno</strong> son los otros». No quiere decir que los demás sean malos, sino que vivir bajo la mirada y el juicio ajeno puede volverse una prisión.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Me veo a través del otro.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa «el infierno son los otros»?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Que vivir pendientes de la mirada y el juicio ajeno puede volverse una prisión</div>
+          <div class="option">Que todas las personas son malas</div>
+          <div class="option">Que hay que vivir solo, sin nadie</div>
+          <div class="option">Que los demás no existen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. El compromiso -->
+    <div class="study-section" data-section="compromiso">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>✊ El compromiso</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Sartre, el existencialismo es una filosofía de la <strong>acción</strong>. No alcanza con tener buenas intenciones: somos lo que <strong>hacemos</strong>. No hay amor fuera de los actos de amor, ni genio fuera de las obras.<br><br>Por eso defendió el <strong>compromiso</strong> (<em>engagement</em>): el escritor y el ciudadano deben tomar partido frente a los problemas de su tiempo, como la guerra, la injusticia o la libertad de otros pueblos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Somos lo que hacemos.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué el existencialismo es una filosofía de la acción?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque recomienda quedarse quieto</div>
+          <div class="option">Porque solo se ocupa de los deportes</div>
+          <div class="option">Porque dice que todo está decidido de antemano</div>
+          <div class="option" data-correct="true">Porque somos lo que hacemos: no alcanza con las buenas intenciones</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. La autenticidad -->
+    <div class="study-section" data-section="autenticidad">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 La autenticidad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Frente a la mala fe está la <strong>autenticidad</strong>: asumir la propia libertad con lucidez, elegir sabiendo que elegimos y responder por lo que hacemos, sin esconderse detrás de excusas.<br><br>Ser auténtico no es «hacer lo que se me ocurre»: es hacerse cargo de las consecuencias y de la imagen de ser humano que proponemos con nuestros actos. La persona auténtica no dice «no tuve opción»: dice «elegí esto».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Hacerse cargo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la autenticidad para Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Hacer lo que se me ocurre sin pensar en nadie</div>
+          <div class="option" data-correct="true">Asumir la libertad y hacerse cargo de lo que elegimos, sin excusas</div>
+          <div class="option">Copiar lo que hacen los demás</div>
+          <div class="option">Echarle la culpa a las circunstancias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. ¿Pesimismo o humanismo? -->
+    <div class="study-section" data-section="humanismo">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>💬 ¿Pesimismo o humanismo?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Muchos acusaron al existencialismo de pesimista: hablaba de angustia, desamparo y desesperación. Sartre respondió en su conferencia que es una doctrina <strong>optimista</strong>, porque el destino del ser humano está en sus propias manos.<br><br>Es un <strong>humanismo</strong>: no porque el ser humano sea un fin ya terminado, sino porque siempre se supera a sí mismo, se proyecta y se inventa. No hay nada escrito: todo está por <strong>hacer</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El destino está en nuestras manos.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué Sartre dice que el existencialismo es optimista?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque promete que todo va a salir bien</div>
+          <div class="option">Porque niega la angustia</div>
+          <div class="option" data-correct="true">Porque el destino del ser humano está en sus propias manos</div>
+          <div class="option">Porque dice que Dios nos va a salvar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Síntesis: el ser humano es libertad -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏆 Síntesis: el ser humano es libertad</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para Sartre, la <strong>existencia precede a la esencia</strong>: no hay naturaleza humana previa, somos un <strong>proyecto</strong> que se hace con sus actos. Estamos <strong>condenados a ser libres</strong> y somos responsables de nosotros y de todos.<br><br>Esa libertad trae <strong>angustia</strong>, <strong>desamparo</strong> y <strong>desesperación</strong>, y la tentación de huir con la <strong>mala fe</strong>. La salida es la <strong>autenticidad</strong>: comprometerse y hacerse cargo de lo que elegimos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Síntesis final: todos los conceptos integrados.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la síntesis del pensamiento de Sartre?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Somos libertad: nos hacemos con nuestros actos y debemos asumir esa libertad con autenticidad</div>
+          <div class="option">Nacemos con una esencia fija que debemos aceptar</div>
+          <div class="option">La libertad es una ilusión y todo está decidido</div>
+          <div class="option">Lo mejor es dejar que otros elijan por nosotros</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 🚀 SISTEMA MODULAR -->
+  <script src="../../js/readaloud-system.js"></script>
+  <script type="module" src="../../js/material-firebase.js"></script>
+
 </body>
 </html>

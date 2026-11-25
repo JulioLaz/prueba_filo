@@ -161,16 +161,15 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: "sartre",
         title: "Jean-Paul Sartre: El ser humano es libertad", 
-        description: "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad.",
+        description: "Existencialismo: la existencia precede a la esencia, condenados a ser libres, angustia, desamparo, desesperación, mala fe, la mirada del otro y autenticidad.",
         icon: "🌀",
         gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
         difficulty: "UNIDAD_II",
-        questions: 10,
-        timeEstimate: 12,
+        questions: 13,
+        timeEstimate: 14,
         prerequisites: [],
         color: "#00adb5",
-        contentFile: "themes/sartre/content.html", // ✅ Nueva ruta
-        useModularConfig: true // ✅ Flag para usar config.json
+        contentFile: "themes/sartre/content.html" // v2.0 (2026-11-25): tema completo
     },
     {
         id: 'etica',

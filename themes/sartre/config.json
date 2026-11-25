@@ -6,37 +6,69 @@
     "icon": "🌀",
     "gradient": "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
     "difficulty": "intermedio",
-    "description": "Existencialismo: existencia precede a la esencia, libertad ineludible, angustia, desamparo, desesperación, mala fe y autenticidad."
+    "category": "Antropología Filosófica",
+    "description": "Existencialismo: la existencia precede a la esencia, condenados a ser libres, angustia, desamparo, desesperación, mala fe, la mirada del otro, compromiso y autenticidad.",
+    "lastUpdated": "2026-11-25"
   },
   "activities": {
-    "quiz": {
-      "enabled": true,
-      "questions": 10,
-      "timeLimit": 30,
-      "timeEstimate": 12
-    },
-    "conceptos": {
-      "enabled": true,
-      "levels": 6,
-      "timeEstimate": 8
-    },
     "material": {
       "enabled": true,
-      "sections": 8,
+      "type": "readaloud",
+      "sections": 16,
+      "timeEstimate": 14,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
       "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": false,
+      "items": 0,
+      "timeEstimate": 0
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 8,
+      "centralWord": "LIBERTAD",
+      "timeEstimate": 8
     },
     "mapa": {
       "enabled": true,
-      "nodes": 24,
-      "timeEstimate": 5
+      "nodes": 30,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
     }
   },
   "files": {
-    "content": "content.html",
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
     "quiz": "quiz.js",
-    "conceptos": "conceptos.js", 
-    "mapa": "mapa.html"
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
   },
   "prerequisites": [],
-  "color": "#00adb5"
+  "color": "#00adb5",
+  "notes": {
+    "realValues": "v2.0 (2026-11-25): material 16 secciones, cuestionario 13, caza 8 niveles / 46, crucigrama LIBERTAD + 8, mapa 30 nodos / 15 pares. Sin video ni cloze todavía."
+  }
 }

@@ -1,156 +1,174 @@
-// js/caza_conceptos_sartre.js
+// themes/sartre/conceptos.js
+// Caza de conceptos — Jean-Paul Sartre: El ser humano es libertad. Unidad II.
+// v2.0 (2026-11-25): 8 niveles en el orden del material v2.0 (antes 6 con negritas),
+//   sin negritas, términos literales y palabras «gemelas» emparejadas.
 
 window.CONCEPT_HUNT_CONFIG = {
-
   author: "Jean-Paul Sartre",
-  menuUrl: "sartre.html",   // 👈 a dónde volver con el botón
-  menuUrl: "https://juliolaz.github.io/prueba_filo/quiz.html?tema=sartre&theme=sartre",
-  // Niveles
+  menuUrl: "tema.html?tema=sartre",
   levels: [
     {
-      // 1) Tesis central — SOLO PALABRAS CLAVE para tap en móvil
       html: `
-      <p><em>El <strong>existencialismo</strong> de J.P. Sartre afirma que <strong>la existencia precede a la esencia</strong>: primero existimos y luego, mediante nuestras <strong>elecciones</strong>, nos definimos. No hay una <strong>“naturaleza humana”</strong> prefijada que nos dicte quiénes somos. De ahí la tesis: <strong>estamos condenados a ser libres</strong>. La <strong>libertad</strong> no es un privilegio cómodo sino una <strong>carga de responsabilidad</strong> que nos expone a la <strong>angustia</strong>, el <strong>desamparo</strong> y la <strong>desesperación</strong>.</em></p>
+      <p>Jean-Paul Sartre fue un filósofo y novelista francés, figura del existencialismo. Escribió La náusea y El ser y la nada, compartió su vida con Simone de Beauvoir y rechazó el Premio Nobel.</p>
       `,
-      hint: "Fijate en palabras clave como: existencia, esencia...",
+      hint: "Identificá quién fue Sartre y sus obras.",
       concepts: [
-        { term: "existencialismo", meaning: "El existencialismo es una corriente filosófica que se centra en la existencia individual, la libertad y la responsabilidad. Su idea principal es que la existencia precede a la esencia." },
-        { term: "naturaleza", meaning: "Aunque no hay una naturaleza humana predeterminada, Sartre sí habla de la condición humana. Esta es el conjunto de límites universales que compartimos todos los seres humanos por el simple hecho de existir en el mundo. Estos límites son:\n● Estar en el mundo.\n● Tener que trabajar.\n● Vivir entre otros.\n● Ser mortal." },
-        { term: "existencia", meaning: "Primero existís; no hay esencia previa que te determine." },
-        { term: "esencia", meaning: "No viene dada; se construye con tus elecciones." },
-        { term: "elecciones", meaning: "Actos con los que te definís; elegir es inevitable para Sartre." },
-        { term: "libertad", meaning: "No es opcional: estamos arrojados a elegir." },
-        { term: "responsabilidad", meaning: "Responder por lo que elegís; sin excusas en una esencia previa." },
-        { term: "angustia", meaning: "Lucidez/vértigo de que tus decisiones te constituyen." },
-        { term: "desamparo", meaning: "No hay valores dados ‘desde afuera’; debés crearlos al actuar." },
-        { term: "desesperación", meaning: "Actuar según lo que depende de vos, sin garantías externas." },
-        { term: "condenados", meaning: "No es un castigo, sino una carga. Nos obliga a ser completamente responsables de cada una de nuestras decisiones y de la persona en la que nos convertimos, sin poder echar la culpa a nada ni a nadie." },
+        { term: "Sartre", meaning: "Filósofo y escritor francés (1905–1980)." },
+        { term: "existencialismo", meaning: "Filosofía que pone en el centro la existencia concreta y la libertad." },
+        { term: "La náusea", meaning: "Novela de Sartre." },
+        { term: "El ser y la nada", meaning: "Gran obra filosófica de Sartre (1943)." },
+        { term: "Simone de Beauvoir", meaning: "Filósofa francesa, compañera de Sartre." },
+        { term: "Premio Nobel", meaning: "Premio de Literatura que Sartre rechazó en 1964." }
       ],
-      // Se muestra al completar todos los términos del nivel
       corollary: [
-        "La libertad implica responsabilidad",
-        "La existencia precede a la esencia:\nPrimero existimos, somos arrojados al mundo sin ninguna esencia o manual de instrucciones. Después, a través de nuestras decisiones, acciones y elecciones, nos vamos construyendo a nosotros mismos.\nEn otras palabras, no somos nada al principio, y es nuestra libertad y responsabilidad lo que nos define y crea nuestra esencia a lo largo de la vida.",
-        "Estamos condenados a ser libres:\nCuando Sartre dice que estamos condenados, no se refiere a un castigo divino o a una maldición. En su lugar, lo usa en el sentido de que es un hecho ineludible de nuestra existencia. No elegimos existir, pero una vez que lo hacemos, la libertad se convierte en una carga de la que no podemos escapar.\nEs una condena porque nos arroja a un estado de responsabilidad total. No podemos culpar a Dios, a la naturaleza humana o a las circunstancias por lo que somos o lo que hacemos. Nuestra existencia precede a nuestra esencia, lo que significa que primero existimos y luego, a través de nuestras decisiones y acciones, definimos quiénes somos."
-      ],
+        "Sartre es el filósofo de la libertad.",
+        "El existencialismo mira la existencia concreta."
+      ]
     },
     {
-      // 2) Ontología: ser-en-sí / ser-para-sí / nada — tokens con guion para tap
       html: `
       <div class="highlight-box">
-        <h4>🧩 Ontología básica de Sartre: Ser en sí, Ser para sí y la nada</h4>
-        <p>Sartre distingue niveles del ser para explicar la libertad:</p>
-        <ul>
-          <li><strong>Ser en sí</strong>: lo de las cosas; pleno, opaco, sin fisuras ni proyectos.</li>
-          <li><strong>Ser para sí</strong>: la conciencia humana; se abre como posibilidad.</li>
-          <li>La <strong>nada</strong>: distancia que la conciencia introduce y que permite elegir.</li>
-        </ul>
-        <p>La <strong>libertad</strong> no es una propiedad adicional: <strong>es la estructura misma del para-sí</strong>.</p>
+        <h4>✂️ Existencia y esencia</h4>
+        <p>Un artesano piensa el cortapapeles antes de fabricarlo. En el ser humano es al revés: como Sartre es ateo, no hay naturaleza humana previa, y la existencia precede a la esencia.</p>
       </div>
       `,
-      hint: "Tres nociones-llave: ser-en-sí, ser-para-sí, nada.",
+      hint: "Identificá la diferencia entre el objeto y el ser humano.",
       concepts: [
-        { term: "Ser", meaning: "Ser-en-sí: Modo de ser de las cosas: pleno, sin proyectos ni reflexión.\nSer-para-sí: Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
-        // { term: "Ser_para_sí", meaning: "Conciencia humana: apertura, posibilidad, proyecto, auto-superación." },
-        { term: "nada", meaning: "La nada es, en este contexto, ese espacio vacío que la conciencia introduce. Es como un hiato o una pausa que se interpone entre lo que eres ahora y tus posibilidades.\nSin ese hiato (sin la nada), serías como una cosa: tu futuro estaría predeterminado por tu presente. Si eres un estudiante, solo podrías ser un estudiante para siempre. No habría lugar para la elección.\nCon el hiato (con la nada), la elección es posible: La nada te permite negar lo que eres en el presente y proyectarte hacia el futuro. Te da la libertad de decir no soy solo esto y decidir qué quieres ser.\nEn resumen, la nada no es la nada absoluta como un vacío de la nada, sino una fuerza activa que proviene de nuestra conciencia y que nos libera de ser simplemente objetos determinados. Es lo que nos permite elegir, crear nuestro propio camino y, en última instancia, ser libres." },
-        // { term: "libertad", meaning: "Estructura del para-sí, no un extra añadido." },
-        { term: "Ontología", meaning: "Es una rama de la filosofía que se pregunta qué es lo que existe realmente. 🤔??? Busca hacer un como una lista de la realidad para entender los tipos de cosas que existen en el universo, desde objetos físicos hasta ideas abstractas como la justicia o los números." },
+        { term: "artesano", meaning: "Piensa qué es y para qué sirve el objeto antes de fabricarlo." },
+        { term: "cortapapeles", meaning: "Objeto cuya esencia precede a su existencia." },
+        { term: "ateo", meaning: "Sartre no cree en un Dios creador." },
+        { term: "naturaleza humana", meaning: "Una esencia previa que, para Sartre, no existe." },
+        { term: "la existencia precede a la esencia", meaning: "Primero existimos, después nos definimos." }
       ],
       corollary: [
-        "La libertad es estructura del para-sí.",
-        "La nada abre distancia y posibilidad."
-      ],
+        "Los objetos se definen antes de existir; nosotros, después.",
+        "Sin Dios creador, no hay naturaleza humana previa."
+      ]
     },
     {
-      // 3) Facticidad / Trascendencia / Proyecto
       html: `
       <div class="highlight-box">
-        <h4>🧭 Facticidad, trascendencia y proyecto</h4>
-        <p><strong>Facticidad</strong>: condiciones dadas (cuerpo, historia, contexto).</p>
-        <p><strong>Trascendencia</strong>: el <em>proyecto</em> que elaboro sobre esas condiciones.</p>
-        <ul>
-          <li>No elijo mis cartas, pero elijo <strong>cómo jugarlas</strong>.</li>
-          <li>La libertad <strong>no niega</strong> la facticidad: la <strong>asume</strong> y la reinterpreta.</li>
-        </ul>
+        <h4>📝 Proyecto y libertad</h4>
+        <p>El ser humano es un proyecto que se hace con sus actos. Está condenado a ser libre: no eligió nacer, pero es responsable de todo, y no elegir también es elegir.</p>
       </div>
       `,
-      hint: "Diferenciá lo dado y lo que proyectás sobre ello.",
+      hint: "Identificá qué es el ser humano y por qué está condenado a ser libre.",
       concepts: [
-        { term: "facticidad", meaning: " Lo dado: el conjunto de cartas que te tocaron en la vida. Son los aspectos de tu existencia que no elegiste, pero que son tu punto de partida. Incluye:\n* Tu cuerpo (la altura, el color de ojos).\n* Tu pasado (dónde naciste, tu familia).\n* Tu situación (el contexto social y la época en que vives).\nLa facticidad es el marco sobre el cual tu libertad actúa." },
-        { term: "trascendencia", meaning: "Superar lo dado mediante tu proyecto; reinterpretar la facticidad." },
-        { term: "proyecto", meaning: "Estructura de actos que orienta y da sentido a tu vida." },
+        { term: "proyecto", meaning: "Algo que se lanza al futuro y se va haciendo." },
+        { term: "actos", meaning: "Con ellos nos hacemos valientes, generosos o cobardes." },
+        { term: "condenado a ser libre", meaning: "No elegimos nacer, pero no podemos dejar de elegir." },
+        { term: "responsable", meaning: "Debemos responder por lo que hacemos." },
+        { term: "no elegir", meaning: "También es una elección." }
       ],
       corollary: [
-        "No elegís las cartas, elegís cómo jugarlas.",
-        "La libertad asume y resignifica lo dado."
-      ],
+        "Somos lo que hacemos.",
+        "No podemos devolver la libertad."
+      ]
     },
     {
-      // 4) Mala fe vs autenticidad — tokens únicos para móvil
       html: `
       <div class="highlight-box">
-        <h4>🪞 Mala fe (<strong>autoengaño</strong>) vs. <strong>autenticidad</strong></h4>
-        <p><strong>Mala fe</strong>: estrategia para escapar de la angustia negando mi libertad; <strong>autenticidad</strong>: asumirla y responder por mis actos.</p>
-        <ul>
-          <li><em>Ejemplo del camarero</em>: se oculta en el <strong>rol</strong> para no decidir más allá del guion.</li>
-          <li><em>Ejemplo de la pareja</em>: evita reconocer su elección afectiva.</li>
-        </ul>
+        <h4>🌍 Responsabilidad y angustia</h4>
+        <p>Al elegirme elijo una imagen del ser humano: soy responsable de todos. Eso produce angustia, como la del jefe militar que manda soldados al ataque, pero la angustia es condición de la acción.</p>
       </div>
       `,
-      hint: "¿Dónde te escondés para no elegir? Eso es mala fe.",
+      hint: "Identificá el alcance de la responsabilidad y qué es la angustia.",
       concepts: [
-        { term: "autoengaño", meaning: "Mecanismo de evasión: ‘no pude’, ‘me hicieron’." },
-        { term: "autenticidad", meaning: "Asumir tu libertad situada y sostener un proyecto propio." },
-        // { term: "rol", meaning: "Papel social usado para evadir responsabilidad de elegir." },
+        { term: "imagen del ser humano", meaning: "Lo que proponemos con nuestras elecciones." },
+        { term: "responsable de todos", meaning: "Al elegirme, elijo al hombre." },
+        { term: "angustia", meaning: "El vértigo de saber que todo depende de mi elección." },
+        { term: "jefe militar", meaning: "Ejemplo de Sartre: de su orden dependen muchas vidas." },
+        { term: "acción", meaning: "La angustia no paraliza: es su condición." }
       ],
       corollary: [
-        "Mala fe: negar tu libertad para evitar decidir.",
-        "Autenticidad: asumir tu libertad situada."
-      ],
+        "Elegir es proponer una forma de ser humano.",
+        "La angustia acompaña a la libertad."
+      ]
     },
     {
-      // 5) El Otro y la mirada
       html: `
       <div class="highlight-box">
-        <h4>👁️ El Otro y la mirada</h4>
-        <p>La <strong>mirada del Otro</strong> puede objetivarnos (vergüenza), pero también revela nuestra relación con los demás.</p>
+        <h4>🏚️ Desamparo y desesperación</h4>
+        <p>Sin Dios no hay valores escritos: es el desamparo, como el del alumno que dudaba entre la resistencia y su madre. La desesperación es actuar sin esperanza, contando con nuestra voluntad.</p>
       </div>
       `,
-      hint: "Atendé a ‘mirada’ y ‘objetivación’.",
+      hint: "Identificá qué son el desamparo y la desesperación.",
       concepts: [
-        { term: "mirada", meaning: "Me descubro como objeto ante la conciencia ajena." },
-        { term: "objetivarnos", meaning: "objetivacion: Ser reducido a cosa; perder la vivencia de proyecto libre." }, // sin tilde para normalizar
-        { term: "revela", meaning: "intersubjetividad: Cruce de libertades: conflicto, reconocimiento, co-creación." },
-        { term: "Otro", meaning: "En la filosofía de Sartre, el Otro es mucho más que una persona diferente a mí. Es una conciencia separada y libre que coexiste con la mía. Su existencia es fundamental porque me revela mi propia existencia de una manera que yo mismo no puedo." },
+        { term: "Dios", meaning: "Para Sartre no existe: no hay valores escritos de antemano." },
+        { term: "desamparo", meaning: "Estar solos para elegir, sin excusas." },
+        { term: "resistencia", meaning: "Lo que el alumno podía elegir, en lugar de cuidar a su madre." },
+        { term: "madre", meaning: "La otra opción del alumno de Sartre." },
+        { term: "desesperación", meaning: "Actuar sin garantías." },
+        { term: "sin esperanza", meaning: "Obrar sin contar con que todo salga bien." },
+        { term: "voluntad", meaning: "Lo único con lo que podemos contar." }
       ],
       corollary: [
-        "La mirada del Otro me revela como objeto.",
-        "Otro es esa conciencia ajena que me permite salir de mi propia perspectiva y verme a mí mismo como un objeto en el mundo, un paso esencial para la autoconciencia y la libertad.",
-        "La intersubjetividad cruza libertades: La intersubjetividad es el espacio donde las conciencias y las libertades de dos o más individuos se encuentran. Sartre argumenta que no existimos de forma aislada; nuestra libertad no se ejerce en el vacío, sino en un mundo compartido con otros."
-      ],
+        "Nadie elige por nosotros.",
+        "Hay que actuar aunque no haya garantías."
+      ]
     },
     {
-      // 6) Ética existencial
       html: `
       <div class="highlight-box">
-        <h3>Etica existencial</h3>
-        <h4>La Creación de Valor y la Responsabilidad Universal</h4>
-        <p>Sin reglas dadas, <strong>decidir</strong> crea <strong>valor</strong>. En el acto proponés una imagen de humanidad para cualquiera en situación semejante.</p>
+        <h4>🎭 Mala fe</h4>
+        <p>La mala fe es un autoengaño para huir de la libertad, como el mozo de café que actúa como una cosa. El ser en-sí es el de las cosas; el ser para-sí, el de la conciencia libre.</p>
       </div>
       `,
-      hint: "Elegir = instituir valor (para vos y como ejemplo).",
+      hint: "Identificá la mala fe y los dos modos de ser.",
       concepts: [
-        { term: "decidir", meaning: "El acto funda valor, no lo recibe hecho." },
-        { term: "valor", meaning: "valores: Instituidos por la acción, no heredados sin más." },
-        { term: "Universal", meaning: "Lo que elegís propone ejemplo a otros." },
-        { term: "Responsabilidad", meaning: "Responder por el sentido impreso a la vida propia y común." },
-        { term: "Etica", meaning: "La ética existencial es una corriente filosófica que sostiene que no hay reglas morales universales ni valores predefinidos. En cambio, cada persona es totalmente responsable de crear su propio conjunto de valores a través de sus elecciones y acciones. 🧐" }
+        { term: "mala fe", meaning: "Mentirse a uno mismo para no hacerse cargo de la libertad." },
+        { term: "autoengaño", meaning: "Engañarse a sí mismo." },
+        { term: "mozo de café", meaning: "Ejemplo de Sartre: actúa como si no pudiera ser otra cosa." },
+        { term: "ser en-sí", meaning: "El de las cosas: completo, sin posibilidades." },
+        { term: "ser para-sí", meaning: "El de la conciencia: abierta y libre." },
+        { term: "conciencia", meaning: "Nunca coincide del todo consigo misma." }
       ],
       corollary: [
-        "Decidir crea valor.",
-        "Lo que elegís propone ejemplo a otros.",
-        "Responsabilidad radical por el sentido.",
-        "Cuando un individuo elige, no lo hace solo para sí mismo. Sartre dice que, al elegir, uno se convierte en un legislador, un creador de valor para toda la humanidad. Cada decisión es un reflejo de la imagen de ser humano que, en ese momento, se considera digna de ser universal."
-      ],
+        "«Yo soy así» es una excusa.",
+        "No somos cosas: somos conciencia libre."
+      ]
     },
-  ],
+    {
+      html: `
+      <div class="highlight-box">
+        <h4>👀 Los otros</h4>
+        <p>Cuando alguien me mira siento vergüenza: me ve como un objeto. En A puerta cerrada, Sartre escribe que el infierno son los otros, porque su mirada puede volverse una prisión.</p>
+      </div>
+      `,
+      hint: "Identificá qué produce la mirada del otro.",
+      concepts: [
+        { term: "mira", meaning: "La mirada del otro me descubre desde afuera." },
+        { term: "vergüenza", meaning: "Lo que siento al verme juzgado." },
+        { term: "objeto", meaning: "Así me ve el otro." },
+        { term: "A puerta cerrada", meaning: "Obra de teatro de Sartre." },
+        { term: "el infierno son los otros", meaning: "Frase sobre la mirada y el juicio ajeno." },
+        { term: "prisión", meaning: "Lo que puede volverse vivir pendientes de los demás." }
+      ],
+      corollary: [
+        "Me veo a mí mismo a través del otro.",
+        "La mirada ajena puede encerrarnos."
+      ]
+    },
+    {
+      html: `
+      <div class="highlight-box">
+        <h4>🌟 Compromiso y autenticidad</h4>
+        <p>El existencialismo es una filosofía de la acción y del compromiso. La autenticidad es asumir la libertad sin excusas. Por eso es un humanismo optimista: el destino está en nuestras manos.</p>
+      </div>
+      `,
+      hint: "Identificá la propuesta positiva de Sartre.",
+      concepts: [
+        { term: "filosofía de la acción", meaning: "Somos lo que hacemos, no lo que pensamos hacer." },
+        { term: "compromiso", meaning: "Tomar partido ante los problemas del propio tiempo." },
+        { term: "autenticidad", meaning: "Asumir la libertad y hacerse cargo." },
+        { term: "excusas", meaning: "Lo que la persona auténtica no usa." },
+        { term: "humanismo", meaning: "El ser humano se supera y se inventa a sí mismo." },
+        { term: "optimista", meaning: "Porque el destino está en nuestras manos." }
+      ],
+      corollary: [
+        "La salida de la mala fe es la autenticidad.",
+        "No hay nada escrito: todo está por hacer."
+      ]
+    }
+  ]
 };

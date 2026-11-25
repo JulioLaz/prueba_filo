@@ -1,0 +1,301 @@
+{
+  "_info": "Banco del examen oral con Jean-Paul Sartre y del resumen final del tema «Jean-Paul Sartre: El ser humano es libertad». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo. Sin video todavía: cuando se agregue, sumar \"video\" a actividadesRequeridas.",
+  "version": "1.0.0",
+  "filosofo": "Jean-Paul Sartre",
+  "tema": "Sartre: la existencia precede a la esencia, la libertad, la angustia, el desamparo, la desesperación, la mala fe y la autenticidad",
+  "intro": "Jean-Paul Sartre (1905–1980), figura del existencialismo, sostuvo que la existencia precede a la esencia: no hay naturaleza humana previa y somos lo que hacemos. Estamos condenados a ser libres y somos responsables de todos; eso trae angustia, desamparo y desesperación, y la tentación de la mala fe. La salida es la autenticidad y el compromiso.",
+  "conceptosClave": "existencialismo, existencia y esencia, cortapapeles, proyecto, condenados a ser libres, responsabilidad, angustia, desamparo, desesperación, mala fe, ser en-sí, ser para-sí, mirada del otro, compromiso, autenticidad",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "cafe_flore",
+      "texto": "Sartre está sentado en una mesa del Café de Flore, en París, rodeado de papeles y humo de pipa, y le hace señas al alumno para que se siente a conversar."
+    },
+    {
+      "id": "mozo",
+      "texto": "Sartre señala al mozo del café, que se mueve de manera exagerada, y le pregunta al alumno si ese hombre es un mozo como una mesa es una mesa."
+    },
+    {
+      "id": "nobel",
+      "texto": "Sartre acaba de rechazar el Premio Nobel de Literatura y le explica al alumno que nadie debe convertirlo en una institución; prefiere conversar libremente."
+    },
+    {
+      "id": "cortapapeles",
+      "texto": "Sartre juega con un cortapapeles entre los dedos y le pregunta al alumno qué tienen en común ese objeto y él mismo... y en qué se diferencian."
+    },
+    {
+      "id": "teatro",
+      "texto": "Sartre sale del ensayo de su obra A puerta cerrada y le pregunta al alumno si alguna vez sintió que la mirada de los demás lo encerraba."
+    },
+    {
+      "id": "conferencia",
+      "texto": "Sartre llega acalorado de dar su conferencia El existencialismo es un humanismo, con la sala desbordada, y le propone al alumno repasar juntos las ideas."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "vida",
+      "titulo": "Sartre y el existencialismo",
+      "guia": "Preguntar quién fue Sartre y qué pone en el centro el existencialismo.",
+      "claves": "Jean-Paul Sartre (1905–1980), filósofo, novelista y dramaturgo francés; preso de los nazis en la Segunda Guerra; La náusea, El ser y la nada (1943), El existencialismo es un humanismo (1945); compañero de Simone de Beauvoir; rechazó el Nobel de Literatura (1964). El existencialismo pone en el centro la existencia concreta y la libertad.",
+      "resumen": "Sartre fue un filósofo y escritor francés, la figura principal del existencialismo: una filosofía que pone en el centro la existencia concreta y la libertad.",
+      "palabras": [
+        "Sartre",
+        "existencialismo",
+        "libertad",
+        "El ser y la nada",
+        "Beauvoir"
+      ],
+      "ejemplo": "Una filosofía que no pregunta «qué es el hombre en general», sino «qué vas a hacer vos con tu vida»."
+    },
+    {
+      "id": "esencia",
+      "titulo": "La existencia precede a la esencia",
+      "guia": "Preguntar qué significa la frase y para qué sirve el ejemplo del cortapapeles.",
+      "claves": "Cortapapeles: el artesano lo piensa (esencia) antes de fabricarlo: en los objetos la esencia precede a la existencia; si Dios nos creara, tendríamos naturaleza humana previa. Sartre es ateo: no hay naturaleza humana; primero existimos y después nos definimos: «el hombre no es otra cosa que lo que él se hace».",
+      "resumen": "En los objetos, como el cortapapeles, la esencia va primero. En el ser humano es al revés: primero existimos y después nos definimos por lo que hacemos, porque no hay una naturaleza humana previa.",
+      "palabras": [
+        "cortapapeles",
+        "esencia",
+        "existencia",
+        "naturaleza humana",
+        "ateo"
+      ],
+      "ejemplo": "Un celular sale de fábrica sabiendo para qué sirve; vos no naciste con un manual de instrucciones."
+    },
+    {
+      "id": "proyecto",
+      "titulo": "El ser humano es un proyecto",
+      "guia": "Preguntar qué significa que el ser humano es un proyecto y cómo se llega a ser valiente o cobarde.",
+      "claves": "El ser humano es proyecto: se lanza al futuro y se va haciendo; no es como la piedra o la planta. Nadie nace valiente o cobarde: se hace con sus actos. Será lo que haya proyectado ser.",
+      "resumen": "Somos un proyecto: nos hacemos con nuestras elecciones y actos. Nadie nace valiente o cobarde; nos volvemos así por lo que hacemos.",
+      "palabras": [
+        "proyecto",
+        "actos",
+        "elegir",
+        "futuro",
+        "hacerse"
+      ],
+      "ejemplo": "Nadie es «buen amigo» por haber nacido así: lo es por cómo actúa con sus amigos."
+    },
+    {
+      "id": "condenados",
+      "titulo": "Condenados a ser libres",
+      "guia": "Preguntar por qué Sartre dice que estamos condenados a ser libres y qué pasa si no elegimos.",
+      "claves": "«El hombre está condenado a ser libre»: condenado porque no se creó a sí mismo; libre porque, arrojado al mundo, es responsable de todo lo que hace. No elegir también es elegir: obedecer o dejar que otros decidan son elecciones.",
+      "resumen": "Estamos condenados a ser libres: no elegimos nacer, pero no podemos dejar de elegir. Hasta no elegir es una elección.",
+      "palabras": [
+        "condenado",
+        "libre",
+        "responsable",
+        "no elegir",
+        "elección"
+      ],
+      "ejemplo": "Si no votás en una elección del curso, igual estás eligiendo: dejás que decidan otros."
+    },
+    {
+      "id": "responsabilidad",
+      "titulo": "Responsables de todos",
+      "guia": "Preguntar por qué, al elegirme, elijo al hombre.",
+      "claves": "Al elegir qué hacer con mi vida elijo una imagen del ser humano tal como creo que debe ser (casarse, comprometerse con una causa). Soy responsable de mí y de todos.",
+      "resumen": "Cuando elijo, propongo con mis actos una forma de ser humano. Por eso soy responsable no solo de mí, sino de todos.",
+      "palabras": [
+        "responsabilidad",
+        "imagen del ser humano",
+        "elegir",
+        "todos",
+        "ejemplo"
+      ],
+      "ejemplo": "Si te reís de alguien en el grupo, estás diciendo con tu acto que eso está bien entre personas."
+    },
+    {
+      "id": "angustia",
+      "titulo": "La angustia",
+      "guia": "Preguntar qué es la angustia para Sartre, con el ejemplo del jefe militar.",
+      "claves": "Angustia: conciencia de la responsabilidad total; no es miedo a algo concreto sino vértigo de que todo depende de mi elección. Jefe militar que manda soldados al ataque. «¿Qué pasaría si todos hicieran lo mismo?» No paraliza: es condición de la acción.",
+      "resumen": "La angustia es el vértigo de saber que todo depende de lo que elijo. No paraliza: acompaña toda acción responsable.",
+      "palabras": [
+        "angustia",
+        "vértigo",
+        "responsabilidad",
+        "jefe militar",
+        "acción"
+      ],
+      "ejemplo": "La sensación antes de elegir una carrera: nadie puede decidir por vos."
+    },
+    {
+      "id": "desamparo",
+      "titulo": "El desamparo",
+      "guia": "Preguntar qué es el desamparo y qué le respondió Sartre al alumno que dudaba.",
+      "claves": "Si Dios no existe no hay valores escritos en el cielo; Dostoievski: «Si Dios no existiera, todo estaría permitido». Estamos solos, sin excusas. El alumno dudaba entre unirse a la resistencia o cuidar a su madre; ninguna moral resolvía; Sartre: «Sos libre, elegí, es decir, inventá».",
+      "resumen": "El desamparo es estar solos para elegir, sin valores escritos de antemano. Al alumno que dudaba entre la resistencia y su madre, Sartre le dijo: «Sos libre, elegí, es decir, inventá».",
+      "palabras": [
+        "desamparo",
+        "Dios",
+        "valores",
+        "excusas",
+        "inventá"
+      ],
+      "ejemplo": "Cuando ningún consejo ni regla te resuelve un dilema, estás frente al desamparo."
+    },
+    {
+      "id": "desesperacion",
+      "titulo": "La desesperación",
+      "guia": "Preguntar qué significa la desesperación y obrar sin esperanza.",
+      "claves": "Desesperación no es depresión: actuar contando solo con lo que depende de nuestra voluntad y las probabilidades; no hay garantías de que otros continúen o de que salga bien. Obrar sin esperanza, pero comprometidos.",
+      "resumen": "La desesperación es actuar sin garantías: contamos solo con lo que depende de nosotros. No es estar triste, sino no esperar que todo esté asegurado.",
+      "palabras": [
+        "desesperación",
+        "sin esperanza",
+        "voluntad",
+        "garantías",
+        "actuar"
+      ],
+      "ejemplo": "Estudiar para un examen sin saber si vas a aprobar: igual depende de vos hacer tu parte."
+    },
+    {
+      "id": "mala_fe",
+      "titulo": "La mala fe",
+      "guia": "Preguntar qué es la mala fe, con el ejemplo del mozo de café y frases típicas.",
+      "claves": "Mala fe: autoengaño para huir de la libertad y no hacerse cargo. El mozo de café que actúa de mozo exageradamente, como si no pudiera ser otra cosa. Frases: «yo soy así», «no tuve opción», «la culpa es de las circunstancias».",
+      "resumen": "La mala fe es mentirse a uno mismo para no hacerse cargo de la libertad, como el mozo que actúa como si fuera una cosa o quien dice «yo soy así».",
+      "palabras": [
+        "mala fe",
+        "autoengaño",
+        "mozo de café",
+        "excusas",
+        "yo soy así"
+      ],
+      "ejemplo": "«Llegué tarde porque soy un desastre, ya sabés»: una excusa para no cambiar."
+    },
+    {
+      "id": "en_si",
+      "titulo": "El ser en-sí y el ser para-sí",
+      "guia": "Preguntar qué distingue el ser en-sí del ser para-sí y qué relación tiene con la mala fe.",
+      "claves": "El ser y la nada: en-sí = cosas (la piedra), es lo que es, macizo, completo, sin posibilidades. Para-sí = conciencia humana, nunca coincide consigo, abierta a lo que todavía no es: libertad. La mala fe es querer ser un en-sí para no elegir.",
+      "resumen": "El ser en-sí es el de las cosas: completas, sin posibilidades. El ser para-sí es la conciencia: siempre abierta y libre. La mala fe es querer ser una cosa para no tener que elegir.",
+      "palabras": [
+        "ser en-sí",
+        "ser para-sí",
+        "conciencia",
+        "cosas",
+        "posibilidades"
+      ],
+      "ejemplo": "Una piedra no puede decidir cambiar; vos sí, aunque a veces prefieras actuar como si fueras una piedra."
+    },
+    {
+      "id": "otro",
+      "titulo": "La mirada del otro",
+      "guia": "Preguntar qué produce la mirada del otro y qué significa «el infierno son los otros».",
+      "claves": "Cuando el otro me mira me descubro desde afuera: vergüenza u orgullo; me ve como objeto y me juzga. Limita mi libertad pero lo necesito para saber quién soy. A puerta cerrada: «el infierno son los otros»: no que sean malos, sino que vivir bajo su mirada y juicio puede ser una prisión.",
+      "resumen": "La mirada del otro me hace verme desde afuera y sentir vergüenza. «El infierno son los otros» quiere decir que vivir pendientes del juicio ajeno puede volverse una prisión.",
+      "palabras": [
+        "mirada",
+        "vergüenza",
+        "objeto",
+        "infierno",
+        "A puerta cerrada"
+      ],
+      "ejemplo": "Vivir para los «me gusta» de las redes puede convertirse en esa prisión de la mirada ajena."
+    },
+    {
+      "id": "autenticidad",
+      "titulo": "Compromiso, autenticidad y humanismo",
+      "guia": "Preguntar qué es la autenticidad, por qué el existencialismo es filosofía de la acción y por qué Sartre dice que es optimista.",
+      "claves": "Filosofía de la acción: somos lo que hacemos; no hay amor fuera de los actos de amor. Compromiso (engagement): tomar partido frente a los problemas del propio tiempo. Autenticidad: asumir la libertad con lucidez y hacerse cargo, sin excusas (no es hacer lo que se me ocurre). Humanismo optimista: el destino está en manos del ser humano, que se supera y se inventa.",
+      "resumen": "La salida de la mala fe es la autenticidad: asumir la libertad y hacerse cargo. Por eso el existencialismo es una filosofía de la acción y un humanismo optimista: el destino está en nuestras manos.",
+      "palabras": [
+        "autenticidad",
+        "compromiso",
+        "acción",
+        "humanismo",
+        "optimista"
+      ],
+      "ejemplo": "Decir «elegí esto y me hago cargo» en lugar de «no me quedó otra»."
+    }
+  ],
+  "casos": [
+    {
+      "id": "carrera",
+      "texto": "Tenés que elegir qué estudiar y tus padres insisten en una carrera que no te interesa.",
+      "claves": "Aplicar la libertad, la angustia y el desamparo: nadie puede elegir por mí; no elegir también es elegir; autenticidad frente a mala fe."
+    },
+    {
+      "id": "yo_soy_asi",
+      "texto": "Una amiga siempre dice «yo soy así, no puedo cambiar» cuando la critican.",
+      "claves": "Identificar la mala fe: autoengaño; la existencia precede a la esencia; somos lo que hacemos; querer ser un en-sí."
+    },
+    {
+      "id": "obedecer",
+      "texto": "En un grupo, todos se burlan de un compañero y vos te sumás porque «lo hacían todos».",
+      "claves": "Aplicar la responsabilidad: al elegirme elijo al hombre; obedecer o seguir al grupo es elegir; mala fe de las excusas."
+    },
+    {
+      "id": "redes",
+      "texto": "Te pasás el día pendiente de cuántos «me gusta» tienen tus publicaciones.",
+      "claves": "Aplicar la mirada del otro y «el infierno son los otros»; vergüenza, ser visto como objeto; autenticidad."
+    },
+    {
+      "id": "dilema",
+      "texto": "Un amigo te pide que lo cubras en una mentira, pero eso perjudicaría a otra persona. Ninguna regla te resuelve el dilema.",
+      "claves": "Aplicar el desamparo y el ejemplo del alumno de Sartre (resistencia o madre): «sos libre, elegí, es decir, inventá»; angustia; responsabilidad."
+    },
+    {
+      "id": "sin_garantias",
+      "texto": "Querés organizar una campaña solidaria en la escuela, pero no sabés si los demás te van a acompañar.",
+      "claves": "Aplicar la desesperación: actuar contando solo con lo que depende de mí, sin garantías; compromiso; filosofía de la acción."
+    },
+    {
+      "id": "buenas_intenciones",
+      "texto": "Un compañero dice que es muy solidario, aunque nunca ayudó a nadie.",
+      "claves": "Aplicar «somos lo que hacemos»: no hay amor fuera de los actos de amor; proyecto; existencia y esencia."
+    },
+    {
+      "id": "destino",
+      "texto": "Alguien dice que no vale la pena esforzarse porque «todo está escrito en el destino».",
+      "claves": "Responder con Sartre: no hay esencia ni destino previos; condenados a ser libres; humanismo optimista: el destino está en nuestras manos; mala fe."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "excusa",
+      "texto": "¿Qué excusa usás a veces para no hacerte cargo de algo? ¿Sería mala fe?"
+    },
+    {
+      "id": "eleccion",
+      "texto": "¿Cuál fue la elección más difícil que tomaste? ¿Sentiste angustia?"
+    },
+    {
+      "id": "mirada",
+      "texto": "¿En qué situaciones la mirada de los demás te hace sentir encerrado?"
+    },
+    {
+      "id": "proyecto",
+      "texto": "Si sos lo que hacés, ¿qué estás haciendo hoy de tu proyecto de vida?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Sartre, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "Explicá el ejemplo del cortapapeles y qué significa que la existencia precede a la esencia.",
+    "¿Por qué Sartre dice que estamos condenados a ser libres?",
+    "¿Por qué, al elegirme, elijo al hombre?",
+    "Explicá la angustia, el desamparo y la desesperación.",
+    "¿Qué es la mala fe? Dá un ejemplo de tu vida cotidiana.",
+    "¿Qué diferencia hay entre el ser en-sí y el ser para-sí?",
+    "¿Qué significa «el infierno son los otros»?",
+    "¿Qué es la autenticidad y por qué el existencialismo es un humanismo optimista?"
+  ]
+}
