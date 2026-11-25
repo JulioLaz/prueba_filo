@@ -148,12 +148,12 @@ const TOPICS = {
         title: 'Antropología de Aristóteles',
         duration: '5:27'
       },
-      dualismo_platonico: { // https://www.youtube.com/watch?v=pP53wnoy3Vc (teXin - Educación Virtual)
+      dualismo_platonico: { // https://www.youtube.com/watch?v=pP53wnoy3Vc (teXin - Educación Virtual); 2026-11-25: cloze revisado con la transcripción, el video termina en 2:38
         youtubeId: 'pP53wnoy3Vc',
         startTime: 1,
-        endTime: 165,
+        endTime: 158,
         title: 'Dualismo antropológico de Platón: cuerpo y alma',
-        duration: '2:45'
+        duration: '2:38'
       },
       descartes_sujeto: { // https://youtu.be/trwXp6hMN8M — 2026-11-25: hasta 14:20 (después, despedida); cloze de 16 frases con la transcripción
         youtubeId: 'trwXp6hMN8M',

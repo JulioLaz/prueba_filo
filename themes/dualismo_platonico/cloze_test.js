@@ -1,10 +1,12 @@
 // themes/dualismo_platonico/cloze_test.js
-// Cloze del video «DUALISMO Antropológico de PLATÓN // CUERPO Y ALMA (RESUMEN)»
-// (canal teXin - Educación Virtual, youtubeId pP53wnoy3Vc). Huecos en el orden del video;
-// videoSegment en segundos contados desde VIDEO_CONFIG.dualismo_platonico.startTime.
-// Versión 1.0 (2026-11-24): armado con los tiempos que pasó el docente.
+// Cloze del video «DUALISMO Antropológico de PLATÓN // CUERPO Y ALMA (RESUMEN)» (teXin, pP53wnoy3Vc):
+// 14 frases en el orden del video, con sus tiempos (videoSegment contado desde startTime = 1) y
+// una pista de opciones por hueco.
+// Versión 2.0 (2026-11-25): revisado con la transcripción: tramos corregidos (el 4 y el 6 cortaban
+//   antes de la respuesta) y huecos que el video no dice cambiados por los suyos (satisfacer,
+//   renuncia, purificación, justo); el video termina en 2:38.
 window.CLOZE_TEST = {
-  title: "Cloze — El dualismo platónico (0:00—2:45)",
+  title: "Cloze — El dualismo platónico (0:00—2:38)",
   items: [
     {
       id: "d1",
@@ -12,10 +14,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! El dualismo del ser humano (cuerpo y alma) refleja el dualismo de la realidad.",
       feedbackKO: "Pensá en los dos dualismos: uno habla del ser humano y el otro de la realidad entera.",
       videoHints: [
-        "💡 Opciones: antropológico | materialista | político | religioso | científico | psicológico",
-        "💡 Opciones: monista | ontológico | biológico | social | histórico | estético"
+        "💡 Opciones: psicológico | materialista | antropológico | científico | político | religioso",
+        "💡 Opciones: social | histórico | biológico | ontológico | estético | monista"
       ],
-      videoSegment: { start: 0, end: 20 }
+      videoSegment: { start: 0, end: 20 } // 0:01 - 0:21
     },
     {
       id: "d2",
@@ -23,10 +25,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Muy bien! Son los dos mundos de Platón: el que captan los sentidos y el que capta la razón.",
       feedbackKO: "Recordá los dos mundos: uno se capta con los sentidos y el otro solo con la razón.",
       videoHints: [
-        "💡 Opciones: material | sensible | visible | real | natural | físico",
-        "💡 Opciones: invisible | imaginario | inteligible | espiritual | divino | racional"
+        "💡 Opciones: real | sensible | natural | material | visible | físico",
+        "💡 Opciones: espiritual | inteligible | racional | imaginario | invisible | divino"
       ],
-      videoSegment: { start: 8, end: 20 }
+      videoSegment: { start: 7, end: 20 } // 0:08 - 0:21
     },
     {
       id: "d3",
@@ -34,11 +36,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Exacto! Cuerpo y alma son dos realidades distintas y opuestas.",
       feedbackKO: "¿Qué dos realidades forman al ser humano según Platón?",
       videoHints: [
-        "💡 Opciones: partes | sustancias | ideas | fuerzas | mundos | esencias",
-        "💡 Opciones: cuerpo | cerebro | corazón | mundo | espíritu | carácter",
-        "💡 Opciones: razón | mente | vida | alma | idea | voluntad"
+        "💡 Opciones: ideas | fuerzas | mundos | sustancias | esencias | partes",
+        "💡 Opciones: corazón | mundo | cerebro | espíritu | cuerpo | carácter",
+        "💡 Opciones: alma | vida | idea | mente | voluntad | razón"
       ],
-      videoSegment: { start: 20, end: 37 }
+      videoSegment: { start: 21, end: 32 } // 0:22 - 0:33
     },
     {
       id: "d4",
@@ -46,10 +48,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! El cuerpo pertenece a lo que cambia y muere; el alma, a lo eterno.",
       feedbackKO: "Compará las características del cuerpo y las del alma.",
       videoHints: [
-        "💡 Opciones: perfecto | imperfecto | eterno | inmortal | divino | sabio",
-        "💡 Opciones: mortal | finita | eterna | material | limitada | imperfecta"
+        "💡 Opciones: divino | imperfecto | inmortal | perfecto | sabio | eterno",
+        "💡 Opciones: eterna | limitada | material | mortal | finita | imperfecta"
       ],
-      videoSegment: { start: 28, end: 37 }
+      videoSegment: { start: 32, end: 41 } // 0:33 - 0:42
     },
     {
       id: "d5",
@@ -57,10 +59,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Muy bien! De los pitagóricos toma la idea de que el alma pasa por distintos cuerpos.",
       feedbackKO: "El video nombra a una escuela griega anterior y la idea de que el alma pasa de un cuerpo a otro.",
       videoHints: [
-        "💡 Opciones: socrática | pitagórica | sofista | aristotélica | estoica | epicúrea",
-        "💡 Opciones: creación | transmigración | destrucción | resurrección | separación | evolución"
+        "💡 Opciones: sofista | estoica | pitagórica | epicúrea | socrática | aristotélica",
+        "💡 Opciones: creación | transmigración | resurrección | separación | destrucción | evolución"
       ],
-      videoSegment: { start: 37, end: 59 }
+      videoSegment: { start: 41, end: 51 } // 0:42 - 0:52
     },
     {
       id: "d6",
@@ -68,10 +70,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Exacto! Por el alma estamos emparentados con lo divino y podemos conocer las Ideas.",
       feedbackKO: "¿A qué nos asemeja el alma y a qué mundo nos da acceso?",
       videoHints: [
-        "💡 Opciones: animal | humano | divino | material | natural | sensible",
-        "💡 Opciones: sentidos | ideas | cosas | sombras | cuerpos | apariencias"
+        "💡 Opciones: animal | divino | humano | sensible | natural | material",
+        "💡 Opciones: sombras | cuerpos | sentidos | apariencias | ideas | cosas"
       ],
-      videoSegment: { start: 37, end: 59 }
+      videoSegment: { start: 51, end: 61 } // 0:52 - 1:02
     },
     {
       id: "d7",
@@ -79,9 +81,9 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! El carro alado, con su auriga y sus dos caballos, representa las tres partes del alma.",
       feedbackKO: "Recordá el mito del Fedro: un carro con alas.",
       videoHints: [
-        "💡 Opciones: dorado | alado | celeste | sagrado | veloz | divino"
+        "💡 Opciones: dorado | celeste | alado | sagrado | veloz | divino"
       ],
-      videoSegment: { start: 59, end: 69 }
+      videoSegment: { start: 61, end: 67 } // 1:02 - 1:08
     },
     {
       id: "d8",
@@ -89,10 +91,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Muy bien! La razón es lo propio del ser humano: es el auriga del carro.",
       feedbackKO: "¿Qué parte del alma nos separa de los animales?",
       videoHints: [
-        "💡 Opciones: irascible | racional | concupiscible | apetitiva | corporal | sensible",
-        "💡 Opciones: fuerza | inteligencia | memoria | valentía | imaginación | sensibilidad"
+        "💡 Opciones: racional | concupiscible | corporal | irascible | sensible | apetitiva",
+        "💡 Opciones: fuerza | sensibilidad | imaginación | inteligencia | valentía | memoria"
       ],
-      videoSegment: { start: 69, end: 80 }
+      videoSegment: { start: 67, end: 77 } // 1:08 - 1:18
     },
     {
       id: "d9",
@@ -100,22 +102,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Exacto! La parte irascible es el caballo blanco, aliado de la razón.",
       feedbackKO: "Es la parte del pecho, la del caballo blanco.",
       videoHints: [
-        "💡 Opciones: racional | irascible | concupiscible | apetitiva | divina | corporal",
-        "💡 Opciones: deseo | miedo | coraje | placer | hambre | olvido"
+        "💡 Opciones: corporal | divina | concupiscible | apetitiva | irascible | racional",
+        "💡 Opciones: miedo | placer | deseo | coraje | hambre | olvido"
       ],
-      videoSegment: { start: 80, end: 89 }
+      videoSegment: { start: 77, end: 88 } // 1:18 - 1:29
     },
     {
       id: "d10",
-      text: "10- La parte [[concupiscible]] o apetitiva está vinculada a los [[deseos]] corporales y las pasiones, y sus apetitos constantes requieren [[control]].",
+      text: "10- La parte [[concupiscible]] o apetitiva está vinculada a los [[deseos]] corporales; es fuente de pasiones innobles y busca [[satisfacer]] sus apetitos constantemente.",
       feedbackOK: "¡Correcto! Es el caballo negro: hay que educarlo y moderarlo.",
       feedbackKO: "Es la parte del vientre, la del caballo negro.",
       videoHints: [
-        "💡 Opciones: racional | irascible | concupiscible | intelectual | divina | sabia",
-        "💡 Opciones: pensamientos | deseos | recuerdos | valores | ideas | razones",
-        "💡 Opciones: libertad | control | alimento | placer | descanso | atención"
+        "💡 Opciones: concupiscible | irascible | sabia | racional | divina | intelectual",
+        "💡 Opciones: pensamientos | valores | recuerdos | ideas | razones | deseos",
+        "💡 Opciones: castigar | ordenar | olvidar | controlar | ocultar | satisfacer"
       ],
-      videoSegment: { start: 89, end: 106 }
+      videoSegment: { start: 88, end: 104 } // 1:29 - 1:45
     },
     {
       id: "d11",
@@ -123,10 +125,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Muy bien! Para Platón la justicia es la armonía interior del alma.",
       feedbackKO: "¿Cómo se llama el orden entre las tres partes del alma?",
       videoHints: [
-        "💡 Opciones: pelea | armonía | separación | libertad | desorden | fuerza",
-        "💡 Opciones: felicidad | justicia | riqueza | fama | templanza | valentía"
+        "💡 Opciones: libertad | desorden | armonía | pelea | fuerza | separación",
+        "💡 Opciones: templanza | felicidad | valentía | justicia | fama | riqueza"
       ],
-      videoSegment: { start: 106, end: 114 }
+      videoSegment: { start: 106, end: 113 } // 1:47 - 1:54
     },
     {
       id: "d12",
@@ -134,44 +136,43 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Exacto! Para Platón deberían gobernar quienes tienen más desarrollada la razón.",
       feedbackKO: "El video pasa del alma a la ciudad: ¿para qué hace falta más equilibrio racional?",
       videoHints: [
-        "💡 Opciones: trabajar | gobernar | pelear | comerciar | estudiar | obedecer"
+        "💡 Opciones: pelear | comerciar | trabajar | obedecer | gobernar | estudiar"
       ],
-      videoSegment: { start: 114, end: 132 }
+      videoSegment: { start: 113, end: 131 } // 1:54 - 2:12
     },
     {
       id: "d13",
-      text: "13- La misión central del ser humano es cultivar la [[virtud]], renunciando a los [[excesos]] de los apetitos corporales.",
+      text: "13- La tarea más importante del ser humano es la práctica de la [[virtud]], basada en la [[renuncia]] a los apetitos corporales y la práctica de la [[filosofía|filosofia]].",
       feedbackOK: "¡Correcto! Cultivar la virtud exige moderar los apetitos del cuerpo.",
       feedbackKO: "¿Qué debe cultivar el ser humano y a qué debe renunciar?",
       videoHints: [
-        "💡 Opciones: riqueza | fama | virtud | fuerza | belleza | salud",
-        "💡 Opciones: excesos | estudios | amigos | placeres | deberes | sueños"
+        "💡 Opciones: salud | fama | riqueza | fuerza | virtud | belleza",
+        "💡 Opciones: entrega | renuncia | búsqueda | fiesta | suma | rendición",
+        "💡 Opciones: poesía | medicina | gimnasia | política | filosofía | guerra"
       ],
-      videoSegment: { start: 132, end: 150 }
+      videoSegment: { start: 132, end: 142 } // 2:13 - 2:23
     },
     {
       id: "d14",
-      text: "14- Practicando la [[filosofía|filosofia]], el alma se [[purifica]] moral e intelectualmente y alcanza su destino final en la morada [[divina]].",
+      text: "14- La [[purificación|purificacion]] moral e intelectual hace que las almas se dejen guiar por lo [[justo]] y recto, y cumplan su destino último: la morada [[divina]].",
       feedbackOK: "¡Muy bien! La filosofía purifica el alma y la prepara para su liberación.",
       feedbackKO: "Pensá en la kátharsis: ¿qué actividad purifica el alma y adónde llega al final?",
       videoHints: [
-        "💡 Opciones: política | filosofía | guerra | medicina | gimnasia | poesía",
-        "💡 Opciones: ensucia | purifica | olvida | encarcela | debilita | pierde",
-        "💡 Opciones: humana | terrestre | divina | sensible | corporal | material"
+        "💡 Opciones: separación | acumulación | confusión | corrupción | purificación | distracción",
+        "💡 Opciones: cómodo | fácil | placentero | útil | justo | rápido",
+        "💡 Opciones: terrestre | corporal | humana | divina | sensible | material"
       ],
-      videoSegment: { start: 140, end: 163 }
+      videoSegment: { start: 142, end: 156 } // 2:23 - 2:37
     }
   ]
 };
 
-// Sistema de pistas mejorado con sopa de palabras
+// Pistas escalonadas: una por hueco, con opciones para elegir
 window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoHints) return null;
-  
   const maxHints = item.videoHints.length;
   if (hintLevel >= maxHints) return null;
-  
   return {
     hint: item.videoHints[hintLevel],
     hasMore: hintLevel < maxHints - 1,
@@ -179,23 +180,19 @@ window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   };
 };
 
-// Función para generar link directo al momento del video
+// Link directo al momento del video
 window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
-  
   const config = window.VIDEO_CONFIG?.dualismo_platonico;
   if (!config) return null;
-  
   const actualStart = config.startTime + item.videoSegment.start;
   return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${actualStart}s`;
 };
 
-// Función auxiliar para parsear las opciones de la sopa de palabras
+// Extrae las opciones del formato "💡 Opciones: a | b | ..."
 window.CLOZE_TEST.parseHintOptions = function(hintText) {
-  // Extrae las opciones del formato "💡 Opciones: opción1 | opción2 | ..."
   const match = hintText.match(/💡 Opciones: (.+)/);
   if (!match) return null;
-  
   return match[1].split('|').map(opt => opt.trim());
 };
