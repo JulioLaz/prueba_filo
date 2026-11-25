@@ -12,7 +12,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ SERENIDAD | ✅ 30 / 15 | ✅ 15 (*) | ✅ Epicuro |
 | `utilitarismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ FELICIDAD | ✅ 33 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | 🟡 23 (**) | ✅ Sócrates |
-| `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 20 | ✅ Kant |
+| `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 21 | ✅ Kant |
 | `pragmatismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ UTILIDAD | ✅ 32 / 15 | ✅ 13 | ✅ W. James |
 | `antropocentrismo` | ✅ 19 | ✅ 13 | ✅ 8 | ✅ HUMANISMO | ✅ 34 / 15 | 🟡 13 (**) | ✅ Pico della Mirandola |
 
@@ -29,7 +29,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 **Ética de Kant (`etica_kant`)** — ✅ v2.0 (2026-11-25)
 - Material de 20 secciones cortas (antes 18 de 120-210 palabras y redirigía a un tema inexistente): consecuencias, éticas materiales y formal, buena voluntad, el comerciante, actuar por deber, máximas, imperativo hipotético y categórico, ley universal, promesa falsa, la humanidad como fin, dignidad y precio, autonomía, reino de los fines, postulados, el dilema del asesino, críticas y síntesis (cielo estrellado). Suma las ideas del video (éticas teleológicas, no poder predecir las consecuencias, doble moral, el robo por miedo al castigo).
 - Cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, examen con Kant (pide el video) y resumen final.
-- Video y cloze (20) sin cambios: comparados con un resumen, no con la transcripción. Si aparece la transcripción, revisar los tiempos.
+- Video y cloze rehechos con la transcripción (2026-11-25): 21 frases en el orden del video, con sus tiempos; el video corta en la frase final (5:26), antes de las preguntas del autor.
 
 **Pragmatismo (`pragmatismo`)** — ✅ v2.0 (2026-11-25)
 - Material de 18 secciones cortas (antes 16 de hasta 139 palabras): pragma, origen (Club Metafísico), Peirce y la máxima pragmática (el diamante), duda y creencia, falibilismo y antifundamentalismo, James y la verdad que funciona (valor en efectivo), la ardilla, la voluntad de creer, Dewey y el instrumentalismo, aprender haciendo, democracia, el método, ser pragmático (la vegetariana del video), Rorty, críticas (Russell) y síntesis.
@@ -87,6 +87,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Kant: cloze rehecho con la transcripción del video (21 frases; antes 20 comparadas con un resumen, con tramos que apuntaban a otro momento y pistas que no correspondían a sus huecos). El video corta en 5:26 (antes 5:30, ya en las preguntas del autor).
 - 2026-11-25: Hedonismo: crucigrama rehecho con central SERENIDAD y 9 palabras del material (DIOSES, EPICURO, JARDIN, MUERTE, VANOS, AUTARQUIA, PRUDENCIA, ATARAXIA, CALIDAD), cada una con sección y frase para las pistas. Antes: PLACER con 6 palabras, tres que el material no trabaja (CONTEMPLACION, REFLEXION, LIBERTAD). En el material, la frase de los dioses se reordenó («Sobre los dioses, Epicuro afirma que existen…») para que la pista no muestre el nombre de Epicuro.
 - 2026-11-25: Utilitarismo completo (v2.0): material de 18 secciones (antes 8), cuestionario de 13, caza de 8 niveles, crucigrama FELICIDAD rehecho y mapa con 15 pares; el examen con Mill no cambia. Con esto, los siete temas de la Unidad III tienen examen.
 - 2026-11-25: Antropocentrismo completo (v2.0): material de 19 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama HUMANISMO, mapa con 15 pares y examen con Pico della Mirandola.

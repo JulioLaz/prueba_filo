@@ -32,7 +32,7 @@
     },
     "cloze": {
       "enabled": true,
-      "items": 20,
+      "items": 21,
       "timeEstimate": 12
     },
     "cruci": {
@@ -73,6 +73,6 @@
   "prerequisites": [],
   "color": "#1d4ed8",
   "notes": {
-    "realValues": "v2.0 (2026-11-25): material 20 secciones, cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, video y cloze 20."
+    "realValues": "v2.0 (2026-11-25): material 20 secciones, cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, video (hasta 5:26) y cloze 21, con la transcripción."
   }
 }

@@ -222,12 +222,12 @@ const TOPICS = {
         duration: '2:38',
         // type: 'short'
       },
-      etica_kant: { // https://youtu.be/Lq0ZGcqn-Zg (La Ética en Kant - Unboxing Philosophy)
+      etica_kant: { // https://youtu.be/Lq0ZGcqn-Zg (La Ética en Kant); corta en la frase final (5:26), antes de las preguntas del video
         youtubeId: 'Lq0ZGcqn-Zg',
         startTime: 1,
-        endTime: 330,
+        endTime: 326,
         title: 'Ética de Kant',
-        duration: '5:30',
+        duration: '5:26',
         // type: 'short'
       },
       antropocentrismo: { // https://www.youtube.com/watch?v=xf96Q4NAdwY
