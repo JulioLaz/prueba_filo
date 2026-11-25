@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pragmatismo – Lectura guiada</title>
+  <!--
+    Material de lectura — Pragmatismo: Lo Verdadero es lo Práctico. Unidad III.
+    18 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-25): reescrito en 18 secciones cortas (antes 16 de hasta 139 palabras): pragma, origen, Peirce y la máxima pragmática, duda y creencia, falibilismo, James y la verdad, la ardilla, la voluntad de creer, Dewey, aprender haciendo, democracia, el método, ser pragmático, Rorty y críticas. Suma las ideas del video.
+  -->
+  <title>Pragmatismo: Lo Verdadero es lo Práctico</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
@@ -11,34 +16,23 @@
 
   <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Pragmatismo
     window.ReadAloudSystemConfig = {
-      tema: 'Pragmatismo',
+      tema: 'Pragmatismo: Lo Verdadero es lo Práctico',
       threshold: 0.80, // 80% de lectura requerida
-      sections: 16,
+      sections: 18,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=pragmatismo',
-      celebrationEmojis: ['🛠️','💡','🧪','🎯','📊','🚀','⚡','🏆'],
+      celebrationEmojis: ['🛠️', '🧪', '🐿️', '🌟', '⭐', '🏆'],
 
-      // Sinónimos y equivalencias útiles para reconocimiento
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'pragmatismo': ['pragma','utilidad','práctica','funcionalidad'],
-        'verdad': ['veracidad','certeza','realidad','correspondencia'],
-        'utilidad': ['funcionalidad','aplicabilidad','provecho','beneficio'],
-        'peirce': ['charles sanders peirce','charles peirce'],
-        'james': ['william james','james psicólogo'],
-        'dewey': ['john dewey','educador pragmático'],
-        'rorty': ['richard rorty','neopragmatismo'],
-        'máxima pragmática': ['máxima de peirce','consecuencias prácticas'],
-        'experimento': ['prueba','ensayo','testeo','validación'],
-        'método': ['proceso','procedimiento','sistema','enfoque'],
-        'consecuencias': ['resultados','efectos','impacto','productos'],
-        'experiencia': ['vivencia','práctica','experimentación','acción'],
-        'funcionalismo': ['función','utilidad','propósito','adaptación'],
-        'democracia': ['sistema político','gobierno democrático','participación'],
-        'educación': ['aprendizaje','enseñanza','formación','instrucción'],
-        'mente': ['conciencia','pensamiento','cognición','intelecto'],
-        'adaptación': ['adecuación','ajuste','evolución','respuesta']
+        'peirce': ['pierce', 'pirs', 'peirs'],
+        'dewey': ['diui', 'duey', 'dewi'],
+        'james': ['yeims', 'jeims', 'yeims'],
+        'rorty': ['rorti'],
+        'russell': ['rusel', 'russel'],
+        'pragma': ['pragma'],
+        'falibilismo': ['falibilismo']
       }
     };
   </script>
@@ -48,547 +42,883 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 16 secciones</span>
+        <span id="progress-counter">0 / 18 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>🛠️ PRAGMATISMO: Lo Verdadero es lo Práctico</h1>
-    <p><em>Un movimiento filosófico americano que revolucionó la forma de entender la <strong>verdad</strong>, el <strong>conocimiento</strong> y la <strong>acción</strong>. Descubre cómo el pragmatismo evalúa las ideas por su utilidad real y sus consecuencias prácticas en el mundo.</em></p>
+    <h1>🛠️ Pragmatismo: Lo Verdadero es lo Práctico</h1>
+    <p><em>El pragmatismo, nacido en Estados Unidos con <strong>Peirce</strong>, <strong>James</strong> y <strong>Dewey</strong>, evalúa las ideas por sus <strong>consecuencias prácticas</strong>: una idea vale si funciona, si resuelve problemas y si se puede corregir con la <strong>experiencia</strong>.</em></p>
 
-    <!-- 1. Definición fundamental -->
-    <div class="study-section active" data-section="definicion">
+    <!-- 1. ¿Qué es el pragmatismo? -->
+    <div class="study-section active" data-section="pragma">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎯 ¿Qué es el Pragmatismo?</h3>
+          <h3>🛠️ ¿Qué es el pragmatismo?</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El <strong>pragmatismo</strong> es una filosofía que nos enseña a evaluar las ideas por un criterio muy simple pero revolucionario: <em>¿para qué sirve?</em> No buscamos la verdad como correspondencia perfecta con la realidad, sino como utilidad práctica. Una creencia es verdadera si <strong>funciona</strong>, si nos permite resolver problemas reales, si produce consecuencias útiles en nuestras vidas. Esto puede parecer extraño comparado con siglos de filosofía, pero es profundamente transformador.
+            La palabra <strong>pragmatismo</strong> viene del griego <strong>pragma</strong>, que significa acción, práctica o asunto. Es una corriente filosófica que sostiene que la <strong>utilidad</strong> del conocimiento se refleja en su aplicación práctica.<br><br>Ante cualquier idea, el pragmatismo pregunta: ¿para qué sirve?, ¿qué <strong>diferencia</strong> hace en la vida creer esto o no creerlo? Para esta filosofía, no alcanza con los conocimientos teóricos: las ideas se ponen a prueba en la acción.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Idea central: la verdad se mide por lo que funciona.</div>
+          <div class="reading-hint">
+            💡 ¿Para qué sirve esta idea?
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🧠 Verificación de comprensión</h4><p>Clave de la definición:</p></div>
-        <div class="question"><p>Según el pragmatismo, ¿cuál es el criterio principal para evaluar si una idea es verdadera?</p></div>
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué pregunta hace el pragmatismo ante cualquier idea?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Si coincide perfectamente con una realidad objetiva</div>
-          <div class="option">Si ha sido aceptada por filósofos antiguos</div>
-          <div class="option" data-correct="true">Si funciona en la práctica y produce consecuencias útiles</div>
-          <div class="option">Si suena lógicamente coherente</div>
+          <div class="option" data-correct="true">¿Para qué sirve y qué diferencia hace en la práctica?</div>
+          <div class="option">¿Quién la dijo primero?</div>
+          <div class="option">¿Es antigua o moderna?</div>
+          <div class="option">¿Es agradable de escuchar?</div>
         </div>
       </div>
     </div>
 
-    <!-- 2. Contexto histórico -->
-    <div class="study-section" data-section="contexto-historico">
+    <!-- 2. Una filosofía americana -->
+    <div class="study-section" data-section="america">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🇺🇸 El Pragmatismo: Una Filosofía Americana</h3>
+          <h3>🇺🇸 Una filosofía americana</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El pragmatismo nace en Estados Unidos durante el siglo diecinueve, en una época de <strong>rápida industrialización</strong> y expansión territorial. La mentalidad americana valoraba lo que <em>funciona</em>, lo práctico, lo que resuelve problemas reales en el campo, la fábrica y la ciudad. Esta filosofía no surge de los escritorios de universidades europeas, sino del espíritu de una nación construyéndose a sí misma, experimentando constantemente, probando soluciones nuevas. El pragmatismo es, en esencia, una filosofía genuinamente americana.
+            El pragmatismo surge a fines del <strong>siglo XIX</strong> en <strong>Estados Unidos</strong>, un país que crecía rápido, con fábricas, ferrocarriles y ciudades nuevas, y que se construía probando soluciones.<br><br>Hacia 1872, un grupo de jóvenes se reunía en Cambridge, cerca de Boston, en lo que llamaron en broma el <strong>Club Metafísico</strong>. Allí discutían Charles Peirce y William James. Más tarde se sumó John Dewey. Son los tres grandes pragmatistas.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 El contexto: industrialización y experimentación.</div>
+          <div class="reading-hint">
+            💡 Peirce, James y Dewey.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>📚 Verificación</h4><p>Sobre el contexto histórico</p></div>
-        <div class="question"><p>¿Por qué el pragmatismo surge específicamente en Estados Unidos durante el siglo XIX?</p></div>
+        <div class="check-header">
+          <h4>🔌 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Dónde y cuándo surge el pragmatismo?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Porque Europa rechazaba todas las nuevas ideas filosóficas</div>
-          <div class="option" data-correct="true">Por la mentalidad de experimentación y resolución de problemas prácticos</div>
-          <div class="option">Porque los estadounidenses inventaron la filosofía</div>
-          <div class="option">Porque fue impuesto por decreto presidencial</div>
+          <div class="option">En la Grecia antigua</div>
+          <div class="option" data-correct="true">En Estados Unidos, a fines del siglo XIX</div>
+          <div class="option">En Francia, en el siglo XVII</div>
+          <div class="option">En Alemania, durante la Edad Media</div>
         </div>
       </div>
     </div>
 
-    <!-- 3. Charles Sanders Peirce -->
+    <!-- 3. Peirce, el padre del pragmatismo -->
     <div class="study-section" data-section="peirce">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧮 Charles Sanders Peirce: El Fundador Intelectual</h3>
+          <h3>🧮 Peirce, el padre del pragmatismo</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Charles Sanders Peirce</strong> (1839-1914) fue un matemático, químico y lógico brillante que creó lo que llamó la <em>máxima pragmática</em>. Su principio era simple pero potente: para entender completamente una idea, debes considerar <strong>todas sus consecuencias prácticas imaginables</strong>. Peirce trabajaba en el Servicio Geodésico Estadounidense, realizando mediciones precisas. Desde ese enfoque científico riguroso, desarrolló un método para clarificar conceptos confusos: pregúntate, ¿qué diferencia práctica hace creer o no creer esto? Si no hay diferencia observable, entonces el concepto no tiene verdadero significado.
+            <strong>Charles Sanders Peirce</strong> (1839–1914) fue un lógico, matemático y científico. Se lo considera el <strong>padre</strong> del pragmatismo. En su artículo <em>Cómo esclarecer nuestras ideas</em> (1878) propuso un método para aclarar el significado de los conceptos.<br><br>Cuando otros empezaron a usar «pragmatismo» de forma muy libre, Peirce rebautizó su teoría como <strong>pragmaticismo</strong>: un nombre «tan feo que nadie lo robaría».
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 La máxima pragmática de Peirce.</div>
+          <div class="reading-hint">
+            💡 El padre del pragmatismo.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🔬 Verificación</h4><p>Sobre Peirce</p></div>
-        <div class="question"><p>¿Cuál era el principio central de Peirce llamado "máxima pragmática"?</p></div>
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Quién es considerado el padre del pragmatismo?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Que todas las ideas deben ser memorizadas por su complejidad</div>
-          <div class="option" data-correct="true">Que una idea debe evaluarse por sus consecuencias prácticas imaginables</div>
-          <div class="option">Que los matemáticos son superiores a otros filósofos</div>
-          <div class="option">Que la ciencia debe alejarse de lo práctico</div>
+          <div class="option">Immanuel Kant</div>
+          <div class="option">Aristóteles</div>
+          <div class="option" data-correct="true">Charles Sanders Peirce</div>
+          <div class="option">Richard Rorty</div>
         </div>
       </div>
     </div>
 
-    <!-- 4. William James -->
-    <div class="study-section" data-section="william-james">
+    <!-- 4. La máxima pragmática -->
+    <div class="study-section" data-section="maxima">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧠 William James: Pragmatismo en la Psicología</h3>
+          <h3>📏 La máxima pragmática</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>William James</strong> (1842-1910), hermano del famoso escritor Henry James, llevó el pragmatismo al público general. Era psicólogo además de filósofo, y contribuyó tremendamente con sus ideas sobre la <em>corriente de la conciencia</em>. James preguntaba: <strong>¿para qué sirve la mente?</strong> La respuesta revolucionaria fue que la mente existe para ayudarnos a <em>adaptarnos</em> al mundo, para resolver problemas, para sobrevivir. La conciencia no es estática sino un flujo continuo. Y aplicó el pragmatismo a la religión: si una creencia religiosa mejora tu vida, te hace mejor persona y aumenta tu bienestar, entonces es "verdadera" para ti en el sentido que importa.
+            La <strong>máxima pragmática</strong> de Peirce dice: para aclarar una idea, pensá qué <strong>efectos prácticos</strong> tendría. Esos efectos son todo su significado.<br><br>Por ejemplo, ¿qué significa que un diamante es «<strong>duro</strong>»? Que no lo raya casi ninguna otra cosa. Si dos ideas no producen ninguna diferencia práctica, en realidad son la misma idea. Y una idea que no tiene ningún efecto concebible no significa nada.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Pragmatismo aplicado a la psicología y religión.</div>
+          <div class="reading-hint">
+            💡 El significado está en los efectos.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🧠 Verificación</h4><p>Sobre James</p></div>
-        <div class="question"><p>¿Cuál fue la pregunta fundamental que William James planteó sobre la mente?</p></div>
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Según la máxima pragmática, ¿dónde está el significado de una idea?</p>
+        </div>
         <div class="options-container">
-          <div class="option">¿De qué están hechas las neuronas?</div>
-          <div class="option" data-correct="true">¿Para qué sirve la mente? ¿Cómo nos ayuda a adaptarnos?</div>
-          <div class="option">¿Es la mente separada del cuerpo?</div>
-          <div class="option">¿Pueden los animales pensar como los humanos?</div>
+          <div class="option">En su origen histórico</div>
+          <div class="option" data-correct="true">En los efectos prácticos que tendría</div>
+          <div class="option">En lo que siente quien la piensa</div>
+          <div class="option">En la cantidad de palabras que usa</div>
         </div>
       </div>
     </div>
 
-    <!-- 5. John Dewey -->
-    <div class="study-section" data-section="john-dewey">
+    <!-- 5. De la duda a la creencia -->
+    <div class="study-section" data-section="duda">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>👨‍🏫 John Dewey: Educación y Democracia</h3>
+          <h3>🤔 De la duda a la creencia</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>John Dewey</strong> (1859-1952), el pragmatista más influyente, revolucionó la educación con su lema: <em>aprender haciendo</em>. Para Dewey, la educación tradicional de memorización era un fracaso. Los estudiantes debían aprender resolviendo <strong>problemas reales</strong>, experimentando, cometiendo errores y aprendiendo de ellos. La escuela no era un lugar para transmitir conocimiento abstracto, sino una <strong>comunidad democrática</strong> donde se practicaba la democracia. Dewey también veía la vida misma como un <em>experimento continuo</em>: identificas un problema, generas hipótesis, pruebas soluciones, evalúas resultados, y mejoras en la siguiente iteración. Este enfoque experimental define no solo la educación sino toda la vida democrática.
+            Para Peirce, la <strong>duda</strong> es un estado incómodo que nos impulsa a investigar. La <strong>creencia</strong>, en cambio, es un estado tranquilo: un <strong>hábito</strong> de acción que nos dice cómo actuar.<br><br>Pensar es pasar de la duda a la creencia. Hay muchas maneras de fijar creencias, como la tradición o la autoridad, pero la mejor es el <strong>método científico</strong>: probar las ideas con la experiencia.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Educación pragmática: aprender haciendo.</div>
+          <div class="reading-hint">
+            💡 Creer es saber cómo actuar.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🎓 Verificación</h4><p>Sobre Dewey</p></div>
-        <div class="question"><p>¿Cuál era el lema educativo central de John Dewey?</p></div>
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es una creencia para Peirce?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Memorizar todo el conocimiento disponible</div>
-          <div class="option">Separar completamente la teoría de la práctica</div>
-          <div class="option" data-correct="true">Aprender haciendo: resolver problemas reales experimentando</div>
-          <div class="option">Enseñar solo a estudiantes excepcionales</div>
+          <div class="option" data-correct="true">Un hábito de acción que nos dice cómo actuar</div>
+          <div class="option">Una idea que nunca se puede cambiar</div>
+          <div class="option">Un sentimiento sin relación con la acción</div>
+          <div class="option">Lo mismo que la duda</div>
         </div>
       </div>
     </div>
 
-    <!-- 6. Verdad como utilidad -->
-    <div class="study-section" data-section="verdad-utilidad">
+    <!-- 6. Podemos equivocarnos -->
+    <div class="study-section" data-section="falibilismo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 La Verdad Redefinida: Utilidad en Lugar de Correspondencia</h3>
+          <h3>🔬 Podemos equivocarnos</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Durante dos mil años, la filosofía occidental definió la <strong>verdad</strong> como <em>correspondencia</em>: una idea es verdadera si corresponde exactamente a cómo es la realidad. El pragmatismo rompe con esta tradición. Para el pragmatista, la verdad no es una <strong>propiedad estática</strong> de las ideas, sino algo que se vuelve verdadero a través del uso práctico. <strong>Dos más dos igual cuatro</strong> es verdadero porque funciona: construimos puentes con esa matemática y no se caen. <strong>La teoría atómica</strong> es verdadera porque predice y genera medicina, tecnología, energía. Una creencia es verdadera si tiene <em>poder práctico</em>, si cambia nuestras experiencias de forma útil, si resuelve problemas reales que enfrentamos en el mundo.
+            El pragmatismo desecha las <strong>verdades absolutas</strong>: las ideas no son fijas ni inamovibles, sino que <strong>evolucionan</strong> y están sujetas al cambio. Esta actitud se llama <strong>falibilismo</strong>: cualquier conocimiento puede ser corregido. Peirce la defendió toda su vida.<br><br>Por eso el pragmatismo es <strong>antifundamentalista</strong>: no acepta una verdad última e indiscutible. El conocimiento avanza gracias a una <strong>comunidad</strong> de investigadores que prueba, discute y corrige.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 La verdad es utilidad, no correspondencia perfecta.</div>
+          <div class="reading-hint">
+            💡 Todo conocimiento puede corregirse.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🔍 Verificación</h4><p>Sobre la verdad</p></div>
-        <div class="question"><p>¿Cómo redefine el pragmatismo el concepto de verdad?</p></div>
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es el falibilismo?</p>
+        </div>
         <div class="options-container">
-          <div class="option">La verdad es lo que la mayoría de personas cree</div>
-          <div class="option" data-correct="true">La verdad es lo que funciona prácticamente y produce consecuencias útiles</div>
-          <div class="option">La verdad es una correspondencia perfecta con una realidad objetiva</div>
-          <div class="option">La verdad no existe realmente</div>
+          <div class="option">La creencia en verdades absolutas</div>
+          <div class="option">Un método para no equivocarse nunca</div>
+          <div class="option">El rechazo de toda investigación</div>
+          <div class="option" data-correct="true">La idea de que cualquier conocimiento puede ser corregido</div>
         </div>
       </div>
     </div>
 
-    <!-- 7. El método pragmático -->
-    <div class="study-section" data-section="metodo-pragmatico">
+    <!-- 7. William James -->
+    <div class="study-section" data-section="james">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧪 El Método Pragmático en Acción</h3>
+          <h3>🧠 William James</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            ¿Cómo aplicamos el pensamiento pragmático en la vida real? El proceso es sistemático. Primero, <strong>identificas el problema</strong> específico que necesita solución. Segundo, <strong>generas alternativas</strong>: ¿qué opciones tienes? Tercero, <strong>predices consecuencias</strong>: ¿qué resultados esperarías de cada opción? Cuarto, <strong>experimentas</strong>: pruebas la opción más promisoria. Quinto, <strong>evalúas resultados</strong>: ¿funcionó? ¿Qué aprendiste? Este ciclo no termina: siempre refinas, pruebas nuevas variaciones, mejoras constantemente. El pragmatista nunca está completamente satisfecho; siempre busca la siguiente iteración mejor, basada en evidencia de lo que realmente funciona.
+            <strong>William James</strong> (1842–1910) fue médico, psicólogo y filósofo, hermano del novelista Henry James. Con su libro <em>Pragmatismo</em> (1907) llevó estas ideas al gran público.<br><br>Como psicólogo, describió la <strong>corriente de la conciencia</strong>: la mente no es un depósito quieto, sino un flujo continuo de pensamientos. Y se preguntó para qué sirve la mente: para ayudarnos a <strong>adaptarnos</strong> al mundo.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Cinco pasos: problema, opciones, predicción, experimentación, evaluación.</div>
+          <div class="reading-hint">
+            💡 La mente es un flujo.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🔧 Verificación</h4><p>Sobre el método</p></div>
-        <div class="question"><p>¿Cuál es el último paso en el método pragmático descrito?</p></div>
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Para qué sirve la mente según William James?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Identificar el problema</div>
-          <div class="option">Generar alternativas</div>
-          <div class="option">Experimentar con una solución</div>
-          <div class="option" data-correct="true">Evaluar resultados y mejorar continuamente</div>
+          <div class="option">Para guardar recuerdos sin usarlos</div>
+          <div class="option">Para copiar la realidad como un espejo</div>
+          <div class="option" data-correct="true">Para ayudarnos a adaptarnos al mundo</div>
+          <div class="option">Para nada: es solo un adorno</div>
         </div>
       </div>
     </div>
 
-    <!-- 8. Aplicaciones educativas -->
-    <div class="study-section" data-section="aplicaciones-educativas">
+    <!-- 8. La verdad que funciona -->
+    <div class="study-section" data-section="verdad">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎓 Revolución Educativa Pragmática</h3>
+          <h3>💵 La verdad que funciona</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La educación pragmática transforma completamente el aula tradicional. En lugar de <strong>memorización</strong>, los estudiantes resuelven <strong>problemas reales</strong> de su comunidad. En lugar de exámenes que testan memoria, la <strong>evaluación es auténtica</strong>: ¿puedes usar lo que aprendiste? El maestro no es <em>autoridad que transmite verdades</em>, sino <strong>facilitador</strong> que ayuda a los estudiantes a investigar y experimentar. Las materias no están aisladas; están <strong>integradas</strong> porque los problemas reales no respetan fronteras disciplinarias. Un proyecto sobre cambio climático requiere ciencia, matemáticas, historia, escritura, pensamiento crítico. El aprendizaje es <strong>colaborativo</strong> porque en el mundo real, la solución de problemas complejos requiere trabajo en equipo. Esta no es educación pasiva; es <strong>educación activa y comprometida</strong>.
+            Tradicionalmente, una idea es verdadera si se <strong>corresponde</strong> con la realidad, como una copia. Para James, la verdad no es una copia quieta: una idea es verdadera si <strong>funciona</strong>, si podemos comprobarla y nos guía bien en la experiencia.<br><br>James decía que las ideas tienen un <strong>valor en efectivo</strong>: como un billete, valen si se pueden «cobrar» en la práctica. La verdad le sucede a una idea: se hace verdadera.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Aprendizaje activo, colaborativo e integrado.</div>
+          <div class="reading-hint">
+            💡 Verdadero es lo que funciona.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>📚 Verificación</h4><p>Sobre educación</p></div>
-        <div class="question"><p>¿Cuál es el rol principal del maestro en la educación pragmática?</p></div>
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuándo es verdadera una idea para William James?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Transmitir toda la verdad absoluta a los estudiantes</div>
-          <div class="option">Evaluar únicamente mediante exámenes memorísticos</div>
-          <div class="option" data-correct="true">Facilitar que los estudiantes investiguen y resuelvan problemas reales</div>
-          <div class="option">Mantener aisladas las diferentes materias escolares</div>
+          <div class="option" data-correct="true">Cuando funciona: podemos comprobarla y nos guía bien en la experiencia</div>
+          <div class="option">Cuando la dice una autoridad</div>
+          <div class="option">Cuando es muy antigua</div>
+          <div class="option">Cuando nadie la entiende</div>
         </div>
       </div>
     </div>
 
-    <!-- 9. Pragmatismo en psicología -->
-    <div class="study-section" data-section="aplicaciones-psicologia">
+    <!-- 9. La ardilla y el árbol -->
+    <div class="study-section" data-section="ardilla">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧠 Pragmatismo en Psicología: La Mente como Herramienta</h3>
+          <h3>🐿️ La ardilla y el árbol</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El pragmatismo influyó profundamente en la psicología moderna. En lugar de preguntarse <em>¿cómo está estructurada la mente?</em>, los pragmatistas preguntaban <em>¿para qué sirve?</em> Desarrollaron el <strong>funcionalismo psicológico</strong>: la mente existe para que nos <strong>adaptemos</strong> al ambiente. El pensamiento, la memoria, las emociones, todo esto evolucionó para ayudarnos a sobrevivir. Este enfoque funcionalista influyó en la psicología aplicada moderna: terapia cognitivo-conductual que pregunta "¿funciona esta intervención?", evaluación de medicamentos psicológicos por resultados medibles, mindfulness basado en evidencia. La psicología pragmática es siempre <strong>orientada a resultados</strong>: ¿mejora la vida del paciente? ¿Pueden los clientes funcionar mejor en sus relaciones, trabajo, comunidad?
+            James cuenta una discusión entre amigos. Una <strong>ardilla</strong> se agarra al tronco de un árbol y un hombre da vueltas alrededor para verla, pero la ardilla también gira y siempre queda del otro lado. ¿El hombre da vueltas alrededor de la ardilla?<br><br>James responde: depende de qué entiendan por «dar vueltas». Si no hay ninguna diferencia práctica, la <strong>disputa</strong> es solo de palabras. El método pragmático sirve para terminar discusiones inútiles.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 La mente como herramienta para adaptación evolutiva.</div>
+          <div class="reading-hint">
+            💡 Si no hay diferencia práctica, es una disputa de palabras.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🧬 Verificación</h4><p>Sobre psicología</p></div>
-        <div class="question"><p>¿Cuál es la pregunta central del funcionalismo psicológico pragmatista?</p></div>
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué muestra el ejemplo de la ardilla?</p>
+        </div>
         <div class="options-container">
-          <div class="option">¿De qué material están hechas las neuronas?</div>
-          <div class="option" data-correct="true">¿Para qué sirve la mente? ¿Cómo nos ayuda a adaptarnos?</div>
-          <div class="option">¿Es la mente superior al cuerpo?</div>
-          <div class="option">¿Pueden las máquinas tener mente?</div>
+          <div class="option">Que las ardillas son más rápidas que las personas</div>
+          <div class="option" data-correct="true">Que una disputa sin diferencias prácticas es solo de palabras</div>
+          <div class="option">Que nunca se puede saber nada</div>
+          <div class="option">Que hay que dar vueltas a los árboles</div>
         </div>
       </div>
     </div>
 
-    <!-- 10. Pragmatismo político -->
-    <div class="study-section" data-section="aplicaciones-politicas">
+    <!-- 10. La voluntad de creer -->
+    <div class="study-section" data-section="creer">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🗳️ Pragmatismo Político: Democracia Experimental</h3>
+          <h3>🙏 La voluntad de creer</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El pragmatismo influyó profundamente en la política americana. En lugar de elegir políticas basadas en <strong>ideología pura</strong>, los pragmatistas preguntan: <em>¿funciona realmente?</em> Esto llevó a políticas <strong>basadas en evidencia</strong>: si un programa social no produce los resultados deseados, se modifica o se descarta, no importa cuán hermosa sea la teoría detrás. Franklin Roosevelt, durante la Gran Depresión, implementó múltiples programas del New Deal con una actitud experimental: prueba esto, ve si funciona, ajusta si es necesario. La democracia misma se ve como un <strong>experimento social continuo</strong>. Las leyes son hipótesis que probamos; si fallan, las revisamos. La mejor política es la que produce resultados medibles: ¿reduce la pobreza? ¿Mejora la salud? ¿Aumenta la estabilidad? Esta es política pragmática.
+            En <em>La voluntad de creer</em> (1896), James sostiene que hay preguntas que no se pueden decidir con pruebas, como la existencia de Dios. En esos casos, tenemos derecho a creer si la creencia mejora nuestra vida y nos da fuerzas para actuar.<br><br>Peirce no estaba de acuerdo: le parecía que James convertía la verdad en algo demasiado <strong>personal</strong>. Aun así, ninguno aceptaba los <strong>dogmas</strong>: verdades que no se pueden revisar.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Políticas basadas en evidencia y experimentación.</div>
+          <div class="reading-hint">
+            💡 Creer cuando no hay pruebas.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>⚖️ Verificación</h4><p>Sobre política</p></div>
-        <div class="question"><p>¿Cuál es la actitud pragmática ante las políticas públicas?</p></div>
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué sostiene James en «La voluntad de creer»?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Seguir ideología política sin considerar resultados</div>
-          <div class="option" data-correct="true">Evaluar políticas por sus resultados prácticos y ajustar según evidencia</div>
-          <div class="option">Confiar siempre en la sabiduría antigua</div>
-          <div class="option">Implementar nuevas ideas sin jamás evaluarlas</div>
+          <div class="option">Que hay que creer todo lo que dicen los demás</div>
+          <div class="option">Que nunca hay que creer en nada</div>
+          <div class="option">Que la religión se demuestra con experimentos</div>
+          <div class="option" data-correct="true">Que si una pregunta no se puede decidir con pruebas, tenemos derecho a creer si eso mejora nuestra vida</div>
         </div>
       </div>
     </div>
 
-    <!-- 11. Richard Rorty y neopragmatismo -->
-    <div class="study-section" data-section="rorty-neopragmatismo">
+    <!-- 11. Dewey y el instrumentalismo -->
+    <div class="study-section" data-section="dewey">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 Richard Rorty: Neopragmatismo</h3>
+          <h3>🔧 Dewey y el instrumentalismo</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            <strong>Richard Rorty</strong> (1931-2007) revitalizó el pragmatismo para el siglo veinte, llevándolo a extremos aún más radicales. Rorty atacó la idea de que el conocimiento es un <em>"espejo de la naturaleza"</em>, que la mente simplemente refleja la realidad. Para Rorty, el conocimiento es más bien <strong>creación que descubrimiento</strong>. No buscamos "la verdad" como objeto fijo en el universo, sino que <strong>conversamos</strong> productivamente. La filosofía debe abandonar la búsqueda de certeza absoluta y enfocarse en <strong>mantener viva la conversación</strong> entre diferentes perspectivas. Ofrecer nuevas formas de hablar sobre problemas puede ser más valioso que "descubrir la verdad". El neopragmatismo de Rorty influye en multiculturalismo, literatura, educación liberal: valoramos diferentes tradiciones sin jerarquizar cuál es "correcta".
+            <strong>John Dewey</strong> (1859–1952) fue filósofo y pedagogo. Para él, el pensamiento empieza cuando enfrentamos una <strong>situación problemática</strong>: algo no funciona y hay que resolverlo.<br><br>Las ideas son <strong>instrumentos</strong>, herramientas para resolver problemas, como un martillo o una brújula. Por eso su filosofía se llama <strong>instrumentalismo</strong>. Una idea vale si nos ayuda a salir del problema; si no sirve, se cambia por otra mejor.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 La verdad como conversación productiva.</div>
+          <div class="reading-hint">
+            💡 Las ideas son herramientas.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🗣️ Verificación</h4><p>Sobre Rorty</p></div>
-        <div class="question"><p>¿Cuál es la alternativa que Rorty propone a la búsqueda de "la verdad"?</p></div>
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué son las ideas para el instrumentalismo de Dewey?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Abandonar completamente el pensamiento riguroso</div>
-          <div class="option" data-correct="true">Mantener conversaciones productivas entre perspectivas diferentes</div>
-          <div class="option">Volver a la certeza absoluta de la filosofía antigua</div>
-          <div class="option">Aceptar que nada se puede conocer en absoluto</div>
+          <div class="option">Copias perfectas de la realidad</div>
+          <div class="option">Adornos del lenguaje</div>
+          <div class="option" data-correct="true">Herramientas para resolver problemas</div>
+          <div class="option">Verdades eternas que no cambian</div>
         </div>
       </div>
     </div>
 
-    <!-- 12. Aplicaciones modernas -->
-    <div class="study-section" data-section="aplicaciones-modernas">
+    <!-- 12. Aprender haciendo -->
+    <div class="study-section" data-section="escuela">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>💻 Pragmatismo en el Siglo XXI</h3>
+          <h3>🧪 Aprender haciendo</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Hoy el pragmatismo está en todas partes aunque no siempre lo reconozcamos. En <strong>tecnología</strong>, el desarrollo ágil y el A/B testing son pragmatismo puro: pruebas qué interfaz funciona mejor con usuarios reales. En <strong>negocios</strong>, "lean startup" es pragmatismo: construye un prototipo mínimo, mide, aprende, itera. En <strong>inteligencia artificial</strong>, evaluamos algoritmos por su eficacia real, no por elegancia teórica. En <strong>políticas de salud pública</strong>, se implementan programas piloto, se miden resultados, se escalan lo que funciona. En <strong>medicina</strong>, la medicina basada en evidencia es pragmatista: ¿qué tratamiento realmente cura? En <strong>cambio climático</strong>, busca soluciones que funcionen política y económicamente, no solo teóricamente. El pragmatismo es el espíritu del siglo veintiuno: experimentar, medir, adaptar, mejorar constantemente.
+            Dewey criticó la escuela de la memorización, con alumnos quietos y pasivos. En 1896 fundó en Chicago una <strong>escuela laboratorio</strong> donde los chicos cocinaban, cultivaban o construían, y así aprendían ciencia, matemática e historia.<br><br>Su lema fue <strong>aprender haciendo</strong>. El alumno es activo y el docente es un guía que propone problemas reales. La escuela debía ser una pequeña <strong>comunidad</strong> democrática.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Pragmatismo en tecnología, negocios, medicina y política.</div>
+          <div class="reading-hint">
+            💡 Learning by doing.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🚀 Verificación</h4><p>Aplicaciones modernas</p></div>
-        <div class="question"><p>¿Cuál de estos ejemplos NO es una aplicación de pensamiento pragmático?</p></div>
+        <div class="check-header">
+          <h4>🧠 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es el lema educativo de Dewey?</p>
+        </div>
         <div class="options-container">
-          <div class="option">A/B testing en tecnología para determinar qué funciona mejor</div>
-          <div class="option">Medicina basada en evidencia que evalúa tratamientos por resultados</div>
-          <div class="option" data-correct="true">Adoptar una política sin jamás evaluar sus resultados reales</div>
-          <div class="option">Lean startup que prueba, mide y aprende continuamente</div>
+          <div class="option" data-correct="true">Aprender haciendo</div>
+          <div class="option">Memorizar y repetir</div>
+          <div class="option">La letra con sangre entra</div>
+          <div class="option">Escuchar sin preguntar</div>
         </div>
       </div>
     </div>
 
-    <!-- 13. Críticas al pragmatismo -->
-    <div class="study-section" data-section="criticas-pragmatismo">
+    <!-- 13. La democracia como experimento -->
+    <div class="study-section" data-section="democracia">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ Críticas y Limitaciones del Pragmatismo</h3>
+          <h3>🗳️ La democracia como experimento</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El pragmatismo no está sin críticas. Algunos filósofos argumentan que <strong>relativismo moral</strong> es su riesgo: si la verdad es simplemente "lo que funciona", ¿no podrían funcionar también ideas malvadas? Los realistas científicos objetan que la ciencia descubre <em>verdades reales</em> sobre la naturaleza, no solo instrumentos útiles. Otros critican que <strong>valores intrínsecamente valiosos</strong>—la belleza, la dignidad humana, el arte—no pueden reducirse a utilidad. Y hay un problema temporal: ¿cómo actuamos cuando no tenemos tiempo para experimentación pragmática? Las decisiones urgentes frecuentemente exigen actuar con información incompleta. Además, las <strong>consecuencias a largo plazo</strong> son impredecibles. Sin embargo, los pragmatistas responden que el análisis debe incluir <em>todas</em> las consecuencias, incluyendo consideraciones éticas y sociales amplias, no solo beneficios inmediatos. El pragmatismo no es relativismo extremo; es relativismo con responsabilidad.
+            En <em>Democracia y educación</em> (1916), Dewey sostiene que la <strong>democracia</strong> no es solo votar cada tantos años: es una <strong>forma de vida</strong>, una manera de convivir, dialogar y resolver juntos los problemas comunes.<br><br>Las leyes y las políticas son como <strong>hipótesis</strong>: se prueban, se miran sus resultados y, si fallan, se corrigen. Por eso la educación es clave: forma ciudadanos capaces de pensar y decidir.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Debilidades del pragmatismo y respuestas pragmatistas.</div>
+          <div class="reading-hint">
+            💡 Una forma de vida, no solo votar.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🤔 Verificación</h4><p>Sobre críticas</p></div>
-        <div class="question"><p>¿Cuál es una crítica significativa al pragmatismo?</p></div>
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la democracia para Dewey?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Que insiste demasiado en la teoría pura</div>
-          <div class="option">Que rechaza completamente la ciencia</div>
-          <div class="option" data-correct="true">Que podría llevar al relativismo moral si no consideramos todas las consecuencias amplias</div>
-          <div class="option">Que fue inventado en Europa medieval</div>
+          <div class="option">Solo votar cada tantos años</div>
+          <div class="option">El gobierno de unos pocos sabios</div>
+          <div class="option">Un sistema que nunca debe cambiar</div>
+          <div class="option" data-correct="true">Una forma de vida para resolver juntos los problemas comunes</div>
         </div>
       </div>
     </div>
 
-    <!-- 14. Pragmatismo vs otras filosofías -->
-    <div class="study-section" data-section="comparacion-filosofias">
+    <!-- 14. El método pragmático -->
+    <div class="study-section" data-section="metodo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔄 Pragmatismo Comparado con Otras Filosofías</h3>
+          <h3>🔄 El método pragmático</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            ¿Cómo se diferencia el pragmatismo de otras corrientes? Con el <strong>empirismo</strong>, comparte la importancia de la experiencia, pero el empirismo es más pasivo, mientras el pragmatismo es activo y transformador. Con el <strong>racionalismo</strong> hay tensión: el pragmatista desconfía de verdades "puras" derivadas de razón sin conexión a la experiencia. Con el <strong>positivismo científico</strong>, hay afinidad pero el pragmatismo es más flexible. Con el <strong>existencialismo</strong>, ambos enfatizan la experiencia humana concreta. Con el <strong>idealismo</strong>, hay divergencia: el pragmatista es más materialista y práctico. Lo importante es entender que el pragmatismo <strong>no es dogma</strong>: es antidogmático por naturaleza. Valora lo que funciona, adapta continuamente, y mantiene apertura a nuevas perspectivas. En esencia, el pragmatismo es un <strong>método</strong> más que un conjunto fijo de creencias.
+            El pragmatismo propone un método, parecido al de la ciencia: identificar el <strong>problema</strong>, imaginar soluciones posibles, prever sus <strong>consecuencias</strong>, probar la mejor y evaluar los resultados para corregir.<br><br>En el pragmatismo, los <strong>juicios</strong> son posteriores y no anteriores a las acciones: primero se prueba y después se juzga si funcionó. El significado o valor de las cosas se establece a partir de sus consecuencias.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Pragmatismo como método, no doctrina fija.</div>
+          <div class="reading-hint">
+            💡 Probar primero, juzgar después.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>📊 Verificación</h4><p>Comparación</p></div>
-        <div class="question"><p>¿Qué caracteriza al pragmatismo como metodología filosófica?</p></div>
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>En el pragmatismo, ¿cuándo se juzga una acción?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Que busca verdades eternas e invariables</div>
-          <div class="option">Que rechaza cualquier forma de pensamiento riguroso</div>
-          <div class="option" data-correct="true">Que es antidogmático, flexible y se adapta a lo que funciona</div>
-          <div class="option">Que solo acepta la razón pura sin experiencia</div>
+          <div class="option">Antes de actuar, sin mirar los resultados</div>
+          <div class="option" data-correct="true">Después de actuar: los juicios son posteriores a las acciones</div>
+          <div class="option">Nunca: no hay que juzgar</div>
+          <div class="option">Solo si lo pide una autoridad</div>
         </div>
       </div>
     </div>
 
-    <!-- 15. Ejercicios prácticos -->
-    <div class="study-section" data-section="ejercicios-practicos">
+    <!-- 15. Ser pragmático -->
+    <div class="study-section" data-section="pragmatico">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎮 Ejercicios Pragmáticos: Pensamiento en Acción</h3>
+          <h3>🎯 Ser pragmático</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Aprender pragmatismo es practicarlo. Aquí va un ejercicio: toma una <strong>creencia importante que tienes</strong>. Pregúntate: ¿qué diferencia práctica hace creer esto? Si no hay diferencia observable en cómo vives, tal vez no importa. Segundo ejercicio: <strong>identifica un problema</strong> que enfrenta tu escuela o comunidad. Aplica el método pragmático: ¿cuáles son las opciones? ¿Qué consecuencias predices? ¿Cómo podrías experimentar? ¿Qué métricas medirías? Tercer ejercicio: <strong>reflexiona sobre tu aprendizaje</strong>. ¿Qué métodos te funcionan realmente para aprender? No lo que "deberías" hacer según teoría educativa, sino lo que prácticamente mejora tu comprensión. Cuarto: <strong>examina tus hábitos</strong>. ¿Realmente funcionan? ¿Mejoran tu vida o son solo tradicionales? ¿Qué experimento podrías hacer? El pensamiento pragmático no es complicado: observa, prueba, mide, aprende, mejora. Es simple pero transformador.
+            En la vida diaria, una persona <strong>pragmática</strong> se centra en conseguir sus <strong>objetivos</strong>. Le importan más los resultados que la forma de lograrlos: busca lo <strong>eficaz</strong>, lo que funciona.<br><br>Un ejemplo: una persona vegetariana, perdida y al borde de la muerte, decide comer <strong>carne</strong> porque es lo único que le permite sobrevivir. Deja de lado sus principios. Ser pragmático, en este sentido, es poner la <strong>supervivencia</strong> por encima de los ideales.
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 Pragmatismo es práctica: observar, probar, aprender.</div>
+          <div class="reading-hint">
+            💡 Lo eficaz por encima de la forma.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>🧪 Verificación</h4><p>Práctica</p></div>
-        <div class="question"><p>¿Cuál es el primer paso sugerido en el ejercicio pragmático?</p></div>
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿En qué se centra una persona pragmática?</p>
+        </div>
         <div class="options-container">
-          <div class="option">Memorizar todas las definiciones de pragmatismo</div>
-          <div class="option">Buscar la opinión de un experto</div>
-          <div class="option" data-correct="true">Examinar una creencia propia y preguntarse qué diferencia práctica hace</div>
-          <div class="option">Implementar inmediatamente grandes cambios</div>
+          <div class="option">En respetar las formas aunque no funcionen</div>
+          <div class="option">En no tomar nunca decisiones</div>
+          <div class="option" data-correct="true">En conseguir sus objetivos con lo que resulta eficaz</div>
+          <div class="option">En seguir siempre la tradición</div>
         </div>
       </div>
     </div>
 
-    <!-- 16. Síntesis y legado -->
-    <div class="study-section" data-section="sintesis-legado">
+    <!-- 16. Rorty y el neopragmatismo -->
+    <div class="study-section" data-section="rorty">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🌟 Síntesis: El Legado Duradero del Pragmatismo</h3>
+          <h3>🔁 Rorty y el neopragmatismo</h3>
           <div class="reading-progress">
-            <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Después de un siglo, ¿qué permanece del pragmatismo? Una transformación fundamental de cómo pensamos. Primero: <strong>redefinió la verdad</strong> como utilidad en lugar de correspondencia abstracta. Segundo: nos enseñó que <strong>la mente es activa</strong>, no un espejo pasivo. Tercero: revolucionó la <strong>educación</strong> hacia aprendizaje experiencial. Cuarto: mostró que <strong>la democracia es un experimento continuo</strong>. Quinto: influenció la psicología moderna con su <strong>funcionalismo</strong>. Sexto: ofrece <strong>métodos para resolver problemas</strong> en un mundo cada vez más complejo. El pragmatismo es vivo hoy: en startups que prueban y escalan rápidamente, en medicina basada en evidencia, en políticas públicas evaluadas por resultados, en educación que valora competencias reales. Su pregunta central permanece revolucionaria: <em>¿para qué sirve?</em> No es cinismo sino claridad. En un mundo de cambio acelerado, el pragmatismo nos ofrece una brújula: experimenta, mide, adapta, mejora. Eso es filosofía viva.
+            En el siglo XX, <strong>Richard Rorty</strong> (1931–2007) renovó el pragmatismo. Criticó la idea de que la mente es un «<strong>espejo de la naturaleza</strong>» que refleja la realidad tal como es.<br><br>Para Rorty, no hay una verdad final que descubrir: lo importante es mantener viva la <strong>conversación</strong> entre distintas personas y culturas, y ampliar la <strong>solidaridad</strong>, para que cada vez más personas formen parte del «nosotros».
           </p>
         </div>
+
         <div class="reading-controls">
-          <button class="mic-button" type="button"><span class="mic-icon">🎤</span><span class="mic-text">Comenzar Lectura</span></button>
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">💡 El pragmatismo como filosofía viva y aplicable.</div>
+          <div class="reading-hint">
+            💡 Conversación y solidaridad.
+          </div>
         </div>
       </div>
+
       <div class="comprehension-check" style="display: none;">
-        <div class="check-header"><h4>✅ Conclusión</h4><p>Comprensión final</p></div>
-        <div class="question"><p>¿Cuál es la pregunta central que el pragmatismo mantiene como revolucionaria?</p></div>
+        <div class="check-header">
+          <h4>🔍 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué critica Richard Rorty?</p>
+        </div>
         <div class="options-container">
-          <div class="option">¿Cuál es la verdad absoluta y eterna?</div>
-          <div class="option" data-correct="true">¿Para qué sirve? ¿Funciona en la práctica?</div>
-          <div class="option">¿Qué opinaban los filósofos antiguos?</div>
-          <div class="option">¿Cuál es la estructura perfecta del universo?</div>
+          <div class="option" data-correct="true">La idea de que la mente es un espejo que refleja la realidad tal como es</div>
+          <div class="option">La conversación entre culturas</div>
+          <div class="option">La solidaridad</div>
+          <div class="option">El uso de la experiencia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. Críticas al pragmatismo -->
+    <div class="study-section" data-section="criticas">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚠️ Críticas al pragmatismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Al pragmatismo se le critica el riesgo de <strong>relativismo</strong>: si verdadero es lo que funciona, ¿funciona para quién? Una mentira puede ser útil para alguien y no por eso es verdadera. Bertrand <strong>Russell</strong> objetó que confunde «útil» con «verdadero».<br><br>También se le reprocha descuidar los <strong>principios</strong>: hay cosas valiosas aunque no sean útiles, como la dignidad. Los pragmatistas responden que la utilidad debe ser pública y comprobada por la comunidad.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 ¿Útil para quién?
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>💡 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué crítica le hizo Bertrand Russell al pragmatismo?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que es demasiado religioso</div>
+          <div class="option">Que no le interesa la experiencia</div>
+          <div class="option">Que solo sirve para la matemática</div>
+          <div class="option" data-correct="true">Que confunde lo útil con lo verdadero</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. Síntesis: ¿para qué sirve? -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🌟 Síntesis: ¿para qué sirve?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El pragmatismo, nacido en Estados Unidos con Peirce, James y Dewey, evalúa las ideas por sus <strong>consecuencias prácticas</strong>. Para Peirce, el significado está en los efectos; para James, verdadero es lo que funciona; para Dewey, las ideas son herramientas para resolver problemas.<br><br>Rechaza las verdades absolutas, confía en la <strong>experiencia</strong> y en la corrección de errores, y propone aprender haciendo. Su pregunta sigue vigente: ¿para qué sirve?
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Ideas puestas a prueba en la acción.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>✅ Verificación final</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo evalúa las ideas el pragmatismo?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Por la autoridad de quien las dice</div>
+          <div class="option" data-correct="true">Por sus consecuencias prácticas en la experiencia</div>
+          <div class="option">Por su antigüedad</div>
+          <div class="option">Por su belleza</div>
         </div>
       </div>
     </div>
 
   </main>
 
-  <!-- 🚀 SISTEMA MODULAR - Igual que en etica_aristoteles -->
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

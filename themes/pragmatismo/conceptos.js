@@ -1,180 +1,174 @@
 // themes/pragmatismo/conceptos.js
-// Caza de conceptos — Pragmatismo: la utilidad como criterio de la verdad
-// v2.0 (2026-11-19): 8 niveles alineados con las 16 secciones del material
-// (antes: 2 niveles y 7 conceptos); modelo de etica_aristoteles: sin negritas en
-// el texto (el motor resalta los conceptos), términos con espacios en vez de
-// guiones y hay que encontrar todos los conceptos del párrafo para avanzar.
-// v2.1 (2026-11-19): «matemático, químico y lógico» como un solo concepto.
+// Caza de conceptos — Pragmatismo: Lo Verdadero es lo Práctico. Unidad III.
+// v2.0 (2026-11-25): 8 niveles en el orden del material v2.0, sin negritas,
+//   términos literales y palabras «gemelas» emparejadas.
 
 window.CONCEPT_HUNT_CONFIG = {
-  author: "Charles S. Peirce, William James y John Dewey",
+  author: "Peirce, James y Dewey",
   menuUrl: "tema.html?tema=pragmatismo",
   levels: [
     {
       html: `
-      <p>El pragmatismo evalúa las ideas con una pregunta simple pero revolucionaria: ¿para qué sirve? No entiende la verdad como correspondencia perfecta con la realidad, sino como utilidad práctica. Una creencia es verdadera si funciona, si nos permite resolver problemas y si produce consecuencias útiles en nuestra vida.</p>
+      <p>La palabra pragmatismo viene del griego pragma, que significa acción. Surgió a fines del siglo XIX en Estados Unidos, donde Peirce y James se reunían en el Club Metafísico. Más tarde se sumó Dewey.</p>
       `,
-      hint: "Identifica el criterio de verdad del pragmatismo.",
+      hint: "Identificá el origen del pragmatismo.",
       concepts: [
-        { term: "pragmatismo", meaning: "Corriente filosófica que evalúa las ideas y creencias por su utilidad práctica y sus consecuencias." },
-        { term: "verdad", meaning: "Para el pragmatismo, no es una copia fiel de la realidad: es verdadero lo que funciona y resuelve problemas." },
-        { term: "correspondencia", meaning: "Concepción tradicional de la verdad: una idea es verdadera si coincide con cómo es la realidad. El pragmatismo la abandona." },
-        { term: "utilidad práctica", meaning: "Capacidad de una idea para servir en la vida real. Es el criterio pragmatista de verdad." },
-        { term: "creencia", meaning: "Idea que aceptamos y que guía nuestra acción. Se pone a prueba por sus efectos." },
-        { term: "consecuencias", meaning: "Los resultados que produce una idea al ponerla en práctica. Son la medida de su verdad." }
+        { term: "pragma", meaning: "Palabra griega: acción, práctica, asunto." },
+        { term: "siglo XIX", meaning: "Siglo en que surge el pragmatismo." },
+        { term: "Estados Unidos", meaning: "País donde nace el pragmatismo." },
+        { term: "Peirce", meaning: "Lógico y matemático, padre del pragmatismo." },
+        { term: "Club Metafísico", meaning: "Grupo de discusión de Cambridge, hacia 1872." },
+        { term: "Dewey", meaning: "Filósofo y pedagogo pragmatista." }
       ],
       corollary: [
-        "La verdad se mide por lo que funciona.",
-        "Una idea vale por sus consecuencias prácticas."
+        "Pragmatismo viene de acción.",
+        "Una filosofía americana."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>🇺🇸 Una filosofía americana</h4>
-        <p>El pragmatismo nace en Estados Unidos durante el siglo XIX, en una época de rápida industrialización y expansión territorial. Esa mentalidad valoraba lo práctico: lo que resuelve problemas reales en el campo, la fábrica y la ciudad. No surge de los escritorios de las universidades europeas, sino del espíritu de una nación que se construía a sí misma mediante la experimentación constante.</p>
+        <h4>📏 La máxima de Peirce</h4>
+        <p>La máxima pragmática dice que el significado de una idea está en sus efectos prácticos. Que un diamante es duro significa que casi nada lo raya. La duda nos impulsa a investigar y la creencia es un hábito de acción.</p>
       </div>
       `,
-      hint: "Busca dónde, cuándo y en qué contexto surge el pragmatismo.",
+      hint: "Identificá cómo aclara Peirce las ideas.",
       concepts: [
-        { term: "Estados Unidos", meaning: "País donde nace el pragmatismo: es la primera gran filosofía surgida en América." },
-        { term: "siglo XIX", meaning: "Época de origen del pragmatismo, en la segunda mitad del siglo." },
-        { term: "industrialización", meaning: "Proceso de desarrollo de fábricas y tecnología que marcó el contexto en que surgió el pragmatismo." },
-        { term: "problemas reales", meaning: "Las dificultades concretas de la vida, que el pragmatismo pone en el centro de la reflexión." },
-        { term: "universidades europeas", meaning: "Centros de la filosofía tradicional, más teórica, frente a los que el pragmatismo se presenta como algo nuevo." },
-        { term: "experimentación", meaning: "Probar soluciones y ver si funcionan. Es el espíritu que el pragmatismo convierte en método." }
+        { term: "máxima pragmática", meaning: "El significado de una idea está en sus efectos." },
+        { term: "efectos prácticos", meaning: "Lo que una idea cambia en la práctica." },
+        { term: "diamante", meaning: "Su dureza es el ejemplo de Peirce." },
+        { term: "duda", meaning: "Estado incómodo que impulsa a investigar." },
+        { term: "creencia", meaning: "Estado tranquilo que guía la acción." },
+        { term: "hábito", meaning: "Eso es una creencia para Peirce." }
       ],
       corollary: [
-        "El pragmatismo nace del espíritu práctico de Estados Unidos.",
-        "Experimentar y resolver problemas es su sello de origen."
+        "El significado está en los efectos.",
+        "Creer es saber cómo actuar."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>🧮 Peirce: el fundador</h4>
-        <p>Charles Sanders Peirce (1839-1914), matemático, químico y lógico, formuló la máxima pragmática: para entender una idea hay que considerar todas sus consecuencias prácticas imaginables. Su método para clarificar conceptos era preguntarse qué diferencia práctica produce creer o no creer algo. Si no hay ninguna diferencia observable, el concepto carece de verdadero significado.</p>
+        <h4>🔬 Podemos equivocarnos</h4>
+        <p>El pragmatismo desecha las verdades absolutas: las ideas evolucionan. El falibilismo sostiene que todo conocimiento puede corregirse. Es antifundamentalista y confía en una comunidad de investigadores que usa el método científico.</p>
       </div>
       `,
-      hint: "Identifica la regla que propone Peirce para aclarar las ideas.",
+      hint: "Identificá la actitud del pragmatismo frente al conocimiento.",
       concepts: [
-        { term: "Charles Sanders Peirce", meaning: "Fundador del pragmatismo (1839-1914): lógico y científico que creó la máxima pragmática." },
-        { term: "matemático, químico y lógico", meaning: "Las profesiones de Peirce: un científico que estudió las reglas del razonamiento correcto." },
-        { term: "máxima pragmática", meaning: "Regla de Peirce: el significado de una idea está en sus consecuencias prácticas imaginables." },
-        { term: "clarificar conceptos", meaning: "Hacer claras las ideas confusas. Para Peirce, se logra examinando sus efectos prácticos." },
-        { term: "diferencia práctica", meaning: "El cambio observable que produce creer algo. Si no hay ninguno, la idea no significa nada." },
-        { term: "significado", meaning: "Para Peirce, el sentido de un concepto es la suma de sus efectos prácticos concebibles." }
+        { term: "verdades absolutas", meaning: "Lo que el pragmatismo desecha." },
+        { term: "evolucionan", meaning: "Lo que hacen las ideas: cambian." },
+        { term: "falibilismo", meaning: "Todo conocimiento puede corregirse." },
+        { term: "antifundamentalista", meaning: "No acepta una verdad última indiscutible." },
+        { term: "comunidad de investigadores", meaning: "Prueba, discute y corrige." },
+        { term: "método científico", meaning: "La mejor manera de fijar creencias." }
       ],
       corollary: [
-        "Entender una idea es conocer sus consecuencias prácticas.",
-        "Si creer algo no cambia nada, el concepto está vacío."
+        "Nada es definitivo.",
+        "Corregir es avanzar."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>🧠 William James: la mente que se adapta</h4>
-        <p>William James (1842-1910), psicólogo y filósofo, llevó el pragmatismo al público general. Describió la corriente de la conciencia: la mente no es estática sino un flujo continuo. Para James, la mente existe para ayudarnos a adaptarnos al mundo y resolver problemas. También aplicó el pragmatismo a la religión: si una creencia religiosa mejora tu vida y aumenta tu bienestar, es verdadera para ti en el sentido que importa.</p>
+        <h4>🧠 William James</h4>
+        <p>William James fue psicólogo y describió la corriente de la conciencia. Para él, una idea es verdadera si funciona y tiene valor en efectivo. Con el ejemplo de la ardilla mostró que una disputa sin diferencia práctica es solo de palabras.</p>
       </div>
       `,
-      hint: "Busca cómo entiende James la mente y cómo aplica el pragmatismo a la fe.",
+      hint: "Identificá las ideas de James.",
       concepts: [
-        { term: "William James", meaning: "Psicólogo y filósofo (1842-1910) que difundió el pragmatismo y lo aplicó a la psicología y la religión." },
-        { term: "corriente de la conciencia", meaning: "Idea de James: la conciencia es un fluir continuo de pensamientos, no un conjunto de piezas fijas." },
-        { term: "flujo continuo", meaning: "Carácter cambiante y dinámico de la vida mental según James." },
-        { term: "adaptarnos", meaning: "Para James, la función de la mente es ayudarnos a adaptarnos al ambiente y sobrevivir." },
-        { term: "religión", meaning: "Ámbito donde James aplicó el pragmatismo: una creencia religiosa se valora por sus efectos en la vida." },
-        { term: "bienestar", meaning: "Mejora en la vida de una persona. Para James, es uno de los efectos que vuelven valiosa una creencia." }
+        { term: "William James", meaning: "Psicólogo y filósofo, autor de Pragmatismo (1907)." },
+        { term: "corriente de la conciencia", meaning: "La mente como flujo continuo." },
+        { term: "funciona", meaning: "Así es una idea verdadera para James." },
+        { term: "valor en efectivo", meaning: "Las ideas valen si se pueden «cobrar» en la práctica." },
+        { term: "ardilla", meaning: "Ejemplo de una discusión de palabras." },
+        { term: "disputa", meaning: "Discusión que se disuelve si no hay diferencia práctica." }
       ],
       corollary: [
-        "La mente sirve para adaptarnos al mundo.",
-        "Una creencia se valora por lo que hace en nuestra vida."
+        "Verdadero es lo que funciona.",
+        "Sin diferencia práctica, no hay disputa."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>👨‍🏫 John Dewey: educación y democracia</h4>
-        <p>John Dewey (1859-1952) revolucionó la educación con su lema: aprender haciendo. Criticó la escuela de pura memorización y propuso que los estudiantes resuelvan problemas reales, experimenten y aprendan de sus errores. El maestro deja de ser una autoridad que transmite verdades y se convierte en un facilitador. La escuela es una comunidad democrática donde la democracia se practica, no solo se estudia.</p>
+        <h4>🙏 Creer y revisar</h4>
+        <p>En La voluntad de creer, James defiende creer cuando no hay pruebas, si eso mejora la vida. Peirce temía que la verdad se volviera algo personal. Ninguno aceptaba los dogmas, y James criticaba la verdad como correspondencia.</p>
       </div>
       `,
-      hint: "Identifica el lema de Dewey y el nuevo rol de la escuela.",
+      hint: "Identificá el debate sobre la creencia.",
       concepts: [
-        { term: "John Dewey", meaning: "El pragmatista más influyente (1859-1952); aplicó el pragmatismo a la educación y la democracia." },
-        { term: "aprender haciendo", meaning: "Lema de Dewey: el conocimiento se construye actuando y resolviendo problemas, no memorizando." },
-        { term: "memorización", meaning: "Aprendizaje repetitivo y pasivo que Dewey consideraba un fracaso de la escuela tradicional." },
-        { term: "errores", meaning: "Para Dewey, parte necesaria del aprendizaje: se aprende experimentando y corrigiendo." },
-        { term: "facilitador", meaning: "Rol del docente en la educación pragmática: guía la investigación de los estudiantes en lugar de dictar verdades." },
-        { term: "comunidad democrática", meaning: "Así concebía Dewey la escuela: un lugar donde se practica la democracia." }
+        { term: "La voluntad de creer", meaning: "Ensayo de James (1896)." },
+        { term: "pruebas", meaning: "Lo que falta en algunas preguntas, como la existencia de Dios." },
+        { term: "personal", meaning: "Peirce temía que la verdad se volviera así." },
+        { term: "dogmas", meaning: "Verdades que no se pueden revisar." },
+        { term: "correspondencia", meaning: "Concepción de la verdad como copia de la realidad." }
       ],
       corollary: [
-        "Se aprende haciendo, no memorizando.",
-        "La escuela es un taller de democracia."
+        "Creer puede dar fuerzas para actuar.",
+        "Ningún pragmatista acepta dogmas."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>🧪 El método pragmático</h4>
-        <p>El pensamiento pragmático sigue un ciclo de cinco pasos. Primero, identificar el problema. Segundo, generar alternativas. Tercero, predecir las consecuencias de cada opción. Cuarto, experimentar con la opción más prometedora. Quinto, evaluar resultados: ¿funcionó? ¿Qué aprendimos? El ciclo nunca termina: cada iteración mejora la anterior a partir de la evidencia de lo que realmente funciona.</p>
+        <h4>🔧 Dewey</h4>
+        <p>Para Dewey, pensar empieza ante una situación problemática. Las ideas son instrumentos, y por eso su filosofía se llama instrumentalismo. En su escuela laboratorio de Chicago, el lema era aprender haciendo. La democracia es una forma de vida.</p>
       </div>
       `,
-      hint: "Busca los pasos del método pragmático en orden.",
+      hint: "Identificá las ideas de Dewey.",
       concepts: [
-        { term: "identificar el problema", meaning: "Primer paso del método: definir con precisión qué hay que resolver." },
-        { term: "generar alternativas", meaning: "Segundo paso: pensar varias opciones posibles de solución." },
-        { term: "predecir", meaning: "Tercer paso: anticipar qué resultados produciría cada opción." },
-        { term: "experimentar", meaning: "Cuarto paso: poner a prueba la opción más prometedora en la realidad." },
-        { term: "evaluar resultados", meaning: "Quinto paso: comprobar si la solución funcionó y qué se aprendió." },
-        { term: "iteración", meaning: "Cada vuelta del ciclo: se repite el proceso para mejorar la solución anterior." },
-        { term: "evidencia", meaning: "Datos obtenidos de la experiencia que muestran qué funciona y qué no." }
+        { term: "situación problemática", meaning: "Donde empieza el pensamiento." },
+        { term: "instrumentos", meaning: "Así son las ideas: herramientas." },
+        { term: "instrumentalismo", meaning: "Nombre de la filosofía de Dewey." },
+        { term: "escuela laboratorio", meaning: "La escuela que fundó en Chicago en 1896." },
+        { term: "aprender haciendo", meaning: "Lema educativo de Dewey." },
+        { term: "forma de vida", meaning: "Así entiende Dewey la democracia." }
       ],
       corollary: [
-        "Problema, alternativas, predicción, experimento, evaluación.",
-        "El método pragmático es un ciclo de mejora continua."
+        "Las ideas son herramientas.",
+        "Se aprende haciendo."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>🗳️ Del laboratorio a la sociedad</h4>
-        <p>En psicología, el pragmatismo dio origen al funcionalismo: la mente existe para adaptarnos al ambiente. En política, promovió las políticas basadas en evidencia: si un programa social no da resultados, se modifica o se descarta. Franklin Roosevelt aplicó esta actitud con el New Deal durante la Gran Depresión, y la democracia pasó a verse como un experimento social continuo. Hoy el mismo espíritu aparece en la medicina basada en evidencia y en el A/B testing de la tecnología.</p>
+        <h4>🎯 Ser pragmático</h4>
+        <p>En el pragmatismo, los juicios son posteriores a las acciones. Una persona pragmática persigue sus objetivos y busca lo eficaz. La vegetariana que come carne para sobrevivir pone la supervivencia por encima de los ideales.</p>
       </div>
       `,
-      hint: "Identifica las aplicaciones del pragmatismo en distintos campos.",
+      hint: "Identificá la actitud pragmática en la vida diaria.",
       concepts: [
-        { term: "funcionalismo", meaning: "Corriente psicológica de origen pragmatista: estudia para qué sirve la mente, no solo cómo está hecha." },
-        { term: "políticas basadas en evidencia", meaning: "Decisiones públicas que se mantienen o se cambian según sus resultados medibles." },
-        { term: "New Deal", meaning: "Conjunto de programas de Franklin Roosevelt ante la Gran Depresión, aplicados con actitud experimental." },
-        { term: "experimento social", meaning: "Forma pragmatista de ver la democracia: las leyes son hipótesis que se revisan si fallan." },
-        { term: "medicina basada en evidencia", meaning: "Práctica médica que elige tratamientos según lo que realmente cura." },
-        { term: "A/B testing", meaning: "Técnica tecnológica que compara dos versiones con usuarios reales para ver cuál funciona mejor." }
+        { term: "juicios", meaning: "En el pragmatismo son posteriores a las acciones." },
+        { term: "objetivos", meaning: "Lo que persigue una persona pragmática." },
+        { term: "eficaz", meaning: "Lo que busca: lo que funciona." },
+        { term: "carne", meaning: "Lo que come la vegetariana para sobrevivir." },
+        { term: "supervivencia", meaning: "Se pone por encima de los ideales." },
+        { term: "ideales", meaning: "Principios que a veces se dejan de lado." }
       ],
       corollary: [
-        "El pragmatismo aplica la experimentación a la mente, la política y la técnica.",
-        "Una política se juzga por sus resultados, no por su ideología."
+        "Probar primero, juzgar después.",
+        "Resultados antes que formas."
       ]
     },
     {
       html: `
       <div class="highlight-box">
-        <h4>⚖️ Rorty y las críticas</h4>
-        <p>Richard Rorty (1931-2007) impulsó el neopragmatismo: atacó la idea de que el conocimiento es un espejo de la naturaleza y propuso mantener viva la conversación entre perspectivas. Los críticos advierten el riesgo de relativismo moral: si la verdad es lo que funciona, ¿no podrían funcionar también ideas malvadas? Otros señalan que hay valores intrínsecos, como la dignidad humana o la belleza, que no se reducen a utilidad. Los pragmatistas responden que su filosofía es antidogmática: un método más que un conjunto fijo de creencias.</p>
+        <h4>⚠️ Rorty y las críticas</h4>
+        <p>Richard Rorty criticó la mente como espejo de la naturaleza y propuso la conversación y la solidaridad. Al pragmatismo se le reprocha el relativismo: Russell dijo que confunde lo útil con lo verdadero y olvida los principios.</p>
       </div>
       `,
-      hint: "Busca la versión actual del pragmatismo y sus principales objeciones.",
+      hint: "Identificá la renovación del pragmatismo y sus críticas.",
       concepts: [
-        { term: "Richard Rorty", meaning: "Filósofo estadounidense (1931-2007) que renovó el pragmatismo en el siglo XX." },
-        { term: "neopragmatismo", meaning: "Versión de Rorty: el conocimiento es más creación que descubrimiento." },
-        { term: "espejo de la naturaleza", meaning: "Imagen que Rorty critica: la idea de que la mente solo refleja la realidad tal como es." },
-        { term: "conversación", meaning: "Para Rorty, la tarea de la filosofía: mantener el diálogo entre perspectivas en vez de buscar certezas absolutas." },
-        { term: "relativismo moral", meaning: "Crítica al pragmatismo: si la verdad es lo que funciona, cualquier idea útil podría justificarse." },
-        { term: "valores intrínsecos", meaning: "Valores que valen por sí mismos (dignidad, belleza) y que, según los críticos, no se reducen a utilidad." },
-        { term: "antidogmática", meaning: "Que no acepta verdades fijas e incuestionables. El pragmatismo se define así." }
+        { term: "Richard Rorty", meaning: "Neopragmatista del siglo XX." },
+        { term: "espejo de la naturaleza", meaning: "Imagen de la mente que Rorty critica." },
+        { term: "solidaridad", meaning: "Lo que Rorty quiere ampliar." },
+        { term: "relativismo", meaning: "Riesgo de que la verdad dependa de cada uno." },
+        { term: "Russell", meaning: "Objetó que confunde útil con verdadero." },
+        { term: "principios", meaning: "Valores que importan aunque no sean útiles." }
       ],
       corollary: [
-        "Para Rorty, el conocimiento es conversación, no espejo.",
-        "El pragmatismo es un método abierto, no un dogma."
+        "¿Útil para quién?",
+        "Mantener viva la conversación."
       ]
     }
   ]

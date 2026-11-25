@@ -408,6 +408,12 @@ const TOPICS = {
         notaAprobacion: 6,
         minimoActividad: 60
       },
+      pragmatismo: {
+        filosofo: 'William James',
+        icono: '🛠️',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
       utilitarismo: {
         filosofo: 'John Stuart Mill',
         icono: '🎯',

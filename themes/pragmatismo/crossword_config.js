@@ -1,58 +1,88 @@
-console.log('📋 Iniciando carga de configuración del crucigrama de Pragmatismo...');
+// themes/pragmatismo/crossword_config.js
+// Crucigrama — Pragmatismo. Central UTILIDAD y una palabra por letra, todas del material,
+// con sección y frase para las pistas escalonadas.
+// Versión 2.0 (2026-11-25): rehecho (antes METODO, con MILL y OPTIMISMO, que no son del tema).
+console.log('📋 Iniciando carga de configuración del crucigrama...');
 const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Pragmatismo Americano: Lo Verdadero es lo Práctico",
-    
+    title: "Pragmatismo: lo verdadero es lo práctico",
+
     // Palabra central vertical (se normaliza automáticamente)
-    central: "METODO",
-    
+    central: "UTILIDAD",
+
     // Palabras horizontales que cruzan con la central
-    // crossIndex indica qué letra de la central usar (0-5 para METODO)
+    // crossIndex indica qué letra de la central usar (0-7 para UTILIDAD)
     entries: [
       {
-        answer: "MILL",
-        clue: "John Stuart, filósofo que influyó en el desarrollo del pragmatismo americano",
-        crossIndex: 0 // Cruce en la 'M' de METODO
+        answer: "DUDA",
+        clue: "Estado incómodo que, según Peirce, nos impulsa a investigar",
+        seccion: "🤔 De la duda a la creencia",
+        frase: "La _____ es un estado incómodo que nos impulsa a investigar.",
+        crossIndex: 0 // Cruce en la 'U' de UTILIDAD
       },
       {
-        answer: "EXPERIENCIA",
-        clue: "Base del conocimiento según los pragmatistas, más importante que la teoría abstracta",
-        crossIndex: 1 // Cruce en la 'E' de METODO
+        answer: "HABITO",
+        clue: "Para Peirce, una creencia es un ___ de acción",
+        seccion: "🤔 De la duda a la creencia",
+        frase: "La creencia, en cambio, es un estado tranquilo: un _____ de acción que nos dice cómo actuar.",
+        crossIndex: 1 // Cruce en la 'T' de UTILIDAD
       },
       {
-        answer: "UTILIDAD",
-        clue: "Criterio pragmatista para evaluar la verdad: lo que funciona en la práctica",
-        crossIndex: 2 // Cruce en la 'T' de METODO
+        answer: "PEIRCE",
+        clue: "Lógico y matemático considerado el padre del pragmatismo",
+        seccion: "🧮 Peirce, el padre del pragmatismo",
+        frase: "Charles Sanders _____ (1839–1914) fue un lógico, matemático y científico.",
+        crossIndex: 2 // Cruce en la 'I' de UTILIDAD
       },
       {
-        answer: "ACCION",
-        clue: "Lo que realmente importa según los pragmatistas: las consecuencias de nuestras decisiones",
-        crossIndex: 3 // Cruce en la 'O' de METODO
+        answer: "FALIBILISMO",
+        clue: "Actitud de saber que cualquier conocimiento puede ser corregido",
+        seccion: "🔬 Podemos equivocarnos",
+        frase: "Esta actitud se llama _____: cualquier conocimiento puede ser corregido.",
+        crossIndex: 3 // Cruce en la 'L' de UTILIDAD
+      },
+      {
+        answer: "ARDILLA",
+        clue: "Animal del ejemplo de James sobre una disputa de palabras",
+        seccion: "🐿️ La ardilla y el árbol",
+        frase: "James cuenta una discusión entre amigos. Una _____ se agarra al tronco de un árbol.",
+        crossIndex: 4 // Cruce en la 'I' de UTILIDAD
+      },
+      {
+        answer: "DEMOCRACIA",
+        clue: "Para Dewey, no es solo votar: es una forma de vida",
+        seccion: "🗳️ La democracia como experimento",
+        frase: "La _____ no es solo votar cada tantos años: es una forma de vida.",
+        crossIndex: 5 // Cruce en la 'D' de UTILIDAD
+      },
+      {
+        answer: "PRAGMA",
+        clue: "Palabra griega que significa acción, práctica o asunto",
+        seccion: "🛠️ ¿Qué es el pragmatismo?",
+        frase: "La palabra pragmatismo viene del griego _____, que significa acción, práctica o asunto.",
+        crossIndex: 6 // Cruce en la 'A' de UTILIDAD
       },
       {
         answer: "DEWEY",
-        clue: "John, filósofo pragmatista que revolucionó la educación con el aprender haciendo",
-        crossIndex: 4 // Cruce en la 'D' de METODO
-      },
-      {
-        answer: "OPTIMISMO",
-        clue: "Actitud característica del pragmatismo: confianza en la capacidad humana de resolver problemas",
-        crossIndex: 5 // Cruce en la 'O' de METODO
+        clue: "Filósofo y pedagogo del lema «aprender haciendo»",
+        seccion: "🔧 Dewey y el instrumentalismo",
+        frase: "John _____ (1859–1952) fue filósofo y pedagogo.",
+        crossIndex: 7 // Cruce en la 'D' de UTILIDAD
       }
     ],
-    
+
     // Texto para el prompt de respuesta
     promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-    
+
     // Configuración de sonidos (rutas relativas desde crossword.html)
     sounds: {
       correct: "sound/collect_points.mp3",
-      wrong: "sound/negative_beep.mp3", 
+      wrong: "sound/negative_beep.mp3",
       complete: "sound/fin_caza.mp3"
     },
-    
+
     // Opciones del juego
     options: {
       showHints: true,
@@ -62,23 +92,23 @@ try {
       showProgressBar: true,
       enableTimer: true
     },
-    
+
     // Información educativa adicional
     educational: {
-      introduction: "El pragmatismo es una filosofía americana que revolucionó la forma de entender la verdad, evaluando las ideas por su utilidad práctica.",
-      conclusion: "Los pragmatistas nos enseñaron que las mejores ideas no son las más elegantes teóricamente, sino las que funcionan mejor para resolver problemas reales.",
-      keyWords: ["pragmatismo", "utilidad", "experiencia", "método", "dewey", "james", "peirce"]
+      introduction: "Para el pragmatismo, las ideas valen por su utilidad práctica. Completá el crucigrama con sus conceptos.",
+      conclusion: "¡Funcionó! Repasaste la duda, el hábito, a Peirce, el falibilismo, la ardilla, la democracia, el pragma y a Dewey.",
+      keyWords: ["DUDA", "HABITO", "PEIRCE", "FALIBILISMO", "ARDILLA", "DEMOCRACIA", "PRAGMA", "DEWEY"]
     },
-    
+
     // Metadatos para debug
     metadata: {
-      version: "2.0_pragmatismo_secundaria",
+      version: "2.0_secundaria", // 2026-11-24: palabras del material, con seccion y frase para las pistas escalonadas
       created: new Date().toISOString(),
-      theme: "pragmatismo-americano-secundaria",
-      totalWords: 6,
-      difficulty: "intermediate",
+      theme: "pragmatismo-utilidad-secundaria",
+      totalWords: 8,
+      difficulty: "beginner-intermediate",
       targetAudience: "estudiantes-secundaria",
-      educationalLevel: "15-18 años"
+      educationalLevel: "14-18 años"
     }
   };
 
@@ -146,7 +176,7 @@ try {
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
   console.log(`📊 Resumen: "${config.title}"`);
-  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   📝 ${config.entries.length} palabras - Central: "${config.central}"`);
   console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
   console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
   
@@ -155,7 +185,7 @@ try {
   const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
   
   console.log(`📈 Estadísticas:`);
-  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📏 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
   console.log(`   📏 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
   
   // Log para debug (solo en desarrollo)

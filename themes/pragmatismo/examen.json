@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con William James y del resumen final del tema «Pragmatismo: Lo Verdadero es lo Práctico». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo; pide el video (jHix800gjVQ) con su cloze.",
+  "version": "1.0.0",
+  "filosofo": "William James",
+  "tema": "El pragmatismo: la máxima de Peirce, la verdad que funciona, el instrumentalismo de Dewey y sus críticas",
+  "intro": "El pragmatismo nace a fines del siglo XIX en Estados Unidos con Charles S. Peirce, William James (1842–1910) y John Dewey. Evalúa las ideas por sus consecuencias prácticas: para Peirce el significado está en los efectos; para James verdadero es lo que funciona; para Dewey las ideas son instrumentos para resolver problemas. Rechaza las verdades absolutas y confía en la experiencia.",
+  "conceptosClave": "pragma, máxima pragmática, efectos prácticos, duda, creencia, hábito, falibilismo, antifundamentalismo, corriente de la conciencia, valor en efectivo, correspondencia, la ardilla, la voluntad de creer, instrumentalismo, aprender haciendo, democracia, juicios posteriores, Rorty, relativismo",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "club",
+      "texto": "William James llega a una reunión del Club Metafísico en Cambridge, hacia 1872, y le hace lugar al alumno en la mesa: hoy discuten para qué sirven las ideas."
+    },
+    {
+      "id": "ardilla",
+      "texto": "William James vuelve de una excursión al campo, donde sus amigos discutían sobre una ardilla y un árbol, y le pregunta al alumno qué opina."
+    },
+    {
+      "id": "harvard",
+      "texto": "William James termina su clase de psicología en la Universidad de Harvard y le pregunta al alumno: «¿Para qué te sirve tu mente?»."
+    },
+    {
+      "id": "libro",
+      "texto": "William James acaba de publicar su libro Pragmatismo (1907) y le pide al alumno su opinión sincera: ¿se entiende?"
+    },
+    {
+      "id": "dewey",
+      "texto": "William James le cuenta al alumno que su amigo John Dewey fundó una escuela donde los chicos aprenden haciendo, y le pregunta qué le parece."
+    },
+    {
+      "id": "carta",
+      "texto": "William James está escribiéndole una carta a Charles Peirce, que está enojado porque cambió el sentido del pragmatismo. Le pide al alumno ayuda para responderle."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "origen",
+      "titulo": "Qué es el pragmatismo y dónde nace",
+      "guia": "Preguntar qué significa «pragma», qué sostiene el pragmatismo y dónde y cuándo surge.",
+      "claves": "Pragma (griego): acción, práctica, asunto. La utilidad del conocimiento se refleja en su aplicación práctica; pregunta: ¿para qué sirve?, ¿qué diferencia hace? Surge a fines del siglo XIX en Estados Unidos (Club Metafísico, Cambridge, 1872): Peirce, James; luego Dewey.",
+      "resumen": "El pragmatismo, de «pragma» (acción), evalúa las ideas por su utilidad práctica. Nace a fines del siglo XIX en Estados Unidos con Peirce, James y Dewey.",
+      "palabras": [
+        "pragma",
+        "acción",
+        "utilidad",
+        "Estados Unidos",
+        "siglo XIX"
+      ],
+      "ejemplo": "Antes de discutir una idea, preguntar: ¿qué cambiaría en mi vida si fuera cierta?"
+    },
+    {
+      "id": "peirce",
+      "titulo": "Peirce y la máxima pragmática",
+      "guia": "Preguntar quién fue Peirce y qué dice la máxima pragmática, con el ejemplo del diamante.",
+      "claves": "Charles S. Peirce (1839–1914), lógico y matemático, padre del pragmatismo; «Cómo esclarecer nuestras ideas» (1878). Máxima: el significado de una idea está en sus efectos prácticos concebibles; diamante duro = casi nada lo raya; ideas sin diferencia práctica son la misma idea. Rebautizó su teoría pragmaticismo.",
+      "resumen": "Peirce, el padre del pragmatismo, propuso la máxima pragmática: el significado de una idea está en sus efectos prácticos. Que un diamante es duro significa que casi nada lo raya.",
+      "palabras": [
+        "Peirce",
+        "máxima pragmática",
+        "efectos",
+        "significado",
+        "diamante"
+      ],
+      "ejemplo": "«Ser buen compañero» significa algo solo si se nota en lo que hacés."
+    },
+    {
+      "id": "duda",
+      "titulo": "La duda y la creencia",
+      "guia": "Preguntar qué son la duda y la creencia para Peirce y cuál es el mejor método para fijar creencias.",
+      "claves": "Duda: estado incómodo que impulsa a investigar. Creencia: estado tranquilo, hábito de acción. Pensar es pasar de la duda a la creencia. Métodos para fijar creencias: tradición, autoridad, el mejor es el método científico.",
+      "resumen": "Para Peirce, la duda es incómoda y nos impulsa a investigar; la creencia es un hábito de acción. La mejor manera de fijar creencias es el método científico.",
+      "palabras": [
+        "duda",
+        "creencia",
+        "hábito",
+        "investigar",
+        "método científico"
+      ],
+      "ejemplo": "Si dudás de cuánto tarda el colectivo, investigás, y después ya sabés a qué hora salir."
+    },
+    {
+      "id": "falibilismo",
+      "titulo": "Falibilismo y antifundamentalismo",
+      "guia": "Preguntar por qué el pragmatismo rechaza las verdades absolutas.",
+      "claves": "Desecha las verdades absolutas: las ideas no son fijas ni inamovibles, evolucionan. Falibilismo: todo conocimiento puede corregirse. Antifundamentalismo: no hay verdad última indiscutible; no acepta dogmas. Comunidad de investigadores que prueba y corrige.",
+      "resumen": "El pragmatismo rechaza las verdades absolutas: las ideas evolucionan y cualquier conocimiento puede corregirse (falibilismo). No acepta una verdad última.",
+      "palabras": [
+        "verdades absolutas",
+        "falibilismo",
+        "evolucionan",
+        "antifundamentalista",
+        "comunidad"
+      ],
+      "ejemplo": "Los mapas antiguos se corrigieron muchas veces: así avanza el conocimiento."
+    },
+    {
+      "id": "james",
+      "titulo": "William James y la verdad",
+      "guia": "Preguntar cuándo una idea es verdadera para James y qué es el valor en efectivo.",
+      "claves": "William James (1842–1910), psicólogo y filósofo, Pragmatismo (1907); corriente de la conciencia; la mente sirve para adaptarnos. Verdad: no correspondencia (copia), sino lo que funciona, se verifica y guía en la experiencia; valor en efectivo (cash value); la verdad le sucede a una idea.",
+      "resumen": "Para James, una idea es verdadera si funciona: si podemos comprobarla y nos guía bien. Las ideas tienen «valor en efectivo», como un billete que se puede usar.",
+      "palabras": [
+        "William James",
+        "funciona",
+        "valor en efectivo",
+        "correspondencia",
+        "experiencia"
+      ],
+      "ejemplo": "Un mapa es «verdadero» si te lleva a donde querías llegar."
+    },
+    {
+      "id": "ardilla",
+      "titulo": "La ardilla y el método pragmático",
+      "guia": "Preguntar por el ejemplo de la ardilla y para qué sirve el método pragmático.",
+      "claves": "Ardilla en el tronco y hombre que da vueltas; la ardilla gira y queda del otro lado; ¿da vueltas alrededor de ella? Depende del sentido de «dar vueltas»; sin diferencia práctica la disputa es de palabras; el método pragmático termina discusiones inútiles.",
+      "resumen": "Con el ejemplo de la ardilla, James muestra que si una discusión no hace ninguna diferencia práctica, es solo una disputa de palabras.",
+      "palabras": [
+        "ardilla",
+        "disputa",
+        "palabras",
+        "diferencia práctica",
+        "método pragmático"
+      ],
+      "ejemplo": "Discutir si un tomate es fruta o verdura no cambia en nada cómo hacés la ensalada."
+    },
+    {
+      "id": "creer",
+      "titulo": "La voluntad de creer",
+      "guia": "Preguntar qué sostiene James en La voluntad de creer y qué le objetaba Peirce.",
+      "claves": "La voluntad de creer (1896): preguntas que no se deciden con pruebas, como la existencia de Dios; derecho a creer si la creencia mejora la vida y da fuerzas para actuar. Peirce: James vuelve la verdad demasiado personal. Ninguno acepta dogmas.",
+      "resumen": "James sostiene que, cuando una pregunta no se puede decidir con pruebas, tenemos derecho a creer si eso mejora nuestra vida. Peirce temía que así la verdad se volviera algo personal.",
+      "palabras": [
+        "La voluntad de creer",
+        "pruebas",
+        "creer",
+        "personal",
+        "dogmas"
+      ],
+      "ejemplo": "Confiar en que vas a aprobar te da fuerzas para estudiar, aunque todavía no lo sepas."
+    },
+    {
+      "id": "dewey",
+      "titulo": "Dewey y el instrumentalismo",
+      "guia": "Preguntar dónde empieza el pensamiento para Dewey y qué son las ideas.",
+      "claves": "John Dewey (1859–1952), filósofo y pedagogo. El pensamiento empieza ante una situación problemática. Las ideas son instrumentos, herramientas para resolver problemas (martillo, brújula): instrumentalismo; si no sirve, se cambia.",
+      "resumen": "Para Dewey, pensamos cuando enfrentamos un problema, y las ideas son instrumentos para resolverlo. Por eso su filosofía se llama instrumentalismo.",
+      "palabras": [
+        "Dewey",
+        "instrumentos",
+        "instrumentalismo",
+        "situación problemática",
+        "herramientas"
+      ],
+      "ejemplo": "Una idea para organizar el estudio vale si te ayuda a aprobar; si no, la cambiás."
+    },
+    {
+      "id": "escuela",
+      "titulo": "Aprender haciendo y democracia",
+      "guia": "Preguntar cómo era la escuela de Dewey y qué es la democracia para él.",
+      "claves": "Escuela laboratorio de Chicago (1896): cocinar, cultivar, construir para aprender ciencia, matemática, historia. Aprender haciendo; alumno activo, docente guía; escuela como comunidad democrática. Democracia y educación (1916): democracia como forma de vida; leyes como hipótesis que se prueban y corrigen.",
+      "resumen": "Dewey propuso aprender haciendo, con alumnos activos y un docente guía. Para él, la democracia es una forma de vida, y las leyes son hipótesis que se prueban y corrigen.",
+      "palabras": [
+        "aprender haciendo",
+        "escuela laboratorio",
+        "democracia",
+        "forma de vida",
+        "hipótesis"
+      ],
+      "ejemplo": "Armar una huerta escolar enseña biología, matemática y a trabajar en equipo."
+    },
+    {
+      "id": "pragmatico",
+      "titulo": "El método y la persona pragmática",
+      "guia": "Preguntar por el método pragmático y qué significa ser pragmático en la vida diaria.",
+      "claves": "Método: problema, soluciones posibles, prever consecuencias, probar, evaluar y corregir. Los juicios son posteriores y no anteriores a las acciones. El valor de las cosas se establece por sus consecuencias. Persona pragmática: consecución de objetivos, lo eficaz, resultados más que formas; vegetariana que come carne para sobrevivir: supervivencia sobre ideales.",
+      "resumen": "El pragmatismo prueba primero y juzga después. Una persona pragmática busca lo eficaz para lograr sus objetivos, como la vegetariana que come carne para sobrevivir.",
+      "palabras": [
+        "juicios",
+        "consecuencias",
+        "objetivos",
+        "eficaz",
+        "supervivencia"
+      ],
+      "ejemplo": "Probar distintas formas de estudiar y quedarte con la que te funciona."
+    },
+    {
+      "id": "rorty",
+      "titulo": "Rorty y el neopragmatismo",
+      "guia": "Preguntar qué critica Rorty y qué propone.",
+      "claves": "Richard Rorty (1931–2007), neopragmatismo. Critica la mente como espejo de la naturaleza. No hay verdad final: mantener viva la conversación entre personas y culturas y ampliar la solidaridad (que más personas formen parte del «nosotros»).",
+      "resumen": "Rorty critica la idea de que la mente es un espejo de la realidad. Propone mantener viva la conversación y ampliar la solidaridad.",
+      "palabras": [
+        "Rorty",
+        "espejo",
+        "conversación",
+        "solidaridad",
+        "nosotros"
+      ],
+      "ejemplo": "Escuchar a alguien muy distinto de vos amplía tu «nosotros»."
+    },
+    {
+      "id": "criticas",
+      "titulo": "Críticas al pragmatismo",
+      "guia": "Preguntar qué críticas recibe el pragmatismo y cómo responde.",
+      "claves": "Relativismo: ¿útil para quién?; una mentira puede ser útil y no es verdadera. Russell: confunde útil con verdadero. Descuida los principios: valores como la dignidad aunque no sean útiles. Respuesta: la utilidad debe ser pública y comprobada por la comunidad.",
+      "resumen": "Se le critica el relativismo y confundir lo útil con lo verdadero (Russell), y olvidar los principios. Responde que la utilidad debe ser pública y comprobada por la comunidad.",
+      "palabras": [
+        "relativismo",
+        "Russell",
+        "útil",
+        "verdadero",
+        "principios"
+      ],
+      "ejemplo": "Copiarse en una prueba puede ser «útil», pero no te hace saber más."
+    }
+  ],
+  "casos": [
+    {
+      "id": "estudiar",
+      "texto": "Tenés una prueba y no sabés qué método de estudio usar: resúmenes, mapas o explicarle a un amigo.",
+      "claves": "Aplicar el método pragmático: problema, alternativas, probar, evaluar resultados y corregir; los juicios son posteriores a la acción."
+    },
+    {
+      "id": "discusion",
+      "texto": "Dos amigos discuten durante horas si un panqueque es una torta o no.",
+      "claves": "Aplicar el ejemplo de la ardilla: si no hay diferencia práctica, es una disputa de palabras."
+    },
+    {
+      "id": "mentira",
+      "texto": "Un compañero dice que una mentira es «verdadera» porque le sirvió para no tener problemas.",
+      "claves": "Aplicar las críticas: relativismo, útil no es lo mismo que verdadero (Russell); la utilidad debe ser pública y comprobada por la comunidad."
+    },
+    {
+      "id": "escuela",
+      "texto": "La escuela tiene que decidir si mantiene las clases solo expositivas o hace proyectos prácticos.",
+      "claves": "Aplicar a Dewey: aprender haciendo, escuela laboratorio, alumno activo, docente guía, comunidad democrática."
+    },
+    {
+      "id": "ciencia",
+      "texto": "Una teoría científica que se creía cierta es corregida por nuevos experimentos.",
+      "claves": "Aplicar el falibilismo y el antifundamentalismo: las ideas evolucionan; la comunidad de investigadores corrige; método científico."
+    },
+    {
+      "id": "vegetariano",
+      "texto": "Un amigo vegetariano, perdido en la montaña, solo tiene carne para comer.",
+      "claves": "Aplicar la actitud pragmática: supervivencia por encima de los ideales; consecuencias; comparar con una ética de principios como la de Kant."
+    },
+    {
+      "id": "fe",
+      "texto": "Una amiga dice que creer en algo que no puede probar le da fuerzas para salir adelante.",
+      "claves": "Aplicar La voluntad de creer de James: derecho a creer si mejora la vida cuando no hay pruebas; objeción de Peirce (verdad personal)."
+    },
+    {
+      "id": "ley",
+      "texto": "En tu ciudad se aprueba una ley de tránsito nueva y, después de un año, los accidentes aumentan.",
+      "claves": "Aplicar la democracia como experimento de Dewey: las leyes como hipótesis que se prueban y corrigen; consecuencias; comunidad."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "habito",
+      "texto": "¿Qué hábito tuyo te funciona de verdad y cuál mantenés solo por costumbre?"
+    },
+    {
+      "id": "idea",
+      "texto": "¿Qué idea cambiaste después de probarla en la práctica?"
+    },
+    {
+      "id": "principios",
+      "texto": "¿Hay principios que no abandonarías aunque no te resulten útiles?"
+    },
+    {
+      "id": "escuela",
+      "texto": "¿Qué aprendiste mejor haciendo que escuchando?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a William James, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué significa «pragma» y qué pregunta hace el pragmatismo ante una idea?",
+    "Explicá la máxima pragmática de Peirce con el ejemplo del diamante.",
+    "¿Qué son la duda y la creencia para Peirce?",
+    "¿Qué es el falibilismo y por qué el pragmatismo rechaza las verdades absolutas?",
+    "¿Cuándo es verdadera una idea para William James? ¿Qué es el valor en efectivo?",
+    "Explicá el ejemplo de la ardilla y el árbol.",
+    "¿Qué es el instrumentalismo de Dewey y qué significa aprender haciendo?",
+    "¿Qué críticas recibe el pragmatismo y cómo responde?"
+  ]
+}

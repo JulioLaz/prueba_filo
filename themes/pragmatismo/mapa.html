@@ -3,39 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
-  <title>Pragmatismo Americano · Mapa Conceptual Interactivo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Pragmatismo · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Pragmatismo (Unidad III). Versión 2.0 (2026-11-25): rehecho según el material v2.0, con 15 pares. -->
   <link rel="stylesheet" href="../../css/mapa.css">
-
-  <!-- 🔧 CONFIGURACIÓN DEL MAPA (misma API que Aristóteles) -->
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
   <script>
+    // Configuración específica para Pragmatismo
     window.MapaSystemConfig = {
       tema: 'pragmatismo',
       redirectTo: '../../tema.html',
       soundsPath: '../../sound/',
       gameEnabled: true,
       autoTrackProgress: true,
-
-      // Pares para el juego de matching (15)
+      
+      // Datos del juego de matching (15 pares)
       gameData: [
-        { term: "Pragmatismo", definition: "Filosofía americana que evalúa ideas por su utilidad práctica y consecuencias reales." },
-        { term: "Máxima Pragmática", definition: "Método de Peirce: para entender una idea, considerar todas sus consecuencias prácticas." },
-        { term: "Charles Sanders Peirce", definition: "Padre técnico del pragmatismo (1839-1914), científico y creador de la máxima pragmática." },
-        { term: "William James", definition: "Popularizador del pragmatismo (1842-1910), aplicado a psicología y religión." },
-        { term: "John Dewey", definition: "Pragmatista más influyente (1859-1952), transformó educación y democracia americana." },
-        { term: "Corriente de la Conciencia", definition: "Concepto de James: la conciencia como flujo continuo, no estados separados." },
-        { term: "Funcionalismo", definition: "Enfoque psicológico: importa para qué sirve la mente, no su estructura." },
-        { term: "Aprender Haciendo", definition: "Revolución educativa de Dewey: aprendizaje activo resolviendo problemas reales." },
-        { term: "Verdad como Utilidad", definition: "Redefinición pragmatista: verdadero es lo que funciona en la práctica." },
-        { term: "Experimentalismo", definition: "Método de Dewey: vida como laboratorio continuo de prueba y error." },
-        { term: "Richard Rorty", definition: "Neopragmatista (1931-2007) que revitalizó el pragmatismo para el siglo XXI." },
-        { term: "Método Pragmático", definition: "Proceso de 5 pasos: identificar, generar, predecir, experimentar, evaluar." },
-        { term: "Conocimiento como Herramienta", definition: "La mente es activa y transforma el mundo; el saber sirve para intervenir." },
-        { term: "Democracia Experimental", definition: "Visión de Dewey: democracia como forma de vida basada en cooperación." },
-        { term: "Filosofía Americana", definition: "Primera escuela filosófica originada en Estados Unidos, práctica y anti-dogmática." }
+        { term: "Pragma", definition: "Palabra griega: acción, práctica o asunto." },
+        { term: "Máxima Pragmática", definition: "El significado de una idea está en sus efectos prácticos." },
+        { term: "Duda", definition: "Estado incómodo que impulsa a investigar." },
+        { term: "Creencia", definition: "Hábito de acción que nos dice cómo actuar." },
+        { term: "Falibilismo", definition: "Cualquier conocimiento puede ser corregido." },
+        { term: "Antifundamentalismo", definition: "No acepta una verdad última indiscutible." },
+        { term: "Corriente de la Conciencia", definition: "La mente como un flujo continuo." },
+        { term: "Valor en Efectivo", definition: "Una idea vale si funciona en la práctica." },
+        { term: "Correspondencia", definition: "La verdad como copia de la realidad." },
+        { term: "Instrumentalismo", definition: "Las ideas son herramientas para resolver problemas." },
+        { term: "Aprender Haciendo", definition: "Lema educativo de Dewey." },
+        { term: "Democracia", definition: "Una forma de vida, no solo votar." },
+        { term: "Juicios Posteriores", definition: "Primero se prueba, después se juzga." },
+        { term: "Solidaridad", definition: "Lo que Rorty quiere ampliar." },
+        { term: "Relativismo", definition: "Riesgo de que lo útil dependa de cada uno." }
       ],
-
-      // Sonidos y emojis (opcional)
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
       sounds: {
         nodeVisit: 'collect_points.mp3',
         expand: 'show_question.mp3',
@@ -44,6 +46,8 @@
         wrong: 'negative_beep.mp3',
         gameComplete: 'fin_caza.mp3'
       },
+      
+      // Emojis de celebración
       celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🛠️'],
       gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🛠️']
     };
@@ -54,7 +58,7 @@
     <div class="bar">
       <div style="display: flex;width: 100%; justify-content: flex-start;">
          <button class="btn" id="backToTema">Volver</button>
-         <div class="title" style="font-size: 1.5rem;"><span>🛠️ Pragmatismo Americano</span></div>
+         <div class="title" style="font-size: 1.5rem;"><span>🛠️ Pragmatismo</span></div>
       </div>
       <h3 class="sub">Lo verdadero es lo práctico</h3>
       <p>Lee cada cuadro y hacé click cuando termines.</p>
@@ -67,135 +71,98 @@
     <section class="tree" aria-label="Mapa de conceptos">
       <ul>
         <li>
-          <div class="node" data-title="Pragmatismo Americano">
+          <div class="node" data-title="Pragmatismo">
             <div class="toggle" role="button">▾</div>
-            <div class="title">Pragmatismo Americano</div>
-            <div class="desc">Movimiento filosófico que evalúa las ideas por su <strong>utilidad práctica</strong> y <strong>consecuencias reales</strong>, no por su correspondencia con verdades absolutas.</div>
+            <div class="title">Pragmatismo</div>
+            <div class="desc">Las ideas se evalúan por sus <strong>consecuencias prácticas</strong>: valen si <strong>funcionan</strong>.</div>
             <span class="badge">Concepto Raíz</span>
           </div>
           <ul>
             <li>
-              <div class="node" data-title="Contexto Histórico">
+              <div class="node" data-title="Origen">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Contexto Histórico (Siglo XIX)</div>
-                <div class="desc">Surgió en <strong>Estados Unidos</strong> durante la industrialización, expansión territorial y construcción de una democracia práctica.</div>
+                <div class="title">Origen</div>
+                <div class="desc">Estados Unidos, fines del <strong>siglo XIX</strong>.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Espíritu Americano Práctico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Espíritu Americano Práctico</div><div class="desc">Mentalidad de <strong>pioneros</strong> enfocada en "lo que funciona" para construir una nueva nación.</div></div></li>
-                <li><div class="node" data-title="Rechazo del Dogma Europeo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Rechazo del Dogma Europeo</div><div class="desc">Búsqueda de una <strong>filosofía genuinamente americana</strong>, no derivada de tradiciones europeas.</div></div></li>
-                <li><div class="node" data-title="Era de la Ciencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Era de la Ciencia</div><div class="desc">Influencia de <strong>Darwin</strong>, método científico y necesidad de soluciones basadas en evidencia.</div></div></li>
+                <li><div class="node" data-title="Pragma"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pragma</div><div class="desc">Acción, práctica o <strong>asunto</strong>.</div></div></li>
+                <li><div class="node" data-title="Club Metafísico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Club Metafísico</div><div class="desc">Cambridge, hacia <strong>1872</strong>.</div></div></li>
+                <li><div class="node" data-title="¿Para qué sirve?"><div class="toggle" style="visibility: hidden;"></div><div class="title">¿Para qué sirve?</div><div class="desc">La pregunta del <strong>pragmatismo</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Charles Sanders Peirce (1839-1914)">
+              <div class="node" data-title="Charles S. Peirce">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Charles Sanders Peirce (1839-1914)</div>
-                <div class="desc">Padre técnico del pragmatismo, creador de la <strong>máxima pragmática</strong> como método para clarificar conceptos.</div>
+                <div class="title">Charles S. Peirce</div>
+                <div class="desc">El <strong>padre</strong> del pragmatismo.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="La Máxima Pragmática"><div class="toggle" style="visibility: hidden;"></div><div class="title">La Máxima Pragmática</div><div class="desc">Para entender una idea, considerar <strong>todas sus consecuencias prácticas</strong> imaginables.</div></div></li>
-                <li><div class="node" data-title="Científico Riguroso"><div class="toggle" style="visibility: hidden;"></div><div class="title">Científico Riguroso</div><div class="desc">Químico, matemático y lógico que aplicó <strong>métodos científicos</strong> a problemas filosóficos.</div></div></li>
-                <li><div class="node" data-title="Clarificación Conceptual"><div class="toggle" style="visibility: hidden;"></div><div class="title">Clarificación Conceptual</div><div class="desc">Método para eliminar <strong>pseudoproblemas</strong> y hacer las ideas más precisas.</div></div></li>
+                <li><div class="node" data-title="La máxima"><div class="toggle" style="visibility: hidden;"></div><div class="title">La máxima</div><div class="desc">El significado está en los <strong>efectos</strong>.</div></div></li>
+                <li><div class="node" data-title="El diamante duro"><div class="toggle" style="visibility: hidden;"></div><div class="title">El diamante duro</div><div class="desc">Casi nada lo <strong>raya</strong>.</div></div></li>
+                <li><div class="node" data-title="Duda y creencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Duda y creencia</div><div class="desc">La creencia es un <strong>hábito</strong>.</div></div></li>
+                <li><div class="node" data-title="Pragmaticismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pragmaticismo</div><div class="desc">Un nombre «tan <strong>feo</strong>» que nadie lo robaría.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="William James (1842-1910)">
+              <div class="node" data-title="Contra lo Absoluto">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">William James (1842-1910)</div>
-                <div class="desc">Popularizador del pragmatismo, lo aplicó a <strong>psicología</strong> y <strong>religión</strong>. Hermano del escritor Henry James.</div>
+                <div class="title">Contra lo Absoluto</div>
+                <div class="desc">Las ideas <strong>evolucionan</strong>.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Corriente de la Conciencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Corriente de la Conciencia</div><div class="desc">La conciencia es un <strong>flujo continuo</strong>, no una serie de ideas separadas. Personal y selectiva.</div></div></li>
-                <li><div class="node" data-title="Funcionalismo Psicológico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Funcionalismo Psicológico</div><div class="desc">¿<strong>Para qué sirve</strong> la mente? Procesos mentales como adaptación evolutiva para sobrevivir.</div></div></li>
-                <li><div class="node" data-title="Pragmatismo Religioso"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pragmatismo Religioso</div><div class="desc">Una creencia es <strong>"verdadera"</strong> si mejora la vida de la persona. Valor terapéutico de la fe.</div></div></li>
-                <li><div class="node" data-title="Variedades de la Experiencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">"Las Variedades de la Experiencia Religiosa"</div><div class="desc">Obra influyente sobre <strong>diferentes formas</strong> de experiencia espiritual y su valor práctico.</div></div></li>
+                <li><div class="node" data-title="Falibilismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Falibilismo</div><div class="desc">Todo conocimiento puede <strong>corregirse</strong>.</div></div></li>
+                <li><div class="node" data-title="Antifundamentalismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Antifundamentalismo</div><div class="desc">Sin verdad <strong>última</strong>.</div></div></li>
+                <li><div class="node" data-title="Comunidad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Comunidad</div><div class="desc">De <strong>investigadores</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="John Dewey (1859-1952)">
+              <div class="node" data-title="William James">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">John Dewey (1859-1952)</div>
-                <div class="desc">El pragmatista más influyente en <strong>educación y política</strong>. Vivió 93 años y transformó la educación americana.</div>
+                <div class="title">William James</div>
+                <div class="desc">Psicólogo y filósofo (1842–1910).</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Aprender Haciendo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Revolución: "Aprender Haciendo"</div><div class="desc"><strong>Aprendizaje activo</strong> resolviendo problemas reales, no memorización mecánica.</div></div></li>
-                <li><div class="node" data-title="Democracia como Forma de Vida"><div class="toggle" style="visibility: hidden;"></div><div class="title">Democracia como Forma de Vida</div><div class="desc">No solo sistema político: <strong>comunicación</strong>, cooperación e inteligencia colectiva.</div></div></li>
-                <li><div class="node" data-title="Experimentalismo Social"><div class="toggle" style="visibility: hidden;"></div><div class="title">Experimentalismo Social</div><div class="desc">La vida como <strong>laboratorio continuo</strong>: identificar problemas, probar soluciones, evaluar resultados.</div></div></li>
-                <li><div class="node" data-title="Escuela como Comunidad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Escuela como Comunidad Democrática</div><div class="desc">La educación debe preparar para la <strong>vida cívica</strong> y la resolución colaborativa de problemas.</div></div></li>
+                <li><div class="node" data-title="Corriente de la conciencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Corriente de la conciencia</div><div class="desc">La mente es un <strong>flujo</strong>.</div></div></li>
+                <li><div class="node" data-title="Valor en efectivo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Valor en efectivo</div><div class="desc">Verdadero es lo que <strong>funciona</strong>.</div></div></li>
+                <li><div class="node" data-title="La ardilla"><div class="toggle" style="visibility: hidden;"></div><div class="title">La ardilla</div><div class="desc">Disputas de <strong>palabras</strong>.</div></div></li>
+                <li><div class="node" data-title="La voluntad de creer"><div class="toggle" style="visibility: hidden;"></div><div class="title">La voluntad de creer</div><div class="desc">Creer sin <strong>pruebas</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Verdad como Utilidad">
+              <div class="node" data-title="John Dewey">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Revolución: Verdad como Utilidad</div>
-                <div class="desc">Rompe con 2000 años de filosofía occidental redefiniendo la <strong>"verdad"</strong> como utilidad práctica.</div>
+                <div class="title">John Dewey</div>
+                <div class="desc">Filósofo y <strong>pedagogo</strong> (1859–1952).</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Contra Teoría de Correspondencia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Contra Teoría de Correspondencia</div><div class="desc">La verdad NO es correspondencia entre ideas y realidad, sino <strong>lo que funciona</strong>.</div></div></li>
-                <li><div class="node" data-title="Conocimiento como Herramienta"><div class="toggle" style="visibility: hidden;"></div><div class="title">Conocimiento como Herramienta</div><div class="desc">La mente es <strong>activa</strong>, transforma el mundo, no simplemente lo refleja.</div></div></li>
-                <li><div class="node" data-title="Verdades Provisionales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Verdades Provisionales</div><div class="desc">Las "verdades" pueden <strong>cambiar</strong> con nueva experiencia y evidencia.</div></div></li>
-                <li><div class="node" data-title="Criterio de Consecuencias"><div class="toggle" style="visibility: hidden;"></div><div class="title">Criterio de Consecuencias</div><div class="desc">Una idea es válida si produce <strong>resultados útiles</strong> en la práctica real.</div></div></li>
+                <li><div class="node" data-title="Instrumentalismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Instrumentalismo</div><div class="desc">Las ideas son <strong>herramientas</strong>.</div></div></li>
+                <li><div class="node" data-title="Escuela laboratorio"><div class="toggle" style="visibility: hidden;"></div><div class="title">Escuela laboratorio</div><div class="desc">Chicago, <strong>1896</strong>.</div></div></li>
+                <li><div class="node" data-title="Aprender haciendo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Aprender haciendo</div><div class="desc">Alumno <strong>activo</strong>.</div></div></li>
+                <li><div class="node" data-title="Democracia y educación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Democracia y educación</div><div class="desc">Una <strong>forma de vida</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Método Pragmático">
+              <div class="node" data-title="Ser Pragmático">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Método Pragmático</div>
-                <div class="desc">Proceso sistemático de <strong>5 pasos</strong> para evaluar y aplicar ideas de manera pragmática.</div>
+                <div class="title">Ser Pragmático</div>
+                <div class="desc">Resultados antes que formas.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="1. Identificar Problema"><div class="toggle" style="visibility: hidden;"></div><div class="title">1. Identificar el Problema</div><div class="desc">¿Qué necesita ser <strong>resuelto</strong> específicamente?</div></div></li>
-                <li><div class="node" data-title="2. Generar Alternativas"><div class="toggle" style="visibility: hidden;"></div><div class="title">2. Generar Alternativas</div><div class="desc">¿Qué <strong>opciones</strong> tenemos disponibles?</div></div></li>
-                <li><div class="node" data-title="3. Predecir Consecuencias"><div class="toggle" style="visibility: hidden;"></div><div class="title">3. Predecir Consecuencias</div><div class="desc">¿Qué <strong>resultados</strong> esperamos de cada opción?</div></div></li>
-                <li><div class="node" data-title="4. Experimentar"><div class="toggle" style="visibility: hidden;"></div><div class="title">4. Experimentar</div><div class="desc"><strong>Probar</strong> la opción más prometedora en la práctica.</div></div></li>
-                <li><div class="node" data-title="5. Evaluar Resultados"><div class="toggle" style="visibility: hidden;"></div><div class="title">5. Evaluar Resultados</div><div class="desc">¿<strong>Funcionó</strong>? ¿Qué aprendimos? ¿Cómo mejorar?</div></div></li>
+                <li><div class="node" data-title="El método"><div class="toggle" style="visibility: hidden;"></div><div class="title">El método</div><div class="desc">Problema, prueba y <strong>corrección</strong>.</div></div></li>
+                <li><div class="node" data-title="Lo eficaz"><div class="toggle" style="visibility: hidden;"></div><div class="title">Lo eficaz</div><div class="desc">Conseguir los <strong>objetivos</strong>.</div></div></li>
+                <li><div class="node" data-title="La vegetariana"><div class="toggle" style="visibility: hidden;"></div><div class="title">La vegetariana</div><div class="desc">La <strong>supervivencia</strong> antes que los ideales.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Richard Rorty y Neopragmatismo">
+              <div class="node" data-title="Debate">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Richard Rorty (1931-2007): Neopragmatismo</div>
-                <div class="desc">Revitalizó el pragmatismo para el siglo XXI, llevándolo a extremos más radicales con el <strong>anti-fundamentalismo</strong>.</div>
+                <div class="title">Debate</div>
+                <div class="desc">Renovación y críticas.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Contra el Espejo de la Naturaleza"><div class="toggle" style="visibility: hidden;"></div><div class="title">"La Filosofía y el Espejo de la Naturaleza"</div><div class="desc">La mente NO refleja pasivamente la realidad. <strong>Conocimiento como práctica</strong>, no contemplación.</div></div></li>
-                <li><div class="node" data-title="Conversación vs Epistemología"><div class="toggle" style="visibility: hidden;"></div><div class="title">Conversación, No Epistemología</div><div class="desc">Mantener <strong>conversaciones productivas</strong> es más importante que buscar "la verdad".</div></div></li>
-                <li><div class="node" data-title="Ironismo Liberal"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ironismo Liberal</div><div class="desc">Reconocer que nuestras creencias son <strong>contingentes</strong> y aceptar múltiples perspectivas.</div></div></li>
-              </ul>
-            </li>
-
-            <li>
-              <div class="node" data-title="Aplicaciones Modernas">
-                <div class="toggle" role="button">▾</div>
-                <div class="title">Aplicaciones en el Siglo XXI</div>
-                <div class="desc">El pragmatismo influye en <strong>tecnología</strong>, <strong>negocios</strong>, <strong>educación</strong> y solución de problemas globales.</div>
-              </div>
-              <ul>
-                <li><div class="node" data-title="Tecnología y Diseño"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tecnología y Diseño</div><div class="desc"><strong>UX/UI design</strong>, A/B testing, desarrollo ágil, design thinking centrado en resultados.</div></div></li>
-                <li><div class="node" data-title="Mundo Empresarial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mundo Empresarial</div><div class="desc"><strong>Lean startup</strong>, decisiones basadas en datos, KPIs funcionales, equipos autoorganizados.</div></div></li>
-                <li><div class="node" data-title="Inteligencia Artificial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inteligencia Artificial</div><div class="desc"><strong>Machine learning</strong>, algoritmos que mejoran con experiencia, evaluación por efectos sociales.</div></div></li>
-                <li><div class="node" data-title="Educación Digital"><div class="toggle" style="visibility: hidden;"></div><div class="title">Educación Digital</div><div class="desc">Tecnología como <strong>herramienta funcional</strong>, gamificación efectiva, aprendizaje global colaborativo.</div></div></li>
-                <li><div class="node" data-title="Problemas Globales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problemas Globales</div><div class="desc">Cambio climático, salud pública: <strong>soluciones que funcionen</strong> política y económicamente.</div></div></li>
-              </ul>
-            </li>
-
-            <li>
-              <div class="node" data-title="Críticas y Limitaciones">
-                <div class="toggle" role="button">▾</div>
-                <div class="title">Críticas y Limitaciones</div>
-                <div class="desc">Problemas del <strong>relativismo</strong>, objetividad científica, valores fundamentales y limitaciones temporales.</div>
-              </div>
-              <ul>
-                <li><div class="node" data-title="Problema del Relativismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problema del Relativismo</div><div class="desc">¿Si la verdad es "lo que funciona", no lleva esto al <strong>relativismo moral</strong>?</div></div></li>
-                <li><div class="node" data-title="Objetividad Científica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cuestión de Objetividad Científica</div><div class="desc">¿La ciencia no descubre <strong>verdades independientes</strong> de su utilidad humana?</div></div></li>
-                <li><div class="node" data-title="Valores Fundamentales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Valores Fundamentales</div><div class="desc">¿Los <strong>derechos humanos</strong> tienen valor independiente de su utilidad práctica?</div></div></li>
-                <li><div class="node" data-title="Limitaciones Temporales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Limitaciones Temporales</div><div class="desc">Decisiones urgentes y datos insuficientes limitan la <strong>experimentación pragmática</strong>.</div></div></li>
+                <li><div class="node" data-title="Richard Rorty"><div class="toggle" style="visibility: hidden;"></div><div class="title">Richard Rorty</div><div class="desc">La mente no es un <strong>espejo</strong>.</div></div></li>
+                <li><div class="node" data-title="Relativismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Relativismo</div><div class="desc">¿Útil para <strong>quién</strong>?</div></div></li>
+                <li><div class="node" data-title="Bertrand Russell"><div class="toggle" style="visibility: hidden;"></div><div class="title">Bertrand Russell</div><div class="desc">Útil no es lo mismo que <strong>verdadero</strong>.</div></div></li>
               </ul>
             </li>
 
@@ -205,34 +172,34 @@
     </section>
 
     <details class="panel" open>
-      <summary>🎯 Palabras Clave <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
       <div class="content">
         <div class="terms">
-          <article class="term"><h4>Pragmatismo</h4><p>Filosofía americana que evalúa ideas por su utilidad práctica y consecuencias reales.</p></article>
-          <article class="term"><h4>Máxima Pragmática</h4><p>Método de Peirce: para entender una idea, considerar todas sus consecuencias prácticas.</p></article>
-          <article class="term"><h4>Charles Sanders Peirce</h4><p>Padre técnico del pragmatismo (1839-1914), científico y creador de la máxima pragmática.</p></article>
-          <article class="term"><h4>William James</h4><p>Popularizador del pragmatismo (1842-1910), aplicado a psicología y religión.</p></article>
-          <article class="term"><h4>John Dewey</h4><p>Pragmatista más influyente (1859-1952), transformó educación y democracia americana.</p></article>
-          <article class="term"><h4>Corriente de la Conciencia</h4><p>Concepto de James: la conciencia como flujo continuo, no estados separados.</p></article>
-          <article class="term"><h4>Funcionalismo</h4><p>Enfoque psicológico: importa para qué sirve la mente, no cómo está estructurada.</p></article>
-          <article class="term"><h4>Aprender Haciendo</h4><p>Revolución educativa de Dewey: aprendizaje activo resolviendo problemas reales.</p></article>
-          <article class="term"><h4>Verdad como Utilidad</h4><p>Redefinición pragmatista: verdadero es lo que funciona en la práctica.</p></article>
-          <article class="term"><h4>Experimentalismo</h4><p>Método de Dewey: la vida como laboratorio continuo de prueba y error.</p></article>
-          <article class="term"><h4>Richard Rorty</h4><p>Neopragmatista (1931-2007) que revitalizó el pragmatismo para el siglo XXI.</p></article>
-          <article class="term"><h4>Método Pragmático</h4><p>Proceso de 5 pasos: identificar, generar, predecir, experimentar, evaluar.</p></article>
-          <article class="term"><h4>Conocimiento como Herramienta</h4><p>Concepción pragmatista: la mente es activa, transforma el mundo.</p></article>
-          <article class="term"><h4>Democracia Experimental</h4><p>Visión de Dewey: democracia como forma de vida basada en cooperación.</p></article>
-          <article class="term"><h4>Filosofía Americana</h4><p>Primera escuela filosófica genuinamente originada en Estados Unidos.</p></article>
+          <article class="term"><h4>Pragma</h4><p>Palabra griega: acción, práctica o asunto.</p></article>
+          <article class="term"><h4>Máxima Pragmática</h4><p>El significado de una idea está en sus efectos prácticos.</p></article>
+          <article class="term"><h4>Duda</h4><p>Estado incómodo que impulsa a investigar.</p></article>
+          <article class="term"><h4>Creencia</h4><p>Hábito de acción que nos dice cómo actuar.</p></article>
+          <article class="term"><h4>Falibilismo</h4><p>Cualquier conocimiento puede ser corregido.</p></article>
+          <article class="term"><h4>Antifundamentalismo</h4><p>No acepta una verdad última indiscutible.</p></article>
+          <article class="term"><h4>Corriente de la Conciencia</h4><p>La mente como un flujo continuo.</p></article>
+          <article class="term"><h4>Valor en Efectivo</h4><p>Una idea vale si funciona en la práctica.</p></article>
+          <article class="term"><h4>Correspondencia</h4><p>La verdad como copia de la realidad.</p></article>
+          <article class="term"><h4>Instrumentalismo</h4><p>Las ideas son herramientas para resolver problemas.</p></article>
+          <article class="term"><h4>Aprender Haciendo</h4><p>Lema educativo de Dewey.</p></article>
+          <article class="term"><h4>Democracia</h4><p>Una forma de vida, no solo votar.</p></article>
+          <article class="term"><h4>Juicios Posteriores</h4><p>Primero se prueba, después se juzga.</p></article>
+          <article class="term"><h4>Solidaridad</h4><p>Lo que Rorty quiere ampliar.</p></article>
+          <article class="term"><h4>Relativismo</h4><p>Riesgo de que lo útil dependa de cada uno.</p></article>
         </div>
       </div>
     </details>
 
-    <!-- Overlay del juego de matching (idéntico motor que Aristóteles) -->
+    <!-- Overlay del juego de matching -->
     <div class="game-overlay" id="gameOverlay">
       <div class="game-board">
         <div class="game-header">
           <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
-            <h2>🛠️ Conecta conceptos con definiciones</h2>
+            <h2>🎯 Conecta conceptos con definiciones</h2>
             <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
           </div>          
           <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
@@ -244,7 +211,7 @@
         </div>
 
         <div class="game-zone">
-          <div class="zone-title">🛠️ Términos - Seleccioná uno:</div>
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
           <div class="cards-grid" id="termsGrid"></div>
         </div>
 
@@ -254,33 +221,30 @@
         </div>
 
         <div class="celebration" id="celebration" style="display: none;">
-          <h3>🚀 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
-          <p>Dominás los conceptos fundamentales del pragmatismo americano.</p>
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales del pragmatismo.</p>
         </div>
       </div>
     </div>
 
     <details class="panel">
-      <summary>🧭 Guía Rápida: Pensar pragmáticamente</summary>
+      <summary>🧭 Guía Rápida: Pensar como pragmatista</summary>
       <div class="content">
-        <h4>Preguntas para el <em>pensamiento pragmatista</em></h4>
+        <h4>Preguntas para poner a prueba tus ideas</h4>
         <ul>
-          <li><strong>Utilidad:</strong> ¿Qué diferencia práctica hace esta idea en la vida real?</li>
-          <li><strong>Consecuencias:</strong> ¿Cuáles son los resultados observables de aplicar esta creencia?</li>
-          <li><strong>Funcionalidad:</strong> ¿Para qué sirve esto? ¿Cuál es su función?</li>
-          <li><strong>Experiencia:</strong> ¿Qué experiencias concretas produce esta opción?</li>
-          <li><strong>Experimentación:</strong> ¿Cómo puedo probar esta idea antes de adoptarla completamente?</li>
-          <li><strong>Adaptabilidad:</strong> ¿Puedo modificar mi enfoque si los resultados no son los esperados?</li>
-          <li><strong>Evidencia:</strong> ¿Qué evidencia me ayudaría a evaluar mejor esta decisión?</li>
-          <li><strong>Contexto:</strong> ¿Esta solución funcionará en las circunstancias específicas que enfrento?</li>
+          <li><strong>Diferencia:</strong> ¿Qué cambiaría en la práctica si esto fuera cierto?</li>
+          <li><strong>Prueba:</strong> ¿Cómo puedo comprobar si funciona?</li>
+          <li><strong>Corrección:</strong> ¿Estoy dispuesto a cambiar de idea si no funciona?</li>
+          <li><strong>Comunidad:</strong> ¿Funciona solo para mí o para todos?</li>
+          <li><strong>Principios:</strong> ¿Hay algo que vale aunque no sea útil?</li>
         </ul>
-        <p><strong>Mantra pragmatista:</strong> <em>"No pregunto '¿es esto verdadero?' sino '¿para qué sirve esto?' Valoro las ideas que funcionan en la práctica, permanezco abierto a cambiar de opinión con nueva evidencia, y prefiero la experimentación a la especulación."</em></p>
       </div>
     </details>
   </main>
 
-  <!-- Motor compartido del mapa (mismo que Aristóteles) -->
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
   <script type="module" src="../../js/mapa-system-score.js"> </script>
   <script src="../../js/mapa-system-fixed.js"></script>
+
 </body>
 </html>

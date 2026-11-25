@@ -13,7 +13,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `utilitarismo` | ✅ 8 | ✅ 12 | ✅ 8 | ✅ FELICIDAD | ✅ 43 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | 🟡 23 (**) | ✅ Sócrates |
 | `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 20 | ✅ Kant |
-| `pragmatismo` | 🟡 16 | 🟡 12 | ✅ 8 | 🟡 METODO | 🟡 45 / 15 | ✅ 13 | ❌ |
+| `pragmatismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ UTILIDAD | ✅ 32 / 15 | ✅ 13 | ✅ W. James |
 | `antropocentrismo` | 🟡 20 | 🟡 12 | ✅ 8 | 🟡 HUMANO | 🟡 58 / 15 | 🟡 13 (**) | ❌ |
 
 (*) No se pudo verificar la duración real del video de Hedonismo (`endTime` 168 porque el cloze llega a 2:45).
@@ -26,10 +26,10 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 - Cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, examen con Kant (pide el video) y resumen final.
 - Video y cloze (20) sin cambios: comparados con un resumen, no con la transcripción. Si aparece la transcripción, revisar los tiempos.
 
-**Pragmatismo (`pragmatismo`)**
-- `config.json` dice 4 secciones (son 16) y 10 preguntas (son 12).
-- Crucigrama: MILL (es del utilitarismo, no del pragmatismo) y OPTIMISMO no están en el material. Rehacerlo con palabras del material.
-- Revisar el cuestionario y el mapa contra el material. Examen oral: no tiene (opcional).
+**Pragmatismo (`pragmatismo`)** — ✅ v2.0 (2026-11-25)
+- Material de 18 secciones cortas (antes 16 de hasta 139 palabras): pragma, origen (Club Metafísico), Peirce y la máxima pragmática (el diamante), duda y creencia, falibilismo y antifundamentalismo, James y la verdad que funciona (valor en efectivo), la ardilla, la voluntad de creer, Dewey y el instrumentalismo, aprender haciendo, democracia, el método, ser pragmático (la vegetariana del video), Rorty, críticas (Russell) y síntesis.
+- Cuestionario 13, caza 8 niveles / 47, crucigrama UTILIDAD + 8 (sin MILL ni OPTIMISMO), mapa 32 nodos / 15 pares, examen con William James (pide el video) y resumen final.
+- Video y cloze (13) sin cambios; no se comprobaron contra la transcripción.
 
 **Antropocentrismo (`antropocentrismo`)**
 - `config.json` dice 8 secciones (son 20) y 10 preguntas (son 12).
@@ -83,6 +83,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Pragmatismo completo (v2.0): material de 18 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama UTILIDAD, mapa con 15 pares y examen con William James.
 - 2026-11-25: Ética de Kant completa (v2.0): material de 20 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama DIGNIDAD, mapa con 15 pares y examen con Kant. Se corrigió el final del material (iba a un tema inexistente).
 - 2026-11-25: tema nuevo de la Unidad II, «Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo» (`descartes_sujeto`), con todas las actividades, video (hasta 14:20) con cloze de 16 frases de la transcripción y examen con Descartes.
 - 2026-11-25: tema nuevo de la Unidad II, «Nietzsche: La Muerte de Dios y el Superhombre» (`nietzsche_superhombre`), con todas las actividades, video (hasta 6:48) con cloze de 13 frases de la transcripción y examen con Nietzsche.
