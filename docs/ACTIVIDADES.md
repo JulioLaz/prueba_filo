@@ -41,7 +41,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 - **Estándar (Aristóteles):** 15 secciones de 40 a 100 palabras cada una (se leen en voz alta: más largas cansan); un recorrido completo del tema de lo básico a la síntesis, con una última sección de **síntesis**; preguntas de verificación sobre la idea central de la sección; `synonymMap` con los términos técnicos del tema.
 - **Errores ya vistos:**
   - Material copiado de otro tema (Ética y Moral tenía el de «El Método»).
-  - `redirectTo` apuntando a otro tema (Kant va a `etica-kantiana`, Sartre a `antropocentrismo`).
+  - `redirectTo` apuntando a otro tema (Kant iba a `etica-kantiana` y Sartre a `antropocentrismo`; corregidos).
   - `sections` o `config.json` desactualizados respecto de las secciones reales.
 - **Ayuda ante errores del micrófono (motor v1.2):** cada error muestra qué hacer y queda visible hasta volver a tocar el micrófono: navegador sin reconocimiento de voz (detecta si se abrió desde WhatsApp/Instagram o en iPhone), permiso denegado, micrófono ocupado, sin internet, no se escuchó la voz y lectura muy rápida (más de 4 palabras por segundo).
 - **Resumen para la carpeta:** `resumen_material.html` (preguntas y respuestas de las verificaciones).

@@ -12,7 +12,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ PLACER | ✅ 30 / 15 | ✅ 15 (*) | ✅ Epicuro |
 | `utilitarismo` | ✅ 8 | ✅ 12 | ✅ 8 | ✅ FELICIDAD | ✅ 43 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | 🟡 23 (**) | ✅ Sócrates |
-| `etica_kant` | 🟡 18 | 🟡 12 | ✅ 8 | 🟡 BUENAS | 🟡 57 / 15 | ✅ 20 | ❌ |
+| `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 20 | ✅ Kant |
 | `pragmatismo` | 🟡 16 | 🟡 12 | ✅ 8 | 🟡 METODO | 🟡 45 / 15 | ✅ 13 | ❌ |
 | `antropocentrismo` | 🟡 20 | 🟡 12 | ✅ 8 | 🟡 HUMANO | 🟡 58 / 15 | 🟡 13 (**) | ❌ |
 
@@ -21,12 +21,10 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ### Pendientes concretos de la Unidad 3
 
-**Ética de Kant (`etica_kant`)**
-- Material: al terminar redirige a `tema.html?tema=etica-kantiana`, un tema que no existe. Corregir `redirectTo` a `tema=etica_kant`.
-- `config.json` dice 6 secciones (son 18) y 10 preguntas (son 12); la tarjeta de `js/main.js` dice 10 preguntas.
-- Revisar el cuestionario contra el material, el crucigrama (sus palabras sí están en el material) y el contenido del mapa.
-- Video: se corrigió el ID (tenía `&t` pegado) y el corte (`endTime` 330). La duración «5:30» es aproximada. El cloze se comparó con un resumen del video y coincide.
-- Examen oral: no tiene (opcional).
+**Ética de Kant (`etica_kant`)** — ✅ v2.0 (2026-11-25)
+- Material de 20 secciones cortas (antes 18 de 120-210 palabras y redirigía a un tema inexistente): consecuencias, éticas materiales y formal, buena voluntad, el comerciante, actuar por deber, máximas, imperativo hipotético y categórico, ley universal, promesa falsa, la humanidad como fin, dignidad y precio, autonomía, reino de los fines, postulados, el dilema del asesino, críticas y síntesis (cielo estrellado). Suma las ideas del video (éticas teleológicas, no poder predecir las consecuencias, doble moral, el robo por miedo al castigo).
+- Cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, examen con Kant (pide el video) y resumen final.
+- Video y cloze (20) sin cambios: comparados con un resumen, no con la transcripción. Si aparece la transcripción, revisar los tiempos.
 
 **Pragmatismo (`pragmatismo`)**
 - `config.json` dice 4 secciones (son 16) y 10 preguntas (son 12).
@@ -85,6 +83,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Ética de Kant completa (v2.0): material de 20 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama DIGNIDAD, mapa con 15 pares y examen con Kant. Se corrigió el final del material (iba a un tema inexistente).
 - 2026-11-25: tema nuevo de la Unidad II, «Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo» (`descartes_sujeto`), con todas las actividades, video (hasta 14:20) con cloze de 16 frases de la transcripción y examen con Descartes.
 - 2026-11-25: tema nuevo de la Unidad II, «Nietzsche: La Muerte de Dios y el Superhombre» (`nietzsche_superhombre`), con todas las actividades, video (hasta 6:48) con cloze de 13 frases de la transcripción y examen con Nietzsche.
 - 2026-11-25: Marx: video (MNamo55NDp4, 8:01) con cloze de 11 frases armado con la transcripción; el examen ya lo pide. El material suma lo que trata el video: plusvalía, cadena de montaje (Tiempos modernos), enajenación e ideología.

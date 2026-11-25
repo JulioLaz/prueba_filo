@@ -1,54 +1,56 @@
 {
   "id": "etica_kant",
-
   "meta": {
-    "title": "Ética Kantiana: El deber por el deber",
+    "title": "Ética Kantiana: Lo Bueno es lo que se Hace por Deber",
     "author": "Immanuel Kant",
-    "icon": "🤖",
-    "gradient": "linear-gradient(135deg, #457b9d 0%, #a8dadc 100%)",
+    "icon": "⚖️",
+    "gradient": "linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)",
     "difficulty": "avanzado",
-    "category": "Filosofía Moderna",
-    "description": "La filosofía moral de Kant, centrada en el 'imperativo categórico' como una ley universal. Sostiene que los actos son moralmente buenos solo si se realizan por puro deber, sin considerar las consecuencias.",
-    "lastUpdated": "2026-11-19"
+    "category": "Ética",
+    "description": "La ética del deber de Kant: buena voluntad, actuar por deber, máximas, imperativo hipotético y categórico, ley universal, la humanidad como fin, dignidad, autonomía y críticas.",
+    "lastUpdated": "2026-11-25"
   },
-
   "activities": {
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 6,
-      "timeEstimate": 10,
+      "sections": 20,
+      "timeEstimate": 16,
       "script": "../../js/readaloud-system.js"
     },
     "quiz": {
       "enabled": true,
-      "questions": 10,
-      "timeLimit": 30,
-      "timeEstimate": 12
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
     },
     "concepts": {
       "enabled": true,
       "levels": 8,
-      "timeEstimate": 8
+      "timeEstimate": 10
     },
     "cloze": {
       "enabled": true,
-      "timeEstimate": 9
+      "items": 20,
+      "timeEstimate": 12
     },
     "cruci": {
       "enabled": true,
-      "timeEstimate": 7
+      "words": 8,
+      "centralWord": "DIGNIDAD",
+      "timeEstimate": 8
     },
     "mapa": {
       "enabled": true,
-      "nodes": 20,
-      "timeEstimate": 5
+      "nodes": 36,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
     }
   },
-
   "files": {
     "material": {
-      "page": "etica_kant.html",
+      "page": "content.html",
       "script": "../../js/readaloud-system.js"
     },
     "quiz": "quiz.js",
@@ -58,7 +60,7 @@
     },
     "cloze": {
       "page": "cloze.html",
-      "script": "cloze.js"
+      "script": "cloze_test.js"
     },
     "cruci": {
       "page": "crossword.html",
@@ -68,7 +70,9 @@
       "page": "mapa.html"
     }
   },
-
   "prerequisites": [],
-  "color": "#457b9d"
+  "color": "#1d4ed8",
+  "notes": {
+    "realValues": "v2.0 (2026-11-25): material 20 secciones, cuestionario 13, caza 8 niveles / 48, crucigrama DIGNIDAD + 8, mapa 36 nodos / 15 pares, video y cloze 20."
+  }
 }

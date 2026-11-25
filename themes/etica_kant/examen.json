@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Immanuel Kant y del resumen final del tema «Ética Kantiana: Lo Bueno es lo que se Hace por Deber». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo; pide el video (Lq0ZGcqn-Zg) con su cloze.",
+  "version": "1.0.0",
+  "filosofo": "Immanuel Kant",
+  "tema": "La ética de Kant: buena voluntad, deber, imperativo categórico, ley universal, la humanidad como fin, dignidad y autonomía",
+  "intro": "Immanuel Kant (1724–1804), filósofo de la Ilustración, propuso una ética formal: lo moral no depende de las consecuencias ni de la felicidad, sino de la buena voluntad que actúa por deber. El imperativo categórico manda actuar según máximas que puedan ser ley universal y tratar a la humanidad siempre como fin. Las personas tienen dignidad; la voluntad moral es autónoma.",
+  "conceptosClave": "Ilustración, consecuencias, éticas materiales, ética formal, buena voluntad, conforme al deber, por deber, inclinaciones, máxima, imperativo hipotético, imperativo categórico, ley universal, promesa falsa, humanidad como fin, dignidad, autonomía, heteronomía, reino de los fines, postulados, rigorismo",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "paseo",
+      "texto": "Kant camina por las calles de Königsberg a las tres y media en punto, como cada tarde; los vecinos ponen en hora sus relojes al verlo pasar. Invita al alumno a acompañarlo en su paseo."
+    },
+    {
+      "id": "estrellas",
+      "texto": "Es de noche en Königsberg. Kant mira el cielo desde su ventana y le dice al alumno que hay dos cosas que lo llenan de admiración. Le propone conversar sobre la segunda."
+    },
+    {
+      "id": "aula",
+      "texto": "Kant termina su clase en la Universidad de Königsberg y le pide al alumno que se quede: quiere saber si se atreve a pensar por sí mismo."
+    },
+    {
+      "id": "mercado",
+      "texto": "Kant observa a un comerciante que le da el vuelto exacto a un niño y le pregunta al alumno si esa acción es moral... y por qué."
+    },
+    {
+      "id": "escritorio",
+      "texto": "Kant acaba de terminar la Fundamentación de la metafísica de las costumbres y, entre papeles, le pide al alumno que lo ayude a revisar si sus ideas son claras."
+    },
+    {
+      "id": "puerta",
+      "texto": "Alguien golpea la puerta de la casa de Kant. Antes de abrir, Kant le pregunta al alumno: «¿Y si fuera alguien que viene a hacer daño? ¿Mentirías?»."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "vida",
+      "titulo": "Kant y la Ilustración",
+      "guia": "Preguntar quién fue Kant, dónde vivió y cuál es el lema de la Ilustración.",
+      "claves": "Immanuel Kant (1724–1804), vivió siempre en Königsberg (Prusia), famoso por su puntualidad. Gran figura de la Ilustración: «Sapere aude, atrévete a pensar por ti mismo». Obras morales: Fundamentación de la metafísica de las costumbres (1785), Crítica de la razón práctica (1788).",
+      "resumen": "Kant fue un filósofo alemán de la Ilustración, que vivió siempre en Königsberg. Su lema: «atrévete a pensar por ti mismo».",
+      "palabras": [
+        "Kant",
+        "Königsberg",
+        "Ilustración",
+        "sapere aude",
+        "razón práctica"
+      ],
+      "ejemplo": "Pensar por uno mismo es no repetir lo que dice el grupo sin pensarlo."
+    },
+    {
+      "id": "consecuencias",
+      "titulo": "Las consecuencias no deciden",
+      "guia": "Preguntar qué piensan las corrientes consecuencialistas y por qué Kant no está de acuerdo.",
+      "claves": "Teleológicas o consecuencialistas: una acción es aceptable según sus consecuencias previsibles. Kant: una acción es correcta o incorrecta en sí misma, con independencia de las consecuencias; además, no podemos predecir todas las consecuencias, así que no sirven como criterio ético.",
+      "resumen": "Para los consecuencialistas, importa el resultado. Para Kant, una acción es correcta o incorrecta en sí misma, y además no podemos predecir todas las consecuencias.",
+      "palabras": [
+        "consecuencias",
+        "teleológicas",
+        "predecir",
+        "criterio",
+        "en sí misma"
+      ],
+      "ejemplo": "Mentir «para bien» puede salir mal: no sabemos todo lo que va a pasar."
+    },
+    {
+      "id": "materiales",
+      "titulo": "Éticas materiales y ética formal",
+      "guia": "Preguntar qué son las éticas materiales y qué significa que la de Kant es formal.",
+      "claves": "Éticas materiales: valoran las acciones según consigan un fin (Aristóteles la felicidad, Epicuro el placer, utilitaristas la mayor felicidad del mayor número); dependen de la experiencia y dan recetas condicionales. Ética formal: no dice qué hacer en concreto, se fija en la intención y en la forma de la acción; universal y necesaria; invita a pensar por uno mismo.",
+      "resumen": "Las éticas materiales buscan un fin, como la felicidad o el placer. La de Kant es formal: no da recetas, sino la forma que debe tener una acción para ser moral. Es universal y necesaria.",
+      "palabras": [
+        "materiales",
+        "fin",
+        "formal",
+        "universal",
+        "necesaria"
+      ],
+      "ejemplo": "Una receta dice «hacé esto»; Kant te da una prueba para que decidas vos."
+    },
+    {
+      "id": "voluntad",
+      "titulo": "La buena voluntad",
+      "guia": "Preguntar qué es lo único bueno sin restricción y por qué.",
+      "claves": "«Ni en el mundo ni fuera de él… nada bueno sin restricción salvo una buena voluntad». Inteligencia, valor, riqueza pueden usarse para el mal. La buena voluntad es buena en sí misma aunque no logre su objetivo, «brilla como una joya»; quien actúa con buena voluntad no puede ser reprochado.",
+      "resumen": "Lo único bueno sin restricción es la buena voluntad: la inteligencia o la riqueza pueden usarse mal, pero la buena voluntad es buena en sí misma, aunque fracase.",
+      "palabras": [
+        "buena voluntad",
+        "sin restricción",
+        "joya",
+        "inteligencia",
+        "en sí misma"
+      ],
+      "ejemplo": "Si ayudás a alguien de corazón y la ayuda no sale bien, tu acción sigue teniendo valor."
+    },
+    {
+      "id": "deber",
+      "titulo": "Actuar por deber",
+      "guia": "Preguntar por el ejemplo del comerciante y las tres clases de acciones.",
+      "claves": "Deber: necesidad de una acción por respeto a la ley moral. Tres acciones: contrarias al deber, conformes al deber (por interés o inclinación) y por deber. El comerciante que no engaña al niño para cuidar su fama actúa conforme al deber pero sin valor moral. Las inclinaciones no dan valor moral; la felicidad no es un deber (la buscamos naturalmente); el deber a veces se acepta a disgusto.",
+      "resumen": "Kant distingue acciones contrarias al deber, conformes al deber (por interés) y por deber. Solo las hechas por deber, por respeto a la ley moral, tienen valor moral, como muestra el ejemplo del comerciante.",
+      "palabras": [
+        "deber",
+        "conforme al deber",
+        "comerciante",
+        "interés",
+        "respeto"
+      ],
+      "ejemplo": "Devolver un vuelto de más solo porque te vieron es conforme al deber; devolverlo porque es lo correcto, es por deber."
+    },
+    {
+      "id": "imperativos",
+      "titulo": "Imperativo hipotético y categórico",
+      "guia": "Preguntar qué es una máxima y la diferencia entre los dos imperativos.",
+      "claves": "Máxima: regla personal de acción. Ley moral: vale para todos. Imperativo: mandato de la razón. Hipotético: condicional, «si querés X, hacé Y» (no robar por miedo al castigo). Categórico: incondicional, vale para todo ser racional; es el criterio para decidir qué es correcto (no robar porque todos deberían actuar así).",
+      "resumen": "Una máxima es mi regla personal. El imperativo hipotético es condicional («si querés X, hacé Y»); el categórico manda sin condiciones y es el criterio para saber qué es correcto.",
+      "palabras": [
+        "máxima",
+        "imperativo",
+        "hipotético",
+        "categórico",
+        "castigo"
+      ],
+      "ejemplo": "No copiarte solo porque el profe mira es hipotético; no copiarte porque nadie debería hacerlo es categórico."
+    },
+    {
+      "id": "universal",
+      "titulo": "La ley universal y la promesa falsa",
+      "guia": "Preguntar por la primera fórmula y el ejemplo de la promesa falsa.",
+      "claves": "Primera fórmula: «Obra solo según una máxima tal que puedas querer al mismo tiempo que se torne ley universal». Prueba: ¿qué pasaría si todos lo hicieran? Promesa falsa para pedir un préstamo: si todos la hicieran, nadie creería en las promesas; la máxima se destruye, contradicción. Sin doble moral.",
+      "resumen": "La primera fórmula pide actuar como si mi máxima fuera ley para todos. La promesa falsa no pasa la prueba: si todos mintieran, nadie creería en las promesas.",
+      "palabras": [
+        "ley universal",
+        "primera fórmula",
+        "promesa falsa",
+        "contradicción",
+        "doble moral"
+      ],
+      "ejemplo": "Si todos colaran en la fila, ya no habría fila: colarse no puede ser ley universal."
+    },
+    {
+      "id": "fin",
+      "titulo": "La humanidad como fin",
+      "guia": "Preguntar por la segunda fórmula y qué significa no usar a alguien solamente como medio.",
+      "claves": "Segunda fórmula: «Obra de tal modo que uses la humanidad, en tu persona y en la de cualquier otro, siempre como fin y nunca solamente como medio». Usar a otros como medio (el colectivero) no está mal; lo inmoral es tratarlos solamente como herramientas: engañar, manipular.",
+      "resumen": "La segunda fórmula manda tratar a las personas siempre como fines y nunca solamente como medios: no usarlas como herramientas, engañarlas ni manipularlas.",
+      "palabras": [
+        "humanidad",
+        "fin",
+        "medio",
+        "segunda fórmula",
+        "herramienta"
+      ],
+      "ejemplo": "Hacerte amigo de alguien solo para que te pase la tarea es usarlo solamente como medio."
+    },
+    {
+      "id": "dignidad",
+      "titulo": "Dignidad y precio",
+      "guia": "Preguntar la diferencia entre precio y dignidad y su relación con los derechos humanos.",
+      "claves": "Todo tiene precio o dignidad: lo que tiene precio puede reemplazarse por un equivalente; lo que tiene dignidad no tiene equivalente. Los seres humanos, únicos capaces de moralidad, tienen dignidad; no son instrumentos; todos igual de dignos. Base de los derechos humanos.",
+      "resumen": "Las cosas tienen precio y pueden reemplazarse; las personas tienen dignidad, no tienen equivalente. En esta idea se basan los derechos humanos.",
+      "palabras": [
+        "dignidad",
+        "precio",
+        "moralidad",
+        "instrumento",
+        "derechos humanos"
+      ],
+      "ejemplo": "Un celular roto se reemplaza; una persona, nunca."
+    },
+    {
+      "id": "autonomia",
+      "titulo": "Autonomía y heteronomía",
+      "guia": "Preguntar qué es la autonomía, qué es la heteronomía y qué es la mayoría de edad.",
+      "claves": "Autonomía (autós, nómos): darse a uno mismo la ley con la propia razón; solo la voluntad autónoma es moral. Heteronomía: la ley viene de afuera (padres, castigo, premio, placer). La Ilustración: salir de la minoría de edad, pensar por uno mismo.",
+      "resumen": "Autonomía es darse a uno mismo la ley moral con la razón; heteronomía es que la ley venga de afuera, como el miedo al castigo o un premio.",
+      "palabras": [
+        "autonomía",
+        "heteronomía",
+        "ley",
+        "razón",
+        "mayoría de edad"
+      ],
+      "ejemplo": "Portarte bien solo cuando hay premio es heteronomía."
+    },
+    {
+      "id": "reino",
+      "titulo": "El reino de los fines y los postulados",
+      "guia": "Preguntar qué es el reino de los fines y cuáles son los postulados de la razón práctica.",
+      "claves": "Reino de los fines: comunidad ideal donde todos se tratan como fines; todos son legisladores (se dan la ley con su razón) y súbditos (la obedecen). Postulados: libertad (debo, luego puedo), inmortalidad del alma (tiempo para la perfección moral), existencia de Dios (une virtud y felicidad); no se demuestran, la moral los exige.",
+      "resumen": "En el reino de los fines todos son legisladores y súbditos y se tratan como fines. La moral exige tres postulados: libertad, inmortalidad del alma y existencia de Dios.",
+      "palabras": [
+        "reino de los fines",
+        "legisladores",
+        "súbditos",
+        "postulados",
+        "libertad"
+      ],
+      "ejemplo": "Un aula donde todos acuerdan las normas y todos las cumplen se parece a un pequeño reino de los fines."
+    },
+    {
+      "id": "criticas",
+      "titulo": "El dilema del asesino y las críticas",
+      "guia": "Preguntar qué dice Kant sobre mentirle al asesino y qué críticas recibió.",
+      "claves": "Dilema: ¿está bien mentir alguna vez? Asesino en la puerta que pregunta por tu amigo: Kant (1797) dice que no hay que mentir; veracidad deber incondicional; rigorismo. Críticas: consecuencias ignoradas (utilitaristas), conflictos de deberes, formalismo (Hegel), deja de lado la compasión. Legado: dignidad. Frase: el cielo estrellado sobre mí y la ley moral en mí.",
+      "resumen": "Kant sostiene que no hay que mentir ni siquiera al asesino que busca a tu amigo. Se lo critica por su rigorismo, los conflictos de deberes y el formalismo, pero su idea de dignidad sigue vigente.",
+      "palabras": [
+        "mentir",
+        "asesino",
+        "rigorismo",
+        "conflictos de deberes",
+        "formalismo"
+      ],
+      "ejemplo": "¿Le dirías a un amigo que su dibujo es feo, aunque lo lastime? Ahí aparece el conflicto."
+    }
+  ],
+  "casos": [
+    {
+      "id": "prueba",
+      "texto": "En una prueba, el profesor sale del aula y nadie te ve. Podrías copiarte sin riesgo.",
+      "claves": "Aplicar imperativo hipotético (no copiar por miedo) vs. categórico; ley universal (si todos se copiaran); actuar por deber; autonomía."
+    },
+    {
+      "id": "billetera",
+      "texto": "Encontrás una billetera con dinero y el documento del dueño. Pensás devolverla para que te den una recompensa.",
+      "claves": "Distinguir conforme al deber y por deber (el comerciante); interés e inclinación; buena voluntad."
+    },
+    {
+      "id": "regalo",
+      "texto": "Una amiga te pregunta si te gustó su regalo, y no te gustó.",
+      "claves": "Aplicar el deber de veracidad, la ley universal de la mentira y el rigorismo; conflicto con no lastimar; críticas a Kant."
+    },
+    {
+      "id": "amistad",
+      "texto": "Un compañero se hace amigo tuyo solo porque tenés auto y lo llevás a todos lados.",
+      "claves": "Aplicar la segunda fórmula: tratar a alguien solamente como medio; dignidad; humanidad como fin."
+    },
+    {
+      "id": "datos",
+      "texto": "Una aplicación gratis vende los datos de sus usuarios sin que ellos lo sepan.",
+      "claves": "Aplicar humanidad como fin y nunca solamente como medio; dignidad y precio; engaño; ley universal."
+    },
+    {
+      "id": "prestamo",
+      "texto": "Le pedís plata a un amigo prometiendo devolverla la semana que viene, aunque sabés que no vas a poder.",
+      "claves": "Aplicar el ejemplo de la promesa falsa: universalizar la máxima lleva a contradicción; doble moral."
+    },
+    {
+      "id": "voluntariado",
+      "texto": "Hacés un voluntariado solo para ponerlo en tu currículum.",
+      "claves": "Distinguir conforme al deber y por deber; inclinaciones e interés; buena voluntad; las consecuencias no deciden el valor moral."
+    },
+    {
+      "id": "asesino",
+      "texto": "Un amigo se esconde en tu casa y alguien que quiere lastimarlo te pregunta dónde está.",
+      "claves": "Aplicar el dilema del asesino: Kant dice no mentir; rigorismo; conflicto de deberes; crítica consecuencialista."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "porque",
+      "texto": "Pensá en algo bueno que hiciste esta semana: ¿lo hiciste por deber o por interés?"
+    },
+    {
+      "id": "universal",
+      "texto": "¿Qué regla personal tuya no aguantaría la prueba de «y si todos lo hicieran»?"
+    },
+    {
+      "id": "medio",
+      "texto": "¿Alguna vez sentiste que alguien te usaba solamente como un medio?"
+    },
+    {
+      "id": "mentira",
+      "texto": "¿Hay mentiras que te parecen justificadas? ¿Qué le dirías a Kant?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Kant, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Por qué Kant no acepta las consecuencias como criterio moral?",
+    "¿Qué diferencia hay entre una ética material y una ética formal?",
+    "¿Por qué la buena voluntad es lo único bueno sin restricción?",
+    "Explicá el ejemplo del comerciante y las tres clases de acciones.",
+    "¿Qué diferencia hay entre el imperativo hipotético y el categórico?",
+    "Explicá la primera fórmula del imperativo categórico con el ejemplo de la promesa falsa.",
+    "¿Qué significa tratar a la humanidad siempre como fin y nunca solamente como medio?",
+    "¿Qué es la autonomía y por qué Kant la opone a la heteronomía?"
+  ]
+}

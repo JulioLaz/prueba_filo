@@ -1,58 +1,88 @@
-console.log('📋 Iniciando carga de configuración del crucigrama de Ética Kantiana...');
+// themes/etica_kant/crossword_config.js
+// Crucigrama — Ética de Kant. Central DIGNIDAD y una palabra por letra, todas del material,
+// con sección y frase para las pistas escalonadas.
+// Versión 2.0 (2026-11-25): rehecho (antes BUENAS, con definiciones sueltas).
+console.log('📋 Iniciando carga de configuración del crucigrama...');
 const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Ética Kantiana: El Deber como Fundamento Moral",
-    
+    title: "Kant: lo bueno es lo que se hace por deber",
+
     // Palabra central vertical (se normaliza automáticamente)
-    central: "BUENAS",
-    
+    central: "DIGNIDAD",
+
     // Palabras horizontales que cruzan con la central
-    // crossIndex indica qué letra de la central usar (0-5 para BUENAS)
+    // crossIndex indica qué letra de la central usar (0-7 para DIGNIDAD)
     entries: [
       {
-        answer: "OBLIGACION",
-        clue: "Mandato moral que surge de la razón y que debemos cumplir por respeto al deber",
-        crossIndex: 0 // Cruce en la 'B' de BUENAS
-      },
-      {
-        answer: "UNIVERSAL",
-        clue: "Característica de los principios morales válidos para todos los seres racionales",
-        crossIndex: 1 // Cruce en la 'U' de BUENAS
-      },
-      {
         answer: "DEBER",
-        clue: "Obligación moral que surge de la razón práctica y que define la acción ética según Kant",
-        crossIndex: 2 // Cruce en la 'E' de BUENAS
+        clue: "Necesidad de una acción por respeto a la ley moral",
+        seccion: "🫡 Actuar por deber",
+        frase: "Para Kant, el _____ es la necesidad de una acción por respeto a la ley moral.",
+        crossIndex: 0 // Cruce en la 'D' de DIGNIDAD
+      },
+      {
+        answer: "INCLINACIONES",
+        clue: "Deseos, gustos y sentimientos que no dan valor moral",
+        seccion: "🫡 Actuar por deber",
+        frase: "Las _____ (deseos, gustos, sentimientos) no dan valor moral.",
+        crossIndex: 1 // Cruce en la 'I' de DIGNIDAD
+      },
+      {
+        answer: "CATEGORICO",
+        clue: "Imperativo incondicional: manda sin «si»",
+        seccion: "⚖️ El imperativo categórico",
+        frase: "El imperativo _____ es incondicional: manda sin «si».",
+        crossIndex: 2 // Cruce en la 'G' de DIGNIDAD
       },
       {
         answer: "AUTONOMIA",
-        clue: "Capacidad de darse a sí mismo la ley moral, sin imposición externa",
-        crossIndex: 3 // Cruce en la 'N' de BUENAS
+        clue: "Darse a uno mismo la ley moral con la propia razón",
+        seccion: "🗽 Autonomía y heteronomía",
+        frase: "_____ viene del griego autós (uno mismo) y nómos (ley): es darse a uno mismo la ley.",
+        crossIndex: 3 // Cruce en la 'N' de DIGNIDAD
+      },
+      {
+        answer: "HIPOTETICO",
+        clue: "Imperativo condicional: «si querés X, hacé Y»",
+        seccion: "🔀 El imperativo hipotético",
+        frase: "Kant distingue dos. El _____ es condicional.",
+        crossIndex: 4 // Cruce en la 'I' de DIGNIDAD
+      },
+      {
+        answer: "MEDIO",
+        clue: "Nunca hay que tratar a una persona solamente como un ___",
+        seccion: "👤 Segunda fórmula: la humanidad como fin",
+        frase: "Siempre como un fin y nunca solamente como un _____.",
+        crossIndex: 5 // Cruce en la 'D' de DIGNIDAD
       },
       {
         answer: "MAXIMA",
-        clue: "Principio subjetivo que debe poder convertirse en ley universal según Kant",
-        crossIndex: 4 // Cruce en la 'A' de BUENAS
+        clue: "Regla personal que seguimos al actuar",
+        seccion: "📝 Máximas y ley moral",
+        frase: "Cuando actuamos, seguimos una _____: la regla personal que nos damos.",
+        crossIndex: 6 // Cruce en la 'A' de DIGNIDAD
       },
       {
-        answer: "RESPETO",
-        clue: "Sentimiento moral que debemos tener hacia la dignidad de las personas",
-        crossIndex: 5 // Cruce en la 'S' de BUENAS
+        answer: "VOLUNTAD",
+        clue: "Lo único bueno sin restricción es la buena ___",
+        seccion: "💖 La buena voluntad",
+        frase: "Si actuás con buena _____, nadie podrá reprocharte nada.",
+        crossIndex: 7 // Cruce en la 'D' de DIGNIDAD
       }
     ],
-    
+
     // Texto para el prompt de respuesta
     promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-    
+
     // Configuración de sonidos (rutas relativas desde crossword.html)
     sounds: {
       correct: "sound/collect_points.mp3",
-      wrong: "sound/negative_beep.mp3", 
+      wrong: "sound/negative_beep.mp3",
       complete: "sound/fin_caza.mp3"
     },
-    
+
     // Opciones del juego
     options: {
       showHints: true,
@@ -62,23 +92,23 @@ try {
       showProgressBar: true,
       enableTimer: true
     },
-    
+
     // Información educativa adicional
     educational: {
-      introduction: "La ética kantiana revolucionó la filosofía moral al centrarse en el deber y los principios universales que descubre nuestra razón.",
-      conclusion: "Kant nos enseñó que la verdadera moralidad no depende de resultados o emociones, sino de actuar por respeto al deber moral universal.",
-      keyWords: ["kant", "deber", "imperativo", "autonomía", "dignidad", "universalidad", "buena voluntad"]
+      introduction: "Para Kant las personas tienen dignidad y no precio. Completá el crucigrama con los conceptos de su ética.",
+      conclusion: "¡Actuaste por deber! Repasaste el deber, las inclinaciones, los imperativos, la autonomía, el medio, la máxima y la buena voluntad.",
+      keyWords: ["DEBER", "INCLINACIONES", "CATEGORICO", "AUTONOMIA", "HIPOTETICO", "MEDIO", "MAXIMA", "VOLUNTAD"]
     },
-    
+
     // Metadatos para debug
     metadata: {
-      version: "2.0_kant_secundaria",
+      version: "2.0_secundaria", // 2026-11-24: palabras del material, con seccion y frase para las pistas escalonadas
       created: new Date().toISOString(),
-      theme: "etica-kantiana-secundaria",
-      totalWords: 6,
-      difficulty: "intermediate",
+      theme: "kant-dignidad-secundaria",
+      totalWords: 8,
+      difficulty: "beginner-intermediate",
       targetAudience: "estudiantes-secundaria",
-      educationalLevel: "15-18 años"
+      educationalLevel: "14-18 años"
     }
   };
 
@@ -146,7 +176,7 @@ try {
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
   console.log(`📊 Resumen: "${config.title}"`);
-  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   📝 ${config.entries.length} palabras - Central: "${config.central}"`);
   console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
   console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
   
@@ -155,7 +185,7 @@ try {
   const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
   
   console.log(`📈 Estadísticas:`);
-  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📏 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
   console.log(`   📏 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
   
   // Log para debug (solo en desarrollo)
