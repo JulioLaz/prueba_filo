@@ -143,33 +143,18 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         color: '#2f855a',
         contentFile: 'themes/antropologia_aristoteles/content.html'
     },
-    // 2026-11-24: reemplaza la tarjeta «Ernst Cassirer: El ser humano como animal simbólico»
-    // (id "cassirer"); Cassirer queda dentro de este tema junto con Maliandi y Savater.
     {
-        id: 'simbolo_tecnica_muerte',
-        title: 'Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?',
-        description: 'Tres respuestas del siglo XX: el animal simbólico (Cassirer), el animal técnico y su responsabilidad (Maliandi) y el ser que sabe que va a morir (Savater).',
-        icon: '🧩',
-        gradient: 'linear-gradient(135deg, #805ad5 0%, #2b6cb0 100%)',
+        id: 'descartes_sujeto',
+        title: 'Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo',
+        description: 'El giro hacia el sujeto: la duda hasta el genio maligno, el cogito, Dios y el error, la mente y el cuerpo como dos sustancias, y por qué vuelve hoy con la IA y la realidad virtual.',
+        icon: '🧠',
+        gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
         difficulty: 'UNIDAD_II',
         questions: 13,
-        timeEstimate: 15,
+        timeEstimate: 16,
         prerequisites: [],
-        color: '#805ad5',
-        contentFile: 'themes/simbolo_tecnica_muerte/content.html'
-    },
-    {
-        id: "sartre",
-        title: "Jean-Paul Sartre: El ser humano es libertad", 
-        description: "Existencialismo: la existencia precede a la esencia, condenados a ser libres, angustia, desamparo, desesperación, mala fe, la mirada del otro y autenticidad.",
-        icon: "🌀",
-        gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
-        difficulty: "UNIDAD_II",
-        questions: 13,
-        timeEstimate: 14,
-        prerequisites: [],
-        color: "#00adb5",
-        contentFile: "themes/sartre/content.html" // v2.0 (2026-11-25): tema completo
+        color: '#2b6cb0',
+        contentFile: 'themes/descartes_sujeto/content.html'
     },
     {
         id: 'marx_alienacion',
@@ -198,17 +183,32 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         contentFile: 'themes/nietzsche_superhombre/content.html'
     },
     {
-        id: 'descartes_sujeto',
-        title: 'Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo',
-        description: 'El giro hacia el sujeto: la duda hasta el genio maligno, el cogito, Dios y el error, la mente y el cuerpo como dos sustancias, y por qué vuelve hoy con la IA y la realidad virtual.',
-        icon: '🧠',
-        gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
+        id: "sartre",
+        title: "Jean-Paul Sartre: El ser humano es libertad", 
+        description: "Existencialismo: la existencia precede a la esencia, condenados a ser libres, angustia, desamparo, desesperación, mala fe, la mirada del otro y autenticidad.",
+        icon: "🌀",
+        gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
+        difficulty: "UNIDAD_II",
+        questions: 13,
+        timeEstimate: 14,
+        prerequisites: [],
+        color: "#00adb5",
+        contentFile: "themes/sartre/content.html" // v2.0 (2026-11-25): tema completo
+    },
+    // 2026-11-24: reemplaza la tarjeta «Ernst Cassirer: El ser humano como animal simbólico»
+    // (id "cassirer"); Cassirer queda dentro de este tema junto con Maliandi y Savater.
+    {
+        id: 'simbolo_tecnica_muerte',
+        title: 'Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?',
+        description: 'Tres respuestas del siglo XX: el animal simbólico (Cassirer), el animal técnico y su responsabilidad (Maliandi) y el ser que sabe que va a morir (Savater).',
+        icon: '🧩',
+        gradient: 'linear-gradient(135deg, #805ad5 0%, #2b6cb0 100%)',
         difficulty: 'UNIDAD_II',
         questions: 13,
-        timeEstimate: 16,
+        timeEstimate: 15,
         prerequisites: [],
-        color: '#2b6cb0',
-        contentFile: 'themes/descartes_sujeto/content.html'
+        color: '#805ad5',
+        contentFile: 'themes/simbolo_tecnica_muerte/content.html'
     },
     {
         id: 'etica',
@@ -251,6 +251,33 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     contentFile: 'themes/hedonismo/content.html'
     },
     {
+        id: 'antropocentrismo',
+        title: 'Antropocentrismo: El Humano en el Centro del Universo',
+        description: 'Explora el gran cambio del pensamiento medieval al moderno: del teocentrismo al antropocentrismo, el Renacimiento, el Humanismo y sus implicaciones éticas contemporáneas.',
+        icon: '🎭',
+        gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
+        difficulty: 'UNIDAD_III',
+        questions: 12,
+        timeEstimate: 15,
+        prerequisites: [],
+        // prerequisites: ['etica'],
+        color: '#d4af37',
+        contentFile: 'themes/antropocentrismo/content.html'
+    },
+    {
+    id: 'etica_kant',
+    title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
+    description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
+    icon: '⚖️',
+    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
+    difficulty: 'UNIDAD_III',
+    questions: 10,
+    timeEstimate: 15,
+    prerequisites: [],
+    color: '#1d4ed8',
+    contentFile: 'themes/etica_kant/content.html'
+    },
+    {
         id: 'utilitarismo',
         title: 'Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas',
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
@@ -275,33 +302,6 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         prerequisites: [],
         color: '#ff9500',
         contentFile: 'themes/pragmatismo/content.html' //themes\pragmatismo\content.html
-    },
-    {
-    id: 'etica_kant',
-    title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
-    description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
-    icon: '⚖️',
-    gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
-    difficulty: 'UNIDAD_III',
-    questions: 10,
-    timeEstimate: 15,
-    prerequisites: [],
-    color: '#1d4ed8',
-    contentFile: 'themes/etica_kant/content.html'
-    },
-    {
-        id: 'antropocentrismo',
-        title: 'Antropocentrismo: El Humano en el Centro del Universo',
-        description: 'Explora el gran cambio del pensamiento medieval al moderno: del teocentrismo al antropocentrismo, el Renacimiento, el Humanismo y sus implicaciones éticas contemporáneas.',
-        icon: '🎭',
-        gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
-        difficulty: 'UNIDAD_III',
-        questions: 12,
-        timeEstimate: 15,
-        prerequisites: [],
-        // prerequisites: ['etica'],
-        color: '#d4af37',
-        contentFile: 'themes/antropocentrismo/content.html'
     },    
     // {
     //     id: 'epistemologia',
