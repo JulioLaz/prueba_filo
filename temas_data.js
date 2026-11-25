@@ -201,9 +201,9 @@ const TOPICS = {
         youtubeId: 'Yt0Yjtn0VSc', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
         // youtubeId: '0s73cG7fJoA', //https://www.youtube.com/watch?v=Yt0Yjtn0VSc
         startTime: 1,
-        endTime: 168, // el cloze llega hasta 2:45 (antes cortaba en 0:58)
+        endTime: 191, // 2026-11-25: cloze revisado con la transcripción; termina en 3:10, antes del saludo final
         title: 'Hedonismo',
-        duration: '2:48',
+        duration: '3:10',
         // type: 'short'
       },
       utilitarismo: { //https://youtu.be/YU19bTA656I?si=ns1OzYx5AZyJPQKV

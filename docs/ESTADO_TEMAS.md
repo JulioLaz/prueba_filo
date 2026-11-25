@@ -9,14 +9,13 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | Tema | Material | Cuestionario | Caza | Crucigrama | Mapa | Video + cloze | Examen + resumen |
 |---|---|---|---|---|---|---|---|
 | `etica_aristoteles` (**referencia**) | ✅ 15 | ✅ 13 | ✅ 8 niveles | ✅ VIRTUD | ✅ 28 / 15 pares | ✅ 17 | ✅ Aristóteles |
-| `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ SERENIDAD | ✅ 30 / 15 | ✅ 15 (*) | ✅ Epicuro |
+| `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ SERENIDAD | ✅ 30 / 15 | ✅ 17 | ✅ Epicuro |
 | `utilitarismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ FELICIDAD | ✅ 33 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | ✅ 26 | ✅ Sócrates |
 | `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 21 | ✅ Kant |
 | `pragmatismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ UTILIDAD | ✅ 32 / 15 | ✅ 13 | ✅ W. James |
 | `antropocentrismo` | ✅ 19 | ✅ 13 | ✅ 8 | ✅ HUMANISMO | ✅ 34 / 15 | 🟡 13 (**) | ✅ Pico della Mirandola |
 
-(*) No se pudo verificar la duración real del video de Hedonismo (`endTime` 168 porque el cloze llega a 2:45).
 (**) El `endTime` ya alcanza a todos los huecos, pero no se comprobó que cada hueco coincida con lo que dice el video (YouTube no se reproduce en las pruebas).
 
 ### Pendientes concretos de la Unidad 3
@@ -87,6 +86,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Hedonismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales, «egoísmo» en lugar de «exceso» (lo que dice el video), arreglada la variante mal escrita de «Épicuro» y 2 frases nuevas del final (el capitalismo y los estímulos placenteros; la pregunta final). El video llega a 3:10 (antes 2:48, y dejaba afuera ese final).
 - 2026-11-25: Ética y Moral: cloze revisado con la transcripción (las 23 frases coinciden con el video). Tramos con los tiempos reales (algunos cortaban antes de la respuesta), «los otros seres humanos» (decía «nosotros»), acepta «conciencia», suma 3 frases (Juramento Hipocrático y los ejemplos finales de comportamiento moral) y el video se mira completo (10:31; antes cortaba en 9:36). El link «ver en el video» no funcionaba: buscaba una configuración con otro nombre.
 - 2026-11-25: Antropología de Aristóteles: cloze rehecho con la transcripción (14 frases; antes 12 con tramos de hasta 72 segundos y huecos que el video no dice). Suma el principio inmanente, la unión no accidental frente a Platón, nutrición y generación, la voluntad frente al intelectualismo moral y el entendimiento agente separado, inmortal y eterno.
 - 2026-11-25: Dualismo platónico: cloze revisado con la transcripción. Se corrigieron los tramos (el 4 y el 6 cortaban antes de la respuesta) y se cambiaron huecos que el video no dice: «control» por «satisfacer», «excesos» por «renuncia» (y se suma «filosofía»), y la última frase usa «purificación» y «justo», como el video. El video termina en 2:38 (antes 2:45).
