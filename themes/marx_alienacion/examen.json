@@ -1,5 +1,5 @@
 {
-  "_info": "Banco del examen oral con Karl Marx y del resumen final del tema «Karl Marx: El Trabajo y la Alienación». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo. Sin video todavía: cuando se agregue, sumar \"video\" a actividadesRequeridas.",
+  "_info": "Banco del examen oral con Karl Marx y del resumen final del tema «Karl Marx: El Trabajo y la Alienación». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.1.0 (2026-11-25): examen nuevo; pide el video (MNamo55NDp4) con su cloze.",
   "version": "1.0.0",
   "filosofo": "Karl Marx",
   "tema": "Marx: el trabajo, la objetivación y el ser genérico, las cuatro alienaciones, la alienación política y religiosa, el fetichismo de la mercancía y la alienación hoy",
@@ -11,6 +11,7 @@
   "actividadesRequeridas": [
     "quiz",
     "caza",
+    "video",
     "cruci",
     "material",
     "mapa"
@@ -107,7 +108,7 @@
       "id": "capitalismo",
       "titulo": "Capitalismo y trabajo enajenado",
       "guia": "Preguntar cómo se organiza la producción en el capitalismo y por qué el trabajo se enajena.",
-      "claves": "Propiedad privada de los medios de producción (fábricas, máquinas, tierras) en manos de capitalistas; los obreros solo tienen su fuerza de trabajo y la venden por un salario. El trabajo deja de ser afirmación de sí y se vuelve trabajo enajenado (entfremdete Arbeit), con cuatro dimensiones.",
+      "claves": "Propiedad privada de los medios de producción (fábricas, máquinas, tierras) en manos de capitalistas; los obreros solo tienen su fuerza de trabajo y la venden por un salario; el acuerdo no es libre, porque no tienen otra opción para sobrevivir. Plusvalía: el valor que agrega el trabajador al transformar la materia prima; descontados los costos, la ganancia queda para el capitalista. Cadena de montaje (fordismo, Tiempos modernos de Chaplin): cada obrero hace una parte mínima y no se reconoce en el producto, a diferencia del taller artesanal. El trabajo deja de ser afirmación de sí y se vuelve trabajo enajenado (entfremdete Arbeit), con cuatro dimensiones.",
       "resumen": "En el capitalismo, los medios de producción son propiedad privada y los obreros venden su fuerza de trabajo por un salario. Así el trabajo se vuelve enajenado.",
       "palabras": [
         "propiedad privada",

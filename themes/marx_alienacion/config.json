@@ -14,7 +14,7 @@
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 18,
+      "sections": 20,
       "timeEstimate": 15,
       "script": "../../js/readaloud-system.js"
     },
@@ -31,9 +31,9 @@
       "timeEstimate": 10
     },
     "cloze": {
-      "enabled": false,
-      "items": 0,
-      "timeEstimate": 0
+      "enabled": true,
+      "items": 11,
+      "timeEstimate": 12
     },
     "cruci": {
       "enabled": true,
@@ -58,6 +58,10 @@
       "page": "conceptos.html",
       "script": "conceptos.js"
     },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
     "cruci": {
       "page": "crossword.html",
       "config": "crossword_config.js"
@@ -69,6 +73,6 @@
   "prerequisites": [],
   "color": "#c53030",
   "notes": {
-    "realValues": "v1.0 (2026-11-25): material 18 secciones, cuestionario 13, caza 8 niveles / 54, crucigrama TRABAJO + 7, mapa 31 nodos / 15 pares. Sin video ni cloze todavía."
+    "realValues": "v1.0 (2026-11-25): material 20 secciones, cuestionario 13, caza 8 niveles / 54, crucigrama TRABAJO + 7, mapa 31 nodos / 15 pares, video y cloze 11 (con la transcripción)."
   }
 }

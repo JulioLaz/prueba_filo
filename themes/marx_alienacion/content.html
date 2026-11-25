@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!--
     Material de lectura — Karl Marx: El Trabajo y la Alienación. Unidad II.
-    18 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    20 secciones para leer en voz alta, cada una con su verificación de comprensión.
     Versión 1.0 (2026-11-25): tema nuevo, ampliado desde el texto del docente: trabajo, objetivación y ser genérico, las cuatro alienaciones, alienación política y religiosa, fetichismo de la mercancía y alienación hoy.
   -->
   <title>Karl Marx: El Trabajo y la Alienación</title>
@@ -19,7 +19,7 @@
     window.ReadAloudSystemConfig = {
       tema: 'Karl Marx: El Trabajo y la Alienación',
       threshold: 0.80, // 80% de lectura requerida
-      sections: 18,
+      sections: 20,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=marx_alienacion',
       celebrationEmojis: ['🏭', '🛠️', '📦', '🌟', '⭐', '🏆'],
@@ -47,7 +47,7 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 18 secciones</span>
+        <span id="progress-counter">0 / 20 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
@@ -168,7 +168,7 @@
 
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Marx llama <strong>alienación</strong> (<em>Entfremdung</em>, «volverse extraño») a algo más que un malestar personal o una crisis de identidad. Es un fenómeno <strong>histórico</strong> y <strong>estructural</strong>: depende de cómo está organizada la sociedad.<br><br>Ocurre cuando las <strong>creaciones humanas</strong> —objetos, instituciones, ideas— se independizan, escapan al control de quienes las producen y se vuelven contra ellos como <strong>potencias extrañas</strong> y hostiles. Lo que hicimos nosotros termina dominándonos.
+            Marx llama <strong>alienación</strong> (<em>Entfremdung</em>, «volverse extraño») a algo más que un malestar personal o una crisis de identidad. Es un fenómeno <strong>histórico</strong> y <strong>estructural</strong>: depende de cómo está organizada la sociedad.<br><br>Ocurre cuando las <strong>creaciones humanas</strong> —objetos, instituciones, ideas— se independizan, escapan al control de quienes las producen y se vuelven contra ellos como <strong>potencias extrañas</strong> y hostiles. Lo que hicimos nosotros termina dominándonos. También se dice <strong>enajenación</strong>, de «ajeno».
           </p>
         </div>
 
@@ -345,7 +345,55 @@
       </div>
     </div>
 
-    <!-- 7. 1. Alienación del producto -->
+    <!-- 7. La plusvalía -->
+    <div class="study-section" data-section="plusvalia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📈 La plusvalía</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El obrero transforma una <strong>materia prima</strong> barata en un producto que vale mucho más. Esa diferencia, el valor que agregó con su tiempo, su esfuerzo y sus conocimientos, es la <strong>plusvalía</strong>.<br><br>Descontados los costos, queda la <strong>ganancia</strong>, que no es del trabajador sino del dueño del capital. A cambio, él recibe un salario fijo, que podría cubrir con pocas horas de su propio trabajo. Para Marx, ahí está la <strong>explotación</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 El valor que agrega el trabajo.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué es la plusvalía para Marx?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El salario que cobra el obrero</div>
+          <div class="option">Un impuesto que cobra el Estado</div>
+          <div class="option" data-correct="true">El valor que agrega el trabajador y del que se apropia el dueño del capital</div>
+          <div class="option">El precio de la materia prima</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. 1. Alienación del producto -->
     <div class="study-section" data-section="producto">
       <div class="reading-area">
         <div class="reading-header">
@@ -378,22 +426,22 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>❤️ Verificación de comprensión</h4>
+          <h4>⚖️ Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿En qué consiste la alienación respecto del producto?</p>
         </div>
         <div class="options-container">
+          <div class="option" data-correct="true">En que lo que el obrero fabrica no le pertenece y se vuelve un poder ajeno</div>
           <div class="option">En que el obrero se lleva a casa todo lo que produce</div>
           <div class="option">En que el producto sale defectuoso</div>
-          <div class="option" data-correct="true">En que lo que el obrero fabrica no le pertenece y se vuelve un poder ajeno</div>
           <div class="option">En que el obrero elige qué producir</div>
         </div>
       </div>
     </div>
 
-    <!-- 8. 2. Alienación en la actividad -->
+    <!-- 9. 2. Alienación en la actividad -->
     <div class="study-section" data-section="actividad">
       <div class="reading-area">
         <div class="reading-header">
@@ -426,22 +474,70 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>⚖️ Verificación de comprensión</h4>
+          <h4>🎯 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>Según Marx, ¿cuándo se siente «él mismo» el trabajador alienado?</p>
         </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Fuera del trabajo, al comer, beber o dormir</div>
           <div class="option">Mientras trabaja en la fábrica</div>
+          <div class="option" data-correct="true">Fuera del trabajo, al comer, beber o dormir</div>
           <div class="option">Cuando cobra el salario y lo gasta en la empresa</div>
           <div class="option">Nunca piensa en sí mismo</div>
         </div>
       </div>
     </div>
 
-    <!-- 9. 3. Alienación del ser genérico -->
+    <!-- 10. La cadena de montaje -->
+    <div class="study-section" data-section="montaje">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🔩 La cadena de montaje</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En el siglo XX, con el <strong>fordismo</strong>, el trabajo se dividió en tareas mínimas: cada obrero hace una pequeña parte en una <strong>cadena de montaje</strong>, como Chaplin en la película <em>Tiempos modernos</em>, ajustando tuercas todo el día. Así, nadie siente que hizo el producto.<br><br>En un taller <strong>artesanal</strong>, en cambio, alguien empieza y termina una obra y se reconoce en ella. Marx imaginaba una sociedad donde uno pudiera cazar por la mañana y pescar por la tarde, sin quedar atado a una tarea <strong>repetitiva</strong>.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Una tuerca todo el día.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué la cadena de montaje aumenta la alienación?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Porque los obreros eligen qué fabricar</div>
+          <div class="option">Porque cada uno termina su propia obra</div>
+          <div class="option">Porque se trabaja menos horas</div>
+          <div class="option" data-correct="true">Porque cada obrero hace una parte mínima y repetitiva, y no siente que hizo el producto</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. 3. Alienación del ser genérico -->
     <div class="study-section" data-section="generico">
       <div class="reading-area">
         <div class="reading-header">
@@ -474,7 +570,7 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🎯 Verificación de comprensión</h4>
+          <h4>🏙️ Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
@@ -482,14 +578,14 @@
         </div>
         <div class="options-container">
           <div class="option">Porque los obreros cambian de especie</div>
-          <div class="option" data-correct="true">Porque convierte la actividad libre y creadora en un simple medio para sobrevivir</div>
           <div class="option">Porque el trabajo es demasiado fácil</div>
+          <div class="option" data-correct="true">Porque convierte la actividad libre y creadora en un simple medio para sobrevivir</div>
           <div class="option">Porque obliga a trabajar en equipo</div>
         </div>
       </div>
     </div>
 
-    <!-- 10. 4. Alienación respecto de los otros -->
+    <!-- 12. 4. Alienación respecto de los otros -->
     <div class="study-section" data-section="otros">
       <div class="reading-area">
         <div class="reading-header">
@@ -522,22 +618,22 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🌟 Verificación de comprensión</h4>
+          <h4>🧠 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Qué pasa con las relaciones humanas en la cuarta alienación?</p>
         </div>
         <div class="options-container">
+          <div class="option" data-correct="true">Se vuelven de dominación, explotación y competencia, y se rompe la solidaridad</div>
           <div class="option">Se vuelven más solidarias</div>
           <div class="option">Desaparecen las diferencias entre las personas</div>
           <div class="option">Todos se vuelven dueños de las fábricas</div>
-          <div class="option" data-correct="true">Se vuelven de dominación, explotación y competencia, y se rompe la solidaridad</div>
         </div>
       </div>
     </div>
 
-    <!-- 11. La alienación política -->
+    <!-- 13. La alienación política -->
     <div class="study-section" data-section="politica">
       <div class="reading-area">
         <div class="reading-header">
@@ -552,7 +648,7 @@
 
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            La alienación no queda encerrada en la fábrica. En <em>Sobre la cuestión judía</em>, Marx analiza la separación entre el Estado y la <strong>sociedad civil</strong>. El Estado moderno promete que todos somos <strong>iguales</strong> como ciudadanos, pero en la vida real seguimos divididos en <strong>clases</strong> desiguales.<br><br>El poder colectivo de las personas se delega y se concentra en un Estado separado, que parece neutral pero protege el orden existente. Vivimos una <strong>doble vida</strong>: ciudadanos iguales en el «cielo» político, individuos aislados en la «tierra».
+            La alienación no queda encerrada en la fábrica. En <em>Sobre la cuestión judía</em>, Marx analiza la separación entre el Estado y la <strong>sociedad civil</strong>. El Estado moderno promete que todos somos <strong>iguales</strong> como ciudadanos, pero en la vida real seguimos divididos en <strong>clases</strong> desiguales.<br><br>El poder colectivo de las personas se delega y se concentra en un Estado separado, que parece neutral pero protege el orden existente. Vivimos una <strong>doble vida</strong>: ciudadanos iguales en el «cielo» político, individuos aislados en la «tierra». La <strong>ideología</strong> hace pasar los intereses de una clase por los de todos.
           </p>
         </div>
 
@@ -570,7 +666,7 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🏙️ Verificación de comprensión</h4>
+          <h4>🔎 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
@@ -579,13 +675,13 @@
         <div class="options-container">
           <div class="option">En que nadie puede votar</div>
           <div class="option">En que el Estado no existe</div>
-          <div class="option" data-correct="true">En que somos iguales como ciudadanos ante el Estado, pero desiguales en la vida real</div>
           <div class="option">En que todos somos iguales en todo</div>
+          <div class="option" data-correct="true">En que somos iguales como ciudadanos ante el Estado, pero desiguales en la vida real</div>
         </div>
       </div>
     </div>
 
-    <!-- 12. La religión: un mundo invertido -->
+    <!-- 14. La religión: un mundo invertido -->
     <div class="study-section" data-section="religion">
       <div class="reading-area">
         <div class="reading-header">
@@ -618,22 +714,22 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
+          <h4>🧩 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Qué tomó Marx de Feuerbach sobre la religión?</p>
         </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Que Dios es una proyección de la esencia humana: el ser humano hace la religión</div>
           <div class="option">Que la religión es la única verdad</div>
+          <div class="option" data-correct="true">Que Dios es una proyección de la esencia humana: el ser humano hace la religión</div>
           <div class="option">Que Dios creó a los capitalistas</div>
           <div class="option">Que la religión no tiene relación con la sociedad</div>
         </div>
       </div>
     </div>
 
-    <!-- 13. El opio del pueblo -->
+    <!-- 15. El opio del pueblo -->
     <div class="study-section" data-section="opio">
       <div class="reading-area">
         <div class="reading-header">
@@ -666,7 +762,7 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🔎 Verificación de comprensión</h4>
+          <h4>🧪 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
@@ -675,13 +771,13 @@
         <div class="options-container">
           <div class="option">Que es una droga peligrosa que hay que prohibir</div>
           <div class="option">Que los religiosos son malas personas</div>
-          <div class="option">Que la religión cura todos los problemas</div>
           <div class="option" data-correct="true">Que funciona como un analgésico: calma el sufrimiento real sin cambiar sus causas</div>
+          <div class="option">Que la religión cura todos los problemas</div>
         </div>
       </div>
     </div>
 
-    <!-- 14. El fetichismo de la mercancía -->
+    <!-- 16. El fetichismo de la mercancía -->
     <div class="study-section" data-section="fetichismo">
       <div class="reading-area">
         <div class="reading-header">
@@ -714,22 +810,22 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧩 Verificación de comprensión</h4>
+          <h4>🔍 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Qué es el fetichismo de la mercancía?</p>
         </div>
         <div class="options-container">
-          <div class="option">Coleccionar objetos raros</div>
           <div class="option" data-correct="true">Que las relaciones entre personas aparecen como relaciones entre cosas, como precios y marcas</div>
+          <div class="option">Coleccionar objetos raros</div>
           <div class="option">Un ritual religioso antiguo</div>
           <div class="option">Fabricar mercancías a mano</div>
         </div>
       </div>
     </div>
 
-    <!-- 15. Alienación hoy: plataformas y algoritmos -->
+    <!-- 17. Alienación hoy: plataformas y algoritmos -->
     <div class="study-section" data-section="plataformas">
       <div class="reading-area">
         <div class="reading-header">
@@ -762,7 +858,7 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🧪 Verificación de comprensión</h4>
+          <h4>💡 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
@@ -771,13 +867,13 @@
         <div class="options-container">
           <div class="option">Porque trabaja en una fábrica del siglo XIX</div>
           <div class="option">Porque no usa celular</div>
-          <div class="option" data-correct="true">Porque un algoritmo le asigna pedidos, lo califica y controla su trabajo</div>
           <div class="option">Porque es dueño de la empresa</div>
+          <div class="option" data-correct="true">Porque un algoritmo le asigna pedidos, lo califica y controla su trabajo</div>
         </div>
       </div>
     </div>
 
-    <!-- 16. Consumo, redes y política hoy -->
+    <!-- 18. Consumo, redes y política hoy -->
     <div class="study-section" data-section="consumo">
       <div class="reading-area">
         <div class="reading-header">
@@ -810,22 +906,22 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>🔍 Verificación de comprensión</h4>
+          <h4>🧭 Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
           <p>¿Cómo se relacionan las redes sociales con el fetichismo de la mercancía?</p>
         </div>
         <div class="options-container">
-          <div class="option" data-correct="true">Podemos medirnos por nuestra visibilidad, como si fuéramos una mercancía</div>
           <div class="option">Las redes eliminan el consumo</div>
+          <div class="option" data-correct="true">Podemos medirnos por nuestra visibilidad, como si fuéramos una mercancía</div>
           <div class="option">En las redes nadie muestra nada</div>
           <div class="option">No tienen ninguna relación</div>
         </div>
       </div>
     </div>
 
-    <!-- 17. El emprendedor de sí mismo -->
+    <!-- 19. El emprendedor de sí mismo -->
     <div class="study-section" data-section="autoexplotacion">
       <div class="reading-area">
         <div class="reading-header">
@@ -858,7 +954,7 @@
 
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
-          <h4>💡 Verificación de comprensión</h4>
+          <h4>✅ Verificación de comprensión</h4>
           <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
@@ -867,13 +963,13 @@
         <div class="options-container">
           <div class="option">Que un patrón explote a sus obreros</div>
           <div class="option">Descansar todo lo necesario</div>
-          <div class="option">Trabajar en una cooperativa</div>
           <div class="option" data-correct="true">Exigirse rendir cada vez más en nombre del éxito, como «emprendedor de sí mismo»</div>
+          <div class="option">Trabajar en una cooperativa</div>
         </div>
       </div>
     </div>
 
-    <!-- 18. Síntesis: el trabajo y la alienación -->
+    <!-- 20. Síntesis: el trabajo y la alienación -->
     <div class="study-section" data-section="sintesis">
       <div class="reading-area">
         <div class="reading-header">
@@ -913,8 +1009,8 @@
           <p>¿Cuál es la síntesis del tema?</p>
         </div>
         <div class="options-container">
-          <div class="option">El trabajo es siempre un castigo y nunca puede ser libre</div>
           <div class="option" data-correct="true">El trabajo nos hace humanos, pero en el capitalismo se aliena; superarlo exige transformar sus condiciones</div>
+          <div class="option">El trabajo es siempre un castigo y nunca puede ser libre</div>
           <div class="option">La alienación es solo un problema psicológico individual</div>
           <div class="option">La religión es la causa de toda alienación</div>
         </div>

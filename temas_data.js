@@ -141,6 +141,13 @@ const TOPICS = {
         title: 'Dualismo antropológico de Platón: cuerpo y alma',
         duration: '2:45'
       },
+      marx_alienacion: { // https://youtu.be/MNamo55NDp4 — 2026-11-25: cloze de 11 frases armado con la transcripción
+        youtubeId: 'MNamo55NDp4',
+        startTime: 1,
+        endTime: 482,
+        title: 'Alienación y enajenación en Marx',
+        duration: '8:01'
+      },
       sartre: { // https://youtu.be/wz_1sOjHT1A — 2026-11-25: cloze de 11 frases armado con la transcripción
         youtubeId: 'wz_1sOjHT1A',
         startTime: 1,
