@@ -31,9 +31,9 @@
       "timeEstimate": 10
     },
     "cloze": {
-      "enabled": false,
-      "items": 0,
-      "timeEstimate": 0
+      "enabled": true,
+      "items": 11,
+      "timeEstimate": 10
     },
     "cruci": {
       "enabled": true,
@@ -58,6 +58,10 @@
       "page": "conceptos.html",
       "script": "conceptos.js"
     },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
     "cruci": {
       "page": "crossword.html",
       "config": "crossword_config.js"
@@ -69,6 +73,6 @@
   "prerequisites": [],
   "color": "#00adb5",
   "notes": {
-    "realValues": "v2.0 (2026-11-25): material 16 secciones, cuestionario 13, caza 8 niveles / 46, crucigrama LIBERTAD + 8, mapa 30 nodos / 15 pares. Sin video ni cloze todavía."
+    "realValues": "v2.0 (2026-11-25): material 16 secciones, cuestionario 13, caza 8 niveles / 46, crucigrama LIBERTAD + 8, mapa 30 nodos / 15 pares, video y cloze 11 (con la transcripción)."
   }
 }

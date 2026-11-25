@@ -141,6 +141,13 @@ const TOPICS = {
         title: 'Dualismo antropológico de Platón: cuerpo y alma',
         duration: '2:45'
       },
+      sartre: { // https://youtu.be/wz_1sOjHT1A — 2026-11-25: cloze de 11 frases armado con la transcripción
+        youtubeId: 'wz_1sOjHT1A',
+        startTime: 1,
+        endTime: 260,
+        title: 'Sartre: existencia, libertad y angustia',
+        duration: '4:19'
+      },
       etica: {
         youtubeId: 'eHIDwx6J-lA',
         startTime: 1,
