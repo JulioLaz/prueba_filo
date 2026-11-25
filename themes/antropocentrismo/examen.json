@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Pico della Mirandola y del resumen final del tema «Antropocentrismo: El Humano en el Centro del Universo». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo; pide el video (xf96Q4NAdwY) con su cloze.",
+  "version": "1.0.0",
+  "filosofo": "Pico della Mirandola",
+  "tema": "El antropocentrismo: del teocentrismo al Renacimiento, el humanismo, la dignidad del hombre, el dominio de la naturaleza y sus críticas",
+  "intro": "Giovanni Pico della Mirandola (1463–1494), humanista del Renacimiento italiano, escribió el Discurso sobre la dignidad del hombre: el ser humano no tiene lugar fijo y es escultor de sí mismo. El antropocentrismo pone al ser humano en el centro: nace frente al teocentrismo medieval, trae la ciencia moderna y la dignidad humana, pero también el dominio de la naturaleza, hoy criticado por la ecología.",
+  "conceptosClave": "antropocentrismo, Protágoras, teocentrismo, burguesía, imprenta, Renacimiento, perspectiva, Hombre de Vitruvio, humanismo, studia humanitatis, dignidad, camaleón, individuo, heliocentrismo, saber es poder, derechos humanos, antropocentrismo fuerte y débil, valor instrumental, androcentrismo, biocentrismo, valor intrínseco, Buen Vivir",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "florencia",
+      "texto": "Pico della Mirandola pasea por las calles de Florencia, entre talleres de pintores y escultores, y le hace señas al alumno para que lo acompañe."
+    },
+    {
+      "id": "discurso",
+      "texto": "Pico della Mirandola tiene en la mano su Discurso sobre la dignidad del hombre, recién escrito, y le pide al alumno que lo ayude a ensayar sus ideas."
+    },
+    {
+      "id": "academia",
+      "texto": "Pico della Mirandola sale de una reunión de la Academia Platónica de Florencia, en la villa de los Médici, y le propone al alumno conversar a la sombra."
+    },
+    {
+      "id": "camaleon",
+      "texto": "Pico della Mirandola observa un camaleón que cambia de color sobre una rama y le pregunta al alumno qué tiene en común con el ser humano."
+    },
+    {
+      "id": "leonardo",
+      "texto": "Pico della Mirandola le muestra al alumno un dibujo de un tal Leonardo: un hombre dentro de un círculo y un cuadrado. Le pregunta qué ve allí."
+    },
+    {
+      "id": "biblioteca",
+      "texto": "Pico della Mirandola está rodeado de libros en griego, latín, hebreo y árabe, y le dice al alumno que quiere conversar sobre el lugar del ser humano en el mundo."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "concepto",
+      "titulo": "Qué es el antropocentrismo",
+      "guia": "Preguntar qué significa la palabra y qué sostiene el antropocentrismo sobre el valor de la naturaleza.",
+      "claves": "Ánthropos (ser humano) + kéntron (centro). Perspectiva filosófica y ética que sitúa al ser humano en el centro de las consideraciones morales y del conocimiento. El mundo natural tiene valor en la medida en que sirve a los intereses humanos (valor instrumental).",
+      "resumen": "El antropocentrismo pone al ser humano en el centro de la moral y del conocimiento. La naturaleza vale en la medida en que sirve a los intereses humanos.",
+      "palabras": [
+        "antropocentrismo",
+        "ser humano",
+        "centro",
+        "intereses humanos",
+        "valor"
+      ],
+      "ejemplo": "Pensar que un bosque vale solo por la madera que da es una mirada antropocéntrica."
+    },
+    {
+      "id": "raices",
+      "titulo": "Raíces griegas",
+      "guia": "Preguntar qué dijo Protágoras y cómo pensaba Aristóteles el lugar del ser humano.",
+      "claves": "Tradición occidental desde la antigua Grecia. Protágoras (sofista, s. V a. C.): «el hombre es la medida de todas las cosas». Aristóteles: plantas para los animales y animales para el hombre. Preeminencia del ser humano en el cosmos.",
+      "resumen": "Desde Grecia, el ser humano ocupa un lugar especial. Protágoras dijo que el hombre es la medida de todas las cosas.",
+      "palabras": [
+        "Protágoras",
+        "medida",
+        "Grecia",
+        "Aristóteles",
+        "preeminencia"
+      ],
+      "ejemplo": "Decir «hace frío» depende de quién lo siente: el ser humano como medida."
+    },
+    {
+      "id": "teocentrismo",
+      "titulo": "El teocentrismo medieval",
+      "guia": "Preguntar qué era el teocentrismo y qué lugar le daba al ser humano.",
+      "claves": "Edad Media: Dios centro; vida terrenal preparación para la eterna; razón sometida a la fe; filosofía sierva de la teología; orden jerárquico fijo. El ser humano, creado a imagen de Dios, cumbre de la creación; Génesis: dominar la tierra.",
+      "resumen": "En la Edad Media, Dios era el centro de todo y la razón se sometía a la fe. El ser humano tenía un lugar especial, como imagen de Dios, pero fijo.",
+      "palabras": [
+        "teocentrismo",
+        "Dios",
+        "fe",
+        "imagen",
+        "jerárquico"
+      ],
+      "ejemplo": "En el orden medieval, el hijo de un campesino sería campesino."
+    },
+    {
+      "id": "cambio",
+      "titulo": "Las causas del cambio",
+      "guia": "Preguntar qué cambios llevaron del teocentrismo al antropocentrismo.",
+      "claves": "Siglos XIV-XVI: crecimiento de ciudades y burguesía comercial con riqueza propia; imprenta de Gutenberg (c. 1450); caída de Constantinopla (1453) y llegada de textos griegos a Italia; viajes de exploración (Colón, 1492). Confianza en las propias fuerzas humanas.",
+      "resumen": "Las ciudades y la burguesía, la imprenta, los textos griegos que llegaron a Italia y los viajes como el de Colón llevaron al ser humano al centro.",
+      "palabras": [
+        "burguesía",
+        "imprenta",
+        "Gutenberg",
+        "Constantinopla",
+        "Colón"
+      ],
+      "ejemplo": "Internet cambió nuestra manera de pensar como la imprenta cambió la del Renacimiento."
+    },
+    {
+      "id": "renacimiento",
+      "titulo": "El Renacimiento y Leonardo",
+      "guia": "Preguntar qué fue el Renacimiento, qué es la perspectiva y qué representa el Hombre de Vitruvio.",
+      "claves": "Siglos XV-XVI, Italia (Florencia, mecenas Médici); renacer de la Antigüedad grecorromana. Perspectiva: espacio desde el ojo del observador; artistas firman; retratos; David de Miguel Ángel. Leonardo: Hombre de Vitruvio (c. 1490), proporciones en círculo y cuadrado, ser humano como medida; hombre universal.",
+      "resumen": "El Renacimiento quiso hacer renacer la Antigüedad. La perspectiva y el Hombre de Vitruvio de Leonardo muestran al ser humano como medida del mundo.",
+      "palabras": [
+        "Renacimiento",
+        "perspectiva",
+        "Leonardo",
+        "Hombre de Vitruvio",
+        "hombre universal"
+      ],
+      "ejemplo": "Una selfie también organiza el mundo desde el punto de vista de quien la saca."
+    },
+    {
+      "id": "humanismo",
+      "titulo": "El humanismo",
+      "guia": "Preguntar qué eran los studia humanitatis y qué buscaban los humanistas.",
+      "claves": "Movimiento intelectual del Renacimiento. Studia humanitatis: gramática, retórica, historia, poesía, filosofía moral, con los clásicos. Formar personas libres y ciudadanos, no solo teólogos. Petrarca; Erasmo de Rotterdam (Elogio de la locura, tolerancia, crítica a abusos de la Iglesia).",
+      "resumen": "El humanismo propuso los studia humanitatis para formar personas libres. Erasmo defendió la tolerancia.",
+      "palabras": [
+        "humanismo",
+        "studia humanitatis",
+        "Erasmo",
+        "Petrarca",
+        "tolerancia"
+      ],
+      "ejemplo": "Estudiar historia y literatura para entendernos a nosotros mismos."
+    },
+    {
+      "id": "pico",
+      "titulo": "Pico della Mirandola y la dignidad",
+      "guia": "Preguntar qué dice el Discurso sobre la dignidad del hombre y dónde está la dignidad humana.",
+      "claves": "Discurso sobre la dignidad del hombre (1486): Dios le dice a Adán que no le dio lugar fijo ni forma propia para que elija lo que quiere ser. Puede degenerar en bestia o elevarse a lo divino; camaleón; escultor de sí mismo. La dignidad está en la libertad.",
+      "resumen": "Para Pico della Mirandola, el ser humano no tiene un lugar fijo: es como un camaleón, escultor de sí mismo. Su dignidad está en su libertad.",
+      "palabras": [
+        "Pico della Mirandola",
+        "dignidad",
+        "libertad",
+        "camaleón",
+        "escultor de sí mismo"
+      ],
+      "ejemplo": "Nadie nace con su futuro escrito: cada uno se va haciendo con sus elecciones."
+    },
+    {
+      "id": "ciencia",
+      "titulo": "Individuo y revolución científica",
+      "guia": "Preguntar por el descubrimiento del individuo y la paradoja de Copérnico.",
+      "claves": "Individuo: ya no solo un rol; autobiografías, diarios, retratos; Montaigne, Ensayos: «yo mismo soy la materia de mi libro»; libertad de conciencia. Copérnico (1543) heliocentrismo; Galileo, telescopio, condenado. Paradoja: la Tierra deja de ser el centro, pero la razón humana se vuelve el centro del conocimiento; observar, medir, experimentar.",
+      "resumen": "En el Renacimiento aparece el individuo, alguien único. Con Copérnico, la Tierra deja de ser el centro del universo, pero la razón humana se vuelve el centro del conocimiento.",
+      "palabras": [
+        "individuo",
+        "Montaigne",
+        "Copérnico",
+        "heliocentrismo",
+        "razón"
+      ],
+      "ejemplo": "Hoy creemos en lo que se comprueba con experimentos, no solo en lo que dice una autoridad."
+    },
+    {
+      "id": "dominio",
+      "titulo": "Dominar la naturaleza",
+      "guia": "Preguntar qué significan «saber es poder» y «amos y poseedores de la naturaleza».",
+      "claves": "Modernidad: sujeto racional que domina la naturaleza. Bacon: «saber es poder», conocer para poner la naturaleza a nuestro servicio. Descartes: «amos y poseedores de la naturaleza»; naturaleza y animales como máquinas. La naturaleza pasa a ser un recurso.",
+      "resumen": "Bacon dijo que «saber es poder» y Descartes, que la ciencia nos haría amos y poseedores de la naturaleza. Así la naturaleza pasó a ser un recurso.",
+      "palabras": [
+        "dominar",
+        "Bacon",
+        "saber es poder",
+        "Descartes",
+        "recurso"
+      ],
+      "ejemplo": "Talar un bosque entero para plantar soja muestra la naturaleza vista como recurso."
+    },
+    {
+      "id": "logros",
+      "titulo": "Dignidad y antropocentrismo fuerte y débil",
+      "guia": "Preguntar por los logros de la Ilustración y la diferencia entre antropocentrismo fuerte y débil.",
+      "claves": "Ilustración (s. XVIII): razón y progreso; Kant: persona fin en sí misma, dignidad, no precio; Declaración de los Derechos del Hombre (1789); derechos humanos. Fuerte: solo los humanos valen, explotar sin límites. Débil: cuidar la naturaleza por la salud y las generaciones futuras. En ambos: valor instrumental.",
+      "resumen": "Gran logro: la dignidad humana y los derechos humanos. El antropocentrismo fuerte explota la naturaleza; el débil la cuida por nuestro bien. En los dos, la naturaleza tiene valor instrumental.",
+      "palabras": [
+        "dignidad",
+        "derechos humanos",
+        "fuerte",
+        "débil",
+        "valor instrumental"
+      ],
+      "ejemplo": "Cuidar el río solo para tener agua potable es antropocentrismo débil."
+    },
+    {
+      "id": "criticas",
+      "titulo": "Exclusiones y crítica ecológica",
+      "guia": "Preguntar quiénes quedaron afuera del «hombre» universal y qué denuncian los ecologistas.",
+      "claves": "El hombre universal era europeo, varón, propietario: androcentrismo, exclusión de las mujeres; colonización, «misión civilizadora», pueblos originarios tratados como inferiores. Ecologistas: consecuencias destructivas, explotación insostenible, degradación ambiental; Rachel Carson, Primavera silenciosa (1962); crisis climática, pérdida de biodiversidad.",
+      "resumen": "El «hombre» universal era en la práctica varón y europeo: dejó afuera a mujeres y pueblos originarios. Los ecologistas denuncian la explotación y la degradación ambiental.",
+      "palabras": [
+        "androcentrismo",
+        "colonización",
+        "ecologistas",
+        "explotación",
+        "biodiversidad"
+      ],
+      "ejemplo": "La desaparición de especies muestra que la naturaleza no es un recurso infinito."
+    },
+    {
+      "id": "alternativas",
+      "titulo": "Biocentrismo, Buen Vivir y posthumanismo",
+      "guia": "Preguntar qué alternativas se proponen al antropocentrismo.",
+      "claves": "Ética biocéntrica (todos los seres vivos) y ecocéntrica (ecosistemas): valor intrínseco. Leopold: ética de la tierra; Naess: ecología profunda. Sumak Kawsay / Buen Vivir: equilibrio con la comunidad y la Pachamama, reciprocidad; Ecuador 2008, derechos de la naturaleza. Transhumanismo: mejorar al humano con tecnología; posthumanismo: cuestiona al humano superior y separado. Asumir responsabilidades hacia el planeta.",
+      "resumen": "Se proponen la ética biocéntrica, que reconoce el valor intrínseco de la vida, y el Buen Vivir andino, de equilibrio y reciprocidad con la Pachamama. El posthumanismo cuestiona al ser humano como centro.",
+      "palabras": [
+        "biocéntrica",
+        "valor intrínseco",
+        "Buen Vivir",
+        "Pachamama",
+        "posthumanismo"
+      ],
+      "ejemplo": "Devolverle a la tierra lo que se le toma, como en la reciprocidad andina."
+    }
+  ],
+  "casos": [
+    {
+      "id": "bosque",
+      "texto": "Una empresa quiere talar un bosque nativo para plantar soja, porque da más ganancias.",
+      "claves": "Aplicar antropocentrismo fuerte (naturaleza como recurso, saber es poder) frente al débil y al biocentrismo (valor intrínseco); crítica ecológica."
+    },
+    {
+      "id": "hospital",
+      "texto": "Para construir un hospital hay que talar cien árboles centenarios.",
+      "claves": "Distinguir antropocentrismo débil (intereses humanos, generaciones futuras) y biocentrismo; dignidad humana; responsabilidades hacia el planeta."
+    },
+    {
+      "id": "destino",
+      "texto": "Un amigo dice que no vale la pena esforzarse porque «cada uno nace con su destino».",
+      "claves": "Aplicar a Pico della Mirandola: el ser humano no tiene lugar fijo, camaleón, escultor de sí mismo; dignidad en la libertad; frente al orden medieval fijo."
+    },
+    {
+      "id": "mascotas",
+      "texto": "En un debate escolar se discute si los animales deberían tener derechos.",
+      "claves": "Aplicar valor instrumental y valor intrínseco; Descartes y los animales como máquinas; ética biocéntrica; antropocentrismo débil."
+    },
+    {
+      "id": "rio",
+      "texto": "Un pueblo originario se opone a una mina que contaminaría el río, aunque traería trabajo.",
+      "claves": "Aplicar el Buen Vivir: Pachamama, reciprocidad, derechos de la naturaleza; colonización; explotación y degradación ambiental."
+    },
+    {
+      "id": "chip",
+      "texto": "Una empresa ofrece implantar un chip en el cerebro para estudiar más rápido.",
+      "claves": "Aplicar transhumanismo (mejorar al humano con tecnología, antropocentrismo extremo) y posthumanismo; dignidad; desigualdad."
+    },
+    {
+      "id": "historia",
+      "texto": "En un libro de historia solo aparecen varones europeos como protagonistas del Renacimiento.",
+      "claves": "Aplicar la crítica del androcentrismo y la colonización: el «hombre» universal era varón y europeo; dignidad proclamada para todos pero practicada para algunos."
+    },
+    {
+      "id": "clima",
+      "texto": "Un compañero dice que la crisis climática se va a resolver sola con más tecnología.",
+      "claves": "Aplicar «saber es poder» y la confianza moderna en el progreso; crítica ecológica; responsabilidades hacia el planeta; antropocentrismo débil y biocentrismo."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "lugar",
+      "texto": "¿Te sentís parte de la naturaleza o separado de ella? ¿Por qué?"
+    },
+    {
+      "id": "escultor",
+      "texto": "¿En qué cosas sentís que sos «escultor de vos mismo»?"
+    },
+    {
+      "id": "valor",
+      "texto": "¿Hay algo de la naturaleza que te parezca valioso aunque no te sirva para nada?"
+    },
+    {
+      "id": "logro",
+      "texto": "¿Qué logro del antropocentrismo no querrías perder nunca?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Pico della Mirandola, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué es el antropocentrismo y qué valor le da a la naturaleza?",
+    "¿Qué dijo Protágoras y qué relación tiene con el antropocentrismo?",
+    "¿En qué se diferencian el teocentrismo medieval y el antropocentrismo renacentista?",
+    "¿Qué causas llevaron del teocentrismo al antropocentrismo?",
+    "¿Qué expresan la perspectiva y el Hombre de Vitruvio de Leonardo?",
+    "Para Pico della Mirandola, ¿dónde está la dignidad del ser humano?",
+    "¿Qué significa «saber es poder» y cómo cambió la relación con la naturaleza?",
+    "¿Qué críticas recibe el antropocentrismo y qué alternativas se proponen?"
+  ]
+}

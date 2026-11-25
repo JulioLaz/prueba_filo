@@ -402,6 +402,12 @@ const TOPICS = {
         notaAprobacion: 6,
         minimoActividad: 60
       },
+      antropocentrismo: {
+        filosofo: 'Pico della Mirandola',
+        icono: '🎭',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
       etica_kant: {
         filosofo: 'Immanuel Kant',
         icono: '⚖️',

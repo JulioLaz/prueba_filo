@@ -1,58 +1,95 @@
-console.log('📋 Iniciando carga de configuración del crucigrama de Antropocentrismo...');
+// themes/antropocentrismo/crossword_config.js
+// Crucigrama — Antropocentrismo. Central HUMANISMO y una palabra por letra, todas del material,
+// con sección y frase para las pistas escalonadas.
+// Versión 2.0 (2026-11-25): rehecho (antes HUMANO, con ORGANIZACION, que no está en el material).
+console.log('📋 Iniciando carga de configuración del crucigrama...');
 const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Antropocentrismo - El Humano en el Centro del Universo",
-    
+    title: "Antropocentrismo: el humano en el centro",
+
     // Palabra central vertical (se normaliza automáticamente)
-    central: "HUMANO",
-    
+    central: "HUMANISMO",
+
     // Palabras horizontales que cruzan con la central
-    // crossIndex indica qué letra de la central usar (0-5 para HUMANO)
+    // crossIndex indica qué letra de la central usar (0-8 para HUMANISMO)
     entries: [
       {
-        answer: "HOMBRE",
-        clue: "Ser que se convierte en medida de todas las cosas durante el Renacimiento",
-        crossIndex: 0 // Cruce en la 'H' de HUMANO
+        answer: "HELIOCENTRISMO",
+        clue: "Teoría de Copérnico: el Sol está en el centro",
+        seccion: "🔭 La revolución científica",
+        frase: "En 1543, Copérnico propuso el _____: el Sol, y no la Tierra, está en el centro.",
+        crossIndex: 0 // Cruce en la 'H' de HUMANISMO
       },
       {
-        answer: "UNIVERSO",
-        clue: "Según el antropocentrismo, el ser humano es el centro de este conjunto de todo lo existente",
-        crossIndex: 1 // Cruce en la 'U' de HUMANO
+        answer: "BURGUESIA",
+        clue: "Nueva clase de comerciantes que creció en las ciudades",
+        seccion: "🔄 Del teocentrismo al antropocentrismo",
+        frase: "Crecieron las ciudades y una nueva _____ de comerciantes, con riqueza propia.",
+        crossIndex: 1 // Cruce en la 'U' de HUMANISMO
       },
       {
-        answer: "MODERNIDAD",
-        clue: "Época histórica caracterizada por el antropocentrismo que sucede a la Edad Media",
-        crossIndex: 2 // Cruce en la 'M' de HUMANO
+        answer: "MEDIDA",
+        clue: "Según Protágoras, el hombre es la ___ de todas las cosas",
+        seccion: "🏛️ Raíces griegas: el hombre es la medida",
+        frase: "«El hombre es la _____ de todas las cosas».",
+        crossIndex: 2 // Cruce en la 'M' de HUMANISMO
       },
       {
-        answer: "AUTORIDAD",
-        clue: "Poder tradicional que el antropocentrismo cuestiona en favor del juicio racional humano",
-        crossIndex: 3 // Cruce en la 'A' de HUMANO
+        answer: "PROTAGORAS",
+        clue: "Sofista griego que puso al hombre como medida de todas las cosas",
+        seccion: "🏛️ Raíces griegas: el hombre es la medida",
+        frase: "En el siglo V a. C., el sofista _____ afirmó una frase famosa.",
+        crossIndex: 3 // Cruce en la 'A' de HUMANISMO
       },
       {
         answer: "NATURALEZA",
-        clue: "Conjunto del mundo físico que el antropocentrismo ve como recurso para uso humano",
-        crossIndex: 4 // Cruce en la 'N' de HUMANO
+        clue: "Para Bacon y Descartes, lo que la ciencia debía dominar",
+        seccion: "⚙️ Dominar la naturaleza",
+        frase: "La _____ pasó a ser un recurso para usar.",
+        crossIndex: 4 // Cruce en la 'N' de HUMANISMO
       },
       {
-        answer: "ORGANIZACION",
-        clue: "Estructura social que el antropocentrismo basa en principios racionales humanos",
-        crossIndex: 5 // Cruce en la 'O' de HUMANO
+        answer: "IMPRENTA",
+        clue: "Invento de Gutenberg que multiplicó los libros hacia 1450",
+        seccion: "🔄 Del teocentrismo al antropocentrismo",
+        frase: "La _____ de Gutenberg (hacia 1450) multiplicó los libros.",
+        crossIndex: 5 // Cruce en la 'I' de HUMANISMO
+      },
+      {
+        answer: "ERASMO",
+        clue: "Humanista de Rotterdam, autor del Elogio de la locura",
+        seccion: "📚 El humanismo",
+        frase: "_____ de Rotterdam, autor del Elogio de la locura, defendió la tolerancia.",
+        crossIndex: 6 // Cruce en la 'S' de HUMANISMO
+      },
+      {
+        answer: "MIRANDOLA",
+        clue: "Pico della ___, autor del Discurso sobre la dignidad del hombre",
+        seccion: "🦎 Pico della Mirandola: la dignidad del hombre",
+        frase: "En 1486, Giovanni Pico della _____ escribió el Discurso sobre la dignidad del hombre.",
+        crossIndex: 7 // Cruce en la 'M' de HUMANISMO
+      },
+      {
+        answer: "TEOCENTRISMO",
+        clue: "Visión medieval con Dios en el centro de todo",
+        seccion: "⛪ El teocentrismo medieval",
+        frase: "Durante la Edad Media, Europa vivió en el _____: Dios era el centro de todo.",
+        crossIndex: 8 // Cruce en la 'O' de HUMANISMO
       }
     ],
-    
+
     // Texto para el prompt de respuesta
     promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-    
+
     // Configuración de sonidos (rutas relativas desde crossword.html)
     sounds: {
       correct: "sound/collect_points.mp3",
-      wrong: "sound/negative_beep.mp3", 
+      wrong: "sound/negative_beep.mp3",
       complete: "sound/fin_caza.mp3"
     },
-    
+
     // Opciones del juego
     options: {
       showHints: true,
@@ -62,23 +99,23 @@ try {
       showProgressBar: true,
       enableTimer: true
     },
-    
+
     // Información educativa adicional
     educational: {
-      introduction: "El antropocentrismo marca el paso del mundo medieval teocéntrico al mundo moderno centrado en el ser humano y su capacidad racional.",
-      conclusion: "El antropocentrismo transformó la civilización occidental pero hoy enfrentamos el desafío de evolucionar hacia formas más responsables y sostenibles.",
-      keyWords: ["antropocentrismo", "humanismo", "renacimiento", "modernidad", "individualismo", "racionalismo"]
+      introduction: "El humanismo puso al ser humano en el centro. Completá el crucigrama con los conceptos del antropocentrismo.",
+      conclusion: "¡Sos el escultor de vos mismo! Repasaste el heliocentrismo, la burguesía, la medida, a Protágoras, la naturaleza, la imprenta, a Erasmo, a Pico della Mirandola y el teocentrismo.",
+      keyWords: ["HELIOCENTRISMO", "BURGUESIA", "MEDIDA", "PROTAGORAS", "NATURALEZA", "IMPRENTA", "ERASMO", "MIRANDOLA", "TEOCENTRISMO"]
     },
-    
+
     // Metadatos para debug
     metadata: {
-      version: "2.0_antropocentrismo_secundaria",
+      version: "2.0_secundaria", // 2026-11-24: palabras del material, con seccion y frase para las pistas escalonadas
       created: new Date().toISOString(),
-      theme: "antropocentrismo-secundaria",
-      totalWords: 6,
-      difficulty: "intermediate",
+      theme: "antropocentrismo-humanismo-secundaria",
+      totalWords: 9,
+      difficulty: "beginner-intermediate",
       targetAudience: "estudiantes-secundaria",
-      educationalLevel: "15-18 años"
+      educationalLevel: "14-18 años"
     }
   };
 
@@ -146,7 +183,7 @@ try {
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
   console.log(`📊 Resumen: "${config.title}"`);
-  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   📝 ${config.entries.length} palabras - Central: "${config.central}"`);
   console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
   console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
   
@@ -155,8 +192,8 @@ try {
   const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
   
   console.log(`📈 Estadísticas:`);
-  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
-  console.log(`   📝 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
+  console.log(`   📏 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📏 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
   
   // Log para debug (solo en desarrollo)
   if (location.hostname === 'localhost' || location.search.includes('debug=1')) {

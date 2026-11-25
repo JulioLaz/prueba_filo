@@ -14,7 +14,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | 🟡 23 (**) | ✅ Sócrates |
 | `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 20 | ✅ Kant |
 | `pragmatismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ UTILIDAD | ✅ 32 / 15 | ✅ 13 | ✅ W. James |
-| `antropocentrismo` | 🟡 20 | 🟡 12 | ✅ 8 | 🟡 HUMANO | 🟡 58 / 15 | 🟡 13 (**) | ❌ |
+| `antropocentrismo` | ✅ 19 | ✅ 13 | ✅ 8 | ✅ HUMANISMO | ✅ 34 / 15 | 🟡 13 (**) | ✅ Pico della Mirandola |
 
 (*) No se pudo verificar la duración real del video de Hedonismo (`endTime` 168 porque el cloze llega a 2:45).
 (**) El `endTime` ya alcanza a todos los huecos, pero no se comprobó que cada hueco coincida con lo que dice el video (YouTube no se reproduce en las pruebas).
@@ -31,11 +31,10 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 - Cuestionario 13, caza 8 niveles / 47, crucigrama UTILIDAD + 8 (sin MILL ni OPTIMISMO), mapa 32 nodos / 15 pares, examen con William James (pide el video) y resumen final.
 - Video y cloze (13) sin cambios; no se comprobaron contra la transcripción.
 
-**Antropocentrismo (`antropocentrismo`)**
-- `config.json` dice 8 secciones (son 20) y 10 preguntas (son 12).
-- Crucigrama: ORGANIZACION no está en el material.
-- `quiz.js`: el comentario inicial dice «Unidad IV».
-- Revisar el cuestionario y el mapa contra el material; comprobar el cloze con el video. Examen oral: no tiene (opcional).
+**Antropocentrismo (`antropocentrismo`)** — ✅ v2.0 (2026-11-25)
+- Material de 19 secciones cortas (antes 20 de 126-220 palabras): concepto, Protágoras, teocentrismo, causas del cambio, Renacimiento, el Hombre de Vitruvio, humanismo, Pico della Mirandola, el individuo, la revolución científica, dominar la naturaleza (Bacon, Descartes), Ilustración y dignidad, antropocentrismo fuerte y débil, exclusiones (androcentrismo, colonización), crítica ecológica, biocentrismo, Buen Vivir, transhumanismo y síntesis. Suma las ideas del video.
+- Cuestionario 13, caza 8 niveles / 48, crucigrama HUMANISMO + 9 (sin ORGANIZACION), mapa 34 nodos / 15 pares, examen con Pico della Mirandola (pide el video) y resumen final.
+- Video y cloze (13) sin cambios; falta comprobar los tiempos con la transcripción.
 
 ## Unidad 2
 
@@ -83,6 +82,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Antropocentrismo completo (v2.0): material de 19 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama HUMANISMO, mapa con 15 pares y examen con Pico della Mirandola.
 - 2026-11-25: Pragmatismo completo (v2.0): material de 18 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama UTILIDAD, mapa con 15 pares y examen con William James.
 - 2026-11-25: Ética de Kant completa (v2.0): material de 20 secciones cortas, cuestionario de 13, caza de 8 niveles, crucigrama DIGNIDAD, mapa con 15 pares y examen con Kant. Se corrigió el final del material (iba a un tema inexistente).
 - 2026-11-25: tema nuevo de la Unidad II, «Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo» (`descartes_sujeto`), con todas las actividades, video (hasta 14:20) con cloze de 16 frases de la transcripción y examen con Descartes.
