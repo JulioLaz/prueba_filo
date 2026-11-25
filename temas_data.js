@@ -27,6 +27,13 @@ const TOPICS = {
     biography: 'Filósofo neokantiano alemán (1874–1945). Desarrolló la teoría de las “formas simbólicas”: el ser humano conoce y crea mundo a través de sistemas simbólicos (lenguaje, mito, arte, ciencia). Obras destacadas: *Filosofía de las formas simbólicas*, *Antropología filosófica*.'
   },
 
+  nietzsche_superhombre: {
+    icon: '⚡',
+    name: 'Friedrich Nietzsche',
+    desc: 'Dios ha muerto: nihilismo, moral del rebaño, voluntad de poder, eterno retorno y superhombre. (Ej. Así habló Zaratustra, La genealogía de la moral)',
+    biography: 'Filósofo alemán (1844–1900), profesor de filología que dejó la universidad por su salud. Anunció la muerte de Dios, criticó la moral del rebaño nacida del resentimiento y propuso crear valores nuevos desde la voluntad de poder. Su hermana modificó sus escritos y el nazismo los usó, pero su superhombre no es una raza: es un horizonte de autocreación. Obras: La gaya ciencia, Así habló Zaratustra, Más allá del bien y del mal, La genealogía de la moral.'
+  },
+
   marx_alienacion: {
     icon: '🏭',
     name: 'Karl Marx',
@@ -140,6 +147,13 @@ const TOPICS = {
         endTime: 165,
         title: 'Dualismo antropológico de Platón: cuerpo y alma',
         duration: '2:45'
+      },
+      nietzsche_superhombre: { // https://youtu.be/FbvXaVJTKrU — 2026-11-25: hasta 6:48 (después el video habla de Hegel); cloze de 13 frases con la transcripción
+        youtubeId: 'FbvXaVJTKrU',
+        startTime: 1,
+        endTime: 409,
+        title: 'Nietzsche: Dios ha muerto y el superhombre',
+        duration: '6:48'
       },
       marx_alienacion: { // https://youtu.be/MNamo55NDp4 — 2026-11-25: cloze de 11 frases armado con la transcripción
         youtubeId: 'MNamo55NDp4',
@@ -317,6 +331,12 @@ const TOPICS = {
       metodo: {
         filosofo: 'René Descartes',
         icono: '🔎',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      nietzsche_superhombre: {
+        filosofo: 'Friedrich Nietzsche',
+        icono: '⚡',
         notaAprobacion: 6,
         minimoActividad: 60
       },

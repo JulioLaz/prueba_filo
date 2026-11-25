@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Nietzsche · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Nietzsche (Unidad II). Versión 1.0 (2026-11-25): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Nietzsche
+    window.MapaSystemConfig = {
+      tema: 'nietzsche_superhombre',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Muerte de Dios", definition: "Diagnóstico: el fundamento trascendente de Occidente se derrumbó." },
+        { term: "Nihilismo", definition: "Desvalorización de los valores supremos." },
+        { term: "Nihilismo Pasivo", definition: "Resignación o búsqueda de sustitutos cómodos de Dios." },
+        { term: "Nihilismo Activo", definition: "Destruir los viejos ídolos para crear valores nuevos." },
+        { term: "Genealogía", definition: "Investigación del origen histórico de los valores." },
+        { term: "Moral Noble", definition: "Bueno es lo fuerte, valiente y creador." },
+        { term: "Moral de Esclavos", definition: "Invierte los valores: llama bien a la debilidad." },
+        { term: "Resentimiento", definition: "Emoción de los impotentes frente a los fuertes." },
+        { term: "Moral del Rebaño", definition: "Busca domesticar y uniformar a todos." },
+        { term: "Voluntad de Poder", definition: "Impulso de la vida a superarse, crecer y crear." },
+        { term: "Eterno Retorno", definition: "Prueba: querer que cada instante se repita." },
+        { term: "Último Hombre", definition: "Solo busca comodidad, seguridad y pequeños placeres." },
+        { term: "Tres Transformaciones", definition: "Camello, león y niño: de obedecer a crear." },
+        { term: "Superhombre", definition: "Horizonte de autocreación que afirma la vida." },
+        { term: "Fidelidad a la Tierra", definition: "Afirmar esta vida y no un más allá." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '⚡'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '⚡']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>⚡ Nietzsche</span></div>
+      </div>
+      <h3 class="sub">La muerte de Dios y el superhombre</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Nietzsche">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Nietzsche</div>
+            <div class="desc">Tras la <strong>muerte de Dios</strong>, crear valores nuevos y <strong>afirmar la vida</strong>: el camino al <strong>superhombre</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Friedrich Nietzsche">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Friedrich Nietzsche</div>
+                <div class="desc">Filósofo alemán (1844–1900).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Obras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Obras</div><div class="desc"><em>Así habló Zaratustra</em>, <em>La gaya ciencia</em>, <em>La genealogía de la moral</em>.</div></div></li>
+                <li><div class="node" data-title="A martillazos"><div class="toggle" style="visibility: hidden;"></div><div class="title">A martillazos</div><div class="desc">Derribar las <strong>verdades absolutas</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Dios ha Muerto">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Dios ha Muerto</div>
+                <div class="desc">Un <strong>diagnóstico</strong> de Occidente.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Lo hemos matado"><div class="toggle" style="visibility: hidden;"></div><div class="title">Lo hemos matado</div><div class="desc">La sociedad dejó de <strong>creer</strong>.</div></div></li>
+                <li><div class="node" data-title="Feuerbach"><div class="toggle" style="visibility: hidden;"></div><div class="title">Feuerbach</div><div class="desc">El ser humano <strong>crea</strong> a Dios.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Nihilismo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Nihilismo</div>
+                <div class="desc">Frente a la <strong>nada</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Pasivo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Pasivo</div><div class="desc">Resignación y <strong>sustitutos</strong> de Dios.</div></div></li>
+                <li><div class="node" data-title="Activo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Activo</div><div class="desc">Destruir <strong>ídolos</strong> y crear.</div></div></li>
+                <li><div class="node" data-title="Lienzo en blanco"><div class="toggle" style="visibility: hidden;"></div><div class="title">Lienzo en blanco</div><div class="desc">El caminante sobre el mar de nubes.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Genealogía de la Moral">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Genealogía de la Moral</div>
+                <div class="desc">Los valores tienen <strong>historia</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Moral noble"><div class="toggle" style="visibility: hidden;"></div><div class="title">Moral noble</div><div class="desc">Bueno = <strong>fuerte</strong>, como un buen pico.</div></div></li>
+                <li><div class="node" data-title="Moral de esclavos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Moral de esclavos</div><div class="desc">Nace del <strong>resentimiento</strong>.</div></div></li>
+                <li><div class="node" data-title="Rebaño"><div class="toggle" style="visibility: hidden;"></div><div class="title">Rebaño</div><div class="desc"><strong>Domesticar</strong> y uniformar.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Voluntad de Poder">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Voluntad de Poder</div>
+                <div class="desc">La vida quiere <strong>superarse</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="No es dominar"><div class="toggle" style="visibility: hidden;"></div><div class="title">No es dominar</div><div class="desc">Ni poder político ni riqueza.</div></div></li>
+                <li><div class="node" data-title="Darse estilo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Darse estilo</div><div class="desc"><strong>Autocreación</strong>: la vida como obra de arte.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Eterno Retorno">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Eterno Retorno</div>
+                <div class="desc">El pensamiento más <strong>abismal</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Todo vuelve"><div class="toggle" style="visibility: hidden;"></div><div class="title">Todo vuelve</div><div class="desc">Idéntico, infinitas veces.</div></div></li>
+                <li><div class="node" data-title="La prueba"><div class="toggle" style="visibility: hidden;"></div><div class="title">La prueba</div><div class="desc">¿<strong>Repetirías</strong> tu vida?</div></div></li>
+                <li><div class="node" data-title="Amor fati"><div class="toggle" style="visibility: hidden;"></div><div class="title">Amor fati</div><div class="desc">Amar el propio <strong>destino</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Así Habló Zaratustra">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Así Habló Zaratustra</div>
+                <div class="desc">El camino hacia el superhombre.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Una cuerda"><div class="toggle" style="visibility: hidden;"></div><div class="title">Una cuerda</div><div class="desc">El hombre es un <strong>tránsito</strong> sobre un abismo.</div></div></li>
+                <li><div class="node" data-title="Último hombre"><div class="toggle" style="visibility: hidden;"></div><div class="title">Último hombre</div><div class="desc">Solo <strong>comodidad</strong>.</div></div></li>
+                <li><div class="node" data-title="Camello, león y niño"><div class="toggle" style="visibility: hidden;"></div><div class="title">Camello, león y niño</div><div class="desc">De <strong>obedecer</strong> a crear.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Superhombre">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Superhombre</div>
+                <div class="desc">Fiel a la <strong>tierra</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Afirma la vida"><div class="toggle" style="visibility: hidden;"></div><div class="title">Afirma la vida</div><div class="desc">Disfruta el <strong>presente</strong> y crea valores.</div></div></li>
+                <li><div class="node" data-title="Lo que no es"><div class="toggle" style="visibility: hidden;"></div><div class="title">Lo que no es</div><div class="desc">Ni raza ni tirano: puede estar en <strong>silla de ruedas</strong>.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Muerte de Dios</h4><p>Diagnóstico: el fundamento trascendente de Occidente se derrumbó.</p></article>
+          <article class="term"><h4>Nihilismo</h4><p>Desvalorización de los valores supremos.</p></article>
+          <article class="term"><h4>Nihilismo Pasivo</h4><p>Resignación o búsqueda de sustitutos cómodos de Dios.</p></article>
+          <article class="term"><h4>Nihilismo Activo</h4><p>Destruir los viejos ídolos para crear valores nuevos.</p></article>
+          <article class="term"><h4>Genealogía</h4><p>Investigación del origen histórico de los valores.</p></article>
+          <article class="term"><h4>Moral Noble</h4><p>Bueno es lo fuerte, valiente y creador.</p></article>
+          <article class="term"><h4>Moral de Esclavos</h4><p>Invierte los valores: llama bien a la debilidad.</p></article>
+          <article class="term"><h4>Resentimiento</h4><p>Emoción de los impotentes frente a los fuertes.</p></article>
+          <article class="term"><h4>Moral del Rebaño</h4><p>Busca domesticar y uniformar a todos.</p></article>
+          <article class="term"><h4>Voluntad de Poder</h4><p>Impulso de la vida a superarse, crecer y crear.</p></article>
+          <article class="term"><h4>Eterno Retorno</h4><p>Prueba: querer que cada instante se repita.</p></article>
+          <article class="term"><h4>Último Hombre</h4><p>Solo busca comodidad, seguridad y pequeños placeres.</p></article>
+          <article class="term"><h4>Tres Transformaciones</h4><p>Camello, león y niño: de obedecer a crear.</p></article>
+          <article class="term"><h4>Superhombre</h4><p>Horizonte de autocreación que afirma la vida.</p></article>
+          <article class="term"><h4>Fidelidad a la Tierra</h4><p>Afirmar esta vida y no un más allá.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de Nietzsche.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Afirmar la vida</summary>
+      <div class="content">
+        <h4>Preguntas para pensar con Nietzsche</h4>
+        <ul>
+          <li><strong>Valores:</strong> ¿Este valor lo elegí yo o lo heredé sin pensar?</li>
+          <li><strong>Rebaño:</strong> ¿Hago esto porque quiero o porque todos lo hacen?</li>
+          <li><strong>Resentimiento:</strong> ¿Critico a alguien solo porque se destaca?</li>
+          <li><strong>Eterno retorno:</strong> ¿Querría vivir este día otra vez, infinitas veces?</li>
+          <li><strong>Niño:</strong> ¿Qué puedo crear hoy, en lugar de solo obedecer o destruir?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

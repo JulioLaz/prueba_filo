@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Friedrich Nietzsche y del resumen final del tema «Nietzsche: La Muerte de Dios y el Superhombre». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo; pide el video (FbvXaVJTKrU) con su cloze.",
+  "version": "1.0.0",
+  "filosofo": "Friedrich Nietzsche",
+  "tema": "Nietzsche: la muerte de Dios, el nihilismo, la genealogía de la moral, la voluntad de poder, el eterno retorno y el superhombre",
+  "intro": "Friedrich Nietzsche (1844–1900) anunció que «Dios ha muerto»: los fundamentos de la verdad y la moral de Occidente se derrumbaron y llegó el nihilismo. Criticó la moral del rebaño, nacida del resentimiento, y propuso crear valores nuevos desde la voluntad de poder. El eterno retorno pone a prueba si afirmamos la vida, y el superhombre, fiel a la tierra, supera al último hombre.",
+  "conceptosClave": "muerte de Dios, nihilismo pasivo y activo, genealogía, moral noble, moral de esclavos, resentimiento, moral del rebaño, voluntad de poder, eterno retorno, amor fati, último hombre, tres transformaciones, superhombre, fidelidad a la tierra",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "sils_maria",
+      "texto": "Nietzsche camina por los senderos de montaña de Sils-Maria, en Suiza, donde dice que se le ocurrió la idea del eterno retorno, y le propone al alumno caminar y conversar."
+    },
+    {
+      "id": "linterna",
+      "texto": "Nietzsche entra con una linterna encendida en pleno día, como el loco de La gaya ciencia, y le pregunta al alumno si ya se enteró de que Dios ha muerto."
+    },
+    {
+      "id": "martillo",
+      "texto": "Nietzsche golpea suavemente con un martillo una vieja estatua y le dice al alumno que va a probar si sus ideas suenan huecas o macizas."
+    },
+    {
+      "id": "zaratustra",
+      "texto": "Nietzsche baja de la montaña, como Zaratustra después de diez años de soledad, y le dice al alumno que trae algo para enseñar... pero primero quiere escucharlo."
+    },
+    {
+      "id": "demonio",
+      "texto": "Nietzsche le pregunta al alumno qué haría si un demonio se le apareciera esta noche y le dijera que va a vivir su vida otra vez, infinitas veces, exactamente igual."
+    },
+    {
+      "id": "piano",
+      "texto": "Nietzsche deja de tocar el piano, porque la música es lo que más ama, y le dice al alumno que la vida sin música sería un error; ahora quiere hablar de filosofía."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "nietzsche",
+      "titulo": "Nietzsche y el martillo",
+      "guia": "Preguntar quién fue Nietzsche y qué significa filosofar a martillazos.",
+      "claves": "Friedrich Nietzsche (1844–1900), filósofo alemán, profesor de filología, salud frágil. Obras: Así habló Zaratustra, La gaya ciencia, Más allá del bien y del mal, La genealogía de la moral. Desconfiaba de las verdades absolutas: la verdad cambia; no temía contradecirse. Filosofar a golpes de martillo: derribar los viejos ídolos y valores.",
+      "resumen": "Nietzsche fue un filósofo alemán que desconfiaba de las verdades absolutas. Decía filosofar «a golpes de martillo», para derribar los viejos ídolos.",
+      "palabras": [
+        "Nietzsche",
+        "martillo",
+        "verdades absolutas",
+        "Zaratustra",
+        "ídolos"
+      ],
+      "ejemplo": "Como alguien que revisa todo lo que le enseñaron y se pregunta si de verdad lo cree."
+    },
+    {
+      "id": "muerte_dios",
+      "titulo": "La muerte de Dios",
+      "guia": "Preguntar qué significa «Dios ha muerto» y quién lo mató.",
+      "claves": "La gaya ciencia (el loco con la linterna): «Dios ha muerto... nosotros lo hemos matado». No es tesis teológica sino diagnóstico de la cultura: «Dios» = todo fundamento trascendente (verdad absoluta, sentido dado, moral incuestionable). Lo matamos: ciencia, espíritu crítico, secularización. Feuerbach: el ser humano crea a Dios. Nietzsche se interesa por cómo afecta a la sociedad.",
+      "resumen": "«Dios ha muerto» es un diagnóstico de la cultura: el fundamento de la verdad y la moral de Occidente dejó de sostenernos. Lo «matamos» nosotros, al dejar de creer.",
+      "palabras": [
+        "Dios ha muerto",
+        "diagnóstico",
+        "trascendente",
+        "hemos matado",
+        "Feuerbach"
+      ],
+      "ejemplo": "Como cuando una regla que todos respetaban deja de tener sentido y nadie sabe bien qué la reemplaza."
+    },
+    {
+      "id": "nihilismo",
+      "titulo": "El nihilismo",
+      "guia": "Preguntar qué es el nihilismo y qué diferencia hay entre el pasivo y el activo.",
+      "claves": "Nihilismo: desvalorización de los valores supremos; sin Dios, el pilar del conocimiento y la moral, estamos frente a la nada, sin respuestas ni objetivos. Muchos lo veían con pesimismo (todo está permitido, nada importa); Nietzsche con tono optimista (soy libre, hay que disfrutar la vida). Pasivo: cansancio, resignación, sustitutos cómodos (Estado, progreso, ciencia dogma, nacionalismo, hedonismo). Activo: destruir ídolos y crear valores; el mundo como lienzo en blanco (El caminante sobre el mar de nubes).",
+      "resumen": "El nihilismo es la caída de los valores supremos. El nihilismo pasivo se resigna o busca sustitutos de Dios; el activo destruye los viejos ídolos para crear valores nuevos.",
+      "palabras": [
+        "nihilismo",
+        "nada",
+        "pasivo",
+        "activo",
+        "lienzo en blanco"
+      ],
+      "ejemplo": "Dejar de creer en algo y, en vez de buscar otro ídolo, animarse a pensar por cuenta propia."
+    },
+    {
+      "id": "genealogia",
+      "titulo": "La genealogía de la moral",
+      "guia": "Preguntar qué investiga la genealogía y qué consecuencia tiene.",
+      "claves": "La genealogía de la moral: investiga el origen histórico y psicológico de bien y mal. Los valores no cayeron del cielo ni son eternos: los crearon personas con intereses y emociones. Si fueron creados, pueden criticarse y reemplazarse.",
+      "resumen": "Nietzsche investiga de dónde vienen nuestros valores y descubre que no son eternos: los crearon personas concretas. Por eso se pueden criticar y cambiar.",
+      "palabras": [
+        "genealogía",
+        "origen",
+        "valores",
+        "historia",
+        "criticar"
+      ],
+      "ejemplo": "Preguntarte de dónde viene una costumbre que siempre diste por natural."
+    },
+    {
+      "id": "noble_esclavos",
+      "titulo": "Moral noble y moral de esclavos",
+      "guia": "Pedir que compare la moral noble con la moral de esclavos y explique el resentimiento.",
+      "claves": "Moral noble: afirmación de la propia fuerza; bueno (gut) = noble, fuerte, valiente, creador; malo (schlecht) = bajo, débil. Ej. el buen pico: fuerte, duradero, cumple su función. Moral de esclavos: nace del resentimiento de los impotentes; invierte los valores: la fuerza y la pasión son «maldad»; humildad, obediencia, compasión, «bien» («somos pobres y humildes, eso es lo bueno»). La religión la difundió.",
+      "resumen": "En la moral noble, bueno es lo fuerte y creador. La moral de esclavos nace del resentimiento de los débiles, que invierten los valores: llaman bien a su debilidad y mal a la fuerza.",
+      "palabras": [
+        "moral noble",
+        "moral de esclavos",
+        "resentimiento",
+        "inversión",
+        "fuerte"
+      ],
+      "ejemplo": "Criticar a alguien que se destaca solo porque uno no puede hacer lo mismo."
+    },
+    {
+      "id": "rebano",
+      "titulo": "La moral del rebaño",
+      "guia": "Preguntar qué es la moral del rebaño y qué busca.",
+      "claves": "Herdenmoral: no son solo reglas útiles para convivir, sino una voluntad de domesticación; protege a los débiles y uniforma a los individuos; desconfía de lo excepcional, lo creador y lo distinto.",
+      "resumen": "La moral del rebaño busca domesticar y uniformar a todos, para que nadie sobresalga. Desconfía de lo excepcional y de lo creativo.",
+      "palabras": [
+        "rebaño",
+        "domesticar",
+        "uniformar",
+        "excepcional",
+        "creador"
+      ],
+      "ejemplo": "Un grupo donde todos se visten, piensan y opinan igual, y se burla del que es distinto."
+    },
+    {
+      "id": "voluntad",
+      "titulo": "La voluntad de poder",
+      "guia": "Preguntar qué es la voluntad de poder y cómo se expresa en el ser humano.",
+      "claves": "Wille zur Macht: no es dominar a otros ni acumular riqueza, ni el mero instinto de supervivencia (reactivo, conservador). Es el impulso de la vida a superarse, crecer, interpretar, crear formas. En el ser humano: autocreación y creación de valores; ordenar las pulsiones caóticas y darles estilo; la vida como obra de arte, en lugar del resentimiento.",
+      "resumen": "La voluntad de poder es el impulso de la vida a superarse y crear, no el deseo de dominar a otros. En el ser humano es autocreación: darle estilo a la propia vida.",
+      "palabras": [
+        "voluntad de poder",
+        "superarse",
+        "crear",
+        "autocreación",
+        "estilo"
+      ],
+      "ejemplo": "Un músico que practica horas no para ganarle a nadie, sino para llegar a tocar algo que antes no podía."
+    },
+    {
+      "id": "retorno",
+      "titulo": "El eterno retorno",
+      "guia": "Preguntar qué plantea el eterno retorno y para qué sirve.",
+      "claves": "Pensamiento más abismal (La gaya ciencia, Zaratustra): todo lo que ocurre ya ocurrió y retornará idéntico, infinitas veces. Función existencial y selectiva: vivir de modo que desees que cada instante retorne eternamente. ¿Repetirías tu vida tal cual? Quien vive desde el resentimiento se horroriza; quien afirma la vida dice «¡sí!». Amor fati: amar el propio destino.",
+      "resumen": "El eterno retorno imagina que todo lo vivido se repite infinitas veces. Funciona como prueba: ¿vivís de modo que querrías repetir tu vida tal cual?",
+      "palabras": [
+        "eterno retorno",
+        "idéntico",
+        "repetir",
+        "afirmar la vida",
+        "amor fati"
+      ],
+      "ejemplo": "Si este día se repitiera para siempre, ¿lo vivirías igual?"
+    },
+    {
+      "id": "ultimo",
+      "titulo": "La cuerda y el último hombre",
+      "guia": "Preguntar qué significa que el hombre es una cuerda y cómo es el último hombre.",
+      "claves": "Prólogo de Zaratustra: «el hombre es una cuerda tendida entre la bestia y el superhombre, una cuerda sobre un abismo»: tránsito, puente. El último hombre: ya no sabe crear ni arriesgar; busca comodidad, seguridad, pequeños placeres; «hemos inventado la felicidad», y parpadea; todos iguales.",
+      "resumen": "El ser humano es una cuerda entre la bestia y el superhombre: un tránsito. El último hombre se queda estancado: solo busca comodidad y pequeños placeres.",
+      "palabras": [
+        "cuerda",
+        "abismo",
+        "tránsito",
+        "último hombre",
+        "comodidad"
+      ],
+      "ejemplo": "Pasar los días entre el sillón y el celular, sin ningún proyecto que te entusiasme."
+    },
+    {
+      "id": "transformaciones",
+      "titulo": "Las tres transformaciones",
+      "guia": "Preguntar cuáles son las tres transformaciones del espíritu y qué significa cada una.",
+      "claves": "Camello: carga con el peso de los deberes, la religión y los valores heredados. León: dice «yo quiero», destruye el «tú debes»; derriba la moral anterior. Niño: inocencia, juego, olvido, nuevo comienzo; crea su propia moral; llega al superhombre.",
+      "resumen": "El espíritu primero es camello, que carga deberes; después león, que destruye el «tú debes»; y al final niño, que juega y crea valores nuevos.",
+      "palabras": [
+        "camello",
+        "león",
+        "niño",
+        "tú debes",
+        "yo quiero"
+      ],
+      "ejemplo": "Primero obedecés todas las reglas, después las cuestionás todas, y al final creás tu propia manera de vivir."
+    },
+    {
+      "id": "superhombre",
+      "titulo": "El superhombre",
+      "guia": "Preguntar qué es el superhombre y qué significa ser fiel a la tierra.",
+      "claves": "Übermensch: quien supera el estancamiento del último hombre. Fidelidad a la tierra («¡Permaneced fieles a la tierra!»): rechaza el más allá y los consuelos ultraterrenos que desprecian el cuerpo, el deseo y el presente. Disfruta de la vida, crea sus valores tras la muerte de Dios y vive de modo que querría repetirla.",
+      "resumen": "El superhombre es quien, tras la muerte de Dios, crea sus propios valores y es fiel a la tierra: afirma esta vida y el presente, sin despreciarlos por un más allá.",
+      "palabras": [
+        "superhombre",
+        "fiel a la tierra",
+        "más allá",
+        "presente",
+        "crear valores"
+      ],
+      "ejemplo": "Disfrutar lo que hacés hoy en lugar de vivir esperando una recompensa futura."
+    },
+    {
+      "id": "malentendidos",
+      "titulo": "Lo que el superhombre no es",
+      "guia": "Preguntar por qué el superhombre no es una raza ni un tirano, y cómo fue malinterpretado.",
+      "claves": "No es prototipo biológico, ni tirano, ni meta evolutiva automática, ni raza superior. Su hermana Elisabeth modificó sus escritos y el nazismo lo usó como referente. El superhombre de Nietzsche puede estar en silla de ruedas: no se mide por la fuerza física, sino por la autocreación y la afirmación alegre de la vida.",
+      "resumen": "El superhombre no es una raza ni un tirano: los nazis lo usaron después de que su hermana modificara sus escritos. Es un horizonte de autocreación; puede estar en silla de ruedas.",
+      "palabras": [
+        "raza",
+        "tirano",
+        "hermana",
+        "nazismo",
+        "silla de ruedas"
+      ],
+      "ejemplo": "Alguien con una discapacidad que crea su propio camino con alegría está más cerca del superhombre que un matón."
+    }
+  ],
+  "casos": [
+    {
+      "id": "rebano_escuela",
+      "texto": "En el curso, todos se burlan de un compañero que se viste distinto y escucha otra música.",
+      "claves": "Aplicar la moral del rebaño: domesticar, uniformar, desconfiar de lo excepcional; resentimiento; autocreación."
+    },
+    {
+      "id": "idolo",
+      "texto": "Un amigo dejó de creer en la religión, pero ahora sigue a un influencer como si todo lo que dice fuera verdad.",
+      "claves": "Aplicar el nihilismo pasivo: sustituto cómodo de Dios; contrastar con el nihilismo activo que crea valores propios."
+    },
+    {
+      "id": "repetir",
+      "texto": "Un compañero dice que su vida es aburrida y que no la repetiría nunca.",
+      "claves": "Aplicar el eterno retorno como prueba existencial: vivir de modo que quieras repetirlo; amor fati; voluntad de poder para transformarla."
+    },
+    {
+      "id": "comodidad",
+      "texto": "Una amiga dice que solo quiere un trabajo seguro, un buen sillón y series, sin complicarse la vida.",
+      "claves": "Aplicar el último hombre: comodidad, seguridad, pequeños placeres; contrastar con el superhombre y la superación."
+    },
+    {
+      "id": "envidia",
+      "texto": "Alguien critica a una compañera que sacó la mejor nota diciendo que «seguro es una creída».",
+      "claves": "Aplicar el resentimiento y la moral de esclavos: invertir valores, llamar malo a lo que se destaca."
+    },
+    {
+      "id": "reglas",
+      "texto": "Te das cuenta de que muchas reglas que seguís no las elegiste: las heredaste sin pensar.",
+      "claves": "Aplicar las tres transformaciones (camello, león, niño) y la genealogía: los valores tienen historia y pueden revisarse y recrearse."
+    },
+    {
+      "id": "mas_alla",
+      "texto": "Alguien soporta una vida que no le gusta pensando que la recompensa vendrá después.",
+      "claves": "Aplicar la fidelidad a la tierra: crítica al más allá que desprecia el presente; afirmar esta vida; superhombre."
+    },
+    {
+      "id": "superhombre_malentendido",
+      "texto": "Un video en redes dice que el superhombre de Nietzsche es «un hombre superior que tiene que dominar a los débiles».",
+      "claves": "Corregir el malentendido: no es raza ni tirano; manipulación de su hermana y uso nazi; puede estar en silla de ruedas; autocreación."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "valores",
+      "texto": "¿Qué valor importante para vos elegiste de verdad, y cuál heredaste sin pensar?"
+    },
+    {
+      "id": "repetir",
+      "texto": "Si tu vida se repitiera infinitas veces, ¿qué cambiarías hoy?"
+    },
+    {
+      "id": "rebano",
+      "texto": "¿En qué situaciones sentís que el grupo te empuja a ser igual a todos?"
+    },
+    {
+      "id": "nino",
+      "texto": "¿En qué momento de tu vida te sentiste camello, león o niño?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Nietzsche, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué significa «Dios ha muerto» y por qué «nosotros lo hemos matado»?",
+    "Explicá la diferencia entre el nihilismo pasivo y el activo.",
+    "¿Qué diferencia hay entre la moral noble y la moral de esclavos?",
+    "¿Qué es la moral del rebaño?",
+    "¿Qué es la voluntad de poder y qué no es?",
+    "¿Para qué sirve la idea del eterno retorno?",
+    "Explicá las tres transformaciones del espíritu.",
+    "¿Qué es el superhombre y por qué no es una raza superior?"
+  ]
+}

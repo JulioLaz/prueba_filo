@@ -1,0 +1,78 @@
+{
+  "id": "nietzsche_superhombre",
+  "meta": {
+    "title": "Nietzsche: La Muerte de Dios y el Superhombre",
+    "author": "Friedrich Nietzsche",
+    "icon": "⚡",
+    "gradient": "linear-gradient(135deg, #1a202c 0%, #d69e2e 100%)",
+    "difficulty": "intermedio",
+    "category": "Antropología Filosófica",
+    "description": "La muerte de Dios y el nihilismo, la genealogía de la moral (noble, esclavos, rebaño), la voluntad de poder, el eterno retorno, el último hombre, las tres transformaciones y el superhombre.",
+    "lastUpdated": "2026-11-25"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 19,
+      "timeEstimate": 15,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 13,
+      "timeEstimate": 12
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 9,
+      "centralWord": "NIHILISMO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 29,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#d69e2e",
+  "notes": {
+    "realValues": "v1.0 (2026-11-25): material 19 secciones, cuestionario 13, caza 8 niveles / 47, crucigrama NIHILISMO + 9, mapa 29 nodos / 15 pares, video y cloze 13 (con la transcripción, hasta 6:48)."
+  }
+}

@@ -185,6 +185,19 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         contentFile: 'themes/marx_alienacion/content.html'
     },
     {
+        id: 'nietzsche_superhombre',
+        title: 'Nietzsche: La Muerte de Dios y el Superhombre',
+        description: 'Dios ha muerto: el nihilismo, la crítica a la moral del rebaño, la voluntad de poder, el eterno retorno, las tres transformaciones y el superhombre, fiel a la tierra.',
+        icon: '⚡',
+        gradient: 'linear-gradient(135deg, #1a202c 0%, #d69e2e 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 15,
+        prerequisites: [],
+        color: '#d69e2e',
+        contentFile: 'themes/nietzsche_superhombre/content.html'
+    },
+    {
         id: 'etica',
         title: 'Ética y Moral',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',

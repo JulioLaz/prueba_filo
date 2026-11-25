@@ -146,6 +146,7 @@ console.log('📚 Cargando sistema de modal educativo...');
       'dualismo': '🕊️',
       'simbolo': '🧩',
       'marx': '🏭',
+      'nietzsche': '⚡',
       'platon': '🌌',
       'metodo': '🔎',
       'antropologia': '🌱',
