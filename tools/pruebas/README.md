@@ -67,6 +67,7 @@ node tools/pruebas/jugar_mapa.mjs <tema>
 # si el tema tiene examen:
 node tools/pruebas/hub_examen.mjs <tema>
 node tools/pruebas/resumen_final.mjs <tema>
+node tools/pruebas/ver_inicio.mjs              # inicio: línea de época y lugar con banderas en cada tarjeta
 node tools/pruebas/examen_funciones.cjs <tema>    # con el emulador corriendo
 ```
 

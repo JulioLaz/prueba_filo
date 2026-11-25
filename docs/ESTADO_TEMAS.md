@@ -84,6 +84,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 ## Historial reciente
 
+- 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
 - 2026-11-25: tema nuevo de la Unidad II, «Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo» (`descartes_sujeto`), con todas las actividades, video (hasta 14:20) con cloze de 16 frases de la transcripción y examen con Descartes.
 - 2026-11-25: tema nuevo de la Unidad II, «Nietzsche: La Muerte de Dios y el Superhombre» (`nietzsche_superhombre`), con todas las actividades, video (hasta 6:48) con cloze de 13 frases de la transcripción y examen con Nietzsche.
 - 2026-11-25: Marx: video (MNamo55NDp4, 8:01) con cloze de 11 frases armado con la transcripción; el examen ya lo pide. El material suma lo que trata el video: plusvalía, cadena de montaje (Tiempos modernos), enajenación e ideología.

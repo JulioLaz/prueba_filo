@@ -260,6 +260,27 @@ body::before {
     color: var(--text-primary);
 }
 
+.theme-epoca {
+    /* 2026-11-25: siglo y lugar con banderas, bajo el título */
+    color: var(--text-secondary);
+    opacity: 0.8;
+    font-size: 0.8em;
+    margin: -4px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.theme-bandera {
+    width: 18px;
+    height: 12px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
+    vertical-align: middle;
+}
+
 .theme-description {
     color: var(--text-secondary);
     font-size: 0.95em;

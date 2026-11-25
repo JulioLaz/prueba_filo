@@ -23,6 +23,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'origen',
         title: 'Origen de la Filosofía: Del Mito al Logos',
+        epoca: 's. VII–VI a. C.',
+        lugar: 'Mileto',
+        banderas: ['gr'],
         description: 'Etimología, asombro y el primer gran problema: la búsqueda racional del Arché (principio) en los Presocráticos.',
         icon: '📜',
         gradient: 'linear-gradient(135deg, #1e90ff 0%, #00bfff 100%)',
@@ -36,6 +39,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'presocraticos',
         title: 'Los Presocráticos: El Arché y la Naturaleza',
+        epoca: 's. VI–V a. C.',
+        lugar: 'Costas de Grecia e Italia',
+        banderas: ['gr', 'it'],
         description: 'Explora a los primeros filósofos: Tales (agua), Heráclito (cambio) y Parménides (ser inmutable). El nacimiento de la Metafísica.',
         icon: '🌊',
         gradient: 'linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%)',
@@ -50,6 +56,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'socrates',
         title: 'Sócrates: El Giro Antropológico y la Mayéutica',
+        epoca: 's. V a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'La vida de Sócrates, el "Solo sé que no sé nada", el método de la Mayéutica y la búsqueda de las definiciones universales (intelectualismo moral).',
         icon: '🧠',
         gradient: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
@@ -64,6 +73,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'platon',
         title: 'Platón: El Mundo de las Ideas y la Caverna',
+        epoca: 's. IV a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'La Teoría de las Ideas, la Idea del Bien y el símil del Sol, la línea dividida, la alegoría de la caverna, la dialéctica y el rey filósofo.',
         icon: '🌌',
         gradient: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)',
@@ -78,6 +90,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'aristoteles',
         title: 'Aristóteles: La Lógica y la Sustancia',
+        epoca: 's. IV a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'El Estagirita: Lógica (Órganon), teoría de la Sustancia (Materia y Forma) y su visión sistemática del conocimiento como base de la ciencia.',
         icon: '📐',
         gradient: 'linear-gradient(135deg, #607D8B 0%, #9E9E9E 100%)',
@@ -92,6 +107,7 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'metodo',
         title: 'El Método Filosófico: Duda, Diálogo y Crítica',
+        epoca: 'De Sócrates a Kant',
         description: 'Las herramientas de la filosofía: el asombro, la duda metódica de Descartes, el diálogo con buenos argumentos (sin falacias) y la crítica: atreverse a pensar.',
         icon: '🔎',
         gradient: 'linear-gradient(135deg, #FF5722 0%, #FF9800 100%)',
@@ -106,6 +122,7 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'ramas',
         title: 'Ramas Clásicas: Metafísica, Ética y Lógica',
+        epoca: 'Desde la Antigüedad griega',
         description: 'Panorama de los grandes campos de estudio: ¿Qué es el ser? (Metafísica), ¿Cómo vivir? (Ética), ¿Cómo razonar? (Lógica).',
         icon: '🌳',
         gradient: 'linear-gradient(135deg, #009688 0%, #4D96FF 100%)',
@@ -120,6 +137,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'dualismo_platonico',
         title: 'El Dualismo Platónico: El Alma Prisionera del Cuerpo',
+        epoca: 's. IV a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'Para Platón somos un alma inmortal encerrada en un cuerpo: los dos mundos, la anámnesis, el cuerpo como cárcel, las tres partes del alma y la filosofía como preparación para la muerte.',
         icon: '🕊️',
         gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
@@ -133,6 +153,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'antropologia_aristoteles',
         title: 'Aristóteles: El Ser Humano como Unidad de Cuerpo y Alma',
+        epoca: 's. IV a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'El hilemorfismo: el cuerpo es la materia y el alma la forma. Potencia y acto, la escala de las almas, el animal racional y político, y en qué se diferencia de Platón.',
         icon: '🌱',
         gradient: 'linear-gradient(135deg, #2f855a 0%, #805ad5 100%)',
@@ -146,6 +169,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'descartes_sujeto',
         title: 'Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo',
+        epoca: 's. XVII',
+        lugar: 'Francia y Países Bajos',
+        banderas: ['fr', 'nl'],
         description: 'El giro hacia el sujeto: la duda hasta el genio maligno, el cogito, Dios y el error, la mente y el cuerpo como dos sustancias, y por qué vuelve hoy con la IA y la realidad virtual.',
         icon: '🧠',
         gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
@@ -159,6 +185,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'marx_alienacion',
         title: 'Karl Marx: El Trabajo y la Alienación',
+        epoca: 's. XIX',
+        lugar: 'Alemania y Londres',
+        banderas: ['de', 'gb'],
         description: 'El trabajo como lo que nos hace humanos y su deformación en el capitalismo: las cuatro alienaciones, la alienación política y religiosa, el fetichismo de la mercancía y la alienación hoy.',
         icon: '🏭',
         gradient: 'linear-gradient(135deg, #c53030 0%, #805ad5 100%)',
@@ -172,6 +201,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'nietzsche_superhombre',
         title: 'Nietzsche: La Muerte de Dios y el Superhombre',
+        epoca: 's. XIX',
+        lugar: 'Alemania y Suiza',
+        banderas: ['de', 'ch'],
         description: 'Dios ha muerto: el nihilismo, la crítica a la moral del rebaño, la voluntad de poder, el eterno retorno, las tres transformaciones y el superhombre, fiel a la tierra.',
         icon: '⚡',
         gradient: 'linear-gradient(135deg, #1a202c 0%, #d69e2e 100%)',
@@ -185,6 +217,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: "sartre",
         title: "Jean-Paul Sartre: El ser humano es libertad", 
+        epoca: 's. XX',
+        lugar: 'París',
+        banderas: ['fr'],
         description: "Existencialismo: la existencia precede a la esencia, condenados a ser libres, angustia, desamparo, desesperación, mala fe, la mirada del otro y autenticidad.",
         icon: "🌀",
         gradient: "linear-gradient(135deg, #222831 0%, #393e46 50%, #00adb5 100%)",
@@ -200,6 +235,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'simbolo_tecnica_muerte',
         title: 'Símbolo, Técnica y Muerte: ¿Qué nos hace humanos?',
+        epoca: 's. XX–XXI',
+        lugar: 'Alemania, Argentina y España',
+        banderas: ['de', 'ar', 'es'],
         description: 'Tres respuestas del siglo XX: el animal simbólico (Cassirer), el animal técnico y su responsabilidad (Maliandi) y el ser que sabe que va a morir (Savater).',
         icon: '🧩',
         gradient: 'linear-gradient(135deg, #805ad5 0%, #2b6cb0 100%)',
@@ -213,6 +251,7 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'etica',
         title: 'Ética y Moral',
+        epoca: 'De Grecia a hoy',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',
         icon: '🧭',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -226,6 +265,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'etica_aristoteles',
         title: 'Aristóteles: Lo Bueno es la Felicidad',
+        epoca: 's. IV a. C.',
+        lugar: 'Atenas',
+        banderas: ['gr'],
         description: 'Descubre la ética aristotélica: la felicidad como fin último, la virtud como término medio y la vida contemplativa.',
         icon: '🏛️',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
@@ -240,6 +282,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
     id: 'hedonismo',
     title: 'Hedonismo: El Placer como Fin de la Vida',
+    epoca: 's. IV–III a. C.',
+    lugar: 'Atenas',
+    banderas: ['gr'],
     description: 'Explora la búsqueda del placer y la felicidad desde Epicuro hasta las interpretaciones modernas: ataraxia, placeres superiores y la vida serena.',
     icon: '🌸',
     gradient: 'linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%)',
@@ -253,6 +298,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'antropocentrismo',
         title: 'Antropocentrismo: El Humano en el Centro del Universo',
+        epoca: 's. XV–XVI',
+        lugar: 'Italia (Renacimiento)',
+        banderas: ['it'],
         description: 'Explora el gran cambio del pensamiento medieval al moderno: del teocentrismo al antropocentrismo, el Renacimiento, el Humanismo y sus implicaciones éticas contemporáneas.',
         icon: '🎭',
         gradient: 'linear-gradient(135deg, #d4af37 0%, #ffd700 100%)',
@@ -267,6 +315,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
     id: 'etica_kant',
     title: 'Ética Kantiana: Lo Bueno es lo que se Hace por Deber',
+    epoca: 's. XVIII',
+    lugar: 'Königsberg (Prusia)',
+    banderas: ['de'],
     description: 'Explora la filosofía de Immanuel Kant y su teoría deontológica, donde la moralidad reside en el deber y la intención, no en las consecuencias.',
     icon: '⚖️',
     gradient: 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)',
@@ -280,6 +331,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'utilitarismo',
         title: 'Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas',
+        epoca: 's. XIX',
+        lugar: 'Inglaterra',
+        banderas: ['gb'],
         description: 'Explora la ética consecuencialista de John Stuart Mill: placeres superiores e inferiores, imparcialidad moral y utilitarismo del acto vs. regla.',
         icon: '🎯',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -293,6 +347,9 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'pragmatismo',
         title: 'Pragmatismo: Lo Verdadero es lo Práctico',
+        epoca: 's. XIX–XX',
+        lugar: 'Estados Unidos',
+        banderas: ['us'],
         description: 'Explora la filosofía americana que evalúa las ideas por su utilidad práctica: Peirce, James, Dewey y la verdad como herramienta de acción.',
         icon: '🛠️',
         gradient: 'linear-gradient(135deg, #ff9500 0%, #ff6b35 100%)',
@@ -619,6 +676,18 @@ function getThemeProgress(themeId) {
  * @param {Object} theme - Datos del tema
  * @returns {HTMLElement} Elemento de la tarjeta
  */
+
+// Orientación espacio-temporal (2026-11-25): siglo y lugar con banderas bajo el título.
+// Las banderas son SVG propios (img/banderas/): Windows no dibuja los emojis de bandera.
+const NOMBRES_BANDERA = { gr: 'Grecia', it: 'Italia', fr: 'Francia', nl: 'Países Bajos', de: 'Alemania', gb: 'Reino Unido', ch: 'Suiza', ar: 'Argentina', es: 'España', us: 'Estados Unidos' };
+function lineaEpoca(theme) {
+    if (!theme.epoca) return '';
+    const banderas = (theme.banderas || []).map(c =>
+        `<img class="theme-bandera" src="img/banderas/${c}.svg" alt="${NOMBRES_BANDERA[c] || c}" title="${NOMBRES_BANDERA[c] || c}" width="18" height="12">`).join('');
+    const lugar = theme.lugar ? ` · ${banderas} ${theme.lugar}` : '';
+    return `<p class="theme-epoca">🕰️ ${theme.epoca}${lugar}</p>`;
+}
+
 function createThemeCard(theme) {
     const isUnlocked = isThemeUnlocked(theme);
     const esUnidad = /^UNIDAD_/.test(theme.difficulty || '');
@@ -670,6 +739,7 @@ function createThemeCard(theme) {
             </span>
             <span class="theme-icon">${lockIcon || theme.icon}</span>
             <h3 class="theme-title">${theme.title}</h3>
+            ${lineaEpoca(theme)}
             <p class="theme-description">${theme.description}</p>
         </div>
         ${esUnidad ? `
