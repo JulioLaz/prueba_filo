@@ -14,9 +14,8 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | ✅ 26 | ✅ Sócrates |
 | `etica_kant` | ✅ 20 | ✅ 13 | ✅ 8 | ✅ DIGNIDAD | ✅ 36 / 15 | ✅ 21 | ✅ Kant |
 | `pragmatismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ UTILIDAD | ✅ 32 / 15 | ✅ 13 | ✅ W. James |
-| `antropocentrismo` | ✅ 19 | ✅ 13 | ✅ 8 | ✅ HUMANISMO | ✅ 34 / 15 | 🟡 13 (**) | ✅ Pico della Mirandola |
+| `antropocentrismo` | ✅ 19 | ✅ 13 | ✅ 8 | ✅ HUMANISMO | ✅ 34 / 15 | ✅ 13 | ✅ Pico della Mirandola |
 
-(**) El `endTime` ya alcanza a todos los huecos, pero no se comprobó que cada hueco coincida con lo que dice el video (YouTube no se reproduce en las pruebas).
 
 ### Pendientes concretos de la Unidad 3
 
@@ -38,7 +37,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 **Antropocentrismo (`antropocentrismo`)** — ✅ v2.0 (2026-11-25)
 - Material de 19 secciones cortas (antes 20 de 126-220 palabras): concepto, Protágoras, teocentrismo, causas del cambio, Renacimiento, el Hombre de Vitruvio, humanismo, Pico della Mirandola, el individuo, la revolución científica, dominar la naturaleza (Bacon, Descartes), Ilustración y dignidad, antropocentrismo fuerte y débil, exclusiones (androcentrismo, colonización), crítica ecológica, biocentrismo, Buen Vivir, transhumanismo y síntesis. Suma las ideas del video.
 - Cuestionario 13, caza 8 niveles / 48, crucigrama HUMANISMO + 9 (sin ORGANIZACION), mapa 34 nodos / 15 pares, examen con Pico della Mirandola (pide el video) y resumen final.
-- Video y cloze (13) sin cambios; falta comprobar los tiempos con la transcripción.
+- Cloze (13) revisado con la transcripción del video (2026-11-25).
 
 ## Unidad 2
 
@@ -86,6 +85,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Antropocentrismo: cloze revisado con la transcripción (las 13 frases coinciden casi palabra por palabra). Tramos con los tiempos reales; el video termina en 2:32. Con esto, los videos de la Unidad III están revisados con su transcripción, salvo el de Aristóteles: Lo Bueno es la Felicidad (tema de referencia).
 - 2026-11-25: Pragmatismo: cloze revisado con la transcripción (las 13 frases coinciden). Tramos con los tiempos reales; el video termina en 2:31, antes de la invitación a suscribirse.
 - 2026-11-25: Utilitarismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales (la 12 empezaba después de «a diferencia de la ética kantiana» y la 15 cortaba antes del final); el video termina en 1:57, antes de la despedida.
 - 2026-11-25: Hedonismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales, «egoísmo» en lugar de «exceso» (lo que dice el video), arreglada la variante mal escrita de «Épicuro» y 2 frases nuevas del final (el capitalismo y los estímulos placenteros; la pregunta final). El video llega a 3:10 (antes 2:48, y dejaba afuera ese final).

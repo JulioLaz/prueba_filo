@@ -230,12 +230,12 @@ const TOPICS = {
         duration: '5:26',
         // type: 'short'
       },
-      antropocentrismo: { // https://www.youtube.com/watch?v=xf96Q4NAdwY
+      antropocentrismo: { // https://www.youtube.com/watch?v=xf96Q4NAdwY — 2026-11-25: cloze revisado con la transcripción
         youtubeId: 'xf96Q4NAdwY',
         startTime: 1,
-        endTime: 157,
+        endTime: 152,
         title: 'Antropocentrismo',
-        duration: '2:36',
+        duration: '2:32',
         // type: 'short'
       },
 // 1.1 - Etimología y Origen Histórico: Del Mito al Logos
