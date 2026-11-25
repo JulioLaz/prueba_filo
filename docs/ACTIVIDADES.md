@@ -98,13 +98,14 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 
 ## 6. Video + cloze — `VIDEO_CONFIG` + `cloze_test.js`
 
-- **Motor:** el modal del hub (`tema.html`) con `js/cloze_&_video-config.js`.
+- **Motor:** el modal del hub (`tema.html`): abre el video y el cálculo del puntaje está en el «parche de integración Firebase» del final de `tema.html`. (`js/cloze_&_video-config.js` no se usa: su integración se omite al cargar.)
+- **Pantalla:** el ejercicio se abre desplegado junto al video (en compu, video a la izquierda y ejercicio a la derecha; en celular, video arriba y ejercicio abajo, con su propio scroll). El botón violeta «Ocultar ejercicio / Mostrar ejercicio» solo lo pliega.
 - **Formato del video** (`temas_data.js` → `VIDEO_CONFIG[<id>]`): `{ youtubeId, startTime, endTime, title, duration }`. El `youtubeId` son los 11 caracteres del video (de `https://youtu.be/XXXXXXXXXXX` o `watch?v=XXXXXXXXXXX`), sin `&t=`, `?si=` ni nada más.
 - **Formato del cloze:** `window.CLOZE_TEST = { title, items: [...] }`. Cada ítem: `{ id, text, feedbackOK, feedbackKO, videoHints: [3 pistas], videoSegment: { start, end } }`. En `text`, cada hueco es `[[respuesta|alternativa aceptada|...]]`. `videoSegment` está en segundos **contados desde `startTime`**. Ojo: varios archivos tienen primero un bloque viejo comentado y después el real (`window.CLOZE_TEST = {` sin `//`).
-- **Puntaje (`video`):** 30% ver el video + 70% completar el cloze (el video se da por visto al pasar la duración del segmento `endTime - startTime`).
+- **Puntaje (`video`):** ejercicio completo = **100%**. Si no está completo: 30% ver el video + 70% del cloze (el video se da por visto al pasar la duración del segmento `endTime - startTime` con la ventana abierta; reabrirlo ya no lo borra). El avance del ejercicio vive en `sessionStorage` (se pierde al cerrar la pestaña); Firestore guarda el mejor puntaje.
 - **Estándar (Aristóteles):** 17 huecos en orden con el video; `endTime` ≥ `startTime` + el `end` del último hueco (si no, los últimos huecos quedan sin video); la frase del hueco reproduce lo que se dice en ese tramo.
 - **Errores ya vistos:** `youtubeId` con `&t` pegado (Kant: el video no cargaba), `endTime` que cortaba antes del cloze (Kant, Antropocentrismo, Ética y Moral, Hedonismo).
-- **Prueba:** `verificar_tema.js` (ID y corte). Que cada hueco coincida con lo que dice el video hay que mirarlo a mano.
+- **Prueba:** `verificar_tema.js` (ID y corte) y `jugar_video.mjs` (ejercicio desplegado, botón, completar y guardar 100%). Que cada hueco coincida con lo que dice el video hay que mirarlo a mano.
 
 ## 7. Examen oral con el filósofo — `examen.json` (solo temas con examen)
 

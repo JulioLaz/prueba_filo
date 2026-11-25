@@ -13,6 +13,7 @@ Todos se corren **desde la raíz del repo**. Las capturas y PDF quedan en `tools
 | `jugar_caza.mjs <tema>` | Node + Playwright | Juega todos los niveles; resumen final al 100%, guardado (`caza`), avance para el hub, botón «Resumen para la carpeta». |
 | `jugar_crucigrama.mjs <tema>` | Node + Playwright | Muestra el tablero, resuelve todas las palabras, cartel final y guardado (`cruci`). |
 | `jugar_mapa.mjs <tema>` | Node + Playwright | Visita todos los nodos, juega los 15 pares (con un error a propósito) y guardado (`mapa`). |
+| `jugar_video.mjs <tema>` | Node + Playwright | Video + cloze en `tema.html` (reloj simulado): abre con el ejercicio desplegado, botón violeta que lo oculta y muestra, ejercicio al lado del video en compu, incompleto guarda menos de 100%, ver el video, reabrir y completar guarda 100% (`video`). |
 | `ver_material.mjs <tema>` | Node + Playwright | Carga el material: contador = secciones reales, primera sección activa, una verificación por sección. La lectura en voz alta no se puede probar (no hay micrófono). |
 | `hub_examen.mjs <tema>` | Node + Playwright | Tarjeta del examen en `tema.html`: bloqueada (60% en cada actividad), habilitada, nota baja, sello con nota, enlace a `dialogo/examen.html`. |
 | `resumen_final.mjs <tema>` | Node + Playwright | `resumen_tema.html`: tapado si falta una actividad, completo con 60% en todas, copiar, vistas del admin. |
