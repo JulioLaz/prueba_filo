@@ -3,33 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Utilitarismo de John Stuart Mill</title>
+  <!--
+    Material de lectura — Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas. Unidad III.
+    18 secciones para leer en voz alta, cada una con su verificación de comprensión.
+    Versión 2.0 (2026-11-25): ampliado a 18 secciones cortas (antes 8): suma Bentham y el cálculo de la felicidad, la imparcialidad, la vida de Mill, el acto y la regla, el principio del daño, el dilema del tranvía y las críticas; conserva los temas del examen con Mill. Suma las ideas del video.
+  -->
+  <title>Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas</title>
   <link rel="stylesheet" href="../../css/content.css">
   <link rel="stylesheet" href="../../css/readaloud.css">
   <link rel="stylesheet" href="../../css/celebration.css">
   <script src="../../js/celebration.js" defer></script>
-  
+
+  <!-- 🔧 CONFIGURACIÓN DEL SISTEMA DE LECTURA -->
   <script>
-    // Configuración específica para Utilitarismo de Mill
     window.ReadAloudSystemConfig = {
-      tema: 'Utilitarismo de Stuart Mill',
+      tema: 'Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas',
       threshold: 0.80, // 80% de lectura requerida
-      sections: 8,
+      sections: 18,
       soundsPath: '../../sound/',
       redirectTo: '../../tema.html?tema=utilitarismo',
-      celebrationEmojis: ['⚙️', '💡', '⚖️', '🧠', '🌟', '🏆'],
-      
-      // Sinónimos específicos para Mill
+      celebrationEmojis: ['🎯', '💎', '🚋', '🌟', '⭐', '🏆'],
+
+      // Sinónimos de los términos técnicos (las claves van sin acentos)
       synonymMap: {
-        'mill': ['stuart mill', 'john stuart mill'],
-        'utilitarismo': ['consecuencialismo', 'hedonismo universalista'],
-        'felicidad': ['placer', 'bienestar', 'eudaimonia'],
-        'placeres': ['gozos', 'satisfacciones'],
-        'consecuencias': ['resultados', 'efectos'],
-        'sacrificio': ['renuncia', 'abnegación'],
-        'hedonismo': ['placerismo', 'doctrina del placer'],
-        'principios': ['reglas', 'normas'],
-        'dolor': ['infelicidad', 'malestar']
+        'bentham': ['bentam', 'béntam', 'benthan'],
+        'mill': ['mil'],
+        'stuart': ['estuart', 'stuar', 'estuar'],
+        'harriet': ['jarriet', 'harriet'],
+        'eudemonista': ['eudemonista'],
+        'tranvía': ['tranvia']
       }
     };
   </script>
@@ -39,20 +41,21 @@
     <div class="progress-header">
       <div class="progress-text">
         <span>Progreso de Comprensión</span>
-        <span id="progress-counter">0 / 8 secciones</span>
+        <span id="progress-counter">0 / 18 secciones</span>
       </div>
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
     </div>
 
-    <h1>⚙️ Utilitarismo de Stuart Mill: Lo Bueno es lo Útil</h1>
-    <p><em>Del <strong>Principio de Mayor Felicidad</strong> a la <strong>Jerarquía de Placeres</strong>, pasando por el  consecuencialismo  y la <strong>dimensión social</strong>: una guía completa y práctica —orientada a estudiantes— para entender <strong>cómo se juzga una acción</strong> según John Stuart Mill.</em></p>
+    <h1>🎯 Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas</h1>
+    <p><em>Para el <strong>utilitarismo</strong>, la mejor acción es la que produce la <strong>mayor felicidad para el mayor número</strong>. <strong>Bentham</strong> propuso medir el placer; <strong>John Stuart Mill</strong> distinguió placeres superiores e inferiores y defendió la libertad de cada persona.</em></p>
 
-    <div class="study-section active" data-section="principio-mayor-felicidad">
+    <!-- 1. ¿Qué es el utilitarismo? -->
+    <div class="study-section active" data-section="que_es">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎯 El Principio de Mayor Felicidad</h3>
+          <h3>🎯 ¿Qué es el utilitarismo?</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -60,11 +63,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para el utilitarismo, una acción es moralmente correcta si promueve la <strong>felicidad</strong> y es incorrecta si produce lo contrario, el <strong>dolor</strong>. Lo bueno es lo útil, y lo útil es lo placentero.<br><br>
-            El fin último es la <strong>felicidad del mayor número</strong> de personas. Es una ética <strong>eudemonista</strong> (busca la felicidad) y <strong>hedonista</strong> (identifica la felicidad con el placer), pero con un alcance  universalista .
+            El <strong>utilitarismo</strong> es una teoría ética que sostiene que la mejor acción es la que produce mayor <strong>bienestar</strong> para el <strong>mayor número</strong> de personas involucradas.<br><br>Su valor supremo es la <strong>utilidad</strong>: si algo es valioso, entonces es útil, es decir, aporta felicidad. Se desarrolló sobre todo en <strong>Inglaterra</strong>, en los siglos XVIII y XIX, con Jeremy Bentham, James Mill y su hijo John Stuart Mill.
           </p>
         </div>
 
@@ -75,7 +77,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Lee en voz alta para avanzar. Se marcará tu progreso.
+            💡 El mayor bienestar para el mayor número.
           </div>
         </div>
       </div>
@@ -83,21 +85,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>¿Cuál es el fin último de la moralidad según el utilitarismo de Mill?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es la mejor acción para el utilitarismo?</p>
         </div>
         <div class="options-container">
-          <div class="option">La mayor felicidad lo da riqueza que logro en mi vida</div>
-          <div class="option" data-correct="true">La mayor felicidad posible para el mayor número de personas</div>
-          <div class="option">La mayor felicidad pasible con placer inmediato y sensorial</div>
-          <div class="option">La mayor felicidad pasible con fama y admiración de los demás</div>
+          <div class="option" data-correct="true">La que produce mayor bienestar para el mayor número de personas</div>
+          <div class="option">La que cumple el deber sin mirar los resultados</div>
+          <div class="option">La que beneficia solo a quien la hace</div>
+          <div class="option">La que manda la tradición</div>
         </div>
       </div>
     </div>
-<!-- parrafo 2 -->
-    <div class="study-section" data-section="jerarquia-placeres">
+
+    <!-- 2. Bentham: el placer y el dolor -->
+    <div class="study-section" data-section="bentham">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🔗 La Jerarquía de Placeres (Placeres Superiores)</h3>
+          <h3>⚖️ Bentham: el placer y el dolor</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -105,12 +111,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Mill distingue los placeres por su <strong>calidad</strong>. Los <strong>placeres inferiores</strong> son corporales y fugaces. Los <strong>placeres superiores</strong> son los intelectuales y morales (pensamiento, arte, estudio).<br><br>
-            
-            Estos placeres elevados son más <strong>duraderos</strong> y producen una satisfacción más plena. Un ser humano con facultades superiores prefiere ser un  "Sócrates insatisfecho"  antes que un ser inferior satisfecho.
+            <strong>Jeremy Bentham</strong> (1748–1832) fue un filósofo y jurista inglés. Escribió: «La naturaleza ha puesto a la humanidad bajo el gobierno de dos amos soberanos: el <strong>dolor</strong> y el <strong>placer</strong>».<br><br>Por eso propuso el <strong>principio de utilidad</strong>: aprobar o desaprobar cada acción según aumente o disminuya la felicidad de los afectados. Buscar el placer y eludir el dolor nos lleva a la <strong>felicidad</strong>.
           </p>
         </div>
 
@@ -121,7 +125,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Lee despacio y con claridad.
+            💡 Dos amos: el dolor y el placer.
           </div>
         </div>
       </div>
@@ -129,21 +133,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🔌 Verificación de comprensión</h4>
-          <p>Según Mill, ¿cuáles son los placeres preferibles o superiores?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Según Bentham, ¿bajo qué dos amos está la humanidad?</p>
         </div>
         <div class="options-container">
-          <div class="option">Los placeres corporales por su intensidad y placer</div>
-          <div class="option" data-correct="true">Los placeres intelectuales y morales por su durabilidad y calidad</div>
-          <div class="option">Los placeres que dan más dinero y generan felicidad</div>
-          <div class="option">Los placeres que son solo momentáneos pero verdaderos</div>
+          <div class="option">La razón y la fe</div>
+          <div class="option" data-correct="true">El dolor y el placer</div>
+          <div class="option">El rey y la Iglesia</div>
+          <div class="option">El deber y la virtud</div>
         </div>
       </div>
     </div>
-<!-- parrafo 3 -->
-    <div class="study-section" data-section="alcance-felicidad">
+
+    <!-- 3. El cálculo de la felicidad -->
+    <div class="study-section" data-section="calculo">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧠 ¿Es la felicidad alcanzable?</h3>
+          <h3>🧮 El cálculo de la felicidad</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -151,12 +159,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Mill afirma que la felicidad <strong>sí es alcanzable</strong>, pero no debe entenderse como un éxtasis continuo.<br><br>
-            
-            Una vida feliz es aquella con <strong>momentos de exaltación</strong>, pocos y transitorios dolores, y  muchos y variados placeres . El principio utilitarista también incluye la <strong>prevención y mitigación de la desgracia</strong>.
+            Bentham creía que la felicidad no podía dejarse librada a la opinión de cada <strong>individuo</strong>. Propuso una mirada <strong>cuantitativa</strong>: medir el bienestar.<br><br>Su <strong>cálculo</strong> de la felicidad mide cada placer por su intensidad, su duración, su certeza, su cercanía y su extensión: a cuántas personas alcanza. Una acción es buena si da mucho placer a la mayor cantidad. Para Bentham, todos los placeres valen igual si producen la misma cantidad de placer.
           </p>
         </div>
 
@@ -167,7 +173,55 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Concepto clave: la felicidad como práctica sostenida.
+            💡 Medir el placer.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧐 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo pensaba Bentham la felicidad?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Como algo imposible de medir</div>
+          <div class="option">Como un regalo de los dioses</div>
+          <div class="option" data-correct="true">De forma cuantitativa: el placer se puede medir y calcular</div>
+          <div class="option">Como algo que solo cada uno puede juzgar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Cada uno cuenta como uno -->
+    <div class="study-section" data-section="imparcialidad">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>👥 Cada uno cuenta como uno</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Una idea clave del utilitarismo es la <strong>imparcialidad</strong>: «cada uno cuenta como uno y nadie como más de uno». Mi felicidad no vale más que la de un desconocido.<br><br>Por eso es una ética <strong>universalista</strong>: busca la felicidad de todos los afectados, no solo la propia. Bentham llegó a incluir a los <strong>animales</strong>: «la pregunta no es si pueden razonar o hablar, sino si pueden sufrir».
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Nadie vale más que nadie.
           </div>
         </div>
       </div>
@@ -175,21 +229,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧩 Verificación de comprensión</h4>
-          <p>¿Cómo describe Mill una vida feliz y alcanzable?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué significa la imparcialidad utilitarista?</p>
         </div>
         <div class="options-container">
-          <div class="option">Una vida sin ningún esfuerzo ni dolor es la clave de la felicidad</div>
-          <div class="option" data-correct="true">Una vida con variados placeres y pocos, pero transitorios, dolores</div>
-          <div class="option">Una vida en continuo éxtasis es verdaderamente feliz</div>
-          <div class="option">Una vida dedicada solo a los placeres bajos no llevan a la plenitud</div>
+          <div class="option">Que mi felicidad vale más que la de los demás</div>
+          <div class="option" data-correct="true">Que la felicidad de cada persona cuenta igual: nadie vale más que otro</div>
+          <div class="option">Que solo cuenta la felicidad de los amigos</div>
+          <div class="option">Que no hay que preocuparse por nadie</div>
         </div>
       </div>
     </div>
-<!-- parrafo 4 -->
-    <div class="study-section" data-section="consecuencialismo">
+
+    <!-- 5. John Stuart Mill -->
+    <div class="study-section" data-section="mill">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧩 Consecuencialismo: Lo que importa son los Resultados</h3>
+          <h3>📖 John Stuart Mill</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -197,12 +255,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            El utilitarismo es una ética <strong>consecuencialista</strong>: la bondad o maldad de un acto se mide por sus <strong>consecuencias concretas</strong> o resultados. Los  motivos  o intenciones son irrelevantes para su valor moral.<br><br>
-            
-            Una acción es buena si sus resultados promueven la felicidad, independientemente de si el agente actuó por egoísmo o altruismo. Lo crucial es el <strong>balance final de felicidad</strong> producida.
+            <strong>John Stuart Mill</strong> (1806–1873) recibió de su padre una educación intensísima: a los tres años estudiaba griego. A los veinte cayó en una crisis y salió de ella gracias a la poesía, que le mostró el valor de los sentimientos.<br><br>Escribió <em>Sobre la libertad</em> (1859) y <em>El utilitarismo</em> (1863). Fue diputado y, junto a su esposa Harriet Taylor, defendió el <strong>voto femenino</strong> y la igualdad de las mujeres.
           </p>
         </div>
 
@@ -213,7 +269,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Distingue bien entre motivos y consecuencias.
+            💡 El gran defensor del utilitarismo.
           </div>
         </div>
       </div>
@@ -221,21 +277,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🔎 Verificación de comprensión</h4>
-          <p>Para el utilitarismo, ¿qué factor determina el valor moral de una acción?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué causa defendió Mill como diputado?</p>
         </div>
         <div class="options-container">
-          <div class="option">Las intenciones o motivos del agente hace moralmente válido</div>
-          <div class="option">Las leyes religiosas son la medidad de la verdad</div>
-          <div class="option" data-correct="true">Las consecuencias o resultados concretos del acto</div>
-          <div class="option">El placer que siente solo quien actúa es lo verdadero</div>
+          <div class="option" data-correct="true">El voto femenino y la igualdad de las mujeres</div>
+          <div class="option">La monarquía absoluta</div>
+          <div class="option">La esclavitud</div>
+          <div class="option">La prohibición de la poesía</div>
         </div>
       </div>
     </div>
-<!-- parrafo 5 -->
-    <div class="study-section" data-section="regla-excepcion">
+
+    <!-- 6. El principio de la mayor felicidad -->
+    <div class="study-section" data-section="principio">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🎯 La Regla y la Excepción: ¿Mentir puede ser bueno?</h3>
+          <h3>🌟 El principio de la mayor felicidad</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -243,12 +303,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Actos como mentir suelen ser malos porque <strong>rompen la confianza</strong>, necesaria para la felicidad general. Sin embargo, toda regla moral admite <strong>excepciones</strong>.<br><br>
-            
-            Si en un caso particular, la mentira (mentira piadosa) produce  más beneficios  (o evita una desgracia mayor) que el decir la verdad, esa acción no solo no es condenable, sino que puede ser  recomendable  según el utilitarismo.
+            Para Mill, una acción es correcta en la medida en que promueve la <strong>felicidad</strong>, e incorrecta si produce lo contrario. Felicidad es placer y ausencia de dolor.<br><br>Es una ética <strong>eudemonista</strong>, porque busca la felicidad, y <strong>hedonista</strong>, porque la identifica con el placer. Pero Mill quiso quitar al utilitarismo del <strong>hedonismo</strong> vulgar y egoísta: no se trata de mi placer, sino de la felicidad de todos.
           </p>
         </div>
 
@@ -259,53 +317,7 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Concepto central: lo que es justo en casos ordinarios, no lo es siempre.
-          </div>
-        </div>
-      </div>
-
-      <div class="comprehension-check" style="display: none;">
-        <div class="check-header">
-          <h4>🧠 Verificación de comprensión</h4>
-          <p>¿Por qué la mentira puede ser considerada un acto bueno en el utilitarismo?</p>
-        </div>
-        <div class="options-container">
-          <div class="option">Porque las reglas son fijas e inmutables y siempre fue así a lo largo de la historia de la humanidad</div>
-          <div class="option" data-correct="true">Porque en ciertas circunstancias, puede producir más beneficio o evitar una desgracia mayor que decir la verdad</div>
-          <div class="option">Porque mentir es siempre un placer para quien lo hace y tiene beneficios positivos para algunas personas</div>
-          <div class="option">Porque a Mill no le importan las reglas sociales y sabe que el placer tambien se logra así</div>
-        </div>
-      </div>
-    </div>
-<!-- parrafo 6 -->
-    <div class="study-section" data-section="sacrificio">
-      <div class="reading-area">
-        <div class="reading-header">
-          <h3>🧭 Sacrificio: La renuncia con valor moral</h3>
-          <div class="reading-progress">
-            <div class="progress-bar-reading">
-              <div class="progress-fill-reading"></div>
-            </div>
-            <span class="progress-text-reading">0% leído</span>
-          </div>
-        </div>
-        
-        <div class="readaloud-container">
-          <p class="readaloud" data-lang="es-AR">
-            El <strong>sacrificio de la felicidad personal</strong> tiene un valor moral positivo solo si tiene como fin la <strong>promoción de la felicidad de los demás</strong>.<br><br>
-            
-            La renuncia es <strong>noble</strong> si produce un beneficio real. El sacrificio que no busca o no logra promover la felicidad ajena o mitigar una desgracia  no tiene sentido ni valor moral  en el utilitarismo.
-          </p>
-        </div>
-
-        <div class="reading-controls">
-          <button class="mic-button" type="button">
-            <span class="mic-icon">🎤</span>
-            <span class="mic-text">Comenzar Lectura</span>
-          </button>
-          <div class="reading-status">Presiona el micrófono para comenzar</div>
-          <div class="reading-hint">
-            💡 El valor moral está en la utilidad del sacrificio.
+            💡 Felicidad para todos, no solo para mí.
           </div>
         </div>
       </div>
@@ -313,21 +325,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧪 Verificación de comprensión</h4>
-          <p>¿Cuándo se justifica moralmente el sacrificio de la felicidad personal?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Por qué la ética de Mill es eudemonista y hedonista?</p>
         </div>
         <div class="options-container">
-          <div class="option">Cuando el sacrificio causa un dolor insoportable y prolongado</div>
-          <div class="option" data-correct="true">Cuando el sacrificio promueve la felicidad ajena o alivia un sufrimiento</div>
-          <div class="option">El sacrificio es bueno en sí mismo, sin importar sus consecuencias reales</div>
-          <div class="option">Cuando el sacrificio busca satisfacer un deseo o capricho personal</div>
+          <div class="option">Porque rechaza el placer</div>
+          <div class="option">Porque solo busca el deber</div>
+          <div class="option">Porque es una religión</div>
+          <div class="option" data-correct="true">Porque busca la felicidad y la identifica con el placer</div>
         </div>
       </div>
     </div>
-<!-- parrafo 7 -->
-    <div class="study-section" data-section="males-sociales">
+
+    <!-- 7. Cantidad y calidad de los placeres -->
+    <div class="study-section" data-section="calidad">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>⚖️ La Dimensión Social: Combatiendo la Desgracia</h3>
+          <h3>💎 Cantidad y calidad de los placeres</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -335,12 +351,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para alcanzar la felicidad general, se deben combatir los grandes males sociales: <strong>la enfermedad, la ignorancia y la pobreza extrema</strong>.<br><br>
-            
-            Esto se logra con el avance de la medicina, la <strong>educación universal</strong> (que promueve los placeres superiores) y una <strong>legislación justa</strong> para la equitativa distribución de riquezas. La política debe crear un <strong>sentimiento de unidad</strong>.
+            Mill señaló que la cuantificación de Bentham no alcanzaba: importa también la <strong>calidad</strong>. Afirmó el carácter <strong>cualitativo</strong> de los placeres: algunos son más deseables y valiosos que otros.<br><br>Los placeres <strong>superiores</strong> son los intelectuales, afectivos, morales y estéticos: pensar, amar, crear. Los <strong>inferiores</strong> son los sensibles o corporales, como comer o descansar. ¿Cómo saber cuál vale más? Preguntando a quien conoció los dos: siempre prefiere el superior.
           </p>
         </div>
 
@@ -351,7 +365,247 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 La ética de Mill es altruista y reformadora.
+            💡 No solo cuánto, sino qué placer.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>❤️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿En qué se diferencia Mill de Bentham sobre los placeres?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Mill dice que todos los placeres valen igual</div>
+          <div class="option">Mill rechaza todo placer</div>
+          <div class="option" data-correct="true">Mill tiene en cuenta la calidad: hay placeres superiores e inferiores</div>
+          <div class="option">Mill solo cuenta la cantidad de placer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Mejor un Sócrates insatisfecho -->
+    <div class="study-section" data-section="socrates">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🐷 Mejor un Sócrates insatisfecho</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Mill escribió una frase famosa: «Es mejor ser un ser humano insatisfecho que un <strong>cerdo</strong> satisfecho; mejor ser un <strong>Sócrates insatisfecho</strong> que un necio satisfecho».<br><br>Quien desarrolló sus facultades superiores nunca cambiaría su vida por una de placeres simples, aunque sufra más. La <strong>dignidad</strong> de las capacidades humanas hace que prefiramos pensar, aunque duela, antes que vivir sin preguntarnos nada.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Mejor pensar e incomodarse.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>⚖️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué quiere decir «mejor un Sócrates insatisfecho que un necio satisfecho»?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Que los placeres superiores valen más, aunque traigan insatisfacción</div>
+          <div class="option">Que es mejor no pensar para ser feliz</div>
+          <div class="option">Que Sócrates era un necio</div>
+          <div class="option">Que hay que vivir como un cerdo satisfecho</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. ¿Es alcanzable la felicidad? -->
+    <div class="study-section" data-section="alcanzable">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🙂 ¿Es alcanzable la felicidad?</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Mill afirma que la felicidad sí es <strong>alcanzable</strong>, pero no como un éxtasis continuo. Una vida feliz tiene momentos de <strong>exaltación</strong>, pocos y transitorios dolores, y muchos y variados placeres, sin esperar de la vida más de lo que puede dar.<br><br>El principio utilitarista incluye también la prevención y mitigación de la <strong>desgracia</strong>: a veces, lo mejor que podemos hacer es evitar o aliviar el sufrimiento.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 No éxtasis, sino una vida variada.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🎯 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cómo es una vida feliz para Mill?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Un éxtasis continuo, sin ningún dolor</div>
+          <div class="option" data-correct="true">Con momentos de exaltación, pocos dolores transitorios y muchos placeres variados</div>
+          <div class="option">Una vida sin ningún placer</div>
+          <div class="option">Imposible de alcanzar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Lo que importa son las consecuencias -->
+    <div class="study-section" data-section="consecuencias">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧩 Lo que importa son las consecuencias</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            El utilitarismo es una ética <strong>consecuencialista</strong>: una acción es buena o mala según sus <strong>consecuencias</strong>, no según la intención. A diferencia de la ética kantiana, no le interesan las <strong>intenciones</strong> para juzgar la acción.<br><br>Mill da un ejemplo: quien salva a alguien que se ahoga hace algo bueno, aunque lo haga para ganar una recompensa. El motivo dice algo de la persona, pero no cambia el valor de la acción.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Se juzga por los resultados.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🌟 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>Para el utilitarismo, ¿qué decide si una acción es buena?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Solo la intención de quien actúa</div>
+          <div class="option">Lo que manda la ley</div>
+          <div class="option">Lo que dice la tradición</div>
+          <div class="option" data-correct="true">Sus consecuencias: los resultados que produce</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. La regla y la excepción -->
+    <div class="study-section" data-section="mentira">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🤥 La regla y la excepción</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Mentir suele estar mal porque rompe la <strong>confianza</strong>, que es necesaria para la felicidad de todos. Pero para Mill toda regla moral admite <strong>excepciones</strong>.<br><br>Si en un caso concreto una mentira produce más bien o evita una desgracia mayor, como ocultarle una información a un malhechor o una noticia terrible a un enfermo grave, esa <strong>mentira piadosa</strong> no solo no es condenable: puede ser recomendable.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Toda regla tiene excepciones.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🏙️ Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuándo puede ser aceptable mentir para Mill?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Nunca, en ningún caso</div>
+          <div class="option">Siempre que convenga a quien miente</div>
+          <div class="option" data-correct="true">Cuando la mentira produce más bien o evita una desgracia mayor</div>
+          <div class="option">Solo si nadie se entera</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Utilitarismo del acto y de la regla -->
+    <div class="study-section" data-section="acto_regla">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>📜 Utilitarismo del acto y de la regla</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Hay dos maneras de aplicar el utilitarismo. El utilitarismo <strong>del acto</strong> evalúa cada acción concreta: ¿qué produce más felicidad en este caso?<br><br>El utilitarismo <strong>de la regla</strong> pregunta qué normas producirían más felicidad si todos las siguieran, como «no mentir» o «cumplir las promesas», y pide respetarlas aunque en un caso aislado convenga romperlas. Mill tiene rasgos de los dos.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 ¿Este caso o la norma general?
           </div>
         </div>
       </div>
@@ -359,21 +613,25 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>🧠 Verificación de comprensión</h4>
-          <p>¿Qué busca generar la educación según Mill en el contexto del utilitarismo social?</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
-            <div class="options-container">
-              <div class="option">La acumulación exclusiva de bienes materiales y riqueza económica</div>
-              <div class="option">La búsqueda constante del beneficio personal sin considerar a los demás</div>
-              <div class="option" data-correct="true">Un sentimiento de conexión con los otros y el disfrute de experiencias significativas</div>
-              <div class="option">La imposición de mis deseos y felicidad sobre las necesidades ajenas</div>
-            </div>
+        <div class="question">
+          <p>¿Qué hace el utilitarismo de la regla?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Sigue las normas que, si todos las cumplieran, producirían más felicidad</div>
+          <div class="option">Evalúa cada acción por separado sin mirar normas</div>
+          <div class="option">Obedece las reglas del Estado sin pensar</div>
+          <div class="option">Rechaza toda regla moral</div>
+        </div>
       </div>
     </div>
-<!-- parrafo 8 -->
-    <div class="study-section" data-section="sintesis">
+
+    <!-- 13. El sacrificio -->
+    <div class="study-section" data-section="sacrificio">
       <div class="reading-area">
         <div class="reading-header">
-          <h3>🧪 Síntesis: Vivir bien según Stuart Mill</h3>
+          <h3>🧭 El sacrificio</h3>
           <div class="reading-progress">
             <div class="progress-bar-reading">
               <div class="progress-fill-reading"></div>
@@ -381,12 +639,10 @@
             <span class="progress-text-reading">0% leído</span>
           </div>
         </div>
-        
+
         <div class="readaloud-container">
           <p class="readaloud" data-lang="es-AR">
-            Para Mill,  vivir bien  es obrar siempre buscando la <strong>mayor felicidad para el mayor número</strong> de personas, juzgando las acciones por sus <strong>consecuencias</strong>.<br><br>
-            
-            Una buena vida implica la moderación, el predominio de <strong>placeres espirituales</strong>, la solidaridad social, y un  compromiso político  para eliminar la enfermedad, la ignorancia y la pobreza.
+            Para Mill, el <strong>sacrificio</strong> de la propia felicidad tiene valor moral solo si sirve para aumentar la felicidad de los demás o aliviar una desgracia. Por eso admira a quienes renuncian a algo para ayudar a otros.<br><br>En cambio, un sacrificio que no busca ni logra ningún beneficio para nadie es una <strong>renuncia</strong> inútil: no tiene valor moral.
           </p>
         </div>
 
@@ -397,7 +653,247 @@
           </button>
           <div class="reading-status">Presiona el micrófono para comenzar</div>
           <div class="reading-hint">
-            💡 Síntesis final - conceptos clave integrados.
+            💡 Renunciar sirve si ayuda a otros.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔎 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuándo tiene valor moral el sacrificio para Mill?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Siempre, aunque no ayude a nadie</div>
+          <div class="option">Nunca</div>
+          <div class="option">Solo si lo ve mucha gente</div>
+          <div class="option" data-correct="true">Cuando aumenta la felicidad de los demás o alivia una desgracia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Combatir la desgracia -->
+    <div class="study-section" data-section="social">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🏥 Combatir la desgracia</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para lograr la felicidad general, Mill propone combatir los grandes males sociales: la <strong>enfermedad</strong>, la <strong>ignorancia</strong> y la <strong>pobreza</strong> extrema.<br><br>Esto se logra con el avance de la medicina, la <strong>educación</strong> para todos, que abre el camino a los placeres superiores, y leyes justas que repartan mejor la riqueza. La política debe crear un sentimiento de <strong>unidad</strong> con los demás.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Enfermedad, ignorancia y pobreza.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧩 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué males sociales hay que combatir según Mill?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">El arte, la música y la poesía</div>
+          <div class="option" data-correct="true">La enfermedad, la ignorancia y la pobreza extrema</div>
+          <div class="option">La libertad y la educación</div>
+          <div class="option">La amistad y la solidaridad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Sobre la libertad: el principio del daño -->
+    <div class="study-section" data-section="libertad">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🗽 Sobre la libertad: el principio del daño</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            En <em>Sobre la libertad</em>, Mill propone el <strong>principio del daño</strong>: la única razón para limitar la libertad de una persona contra su voluntad es evitar que dañe a otros.<br><br>Sobre sí mismo, sobre su propio cuerpo y su mente, el individuo es <strong>soberano</strong>. Mill defendió la libertad de pensamiento y de expresión, y temía la «<strong>tiranía de la mayoría</strong>», que aplasta a quien piensa distinto.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Libre mientras no dañes a otros.
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🧪 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué dice el principio del daño de Mill?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que el Estado puede prohibir cualquier cosa</div>
+          <div class="option">Que nadie puede ser libre</div>
+          <div class="option" data-correct="true">Que solo se puede limitar la libertad de alguien para evitar que dañe a otros</div>
+          <div class="option">Que la mayoría siempre tiene razón</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. El dilema del tranvía -->
+    <div class="study-section" data-section="tranvia">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🚋 El dilema del tranvía</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Un dilema muy discutido: un <strong>tranvía</strong> sin frenos va a atropellar a cinco personas. Podés mover una palanca y desviarlo a otra vía, donde hay una sola persona. ¿Qué harías?<br><br>Un utilitarista diría que hay que desviarlo: mueren menos. Pero el dilema plantea una pregunta difícil: si una acción <strong>perjudica</strong> a unos pocos pero <strong>beneficia</strong> a muchos, ¿es siempre buena?
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 ¿Uno o cinco?
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>🔍 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Qué pregunta plantea el dilema del tranvía al utilitarismo?</p>
+        </div>
+        <div class="options-container">
+          <div class="option" data-correct="true">Si una acción que perjudica a pocos pero beneficia a muchos es siempre buena</div>
+          <div class="option">Cómo se construye un tranvía</div>
+          <div class="option">Si los tranvías son más rápidos que los trenes</div>
+          <div class="option">Si hay que obedecer siempre al conductor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. Críticas al utilitarismo -->
+    <div class="study-section" data-section="criticas">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>⚠️ Críticas al utilitarismo</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Al utilitarismo se le preguntan varias cosas. ¿Qué significa <strong>beneficiar</strong>? ¿Cómo se mide que el beneficio sea para la mayoría y a lo largo del tiempo? ¿Se puede comparar la felicidad de personas distintas?<br><br>Otra crítica es que podría justificar el sacrificio de una <strong>minoría</strong> si eso hace feliz a la mayoría. Los kantianos objetan que olvida la <strong>dignidad</strong> y los derechos de cada persona, que no se negocian.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 ¿Y las minorías?
+          </div>
+        </div>
+      </div>
+
+      <div class="comprehension-check" style="display: none;">
+        <div class="check-header">
+          <h4>💡 Verificación de comprensión</h4>
+          <p>Ahora que leíste el texto, respondé:</p>
+        </div>
+        <div class="question">
+          <p>¿Cuál es una crítica importante al utilitarismo?</p>
+        </div>
+        <div class="options-container">
+          <div class="option">Que se preocupa demasiado por las intenciones</div>
+          <div class="option">Que no le interesa la felicidad</div>
+          <div class="option">Que solo vale para los animales</div>
+          <div class="option" data-correct="true">Que podría justificar el sacrificio de una minoría si hace feliz a la mayoría</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. Síntesis: vivir bien según Mill -->
+    <div class="study-section" data-section="sintesis">
+      <div class="reading-area">
+        <div class="reading-header">
+          <h3>🧪 Síntesis: vivir bien según Mill</h3>
+          <div class="reading-progress">
+            <div class="progress-bar-reading">
+              <div class="progress-fill-reading"></div>
+            </div>
+            <span class="progress-text-reading">0% leído</span>
+          </div>
+        </div>
+
+        <div class="readaloud-container">
+          <p class="readaloud" data-lang="es-AR">
+            Para el utilitarismo, vivir bien es obrar buscando la <strong>mayor felicidad</strong> para el mayor número, juzgando las acciones por sus consecuencias y contando a cada persona como una.<br><br>Bentham propuso medir el placer; Mill distinguió su calidad y prefirió los placeres superiores. Una buena vida implica moderación, solidaridad y el compromiso de combatir la enfermedad, la ignorancia y la pobreza, respetando la <strong>libertad</strong> de cada uno.
+          </p>
+        </div>
+
+        <div class="reading-controls">
+          <button class="mic-button" type="button">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-text">Comenzar Lectura</span>
+          </button>
+          <div class="reading-status">Presiona el micrófono para comenzar</div>
+          <div class="reading-hint">
+            💡 Felicidad, consecuencias e imparcialidad.
           </div>
         </div>
       </div>
@@ -405,22 +901,23 @@
       <div class="comprehension-check" style="display: none;">
         <div class="check-header">
           <h4>✅ Verificación final</h4>
-          <p>Síntesis de la propuesta ética utilitarista:</p>
+          <p>Ahora que leíste el texto, respondé:</p>
         </div>
         <div class="question">
-          <p>¿Cuál es la síntesis de la propuesta ética de Mill?</p>
+          <p>¿Qué es vivir bien según el utilitarismo de Mill?</p>
         </div>
-            <div class="options-container">
-              <div class="option">Vivir bien es actuar según los intereses personales sin considerar las consecuencias</div>
-              <div class="option">La felicidad consiste en buscar el placer instantáneo sin restricciones ni reflexión</div>
-              <div class="option" data-correct="true">Vivir bien implica maximizar la felicidad colectiva, valorando los placeres más significativos</div>
-              <div class="option">El verdadero valor moral se encuentra en el sacrificio individual, sin importar el contexto</div>
-            </div>
+        <div class="options-container">
+          <div class="option">Buscar solo el placer propio</div>
+          <div class="option" data-correct="true">Buscar la mayor felicidad para el mayor número, juzgando las acciones por sus consecuencias</div>
+          <div class="option">Cumplir el deber sin mirar los resultados</div>
+          <div class="option">Alejarse de los demás</div>
+        </div>
       </div>
     </div>
 
   </main>
 
+  <!-- 🚀 SISTEMA MODULAR -->
   <script src="../../js/readaloud-system.js"></script>
   <script type="module" src="../../js/material-firebase.js"></script>
 

@@ -3,39 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
-  <title>Utilitarismo de John Stuart Mill · Mapa Conceptual Interactivo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Utilitarismo · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Utilitarismo (Unidad III). Versión 2.0 (2026-11-25): rehecho según el material v2.0, con 15 pares. -->
   <link rel="stylesheet" href="../../css/mapa.css">
-
-  <!-- 🔧 CONFIGURACIÓN DEL MAPA (mismo sistema que Aristóteles) -->
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
   <script>
+    // Configuración específica para Utilitarismo
     window.MapaSystemConfig = {
       tema: 'utilitarismo',
       redirectTo: '../../tema.html',
       soundsPath: '../../sound/',
       gameEnabled: true,
       autoTrackProgress: true,
-
+      
       // Datos del juego de matching (15 pares)
       gameData: [
-        { term: "Utilitarismo", definition: "Teoría ética que evalúa acciones por sus consecuencias, buscando maximizar felicidad general." },
-        { term: "Principio de la Mayor Felicidad", definition: "Las acciones son correctas si promueven felicidad, incorrectas si producen lo contrario." },
-        { term: "Placeres Superiores", definition: "Placeres intelectuales exclusivos de humanos: arte, filosofía, amistad, conocimiento." },
-        { term: "Placeres Inferiores", definition: "Placeres físicos compartidos con animales: comer, beber, gratificación sexual." },
-        { term: "Espectador Imparcial", definition: "Evaluar acciones sin dar peso especial a nuestros propios intereses." },
-        { term: "John Stuart Mill", definition: "Filósofo inglés (1806-1873) que refinó el utilitarismo y defendió la libertad." },
-        { term: "Utilitarismo del Acto", definition: "Evalúa cada acción individual por sus consecuencias específicas." },
-        { term: "Utilitarismo de la Regla", definition: "Sigue reglas morales que generalmente maximizan la felicidad." },
-        { term: "Consecuencialismo", definition: "Teorías éticas que juzgan la moralidad por los resultados de las acciones." },
-        { term: "Altruismo Racional", definition: "Preocupación genuina por el bienestar de otros basada en la razón." },
-        { term: "Análisis Costo-Beneficio", definition: "Método para evaluar políticas comparando costos y beneficios sociales." },
-        { term: "Problema de la Justicia", definition: "Crítica: el utilitarismo podría justificar injusticias si maximizan bienestar total." },
-        { term: "Demandingness", definition: "Crítica: el utilitarismo podría exigir sacrificios personales excesivos." },
-        { term: "Utilidad Marginal", definition: "Concepto económico: el valor adicional decrece con cada unidad extra." },
-        { term: "Ética Aplicada", definition: "Aplicación de principios morales a problemas prácticos específicos." }
+        { term: "Utilitarismo", definition: "La mejor acción da el mayor bienestar al mayor número." },
+        { term: "Utilidad", definition: "Lo valioso es lo que aporta felicidad." },
+        { term: "Principio de Utilidad", definition: "Aprobar las acciones según aumenten la felicidad." },
+        { term: "Cálculo de la Felicidad", definition: "Medir los placeres por intensidad, duración y extensión." },
+        { term: "Imparcialidad", definition: "Cada uno cuenta como uno y nadie como más de uno." },
+        { term: "Universalismo", definition: "Busca la felicidad de todos los afectados." },
+        { term: "Eudemonismo", definition: "Ética que busca la felicidad." },
+        { term: "Placeres Superiores", definition: "Intelectuales, afectivos, morales y estéticos." },
+        { term: "Placeres Inferiores", definition: "Sensibles o corporales." },
+        { term: "Sócrates Insatisfecho", definition: "Mejor que un necio satisfecho." },
+        { term: "Consecuencialismo", definition: "Las acciones se juzgan por sus resultados." },
+        { term: "Mentira Piadosa", definition: "Excepción que evita una desgracia mayor." },
+        { term: "Utilitarismo de la Regla", definition: "Seguir las normas que dan más felicidad si todos las cumplen." },
+        { term: "Principio del Daño", definition: "Solo se limita la libertad para evitar daño a otros." },
+        { term: "Tiranía de la Mayoría", definition: "Aplasta a quien piensa distinto." }
       ],
-
-      // Sonidos (opcional)
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
       sounds: {
         nodeVisit: 'collect_points.mp3',
         expand: 'show_question.mp3',
@@ -44,10 +46,10 @@
         wrong: 'negative_beep.mp3',
         gameComplete: 'fin_caza.mp3'
       },
-
-      // Emojis
-      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '⚖️'],
-      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '⚖️']
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🎯'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🎯']
     };
   </script>
 </head>
@@ -56,7 +58,7 @@
     <div class="bar">
       <div style="display: flex;width: 100%; justify-content: flex-start;">
          <button class="btn" id="backToTema">Volver</button>
-         <div class="title" style="font-size: 1.5rem;"><span>🎯 Utilitarismo de Mill</span></div>
+         <div class="title" style="font-size: 1.5rem;"><span>🎯 Utilitarismo</span></div>
       </div>
       <h3 class="sub">La mayor felicidad para el mayor número</h3>
       <p>Lee cada cuadro y hacé click cuando termines.</p>
@@ -69,133 +71,107 @@
     <section class="tree" aria-label="Mapa de conceptos">
       <ul>
         <li>
-          <div class="node" data-title="Utilitarismo de John Stuart Mill">
+          <div class="node" data-title="Utilitarismo">
             <div class="toggle" role="button">▾</div>
-            <div class="title">Utilitarismo de John Stuart Mill</div>
-            <div class="desc">Teoría ética que evalúa la moralidad de las acciones por sus <strong>consecuencias</strong>, buscando maximizar la <strong>felicidad general</strong> para el mayor número de personas.</div>
+            <div class="title">Utilitarismo</div>
+            <div class="desc">La mejor acción es la que produce la <strong>mayor felicidad</strong> para el <strong>mayor número</strong>.</div>
             <span class="badge">Concepto Raíz</span>
           </div>
           <ul>
             <li>
-              <div class="node" data-title="Principio de la Mayor Felicidad">
+              <div class="node" data-title="Qué es">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Principio de la Mayor Felicidad</div>
-                <div class="desc">Las acciones son correctas cuando tienden a <strong>promover la felicidad</strong>; incorrectas cuando producen lo contrario. Base fundamental del utilitarismo.</div>
+                <div class="title">Qué es</div>
+                <div class="desc">El mayor <strong>bienestar</strong> para el mayor número.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Maximizar Bienestar General"><div class="toggle" style="visibility: hidden;"></div><div class="title">Maximizar Bienestar General</div><div class="desc">Buscar la <strong>mayor cantidad de felicidad</strong> para el <strong>mayor número de personas</strong> posible.</div></div></li>
-                <li><div class="node" data-title="Criterio de Consecuencias"><div class="toggle" style="visibility: hidden;"></div><div class="title">Criterio de Consecuencias</div><div class="desc">Evaluamos la moralidad por los <strong>resultados</strong> de nuestras acciones, no por las intenciones.</div></div></li>
+                <li><div class="node" data-title="La utilidad"><div class="toggle" style="visibility: hidden;"></div><div class="title">La utilidad</div><div class="desc">Valor <strong>supremo</strong>.</div></div></li>
+                <li><div class="node" data-title="Inglaterra"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inglaterra</div><div class="desc">Siglos <strong>XVIII y XIX</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="John Stuart Mill (1806-1873)">
+              <div class="node" data-title="Jeremy Bentham">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">John Stuart Mill (1806-1873)</div>
-                <div class="desc">Filósofo inglés que <strong>refinó el utilitarismo</strong>, distinguió entre tipos de placeres y defendió la libertad individual y los derechos de las mujeres.</div>
+                <div class="title">Jeremy Bentham</div>
+                <div class="desc">Filósofo y jurista (1748–1832).</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Contexto Histórico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Contexto Histórico</div><div class="desc">Vivió durante la <strong>Revolución Industrial</strong> inglesa, época de grandes cambios sociales y económicos.</div></div></li>
-                <li><div class="node" data-title="Obras Principales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Obras Principales</div><div class="desc">"Utilitarismo" (1863), "Sobre la libertad" (1859), "La sujeción de las mujeres" (1869).</div></div></li>
-                <li><div class="node" data-title="Reformista Social"><div class="toggle" style="visibility: hidden;"></div><div class="title">Reformista Social</div><div class="desc">Defendió <strong>sufragio universal</strong>, derechos de las mujeres, educación pública y reformas laborales.</div></div></li>
+                <li><div class="node" data-title="Dos amos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Dos amos</div><div class="desc">El <strong>dolor</strong> y el placer.</div></div></li>
+                <li><div class="node" data-title="Cálculo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cálculo</div><div class="desc">Una mirada <strong>cuantitativa</strong>.</div></div></li>
+                <li><div class="node" data-title="Los animales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Los animales</div><div class="desc">¿Pueden <strong>sufrir</strong>?</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Placeres Superiores e Inferiores">
+              <div class="node" data-title="Imparcialidad">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Placeres Superiores e Inferiores</div>
-                <div class="desc">Mill distinguió entre placeres <strong>intelectuales</strong> (superiores) y <strong>físicos</strong> (inferiores), argumentando que la calidad importa más que la cantidad.</div>
+                <div class="title">Imparcialidad</div>
+                <div class="desc">Cada uno cuenta como <strong>uno</strong>.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Placeres Superiores (Intelectuales)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Placeres Superiores (Intelectuales)</div><div class="desc"><strong>Exclusivos humanos:</strong> arte, filosofía, amistad, conocimiento, creatividad. Son duraderos y enriquecedores.</div></div></li>
-                <li><div class="node" data-title="Placeres Inferiores (Físicos)"><div class="toggle" style="visibility: hidden;"></div><div class="title">Placeres Inferiores (Físicos)</div><div class="desc"><strong>Compartidos con animales:</strong> comer, beber, gratificación sexual. Necesarios pero limitados en valor.</div></div></li>
-                <li><div class="node" data-title="La Prueba de Mill"><div class="toggle" style="visibility: hidden;"></div><div class="title">La Prueba de Mill</div><div class="desc">Quienes han experimentado ambos tipos prefieren consistentemente los <strong>placeres superiores</strong>.</div></div></li>
-                <li><div class="node" data-title="Frase Famosa"><div class="toggle" style="visibility: hidden;"></div><div class="title">"Mejor Sócrates Insatisfecho que Necio Satisfecho"</div><div class="desc">Los placeres intelectuales tienen tal valor que justifican cierta insatisfacción.</div></div></li>
+                <li><div class="node" data-title="Universalista"><div class="toggle" style="visibility: hidden;"></div><div class="title">Universalista</div><div class="desc">La felicidad de <strong>todos</strong>.</div></div></li>
+                <li><div class="node" data-title="Sin privilegios"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sin privilegios</div><div class="desc">Mi felicidad no vale <strong>más</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Espectador Imparcial y Altruismo">
+              <div class="node" data-title="John Stuart Mill">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Espectador Imparcial y Altruismo</div>
-                <div class="desc">El utilitarismo <strong>no es egoísta</strong>. Requiere evaluar acciones sin dar peso especial a nuestros propios intereses.</div>
+                <div class="title">John Stuart Mill</div>
+                <div class="desc">Filósofo inglés (1806–1873).</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Imparcialidad Estricta"><div class="toggle" style="visibility: hidden;"></div><div class="title">Imparcialidad Estricta</div><div class="desc">Considerar <strong>equitativamente</strong> las consecuencias para todos: familia, comunidad, sociedad, futuras generaciones.</div></div></li>
-                <li><div class="node" data-title="Ética Altruista"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ética Profundamente Altruista</div><div class="desc">Actuamos con <strong>genuina preocupación</strong> por el bienestar de otros, no solo por el nuestro.</div></div></li>
-                <li><div class="node" data-title="Evaluación Objetiva"><div class="toggle" style="visibility: hidden;"></div><div class="title">Evaluación Objetiva</div><div class="desc">Sopesar objetivamente los resultados totales de nuestras acciones para toda la humanidad.</div></div></li>
+                <li><div class="node" data-title="Educación y crisis"><div class="toggle" style="visibility: hidden;"></div><div class="title">Educación y crisis</div><div class="desc">Lo salvó la <strong>poesía</strong>.</div></div></li>
+                <li><div class="node" data-title="Obras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Obras</div><div class="desc"><em>Sobre la libertad</em> y <em>El utilitarismo</em>.</div></div></li>
+                <li><div class="node" data-title="Igualdad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Igualdad</div><div class="desc">El <strong>voto femenino</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Utilitarismo del Acto vs. de la Regla">
+              <div class="node" data-title="Los Placeres">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Utilitarismo del Acto vs. de la Regla</div>
-                <div class="desc">¿Evaluar cada acción individual o seguir reglas morales que generalmente maximizan la felicidad?</div>
+                <div class="title">Los Placeres</div>
+                <div class="desc">Cantidad y <strong>calidad</strong>.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Utilitarismo del Acto"><div class="toggle" style="visibility: hidden;"></div><div class="title">Utilitarismo del Acto</div><div class="desc">Evalúa cada <strong>acto individual</strong> por sus consecuencias específicas. Máxima flexibilidad.</div></div></li>
-                <li><div class="node" data-title="Utilitarismo de la Regla"><div class="toggle" style="visibility: hidden;"></div><div class="title">Utilitarismo de la Regla</div><div class="desc">Sigue <strong>reglas morales</strong> que generalmente producen mejores resultados. Estabilidad social.</div></div></li>
-                <li><div class="node" data-title="Preferencia de Mill"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mill Prefiere las Reglas</div><div class="desc">Las reglas crean <strong>confianza social</strong> y son prácticamente más eficientes que calcular constantemente.</div></div></li>
-                <li><div class="node" data-title="Excepciones Justificadas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Excepciones en Casos Extremos</div><div class="desc">Las reglas pueden romperse cuando el <strong>beneficio sea mucho mayor</strong> y las circunstancias sean excepcionales.</div></div></li>
+                <li><div class="node" data-title="Superiores"><div class="toggle" style="visibility: hidden;"></div><div class="title">Superiores</div><div class="desc">Pensar, amar, <strong>crear</strong>.</div></div></li>
+                <li><div class="node" data-title="Inferiores"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inferiores</div><div class="desc">Los <strong>sensibles</strong>.</div></div></li>
+                <li><div class="node" data-title="Sócrates y el necio"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sócrates y el necio</div><div class="desc">Mejor <strong>insatisfecho</strong>.</div></div></li>
+                <li><div class="node" data-title="Felicidad alcanzable"><div class="toggle" style="visibility: hidden;"></div><div class="title">Felicidad alcanzable</div><div class="desc">Placeres <strong>variados</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Aplicaciones Políticas y Sociales">
+              <div class="node" data-title="Consecuencias">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Aplicaciones Políticas y Sociales</div>
-                <div class="desc">El utilitarismo es una <strong>herramienta para políticas públicas</strong> que maximicen el bienestar social general.</div>
+                <div class="title">Consecuencias</div>
+                <div class="desc">Se juzga por los <strong>resultados</strong>.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Educación Universal"><div class="toggle" style="visibility: hidden;"></div><div class="title">Educación Universal</div><div class="desc">Desarrolla capacidad para <strong>placeres superiores</strong> y promueve progreso social general.</div></div></li>
-                <li><div class="node" data-title="Impuestos Progresivos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Impuestos Progresivos</div><div class="desc">Redistribución basada en <strong>utilidad marginal decreciente</strong>: $1000 vale más para pobres que ricos.</div></div></li>
-                <li><div class="node" data-title="Libertad de Expresión"><div class="toggle" style="visibility: hidden;"></div><div class="title">Libertad de Expresión</div><div class="desc">El <strong>libre debate de ideas</strong> (incluso incorrectas) beneficia a toda la sociedad.</div></div></li>
-                <li><div class="node" data-title="Derechos de las Mujeres"><div class="toggle" style="visibility: hidden;"></div><div class="title">Derechos de las Mujeres</div><div class="desc">La <strong>igualdad de género</strong> maximiza el potencial humano y el bienestar social.</div></div></li>
+                <li><div class="node" data-title="Sin intenciones"><div class="toggle" style="visibility: hidden;"></div><div class="title">Sin intenciones</div><div class="desc">A diferencia de <strong>Kant</strong>.</div></div></li>
+                <li><div class="node" data-title="Mentira piadosa"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mentira piadosa</div><div class="desc">Toda regla tiene <strong>excepciones</strong>.</div></div></li>
+                <li><div class="node" data-title="Acto y regla"><div class="toggle" style="visibility: hidden;"></div><div class="title">Acto y regla</div><div class="desc">¿Este caso o la <strong>norma</strong>?</div></div></li>
+                <li><div class="node" data-title="El sacrificio"><div class="toggle" style="visibility: hidden;"></div><div class="title">El sacrificio</div><div class="desc">Vale si <strong>ayuda</strong> a otros.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Aplicaciones Modernas">
+              <div class="node" data-title="Sociedad y Libertad">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Aplicaciones Modernas</div>
-                <div class="desc">El utilitarismo guía decisiones contemporáneas en tecnología, medicina, medio ambiente y política.</div>
+                <div class="title">Sociedad y Libertad</div>
+                <div class="desc">Combatir la desgracia.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Automóviles Autónomos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Automóviles Autónomos</div><div class="desc">¿Cómo programar máquinas para <strong>decisiones éticas</strong> que maximicen vidas salvadas?</div></div></li>
-                <li><div class="node" data-title="Distribución de Recursos Médicos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Distribución de Recursos Médicos</div><div class="desc">Asignación de tratamientos, órganos, vacunas basada en <strong>maximizar vidas salvadas</strong>.</div></div></li>
-                <li><div class="node" data-title="Cambio Climático"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cambio Climático</div><div class="desc">Balance entre <strong>costos presentes y bienestar futuro</strong> de todas las generaciones.</div></div></li>
-                <li><div class="node" data-title="Inteligencia Artificial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ética de la Inteligencia Artificial</div><div class="desc">Algoritmos que <strong>maximicen bienestar humano</strong> en decisiones automatizadas.</div></div></li>
-                <li><div class="node" data-title="Redes Sociales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Diseño de Redes Sociales</div><div class="desc">¿Priorizar engagement o <strong>bienestar mental</strong> de los usuarios?</div></div></li>
+                <li><div class="node" data-title="Males sociales"><div class="toggle" style="visibility: hidden;"></div><div class="title">Males sociales</div><div class="desc">Enfermedad, ignorancia y <strong>pobreza</strong>.</div></div></li>
+                <li><div class="node" data-title="El principio del daño"><div class="toggle" style="visibility: hidden;"></div><div class="title">El principio del daño</div><div class="desc">Libre mientras no <strong>dañes</strong>.</div></div></li>
+                <li><div class="node" data-title="La tiranía de la mayoría"><div class="toggle" style="visibility: hidden;"></div><div class="title">La tiranía de la mayoría</div><div class="desc">Proteger al que piensa <strong>distinto</strong>.</div></div></li>
               </ul>
             </li>
-
             <li>
-              <div class="node" data-title="Críticas Principales">
+              <div class="node" data-title="Debate">
                 <div class="toggle" role="button">▾</div>
-                <div class="title">Críticas Principales al Utilitarismo</div>
-                <div class="desc">Problemas y limitaciones identificados por filósofos: justicia, cálculo y demandingness.</div>
+                <div class="title">Debate</div>
+                <div class="desc">Dilemas y críticas.</div>
               </div>
               <ul>
-                <li><div class="node" data-title="Problema de la Justicia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problema de la Justicia</div><div class="desc">¿Podría justificar <strong>injusticias individuales</strong> si maximizan el bienestar total?</div></div></li>
-                <li><div class="node" data-title="Problema del Cálculo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problema del Cálculo</div><div class="desc">Dificultad práctica de <strong>medir y comparar</strong> diferentes tipos de bienestar y consecuencias.</div></div></li>
-                <li><div class="node" data-title="Problema de Demandingness"><div class="toggle" style="visibility: hidden;"></div><div class="title">Problema de Excesiva Exigencia</div><div class="desc">¿Requiere <strong>sacrificios personales extremos</strong> para maximizar bienestar general?</div></div></li>
-                <li><div class="node" data-title="Respuestas Utilitaristas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Respuestas Utilitaristas</div><div class="desc">Análisis completo de consecuencias, utilitarismo de regla, y consideración de <strong>efectos a largo plazo</strong>.</div></div></li>
-              </ul>
-            </li>
-
-            <li>
-              <div class="node" data-title="Legado e Influencia Actual">
-                <div class="toggle" role="button">▾</div>
-                <div class="title">Legado e Influencia Actual</div>
-                <div class="desc">Impacto permanente del utilitarismo en instituciones, empresas, tecnología y vida cotidiana.</div>
-              </div>
-              <ul>
-                <li><div class="node" data-title="Políticas Públicas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Análisis Costo-Beneficio</div><div class="desc"><strong>Evaluación estándar</strong> de políticas gubernamentales en salud, educación y bienestar social.</div></div></li>
-                <li><div class="node" data-title="Bioética Médica"><div class="toggle" style="visibility: hidden;"></div><div class="title">Bioética Médica</div><div class="desc">Principios para <strong>distribución de recursos</strong>, investigación y decisiones al final de la vida.</div></div></li>
-                <li><div class="node" data-title="Responsabilidad Social Corporativa"><div class="toggle" style="visibility: hidden;"></div><div class="title">Responsabilidad Social Corporativa</div><div class="desc">Empresas que buscan <strong>maximizar impacto social positivo</strong>, no solo ganancias.</div></div></li>
-                <li><div class="node" data-title="Psicología Positiva"><div class="toggle" style="visibility: hidden;"></div><div class="title">Psicología del Bienestar</div><div class="desc">Estudio científico de la <strong>felicidad y florecimiento humano</strong>.</div></div></li>
+                <li><div class="node" data-title="El tranvía"><div class="toggle" style="visibility: hidden;"></div><div class="title">El tranvía</div><div class="desc">¿Uno o <strong>cinco</strong>?</div></div></li>
+                <li><div class="node" data-title="Medir la felicidad"><div class="toggle" style="visibility: hidden;"></div><div class="title">Medir la felicidad</div><div class="desc">¿Qué es <strong>beneficiar</strong>?</div></div></li>
+                <li><div class="node" data-title="Las minorías"><div class="toggle" style="visibility: hidden;"></div><div class="title">Las minorías</div><div class="desc">La <strong>dignidad</strong> no se negocia.</div></div></li>
               </ul>
             </li>
 
@@ -205,36 +181,36 @@
     </section>
 
     <details class="panel" open>
-      <summary>🎯 Palabras Clave <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
       <div class="content">
         <div class="terms">
-          <article class="term"><h4>Utilitarismo</h4><p>Teoría ética que evalúa acciones por sus consecuencias, buscando maximizar felicidad general.</p></article>
-          <article class="term"><h4>Principio de la Mayor Felicidad</h4><p>Las acciones son correctas si promueven felicidad, incorrectas si producen lo contrario.</p></article>
-          <article class="term"><h4>Placeres Superiores</h4><p>Placeres intelectuales exclusivos de humanos: arte, filosofía, amistad, conocimiento.</p></article>
-          <article class="term"><h4>Placeres Inferiores</h4><p>Placeres físicos compartidos con animales: comer, beber, gratificación sexual.</p></article>
-          <article class="term"><h4>Espectador Imparcial</h4><p>Evaluar acciones sin dar peso especial a nuestros propios intereses.</p></article>
-          <article class="term"><h4>Utilitarismo del Acto</h4><p>Evalúa cada acción individual por sus consecuencias específicas.</p></article>
-          <article class="term"><h4>Utilitarismo de la Regla</h4><p>Sigue reglas morales que generalmente maximizan la felicidad.</p></article>
-          <article class="term"><h4>John Stuart Mill</h4><p>Filósofo inglés (1806-1873) que refinó el utilitarismo y defendió la libertad.</p></article>
-          <article class="term"><h4>Consecuencialismo</h4><p>Teorías éticas que juzgan la moralidad por los resultados de las acciones.</p></article>
-          <article class="term"><h4>Altruismo Racional</h4><p>Preocupación genuina por el bienestar de otros basada en la razón.</p></article>
-          <article class="term"><h4>Utilidad Marginal</h4><p>Concepto económico: el valor adicional decrece con cada unidad extra.</p></article>
-          <article class="term"><h4>Análisis Costo-Beneficio</h4><p>Método para evaluar políticas comparando costos y beneficios sociales.</p></article>
-          <article class="term"><h4>Problema de la Justicia</h4><p>Crítica: el utilitarismo podría justificar injusticias si maximizan bienestar total.</p></article>
-          <article class="term"><h4>Demandingness</h4><p>Crítica: el utilitarismo podría exigir sacrificios personales excesivos.</p></article>
-          <article class="term"><h4>Ética Aplicada</h4><p>Aplicación de principios morales a problemas prácticos específicos.</p></article>
+          <article class="term"><h4>Utilitarismo</h4><p>La mejor acción da el mayor bienestar al mayor número.</p></article>
+          <article class="term"><h4>Utilidad</h4><p>Lo valioso es lo que aporta felicidad.</p></article>
+          <article class="term"><h4>Principio de Utilidad</h4><p>Aprobar las acciones según aumenten la felicidad.</p></article>
+          <article class="term"><h4>Cálculo de la Felicidad</h4><p>Medir los placeres por intensidad, duración y extensión.</p></article>
+          <article class="term"><h4>Imparcialidad</h4><p>Cada uno cuenta como uno y nadie como más de uno.</p></article>
+          <article class="term"><h4>Universalismo</h4><p>Busca la felicidad de todos los afectados.</p></article>
+          <article class="term"><h4>Eudemonismo</h4><p>Ética que busca la felicidad.</p></article>
+          <article class="term"><h4>Placeres Superiores</h4><p>Intelectuales, afectivos, morales y estéticos.</p></article>
+          <article class="term"><h4>Placeres Inferiores</h4><p>Sensibles o corporales.</p></article>
+          <article class="term"><h4>Sócrates Insatisfecho</h4><p>Mejor que un necio satisfecho.</p></article>
+          <article class="term"><h4>Consecuencialismo</h4><p>Las acciones se juzgan por sus resultados.</p></article>
+          <article class="term"><h4>Mentira Piadosa</h4><p>Excepción que evita una desgracia mayor.</p></article>
+          <article class="term"><h4>Utilitarismo de la Regla</h4><p>Seguir las normas que dan más felicidad si todos las cumplen.</p></article>
+          <article class="term"><h4>Principio del Daño</h4><p>Solo se limita la libertad para evitar daño a otros.</p></article>
+          <article class="term"><h4>Tiranía de la Mayoría</h4><p>Aplasta a quien piensa distinto.</p></article>
         </div>
       </div>
     </details>
 
-    <!-- Overlay del juego de matching (administrado por mapa-system-*) -->
+    <!-- Overlay del juego de matching -->
     <div class="game-overlay" id="gameOverlay">
       <div class="game-board">
         <div class="game-header">
           <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
             <h2>🎯 Conecta conceptos con definiciones</h2>
             <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
-          </div>
+          </div>          
           <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
           <div class="game-stats">
             <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
@@ -244,7 +220,7 @@
         </div>
 
         <div class="game-zone">
-          <div class="zone-title">🎯 Términos - Seleccioná uno:</div>
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
           <div class="cards-grid" id="termsGrid"></div>
         </div>
 
@@ -255,32 +231,29 @@
 
         <div class="celebration" id="celebration" style="display: none;">
           <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
-          <p>Dominás los conceptos fundamentales del utilitarismo de Mill.</p>
+          <p>Dominás los conceptos fundamentales del utilitarismo.</p>
         </div>
       </div>
     </div>
 
     <details class="panel">
-      <summary>🧭 Guía Rápida: Decidir al estilo utilitarista</summary>
+      <summary>🧭 Guía Rápida: Decidir como utilitarista</summary>
       <div class="content">
-        <h4>Preguntas para la <em>decisión utilitarista</em></h4>
+        <h4>Preguntas para evaluar tus acciones</h4>
         <ul>
-          <li><strong>Consecuencias:</strong> ¿Cuáles son todos los posibles resultados de mis acciones?</li>
-          <li><strong>Stakeholders:</strong> ¿Quiénes se ven afectados? (familia, comunidad, sociedad, futuras generaciones)</li>
-          <li><strong>Imparcialidad:</strong> ¿Estoy siendo un "espectador imparcial" o favoreciendo mis intereses?</li>
-          <li><strong>Maximización:</strong> ¿Qué opción genera la mayor felicidad total?</li>
-          <li><strong>Calidad de placeres:</strong> ¿Estoy considerando placeres superiores, no solo inferiores?</li>
-          <li><strong>Reglas vs. actos:</strong> ¿Es una situación normal (seguir reglas) o excepcional (evaluar caso específico)?</li>
-          <li><strong>Largo plazo:</strong> ¿Qué consecuencias tendrá esta decisión en el futuro?</li>
+          <li><strong>Consecuencias:</strong> ¿Qué resultados va a producir lo que hago?</li>
+          <li><strong>Imparcialidad:</strong> ¿Estoy contando la felicidad de todos por igual?</li>
+          <li><strong>Calidad:</strong> ¿Elijo placeres que me hacen crecer?</li>
+          <li><strong>Daño:</strong> ¿Mi libertad perjudica a alguien?</li>
+          <li><strong>Minorías:</strong> ¿Alguien queda sacrificado por la mayoría?</li>
         </ul>
-        <p><strong>Mantra utilitarista:</strong> <em>"Actúo buscando el mayor bien para el mayor número, considerando imparcialmente a todos los afectados y privilegiando consecuencias duraderas sobre beneficios inmediatos."</em></p>
       </div>
     </details>
   </main>
 
-  <!-- Cargar el mismo motor que usa Aristóteles -->
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
   <script type="module" src="../../js/mapa-system-score.js"> </script>
   <script src="../../js/mapa-system-fixed.js"></script>
+
 </body>
 </html>
-

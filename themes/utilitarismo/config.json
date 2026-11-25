@@ -1,54 +1,56 @@
 {
   "id": "utilitarismo",
-
   "meta": {
-    "title": "Utilitarismo: La mayor felicidad para el mayor número",
-    "author": "John Stuart Mill",
+    "title": "Utilitarismo: La Mayor Felicidad para el Mayor Número de Personas",
+    "author": "Jeremy Bentham y John Stuart Mill",
     "icon": "🎯",
-    "gradient": "linear-gradient(135deg, #283048 0%, #859398 100%)",
-    "difficulty": "avanzado",
-    "category": "Filosofía Moderna",
-    "description": "Explora el principio de la mayor felicidad, la distinción entre placeres superiores e inferiores, la imparcialidad y la aplicación del utilitarismo en la vida moral y política.",
-    "lastUpdated": "2026-10-27"
+    "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "difficulty": "intermedio",
+    "category": "Ética",
+    "description": "La ética de la mayor felicidad: Bentham y el cálculo del placer, la imparcialidad, Mill y los placeres superiores, el consecuencialismo, el acto y la regla, el principio del daño y las críticas.",
+    "lastUpdated": "2026-11-25"
   },
-
   "activities": {
     "material": {
       "enabled": true,
       "type": "readaloud",
-      "sections": 8,
-      "timeEstimate": 10,
+      "sections": 18,
+      "timeEstimate": 15,
       "script": "../../js/readaloud-system.js"
     },
     "quiz": {
       "enabled": true,
-      "questions": 12,
-      "timeLimit": 30,
-      "timeEstimate": 12
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
     },
     "concepts": {
       "enabled": true,
       "levels": 8,
-      "timeEstimate": 8
+      "timeEstimate": 10
     },
     "cloze": {
       "enabled": true,
-      "timeEstimate": 9
+      "items": 15,
+      "timeEstimate": 8
     },
     "cruci": {
       "enabled": true,
-      "timeEstimate": 7
+      "words": 9,
+      "centralWord": "FELICIDAD",
+      "timeEstimate": 9
     },
     "mapa": {
       "enabled": true,
-      "nodes": 25,
-      "timeEstimate": 5
+      "nodes": 33,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
     }
   },
-
   "files": {
     "material": {
-      "page": "utilitarismo.html",
+      "page": "content.html",
       "script": "../../js/readaloud-system.js"
     },
     "quiz": "quiz.js",
@@ -58,7 +60,7 @@
     },
     "cloze": {
       "page": "cloze.html",
-      "script": "cloze.js"
+      "script": "cloze_test.js"
     },
     "cruci": {
       "page": "crossword.html",
@@ -68,7 +70,9 @@
       "page": "mapa.html"
     }
   },
-
   "prerequisites": [],
-  "color": "#4169e1"
+  "color": "#667eea",
+  "notes": {
+    "realValues": "v2.0 (2026-11-25): material 18 secciones, cuestionario 13, caza 8 niveles / 47, crucigrama FELICIDAD + 9, mapa 33 nodos / 15 pares, video y cloze 15, examen con J. S. Mill (v1.1.0)."
+  }
 }

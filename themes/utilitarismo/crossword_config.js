@@ -1,73 +1,95 @@
-console.log('📋 Iniciando carga de configuración del crucigrama de Utilitarismo...');
+// themes/utilitarismo/crossword_config.js
+// Crucigrama — Utilitarismo. Central FELICIDAD y una palabra por letra, todas del material,
+// con sección y frase para las pistas escalonadas.
+// Versión 2.0 (2026-11-25): rehecho (antes con palabras genéricas: FILOSOFIA, ETICA, LIBERTAD, DECISION).
+console.log('📋 Iniciando carga de configuración del crucigrama...');
 const configStartTime = performance.now();
 
 try {
   window.CROSSWORD_CONFIG = {
-    title: "Utilitarismo de John Stuart Mill - La Mayor Felicidad para el Mayor Número",
-    
+    title: "Utilitarismo: la mayor felicidad",
+
     // Palabra central vertical (se normaliza automáticamente)
     central: "FELICIDAD",
-    
+
     // Palabras horizontales que cruzan con la central
     // crossIndex indica qué letra de la central usar (0-8 para FELICIDAD)
     entries: [
       {
-        answer: "FILOSOFIA",
-        clue: "Disciplina que estudia los principios fundamentales de la moral y la búsqueda del bien",
+        answer: "SACRIFICIO",
+        clue: "Renuncia que, para Mill, solo vale si aumenta la felicidad de los demás",
+        seccion: "🧭 El sacrificio",
+        frase: "Para Mill, el _____ de la propia felicidad tiene valor moral solo si sirve a los demás.",
         crossIndex: 0 // Cruce en la 'F' de FELICIDAD
       },
       {
-        answer: "ETICA",
-        clue: "Rama de la filosofía que estudia lo correcto e incorrecto en el comportamiento humano",
+        answer: "BENTHAM",
+        clue: "Filósofo y jurista inglés que propuso el principio de utilidad",
+        seccion: "⚖️ Bentham: el placer y el dolor",
+        frase: "Jeremy _____ (1748–1832) fue un filósofo y jurista inglés.",
         crossIndex: 1 // Cruce en la 'E' de FELICIDAD
       },
       {
-        answer: "LIBERTAD",
-        clue: "Capacidad de actuar según la propia voluntad, defendida por Mill en su famosa obra",
+        answer: "CALIDAD",
+        clue: "Lo que Mill agrega a la cantidad para valorar los placeres",
+        seccion: "💎 Cantidad y calidad de los placeres",
+        frase: "Mill señaló que la cuantificación no alcanzaba: importa también la _____.",
         crossIndex: 2 // Cruce en la 'L' de FELICIDAD
       },
       {
         answer: "IMPARCIALIDAD",
-        clue: "Actitud de evaluar las consecuencias sin favorecer a ninguna persona en particular",
+        clue: "Idea de que cada uno cuenta como uno y nadie como más de uno",
+        seccion: "👥 Cada uno cuenta como uno",
+        frase: "Una idea clave del utilitarismo es la _____: «cada uno cuenta como uno».",
         crossIndex: 3 // Cruce en la 'I' de FELICIDAD
       },
       {
         answer: "CONSECUENCIAS",
-        clue: "Resultados de nuestras acciones que determinan si son moralmente correctas",
+        clue: "Según el utilitarismo, deciden si una acción es buena o mala",
+        seccion: "🧩 Lo que importa son las consecuencias",
+        frase: "Una acción es buena o mala según sus _____, no según la intención.",
         crossIndex: 4 // Cruce en la 'C' de FELICIDAD
       },
       {
-        answer: "INTELECTUAL",
-        clue: "Tipo de placer superior que distingue a los humanos de otros animales",
+        answer: "INGLATERRA",
+        clue: "País donde se desarrolló el utilitarismo",
+        seccion: "🎯 ¿Qué es el utilitarismo?",
+        frase: "Se desarrolló sobre todo en _____, en los siglos XVIII y XIX.",
         crossIndex: 5 // Cruce en la 'I' de FELICIDAD
       },
       {
-        answer: "DECISION",
-        clue: "Acto de elegir entre alternativas evaluando cuál maximiza el bienestar general",
+        answer: "DOLOR",
+        clue: "Uno de los dos amos soberanos de la humanidad, según Bentham",
+        seccion: "⚖️ Bentham: el placer y el dolor",
+        frase: "Dos amos soberanos: el _____ y el placer.",
         crossIndex: 6 // Cruce en la 'D' de FELICIDAD
       },
       {
-        answer: "ALTRUISMO",
-        clue: "Preocupación genuina por el bienestar de otros, no solo por el propio",
+        answer: "TRANVIA",
+        clue: "Vehículo sin frenos del dilema de la palanca",
+        seccion: "🚋 El dilema del tranvía",
+        frase: "Un dilema muy discutido: un _____ sin frenos va a atropellar a cinco personas.",
         crossIndex: 7 // Cruce en la 'A' de FELICIDAD
       },
       {
-        answer: "DOLOR",
-        clue: "Lo opuesto a la felicidad que el utilitarismo busca minimizar en el mundo",
+        answer: "DESGRACIA",
+        clue: "El principio utilitarista pide prevenirla y mitigarla",
+        seccion: "🙂 ¿Es alcanzable la felicidad?",
+        frase: "El principio utilitarista incluye también la prevención y mitigación de la _____.",
         crossIndex: 8 // Cruce en la 'D' de FELICIDAD
       }
     ],
-    
+
     // Texto para el prompt de respuesta
     promptText: "Escribe la palabra completa (sin espacios ni acentos):",
-    
+
     // Configuración de sonidos (rutas relativas desde crossword.html)
     sounds: {
       correct: "sound/collect_points.mp3",
-      wrong: "sound/negative_beep.mp3", 
+      wrong: "sound/negative_beep.mp3",
       complete: "sound/fin_caza.mp3"
     },
-    
+
     // Opciones del juego
     options: {
       showHints: true,
@@ -77,23 +99,23 @@ try {
       showProgressBar: true,
       enableTimer: true
     },
-    
+
     // Información educativa adicional
     educational: {
-      introduction: "El utilitarismo es una teoría ética que evalúa la moralidad de las acciones según sus consecuencias.",
-      conclusion: "John Stuart Mill refinó esta filosofía distinguiendo entre placeres superiores e inferiores, y promoviendo la imparcialidad moral.",
-      keyWords: ["utilitarismo", "mill", "felicidad", "consecuencias", "imparcialidad", "altruismo"]
+      introduction: "Para el utilitarismo, la mejor acción es la que produce la mayor felicidad para el mayor número. Completá el crucigrama con sus conceptos.",
+      conclusion: "¡Maximizaste la felicidad! Repasaste el sacrificio, a Bentham, la calidad, la imparcialidad, las consecuencias, Inglaterra, el dolor, el tranvía y la desgracia.",
+      keyWords: ["SACRIFICIO", "BENTHAM", "CALIDAD", "IMPARCIALIDAD", "CONSECUENCIAS", "INGLATERRA", "DOLOR", "TRANVIA", "DESGRACIA"]
     },
-    
+
     // Metadatos para debug
     metadata: {
-      version: "2.0_utilitarismo_secundaria",
+      version: "2.0_secundaria", // 2026-11-24: palabras del material, con seccion y frase para las pistas escalonadas
       created: new Date().toISOString(),
-      theme: "utilitarismo-mill-secundaria",
+      theme: "utilitarismo-felicidad-secundaria",
       totalWords: 9,
-      difficulty: "intermediate-advanced",
+      difficulty: "beginner-intermediate",
       targetAudience: "estudiantes-secundaria",
-      educationalLevel: "15-18 años"
+      educationalLevel: "14-18 años"
     }
   };
 
@@ -161,7 +183,7 @@ try {
   const configLoadTime = performance.now() - configStartTime;
   console.log(`✅ Configuración del crucigrama validada y cargada en ${configLoadTime.toFixed(2)}ms`);
   console.log(`📊 Resumen: "${config.title}"`);
-  console.log(`   🔤 ${config.entries.length} palabras - Central: "${config.central}"`);
+  console.log(`   📝 ${config.entries.length} palabras - Central: "${config.central}"`);
   console.log(`   🎯 Nivel: ${config.metadata.difficulty} (${config.metadata.targetAudience})`);
   console.log(`   🧠 Audiencia: ${config.metadata.educationalLevel}`);
   
@@ -170,7 +192,7 @@ try {
   const avgAnswerLength = config.entries.reduce((sum, entry) => sum + entry.answer.length, 0) / config.entries.length;
   
   console.log(`📈 Estadísticas:`);
-  console.log(`   📝 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
+  console.log(`   📏 Longitud promedio de pistas: ${avgClueLength.toFixed(1)} caracteres`);
   console.log(`   📏 Longitud promedio de respuestas: ${avgAnswerLength.toFixed(1)} letras`);
   
   // Log para debug (solo en desarrollo)
