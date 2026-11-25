@@ -27,6 +27,13 @@ const TOPICS = {
     biography: 'Filósofo neokantiano alemán (1874–1945). Desarrolló la teoría de las “formas simbólicas”: el ser humano conoce y crea mundo a través de sistemas simbólicos (lenguaje, mito, arte, ciencia). Obras destacadas: *Filosofía de las formas simbólicas*, *Antropología filosófica*.'
   },
 
+  descartes_sujeto: {
+    icon: '🧠',
+    name: 'René Descartes',
+    desc: 'Pienso, luego existo: la duda, el sujeto y el dualismo mente-cuerpo. (Ej. Discurso del método, Meditaciones metafísicas)',
+    biography: 'Filósofo y matemático francés (1596–1650), padre de la filosofía moderna y del racionalismo. Buscó una certeza absoluta: dudó de los sentidos, del mundo y hasta de las matemáticas, y encontró la primera verdad en «pienso, luego existo». Separó la mente (res cogitans) del cuerpo (res extensa). Obras: Discurso del método, Meditaciones metafísicas, Las pasiones del alma.'
+  },
+
   nietzsche_superhombre: {
     icon: '⚡',
     name: 'Friedrich Nietzsche',
@@ -147,6 +154,13 @@ const TOPICS = {
         endTime: 165,
         title: 'Dualismo antropológico de Platón: cuerpo y alma',
         duration: '2:45'
+      },
+      descartes_sujeto: { // https://youtu.be/trwXp6hMN8M — 2026-11-25: hasta 14:20 (después, despedida); cloze de 16 frases con la transcripción
+        youtubeId: 'trwXp6hMN8M',
+        startTime: 1,
+        endTime: 861,
+        title: 'Descartes: de la duda al dualismo',
+        duration: '14:20'
       },
       nietzsche_superhombre: { // https://youtu.be/FbvXaVJTKrU — 2026-11-25: hasta 6:48 (después el video habla de Hegel); cloze de 13 frases con la transcripción
         youtubeId: 'FbvXaVJTKrU',
@@ -331,6 +345,12 @@ const TOPICS = {
       metodo: {
         filosofo: 'René Descartes',
         icono: '🔎',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      descartes_sujeto: {
+        filosofo: 'René Descartes',
+        icono: '🧠',
         notaAprobacion: 6,
         minimoActividad: 60
       },

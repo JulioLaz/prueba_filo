@@ -18,6 +18,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | metodo (Unidad I) | 16 | 13 | 8 / 55 | CRITICA + 7 | 33 / 15 | 13 | René Descartes |
 | dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 | antropologia_aristoteles (Unidad II) | 16 | 13 | 8 / 55 | SUSTANCIA + 9 | 39 / 15 | 12 | Aristóteles |
+| descartes_sujeto (Unidad II) | 20 | 13 | 8 / 51 | COGITO + 6 | 29 / 15 | 16 | René Descartes |
 | nietzsche_superhombre (Unidad II) | 19 | 13 | 8 / 47 | NIHILISMO + 9 | 29 / 15 | 13 | Friedrich Nietzsche |
 | marx_alienacion (Unidad II) | 20 | 13 | 8 / 54 | TRABAJO + 7 | 31 / 15 | 11 | Karl Marx |
 | sartre (Unidad II) | 16 | 13 | 8 / 46 | LIBERTAD + 8 | 30 / 15 | 11 | Jean-Paul Sartre |

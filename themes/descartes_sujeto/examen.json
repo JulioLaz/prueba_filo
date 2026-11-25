@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con René Descartes y del resumen final del tema «Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo; pide el video (trwXp6hMN8M) con su cloze.",
+  "version": "1.0.0",
+  "filosofo": "René Descartes",
+  "tema": "Descartes: el giro hacia el sujeto, la duda, el cogito, Dios y el error, el dualismo mente-cuerpo y su vigencia",
+  "intro": "René Descartes (1596–1650), padre de la filosofía moderna, buscó una certeza absoluta. Con una duda metódica e hiperbólica llegó a la primera verdad: «pienso, luego existo». Desde el yo pensante demostró a Dios, garantía del conocimiento, explicó el error y recuperó el mundo como res extensa. Su dualismo entre mente y cuerpo impulsó la ciencia, pero dejó abierto el problema de la interacción, que hoy vuelve con la IA y la realidad virtual.",
+  "conceptosClave": "giro hacia el sujeto, certeza, duda metódica, duda hiperbólica, genio maligno, cogito, res cogitans, ideas innatas, adventicias y facticias, argumento ontológico, Dios garantía, error, res extensa, mecanicismo, dualismo, glándula pineal, autómata",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "video",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "estufa",
+      "texto": "Descartes está encerrado en una habitación calefaccionada por una estufa, en pleno invierno alemán, y le dice al alumno que ahí decidió dudar de todo."
+    },
+    {
+      "id": "fuego",
+      "texto": "Descartes, sentado junto al fuego en bata, le pregunta al alumno cómo puede estar seguro de que no está soñando esta conversación."
+    },
+    {
+      "id": "cera",
+      "texto": "Descartes acerca un trozo de cera al fuego y lo ve derretirse: le pregunta al alumno qué queda de la cera cuando cambian su color, su olor y su forma."
+    },
+    {
+      "id": "isabel",
+      "texto": "Descartes acaba de leer una carta de la princesa Isabel de Bohemia que le pregunta cómo el alma mueve el cuerpo, y le pide ayuda al alumno para pensar la respuesta."
+    },
+    {
+      "id": "automata",
+      "texto": "Descartes le muestra al alumno un muñeco mecánico que se mueve solo y le pregunta cómo sabría si es una persona o una máquina."
+    },
+    {
+      "id": "suecia",
+      "texto": "Descartes llega tiritando del frío palacio de la reina Cristina de Suecia, que lo hace dar clases a las cinco de la mañana, y le pide al alumno una conversación más cálida."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "sujeto",
+      "titulo": "Descartes y el giro hacia el sujeto",
+      "guia": "Preguntar quién fue Descartes y qué giro introduce en la filosofía.",
+      "claves": "René Descartes (1596–1650), filósofo y matemático francés, padre de la filosofía moderna y del racionalismo. Discurso del método (1637), Meditaciones metafísicas (1641). Giro subjetivo: la filosofía deja de partir del ser del mundo (antigüedad, escolástica) y parte de la certeza del sujeto pensante.",
+      "resumen": "Descartes es el padre de la filosofía moderna: con él, la filosofía ya no parte del mundo sino de la certeza del sujeto que piensa.",
+      "palabras": [
+        "Descartes",
+        "filosofía moderna",
+        "racionalismo",
+        "sujeto",
+        "Meditaciones"
+      ],
+      "ejemplo": "Antes de preguntarte cómo es el universo, te preguntás de qué podés estar seguro vos."
+    },
+    {
+      "id": "certeza",
+      "titulo": "Certeza y método",
+      "guia": "Preguntar qué busca Descartes, por qué admira las matemáticas y cuáles son las cuatro reglas.",
+      "claves": "Búsqueda de certeza: lo que admita la mínima duda se rechaza como falso. Admira las matemáticas (exactas, indudables); le decepcionan los filósofos que nunca se ponen de acuerdo. Método: evidencia (claro y distinto, evitar la precipitación), análisis, síntesis, enumeración. Edificio del saber sobre cimientos firmes.",
+      "resumen": "Descartes buscaba una certeza absoluta, como la de las matemáticas. Propuso cuatro reglas: evidencia, análisis, síntesis y enumeración, con lo claro y distinto como criterio de verdad.",
+      "palabras": [
+        "certeza",
+        "matemáticas",
+        "claro y distinto",
+        "evidencia",
+        "cuatro reglas"
+      ],
+      "ejemplo": "Construir una casa: si los cimientos fallan, todo se cae; Descartes quería cimientos firmes para el saber."
+    },
+    {
+      "id": "duda",
+      "titulo": "La duda metódica e hiperbólica",
+      "guia": "Preguntar qué rasgos tiene la duda cartesiana y cuáles son sus tres niveles.",
+      "claves": "Duda metódica (medio, no fin), universal (fundamentos), hiperbólica (lo dudoso como falso); a diferencia de los escépticos, duda para superar la duda. Primera meditación: dudar de las opiniones antiguas, empezar de cero. Niveles: 1) sentidos (palo en el agua, Pedro que era Juana); 2) sueño (junto al fuego; no hay signo seguro para distinguir vigilia y sueño: dudo del mundo y del cuerpo); 3) genio maligno (engaña incluso en 2 + 2).",
+      "resumen": "Descartes duda de todo para encontrar algo firme: primero de los sentidos, después de la realidad del mundo por el sueño, y por último hasta de las matemáticas con el genio maligno.",
+      "palabras": [
+        "duda metódica",
+        "hiperbólica",
+        "sentidos",
+        "sueño",
+        "genio maligno"
+      ],
+      "ejemplo": "Un sueño tan real que al despertar tardás en saber si pasó: Descartes se pregunta si toda la vida podría ser así."
+    },
+    {
+      "id": "cogito",
+      "titulo": "Pienso, luego existo",
+      "guia": "Preguntar cuál es la primera certeza y por qué resiste incluso al genio maligno.",
+      "claves": "Segunda meditación: aunque el genio me engañe, no puede engañarme sobre mi duda: si dudo, pienso; si pienso, existo; para ser engañado tengo que existir. Cogito, ergo sum (Discurso); en las Meditaciones, «yo soy, yo existo» cada vez que lo pienso. No es silogismo sino intuición inmediata. Nace la subjetividad moderna: el yo como primer principio; claridad y distinción como criterio de verdad.",
+      "resumen": "La primera certeza es «pienso, luego existo»: aunque un genio me engañe, para ser engañado tengo que pensar, y si pienso, existo. Es una intuición inmediata.",
+      "palabras": [
+        "cogito",
+        "pienso",
+        "existo",
+        "intuición",
+        "primer principio"
+      ],
+      "ejemplo": "Si alguien te dice «no existís», para escucharlo y dudar ya tenés que existir."
+    },
+    {
+      "id": "res_cogitans",
+      "titulo": "La cosa que piensa",
+      "guia": "Preguntar qué es la res cogitans y qué problemas deja el cogito (intermitencia, soledad).",
+      "claves": "Res cogitans: algo que duda, entiende, afirma, niega, quiere, imagina, siente. Del cuerpo todavía duda: solo sabe que existe como mente. Problemas: ¿existo cuando no pienso (al dormir)? ¿existen los demás? Descartes está radicalmente solo; Dios lo resolverá (me sostiene en la existencia).",
+      "resumen": "Después del cogito, Descartes sabe que es una cosa que piensa, pero todavía duda de su cuerpo y de los demás: está radicalmente solo.",
+      "palabras": [
+        "res cogitans",
+        "cosa que piensa",
+        "cuerpo",
+        "solo",
+        "mente"
+      ],
+      "ejemplo": "Como despertar en una habitación oscura sabiendo solo una cosa: que estás pensando."
+    },
+    {
+      "id": "ideas",
+      "titulo": "Los tres tipos de ideas",
+      "guia": "Preguntar cuáles son los tipos de ideas con ejemplos.",
+      "claves": "Tercera meditación: innatas (nacen conmigo, como la de infinito), adventicias (vienen de afuera, como el calor), facticias (las invento combinando otras: centauro, sirena).",
+      "resumen": "Descartes distingue ideas innatas, que nacen con nosotros; adventicias, que vienen de afuera; y facticias, que inventamos, como un centauro.",
+      "palabras": [
+        "innatas",
+        "adventicias",
+        "facticias",
+        "centauro",
+        "infinito"
+      ],
+      "ejemplo": "La idea de un unicornio es facticia: la armaste combinando un caballo y un cuerno."
+    },
+    {
+      "id": "dios",
+      "titulo": "Las pruebas de la existencia de Dios",
+      "guia": "Preguntar cómo demuestra Descartes que Dios existe (idea de infinito, causa de mí, argumento ontológico).",
+      "claves": "1) Idea de un Dios perfecto e infinito: no puede venir de mí, sustancia finita; solo un ser infinito pudo ponerla (firma del artista). 2) No me creé a mí mismo; alguien me causó; para evitar la regresión al infinito, Dios. 3) Quinta meditación, argumento ontológico: como montaña sin valle o triángulo sin tres lados, no puedo pensar a Dios sin existencia; un Dios inexistente sería imperfecto.",
+      "resumen": "Descartes prueba a Dios de tres maneras: la idea de infinito solo pudo ponerla un ser infinito; alguien tuvo que causarme; y el argumento ontológico, porque un ser perfecto no puede no existir.",
+      "palabras": [
+        "idea de infinito",
+        "firma del artista",
+        "causa",
+        "argumento ontológico",
+        "perfección"
+      ],
+      "ejemplo": "No podés pensar en un triángulo de cuatro lados; Descartes dice que tampoco podés pensar en Dios sin que exista."
+    },
+    {
+      "id": "garantia_error",
+      "titulo": "Dios, garantía, y el problema del error",
+      "guia": "Preguntar por qué Dios garantiza el conocimiento y cómo explica Descartes el error.",
+      "claves": "Dios perfecto es bueno y no puede ser engañador: cae el genio maligno, se recuperan las matemáticas; Dios es garantía de lo claro y distinto; me sostiene en la existencia aun cuando no pienso. Cuarta meditación: entendimiento finito, voluntad infinita; el error es precipitación: la voluntad juzga antes de que el entendimiento esté seguro (Pedro y Juana; el brazo más largo que la manga). El método evita el error.",
+      "resumen": "Como Dios es bueno, no engaña: es la garantía del conocimiento. Nos equivocamos cuando la voluntad, que es infinita, se apura a juzgar más allá de lo que entendemos.",
+      "palabras": [
+        "garantía",
+        "no engaña",
+        "error",
+        "voluntad",
+        "precipitación"
+      ],
+      "ejemplo": "Contestar una pregunta del examen antes de terminar de leerla."
+    },
+    {
+      "id": "res_extensa",
+      "titulo": "La res extensa y el mecanicismo",
+      "guia": "Preguntar cómo recupera Descartes el mundo y qué es la res extensa.",
+      "claves": "Sexta meditación: como Dios no engaña, las ideas que parecen venir de afuera corresponden a algo real; recupera el mundo y el cuerpo. Tres sustancias: res cogitans (yo, finita), res infinita (Dios), res extensa (materia). La materia se reduce a extensión (largo, ancho, profundidad, figura, movimiento): mecanicismo; el cuerpo y los animales como máquinas, como un reloj.",
+      "resumen": "Descartes recupera el mundo como res extensa: materia definida por la extensión. De ahí el mecanicismo: el cuerpo y los animales funcionan como máquinas, como un reloj.",
+      "palabras": [
+        "res extensa",
+        "extensión",
+        "tres sustancias",
+        "mecanicismo",
+        "reloj"
+      ],
+      "ejemplo": "Explicar el corazón como una bomba y los músculos como palancas es pensar como Descartes."
+    },
+    {
+      "id": "dualismo",
+      "titulo": "El dualismo y el problema de la interacción",
+      "guia": "Preguntar qué es el dualismo sustancial y qué problema deja abierto.",
+      "claves": "Res cogitans: pensamiento, inmaterial, inextensa, indivisible, libre; acceso por introspección. Res extensa: extensión, material, divisible, leyes mecánicas; física y geometría. Liberó a la ciencia del finalismo. Problema: ¿cómo interactúan? (un deseo que mueve un brazo, una herida que duele). Glándula pineal como punto de contacto; Isabel de Bohemia objetó que no explica cómo lo inmaterial mueve lo material.",
+      "resumen": "El dualismo separa la mente, inmaterial, del cuerpo, material. Pero deja un problema: ¿cómo se comunican? Descartes propuso la glándula pineal, y la princesa Isabel de Bohemia le objetó que no alcanzaba.",
+      "palabras": [
+        "dualismo",
+        "res cogitans",
+        "res extensa",
+        "glándula pineal",
+        "interacción"
+      ],
+      "ejemplo": "Cuando estás nervioso te transpiran las manos: ¿cómo un pensamiento cambia el cuerpo?"
+    },
+    {
+      "id": "automata",
+      "titulo": "Máquinas, autómatas e inteligencia artificial",
+      "guia": "Preguntar cómo distinguía Descartes a un humano de un autómata y qué pasa hoy con la IA.",
+      "claves": "Discurso del método (quinta parte): cómo distinguir a un humano de un autómata perfecto. Dos pruebas: uso creativo y contextual del lenguaje, y adaptación racional más allá de lo programado. Hoy: ante los modelos de lenguaje y la IA, ¿procesar símbolos es pensar (res cogitans, conciencia) o solo simulación mecánica?",
+      "resumen": "Descartes decía que una máquina podría imitarnos, pero no usar el lenguaje con verdadera comprensión ni adaptarse con razón. Hoy la inteligencia artificial vuelve a plantear esa pregunta.",
+      "palabras": [
+        "autómata",
+        "lenguaje",
+        "adaptación",
+        "inteligencia artificial",
+        "simulación"
+      ],
+      "ejemplo": "Un asistente que responde todo: ¿entiende lo que dice o solo combina palabras?"
+    },
+    {
+      "id": "hoy",
+      "titulo": "Descartes hoy: simulación y mente encarnada",
+      "guia": "Preguntar cómo reaparece el genio maligno hoy y qué críticas recibe el dualismo.",
+      "claves": "El genio maligno anticipa el «cerebro en una cubeta» de Hilary Putnam y la hipótesis de la simulación; con la realidad virtual y los deepfakes vuelve la pregunta de cómo distinguir lo real de lo simulado. Mind uploading: fantasía de separar la mente del cuerpo. Críticas: Antonio Damasio y Merleau-Ponty: la mente está encarnada (embodied), atravesada por el cuerpo y las emociones.",
+      "resumen": "El genio maligno reaparece en la idea de que podríamos vivir en una simulación. Y hoy muchos critican el dualismo: la mente no está separada del cuerpo, sino encarnada.",
+      "palabras": [
+        "simulación",
+        "cerebro en una cubeta",
+        "deepfakes",
+        "mente encarnada",
+        "Damasio"
+      ],
+      "ejemplo": "Un video falso tan realista que no sabés si es verdadero: la duda cartesiana en tu celular."
+    }
+  ],
+  "casos": [
+    {
+      "id": "simulacion",
+      "texto": "Un compañero dice que tal vez vivimos en una simulación, como en una película.",
+      "claves": "Relacionar con el genio maligno y el sueño; cerebro en una cubeta; ¿qué queda indudable? el cogito; Dios como garantía en Descartes."
+    },
+    {
+      "id": "deepfake",
+      "texto": "Circula un video de un famoso diciendo algo que nunca dijo, y parece totalmente real.",
+      "claves": "Aplicar la duda metódica y la regla de la evidencia: no aceptar nada que no sea claro y distinto; los sentidos engañan; evitar la precipitación."
+    },
+    {
+      "id": "chatbot",
+      "texto": "Una amiga dice que su asistente de inteligencia artificial «la entiende mejor que nadie».",
+      "claves": "Aplicar la prueba del autómata: lenguaje creativo y comprensión frente a simulación; res cogitans frente a mecanismo."
+    },
+    {
+      "id": "saludo",
+      "texto": "Saludaste a alguien por la calle pensando que era tu primo, y era un desconocido.",
+      "claves": "Explicar el error como precipitación de la voluntad (entendimiento finito, voluntad infinita); el brazo más largo que la manga."
+    },
+    {
+      "id": "nervios",
+      "texto": "Antes de un examen te tiemblan las manos y te duele la panza.",
+      "claves": "Plantear el problema de la interacción mente-cuerpo del dualismo; glándula pineal; crítica de la mente encarnada (Damasio)."
+    },
+    {
+      "id": "todo_dudar",
+      "texto": "Un compañero dice que si dudamos de todo, entonces no podemos saber nada.",
+      "claves": "Distinguir duda escéptica y metódica: Descartes duda para superar la duda; el cogito como primera certeza."
+    },
+    {
+      "id": "mente_subida",
+      "texto": "Una empresa promete «subir» tu mente a una computadora para que vivas para siempre.",
+      "claves": "Aplicar el dualismo (separar res cogitans y res extensa) y las críticas de la mente encarnada; ¿qué es la mente para Descartes?"
+    },
+    {
+      "id": "animales",
+      "texto": "Alguien dice que los animales no sienten nada porque son como máquinas.",
+      "claves": "Explicar el mecanicismo cartesiano (animales como relojes) y discutirlo con lo que sabemos hoy; res extensa."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "certeza",
+      "texto": "¿Hay algo de lo que estés completamente seguro? ¿Por qué?"
+    },
+    {
+      "id": "sueno",
+      "texto": "¿Alguna vez tuviste un sueño tan real que dudaste al despertar?"
+    },
+    {
+      "id": "ia",
+      "texto": "¿Creés que una inteligencia artificial puede pensar de verdad? ¿Por qué?"
+    },
+    {
+      "id": "cuerpo",
+      "texto": "¿Sentís que sos tu mente, tu cuerpo o las dos cosas juntas?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Descartes, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué giro introduce Descartes en la filosofía?",
+    "Explicá los tres niveles de la duda cartesiana.",
+    "¿Por qué el cogito resiste incluso al genio maligno?",
+    "¿Cuáles son los tres tipos de ideas? Dá un ejemplo de cada una.",
+    "Explicá uno de los argumentos de Descartes sobre la existencia de Dios.",
+    "¿Cómo explica Descartes el error?",
+    "¿Qué diferencia hay entre res cogitans y res extensa, y qué problema deja el dualismo?",
+    "¿Por qué Descartes sigue vigente ante la inteligencia artificial y la realidad virtual?"
+  ]
+}

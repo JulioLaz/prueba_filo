@@ -147,6 +147,7 @@ console.log('📚 Cargando sistema de modal educativo...');
       'simbolo': '🧩',
       'marx': '🏭',
       'nietzsche': '⚡',
+      'descartes': '🧠',
       'platon': '🌌',
       'metodo': '🔎',
       'antropologia': '🌱',

@@ -198,6 +198,19 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         contentFile: 'themes/nietzsche_superhombre/content.html'
     },
     {
+        id: 'descartes_sujeto',
+        title: 'Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo',
+        description: 'El giro hacia el sujeto: la duda hasta el genio maligno, el cogito, Dios y el error, la mente y el cuerpo como dos sustancias, y por qué vuelve hoy con la IA y la realidad virtual.',
+        icon: '🧠',
+        gradient: 'linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 16,
+        prerequisites: [],
+        color: '#2b6cb0',
+        contentFile: 'themes/descartes_sujeto/content.html'
+    },
+    {
         id: 'etica',
         title: 'Ética y Moral',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',

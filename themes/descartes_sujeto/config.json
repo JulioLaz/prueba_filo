@@ -1,0 +1,78 @@
+{
+  "id": "descartes_sujeto",
+  "meta": {
+    "title": "Descartes: Pienso, Luego Existo — El Sujeto y el Dualismo",
+    "author": "René Descartes",
+    "icon": "🧠",
+    "gradient": "linear-gradient(135deg, #2b6cb0 0%, #805ad5 100%)",
+    "difficulty": "intermedio",
+    "category": "Antropología Filosófica",
+    "description": "El giro hacia el sujeto, la duda metódica e hiperbólica, el cogito, la res cogitans, las ideas y Dios, el error, la res extensa, el dualismo mente-cuerpo y su vigencia ante la IA y la realidad virtual.",
+    "lastUpdated": "2026-11-25"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 20,
+      "timeEstimate": 16,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": true,
+      "items": 16,
+      "timeEstimate": 15
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 6,
+      "centralWord": "COGITO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 29,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cloze": {
+      "page": "cloze.html",
+      "script": "cloze_test.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#2b6cb0",
+  "notes": {
+    "realValues": "v1.0 (2026-11-25): material 20 secciones, cuestionario 13, caza 8 niveles / 51, crucigrama COGITO + 6, mapa 29 nodos / 15 pares, video y cloze 16 (con la transcripción, hasta 14:20)."
+  }
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Descartes · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Descartes (Unidad II). Versión 1.0 (2026-11-25): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Descartes
+    window.MapaSystemConfig = {
+      tema: 'descartes_sujeto',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Duda Metódica", definition: "Dudar de todo como medio para encontrar la certeza." },
+        { term: "Duda Hiperbólica", definition: "Duda exagerada: trata lo dudoso como falso." },
+        { term: "Genio Maligno", definition: "Hipótesis de un engañador que alcanza hasta las matemáticas." },
+        { term: "Cogito", definition: "«Pienso, luego existo»: la primera verdad indudable." },
+        { term: "Res Cogitans", definition: "La cosa que piensa: la mente." },
+        { term: "Claridad y Distinción", definition: "El criterio de verdad de Descartes." },
+        { term: "Ideas Innatas", definition: "Ideas que nacen conmigo, como la de infinito." },
+        { term: "Ideas Adventicias", definition: "Ideas que parecen venir de afuera." },
+        { term: "Ideas Facticias", definition: "Ideas que invento, como un centauro." },
+        { term: "Argumento Ontológico", definition: "La idea de un ser perfecto implica su existencia." },
+        { term: "Dios Garantía", definition: "Un Dios bueno no engaña: garantiza lo claro y distinto." },
+        { term: "Error", definition: "La voluntad se precipita más allá del entendimiento." },
+        { term: "Res Extensa", definition: "La realidad material, definida por la extensión." },
+        { term: "Mecanicismo", definition: "El cuerpo y los animales como máquinas." },
+        { term: "Glándula Pineal", definition: "Supuesto punto de contacto entre mente y cuerpo." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🧠'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🧠']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🧠 Descartes</span></div>
+      </div>
+      <h3 class="sub">Pienso, luego existo</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="Descartes">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">Descartes</div>
+            <div class="desc">Desde la <strong>duda</strong> llega a una certeza: «<strong>pienso, luego existo</strong>», y separa <strong>mente</strong> y <strong>materia</strong>.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="René Descartes">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">René Descartes</div>
+                <div class="desc">Padre de la filosofía <strong>moderna</strong> (1596–1650).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Obras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Obras</div><div class="desc"><em>Discurso del método</em> y <em>Meditaciones metafísicas</em>.</div></div></li>
+                <li><div class="node" data-title="Giro al sujeto"><div class="toggle" style="visibility: hidden;"></div><div class="title">Giro al sujeto</div><div class="desc">De «¿qué hay?» a «¿de qué estoy <strong>seguro</strong>?».</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Certeza y Método">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Certeza y Método</div>
+                <div class="desc">Solo vale lo <strong>indudable</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Modelo matemático"><div class="toggle" style="visibility: hidden;"></div><div class="title">Modelo matemático</div><div class="desc">Exactitud y rigor.</div></div></li>
+                <li><div class="node" data-title="Cuatro reglas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cuatro reglas</div><div class="desc">Evidencia, análisis, síntesis y enumeración.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Duda">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Duda</div>
+                <div class="desc">Metódica, universal e <strong>hiperbólica</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Los sentidos"><div class="toggle" style="visibility: hidden;"></div><div class="title">Los sentidos</div><div class="desc">El <strong>palo</strong> que parece roto.</div></div></li>
+                <li><div class="node" data-title="El sueño"><div class="toggle" style="visibility: hidden;"></div><div class="title">El sueño</div><div class="desc">No distingo con seguridad la <strong>vigilia</strong>.</div></div></li>
+                <li><div class="node" data-title="Genio maligno"><div class="toggle" style="visibility: hidden;"></div><div class="title">Genio maligno</div><div class="desc">Dudar hasta de <strong>2 + 2</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Cogito">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Cogito</div>
+                <div class="desc">«Pienso, luego existo».</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Intuición"><div class="toggle" style="visibility: hidden;"></div><div class="title">Intuición</div><div class="desc">No es un silogismo.</div></div></li>
+                <li><div class="node" data-title="Cosa que piensa"><div class="toggle" style="visibility: hidden;"></div><div class="title">Cosa que piensa</div><div class="desc">Del cuerpo todavía <strong>dudo</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Ideas y Dios">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Ideas y Dios</div>
+                <div class="desc">Tercera y quinta meditación.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Tres tipos de ideas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tres tipos de ideas</div><div class="desc">Innatas, adventicias y <strong>facticias</strong>.</div></div></li>
+                <li><div class="node" data-title="Idea de infinito"><div class="toggle" style="visibility: hidden;"></div><div class="title">Idea de infinito</div><div class="desc">La <strong>firma</strong> del artista.</div></div></li>
+                <li><div class="node" data-title="Argumento ontológico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Argumento ontológico</div><div class="desc">Montaña y <strong>valle</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Garantía y Error">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Garantía y Error</div>
+                <div class="desc">Un Dios bueno no <strong>engaña</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Garantía"><div class="toggle" style="visibility: hidden;"></div><div class="title">Garantía</div><div class="desc">Recupera las <strong>matemáticas</strong>.</div></div></li>
+                <li><div class="node" data-title="El error"><div class="toggle" style="visibility: hidden;"></div><div class="title">El error</div><div class="desc">El brazo más largo que la <strong>manga</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Dualismo Sustancial">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Dualismo Sustancial</div>
+                <div class="desc">Dos sustancias distintas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Res extensa"><div class="toggle" style="visibility: hidden;"></div><div class="title">Res extensa</div><div class="desc">Materia como <strong>extensión</strong>: mecanicismo.</div></div></li>
+                <li><div class="node" data-title="Interacción"><div class="toggle" style="visibility: hidden;"></div><div class="title">Interacción</div><div class="desc">¿Cómo se comunican? La <strong>glándula pineal</strong>.</div></div></li>
+                <li><div class="node" data-title="Isabel de Bohemia"><div class="toggle" style="visibility: hidden;"></div><div class="title">Isabel de Bohemia</div><div class="desc">Objetó la solución de Descartes.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Descartes Hoy">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Descartes Hoy</div>
+                <div class="desc">Preguntas que vuelven.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Inteligencia artificial"><div class="toggle" style="visibility: hidden;"></div><div class="title">Inteligencia artificial</div><div class="desc">¿El <strong>autómata</strong> piensa o simula?</div></div></li>
+                <li><div class="node" data-title="Simulación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Simulación</div><div class="desc">Cerebro en una cubeta y <strong>deepfakes</strong>.</div></div></li>
+                <li><div class="node" data-title="Mente encarnada"><div class="toggle" style="visibility: hidden;"></div><div class="title">Mente encarnada</div><div class="desc">Damasio y Merleau-Ponty: mente y <strong>cuerpo</strong> unidos.</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Duda Metódica</h4><p>Dudar de todo como medio para encontrar la certeza.</p></article>
+          <article class="term"><h4>Duda Hiperbólica</h4><p>Duda exagerada: trata lo dudoso como falso.</p></article>
+          <article class="term"><h4>Genio Maligno</h4><p>Hipótesis de un engañador que alcanza hasta las matemáticas.</p></article>
+          <article class="term"><h4>Cogito</h4><p>«Pienso, luego existo»: la primera verdad indudable.</p></article>
+          <article class="term"><h4>Res Cogitans</h4><p>La cosa que piensa: la mente.</p></article>
+          <article class="term"><h4>Claridad y Distinción</h4><p>El criterio de verdad de Descartes.</p></article>
+          <article class="term"><h4>Ideas Innatas</h4><p>Ideas que nacen conmigo, como la de infinito.</p></article>
+          <article class="term"><h4>Ideas Adventicias</h4><p>Ideas que parecen venir de afuera.</p></article>
+          <article class="term"><h4>Ideas Facticias</h4><p>Ideas que invento, como un centauro.</p></article>
+          <article class="term"><h4>Argumento Ontológico</h4><p>La idea de un ser perfecto implica su existencia.</p></article>
+          <article class="term"><h4>Dios Garantía</h4><p>Un Dios bueno no engaña: garantiza lo claro y distinto.</p></article>
+          <article class="term"><h4>Error</h4><p>La voluntad se precipita más allá del entendimiento.</p></article>
+          <article class="term"><h4>Res Extensa</h4><p>La realidad material, definida por la extensión.</p></article>
+          <article class="term"><h4>Mecanicismo</h4><p>El cuerpo y los animales como máquinas.</p></article>
+          <article class="term"><h4>Glándula Pineal</h4><p>Supuesto punto de contacto entre mente y cuerpo.</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de Descartes.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar como Descartes</summary>
+      <div class="content">
+        <h4>Preguntas para dudar con método</h4>
+        <ul>
+          <li><strong>Evidencia:</strong> ¿Lo que creo es claro y distinto, o solo me parece?</li>
+          <li><strong>Sentidos:</strong> ¿Me pudieron engañar mis ojos u oídos?</li>
+          <li><strong>Sueño:</strong> ¿Cómo sé que esto es real y no una simulación?</li>
+          <li><strong>Error:</strong> ¿Estoy juzgando antes de estar seguro?</li>
+          <li><strong>Mente y cuerpo:</strong> ¿Cómo influyen mis emociones y mi cuerpo en lo que pienso?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>
