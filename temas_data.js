@@ -27,6 +27,13 @@ const TOPICS = {
     biography: 'Filósofo neokantiano alemán (1874–1945). Desarrolló la teoría de las “formas simbólicas”: el ser humano conoce y crea mundo a través de sistemas simbólicos (lenguaje, mito, arte, ciencia). Obras destacadas: *Filosofía de las formas simbólicas*, *Antropología filosófica*.'
   },
 
+  marx_alienacion: {
+    icon: '🏭',
+    name: 'Karl Marx',
+    desc: 'El trabajo y la alienación: cuando lo que creamos se vuelve contra nosotros. (Ej. Manuscritos económico-filosóficos de 1844, El capital)',
+    biography: 'Filósofo y economista alemán (1818–1883). Vivió exiliado en Londres y trabajó junto a Friedrich Engels. Sostuvo que el trabajo es lo que nos hace humanos, pero que en el capitalismo se vuelve trabajo enajenado, y que la filosofía no debe solo interpretar el mundo, sino transformarlo. Obras: Manuscritos económico-filosóficos de 1844, Tesis sobre Feuerbach, El capital.'
+  },
+
   sartre: {
     icon: '🌀',
     name: 'Jean-Paul Sartre',
@@ -296,6 +303,12 @@ const TOPICS = {
       metodo: {
         filosofo: 'René Descartes',
         icono: '🔎',
+        notaAprobacion: 6,
+        minimoActividad: 60
+      },
+      marx_alienacion: {
+        filosofo: 'Karl Marx',
+        icono: '🏭',
         notaAprobacion: 6,
         minimoActividad: 60
       },

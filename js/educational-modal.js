@@ -145,6 +145,7 @@ console.log('📚 Cargando sistema de modal educativo...');
       'antropocentrismo': '👤',
       'dualismo': '🕊️',
       'simbolo': '🧩',
+      'marx': '🏭',
       'platon': '🌌',
       'metodo': '🔎',
       'antropologia': '🌱',

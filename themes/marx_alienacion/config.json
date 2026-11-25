@@ -1,0 +1,74 @@
+{
+  "id": "marx_alienacion",
+  "meta": {
+    "title": "Karl Marx: El Trabajo y la Alienación",
+    "author": "Karl Marx",
+    "icon": "🏭",
+    "gradient": "linear-gradient(135deg, #c53030 0%, #805ad5 100%)",
+    "difficulty": "intermedio",
+    "category": "Antropología Filosófica",
+    "description": "El trabajo como lo que nos hace humanos, las cuatro alienaciones, la alienación política y religiosa, el fetichismo de la mercancía y la alienación hoy.",
+    "lastUpdated": "2026-11-25"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 18,
+      "timeEstimate": 15,
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    },
+    "concepts": {
+      "enabled": true,
+      "levels": 8,
+      "timeEstimate": 10
+    },
+    "cloze": {
+      "enabled": false,
+      "items": 0,
+      "timeEstimate": 0
+    },
+    "cruci": {
+      "enabled": true,
+      "words": 7,
+      "centralWord": "TRABAJO",
+      "timeEstimate": 8
+    },
+    "mapa": {
+      "enabled": true,
+      "nodes": 31,
+      "timeEstimate": 8,
+      "gameMatchPairs": 15
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "concepts": {
+      "page": "conceptos.html",
+      "script": "conceptos.js"
+    },
+    "cruci": {
+      "page": "crossword.html",
+      "config": "crossword_config.js"
+    },
+    "mapa": {
+      "page": "mapa.html"
+    }
+  },
+  "prerequisites": [],
+  "color": "#c53030",
+  "notes": {
+    "realValues": "v1.0 (2026-11-25): material 18 secciones, cuestionario 13, caza 8 niveles / 54, crucigrama TRABAJO + 7, mapa 31 nodos / 15 pares. Sin video ni cloze todavía."
+  }
+}

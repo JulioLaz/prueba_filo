@@ -1,0 +1,301 @@
+{
+  "_info": "Banco del examen oral con Karl Marx y del resumen final del tema «Karl Marx: El Trabajo y la Alienación». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-25): examen nuevo. Sin video todavía: cuando se agregue, sumar \"video\" a actividadesRequeridas.",
+  "version": "1.0.0",
+  "filosofo": "Karl Marx",
+  "tema": "Marx: el trabajo, la objetivación y el ser genérico, las cuatro alienaciones, la alienación política y religiosa, el fetichismo de la mercancía y la alienación hoy",
+  "intro": "Para Karl Marx (1818–1883), el trabajo es lo que nos hace humanos: en él nos objetivamos y afirmamos nuestro ser genérico. En el capitalismo, con la propiedad privada de los medios de producción, el trabajo se enajena: el obrero se aliena del producto, de su actividad, de su ser genérico y de los otros. La alienación se extiende a la política, la religión y el fetichismo de la mercancía, y reaparece hoy en plataformas, consumo y autoexplotación.",
+  "conceptosClave": "alienación, praxis, trabajo, objetivación, ser genérico, propiedad privada, trabajo enajenado, alienación del producto, de la actividad, del ser genérico y de los otros, alienación política, alienación religiosa, opio del pueblo, fetichismo de la mercancía, autoexplotación",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "quiz",
+    "caza",
+    "cruci",
+    "material",
+    "mapa"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "museo_britanico",
+      "texto": "Marx levanta la vista de una pila de libros en la sala de lectura del Museo Británico, en Londres, y le pregunta al alumno para qué sirve estudiar si no es para cambiar el mundo."
+    },
+    {
+      "id": "fabrica",
+      "texto": "Marx lleva al alumno a la puerta de una fábrica de Manchester a la salida del turno y le pide que observe las caras de los obreros antes de empezar a conversar."
+    },
+    {
+      "id": "engels",
+      "texto": "Marx acaba de recibir una carta de su amigo Engels con datos sobre las condiciones de los trabajadores ingleses y le propone al alumno pensar juntos qué significan."
+    },
+    {
+      "id": "manuscritos",
+      "texto": "Marx busca entre papeles sueltos unos borradores escritos en París en 1844 y le dice al alumno que ahí está todo lo que hay que saber sobre el trabajo alienado."
+    },
+    {
+      "id": "zapatillas",
+      "texto": "Marx señala las zapatillas del alumno y le pregunta, con curiosidad, quién las hizo, cuánto cobró y por qué eso no aparece en la etiqueta."
+    },
+    {
+      "id": "tesis",
+      "texto": "Marx escribe en una pizarra: «Los filósofos no han hecho más que interpretar el mundo; de lo que se trata es de transformarlo», y le pregunta al alumno qué opina."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "marx",
+      "titulo": "Marx y la praxis",
+      "guia": "Preguntar quién fue Marx, qué dice la tesis sobre Feuerbach y por qué su filosofía es materialista.",
+      "claves": "Marx (1818–1883), filósofo y economista alemán, exiliado, vivió en Londres con Engels; Manuscritos económico-filosóficos (1844), El capital (1867). Tesis XI sobre Feuerbach: los filósofos interpretaron el mundo; se trata de transformarlo. Frente al idealismo de Hegel, parte de la praxis material: cómo producimos nuestra vida; la vida determina la conciencia.",
+      "resumen": "Marx fue un filósofo y economista alemán que quiso no solo interpretar el mundo, sino transformarlo. Su filosofía es materialista: parte de cómo los seres humanos producen su vida.",
+      "palabras": [
+        "Marx",
+        "transformar",
+        "praxis",
+        "materialismo",
+        "Hegel"
+      ],
+      "ejemplo": "Entender por qué hay pobreza no alcanza: Marx diría que hay que cambiar lo que la produce."
+    },
+    {
+      "id": "alienacion",
+      "titulo": "¿Qué es la alienación?",
+      "guia": "Preguntar qué es la alienación y por qué no es un simple malestar psicológico.",
+      "claves": "Entfremdung: volverse extraño. No es malestar psicológico ni crisis de identidad: es histórico y estructural. Las creaciones humanas (objetos, instituciones, ideas) escapan al control de sus productores y se vuelven contra ellos como potencias extrañas y hostiles.",
+      "resumen": "La alienación es cuando lo que los seres humanos crean se independiza y se vuelve contra ellos. No es un problema personal, sino de cómo está organizada la sociedad.",
+      "palabras": [
+        "alienación",
+        "Entfremdung",
+        "estructural",
+        "creaciones humanas",
+        "potencias extrañas"
+      ],
+      "ejemplo": "Una app que creaste para organizarte termina controlando todo tu día."
+    },
+    {
+      "id": "trabajo",
+      "titulo": "El trabajo humano",
+      "guia": "Preguntar por qué el trabajo es lo que nos hace humanos y en qué se diferencia de la producción animal.",
+      "claves": "Trabajo: metabolismo entre ser humano y naturaleza. El animal produce unilateralmente, por la necesidad inmediata (la abeja). El ser humano produce universal, libre y consciente: transforma toda la naturaleza, crea sin necesidad inmediata, piensa su actividad antes.",
+      "resumen": "Para Marx el trabajo es lo que nos hace humanos: transformamos la naturaleza de manera libre y consciente, no solo por necesidad como los animales.",
+      "palabras": [
+        "trabajo",
+        "naturaleza",
+        "libre",
+        "consciente",
+        "universal"
+      ],
+      "ejemplo": "Una abeja hace siempre el mismo panal; un arquitecto imagina la casa antes de construirla."
+    },
+    {
+      "id": "objetivacion",
+      "titulo": "Objetivación y ser genérico",
+      "guia": "Preguntar qué es la objetivación y qué significa ser genérico.",
+      "claves": "Objetivación (Vergegenständlichung): plasmar facultades, proyectos e intenciones en un objeto; en condiciones no alienadas, el producto es un espejo donde el trabajador reconoce su potencia creadora. Ser genérico (Gattungswesen): especie capaz de cooperación consciente, universalidad y autodeterminación.",
+      "resumen": "Cuando trabajamos libremente, ponemos algo de nosotros en lo que hacemos y nos reconocemos en ello: eso es la objetivación. Así afirmamos nuestro ser genérico, el de una especie que coopera y crea.",
+      "palabras": [
+        "objetivación",
+        "espejo",
+        "ser genérico",
+        "cooperación",
+        "reconocerse"
+      ],
+      "ejemplo": "Mirar un dibujo que hiciste y pensar «esto lo hice yo»."
+    },
+    {
+      "id": "capitalismo",
+      "titulo": "Capitalismo y trabajo enajenado",
+      "guia": "Preguntar cómo se organiza la producción en el capitalismo y por qué el trabajo se enajena.",
+      "claves": "Propiedad privada de los medios de producción (fábricas, máquinas, tierras) en manos de capitalistas; los obreros solo tienen su fuerza de trabajo y la venden por un salario. El trabajo deja de ser afirmación de sí y se vuelve trabajo enajenado (entfremdete Arbeit), con cuatro dimensiones.",
+      "resumen": "En el capitalismo, los medios de producción son propiedad privada y los obreros venden su fuerza de trabajo por un salario. Así el trabajo se vuelve enajenado.",
+      "palabras": [
+        "propiedad privada",
+        "medios de producción",
+        "fuerza de trabajo",
+        "salario",
+        "trabajo enajenado"
+      ],
+      "ejemplo": "Trabajar ocho horas en algo que no elegiste, con herramientas que no son tuyas, para un producto que no te pertenece."
+    },
+    {
+      "id": "producto",
+      "titulo": "Alienación del producto",
+      "guia": "Preguntar en qué consiste la primera alienación, con un ejemplo.",
+      "claves": "El producto no pertenece al obrero: lo apropia el capitalista. Cuanto más produce, más pierde y más poder cobra el mundo de mercancías que lo enfrenta. El producto se vuelve poder ajeno que domina a su creador; a menudo no puede comprarlo.",
+      "resumen": "Lo que el obrero fabrica no es suyo: se lo queda el capitalista, y se vuelve un poder ajeno. Muchas veces ni siquiera puede comprar lo que produce.",
+      "palabras": [
+        "producto",
+        "no le pertenece",
+        "mercancías",
+        "poder ajeno",
+        "capitalista"
+      ],
+      "ejemplo": "Quien cose zapatillas de marca que cuestan más que su sueldo del mes."
+    },
+    {
+      "id": "actividad",
+      "titulo": "Alienación en la actividad",
+      "guia": "Preguntar cómo vive el trabajador alienado el acto de trabajar.",
+      "claves": "El trabajo no es actividad libre y creativa sino coacción externa; el trabajador no se afirma sino que se niega, no es feliz sino desgraciado, mortifica su cuerpo y arruina su espíritu. Se siente «en sí» fuera del trabajo (comer, beber, dormir) y «fuera de sí» cuando trabaja.",
+      "resumen": "El trabajo alienado se vive como una obligación que agota. El trabajador solo se siente él mismo fuera del trabajo, cuando come, bebe o duerme.",
+      "palabras": [
+        "actividad",
+        "obligación",
+        "desgraciado",
+        "fuera del trabajo",
+        "agotamiento"
+      ],
+      "ejemplo": "Contar los minutos para que termine el turno y recién ahí sentirse uno mismo."
+    },
+    {
+      "id": "generico_otros",
+      "titulo": "Alienación del ser genérico y de los otros",
+      "guia": "Preguntar por la tercera y la cuarta alienación.",
+      "claves": "Tercera: la actividad vital, libre, consciente y comunitaria, se vuelve medio para la supervivencia individual (salario); la vida se reduce a instrumento para seguir viviendo. Cuarta: el producto pertenece a otro ser humano (el capitalista); las relaciones se vuelven de dominación, explotación y competencia; se rompe la solidaridad genérica.",
+      "resumen": "El trabajo alienado convierte la vida en un medio para sobrevivir y nos aleja de lo que nos hace humanos. Además, nos enfrenta con los demás: las relaciones se vuelven de explotación y competencia.",
+      "palabras": [
+        "ser genérico",
+        "medio",
+        "sobrevivir",
+        "explotación",
+        "competencia"
+      ],
+      "ejemplo": "Compañeros que deberían ayudarse compiten por un solo puesto."
+    },
+    {
+      "id": "politica",
+      "titulo": "La alienación política",
+      "guia": "Preguntar qué es la alienación política según Sobre la cuestión judía.",
+      "claves": "Separación entre Estado político y sociedad civil. El Estado promete igualdad jurídica y ciudadanía universal, en un plano abstracto: «cielo» político iguales, «tierra» de la sociedad civil divididos en clases. El poder colectivo se delega y concentra en un Estado separado que parece neutral pero protege el orden existente. Doble vida: ciudadano imaginario e individuo aislado. Hoy: sensación de que las grandes decisiones escapan al control ciudadano (apatía, polarización).",
+      "resumen": "En la alienación política somos iguales como ciudadanos ante el Estado, pero desiguales en la vida real. El poder colectivo queda en un Estado separado y vivimos una doble vida.",
+      "palabras": [
+        "Estado",
+        "sociedad civil",
+        "ciudadanos",
+        "clases",
+        "doble vida"
+      ],
+      "ejemplo": "Todos valemos un voto, pero no todos tienen la misma influencia sobre las decisiones."
+    },
+    {
+      "id": "religion",
+      "titulo": "La alienación religiosa",
+      "guia": "Preguntar qué tomó Marx de Feuerbach y qué significa que la religión es el opio del pueblo.",
+      "claves": "Feuerbach: Dios es proyección de la esencia humana. Marx: el ser humano hace la religión, no al revés; es conciencia invertida porque el mundo está invertido. Introducción a la crítica de la filosofía del derecho de Hegel: expresión de la miseria real y protesta, «suspiro de la criatura oprimida», «opio del pueblo»: analgésico que calma sin curar y posterga el cambio. Superarla no es debatir si Dios existe, sino transformar el mundo que necesita ese consuelo.",
+      "resumen": "Siguiendo a Feuerbach, Marx dice que el ser humano hace la religión. La religión es el «opio del pueblo»: un analgésico que calma el sufrimiento real sin cambiar sus causas.",
+      "palabras": [
+        "Feuerbach",
+        "proyección",
+        "mundo invertido",
+        "opio del pueblo",
+        "analgésico"
+      ],
+      "ejemplo": "Un calmante quita el dolor de muelas, pero no arregla la muela."
+    },
+    {
+      "id": "fetichismo",
+      "titulo": "El fetichismo de la mercancía",
+      "guia": "Preguntar qué es el fetichismo de la mercancía, con un ejemplo actual.",
+      "claves": "El capital: las relaciones sociales entre personas aparecen como relaciones entre cosas (precios, marcas, valores de cambio). Vemos el producto y su precio, no el trabajo humano ni las condiciones de quienes lo hicieron; las cosas parecen tener valor por sí mismas, como un fetiche. Hoy: identidad y estatus por el consumo y la exhibición en redes.",
+      "resumen": "En el fetichismo de la mercancía, las relaciones entre personas se ven como relaciones entre cosas: miramos precios y marcas y no vemos el trabajo humano que hay detrás.",
+      "palabras": [
+        "fetichismo",
+        "mercancía",
+        "precios",
+        "marcas",
+        "trabajo humano"
+      ],
+      "ejemplo": "Admirar a alguien por su ropa de marca sin pensar en quién la fabricó ni cómo."
+    },
+    {
+      "id": "hoy",
+      "titulo": "La alienación hoy",
+      "guia": "Preguntar cómo aparece hoy la alienación: plataformas, consumo, redes y autoexplotación.",
+      "claves": "Plataformas: autonomía aparente con control por algoritmos, ratings y métricas; riesgos y precariedad a cargo del trabajador; datos que alimentan capitales concentrados. Consumo y redes: valer por lo que se compra o se muestra, visibilidad como valor de mercado. Byung-Chul Han, La sociedad del cansancio: el «emprendedor de sí mismo» se autoexplota en nombre del éxito; la alienación aparece como fatiga y agotamiento.",
+      "resumen": "Hoy la alienación aparece en las plataformas que controlan con algoritmos, en el consumo y las redes, y en el «emprendedor de sí mismo» que, según Byung-Chul Han, se autoexplota hasta el cansancio.",
+      "palabras": [
+        "plataformas",
+        "algoritmos",
+        "consumo",
+        "emprendedor de sí mismo",
+        "autoexplotación"
+      ],
+      "ejemplo": "Un repartidor que «es su propio jefe», pero al que una calificación baja puede dejar sin trabajo."
+    }
+  ],
+  "casos": [
+    {
+      "id": "repartidor",
+      "texto": "Un repartidor de una aplicación dice que es «su propio jefe», pero si baja su calificación, la app deja de darle pedidos.",
+      "claves": "Aplicar la alienación hoy: autonomía aparente, control por algoritmos y calificaciones, precariedad; alienación de la actividad y del producto (datos)."
+    },
+    {
+      "id": "turno",
+      "texto": "Una trabajadora de un supermercado cuenta las horas hasta salir y dice que solo se siente ella misma los fines de semana.",
+      "claves": "Aplicar la alienación en la actividad: el trabajo como obligación externa; «en sí» fuera del trabajo, «fuera de sí» al trabajar."
+    },
+    {
+      "id": "zapatillas",
+      "texto": "Unas zapatillas de marca cuestan más que el sueldo mensual de quienes las fabrican.",
+      "claves": "Aplicar la alienación del producto y el fetichismo de la mercancía: relaciones entre personas ocultas detrás de precios y marcas."
+    },
+    {
+      "id": "competencia",
+      "texto": "En una empresa, los empleados dejan de ayudarse porque solo uno va a ser ascendido.",
+      "claves": "Aplicar la alienación respecto de los otros: relaciones de competencia en lugar de solidaridad; ser genérico."
+    },
+    {
+      "id": "emprendedor",
+      "texto": "Un influencer publica todo el día, no descansa nunca y dice que lo hace porque «ama lo que hace».",
+      "claves": "Aplicar la autoexplotación de Byung-Chul Han, el emprendedor de sí mismo y el cansancio; la visibilidad como mercancía."
+    },
+    {
+      "id": "voto",
+      "texto": "Un vecino dice que no vota porque «total, las decisiones importantes las toman otros».",
+      "claves": "Aplicar la alienación política: igualdad formal de ciudadanos frente a desigualdad real; desafección y apatía; Estado separado de la sociedad civil."
+    },
+    {
+      "id": "consuelo",
+      "texto": "Una familia muy pobre encuentra consuelo en su fe ante una situación que no puede cambiar.",
+      "claves": "Aplicar la crítica de la religión con respeto: expresión de la miseria real y protesta, «suspiro de la criatura oprimida», analgésico; transformar las condiciones que producen el sufrimiento."
+    },
+    {
+      "id": "artesana",
+      "texto": "Una artesana vende sus propias cerámicas en una feria y dice que en cada pieza «hay algo de ella».",
+      "claves": "Contrastar con el trabajo enajenado: objetivación, el producto como espejo, ser genérico; trabajo libre y consciente."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "trabajo_propio",
+      "texto": "¿Alguna vez hiciste algo en lo que te reconociste, como si fuera un espejo de vos?"
+    },
+    {
+      "id": "obligacion",
+      "texto": "¿Qué actividad hacés solo por obligación? ¿Qué cambiaría si fuera libre?"
+    },
+    {
+      "id": "marcas",
+      "texto": "¿Te pasó de valorar a alguien (o a vos mismo) por lo que tiene o muestra?"
+    },
+    {
+      "id": "cansancio",
+      "texto": "¿Sentís que a veces te exigís de más «para ser alguien»? ¿Por qué?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Marx, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué significa la tesis «de lo que se trata es de transformar el mundo»?",
+    "¿Qué es la alienación y por qué no es solo un malestar psicológico?",
+    "¿Por qué, para Marx, el trabajo es lo que nos hace humanos?",
+    "Explicá la objetivación y el ser genérico con un ejemplo.",
+    "Explicá las cuatro formas de alienación del trabajo.",
+    "¿Qué es la alienación política?",
+    "¿Qué quiso decir Marx con que la religión es el «opio del pueblo»?",
+    "Dá un ejemplo actual de alienación o de fetichismo de la mercancía."
+  ]
+}

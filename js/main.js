@@ -172,6 +172,19 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         contentFile: "themes/sartre/content.html" // v2.0 (2026-11-25): tema completo
     },
     {
+        id: 'marx_alienacion',
+        title: 'Karl Marx: El Trabajo y la Alienación',
+        description: 'El trabajo como lo que nos hace humanos y su deformación en el capitalismo: las cuatro alienaciones, la alienación política y religiosa, el fetichismo de la mercancía y la alienación hoy.',
+        icon: '🏭',
+        gradient: 'linear-gradient(135deg, #c53030 0%, #805ad5 100%)',
+        difficulty: 'UNIDAD_II',
+        questions: 13,
+        timeEstimate: 15,
+        prerequisites: [],
+        color: '#c53030',
+        contentFile: 'themes/marx_alienacion/content.html'
+    },
+    {
         id: 'etica',
         title: 'Ética y Moral',
         description: 'Explora dilemas morales, libertad, responsabilidad y los grandes debates sobre cómo debemos actuar.',

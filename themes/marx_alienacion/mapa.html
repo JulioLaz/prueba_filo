@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+  <title>Marx: Trabajo y Alienación · Mapa Conceptual Interactivo</title>
+  <!-- Mapa conceptual — Marx: el trabajo y la alienación (Unidad II). Versión 1.0 (2026-11-25): tema nuevo, 15 pares. -->
+  <link rel="stylesheet" href="../../css/mapa.css">
+  
+  <!-- 🔧 CONFIGURACIÓN DEL MAPA -->
+  <script>
+    // Configuración específica para Marx: Trabajo y Alienación
+    window.MapaSystemConfig = {
+      tema: 'marx_alienacion',
+      redirectTo: '../../tema.html',
+      soundsPath: '../../sound/',
+      gameEnabled: true,
+      autoTrackProgress: true,
+      
+      // Datos del juego de matching (15 pares)
+      gameData: [
+        { term: "Alienación", definition: "Las creaciones humanas se vuelven contra sus productores." },
+        { term: "Praxis", definition: "Actividad material con la que transformamos el mundo." },
+        { term: "Trabajo", definition: "Metabolismo entre el ser humano y la naturaleza." },
+        { term: "Objetivación", definition: "Plasmar nuestras capacidades en un objeto." },
+        { term: "Ser Genérico", definition: "Especie capaz de cooperar, crear y decidir sobre sí." },
+        { term: "Propiedad Privada", definition: "Los medios de producción tienen dueños particulares." },
+        { term: "Trabajo Enajenado", definition: "Trabajo que deja de ser afirmación de uno mismo." },
+        { term: "Alienación del Producto", definition: "Lo que el obrero fabrica no le pertenece." },
+        { term: "Alienación de la Actividad", definition: "El trabajo se vive como obligación externa." },
+        { term: "Alienación de los Otros", definition: "Relaciones de dominación, explotación y competencia." },
+        { term: "Alienación Política", definition: "Iguales como ciudadanos, desiguales en la vida real." },
+        { term: "Alienación Religiosa", definition: "Dios como proyección de la esencia humana (Feuerbach)." },
+        { term: "Opio del Pueblo", definition: "La religión como analgésico del sufrimiento real." },
+        { term: "Fetichismo de la Mercancía", definition: "Relaciones entre personas vistas como relaciones entre cosas." },
+        { term: "Autoexplotación", definition: "El emprendedor de sí mismo que se exige hasta agotarse (Han)." }
+      ],
+      
+      // Configuración de sonidos (opcional - usa defaults si no se especifica)
+      sounds: {
+        nodeVisit: 'collect_points.mp3',
+        expand: 'show_question.mp3',
+        collapse: 'timer_warning.mp3',
+        correct: 'correct_answer.mp3',
+        wrong: 'negative_beep.mp3',
+        gameComplete: 'fin_caza.mp3'
+      },
+      
+      // Emojis de celebración
+      celebrationEmojis: ['🌟', '⭐', '💫', '✨', '🎯', '🏆', '🏭'],
+      gameEmojis: ['🎉', '🌟', '⭐', '💫', '✨', '🎯', '🚀', '🏆', '🏭']
+    };
+  </script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="bar">
+      <div style="display: flex;width: 100%; justify-content: flex-start;">
+         <button class="btn" id="backToTema">Volver</button>
+         <div class="title" style="font-size: 1.5rem;"><span>🏭 Marx: Trabajo y Alienación</span></div>
+      </div>
+      <h3 class="sub">Cuando lo que creamos se vuelve contra nosotros</h3>
+      <p>Lee cada cuadro y hacé click cuando termines.</p>
+      <button class="btn" id="expandAll" style="display: none;">Expandir Todo</button>
+      <button class="btn" id="collapseAll" style="display: none;">Colapsar Todo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="tree" aria-label="Mapa de conceptos">
+      <ul>
+        <li>
+          <div class="node" data-title="La Alienación">
+            <div class="toggle" role="button">▾</div>
+            <div class="title">La Alienación</div>
+            <div class="desc">Las <strong>creaciones humanas</strong> escapan al control de quienes las producen y se vuelven <strong>contra</strong> ellos.</div>
+            <span class="badge">Concepto Raíz</span>
+          </div>
+          <ul>
+            <li>
+              <div class="node" data-title="Karl Marx">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Karl Marx</div>
+                <div class="desc">Filósofo y economista alemán (1818–1883).</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Obras"><div class="toggle" style="visibility: hidden;"></div><div class="title">Obras</div><div class="desc"><em>Manuscritos</em> de 1844 y <em>El capital</em>.</div></div></li>
+                <li><div class="node" data-title="Tesis sobre Feuerbach"><div class="toggle" style="visibility: hidden;"></div><div class="title">Tesis sobre Feuerbach</div><div class="desc">No solo interpretar el mundo: <strong>transformarlo</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Materialismo y Praxis">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Materialismo y Praxis</div>
+                <div class="desc">Primero la <strong>vida material</strong>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Contra el idealismo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Contra el idealismo</div><div class="desc">Hegel partía de las <strong>ideas</strong>.</div></div></li>
+                <li><div class="node" data-title="Qué es alienarse"><div class="toggle" style="visibility: hidden;"></div><div class="title">Qué es alienarse</div><div class="desc">Lo que creamos se vuelve <strong>extraño</strong> y hostil.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Trabajo Humano">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Trabajo Humano</div>
+                <div class="desc">Lo que nos hace humanos.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Libre y consciente"><div class="toggle" style="visibility: hidden;"></div><div class="title">Libre y consciente</div><div class="desc">No como la <strong>abeja</strong> y su panal.</div></div></li>
+                <li><div class="node" data-title="Objetivación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Objetivación</div><div class="desc">El producto como <strong>espejo</strong>.</div></div></li>
+                <li><div class="node" data-title="Ser genérico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Ser genérico</div><div class="desc">Especie que <strong>coopera</strong> y crea.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="El Capitalismo">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">El Capitalismo</div>
+                <div class="desc"><strong>Propiedad privada</strong> de los medios de producción.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Fuerza de trabajo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Fuerza de trabajo</div><div class="desc">Se vende por un <strong>salario</strong>.</div></div></li>
+                <li><div class="node" data-title="Trabajo enajenado"><div class="toggle" style="visibility: hidden;"></div><div class="title">Trabajo enajenado</div><div class="desc">El trabajo deja de ser <strong>propio</strong>.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Las Cuatro Alienaciones">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Las Cuatro Alienaciones</div>
+                <div class="desc"><em>Manuscritos</em> de 1844.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Del producto"><div class="toggle" style="visibility: hidden;"></div><div class="title">Del producto</div><div class="desc">Lo que hago <strong>no es mío</strong>.</div></div></li>
+                <li><div class="node" data-title="De la actividad"><div class="toggle" style="visibility: hidden;"></div><div class="title">De la actividad</div><div class="desc">Trabajar como <strong>obligación</strong>.</div></div></li>
+                <li><div class="node" data-title="Del ser genérico"><div class="toggle" style="visibility: hidden;"></div><div class="title">Del ser genérico</div><div class="desc">La vida como <strong>medio</strong> para sobrevivir.</div></div></li>
+                <li><div class="node" data-title="De los otros"><div class="toggle" style="visibility: hidden;"></div><div class="title">De los otros</div><div class="desc"><strong>Explotación</strong> y competencia.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Alienación Política">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Alienación Política</div>
+                <div class="desc"><em>Sobre la cuestión judía</em>.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Estado y sociedad civil"><div class="toggle" style="visibility: hidden;"></div><div class="title">Estado y sociedad civil</div><div class="desc">Iguales como <strong>ciudadanos</strong>, desiguales en <strong>clases</strong>.</div></div></li>
+                <li><div class="node" data-title="Doble vida"><div class="toggle" style="visibility: hidden;"></div><div class="title">Doble vida</div><div class="desc">«Cielo» político y «tierra» real.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Alienación Religiosa">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Alienación Religiosa</div>
+                <div class="desc">El ser humano hace la religión.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Feuerbach"><div class="toggle" style="visibility: hidden;"></div><div class="title">Feuerbach</div><div class="desc">Dios como <strong>proyección</strong> humana.</div></div></li>
+                <li><div class="node" data-title="Opio del pueblo"><div class="toggle" style="visibility: hidden;"></div><div class="title">Opio del pueblo</div><div class="desc">Un <strong>analgésico</strong>, no una cura.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="Fetichismo de la Mercancía">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">Fetichismo de la Mercancía</div>
+                <div class="desc"><em>El capital</em>: cosas que ocultan personas.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Precios y marcas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Precios y marcas</div><div class="desc">No vemos el <strong>trabajo</strong> detrás del producto.</div></div></li>
+              </ul>
+            </li>
+            <li>
+              <div class="node" data-title="La Alienación Hoy">
+                <div class="toggle" role="button">▾</div>
+                <div class="title">La Alienación Hoy</div>
+                <div class="desc">Una herramienta para leer el presente.</div>
+              </div>
+              <ul>
+                <li><div class="node" data-title="Plataformas"><div class="toggle" style="visibility: hidden;"></div><div class="title">Plataformas</div><div class="desc"><strong>Algoritmos</strong> y calificaciones.</div></div></li>
+                <li><div class="node" data-title="Consumo y redes"><div class="toggle" style="visibility: hidden;"></div><div class="title">Consumo y redes</div><div class="desc">Valer por lo que se <strong>muestra</strong>.</div></div></li>
+                <li><div class="node" data-title="Autoexplotación"><div class="toggle" style="visibility: hidden;"></div><div class="title">Autoexplotación</div><div class="desc">El emprendedor de sí mismo y el <strong>cansancio</strong> (Han).</div></div></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <details class="panel" open>
+      <summary>🎯 Palabras Clave: lee cada significado con atención! <button class="btn" id="startGame" style="margin-left: auto; padding: 6px 12px;">Jugar</button></summary>
+      <div class="content">
+        <div class="terms">
+          <article class="term"><h4>Alienación</h4><p>Las creaciones humanas se vuelven contra sus productores.</p></article>
+          <article class="term"><h4>Praxis</h4><p>Actividad material con la que transformamos el mundo.</p></article>
+          <article class="term"><h4>Trabajo</h4><p>Metabolismo entre el ser humano y la naturaleza.</p></article>
+          <article class="term"><h4>Objetivación</h4><p>Plasmar nuestras capacidades en un objeto.</p></article>
+          <article class="term"><h4>Ser Genérico</h4><p>Especie capaz de cooperar, crear y decidir sobre sí.</p></article>
+          <article class="term"><h4>Propiedad Privada</h4><p>Los medios de producción tienen dueños particulares.</p></article>
+          <article class="term"><h4>Trabajo Enajenado</h4><p>Trabajo que deja de ser afirmación de uno mismo.</p></article>
+          <article class="term"><h4>Alienación del Producto</h4><p>Lo que el obrero fabrica no le pertenece.</p></article>
+          <article class="term"><h4>Alienación de la Actividad</h4><p>El trabajo se vive como obligación externa.</p></article>
+          <article class="term"><h4>Alienación de los Otros</h4><p>Relaciones de dominación, explotación y competencia.</p></article>
+          <article class="term"><h4>Alienación Política</h4><p>Iguales como ciudadanos, desiguales en la vida real.</p></article>
+          <article class="term"><h4>Alienación Religiosa</h4><p>Dios como proyección de la esencia humana (Feuerbach).</p></article>
+          <article class="term"><h4>Opio del Pueblo</h4><p>La religión como analgésico del sufrimiento real.</p></article>
+          <article class="term"><h4>Fetichismo de la Mercancía</h4><p>Relaciones entre personas vistas como relaciones entre cosas.</p></article>
+          <article class="term"><h4>Autoexplotación</h4><p>El emprendedor de sí mismo que se exige hasta agotarse (Han).</p></article>
+        </div>
+      </div>
+    </details>
+
+    <!-- Overlay del juego de matching -->
+    <div class="game-overlay" id="gameOverlay">
+      <div class="game-board">
+        <div class="game-header">
+          <div style="display: flex; align-items: center; gap: 10px;justify-content: space-between; width: 100%;">
+            <h2>🎯 Conecta conceptos con definiciones</h2>
+            <button class="close-game" id="closeGame" style="height: 2rem;">Cerrar</button>
+          </div>          
+          <div class="progress-bar"><div class="progress-fill" id="gameProgress"></div></div>
+          <div class="game-stats">
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Aciertos: <span id="correctCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;">Errores: <span id="errorCount">0</span></div>
+            <div style="text-align: center; border: 1px solid gray;border-radius: 6px; padding: 2px 4px; font-size: .9rem;"><span id="currentProgress">0</span>/<span id="totalPairs">15</span></div>
+          </div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📝 Términos - Seleccioná uno:</div>
+          <div class="cards-grid" id="termsGrid"></div>
+        </div>
+
+        <div class="game-zone">
+          <div class="zone-title">📖 Definiciones - Luego su definición:</div>
+          <div class="cards-grid" id="definitionsGrid"></div>
+        </div>
+
+        <div class="celebration" id="celebration" style="display: none;">
+          <h3>🏆 ¡Felicitaciones! Completaste todos los emparejamientos</h3>
+          <p>Dominás los conceptos fundamentales de la alienación en Marx.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel">
+      <summary>🧭 Guía Rápida: Pensar el propio trabajo</summary>
+      <div class="content">
+        <h4>Preguntas para detectar la alienación</h4>
+        <ul>
+          <li><strong>Producto:</strong> ¿Me reconozco en lo que hago o me resulta ajeno?</li>
+          <li><strong>Actividad:</strong> ¿Lo hago con libertad o solo por obligación?</li>
+          <li><strong>Otros:</strong> ¿Coopero con los demás o compito contra ellos?</li>
+          <li><strong>Mercancía:</strong> ¿Qué trabajo humano hay detrás de lo que compro?</li>
+          <li><strong>Autoexplotación:</strong> ¿Me exijo por lo que quiero o por miedo a no valer?</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+<!-- AGREGAR ANTES de <script src="../../js/mapa-system.js"></script> -->
+  <script type="module" src="../../js/mapa-system-score.js"> </script>
+  <script src="../../js/mapa-system-fixed.js"></script>
+
+</body>
+</html>

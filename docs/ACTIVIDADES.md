@@ -18,6 +18,7 @@ Números de los temas ya revisados (salen de `node tools/pruebas/verificar_tema.
 | metodo (Unidad I) | 16 | 13 | 8 / 55 | CRITICA + 7 | 33 / 15 | 13 | René Descartes |
 | dualismo_platonico (Unidad II) | 16 | 13 | 8 / 55 | DUALISMO + 8 | 34 / 15 | 14 | Platón |
 | antropologia_aristoteles (Unidad II) | 16 | 13 | 8 / 55 | SUSTANCIA + 9 | 39 / 15 | 12 | Aristóteles |
+| marx_alienacion (Unidad II) | 18 | 13 | 8 / 54 | TRABAJO + 7 | 31 / 15 | — (sin video) | Karl Marx |
 | sartre (Unidad II) | 16 | 13 | 8 / 46 | LIBERTAD + 8 | 30 / 15 | — (sin video) | Jean-Paul Sartre |
 | simbolo_tecnica_muerte (Unidad II) | 18 | 13 | 8 / 53 | SIMBOLO + 7 | 33 / 15 | — (sin video) | Ernst Cassirer |
 
