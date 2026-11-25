@@ -215,11 +215,11 @@ const TOPICS = {
         // type: 'short'
       },
       pragmatismo: { // https://youtu.be/jHix800gjVQ?si=CXmquX1hq3CiA3fa
-        youtubeId: 'jHix800gjVQ',
+        youtubeId: 'jHix800gjVQ', // 2026-11-25: cloze revisado con la transcripción; termina antes de la invitación a suscribirse
         startTime: 1,
-        endTime: 158,
+        endTime: 151,
         title: 'Pragmatismo',
-        duration: '2:38',
+        duration: '2:31',
         // type: 'short'
       },
       etica_kant: { // https://youtu.be/Lq0ZGcqn-Zg (La Ética en Kant); corta en la frase final (5:26), antes de las preguntas del video

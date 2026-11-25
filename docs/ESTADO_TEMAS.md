@@ -33,7 +33,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 **Pragmatismo (`pragmatismo`)** — ✅ v2.0 (2026-11-25)
 - Material de 18 secciones cortas (antes 16 de hasta 139 palabras): pragma, origen (Club Metafísico), Peirce y la máxima pragmática (el diamante), duda y creencia, falibilismo y antifundamentalismo, James y la verdad que funciona (valor en efectivo), la ardilla, la voluntad de creer, Dewey y el instrumentalismo, aprender haciendo, democracia, el método, ser pragmático (la vegetariana del video), Rorty, críticas (Russell) y síntesis.
 - Cuestionario 13, caza 8 niveles / 47, crucigrama UTILIDAD + 8 (sin MILL ni OPTIMISMO), mapa 32 nodos / 15 pares, examen con William James (pide el video) y resumen final.
-- Video y cloze (13) sin cambios; no se comprobaron contra la transcripción.
+- Cloze (13) revisado con la transcripción del video (2026-11-25).
 
 **Antropocentrismo (`antropocentrismo`)** — ✅ v2.0 (2026-11-25)
 - Material de 19 secciones cortas (antes 20 de 126-220 palabras): concepto, Protágoras, teocentrismo, causas del cambio, Renacimiento, el Hombre de Vitruvio, humanismo, Pico della Mirandola, el individuo, la revolución científica, dominar la naturaleza (Bacon, Descartes), Ilustración y dignidad, antropocentrismo fuerte y débil, exclusiones (androcentrismo, colonización), crítica ecológica, biocentrismo, Buen Vivir, transhumanismo y síntesis. Suma las ideas del video.
@@ -86,6 +86,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
+- 2026-11-25: Pragmatismo: cloze revisado con la transcripción (las 13 frases coinciden). Tramos con los tiempos reales; el video termina en 2:31, antes de la invitación a suscribirse.
 - 2026-11-25: Utilitarismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales (la 12 empezaba después de «a diferencia de la ética kantiana» y la 15 cortaba antes del final); el video termina en 1:57, antes de la despedida.
 - 2026-11-25: Hedonismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales, «egoísmo» en lugar de «exceso» (lo que dice el video), arreglada la variante mal escrita de «Épicuro» y 2 frases nuevas del final (el capitalismo y los estímulos placenteros; la pregunta final). El video llega a 3:10 (antes 2:48, y dejaba afuera ese final).
 - 2026-11-25: Ética y Moral: cloze revisado con la transcripción (las 23 frases coinciden con el video). Tramos con los tiempos reales (algunos cortaban antes de la respuesta), «los otros seres humanos» (decía «nosotros»), acepta «conciencia», suma 3 frases (Juramento Hipocrático y los ejemplos finales de comportamiento moral) y el video se mira completo (10:31; antes cortaba en 9:36). El link «ver en el video» no funcionaba: buscaba una configuración con otro nombre.
