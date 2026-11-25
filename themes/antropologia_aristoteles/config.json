@@ -32,7 +32,7 @@
     },
     "cloze": {
       "enabled": true,
-      "items": 12,
+      "items": 14,
       "timeEstimate": 10
     },
     "cruci": {
@@ -73,7 +73,7 @@
   "prerequisites": [],
   "color": "#2f855a",
   "notes": {
-    "realValues": "Tema nuevo (2026-11-24). Video jgEC-kr73XQ (0:23-5:27) con cloze de 12 ítems.",
+    "realValues": "Tema nuevo (2026-11-24). Video jgEC-kr73XQ (0:23-5:27) con cloze de 14 ítems (2026-11-25: rehecho con la transcripción).",
     "validation": {
       "material": "16 secciones en content.html",
       "quiz": "13 preguntas en quiz.js (ANTROPOLOGIA_ARISTOTELES_THEME)",
