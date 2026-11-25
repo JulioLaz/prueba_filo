@@ -8,7 +8,7 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 
 | Tema | Material | Cuestionario | Caza | Crucigrama | Mapa | Video + cloze | Examen + resumen |
 |---|---|---|---|---|---|---|---|
-| `etica_aristoteles` (**referencia**) | ✅ 15 | ✅ 13 | ✅ 8 niveles | ✅ VIRTUD | ✅ 28 / 15 pares | ✅ 17 | ✅ Aristóteles |
+| `etica_aristoteles` (**referencia**) | ✅ 15 | ✅ 13 | ✅ 8 niveles | ✅ VIRTUD | ✅ 28 / 15 pares | ✅ 17 (con transcripción) | ✅ Aristóteles |
 | `hedonismo` | ✅ 16 | ✅ 14 | ✅ 8 | ✅ SERENIDAD | ✅ 30 / 15 | ✅ 17 | ✅ Epicuro |
 | `utilitarismo` | ✅ 18 | ✅ 13 | ✅ 8 | ✅ FELICIDAD | ✅ 33 / 15 | ✅ 15 | ✅ J. S. Mill |
 | `etica` (Ética y Moral) | ✅ 17 | ✅ 12 | ✅ 8 | ✅ LIBERTAD | ✅ 48 / 15 | ✅ 26 | ✅ Sócrates |
@@ -85,7 +85,8 @@ Referencias: ✅ revisado y completo · 🟡 existe pero falta revisar o corregi
 ## Historial reciente
 
 - 2026-11-25: tarjetas de las Unidades II y III en orden cronológico, y en cada tarjeta de unidad una línea de orientación con el siglo (🕰️) y el lugar con banderas (campos `epoca`, `lugar` y `banderas` en `js/main.js`; banderas SVG propias en `img/banderas/`, porque Windows no dibuja los emojis de bandera). Prueba: `node tools/pruebas/ver_inicio.mjs`.
-- 2026-11-25: Antropocentrismo: cloze revisado con la transcripción (las 13 frases coinciden casi palabra por palabra). Tramos con los tiempos reales; el video termina en 2:32. Con esto, los videos de la Unidad III están revisados con su transcripción, salvo el de Aristóteles: Lo Bueno es la Felicidad (tema de referencia).
+- 2026-11-25: Aristóteles: Lo Bueno es la Felicidad: cloze revisado con la transcripción (las 17 frases coinciden con la parte de ética del video). Tramos con los tiempos reales, sin el agregado «no al placer del momento», suma el intelectualismo moral de Sócrates y arregla la clave de «dianoéticas». El video corta en 6:01, al terminar la ética; la parte de política (6:01 a 9:36: animales políticos, formas de gobierno, clase media) no se usa porque el tema es la ética. Con esto, todos los videos de la Unidad III están revisados con su transcripción.
+- 2026-11-25: Antropocentrismo: cloze revisado con la transcripción (las 13 frases coinciden casi palabra por palabra). Tramos con los tiempos reales; el video termina en 2:32. Con esto, los videos de la Unidad III están revisados con su transcripción.
 - 2026-11-25: Pragmatismo: cloze revisado con la transcripción (las 13 frases coinciden). Tramos con los tiempos reales; el video termina en 2:31, antes de la invitación a suscribirse.
 - 2026-11-25: Utilitarismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales (la 12 empezaba después de «a diferencia de la ética kantiana» y la 15 cortaba antes del final); el video termina en 1:57, antes de la despedida.
 - 2026-11-25: Hedonismo: cloze revisado con la transcripción (las 15 frases coinciden). Tramos con los tiempos reales, «egoísmo» en lugar de «exceso» (lo que dice el video), arreglada la variante mal escrita de «Épicuro» y 2 frases nuevas del final (el capitalismo y los estímulos placenteros; la pregunta final). El video llega a 3:10 (antes 2:48, y dejaba afuera ese final).

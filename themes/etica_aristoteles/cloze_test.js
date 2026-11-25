@@ -1,6 +1,12 @@
-// themes/etica_aristoteles/cloze_test.js - VERSIÓN CORREGIDA CON SOPA DE PALABRAS
+// themes/etica_aristoteles/cloze_test.js
+// Cloze — Aristóteles: Lo Bueno es la Felicidad. Video qYU0hTprTAc (parte de ética, 0:54 a 6:01):
+// 17 frases en el orden del video, con sus tiempos (videoSegment contado desde startTime = 1) y
+// una pista de opciones por hueco.
+// Versión 2.0 (2026-11-25): revisado con la transcripción: tramos con los tiempos reales, sin el
+//   agregado «no al placer del momento», suma el intelectualismo moral (frase 8) y arregla la clave
+//   de «dianoéticas».
 window.CLOZE_TEST = {
-  title: "Cloze — Ética de Aristóteles (0:00—6:02)",
+  title: "Cloze — Ética de Aristóteles (0:54—6:01)",
   items: [
     {
       id: "a1",
@@ -8,11 +14,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! Has captado la estructura teleológica de las acciones humanas.",
       feedbackKO: "Revisa la relación entre acciones, medios y fines en la ética aristotélica.",
       videoHints: [
-        "💡 Opciones: causas | medios | fines | principios | valores | esencias",
-        "💡 Opciones: inicio | proceso | fin | método | medio | resultado",
-        "💡 Opciones: bien común | bien material | bien supremo | bien relativo | bien temporal | bien aparente"
+        "💡 Opciones: esencias | causas | medios | valores | fines | principios",
+        "💡 Opciones: método | medio | proceso | fin | resultado | inicio",
+        "💡 Opciones: bien relativo | bien supremo | bien temporal | bien común | bien material | bien aparente"
       ],
-      videoSegment: { start: 56, end: 68 } // 0:58 - 1:08 (restado 2 seg)
+      videoSegment: { start: 53, end: 69 } // 0:54 - 1:10
     },
     {
       id: "a2",
@@ -20,22 +26,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! La teleología es fundamental en el pensamiento aristotélico.",
       feedbackKO: "Recuerda el concepto clave: una ética orientada hacia un fin.",
       videoHints: [
-        "💡 Opciones: deontológica | utilitarista | teleológica | relativista | pragmática | emotivista",
-        "💡 Opciones: medio | causa | norma | deber | fin | principio",
-        "💡 Opciones: virtud | placer | honor | felicidad | poder | riqueza"
+        "💡 Opciones: relativista | teleológica | emotivista | utilitarista | deontológica | pragmática",
+        "💡 Opciones: causa | norma | deber | fin | principio | medio",
+        "💡 Opciones: placer | honor | virtud | poder | felicidad | riqueza"
       ],
-      videoSegment: { start: 66, end: 79 } // 1:08 - 1:19 (restado 2 seg)
+      videoSegment: { start: 67, end: 81 } // 1:08 - 1:22
     },
     {
       id: "a3",
-      text: "3- Para Aristóteles, una acción es [[correcta]] si nos acerca a una vida plena y [[feliz]] (no al placer del momento).",
+      text: "3- Para Aristóteles, una acción es [[correcta]] si te hace [[feliz]].",
       feedbackOK: "¡Exacto! Lo correcto se mide por su aporte a la felicidad, entendida como vida virtuosa y no como placer momentáneo.",
       feedbackKO: "Piensa en el criterio que usa Aristóteles para evaluar las acciones.",
       videoHints: [
-        "💡 Opciones: incorrecta | necesaria | correcta | obligatoria | prohibida | opcional",
-        "💡 Opciones: rico | famoso | poderoso | sabio | feliz | honrado"
+        "💡 Opciones: correcta | obligatoria | prohibida | necesaria | opcional | incorrecta",
+        "💡 Opciones: sabio | feliz | poderoso | rico | honrado | famoso"
       ],
-      videoSegment: { start: 77, end: 93 } // 1:25 - 1:33 (restado 2 seg)
+      videoSegment: { start: 80, end: 87 } // 1:21 - 1:28
     },
     {
       id: "a4",
@@ -43,10 +49,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! La búsqueda exclusiva del placer conduce a la esclavitud, no a la libertad.",
       feedbackKO: "Reflexiona sobre qué pasa con quienes solo buscan gratificación inmediata.",
       videoHints: [
-        "💡 Opciones: dolores | conocimientos | placeres | virtudes | honores | riquezas",
-        "💡 Opciones: libres | sabios | esclavos | virtuosos | felices | señores"
+        "💡 Opciones: placeres | honores | virtudes | dolores | conocimientos | riquezas",
+        "💡 Opciones: sabios | felices | esclavos | señores | libres | virtuosos"
       ],
-      videoSegment: { start: 95, end: 124 } // 1:37 - 2:04 (restado 2 seg)
+      videoSegment: { start: 95, end: 123 } // 1:36 - 2:04
     },
     {
       id: "a5",
@@ -54,10 +60,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! El honor depende de otros, no está en nuestro control.",
       feedbackKO: "Piensa en por qué el honor no puede ser el bien supremo.",
       videoHints: [
-        "💡 Opciones: placer | dinero | honor | poder | virtud | saber",
-        "💡 Opciones: mismos | dioses | sabios | demás | reyes | filósofos"
+        "💡 Opciones: placer | honor | poder | virtud | dinero | saber",
+        "💡 Opciones: mismos | demás | dioses | filósofos | reyes | sabios"
       ],
-      videoSegment: { start: 125, end: 140 } // 2:07 - 2:20 (restado 2 seg)
+      videoSegment: { start: 125, end: 144 } // 2:06 - 2:25
     },
     {
       id: "a6",
@@ -65,10 +71,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! La riqueza es instrumental, no un fin en sí mismo.",
       feedbackKO: "Recuerda la distinción entre fines y medios.",
       videoHints: [
-        "💡 Opciones: virtud | honor | placer | riqueza | poder | fama",
+        "💡 Opciones: placer | poder | virtud | fama | riqueza | honor",
         "💡 Opciones: fin | causa | medio | efecto | principio | objetivo"
       ],
-      videoSegment: { start: 151, end: 163 } // 2:33 - 2:43 (restado 2 seg)
+      videoSegment: { start: 144, end: 163 } // 2:25 - 2:44
     },
     {
       id: "a7",
@@ -76,21 +82,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! La razón es lo distintivo del ser humano para Aristóteles.",
       feedbackKO: "¿Qué capacidad nos distingue de otros seres vivos?",
       videoHints: [
-        "💡 Opciones: física | emocional | intelectual | social | artística | corporal",
-        "💡 Opciones: sentir | imaginar | razonar | recordar | desear | percibir"
+        "💡 Opciones: intelectual | emocional | artística | física | corporal | social",
+        "💡 Opciones: sentir | percibir | desear | razonar | recordar | imaginar"
       ],
-      videoSegment: { start: 165, end: 180 } // 2:47 - 3:00 (restado 2 seg)
+      videoSegment: { start: 163, end: 177 } // 2:44 - 2:58
     },
     {
       id: "a8",
-      text: "8- No basta con conocer qué es el bien. Si queremos ser justos y buenos, tendremos que [[practicar]] la bondad y la justicia creando un [[hábito]].",
+      text: "8- A diferencia del [[intelectualismo moral]] de Sócrates, no basta con conocer qué es el bien: si queremos ser justos y buenos, tendremos que [[practicar]] la bondad y la justicia creando un [[hábito]].",
       feedbackOK: "¡Perfecto! Aristóteles supera el intelectualismo socrático: la virtud requiere práctica.",
       feedbackKO: "Recuerda la crítica de Aristóteles a Sócrates sobre el conocimiento y la virtud.",
       videoHints: [
-        "💡 Opciones: estudiar | memorizar | contemplar | practicar | imaginar | analizar",
-        "💡 Opciones: concepto | teoría | definición | hábito | idea | principio"
+        "💡 Opciones: estoicismo | utilitarismo | escepticismo | relativismo | intelectualismo moral | hedonismo",
+        "💡 Opciones: memorizar | contemplar | estudiar | practicar | imaginar | analizar",
+        "💡 Opciones: hábito | teoría | principio | concepto | idea | definición"
       ],
-      videoSegment: { start: 189, end: 202 } // 3:11 - 3:22 (restado 2 seg)
+      videoSegment: { start: 178, end: 200 } // 2:59 - 3:21
     },
     {
       id: "a9",
@@ -98,11 +105,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! El término medio es la doctrina central de la ética aristotélica.",
       feedbackKO: "Piensa en la teoría del justo medio entre extremos.",
       videoHints: [
-        "💡 Opciones: equilibrio | medida | exceso | proporción | armonía | moderación",
-        "💡 Opciones: virtud | medio | defecto | término | proporción | balance",
-        "💡 Opciones: extrema | máxima | mínima | intermedia | absoluta | relativa"
+        "💡 Opciones: equilibrio | proporción | medida | armonía | moderación | exceso",
+        "💡 Opciones: proporción | balance | medio | virtud | término | defecto",
+        "💡 Opciones: mínima | absoluta | intermedia | extrema | relativa | máxima"
       ],
-      videoSegment: { start: 196, end: 217 } // 3:25 - 3:37 (restado 2 seg)
+      videoSegment: { start: 199, end: 217 } // 3:20 - 3:38
     },
     {
       id: "a10",
@@ -110,11 +117,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto ejemplo! Has entendido cómo funciona el término medio aristotélico.",
       feedbackKO: "Piensa en los dos extremos del valor: demasiado arriesgado vs demasiado miedoso.",
       videoHints: [
-        "💡 Opciones: justicia | templanza | valor | prudencia | generosidad | fortaleza",
-        "💡 Opciones: valentía | miedo | temeridad | prudencia | cautela | audacia",
-        "💡 Opciones: valentía | audacia | cobardía | imprudencia | temeridad | osadía"
+        "💡 Opciones: generosidad | justicia | fortaleza | valor | prudencia | templanza",
+        "💡 Opciones: miedo | prudencia | valentía | audacia | temeridad | cautela",
+        "💡 Opciones: osadía | audacia | valentía | imprudencia | cobardía | temeridad"
       ],
-      videoSegment: { start: 237, end: 250 } // 3:59 - 4:10 (restado 2 seg)
+      videoSegment: { start: 237, end: 247 } // 3:58 - 4:08
     },
     {
       id: "a11",
@@ -122,10 +129,10 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! La justicia es la virtud completa que armoniza todas las demás.",
       feedbackKO: "Recuerda cuál es la virtud que Aristóteles considera suprema.",
       videoHints: [
-        "💡 Opciones: valor | templanza | justicia | prudencia | sabiduría | fortaleza",
-        "💡 Opciones: conflicto | desorden | caos | armonía | contradicción | división"
+        "💡 Opciones: valor | justicia | templanza | sabiduría | prudencia | fortaleza",
+        "💡 Opciones: división | caos | contradicción | conflicto | armonía | desorden"
       ],
-      videoSegment: { start: 246, end: 263 } // 4:08 - 4:23 (restado 2 seg)
+      videoSegment: { start: 246, end: 262 } // 4:07 - 4:23
     },
     {
       id: "a12",
@@ -133,22 +140,22 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! Has captado los dos aspectos de la justicia aristotélica.",
       feedbackKO: "La justicia tiene un aspecto legal y otro distributivo.",
       videoHints: [
-        "💡 Opciones: costumbres | tradiciones | leyes | opiniones | deseos | normas",
-        "💡 Opciones: desigualdad | parcialidad | equidad | favoritismo | privilegio | discriminación"
+        "💡 Opciones: opiniones | deseos | normas | costumbres | leyes | tradiciones",
+        "💡 Opciones: discriminación | parcialidad | privilegio | desigualdad | equidad | favoritismo"
       ],
-      videoSegment: { start: 258, end: 275 } // 4:23 - 4:35 (restado 2 seg)
+      videoSegment: { start: 262, end: 276 } // 4:23 - 4:37
     },
     {
       id: "a13",
-      text: "13- Las virtudes [[dianoeticas|dianoéticas]] son virtudes de la [[razón]]. Estas virtudes deben ser aprendidas a través de la [[educación]].",
+      text: "13- Las virtudes [[dianoéticas|dianoeticas]] son virtudes de la [[razón]]. Estas virtudes deben ser aprendidas a través de la [[educación]].",
       feedbackOK: "¡Perfecto! Las virtudes dianoéticas se adquieren por enseñanza, no por hábito.",
       feedbackKO: "Recuerda el otro tipo de virtudes, las intelectuales.",
       videoHints: [
-        "💡 Opciones: éticas | morales | dianoéticas | prácticas | cardinales | teologales",
-        "💡 Opciones: voluntad | emoción | instinto | razón | pasión | sentimiento",
-        "💡 Opciones: práctica | hábito | costumbre | educación | repetición | imitación"
+        "💡 Opciones: morales | cardinales | éticas | dianoéticas | prácticas | teologales",
+        "💡 Opciones: voluntad | instinto | emoción | razón | sentimiento | pasión",
+        "💡 Opciones: imitación | hábito | costumbre | educación | práctica | repetición"
       ],
-      videoSegment: { start: 276, end: 295 } // 4:38 - 4:55 (restado 2 seg)
+      videoSegment: { start: 276, end: 290 } // 4:37 - 4:51
     },
     {
       id: "a14",
@@ -156,11 +163,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Correcto! Sabiduría teórica y prudencia práctica: las cumbres de la vida intelectual.",
       feedbackKO: "Recuerda las dos virtudes intelectuales supremas.",
       videoHints: [
-        "💡 Opciones: ciencia | arte | técnica | sabiduría | conocimiento | habilidad",
-        "💡 Opciones: valentía | justicia | prudencia | templanza | generosidad | fortaleza",
-        "💡 Opciones: actuar | sentir | deliberar | imaginar | recordar | intuir"
+        "💡 Opciones: técnica | habilidad | conocimiento | sabiduría | arte | ciencia",
+        "💡 Opciones: prudencia | fortaleza | generosidad | templanza | valentía | justicia",
+        "💡 Opciones: recordar | intuir | imaginar | sentir | deliberar | actuar"
       ],
-      videoSegment: { start: 295, end: 310 } // 4:57 - 5:10 (restado 2 seg)
+      videoSegment: { start: 290, end: 308 } // 4:51 - 5:09
     },
     {
       id: "a15",
@@ -168,11 +175,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente! La sabiduría contempla lo eterno e inmutable, lo más divino.",
       feedbackKO: "Piensa en la diferencia entre lo práctico-humano y lo teórico-divino.",
       videoHints: [
-        "💡 Opciones: inferior | práctica | elevada | útil | común | mundana",
-        "💡 Opciones: debajo | dentro | fuera | encima | cerca | junto",
-        "💡 Opciones: humanas | materiales | terrenales | divinas | mundanas | temporales"
+        "💡 Opciones: práctica | elevada | común | inferior | mundana | útil",
+        "💡 Opciones: debajo | encima | fuera | dentro | cerca | junto",
+        "💡 Opciones: mundanas | humanas | materiales | divinas | temporales | terrenales"
       ],
-      videoSegment: { start: 305, end: 320 } // 5:12 - 5:20 (restado 2 seg)
+      videoSegment: { start: 307, end: 322 } // 5:08 - 5:23
     },
     {
       id: "a16",
@@ -180,11 +187,11 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Perfecto! Aristóteles es realista: los bienes externos son condiciones necesarias, no suficientes.",
       feedbackKO: "Recuerda: para Aristóteles la virtud no basta si falta todo lo demás.",
       videoHints: [
-        "💡 Opciones: bienes internos | bienes externos | bienes supremos | bienes divinos | bienes eternos | bienes morales",
-        "💡 Opciones: irrelevantes | suficientes | importantes | innecesarios | perjudiciales | superfluos",
-        "💡 Opciones: malestar | indiferencia | bienestar | sufrimiento | dolor | angustia"
+        "💡 Opciones: bienes externos | bienes divinos | bienes supremos | bienes morales | bienes eternos | bienes internos",
+        "💡 Opciones: importantes | perjudiciales | superfluos | suficientes | irrelevantes | innecesarios",
+        "💡 Opciones: indiferencia | malestar | angustia | dolor | sufrimiento | bienestar"
       ],
-      videoSegment: { start: 319, end: 335 } // 5:21 - 5:35 (restado 2 seg)
+      videoSegment: { start: 321, end: 337 } // 5:22 - 5:38
     },
     {
       id: "a17",
@@ -192,23 +199,21 @@ window.CLOZE_TEST = {
       feedbackOK: "¡Excelente síntesis! Esta es la fórmula completa de la felicidad aristotélica.",
       feedbackKO: "Recuerda los tres componentes de la vida feliz según Aristóteles.",
       videoHints: [
-        "💡 Opciones: vicio | ignorancia | virtud | maldad | debilidad | imprudencia",
-        "💡 Opciones: acción | producción | emoción | contemplación | voluntad | deseo",
-        "💡 Opciones: bienes internos | bienes externos | bienes absolutos | bienes divinos | bienes morales | bienes necesarios"
+        "💡 Opciones: virtud | debilidad | maldad | ignorancia | vicio | imprudencia",
+        "💡 Opciones: voluntad | contemplación | emoción | acción | deseo | producción",
+        "💡 Opciones: bienes necesarios | bienes absolutos | bienes morales | bienes divinos | bienes internos | bienes externos"
       ],
-      videoSegment: { start: 347, end: 362 } // 5:49 - 6:02 (restado 2 seg)
+      videoSegment: { start: 342, end: 360 } // 5:43 - 6:01
     }
   ]
 };
 
-// Sistema de pistas mejorado con sopa de palabras
+// Pistas escalonadas: una por hueco, con opciones para elegir
 window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoHints) return null;
-  
   const maxHints = item.videoHints.length;
   if (hintLevel >= maxHints) return null;
-  
   return {
     hint: item.videoHints[hintLevel],
     hasMore: hintLevel < maxHints - 1,
@@ -216,23 +221,19 @@ window.CLOZE_TEST.getHintForItem = function(itemId, hintLevel = 0) {
   };
 };
 
-// Función para generar link directo al momento del video
+// Link directo al momento del video
 window.CLOZE_TEST.getVideoLink = function(itemId) {
   const item = this.items.find(i => i.id === itemId);
   if (!item || !item.videoSegment) return null;
-  
   const config = window.VIDEO_CONFIG?.etica_aristoteles;
   if (!config) return null;
-  
   const actualStart = config.startTime + item.videoSegment.start;
   return `https://www.youtube.com/watch?v=${config.youtubeId}&t=${actualStart}s`;
 };
 
-// Función auxiliar para parsear las opciones de la sopa de palabras
+// Extrae las opciones del formato "💡 Opciones: a | b | ..."
 window.CLOZE_TEST.parseHintOptions = function(hintText) {
-  // Extrae las opciones del formato "💡 Opciones: opción1 | opción2 | ..."
   const match = hintText.match(/💡 Opciones: (.+)/);
   if (!match) return null;
-  
   return match[1].split('|').map(opt => opt.trim());
 };
