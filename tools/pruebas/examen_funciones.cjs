@@ -15,7 +15,9 @@
  *   2) en otra:          node tools/pruebas/examen_funciones.cjs [tema]   (por defecto etica_aristoteles)
  * Opcional: EXAMEN_ADMIN_EMAIL=<email del admin> para probar también el acceso de admin
  * (el email no se escribe en este archivo).
- * Versión: v1.3.0 (2026-11-24) — IA saturada: reintenta con espera y responde en otra vuelta (functions V8.5)
+ * Versión: v1.4.0 (2026-11-26) — usa las actividadesRequeridas del banco (temas con actividades
+ *   propias, como linea_tiempo) y un tema sin examen tomado de temas_data.js
+ * v1.3.0 (2026-11-24) — IA saturada: reintenta con espera y responde en otra vuelta (functions V8.5)
  * v1.2.0 (2026-11-24) — examenCorregir: el docente corrige un examen «Sin corregir» (functions V8.4)
  * v1.1.0 (2026-11-19) — devolución por pregunta e ideas flojas que vuelven (functions V8.3)
  */
@@ -40,8 +42,9 @@ const { getFirestore } = Module.createRequire(path.join(REPO, 'functions/index.j
 const db = getFirestore();
 
 const ctx = {}; vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(path.join(REPO, 'temas_data.js'), 'utf8') + '\n;globalThis.__ex = EXAMEN_CONFIG;', ctx);
+vm.runInContext(fs.readFileSync(path.join(REPO, 'temas_data.js'), 'utf8') + '\n;globalThis.__ex = EXAMEN_CONFIG; globalThis.__top = TOPICS;', ctx);
 const EXAMEN_CONFIG = ctx.__ex;
+const SIN_EXAMEN = Object.keys(ctx.__top).find((t) => !EXAMEN_CONFIG[t]) || 'tema_inexistente';
 const banco = (t) => JSON.parse(fs.readFileSync(path.join(REPO, 'themes', t, 'examen.json'), 'utf8'));
 
 // ---- IA simulada: guion = próximas respuestas; si no hay, responde según el tipo de pedido
@@ -87,15 +90,21 @@ async function main_examen_funciones() {
   let s = await llamar('examenEstado', alumno, { tema: T });
   check('1) sin avance: examen bloqueado', s.habilitado === false && s.avance === 0 && s.intentosRestantes === 2 && s.cantidadPreguntas === 6);
   check('2) iniciar sin avance → failed-precondition', await esperarError(llamar('examenIniciar', alumno, { tema: T }), 'failed-precondition') === true);
-  check('2b) tema sin examen → not-found', await esperarError(llamar('examenEstado', alumno, { tema: 'sartre' }), 'not-found') === true);
+  check('2b) tema sin examen → not-found', await esperarError(llamar('examenEstado', alumno, { tema: SIN_EXAMEN }), 'not-found') === true);
 
-  await fijarProgreso(T, [['quiz', 100], ['caza_conceptos', 100], ['cruci', 100], ['material', 100], ['mapa', 100], ['video', 50]]);
+  // Actividades que pide el banco del tema (la caza se guarda con el alias viejo para probarlo)
+  const acts = banco(T).actividadesRequeridas || ['quiz', 'caza', 'cruci', 'material', 'mapa'];
+  const id = (a) => (a === 'caza' ? 'caza_conceptos' : a);
+  const prom = (v) => Math.round(v.reduce((x, y) => x + y, 0) / v.length);
+  const v3a = acts.map((_, i) => (i === acts.length - 1 ? 50 : 100));
+  await fijarProgreso(T, acts.map((a, i) => [id(a), v3a[i]]));
   s = await llamar('examenEstado', alumno, { tema: T });
-  check('3a) promedio 92% pero el video en 50% → bloqueado y dice qué falta', !s.habilitado && s.avance === 92 && s.faltan.length === 1 && s.faltan[0].actividad === 'video' && s.minimoPorActividad === 60, JSON.stringify(s.faltan));
+  check(`3a) promedio ${prom(v3a)}% pero ${acts.at(-1)} en 50% → bloqueado y dice qué falta`, !s.habilitado && s.avance === prom(v3a) && s.faltan.length === 1 && s.faltan[0].actividad === acts.at(-1) && s.minimoPorActividad === 60, JSON.stringify(s.faltan));
   check('3b) iniciar → failed-precondition', await esperarError(llamar('examenIniciar', alumno, { tema: T }), 'failed-precondition') === true);
-  await fijarProgreso(T, [['quiz', 100], ['caza_conceptos', 100], ['cruci', 90], ['material', 100], ['mapa', 80], ['video', 60]]);
+  const v3 = acts.map((_, i) => [100, 100, 90, 100, 80, 60][i % 6]);
+  await fijarProgreso(T, acts.map((a, i) => [id(a), v3[i]]));
   s = await llamar('examenEstado', alumno, { tema: T });
-  check('3) todas ≥ 60% (promedio 88%): habilitado', s.habilitado && s.avance === 88, `avance ${s.avance}`);
+  check(`3) todas ≥ 60% (promedio ${prom(v3)}%): habilitado`, s.habilitado && s.avance === prom(v3), `avance ${s.avance}`);
 
   llamadas = [];
   const r1 = await llamar('examenIniciar', alumno, { tema: T });
@@ -210,7 +219,7 @@ async function main_examen_funciones() {
   // Los demás temas con examen: cada uno con su filósofo y su vocabulario
   for (const [t, cfg] of Object.entries(EXAMEN_CONFIG)) {
     if (t === T) continue;
-    await fijarProgreso(t, ['quiz', 'caza', 'cruci', 'material', 'mapa', 'video'].map((a) => [a, 100]));
+    await fijarProgreso(t, [...new Set(['quiz', 'caza', 'cruci', 'material', 'mapa', 'video', ...(banco(t).actividadesRequeridas || [])])].map((a) => [a, 100]));
     llamadas = [];
     const r = await llamar('examenIniciar', alumno, { tema: t });
     const ajeno = cfg.filosofo !== 'Aristóteles' && /aristotélic/i.test(llamadas[0].sistema);
