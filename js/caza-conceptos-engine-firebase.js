@@ -8,6 +8,9 @@
 // v1.3 (2026-11-19): ayuda para no trabarse: cada 3 toques errados seguidos en un
 //   párrafo, un concepto oculto que falta encontrar se ilumina unos segundos
 //   (v1.3.1: elige primero un oculto, no uno ya resaltado)
+// v1.4 (2026-11-26): retomar donde se dejó: al entrar junta los conceptos ya
+//   encontrados (pestaña + Firebase), abre en el primer párrafo incompleto y muestra
+//   marcados los ya encontrados (también al volver con ◀). Si ya estaba todo, abre el resumen.
 // ========================================
 
 (function () {
@@ -499,6 +502,16 @@
       tok.addEventListener("touchstart", () => {}, { passive: true });
     });
 
+    // Conceptos de este párrafo ya encontrados antes: se muestran marcados y cuentan
+    paragraphEl.querySelectorAll('.token[data-correct="1"]').forEach((tok) => {
+      const k = decodeURIComponent(tok.dataset.key || "").trim();
+      if (globalFound.has(`${idx}:${k}`)) {
+        tok.classList.add("correct");
+        foundSet.add(k);
+      }
+    });
+    updateHeader(level);
+
     markLives();
     setCooldown(false);
     updateNavButtons(level);
@@ -983,7 +996,33 @@ function onConceptReadingComplete(concept) {
   // Configurar tiempo de inicio global
   window.cazaStartTime = gameStartTime;
   
-  renderLevel();
+  // Retomar: suma lo guardado en Firebase (otro día u otro dispositivo) y abre en el
+  // primer párrafo con conceptos pendientes
+  async function retomarAvance() {
+    let remotos = [];
+    if (typeof window.loadCazaFoundConcepts === "function") {
+      window.showLoadingIndicator?.(true, "Recuperando tu avance...");
+      remotos = await Promise.race([
+        window.loadCazaFoundConcepts().catch(() => []),
+        new Promise((r) => setTimeout(() => r([]), 6000))
+      ]);
+      window.showLoadingIndicator?.(false);
+    }
+    (remotos || []).filter((k) => VALID_KEYS.has(k)).forEach((k) => globalFound.add(k));
+    overallFoundCount = globalFound.size;
+    const primero = CFG.levels.findIndex((lv, i) =>
+      (lv.concepts || []).some((c) => !globalFound.has(`${i}:${normalize(c.term)}`)));
+    idx = primero === -1 ? CFG.levels.length - 1 : primero;
+    if (overallFoundCount > 0) {
+      console.log(`↩️ Retomando: ${overallFoundCount}/${TOTAL_CONCEPTS} conceptos, párrafo ${idx + 1}`);
+    }
+    return primero === -1 && TOTAL_CONCEPTS > 0;
+  }
+
+  retomarAvance().then((todoCompleto) => {
+    renderLevel();
+    if (todoCompleto) showSummaryDialog(CFG);
+  });
 
   console.log("✅ Caza de conceptos con Firebase inicializada");
   console.log("🛠️ Función de diagnóstico: checkCazaFirebaseStatus()");

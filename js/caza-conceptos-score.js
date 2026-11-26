@@ -1,9 +1,11 @@
 // ========================================
 // 🎯 CAZA-CONCEPTOS-SCORE.JS 
 // Integración Firebase para caza de conceptos
+// v1.1 (2026-11-26): loadCazaFoundConcepts() lee de Firestore los conceptos ya
+//   encontrados, para que el motor retome donde el alumno dejó (en cualquier dispositivo)
 // ========================================
 
-import { saveProgress } from "/prueba_filo/firebase.js";
+import { saveProgress, db, doc, getDoc, onAuthStateChanged } from "/prueba_filo/firebase.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 console.log('🎯 Cargando integración Firebase para caza de conceptos...');
@@ -55,6 +57,41 @@ window.saveCazaProgress = async (conceptsFound, totalConcepts, timeSpent = 0, fo
   } catch (error) {
     console.error('❌ [CazaScore] Error guardando en Firebase:', error);
     return false;
+  }
+};
+
+// ====================================
+// RETOMAR: CONCEPTOS YA ENCONTRADOS
+// ====================================
+
+/**
+ * Devuelve los conceptos ya encontrados por el alumno en este tema, guardados en
+ * progreso_temas/{uid}_{tema}_caza (y el alias viejo _caza_conceptos), con el
+ * formato del motor: "<índice del párrafo>:<término normalizado>".
+ * Espera el login hasta 5 s; si no hay usuario o falla la lectura, devuelve [].
+ */
+window.loadCazaFoundConcepts = async () => {
+  try {
+    const user = auth.currentUser || await new Promise((resolve) => {
+      const t = setTimeout(() => resolve(null), 5000);
+      onAuthStateChanged(auth, (u) => { if (u) { clearTimeout(t); resolve(u); } });
+    });
+    if (!user) return [];
+    const tema = getActiveTema();
+    const lista = [];
+    for (const actividad of ['caza', 'caza_conceptos']) {
+      const snap = await getDoc(doc(db, 'progreso_temas', `${user.uid}_${tema}_${actividad}`));
+      if (snap.exists()) {
+        const d = snap.data() || {};
+        lista.push(...(d.foundConcepts || []), ...(d.metadata?.foundConceptsList || []));
+      }
+    }
+    const unicos = [...new Set(lista.filter((k) => typeof k === 'string'))];
+    console.log(`📥 [CazaScore] Conceptos ya encontrados en Firebase: ${unicos.length}`);
+    return unicos;
+  } catch (error) {
+    console.warn('⚠️ [CazaScore] No se pudo leer el avance guardado:', error);
+    return [];
   }
 };
 
