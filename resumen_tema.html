@@ -13,7 +13,8 @@
     solo los títulos de los ejes, tapados. El admin en vista Docente ve todo.
 
   Uso: resumen_tema.html?tema=<id>
-  Versión: v1.1.0 (2026-10-28) — se desbloquea con 60% en cada actividad (antes 80% de promedio)
+  Versión: v1.2.0 (2026-11-26) — nombres de las actividades de la línea de tiempo
+  v1.1.0 (2026-10-28) — se desbloquea con 60% en cada actividad (antes 80% de promedio)
   v1.0.0 (2026-10-27)
 -->
 <html lang="es">
@@ -137,7 +138,8 @@
         console.warn('No se pudo leer el progreso de Firebase:', e);
       }
       const minimo = banco.minimoPorActividad ?? 60;
-      const NOMBRES = { quiz: 'Cuestionario', caza: 'Caza de conceptos', video: 'Video', cruci: 'Crucigrama', material: 'Material', mapa: 'Mapa conceptual' };
+      const NOMBRES = { quiz: 'Cuestionario', caza: 'Caza de conceptos', video: 'Video', cruci: 'Crucigrama', material: 'Material', mapa: 'Mapa conceptual',
+        explorar: 'Explorar la línea', ordenar: 'Ordenar en el tiempo', simultaneo: '¿Qué pasaba al mismo tiempo?', termometro: 'Termómetro del progreso' };
       return {
         avance: Math.round(acts.reduce((s, a) => s + (mejor[a] || 0), 0) / acts.length),
         faltan: acts.filter((a) => (mejor[a] || 0) < minimo).map((a) => `${NOMBRES[a] || a} (${Math.round(mejor[a] || 0)}%)`)

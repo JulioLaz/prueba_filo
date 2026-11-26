@@ -12,7 +12,8 @@
  * Una sola consulta al cargar (todo el progreso del alumno o, para el admin, del curso).
  * main.js llama a window.aplicarProgresoTarjetas() cada vez que vuelve a dibujar las tarjetas.
  *
- * Versión: v1.5.1 (2026-10-28) — usa el mayor entre bestScore y score de cada actividad
+ * Versión: v1.6.0 (2026-11-26) — temas con actividades propias (ACTIVIDADES_TEMA, p. ej. la línea de tiempo)
+ * v1.5.1 (2026-10-28) — usa el mayor entre bestScore y score de cada actividad
  * v1.5.0 (2026-10-28) — temas con examen: se aprueban con al menos 60%
  *   (minimoActividad) en CADA actividad y el examen aprobado; "Falta examen" cuando
  *   ya se llegó al mínimo en todas. Los temas sin examen siguen con 80% de promedio.
@@ -39,6 +40,8 @@ const ES_UNIDAD = (t) => /^UNIDAD_/.test(t.difficulty || '');
 let estado = null;   // { modo: 'alumno' | 'admin', porTema: Map }
 
 function actividadesDe(temaId) {
+  // Temas con actividades propias (p. ej., la línea de tiempo): temas_data.js
+  if (typeof ACTIVIDADES_TEMA !== 'undefined' && ACTIVIDADES_TEMA[temaId]) return ACTIVIDADES_TEMA[temaId];
   const conVideo = typeof VIDEO_CONFIG !== 'undefined' && VIDEO_CONFIG[temaId];
   return conVideo ? [...ACTIVIDADES_BASE, 'video'] : ACTIVIDADES_BASE;
 }

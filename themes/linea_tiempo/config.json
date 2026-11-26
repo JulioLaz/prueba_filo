@@ -1,0 +1,68 @@
+{
+  "id": "linea_tiempo",
+  "meta": {
+    "title": "Línea del tiempo: ¿progresa la humanidad?",
+    "author": "Walter Benjamin",
+    "icon": "⏳",
+    "gradient": "linear-gradient(135deg, #805ad5 0%, #3182ce 100%)",
+    "difficulty": "intermedio",
+    "category": "Introducción",
+    "description": "Una línea de tiempo con cinco ejes (pensamiento, poder, técnica, violencia y emancipación) y la historia argentina, para preguntarnos si la humanidad progresa: Kant, Hegel, Benjamin y Adorno.",
+    "lastUpdated": "2026-11-26"
+  },
+  "activities": {
+    "material": {
+      "enabled": true,
+      "type": "readaloud",
+      "sections": 18,
+      "timeEstimate": 15,
+      "script": "../../js/readaloud-system.js"
+    },
+    "explorar": {
+      "enabled": true,
+      "page": "linea.html?modo=explorar",
+      "hitos": 63,
+      "timeEstimate": 20
+    },
+    "ordenar": {
+      "enabled": true,
+      "page": "linea.html?modo=ordenar",
+      "rondas": 8,
+      "porRonda": 5,
+      "timeEstimate": 10
+    },
+    "simultaneo": {
+      "enabled": true,
+      "page": "linea.html?modo=simultaneo",
+      "preguntas": 10,
+      "timeEstimate": 8
+    },
+    "termometro": {
+      "enabled": true,
+      "page": "linea.html?modo=termometro",
+      "ejes": 5,
+      "timeEstimate": 12
+    },
+    "quiz": {
+      "enabled": true,
+      "questions": 13,
+      "timeLimit": 50,
+      "timeEstimate": 12,
+      "passingScore": 70
+    }
+  },
+  "files": {
+    "material": {
+      "page": "content.html",
+      "script": "../../js/readaloud-system.js"
+    },
+    "quiz": "quiz.js",
+    "hitos": "hitos.js",
+    "termometro": "termometro.js"
+  },
+  "prerequisites": [],
+  "color": "#805ad5",
+  "notes": {
+    "realValues": "v1.0 (2026-11-26): material 18 secciones, cuestionario 13, 63 hitos (explorar), ordenar 8×5, simultáneos 10, termómetro 5 ejes + final; examen con Walter Benjamin."
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "_info": "Banco del examen oral con Walter Benjamin y del resumen final del tema «Línea del tiempo: ¿progresa la humanidad?». El examen lo lee la Cloud Function (examenIniciar) desde GitHub Pages; el resumen final lo muestra resumen_tema.html. Al editarlo y hacer push, ya se usa la versión nueva (no hace falta redeploy). En cada eje: guia y claves son para la IA (preguntar y corregir); resumen, palabras y ejemplo son para el alumno. Versión v1.0.0 (2026-11-26): examen nuevo; pide las actividades de la línea de tiempo (las mismas que ACTIVIDADES_TEMA en temas_data.js).",
+  "version": "1.0.0",
+  "filosofo": "Walter Benjamin",
+  "tema": "La línea del tiempo y la pregunta por el progreso: técnica, pensamiento, poder, violencia, emancipación e historia argentina",
+  "intro": "Walter Benjamin (1892–1940), filósofo alemán, escribió en 1940 sus tesis sobre la historia, donde criticó la idea de un progreso automático con la imagen del ángel de la historia. En este tema recorrimos una línea de tiempo desde la agricultura hasta la inteligencia artificial con cinco ejes (pensamiento, poder, técnica, violencia y emancipación) y la historia argentina, para preguntarnos si la humanidad progresa.",
+  "conceptosClave": "línea de tiempo, orden, duración, simultaneidad, revolución neolítica, escritura, épocas, convención, cinco ejes, progreso acumulativo, aceleración, reloj de la humanidad, período axial, legitimidad, soberanía popular, violencia y técnica, Adorno, emancipación, Revolución de Mayo, independencia en Tucumán, Reforma Universitaria, voto femenino, terrorismo de Estado, democracia, Kant, Hegel, ángel de la historia",
+  "notaAprobacion": 6,
+  "intentosPorDia": 2,
+  "minimoPorActividad": 60,
+  "actividadesRequeridas": [
+    "material",
+    "explorar",
+    "ordenar",
+    "simultaneo",
+    "termometro",
+    "quiz"
+  ],
+  "cantidadEjes": 4,
+  "aperturas": [
+    {
+      "id": "biblioteca",
+      "texto": "Walter Benjamin levanta la vista de sus fichas en la Biblioteca Nacional de París, en 1937, y le hace lugar al alumno: está juntando citas sobre la historia y quiere conversar."
+    },
+    {
+      "id": "cuadro",
+      "texto": "Walter Benjamin le muestra al alumno el cuadro Angelus Novus de Paul Klee, que compró en 1921 y lleva a todas partes, y le pregunta qué ve en él."
+    },
+    {
+      "id": "radio",
+      "texto": "Walter Benjamin termina de grabar uno de sus programas de radio para jóvenes en Berlín, en 1931, y le propone al alumno charlar fuera del aire."
+    },
+    {
+      "id": "pasajes",
+      "texto": "Walter Benjamin camina con el alumno por los pasajes cubiertos de París, llenos de vidrieras y mercancías, y le pregunta si eso es progreso."
+    },
+    {
+      "id": "arendt",
+      "texto": "Walter Benjamin está a punto de entregarle a su amiga Hannah Arendt el manuscrito de sus tesis sobre la historia, y antes quiere probar sus ideas con el alumno."
+    },
+    {
+      "id": "linea",
+      "texto": "Walter Benjamin encuentra al alumno mirando una línea de tiempo llena de fechas y le pregunta, con curiosidad: «¿Y eso te parece una flecha que avanza?»."
+    }
+  ],
+  "ejes": [
+    {
+      "id": "linea",
+      "titulo": "Para qué sirve una línea de tiempo",
+      "guia": "Preguntar qué es una línea de tiempo y qué tres cosas permite ver, con un ejemplo.",
+      "claves": "Ordena los hechos cronológicamente; permite ver orden (antes/después), duración (cuánto tiempo pasó) y simultaneidad (qué ocurría al mismo tiempo). No es memorizar fechas: sirve para pensar la pregunta por el progreso.",
+      "resumen": "Una línea de tiempo ordena los hechos y muestra su orden, su duración y su simultaneidad. Sirve para pensar, no solo para memorizar fechas.",
+      "palabras": [
+        "cronológico",
+        "orden",
+        "duración",
+        "simultaneidad",
+        "progreso"
+      ],
+      "ejemplo": "Entre la escritura y la imprenta pasaron casi cinco mil años; entre la web y la IA, unos treinta."
+    },
+    {
+      "id": "epocas",
+      "titulo": "Prehistoria, historia y épocas",
+      "guia": "Preguntar qué cambió con la revolución neolítica, qué marca el fin de la prehistoria y por qué los cortes entre épocas son convenciones.",
+      "claves": "Revolución neolítica (c. 10.000 a.C., Creciente Fértil): agricultura, aldeas, excedente, propiedad, desigualdad. Escritura (c. 3500 a.C., sumerios) marca el paso a la historia. Épocas: Antigüedad, Edad Media (476), Modernidad (1492), contemporánea (1789): convenciones europeas; 1492 visto desde los pueblos originarios es conquista.",
+      "resumen": "La agricultura cambió la vida humana y la escritura marca el comienzo de la historia. Las épocas son convenciones: se eligen desde un punto de vista.",
+      "palabras": [
+        "neolítico",
+        "agricultura",
+        "escritura",
+        "épocas",
+        "convención"
+      ],
+      "ejemplo": "Para los pueblos originarios, 1492 no fue un descubrimiento sino el comienzo de la conquista."
+    },
+    {
+      "id": "ejes",
+      "titulo": "Los cinco ejes",
+      "guia": "Preguntar cuáles son los cinco ejes y para qué sirve mirar la historia por ejes.",
+      "claves": "Pensamiento (filosofía, ciencia, religión), poder (imperios, Estados, gobiernos), técnica (inventos), violencia (guerras, catástrofes), emancipación (luchas por libertad y dignidad). Mirar por ejes permite comparar: la humanidad puede avanzar en uno y no en otro.",
+      "resumen": "Pensamiento, poder, técnica, violencia y emancipación: mirar la historia por ejes permite comparar en qué avanzó la humanidad y en qué no.",
+      "palabras": [
+        "pensamiento",
+        "poder",
+        "técnica",
+        "violencia",
+        "emancipación"
+      ],
+      "ejemplo": "La medicina avanzó muchísimo, pero eso no impidió las guerras mundiales."
+    },
+    {
+      "id": "tecnica",
+      "titulo": "La técnica: acumulación y aceleración",
+      "guia": "Preguntar por qué el progreso técnico es acumulativo y qué muestra el reloj de la humanidad.",
+      "claves": "Cada invento se apoya en los anteriores (escritura → imprenta → ciencia → computadoras → IA). El ritmo se acelera: miles de años, después siglos, después décadas. Reloj: 12.000 años = 24 h; escritura cerca del mediodía, imprenta 22:51, máquina de vapor 23:29, web 23:56.",
+      "resumen": "La técnica progresa de forma acumulativa y cada vez más rápido: en el reloj de la humanidad, casi todo apareció en la última hora.",
+      "palabras": [
+        "acumulativo",
+        "aceleración",
+        "reloj",
+        "imprenta",
+        "inteligencia artificial"
+      ],
+      "ejemplo": "Nadie volvería a escribir en tablillas de arcilla, pero sí seguimos leyendo a Platón."
+    },
+    {
+      "id": "pensamiento",
+      "titulo": "El pensamiento no se acumula igual",
+      "guia": "Preguntar en qué se diferencia el pensamiento de la técnica, con el ejemplo del período axial.",
+      "claves": "Período axial (Jaspers, s. VI–V a.C.): presocráticos, Buda y Confucio casi al mismo tiempo. Seguimos leyendo a Sócrates, Platón y Kant: las grandes preguntas (justicia, vida buena) vuelven con respuestas nuevas; no hay versión que vuelva obsoleta a la anterior.",
+      "resumen": "El pensamiento no progresa como la técnica: las grandes preguntas vuelven en cada época y los filósofos antiguos se siguen leyendo.",
+      "palabras": [
+        "período axial",
+        "Jaspers",
+        "preguntas",
+        "Sócrates",
+        "obsoleto"
+      ],
+      "ejemplo": "La pregunta de Sócrates sobre cómo vivir bien sigue siendo nuestra."
+    },
+    {
+      "id": "poder",
+      "titulo": "El poder y su legitimidad",
+      "guia": "Preguntar qué es la legitimidad y cómo cambió la justificación del poder, de Egipto a la Revolución Francesa.",
+      "claves": "Todo poder necesita justificarse (legitimidad). Egipto: faraón dios viviente (poder sagrado). Hammurabi: leyes escritas. Magna Carta (1215): límites al rey. Revolución Francesa (1789): soberanía popular. Siglo XX: totalitarismos y dictaduras; los límites se conquistan y se sostienen.",
+      "resumen": "El poder pasó de justificarse en lo sagrado a justificarse en el pueblo, pero los límites al poder hay que conquistarlos y sostenerlos.",
+      "palabras": [
+        "legitimidad",
+        "sagrado",
+        "Magna Carta",
+        "soberanía popular",
+        "límites"
+      ],
+      "ejemplo": "La dictadura de 1976 muestra que la soberanía popular puede ser avasallada."
+    },
+    {
+      "id": "violencia",
+      "titulo": "La técnica multiplica la violencia",
+      "guia": "Preguntar por qué más técnica no significó menos violencia, con ejemplos y la frase de Adorno.",
+      "claves": "Conquista de América y trata de esclavos; Primera Guerra (ametralladoras, gases); Hiroshima y Nagasaki (1945): poder de autodestrucción. Adorno: no hay historia de lo salvaje a lo humano, pero sí «de la honda a la bomba atómica»; campos de exterminio organizados con técnica (trenes, planillas).",
+      "resumen": "La violencia creció con la técnica: Adorno dice que la historia va «de la honda a la bomba atómica».",
+      "palabras": [
+        "Hiroshima",
+        "Adorno",
+        "bomba atómica",
+        "barbarie",
+        "destrucción"
+      ],
+      "ejemplo": "Los campos de exterminio nazis usaron trenes, planillas y fábricas."
+    },
+    {
+      "id": "emancipacion",
+      "titulo": "La emancipación: lenta y con luchas",
+      "guia": "Preguntar qué es la emancipación y cómo avanza, con ejemplos de la línea.",
+      "claves": "Emancipación: lucha por libertad y dignidad. Revolución Francesa (1789) proclama la igualdad, pero Haití (1791) se libera por sí mismo; DUDH (1948) después del Holocausto; voto femenino; fin del apartheid (1994). Los derechos se conquistan, avanzan despacio, alcanzan primero a pocos y pueden retroceder.",
+      "resumen": "Los derechos se conquistan con luchas: avanzan despacio, se amplían de a poco y pueden retroceder.",
+      "palabras": [
+        "emancipación",
+        "Haití",
+        "derechos humanos",
+        "conquistar",
+        "retroceder"
+      ],
+      "ejemplo": "Entre la Magna Carta (1215) y el fin del apartheid (1994) pasaron casi 800 años."
+    },
+    {
+      "id": "argentina",
+      "titulo": "Argentina: independencia",
+      "guia": "Preguntar qué pasó en 1810 y en 1816, y qué ideas inspiraron a los revolucionarios.",
+      "claves": "Mayo de 1810: cabildo abierto, destitución del virrey Cisneros, Primera Junta (Saavedra, Moreno, Belgrano); Moreno tradujo El contrato social de Rousseau (soberanía del pueblo, Ilustración). 9 de julio de 1816: Congreso de Tucumán declara la independencia. La libertad política no alcanzó a todos (pueblos originarios, afrodescendientes, mujeres).",
+      "resumen": "En 1810 se formó la Primera Junta y en 1816, en Tucumán, se declaró la independencia, inspirada en las ideas de la Ilustración.",
+      "palabras": [
+        "Revolución de Mayo",
+        "Primera Junta",
+        "Tucumán",
+        "independencia",
+        "Rousseau"
+      ],
+      "ejemplo": "Independencia es darse la propia ley: la autonomía de Kant aplicada a un pueblo."
+    },
+    {
+      "id": "democracia",
+      "titulo": "Argentina: derechos y democracia",
+      "guia": "Preguntar por la Reforma Universitaria, el voto femenino, la dictadura y la vuelta de la democracia.",
+      "claves": "1918: Reforma Universitaria de Córdoba (autonomía, cogobierno, libertad de cátedra). 1947: voto femenino (Ley 13.010). 1976–1983: terrorismo de Estado, desaparecidos; Madres y Abuelas. 1983: democracia (Alfonsín); CONADEP, Nunca Más; 1985 Juicio a las Juntas. Los derechos se ganan, se pierden y se recuperan; memoria.",
+      "resumen": "La historia argentina muestra que los derechos se ganan (1918, 1947), se pierden (1976) y se recuperan (1983).",
+      "palabras": [
+        "Reforma Universitaria",
+        "voto femenino",
+        "dictadura",
+        "democracia",
+        "Nunca Más"
+      ],
+      "ejemplo": "Juzgar a los dictadores con las garantías que ellos negaron es la diferencia entre la ley y la venganza."
+    },
+    {
+      "id": "optimismo",
+      "titulo": "Kant y Hegel: la fe en el progreso",
+      "guia": "Preguntar qué pensaban Kant y Hegel sobre el progreso de la historia.",
+      "claves": "Ilustración: confianza en el progreso. Kant: la humanidad avanza, lentamente, hacia una sociedad más justa y la paz entre los pueblos; «atrevete a pensar por vos mismo» (sapere aude). Hegel: la historia es el progreso de la libertad (uno libre, algunos, todos); la historia tiene dirección.",
+      "resumen": "Kant y Hegel confiaban en el progreso: para Hegel, la historia es el progreso de la libertad.",
+      "palabras": [
+        "Ilustración",
+        "Kant",
+        "Hegel",
+        "libertad",
+        "dirección"
+      ],
+      "ejemplo": "Para Hegel, primero era libre solo el rey, después algunos y finalmente todos."
+    },
+    {
+      "id": "benjamin",
+      "titulo": "Benjamin y la pregunta por el progreso",
+      "guia": "Preguntar qué dice la imagen del ángel de la historia y cómo responder hoy si progresa la humanidad.",
+      "claves": "Benjamin (1892–1940), tesis sobre la historia (1940), cuadro de Klee: el ángel mira el pasado y ve una catástrofe que acumula ruinas; la tormenta que lo empuja al futuro es el progreso. No hay documento de cultura que no sea de barbarie. Conclusión: depende del eje; progreso en qué y para quiénes; el progreso moral y político no es automático, es una tarea.",
+      "resumen": "El ángel de la historia de Benjamin ve ruinas donde otros ven progreso: el progreso no es automático, es una tarea.",
+      "palabras": [
+        "ángel de la historia",
+        "ruinas",
+        "tormenta",
+        "barbarie",
+        "tarea"
+      ],
+      "ejemplo": "Las pirámides son un documento de cultura y también del trabajo de miles de personas sometidas."
+    }
+  ],
+  "casos": [
+    {
+      "id": "celular",
+      "texto": "Un compañero dice que hoy vivimos mejor que nunca porque todos tenemos celular.",
+      "claves": "Distinguir ejes: progreso técnico acumulativo y acelerado vs progreso moral y político; ¿progreso para quiénes?; la técnica no reparte sus beneficios por sí sola."
+    },
+    {
+      "id": "ia",
+      "texto": "Una amiga teme que la inteligencia artificial termine destruyendo a la humanidad.",
+      "claves": "Aplicar la ambivalencia de la técnica (puede servir a la vida o a la barbarie, Adorno), la aceleración y la responsabilidad humana; no es automático."
+    },
+    {
+      "id": "fechas",
+      "texto": "Un alumno dice que la historia no sirve porque es memorizar fechas.",
+      "claves": "Usar la línea de tiempo: orden, duración, simultaneidad; los ejes; preguntar por el progreso; la historia argentina como memoria."
+    },
+    {
+      "id": "dictadura",
+      "texto": "Alguien dice que la democracia argentina está garantizada para siempre.",
+      "claves": "Aplicar emancipación lenta y con retrocesos: 1976–1983, 1983, Nunca Más; los derechos se conquistan y se sostienen; Benjamin: el progreso no es automático."
+    },
+    {
+      "id": "medicina",
+      "texto": "Tu abuela cuenta que de chica muchos niños morían de enfermedades que hoy se curan.",
+      "claves": "Reconocer progreso real en la técnica médica (penicilina, vacunas, esperanza de vida) y preguntar por el acceso desigual: progreso para quiénes."
+    },
+    {
+      "id": "museo",
+      "texto": "En un museo hay oro de los incas exhibido como una gran obra de arte.",
+      "claves": "Aplicar a Benjamin: no hay documento de cultura que no sea de barbarie; la Conquista de América; las épocas vistas desde distintos puntos de vista."
+    },
+    {
+      "id": "guerra",
+      "texto": "Un compañero dice que las guerras eran cosa de la antigüedad y que ya no pasan.",
+      "claves": "Aplicar el eje violencia: guerras mundiales, Hiroshima, 11 de septiembre; la técnica multiplica la destrucción; Adorno."
+    },
+    {
+      "id": "voto",
+      "texto": "Una compañera dice que el voto femenino siempre existió en Argentina.",
+      "claves": "Aplicar la emancipación lenta: Ley 13.010 de 1947, luchas de Lanteri y Moreau de Justo; más de 150 años desde 1789; los derechos se conquistan."
+    }
+  ],
+  "reflexiones": [
+    {
+      "id": "eje",
+      "texto": "¿En qué eje te parece que la humanidad más avanzó y en cuál menos? ¿Por qué?"
+    },
+    {
+      "id": "hito",
+      "texto": "Si pudieras agregar un hito a la línea de tiempo, ¿cuál sería y en qué eje lo pondrías?"
+    },
+    {
+      "id": "futuro",
+      "texto": "¿Qué hito te gustaría que tu generación agregue a la línea dentro de cincuenta años?"
+    },
+    {
+      "id": "argentina",
+      "texto": "¿Qué hecho de la historia argentina creés que todos deberían recordar? ¿Por qué?"
+    },
+    {
+      "id": "pregunta",
+      "texto": "Si pudieras hacerle una sola pregunta a Walter Benjamin, ¿cuál sería?"
+    }
+  ],
+  "practica": [
+    "¿Qué tres cosas permite ver una línea de tiempo? Da un ejemplo de cada una.",
+    "¿Qué cambió con la revolución neolítica y por qué los cortes entre épocas son convenciones?",
+    "¿Por qué el progreso técnico es acumulativo? Explicá el reloj de la humanidad.",
+    "¿En qué se diferencia el pensamiento de la técnica?",
+    "¿Por qué más técnica no significó menos violencia? Explicá la frase de Adorno.",
+    "¿Cómo avanza la emancipación? Da ejemplos de la línea y de la historia argentina.",
+    "Compará la idea de progreso de Kant y Hegel con el ángel de la historia de Benjamin.",
+    "¿Progresa la humanidad? Respondé usando al menos tres ejes."
+  ]
+}

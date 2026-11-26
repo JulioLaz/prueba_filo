@@ -14,8 +14,13 @@
  *  - examen: si el tema está en EXAMEN_CONFIG, examen.json completo (12 ejes, 8 casos,
  *    5 reflexiones, 6 aperturas, 8 de práctica) y con el mismo filósofo.
  *
+ *  - temas con actividades propias (ACTIVIDADES_TEMA, p. ej. linea_tiempo): solo pide los
+ *    archivos de esas actividades; revisa hitos.js (campos, ejes, épocas, ids únicos),
+ *    termometro.js (hitos existentes y del eje correcto) y que el examen pida esas actividades.
+ *
  * Uso:  node tools/pruebas/verificar_tema.js etica_aristoteles [otro_tema ...]
- * Versión: v1.0.0 (2026-11-19)
+ * Versión: v1.1.0 (2026-11-26) — actividades propias por tema y línea de tiempo
+ * v1.0.0 (2026-11-19)
  */
 const fs = require('fs');
 const path = require('path');
@@ -38,14 +43,14 @@ function cargar(archivo) {
 /** VIDEO_CONFIG y EXAMEN_CONFIG de temas_data.js (constantes del nivel superior). */
 function datosGlobales() {
   const ctx = {}; vm.createContext(ctx);
-  vm.runInContext(leer('temas_data.js') + '\n;globalThis.__d = { VIDEO_CONFIG, EXAMEN_CONFIG, TOPICS };', ctx);
+  vm.runInContext(leer('temas_data.js') + '\n;globalThis.__d = { VIDEO_CONFIG, EXAMEN_CONFIG, TOPICS, ACTIVIDADES_TEMA: typeof ACTIVIDADES_TEMA !== "undefined" ? ACTIVIDADES_TEMA : {} };', ctx);
   return ctx.__d;
 }
 
 function main_verificar_tema() {
   const temas = process.argv.slice(2);
   if (!temas.length) { console.error('Uso: node tools/pruebas/verificar_tema.js <tema> [otro_tema ...]'); process.exit(2); }
-  const { VIDEO_CONFIG, EXAMEN_CONFIG } = datosGlobales();
+  const { VIDEO_CONFIG, EXAMEN_CONFIG, ACTIVIDADES_TEMA } = datosGlobales();
   const mainJs = leer('js/main.js');
   let fallasTotales = 0;
 
@@ -59,8 +64,50 @@ function main_verificar_tema() {
     const act = cfg?.activities || {};
     if (!cfg) prob('falta config.json');
 
-    for (const f of ['content.html', 'quiz.js', 'conceptos.js', 'crossword_config.js', 'mapa.html', 'cloze_test.js']) {
+    // Archivos que necesita cada actividad del tema
+    const ACTS = ACTIVIDADES_TEMA[t] || null;
+    const ARCHIVOS = { material: ['content.html'], quiz: ['quiz.js'], caza: ['conceptos.js'], cruci: ['crossword_config.js'],
+      mapa: ['mapa.html'], video: ['cloze_test.js'], explorar: ['hitos.js'], ordenar: ['hitos.js'], simultaneo: ['hitos.js'],
+      termometro: ['hitos.js', 'termometro.js'] };
+    const requeridos = ACTS ? [...new Set(ACTS.flatMap((a) => ARCHIVOS[a] || []))]
+      : ['content.html', 'quiz.js', 'conceptos.js', 'crossword_config.js', 'mapa.html', 'cloze_test.js'];
+    if (ACTS) {
+      info.push(`actividades: ${ACTS.join(', ')}`);
+      ACTS.filter((a) => !ARCHIVOS[a]).forEach((a) => prob(`actividad desconocida en ACTIVIDADES_TEMA: ${a}`));
+    }
+    for (const f of requeridos) {
       if (!existe(`${dir}/${f}`)) prob(`falta ${f}`);
+    }
+
+    // Línea de tiempo: hitos y termómetro
+    if (existe(`${dir}/hitos.js`)) {
+      const w = cargar(`${dir}/hitos.js`);
+      const H = w.LINEA_HITOS || [], EJ = w.LINEA_EJES || {}, ER = w.LINEA_ERAS || [];
+      info.push(`línea ${H.length} hitos`);
+      const ids = new Set();
+      H.forEach((h) => {
+        ['id', 'year', 'era', 'axis', 'title', 'intro', 'desc', 'philosophy'].forEach((k) => { if (!h[k]) prob(`hitos: "${h.title || h.id}" no tiene ${k}`); });
+        if (typeof h.sort !== 'number') prob(`hitos: "${h.title}" sin sort numérico`);
+        if (!EJ[h.axis]) prob(`hitos: "${h.title}" tiene un eje desconocido (${h.axis})`);
+        if (!ER.includes(h.era)) prob(`hitos: "${h.title}" tiene una época que no está en LINEA_ERAS`);
+        if (ids.has(h.id)) prob(`hitos: id repetido ${h.id}`);
+        ids.add(h.id);
+      });
+      const enCfg = act.explorar?.hitos;
+      if (enCfg !== undefined && enCfg !== H.length) prob(`hitos: config.json dice ${enCfg} y hay ${H.length}`);
+      if (existe(`${dir}/termometro.js`)) {
+        const T = cargar(`${dir}/termometro.js`).LINEA_TERMOMETRO;
+        if (!T) prob('termómetro: no define window.LINEA_TERMOMETRO');
+        else {
+          [...T.ejes, T.final].forEach((e, i) => { if (!(e.correcta >= 0 && e.correcta < e.opciones.length) || !e.porque) prob(`termómetro: la pregunta ${i + 1} no tiene correcta válida o porqué`); });
+          T.ejes.forEach((e) => e.hitos.forEach((id) => {
+            const h = H.find((x) => x.id === id);
+            if (!h) prob(`termómetro: el hito ${id} no existe en hitos.js`);
+            else if (h.axis !== e.eje) prob(`termómetro: ${id} es de ${h.axis}, no de ${e.eje}`);
+          }));
+          info.push(`termómetro ${T.ejes.length} ejes`);
+        }
+      }
     }
 
     // Tarjeta del inicio (js/main.js)
@@ -164,6 +211,10 @@ function main_verificar_tema() {
         if (b.filosofo !== ex.filosofo) prob(`examen: examen.json dice "${b.filosofo}" y EXAMEN_CONFIG "${ex.filosofo}"`);
         (b.ejes || []).forEach((e) => ['guia', 'claves', 'resumen', 'palabras', 'ejemplo'].forEach((k) => { if (!e[k] || !e[k].length) prob(`examen: el eje ${e.id} no tiene ${k}`); }));
         info.push(`examen con ${b.filosofo}`);
+        if (ACTS) {
+          const req = b.actividadesRequeridas || [];
+          if (req.length !== ACTS.length || ACTS.some((a) => !req.includes(a))) prob(`examen: actividadesRequeridas (${req.join(', ')}) no coincide con ACTIVIDADES_TEMA (${ACTS.join(', ')})`);
+        }
       }
     } else if (existe(`${dir}/examen.json`)) prob('examen: hay examen.json pero el tema no está en EXAMEN_CONFIG');
 

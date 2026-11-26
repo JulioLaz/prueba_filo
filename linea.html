@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  linea.html — actividades de la línea de tiempo (?tema=<id>&modo=explorar|ordenar|simultaneo|termometro).
+  Datos: themes/<id>/hitos.js (y termometro.js). Motor: js/linea-tiempo.js (guarda en Firebase
+  con lessonId = modo).
+  Versión: v1.0 (2026-11-26)
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Línea del tiempo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏳</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --panel2:#131d36; --ink:#eaf0ff; --muted:#9fb0d8;
+      --line:#223059; --violeta:#805ad5; --ok:#10b981; --bad:#ef4444; --radius:14px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 500px at 70% -120px, rgba(128,90,213,.18), transparent 60%),var(--bg);color:var(--ink);font:16px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+    .wrap{max-width:980px;margin:0 auto;padding:16px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:8px 0 14px}
+    h1{margin:0;font-size:21px}
+    .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+    .btn{appearance:none;border:0;border-radius:10px;padding:10px 16px;font:600 15px/1.2 inherit;font-family:inherit;cursor:pointer;background:var(--violeta);color:#fff}
+    .btn:hover{filter:brightness(1.1)}
+    .btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+    .btn-sec{background:transparent;border:1px solid var(--violeta);color:#d6c8ff}
+    .btn-sec.activo{background:var(--violeta);color:#fff}
+    .btn-sm{padding:6px 10px;font-size:13px}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:12px 0}
+    .barra{height:10px;background:#0a1020;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px}
+    .barra > div{height:100%;width:0;background:linear-gradient(90deg,#6b7cff,var(--violeta));transition:width .5s}
+    .fila{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);font-size:13px;cursor:pointer;user-select:none}
+    .chip .punto{width:10px;height:10px;border-radius:50%}
+    .chip.apagado{opacity:.4}
+    .era{margin:22px 0 8px;font-size:16px;color:#cfd8ff;border-bottom:1px solid var(--line);padding-bottom:4px}
+    .hito{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-left:5px solid #888;border-radius:12px;padding:10px 12px;margin:8px 0;color:var(--ink);font:inherit;cursor:pointer}
+    .hito:hover{border-color:#3a4a80}
+    .hito .anio{font-size:13px;color:var(--muted)}
+    .hito .tit{font-weight:700}
+    .hito .intro{font-size:14px;color:#c8d2f0}
+    .hito.leido .tit::after{content:"  ✓ leído";color:var(--ok);font-weight:600;font-size:13px}
+    /* Escala real */
+    .escala{position:relative;margin:10px 18px 4px}
+    .ticks span:first-child{transform:none}
+    .ticks span:last-child{transform:translateX(-100%)}
+    .carril{position:relative;height:40px;border-bottom:1px dashed #2a3666}
+    .carril .nom{position:absolute;left:0;top:2px;font-size:11px;color:var(--muted)}
+    .dot{position:absolute;top:16px;width:16px;height:16px;margin-left:-8px;border-radius:50%;border:2px solid #0b1220;cursor:pointer;padding:0}
+    .dot.alt{top:22px}
+    .dot.leido{box-shadow:0 0 0 2px #fff}
+    .ticks{position:relative;height:22px;font-size:11px;color:var(--muted)}
+    .ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+    .reloj li{margin:4px 0}
+    /* Ordenar / simultáneo / termómetro */
+    .orden-item{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-left:5px solid #888;border-radius:12px;padding:10px;margin:8px 0}
+    .orden-item .txt{flex:1}
+    .orden-item .flechas{display:flex;flex-direction:column;gap:4px}
+    .orden-item.bien{border-color:var(--ok)}
+    .orden-item.mal{border-color:var(--bad)}
+    .revelado{font-size:13px;color:#ffd98a;margin-top:2px}
+    .opcion{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0;color:var(--ink);font:inherit;cursor:pointer}
+    .opcion:hover:not(:disabled){border-color:var(--violeta)}
+    .opcion.bien{border-color:var(--ok);background:rgba(16,185,129,.1)}
+    .opcion.mal{border-color:var(--bad);background:rgba(239,68,68,.1)}
+    .opcion:disabled{cursor:default}
+    .feedback{padding:12px;border-radius:12px;background:#151f3b;border:1px solid var(--line);margin-top:10px}
+    .feedback.bien{border-color:var(--ok)}
+    .feedback.mal{border-color:var(--bad)}
+    .paso{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+    .graficos{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+    .grafico{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:8px}
+    .grafico h4{margin:0 0 4px;font-size:14px}
+    /* Detalle de un hito */
+    .fondo{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:50;padding:16px;overflow:auto}
+    .fondo.abierto{display:block}
+    .detalle{max-width:640px;margin:20px auto;background:var(--panel);border:1px solid var(--line);border-top:6px solid var(--violeta);border-radius:16px;padding:18px}
+    .detalle h2{margin:4px 0 6px;font-size:20px}
+    .detalle .meta{font-size:13px;color:var(--muted)}
+    .detalle h3{font-size:15px;margin:14px 0 4px;color:#d6c8ff}
+    .figuras{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .figuras span{font-size:12px;padding:3px 8px;border-radius:999px;background:var(--panel2);border:1px solid var(--line)}
+    .cargando{color:var(--muted);padding:40px;text-align:center}
+    @media (max-width:560px){ h1{font-size:18px} .wrap{padding:12px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1 id="titulo">Línea del tiempo</h1>
+        <p class="sub" id="subtitulo"></p>
+      </div>
+      <button class="btn btn-sec" id="volver">Volver al tema</button>
+    </header>
+    <main id="app"><p class="cargando">Cargando...</p></main>
+  </div>
+
+  <div class="fondo" id="fondoDetalle">
+    <div class="detalle" id="detalle" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <script type="module" src="js/linea-tiempo.js"></script>
+</body>
+</html>

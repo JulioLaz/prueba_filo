@@ -23,6 +23,7 @@ Tres capas:
 | `caza_conceptos.html` | alumno | Caza de conceptos (`js/caza-conceptos-engine-firebase.js` + `js/caza-conceptos-score.js`, lee `themes/<id>/conceptos.js`). |
 | `crossword.html` | alumno | Crucigrama (`js/crossword_engine.js` + `js/crossword-score.js`, lee `themes/<id>/crossword_config.js`). |
 | `themes/<id>/mapa.html` | alumno | Mapa conceptual + juego de pares (`js/mapa-system-fixed.js` + `js/mapa-system-score.js`). |
+| `linea.html?tema=<id>&modo=<actividad>` | alumno | Actividades de la línea de tiempo (explorar, ordenar, simultaneo, termometro) con `js/linea-tiempo.js` y `themes/<id>/hitos.js`. |
 | `dialogo/examen.html?tema=<id>` | alumno | Examen oral con el filósofo (llama a las Cloud Functions `examen*`). |
 | `resumen_conceptos.html`, `resumen_material.html`, `resumen_cuestionario.html` | alumno | Resúmenes para la carpeta (imprimir / PDF / copiar) de la caza, el material y el cuestionario. |
 | `resumen_tema.html?tema=<id>` | alumno | Resumen final del tema (lo que se evalúa en el examen), sale de `examen.json`. |
@@ -39,6 +40,7 @@ Tres capas:
 | `temas_data.js` → `TOPICS` | Datos del hub: `icon`, `name`, `desc`, `biography`. | hub, resúmenes, paneles |
 | `temas_data.js` → `VIDEO_CONFIG` | Video del tema: `youtubeId` (11 caracteres, **sin** `&t=` ni `?si=`), `startTime`, `endTime` (segundos), `title`, `duration`. Si el tema no está acá, no tiene actividad de video. | hub (video + cloze), `progreso-tarjetas.js`, `progress.html` |
 | `temas_data.js` → `EXAMEN_CONFIG` | Temas con examen oral: `filosofo`, `icono`, `notaAprobacion` (6), `minimoActividad` (60). Estar acá activa la tarjeta del examen, el resumen final, la regla de aprobación con examen y la columna EXAMEN. | hub, `dialogo/examen.html`, `progreso-tarjetas.js`, `progress.html`, `examenes.html` |
+| `temas_data.js` → `ACTIVIDADES_TEMA` | Temas con actividades propias (hoy `linea_tiempo`: material, explorar, ordenar, simultaneo, termometro, quiz). Si un tema no está, tiene las de siempre. `examen.json` → `actividadesRequeridas` debe coincidir. Ver `docs/ACTIVIDADES.md` §9. | hub, `progreso-tarjetas.js`, `verificar_tema.js` |
 | `themes/<id>/config.json` | Metadatos del tema (cantidad de secciones, preguntas, niveles, nodos; tiempos estimados). Debe coincidir con los archivos reales (`tools/pruebas/verificar_tema.js` lo controla). | hub (información) |
 | `themes/<id>/examen.json` | Banco del examen oral y del resumen final. | Cloud Function (desde Pages), `resumen_tema.html` |
 | `index.html` → `formatThemeName` | Nombre legible del tema en el panel del admin. | `index.html` |
@@ -80,7 +82,7 @@ Reglas en `firestore.rules` (v1.1.0): cada alumno lee y escribe solo lo suyo; el
    - Docente (`progress.html`): todos los alumnos del curso.
    - Examen (Cloud Function): verifica el mínimo por actividad antes de habilitar.
 
-Identificadores de actividad (`lessonId`): `material`, `quiz`, `caza` (en datos viejos `caza_conceptos`, que se toma como alias), `cruci`, `mapa`, `video` (video + cloze) y `examen`.
+Identificadores de actividad (`lessonId`): `material`, `quiz`, `caza` (en datos viejos `caza_conceptos`, que se toma como alias), `cruci`, `mapa`, `video` (video + cloze), `examen` y, en la línea de tiempo, `explorar`, `ordenar`, `simultaneo` y `termometro`.
 
 ## 6. Reglas de aprobación
 

@@ -8,6 +8,8 @@
 // 2026-11-24: tema nuevo de la Unidad II, «Antropología de Aristóteles» (antropologia_aristoteles)
 // 2026-11-24: Origen revisado (13 preguntas, contentFile corregido a themes/origen)
 // 2026-11-24: Presocráticos y Sócrates completos (13 preguntas cada uno)
+// 2026-11-26: tema nuevo, primero de la Unidad I: «Línea del tiempo: ¿progresa la humanidad?»
+//   (linea_tiempo, actividades propias en ACTIVIDADES_TEMA). «Ramas clásicas» queda oculto (comentado).
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -20,6 +22,22 @@ const startTime = performance.now();
 
 const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
 [
+    {
+        id: 'linea_tiempo',
+        title: 'Línea del tiempo: ¿progresa la humanidad?',
+        epoca: 'De la agricultura a la inteligencia artificial',
+        lugar: 'El mundo y la Argentina',
+        banderas: ['ar'],
+        description: 'Recorré 63 hitos en cinco ejes (pensamiento, poder, técnica, violencia y emancipación), ordenalos, descubrí qué pasaba al mismo tiempo y medí con el termómetro si la humanidad progresa.',
+        icon: '⏳',
+        gradient: 'linear-gradient(135deg, #805ad5 0%, #3182ce 100%)',
+        difficulty: 'UNIDAD_I',
+        questions: 13,
+        timeEstimate: 15,
+        prerequisites: [],
+        color: '#805ad5',
+        contentFile: 'themes/linea_tiempo/content.html'
+    },
     {
         id: 'origen',
         title: 'Origen de la Filosofía: Del Mito al Logos',
@@ -119,21 +137,22 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
         color: '#FF5722',
         contentFile: 'themes/metodo/content.html'
     },
-    {
-        id: 'ramas',
-        title: 'Ramas Clásicas: Metafísica, Ética y Lógica',
-        epoca: 'Desde la Antigüedad griega',
-        description: 'Panorama de los grandes campos de estudio: ¿Qué es el ser? (Metafísica), ¿Cómo vivir? (Ética), ¿Cómo razonar? (Lógica).',
-        icon: '🌳',
-        gradient: 'linear-gradient(135deg, #009688 0%, #4D96FF 100%)',
-        difficulty: 'UNIDAD_I',
-        questions: 10,
-        timeEstimate: 10,
-        prerequisites: [],
-        // prerequisites: ['aristoteles'],
-        color: '#009688',
-        contentFile: 'themes/ramas/content.html'
-    },
+    // Oculto el 2026-11-26 (a pedido del docente); para recuperarlo, descomentar.
+    // {
+    //     id: 'ramas',
+    //     title: 'Ramas Clásicas: Metafísica, Ética y Lógica',
+    //     epoca: 'Desde la Antigüedad griega',
+    //     description: 'Panorama de los grandes campos de estudio: ¿Qué es el ser? (Metafísica), ¿Cómo vivir? (Ética), ¿Cómo razonar? (Lógica).',
+    //     icon: '🌳',
+    //     gradient: 'linear-gradient(135deg, #009688 0%, #4D96FF 100%)',
+    //     difficulty: 'UNIDAD_I',
+    //     questions: 10,
+    //     timeEstimate: 10,
+    //     prerequisites: [],
+    //     // prerequisites: ['aristoteles'],
+    //     color: '#009688',
+    //     contentFile: 'themes/ramas/content.html'
+    // },
     {
         id: 'dualismo_platonico',
         title: 'El Dualismo Platónico: El Alma Prisionera del Cuerpo',

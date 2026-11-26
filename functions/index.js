@@ -10,6 +10,8 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.6 (2026-11-26): nombres de las actividades de la línea de tiempo en el aviso de lo que falta
+ *   (solo texto; el examen ya aceptaba cualquier actividad de actividadesRequeridas).
  * V8.5 (2026-11-24): modelos saturados (503/429/500): espera y otra vuelta, hasta 3;
  *   OpenRouter con razonamiento bajo (Nemotron devolvía vacío por gastar todo en pensar);
  *   más respaldos de Gemini (2.5 flash-lite, 2.5 flash, 2.0 flash) y corrección con 8192 tokens.
@@ -893,6 +895,8 @@ async function avanceAlumno(uid, tema, banco) {
 const NOMBRE_ACTIVIDAD = {
   quiz: "Cuestionario", caza: "Caza de conceptos", video: "Video", cruci: "Crucigrama",
   material: "Material de estudio", mapa: "Mapa conceptual",
+  explorar: "Explorar la línea", ordenar: "Ordenar en el tiempo", simultaneo: "¿Qué pasaba al mismo tiempo?",
+  termometro: "Termómetro del progreso",
 };
 const listaFaltan = (faltan) => faltan.map((f) => `${NOMBRE_ACTIVIDAD[f.actividad] || f.actividad} (${f.pct}%)`).join(", ");
 

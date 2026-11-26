@@ -1,4 +1,6 @@
 <!-- tema.html — hub del tema: tarjetas de actividades, material, video + ejercicio (cloze) y examen.
+     v2.1 (2026-11-26): actividades por tema (ACTIVIDADES_TEMA) y tarjetas de la línea de tiempo
+       (explorar, ordenar, simultáneos, termómetro → linea.html?modo=...).
      v2.0 (2026-11-25): ejercicio del video desplegado desde el inicio (al costado en compu), botón violeta
      Ocultar/Mostrar; ejercicio completo = 100% y reabrir el video no borra el "video visto". -->
 
@@ -67,6 +69,40 @@
             <button class="btn btn-secondary" id="goResumenCaza" title="Resumen de conceptos para la carpeta">Resumen</button>
             <button class="btn btn-primary" id="goCaza">Abrir</button>
           </div>
+        </div>
+      </article>
+
+      <!-- Actividades de la línea de tiempo (solo en temas que las listan en ACTIVIDADES_TEMA) -->
+      <article class="card" data-act="explorar" style="display:none;">
+        <div class="card-icon">🧭 Explorar la línea</div>
+        <p>Recorré los hitos por épocas y a escala real: abrí cada uno y leé qué cambió.</p>
+        <div class="status">
+          <small id="statusExplorar">—</small>
+          <button class="btn btn-primary" id="goExplorar">Abrir</button>
+        </div>
+      </article>
+      <article class="card" data-act="ordenar" style="display:none;">
+        <div class="card-icon">↕️ Ordenar en el tiempo</div>
+        <p>Poné hitos en orden cronológico: razoná qué vino antes y qué después.</p>
+        <div class="status">
+          <small id="statusOrdenar">—</small>
+          <button class="btn btn-primary" id="goOrdenar">Abrir</button>
+        </div>
+      </article>
+      <article class="card" data-act="simultaneo" style="display:none;">
+        <div class="card-icon">⏱️ Al mismo tiempo</div>
+        <p>¿Qué pasaba al mismo tiempo? Descubrí qué hechos fueron contemporáneos.</p>
+        <div class="status">
+          <small id="statusSimultaneo">—</small>
+          <button class="btn btn-primary" id="goSimultaneo">Abrir</button>
+        </div>
+      </article>
+      <article class="card" data-act="termometro" style="display:none;">
+        <div class="card-icon">🌡️ Termómetro del progreso</div>
+        <p>Compará hitos de cada eje y decidí: ¿la humanidad avanzó, retrocedió o siguió igual?</p>
+        <div class="status">
+          <small id="statusTermometro">—</small>
+          <button class="btn btn-primary" id="goTermometro">Abrir</button>
         </div>
       </article>
 
@@ -286,6 +322,19 @@
       document.getElementById('videoCard').style.display = 'flex';
     }
 
+    // Actividades del tema: las de ACTIVIDADES_TEMA (temas_data.js) o las de siempre
+    // (material, caza, cuestionario, crucigrama, mapa y, si hay, video)
+    const ACTS_TEMA = (typeof ACTIVIDADES_TEMA !== 'undefined' && ACTIVIDADES_TEMA[tema]) || null;
+    const ACTS_LINEA = ['explorar', 'ordenar', 'simultaneo', 'termometro'];
+    const BOTON_ACT = { material:'goMaterial', caza:'goCaza', video:'goVideo', cruci:'goCruci', quiz:'goQuiz', mapa:'goMapa',
+      explorar:'goExplorar', ordenar:'goOrdenar', simultaneo:'goSimultaneo', termometro:'goTermometro' };
+    if (ACTS_TEMA) {
+      Object.entries(BOTON_ACT).forEach(([act, id]) => {
+        const card = document.getElementById(id)?.closest('.card');
+        if (card) card.style.display = ACTS_TEMA.includes(act) ? 'flex' : 'none';
+      });
+    }
+
     const tdata = TOPICS[tema] || {icon:'🕵🏼', name: tema, desc:'Explorá las actividades disponibles.'};
 
     function transformarTema(nombre) {
@@ -444,7 +493,22 @@
         {key:'mapa', label:'🗺️ Mapa',        pct:P.mapa,  target:'goMapa'},
       ];
 
-      const allSegments = hasVideo ? [
+      // Actividades propias de la línea de tiempo: % guardado (sesión o Firebase)
+      const ETIQUETA_LINEA = { explorar:'🧭 Explorar', ordenar:'↕️ Ordenar', simultaneo:'⏱️ Simultáneos', termometro:'🌡️ Termómetro' };
+      ACTS_LINEA.forEach((k) => {
+        const local = readJSON(ns(k), {}).percentage || 0;
+        P[k] = pctActividad(k, local);
+        const st = document.getElementById('status' + k[0].toUpperCase() + k.slice(1));
+        if (st) st.textContent = P[k] >= 100 ? 'Completado · 100%' : P[k] > 0 ? `${P[k]}% completado` : 'Sin avances';
+      });
+      const SEGMENTO = {
+        quiz:{key:'quiz', label:'📝 Cuestionario', target:'goQuiz'}, caza:{key:'caza', label:'🔎 Caza', target:'goCaza'},
+        video:{key:'video', label:'🎬 Video', target:'goVideo'}, cruci:{key:'cruci', label:'🧩 Crucigrama', target:'goCruci'},
+        material:{key:'mat', label:'📖 Material', target:'goMaterial'}, mapa:{key:'mapa', label:'🗺️ Mapa', target:'goMapa'},
+        ...Object.fromEntries(ACTS_LINEA.map((k) => [k, {key:k, label:ETIQUETA_LINEA[k], target:BOTON_ACT[k]}])),
+      };
+
+      const allSegments = ACTS_TEMA ? ACTS_TEMA.map((a) => ({ ...SEGMENTO[a], pct: P[SEGMENTO[a].key] })) : hasVideo ? [
         {key:'quiz', label:'📝 Cuestionario',         pct:P.quiz,  target:'goQuiz'},
         // {key:'quiz', label:'📝 Quiz',         pct:P.quiz,  target:'goQuiz'},
         {key:'caza', label:'🔎 Caza',         pct:P.caza,  target:'goCaza'},
@@ -463,8 +527,7 @@
         segments.appendChild(el);
       });
 
-      const parts = hasVideo ? [P.quiz, P.caza, P.video, P.cruci, P.mat, P.mapa]
-                             : [P.quiz, P.caza, P.cruci, P.mat, P.mapa];
+      const parts = allSegments.map((sg) => sg.pct);
       const globalPct = Math.round(parts.reduce((a,b)=>a+b,0) / parts.length);
       document.getElementById('progressPct').textContent = globalPct + '%';
       document.getElementById('progressBar').style.width = globalPct + '%';
@@ -534,8 +597,10 @@
     // ===== Sello de actividad aprobada (≥ 80%) / completa (100%) en cada tarjeta =====
     // Actividad aprobada: 80%; en temas con examen, desde el mínimo por actividad (60%)
     const UMBRAL_APROBADA = EXAMEN ? (EXAMEN.minimoActividad ?? 60) : 80;
-    const BOTON_DE = { quiz:'goQuiz', caza:'goCaza', video:'goVideo', cruci:'goCruci', mat:'goMaterial', mapa:'goMapa' };
-    const CLAVE_FIREBASE = { quiz:'quiz', caza:'caza', video:'video', cruci:'cruci', mat:'material', mapa:'mapa' };
+    const BOTON_DE = { quiz:'goQuiz', caza:'goCaza', video:'goVideo', cruci:'goCruci', mat:'goMaterial', mapa:'goMapa',
+      explorar:'goExplorar', ordenar:'goOrdenar', simultaneo:'goSimultaneo', termometro:'goTermometro' };
+    const CLAVE_FIREBASE = { quiz:'quiz', caza:'caza', video:'video', cruci:'cruci', mat:'material', mapa:'mapa',
+      explorar:'explorar', ordenar:'ordenar', simultaneo:'simultaneo', termometro:'termometro' };
 
     function pctActividad(key, pctLocal){
       const fb = window.__progresoFirebase?.[CLAVE_FIREBASE[key]]?.percentage || 0;
@@ -581,6 +646,7 @@
     document.getElementById('goResumenQuiz').addEventListener('click', ()=> go('resumen_cuestionario.html'));
     document.getElementById('goExamen').addEventListener('click', ()=> go('dialogo/examen.html'));
     document.getElementById('goResumenTema').addEventListener('click', ()=> go('resumen_tema.html'));
+    ACTS_LINEA.forEach((k) => document.getElementById(BOTON_ACT[k]).addEventListener('click', ()=> go(`linea.html?modo=${k}`)));
 
     // ===== Material de estudio =====
     const sheetBackdrop = document.getElementById('sheetBackdrop');
@@ -1885,7 +1951,7 @@ function updateUIWithFirebaseProgress(firebaseProgress) {
   console.log("🎨 Actualizando UI con progreso completo...");
   window.__progresoFirebase = firebaseProgress;   // lo usan los sellos de actividad (renderProgressUI)
 
-  const activities = ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'];
+  const activities = ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa', 'explorar', 'ordenar', 'simultaneo', 'termometro'];
   const segments = document.querySelectorAll('.seg[data-type]');
   
   // 📊 Actualizar cada actividad

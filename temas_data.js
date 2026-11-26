@@ -1,4 +1,11 @@
 const TOPICS = {
+  linea_tiempo: {
+    icon: '⏳',
+    name: 'Línea del tiempo',
+    desc: '¿Progresa la humanidad? Hitos del pensamiento, el poder, la técnica, la violencia y la emancipación, de la agricultura a la inteligencia artificial, con la historia argentina.',
+    biography: 'Walter Benjamin (1892–1940), filósofo alemán de la Escuela de Frankfurt. En sus Tesis sobre la filosofía de la historia criticó la idea de un progreso automático: el «ángel de la historia» mira hacia atrás y ve una catástrofe que acumula ruinas, mientras la tormenta del progreso lo empuja hacia el futuro.'
+  },
+
   dualismo_platonico: {
     icon: '🕊️',
     name: 'Platón',
@@ -431,5 +438,20 @@ const TOPICS = {
         icono: '🧭',
         notaAprobacion: 6,
         minimoActividad: 60
+      },
+      linea_tiempo: {
+        filosofo: 'Walter Benjamin',
+        icono: '⏳',
+        notaAprobacion: 6,
+        minimoActividad: 60
       }
+    };
+
+    // Actividades propias de un tema (si no está acá, tiene las de siempre: material, caza,
+    // cuestionario, crucigrama, mapa y, si está en VIDEO_CONFIG, video). Lo leen el hub,
+    // las tarjetas del inicio (js/progreso-tarjetas.js) y, para el examen, examen.json
+    // (actividadesRequeridas) debe tener la misma lista.
+    // explorar, ordenar, simultaneo y termometro son las actividades de linea.html.
+    const ACTIVIDADES_TEMA = {
+      linea_tiempo: ['material', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz']
     };
