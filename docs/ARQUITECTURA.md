@@ -30,6 +30,8 @@ Tres capas:
 | `progress.html` | admin | Tabla del curso: alumnos × actividades, columna GENERAL (promedio) y EXAMEN (nota). |
 | `examenes.html?tema=<id>` | admin | Cada intento de examen: conversación completa, rúbrica y nota. |
 | `dialogo/chat.html` | alumno | Diálogos libres con filósofos (Cloud Function `chatFilosofo`). |
+| `themes/orientacion_vocacional/content.html` → `dialogo/chat_vocacional.html` | alumno | Orientación vocacional: presentación con el mapa de opciones de Tucumán (`opciones.json`), autotest, diálogo de 10 mensajes y ficha «Mi plan» (ver `ACTIVIDADES.md` §10). |
+| `planes_vocacionales.html` | admin | Fichas «Mi plan» de la orientación vocacional, por curso. |
 | `projects/project_t3.html`, `projects/guia.html` | alumno | Proyecto final del trimestre 3 (guías de trabajo; no registran avance). |
 
 ## 3. Archivos de configuración (dónde se «da de alta» un tema)
@@ -55,7 +57,7 @@ Email y contraseña (`firebase.js`: `login`, `registerStudent`, `resetPassword`,
 |---|---|---|
 | `users/{uid}` | Perfil: `nombres`, `apellidos`, `curso`, `role`, avatar, `estadisticas` (tiempo total, actividades completadas). | alumno (lo suyo), admin |
 | `sesiones/{uid_timestamp}` | Cada login y logout. | alumno |
-| `progreso_temas/{uid}_{tema}_{actividad}` | Una por alumno, tema y actividad: `score` y `bestScore` (récord), `lastScore`, `status`, `attempts`, `timeSpentSeconds`, `lastAttemptId`, `updatedAt`; en la caza, `foundConcepts`. | alumno (salvo `examen`) |
+| `progreso_temas/{uid}_{tema}_{actividad}` | Una por alumno, tema y actividad: `score` y `bestScore` (récord), `lastScore`, `status`, `attempts`, `timeSpentSeconds`, `lastAttemptId`, `updatedAt`; en la caza, `foundConcepts`; en la orientación vocacional, `planVocacional` (última ficha «Mi plan», se guarda siempre). | alumno (salvo `examen`) |
 | `progreso_temas/{uid}_{tema}_examen` | Nota del examen: `score` = nota × 10, `bestNota`, `lastNota`, `attempts`. | **solo la Cloud Function** |
 | `examenes/{uid}_{tema}_{ms}` | Un intento de examen: plan (preguntas sorteadas), turnos, estado, rúbrica, nota. | solo la Cloud Function |
 | `examenes_estado/{uid}_{tema}` | Intentos del día, examen en curso, mejor nota. | solo la Cloud Function |
@@ -63,9 +65,9 @@ Email y contraseña (`firebase.js`: `login`, `registerStudent`, `resetPassword`,
 Reglas en `firestore.rules` (v1.1.0): cada alumno lee y escribe solo lo suyo; el admin lee todo; las notas y los exámenes solo los escribe la función. **Se pegan a mano en la consola.**
 
 ### Cloud Functions (`functions/index.js`)
-- `chatFilosofo`: diálogos libres con filósofos (personajes definidos en el mismo archivo).
+- `chatFilosofo`: diálogos libres con filósofos (personajes definidos en el mismo archivo). Para `orientador_vocacional` (V8.7) recibe `contexto` (intercambio, edad, autotest) y arma la fase y el banco de opciones de Tucumán leído de Pages (`themes/orientacion_vocacional/opciones.json`); con `modo: "plan"` devuelve la ficha en JSON (`plan`).
 - `examenEstado`, `examenIniciar`, `examenResponder`: examen oral (ver §7).
-- IA: Gemini, con respaldo en OpenRouter; claves como secretos (`GOOGLE_API_KEY`, `OPENROUTER_KEY`).
+- IA: Gemini, con respaldo en OpenRouter; claves como secretos (`GOOGLE_API_KEY`, `OPENROUTER_KEY`). Listas `MODELOS_GEMINI` y `MODELOS_OPENROUTER` al principio del archivo (revisadas el 2026-11-26: Gemini 3.5 Flash-Lite, 3.8 Flash y 3.1 Flash-Lite; Gemma 4, Nemotron 3.5 y `openrouter/free`). Para comprobar con las claves reales qué modelos responden: `tools/pruebas/probar_modelos.cjs` (en la PC del docente).
 - Se publican con `firebase deploy --only functions` (lo hace el usuario). El banco `examen.json` **no** requiere publicar la función.
 
 ## 5. Recorrido de un puntaje
@@ -108,5 +110,5 @@ Las actividades son 5 (material, cuestionario, caza, crucigrama, mapa) más el v
 
 - En el inicio y en el hub ve todo y no tiene bloqueos.
 - Selector **«Vista: Docente / Como alumno»** (guardado en `localStorage` como `admin.vistaAlumno`) para ver la app con su propio progreso, como la vería un alumno.
-- `progress.html` (tabla del curso) y `examenes.html` (exámenes con conversación y rúbrica).
+- `progress.html` (tabla del curso), `examenes.html` (exámenes con conversación y rúbrica) y `planes_vocacionales.html` (fichas «Mi plan» de la orientación vocacional).
 - Scripts Python de administración en la raíz (`alumnos_anio_curso.py`, `verificar_email_admin.py`, `limpiar_ddbb.py`): usan la clave de service account, que no se sube al repo.

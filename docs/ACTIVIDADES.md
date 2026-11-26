@@ -141,3 +141,16 @@ Un tema puede tener **actividades propias** en lugar de las de siempre: se lista
 - **Al mismo tiempo (`simultaneo`):** 10 preguntas: dado un hito, elegir el de otro eje con menos de 50 años de diferencia (los otros tres están a 250 años o más). % = aciertos ÷ 10.
 - **Termómetro (`termometro`):** por eje, juzgar 3 pasos (avanzó / siguió igual / retrocedió; sin respuesta correcta, dibuja el gráfico del alumno) y elegir la conclusión mejor fundada; al final, ¿progresa la humanidad? % = 40 × pasos ÷ 15 + 60 × conclusiones bien fundadas ÷ 6.
 - **Pruebas:** `verificar_tema.js linea_tiempo` (hitos, termómetro, examen) y `jugar_linea.mjs` (hub, las 4 actividades jugadas al 100% y retomar Explorar).
+
+## 10. Orientación Vocacional Filosófica — `themes/orientacion_vocacional/` (tarjeta «Diálogos»)
+
+No es un tema con hub: la tarjeta abre la presentación (`content.html`) y el botón «Comenzar mi exploración» abre `dialogo/chat_vocacional.html`. Una sola actividad (`ACTIVIDADES_TEMA.orientacion_vocacional = ['dialogo']`).
+
+- **Datos de Tucumán:** `opciones.json` (rutas rápida, media y larga con instituciones, duración, costo, dónde, contacto, inscripción y fuente; becas y consejos). Lo usan la presentación (mapa de opciones), la ficha y el orientador (la función lo lee desde Pages, así que **se actualiza con git, sin deploy**). Revisarlo cada año (fechas de inscripción, contactos) y cambiar `actualizado`.
+- **Paso 1, autotest:** 12 frases (2 por área del modelo RIASEC: Hacer, Investigar, Crear, Ayudar, Emprender, Organizar) con «Me gusta / Más o menos / No me gusta». Da el perfil en % y las 2 áreas más altas con ejemplos.
+- **Paso 2, diálogo:** 10 mensajes con el orientador (`chatFilosofo`, `orientador_vocacional`). El chat manda `contexto` (número de intercambio, edad, año, perfil) y la función arma la fase: I pasiones y contexto (1-3), II fortalezas (4-5), III valores, filosofía y rutas con años reales (6-8), IV opciones concretas del banco (9) y cierre con primer paso sin preguntas (10). Mínimo 20 caracteres por mensaje. Si la IA no responde, el mensaje vuelve al cuadro y no cuenta.
+- **Paso 3, «Mi plan»:** pedido con `modo: "plan"`; la IA devuelve JSON (resumen, intereses, fortalezas, valores, 2-3 opciones del banco con ruta, porqué y primer paso, próximos pasos con fecha, becas y una pregunta filosófica). Si no llega, se arma una ficha de respaldo con el perfil y la síntesis del orientador. Se imprime o guarda en PDF.
+- **Puntaje:** 9% por intercambio (90% al terminar el diálogo) y 100% con la ficha (`lessonId` `dialogo`).
+- **Retomar y privacidad:** autotest y conversación quedan en el dispositivo (`localStorage`, clave `vocacional.v2.<uid>`); en Firebase se guarda solo la última ficha (`planVocacional`, sin datos económicos ni familiares). En otro dispositivo se muestra la ficha guardada.
+- **Docente:** `planes_vocacionales.html` (fichas de la clase por curso; se abre desde la presentación o el chat con la cuenta docente).
+- **Pruebas:** `jugar_vocacional.mjs` (página) y `vocacional_funcion.cjs` (función con IA simulada).

@@ -19,6 +19,9 @@ Todos se corren **desde la raíz del repo**. Las capturas y PDF quedan en `tools
 | `ver_material.mjs <tema>` | Node + Playwright | Carga el material: contador = secciones reales, primera sección activa, una verificación por sección. La lectura en voz alta no se puede probar (no hay micrófono). |
 | `hub_examen.mjs <tema>` | Node + Playwright | Tarjeta del examen en `tema.html`: bloqueada (60% en cada actividad), habilitada, nota baja, sello con nota, enlace a `dialogo/examen.html`. |
 | `resumen_final.mjs <tema>` | Node + Playwright | `resumen_tema.html`: tapado si falta una actividad, completo con 60% en todas, copiar, vistas del admin. |
+| `jugar_vocacional.mjs` | Node + Playwright | Orientación vocacional: autotest, diálogo de 10 mensajes con el contexto para la función, puntaje por intercambio, retomar, IA caída, ficha «Mi plan» (con la IA y de respaldo), ficha desde otro dispositivo, vista docente y presentación (opciones de Tucumán, botones violetas). |
+| `vocacional_funcion.cjs` | Node | `chatFilosofo` con el orientador y la IA simulada (sin emulador): banco de Tucumán, fase y extensión por intercambio, contexto inválido, modo plan con JSON validado, cadena de modelos y que los demás filósofos no cambien. |
+| `probar_modelos.cjs` | Node, **con claves reales** | Prueba de verdad cada modelo de `MODELOS_GEMINI` y `MODELOS_OPENROUTER` (cuáles responden y cuánto tardan). Las claves van solo como variables de entorno en la PC: `GOOGLE_API_KEY=... OPENROUTER_KEY=... node tools/pruebas/probar_modelos.cjs`. |
 | `examen_funciones.cjs [tema]` | Node + emulador | Las Cloud Functions del examen con la IA simulada: 6 preguntas, repregunta, IA caída, permisos, nota, récord, 2 intentos por día, abandono, y cada tema con examen con su filósofo. |
 
 Todos terminan con `TODO OK` o `N FALLA(S)` (y código de salida 0 o 1).
