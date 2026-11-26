@@ -1,4 +1,6 @@
 <!-- tema.html — hub del tema: tarjetas de actividades, material, video + ejercicio (cloze) y examen.
+     v2.2 (2026-11-26): textos de las tarjetas del cuestionario y la caza sin «undefined/undefined» ni «0/0»:
+       muestran «Sin avances» si no hay datos o el % si solo hay porcentaje (el puntaje no cambia).
      v2.1 (2026-11-26): actividades por tema (ACTIVIDADES_TEMA) y tarjetas de la línea de tiempo
        (explorar, ordenar, simultáneos, termómetro → linea.html?modo=...).
      v2.0 (2026-11-25): ejercicio del video desplegado desde el inicio (al costado en compu), botón violeta
@@ -368,6 +370,30 @@
     const readJSON = (k, fb)=>{ try { return JSON.parse(sessionStorage.getItem(k)) ?? fb } catch { return fb } };
     const pct = (n,d)=> Math.max(0, Math.min(100, Math.round((d ? (n/d):0)*100)));
 
+    // Textos de las tarjetas del quiz y la caza: si el guardado no trae conteos
+    // (p. ej. el que escribe updateSessionStorage sin datos en Firebase), muestran
+    // el % guardado o «Sin avances» en lugar de «undefined/undefined» o «0/0».
+    function quizText(q){
+      const n = Number(q.total) > 0 ? Number(q.total) : 0;
+      if (n) {
+        if (q.completed) return `Completado · ${q.score ?? 0}/${n}`;
+        const i = Number(q.qIndex) || 0;
+        if (i > 0) return `${i}/${n} preguntas`;
+      }
+      const p = Math.round(Number(q.percentage) || 0);
+      if (q.completed) return 'Completado';
+      return p > 0 ? `${p}% completado` : 'Sin avances';
+    }
+    function cazaText(c, raw){
+      if (c.total > 0) {
+        if (c.completed) return `Completado · ${c.hits}/${c.total}`;
+        if (c.hits > 0) return `${c.hits}/${c.total} conceptos`;
+      }
+      const p = Math.round(Number(raw && raw.percentage) || 0);
+      if (c.completed) return 'Completado';
+      return p > 0 ? `${p}% completado` : 'Sin avances';
+    }
+
     // Lee estados parciales
     function readSectionStates(){
       console.log('🔍 Revisando almacenamiento para tema:', tema);
@@ -424,11 +450,11 @@
       const result = {
         quiz: {
           pct: quizPct,
-          text: sQuiz.completed ? `Completado · ${sQuiz.score}/${sQuiz.total}` : `${sQuiz.qIndex}/${sQuiz.total} preguntas`
+          text: quizText(sQuiz)
         },
         caza: {
           pct: cazaPct,
-          text: sCaza.completed ? `Completado · ${sCaza.hits}/${sCaza.total}` : `${sCaza.hits}/${sCaza.total} conceptos`
+          text: cazaText(sCaza, sCazaRaw)
         },
         mat: {
           pct: materialPct,
