@@ -1,875 +1,242 @@
 <!DOCTYPE html>
+<!--
+  themes/orientacion_vocacional/content.html — presentación de la Orientación Vocacional Filosófica
+  (tarjeta «Diálogos» del inicio).
+
+  Secciones: bienvenida, «Hablemos claro», cómo funciona (autotest, diálogo, plan), pensar la
+  vocación con la filosofía (Aristóteles, Sartre, Byung-Chul Han), mapa de opciones de Tucumán
+  (se dibuja desde opciones.json, el mismo archivo que usa el orientador), historias de ejemplo
+  y el botón para empezar (dialogo/chat_vocacional.html). El docente ve además el acceso a
+  planes_vocacionales.html.
+
+  Versión: v2.0 (2026-11-26) — rehecha: lenguaje para todas/os, filosofía, datos verificados
+    desde opciones.json, historias de ejemplo con mujeres en distintos caminos, botones violetas.
+  v1.x — presentación con datos fijos en el HTML.
+-->
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Futuro Empieza Hoy</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #2C2F33;
-            --bg-secondary: #23272A;
-            --bg-card: #36393F;
-            --accent-primary: #667eea;
-            --accent-secondary: #764ba2;
-            --accent-success: #43b581;
-            --accent-warning: #faa61a;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B9BBBE;
-            --text-muted: #72767d;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-
-        .hero-cta {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 20px 30px;
-            border-radius: 15px;
-            display: inline-block;
-            margin-top: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-cta p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* SECCIONES */
-        .section {
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 30px;
-            border-left: 4px solid var(--accent-primary);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--accent-primary);
-        }
-
-        .section-icon {
-            font-size: 2.5rem;
-        }
-
-        .section-text {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        /* CARDS DE RUTAS */
-        .routes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .route-card {
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            padding: 30px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .route-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-        }
-
-        .route-card:hover {
-            border-color: var(--accent-primary);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
-        }
-
-        .route-icon {
-         text-align: center;
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .route-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent-primary);
-            margin-bottom: 10px;
-        }
-
-        .route-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .route-section {
-            margin-bottom: 20px;
-        }
-
-        .route-section-title {
-            color: var(--accent-success);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .route-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .route-list li {
-            padding: 8px 0;
-            color: var(--text-secondary);
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .route-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
-        .route-tag {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.2);
-            color: var(--accent-primary);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            border: 1px solid var(--accent-primary);
-        }
-
-        /* HISTORIAS */
-        .story {
-            background: var(--bg-secondary);
-            border-radius: 15px;
-            padding: 35px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--accent-success);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .story::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            font-size: 120px;
-            color: rgba(102, 126, 234, 0.1);
-            font-family: Georgia, serif;
-        }
-
-        .story-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .story-avatar {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .story-info h3 {
-            color: var(--accent-primary);
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .story-info p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .story-timeline {
-            margin: 25px 0;
-            padding-left: 25px;
-            border-left: 2px solid var(--accent-primary);
-        }
-
-        .story-timeline-item {
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .story-timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--bg-secondary);
-        }
-
-        .story-year {
-            color: var(--accent-warning);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .story-text {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .story-lesson {
-            background: rgba(67, 181, 129, 0.1);
-            border: 1px solid var(--accent-success);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-top: 20px;
-            color: var(--accent-success);
-            font-weight: 600;
-        }
-
-        /* WARNING BOX */
-        .warning-box {
-            background: rgba(250, 166, 26, 0.1);
-            border: 2px solid var(--accent-warning);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .warning-icon {
-            font-size: 2rem;
-            flex-shrink: 0;
-        }
-
-        .warning-text {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* CTA BUTTON */
-        .btn-comenzar {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .btn-comenzar:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        .cta-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            margin-top: 40px;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-primary);
-        }
-
-        .cta-list {
-            list-style: none;
-            margin: 30px 0;
-            display: inline-block;
-            text-align: left;
-        }
-
-        .cta-list li {
-            padding: 12px 0;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            padding-left: 35px;
-            position: relative;
-        }
-
-        .cta-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent-success);
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .cta-footer {
-            margin-top: 30px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section {
-                padding: 25px;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .routes-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .story-header {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-primary);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-secondary);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orientación Vocacional</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --panel2:#131d36; --ink:#eaf0ff; --muted:#9fb0d8;
+      --line:#223059; --violeta:#805ad5; --ok:#10b981; --radius:16px;
+    }
+    *{box-sizing:border-box}
+    [hidden]{display:none !important}
+    body{margin:0;background:radial-gradient(1200px 520px at 70% -140px, rgba(128,90,213,.22), transparent 60%),var(--bg);color:var(--ink);font:17px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif}
+    .wrap{max-width:960px;margin:0 auto;padding:16px}
+    .btn{display:inline-block;appearance:none;border:0;border-radius:12px;padding:12px 22px;font:700 16px/1.2 inherit;font-family:inherit;cursor:pointer;background:var(--violeta);color:#fff;text-decoration:none}
+    .btn:hover{filter:brightness(1.1)}
+    .btn-sec{background:transparent;border:1px solid var(--violeta);color:#d6c8ff;font-weight:600}
+    .btn-sm{padding:8px 14px;font-size:14px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
+    .hero{text-align:center;padding:34px 16px 26px}
+    .hero .icono{font-size:54px}
+    .hero h1{font-size:clamp(28px,6vw,44px);margin:6px 0 8px;letter-spacing:.5px}
+    .hero p{color:#cfd8ff;font-size:19px;margin:6px auto;max-width:680px}
+    section.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:16px 0}
+    h2{font-size:23px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+    h3{font-size:17px;margin:14px 0 6px;color:#d6c8ff}
+    p{margin:8px 0}
+    .destacado{color:var(--ok);font-weight:700}
+    .lista-rutas{list-style:none;padding:0;margin:10px 0}
+    .lista-rutas li{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
+    .pasos3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .paso{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px}
+    .paso .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--violeta);color:#fff;font-weight:700;align-items:center;justify-content:center;margin-bottom:6px}
+    .nota{color:var(--muted);font-size:14px}
+    .filo{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+    .filosofo{background:var(--panel2);border:1px solid var(--line);border-top:4px solid var(--violeta);border-radius:14px;padding:14px}
+    .filosofo .cita{font-style:italic;color:#e9d8fd}
+    .pregunta{font-size:19px;font-style:italic;color:#e9d8fd;border-left:4px solid var(--violeta);padding:6px 14px;margin:14px 0 4px}
+    .rutas{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+    .ruta{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px}
+    .ruta .dur{color:#d6c8ff;font-weight:700}
+    .ruta ul{padding-left:18px;margin:6px 0}
+    details.inst{background:#0e1730;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:8px 0}
+    details.inst summary{cursor:pointer;font-weight:600}
+    details.inst dl{display:grid;grid-template-columns:100px 1fr;gap:4px 10px;margin:8px 0 2px;font-size:14px}
+    details.inst dt{color:var(--muted)}
+    details.inst dd{margin:0;overflow-wrap:anywhere}
+    details.inst a{color:#c4b5fd}
+    .aviso{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.45);color:#fcd34d;border-radius:12px;padding:10px 14px;font-size:15px;margin:12px 0}
+    .historias{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .historia{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px}
+    .historia h3{margin-top:0}
+    .historia .ruta-tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(128,90,213,.25);color:#d6c8ff}
+    .leccion{margin-top:8px;padding:8px 10px;border-radius:10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.4);font-size:15px}
+    .cta{text-align:center;padding:26px 16px;background:linear-gradient(135deg,rgba(128,90,213,.25),rgba(102,126,234,.15));border:1px solid #4a3a8f;border-radius:var(--radius);margin:20px 0 30px}
+    .cta h2{justify-content:center}
+    .cta ul{list-style:none;padding:0;margin:12px auto;max-width:520px;text-align:left}
+    .cta li{padding:6px 0 6px 28px;position:relative}
+    .cta li::before{content:"✓";position:absolute;left:4px;color:var(--ok);font-weight:700}
+    @media (max-width:560px){ body{font-size:16px} section.panel{padding:16px} details.inst dl{grid-template-columns:1fr} }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HERO -->
-        <div class="hero">
-            <div class="hero-content">
-                <div class="hero-icon">🎯</div>
-                <h1>TU FUTURO EMPIEZA HOY</h1>
-                <p class="hero-subtitle">No importa de dónde vengas. Importa a dónde querés llegar.</p>
-                <div class="hero-cta">
-                    <p><strong>Y sí, va a ser difícil.</strong> Capaz tengas que trabajar y estudiar.<br>
-                    Pero otros ya lo hicieron. <strong>Vos también podés 😉!</strong></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- HABLEMOS CLARO -->
-        <div class="section">
-            <h2 class="section-title">
-                <span class="section-icon">💭</span>
-                HABLEMOS CLARO
-            </h2>
-            <p class="section-text">
-                Sabemos que tal vez necesites trabajar para ayudar a tu familia. Capaz no tenés tiempo para estudiar full-time.
-                Capaz tenés que elegir algo "que dé plata rápido".
-            </p>
-            <p class="section-text" style="color: var(--accent-success); font-weight: bold; font-size: 1.2rem;">
-                TODO ESO ESTÁ BIEN.
-            </p>
-            <p class="section-text">
-                No viniste acá a que te juzguemos. Viniste a encontrar <strong>TU camino</strong>.
-            </p>
-            <p class="section-text">
-                Y hay caminos para TODOS:
-            </p>
-            <ul style="list-style: none; padding-left: 30px; margin-top: 15px;">
-                <li style="padding: 10px 0; color: var(--text-secondary);">
-                    ⏩⏩⏩ Si necesitás trabajar YA: hay opciones de <strong>3-6 meses</strong>
-                </li>
-                <li style="padding: 10px 0; color: var(--text-secondary);">
-                    ⏩⏩ Si podés combinar: hay carreras que <strong>se pueden cursar trabajando</strong>
-                </li>
-                <li style="padding: 10px 0; color: var(--text-secondary);">
-                    ⏩ Si podés invertir tiempo: hay opciones más largas pero <strong>100% gratuitas</strong>
-                </li>
-            </ul>
-            <p class="section-text" style="margin-top: 25px; font-size: 1.2rem; color: var(--accent-primary);">
-                La pregunta NO es: <em>"¿Qué DEBERÍA estudiar?"</em><br>
-                La pregunta ES: <strong>"¿Qué puedo estudiar AHORA, con lo que tengo?, Cuáles son mis posibilidad hoy?"</strong>
-            </p>
-            <p class="section-text">
-                Y después, cuando estés mejor, seguís subiendo, seguís progresando 🆙.
-            </p>
-        </div>
-
-        <!-- MAPA DE RUTAS -->
-        <div class="section">
-            <h2 class="section-title">
-                <span class="section-icon">🗺️</span>
-                TU MAPA DE OPCIONES
-            </h2>
-            <p class="section-text">
-                Elegí según TU situación. No hay "mejor ruta", hay la ruta que <strong>SE AJUSTA a tu vida AHORA</strong>.
-            </p>
-
-            <div class="routes-grid">
-                <!-- RUTA RÁPIDA -->
-                <div class="route-card">
-                     <div class="route-icon">🚀
-                        <span class="route-title">RUTA RÁPIDA</span>
-                     </div>
-                    <p class="route-subtitle">3-6 meses → Trabajo inmediato</p>
-
-                    <div class="route-section">
-                        <div class="route-section-title">✅ IDEAL SI:</div>
-                        <ul class="route-list">
-                            <li>Necesitas dinero ahora para poder vivir</li>
-                            <li>Querés independencia rápido</li>
-                            <li>Te gusta trabajar con tus manos</li>
-                        </ul>
-                    </div>
-
-                    <div class="route-section">
-                        <div class="route-section-title">💰 EJEMPLOS:</div>
-                        <p style="color: var(--text-secondary);">
-                            Peluquería, Manicuría, Maquillaje, Cosmetología, Refrigeración, Electricidad, Soldadura, Panadería, Carpintería...
-                        </p>
-                    </div>
-
-                    <div class="route-tag">📍 EEP-UNT, CFP (100% gratuito)</div>
-
-                    <div class="warning-box" style="margin-top: 20px; background: rgba(102, 126, 234, 0.1); border-color: var(--accent-primary);">
-                        <span style="font-size: 1.5rem;">💡</span>
-                        <div class="warning-text">
-                            <strong>PODÉS:</strong> Trabajar de esto y después estudiar otra cosa más larga
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RUTA MEDIA -->
-                <div class="route-card">
-                    <div class="route-icon">🏃
-                        <span class="route-title">RUTA MEDIA</span>
-                    </div>
-                    <p class="route-subtitle">3-4 años → Título + trabajo</p>
-
-                    <div class="route-section">
-                        <div class="route-section-title">✅ IDEAL SI:</div>
-                        <ul class="route-list">
-                            <li>Podés trabajar medio día y estudiar</li>
-                            <li>Querés un título profesional</li>
-                            <li>Te bancás 3-4 años de esfuerzo</li>
-                        </ul>
-                    </div>
-
-                    <div class="route-section">
-                        <div class="route-section-title">💰 EJEMPLOS:</div>
-                        <p style="color: var(--text-secondary);">
-                            Enfermería, Software, Laboratorio, Administración, Diagnóstico por Imágenes, Profesor de...
-                        </p>
-                    </div>
-
-                    <div class="route-tag">📍 IES públicos (100% gratuito)</div>
-
-                    <div class="warning-box" style="margin-top: 20px; background: rgba(102, 126, 234, 0.1); border-color: var(--accent-primary);">
-                        <span style="font-size: 1.5rem;">💡</span>
-                        <div class="warning-text">
-                            <strong>PODÉS:</strong> Cursar a la noche y trabajar de día (muchos lo hacen)
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RUTA LARGA -->
-                <div class="route-card">
-                    <div class="route-icon">🚶
-                        <span class="route-title">RUTA LARGA</span>
-                    </div>
-                    <p class="route-subtitle">5-6 años → Formación completa</p>
-
-                    <div class="route-section">
-                        <div class="route-section-title">✅ IDEAL SI:</div>
-                        <ul class="route-list">
-                            <li>Tenés apoyo familiar para estudiar</li>
-                            <li>Podés trabajar part-time o veranos</li>
-                            <li>Apuntás a una profesión tradicional</li>
-                        </ul>
-                    </div>
-
-                    <div class="route-section">
-                        <div class="route-section-title">💰 EJEMPLOS:</div>
-                        <p style="color: var(--text-secondary);">
-                            Medicina, Ingenierías, Derecho, Contador, Psicología, Arquitectura, Letras...
-                        </p>
-                    </div>
-
-                    <div class="route-tag">📍 UNT, UTN (100% gratuito)</div>
-
-                    <div class="warning-box" style="margin-top: 20px; background: rgba(102, 126, 234, 0.1); border-color: var(--accent-primary);">
-                        <span style="font-size: 1.5rem;">💡</span>
-                        <div class="warning-text">
-                            <strong>PODÉS:</strong> Tardar 1-2 años más si trabajás. NO PASA NADA.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="warning-box" style="margin-top: 40px;">
-                <span class="warning-icon">⚠️</span>
-                <div class="warning-text">
-                    <strong>IMPORTANTE:</strong> No hay "ruta mejor". Hay la ruta que SE AJUSTA a tu vida AHORA.
-                    Podés cambiar de ruta después. Esto no es para siempre.
-                </div>
-            </div>
-        </div>
-
-        <!-- HISTORIAS REALES -->
-        <div class="section">
-            <h2 class="section-title">
-                <span class="section-icon">🌟</span>
-                ELLOS LO LOGRARON (Y VOS TAMBIÉN PODÉS)
-            </h2>
-            <p class="section-text">
-                Historias reales de estudiantes de Tucumán que estudiaron trabajando.
-            </p>
-
-            <!-- Historia 1: Lucas -->
-            <div class="story">
-                <div class="story-header">
-                    <div class="story-avatar">🔧</div>
-                    <div class="story-info">
-                        <h3>LUCAS, 19 AÑOS</h3>
-                        <p>Técnico en Refrigeración</p>
-                    </div>
-                </div>
-
-                <div class="story-timeline">
-                    <div class="story-timeline-item">
-                        <div class="story-year">2022 (17 años):</div>
-                        <div class="story-text">Terminó la secundaria. Su familia necesitaba que ayude con dinero.</div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2023:</div>
-                        <div class="story-text">
-                            Curso de Refrigeración en EEP-UNT (6 meses, gratuito)<br>
-                            → Trabajaba de noche en un kiosco<br>
-                            → Estudiaba de tarde<br>
-                            → <em>"Dormía 5 horas. Fue duro, pero sabía que era temporal"</em>
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2023 (medio año):</div>
-                        <div class="story-text">
-                            Primer trabajo como ayudante de refrigeración<br>
-                            → Dejó el kiosco<br>
-                            → $90.000/mes (aprendiendo)
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2024:</div>
-                        <div class="story-text">
-                            Técnico independiente<br>
-                            → $350.000/mes
-                           </div>
-                        </div>
-                        
-                        <div class="story-timeline-item">
-                           <div class="story-year">2025 (HOY):</div>
-                           <div class="story-text">
-                              Armó su taller con un socio<br>
-                              → Tiene 3 ayudantes<br>
-                              → <em>"Lo que gano hoy en un mes, antes lo ganaba en 5 meses"</em><br>
-                              → $1.800.000/mes
-                        </div>
-                    </div>
-                </div>
-
-                <div class="story-lesson">
-                    💡 LECCIÓN: Empezó con lo rápido para salir adelante. Ahora está evaluando estudiar Ingeniería (trabajando).
-                </div>
-            </div>
-
-            <!-- Historia 2: Carla -->
-            <div class="story">
-                <div class="story-header">
-                    <div class="story-avatar">🏥</div>
-                    <div class="story-info">
-                        <h3>CARLA, 23 AÑOS</h3>
-                        <p>Enfermera</p>
-                    </div>
-                </div>
-
-                <div class="story-timeline">
-                    <div class="story-timeline-item">
-                        <div class="story-year">2019 (18 años):</div>
-                        <div class="story-text">
-                            Empezó Enfermería en CENT 74 (gratuito)<br>
-                            → Trabajaba medio día en un geriátrico<br>
-                            → Estudiaba a la noche<br>
-                            → <em>"Había días que no podía más. Pero seguí"</em>
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2022 (21 años):</div>
-                        <div class="story-text">
-                            SE RECIBIÓ<br>
-                            → Le llevó 3 años (lo normal)<br>
-                            → El trabajo en el geriátrico le dio experiencia práctica
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2023 (22 años):</div>
-                        <div class="story-text">
-                            Hospital Padilla (enfermera de guardia)<br>
-                            → $320.000/mes + guardias extras
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">HOY (2025):</div>
-                        <div class="story-text">
-                            Jefa de enfermería nocturna<br>
-                            → Está ahorrando para su casa<br>
-                            → <em>"El sacrificio valió la pena. Ahora ayudo a mi familia"</em><br>
-                            → $1.200.000/mes + guardias extras
-                        </div>
-                    </div>
-                </div
-
-                <div class="story-lesson">
-                    💡 LECCIÓN: El trabajo NO te frena, te entrena. Muchos hospitales prefieren contratar gente que ya trabajó.
-                </div>
-            </div>
-
-            <!-- Historia 3: Diego -->
-            <div class="story">
-                <div class="story-header">
-                    <div class="story-avatar">💻</div>
-                    <div class="story-info">
-                        <h3>DIEGO, 25 AÑOS</h3>
-                        <p>Desarrollador de Software</p>
-                    </div>
-                </div>
-
-                <div class="story-timeline">
-                    <div class="story-timeline-item">
-                        <div class="story-year">2018 (19 años):</div>
-                        <div class="story-text">
-                            Tecnicatura en Software (IES Coviello, gratuito)<br>
-                            → Trabajaba en un locutorio de día<br>
-                            → Estudiaba a la noche<br>
-                            → <em>"Me llevó 4 años en vez de 3. No me avergüenzo"</em>
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2022 (23 años):</div>
-                        <div class="story-text">
-                            SE RECIBIÓ<br>
-                            → Primer trabajo: Jr Developer en empresa local<br>
-                            → $120.000/mes (aprendiendo)
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">2023 (24 años):</div>
-                        <div class="story-text">
-                            Cambió de empresa<br>
-                            → Semi-Senior<br>
-                            → $550.000/mes
-                        </div>
-                    </div>
-
-                    <div class="story-timeline-item">
-                        <div class="story-year">HOY (2025):</div>
-                        <div class="story-text">
-                            Senior Developer (remoto para empresa de Buenos Aires)<br>
-                            → $2.200.000/mes<br>
-                            → <em>"Trabajo desde mi casa en Tucumán. Gano más que mi viejo"</em><br>
-                            → Está evaluando empezar Ingeniería en Sistemas (UNT)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="story-lesson">
-                    💡 LECCIÓN: La tecnicatura te da trabajo rápido. Después, si querés, seguís estudiando (pero YA con plata).
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA FINAL -->
-        <div class="cta-section">
-            <div class="cta-title">🔥 ¿LISTO PARA EMPEZAR?</div>
-
-            <ul class="cta-list">
-                <li>Entender TU situación real (sin juzgar)</li>
-                <li>Explorar qué te apasiona</li>
-                <li>Encontrar opciones que SE AJUSTEN a tu vida</li>
-                <li>Armarte un plan realista (con fechas de verdad)</li>
-            </ul>
-
-            <p style="color: var(--text-secondary); font-size: 1.2rem; margin: 30px 0; line-height: 1.8;">
-                No te voy a vender un cuento.<br>
-                Te voy a ayudar a diseñar <strong style="color: var(--accent-primary);">TU camino</strong>.<br><br>
-                <span style="color: var(--accent-success); font-weight: bold;">
-                Otros lo lograron trabajando y estudiando.<br>
-                Vos también podés.
-                </span>
-            </p>
-
-            <button class="btn-comenzar" id="btnComenzar">
-                COMENZAR MI EXPLORACIÓN 🚀
-            </button>
-
-            <div class="cta-footer">
-                ⏱️ 15-20 minutos | 💬 Conversación honesta | 🎯 Plan personalizado
-            </div>
-        </div>
+  <div class="wrap">
+    <div class="top">
+      <a class="btn btn-sec btn-sm" href="../../index.html">Volver al inicio</a>
+      <a class="btn btn-sec btn-sm" id="btnDocente" href="../../planes_vocacionales.html" hidden>Planes de la clase</a>
     </div>
 
-    <script>
-        document.getElementById('btnComenzar').addEventListener('click', () => {
-            console.log('🚀 Iniciando exploración vocacional');
-            
-            sessionStorage.setItem('dialogo_filosofo', 'orientador_vocacional');
-            sessionStorage.setItem('dialogo_config', JSON.stringify({
-                id: 'orientador_vocacional',
-                nombre: 'Orientador Vocacional',
-                estilo: 'reflexivo',
-                maxIntercambios: 5,
-                minCaracteres: 30,
-                conceptosClave: ['vocación', 'pasiones', 'aptitudes', 'valores', 'propósito']
-            }));
-            sessionStorage.setItem('dialogo_inicio', Date.now());
-            
-            window.location.href = '/prueba_filo/dialogo/chat_vocacional.html';
-        });
-    </script>
+    <div class="hero">
+      <div class="icono">🎯</div>
+      <h1>Tu futuro empieza hoy</h1>
+      <p>No importa de dónde vengas: importa a dónde querés llegar.</p>
+      <p class="nota">Puede ser difícil, y capaz tengas que trabajar y estudiar al mismo tiempo. Otras personas ya lo hicieron. Vos también podés.</p>
+    </div>
+
+    <section class="panel">
+      <h2><span>💭</span> Hablemos claro</h2>
+      <p>Tal vez necesites trabajar para ayudar en tu casa, o no tengas tiempo para estudiar todo el día, o necesites algo que dé plata rápido.</p>
+      <p class="destacado">Todo eso está bien.</p>
+      <p>Acá nadie te va a juzgar: vas a buscar <strong>tu</strong> camino. Y hay caminos para todas las situaciones:</p>
+      <ul class="lista-rutas">
+        <li><strong>Si necesitás trabajar ya:</strong> hay oficios gratuitos de 3 a 6 meses.</li>
+        <li><strong>Si podés combinar:</strong> hay tecnicaturas y profesorados que se cursan trabajando.</li>
+        <li><strong>Si podés dedicarle más tiempo:</strong> hay carreras universitarias más largas y 100% gratuitas.</li>
+      </ul>
+      <p>La pregunta no es «¿qué debería estudiar?», sino <strong>«¿qué puedo empezar hoy, con lo que tengo?»</strong>. Y después, cuando estés mejor, seguís subiendo.</p>
+    </section>
+
+    <section class="panel">
+      <h2><span>🧭</span> Cómo funciona</h2>
+      <div class="pasos3">
+        <div class="paso"><div class="num">1</div><h3>Autotest</h3><p>12 frases sobre lo que te gusta hacer (3 minutos). Te da un perfil de intereses: hacer, investigar, crear, ayudar, emprender u organizar.</p></div>
+        <div class="paso"><div class="num">2</div><h3>Conversación</h3><p>10 mensajes con el orientador: lo que te apasiona, tus fortalezas, lo que valorás y tu situación real. Si salís, retomás donde dejaste.</p></div>
+        <div class="paso"><div class="num">3</div><h3>Mi plan</h3><p>Una ficha con 2 o 3 opciones de Tucumán que te encajan, fechas y primeros pasos. La podés imprimir o guardar en PDF.</p></div>
+      </div>
+      <p class="nota">Privacidad: la conversación queda solo en tu dispositivo. En la app se guarda tu ficha final, que puede ver tu profe para acompañarte.</p>
+    </section>
+
+    <section class="panel">
+      <h2><span>🏛️</span> Pensar la vocación con la filosofía</h2>
+      <p>Elegir qué hacer con tu vida no es solo una cuestión práctica: también es una pregunta filosófica. Tres ideas que ya vimos en clase te pueden ayudar.</p>
+      <div class="filo">
+        <div class="filosofo">
+          <h3>Aristóteles</h3>
+          <p class="cita">La felicidad (eudaimonía) es desplegar lo mejor de uno.</p>
+          <p>Para Aristóteles, la virtud se forma con el hábito. La vocación tampoco viene «de fábrica»: se descubre y se construye haciendo, practicando y mejorando.</p>
+        </div>
+        <div class="filosofo">
+          <h3>Sartre</h3>
+          <p class="cita">«El ser humano está condenado a ser libre».</p>
+          <p>No elegir también es elegir. Sartre nos invita a distinguir la <strong>situación</strong> (lo que de verdad te limita: plata, tiempo, distancia) de la <strong>excusa</strong> («yo no sirvo para estudiar»). La situación se tiene en cuenta; la excusa se revisa.</p>
+        </div>
+        <div class="filosofo">
+          <h3>Byung-Chul Han</h3>
+          <p class="cita">Vivimos en la «sociedad del rendimiento».</p>
+          <p>La presión por mostrarse exitosa o exitoso en las redes puede llevarte a elegir por la mirada de los demás. Elegí también por el <strong>sentido</strong>: ¿qué te gustaría que tu trabajo aporte a otras personas?</p>
+        </div>
+      </div>
+      <p class="pregunta">¿Qué harías si nadie te mirara y no tuvieras miedo de equivocarte?</p>
+    </section>
+
+    <section class="panel" id="mapa">
+      <h2><span>🗺️</span> Tu mapa de opciones en Tucumán</h2>
+      <p>No hay una «mejor ruta»: hay la que se ajusta a tu vida <strong>hoy</strong>. Y podés cambiar de ruta después.</p>
+      <div id="rutas"><p class="nota">Cargando opciones...</p></div>
+      <div id="becas"></div>
+      <div class="aviso" id="avisoDatos">Las fechas y los requisitos cambian cada año: confirmalos siempre en el sitio oficial antes de inscribirte.</div>
+    </section>
+
+    <section class="panel">
+      <h2><span>🌟</span> Caminos posibles</h2>
+      <p class="nota">Historias de ejemplo, armadas a partir de recorridos frecuentes de estudiantes de Tucumán (los nombres son ficticios).</p>
+      <div class="historias">
+        <div class="historia">
+          <h3>Micaela, 19 años</h3>
+          <span class="ruta-tag">Ruta rápida</span>
+          <p>Cuidaba a sus hermanos y necesitaba plata. Hizo un curso gratuito de peluquería de 4 meses en la Escuela de Educación Profesional de la UNT. Hoy atiende a domicilio y ahorra para estudiar Diseño.</p>
+          <div class="leccion">Un oficio puede ser el primer escalón, no el último.</div>
+        </div>
+        <div class="historia">
+          <h3>Valentina, 20 años</h3>
+          <span class="ruta-tag">Ruta rápida, después media</span>
+          <p>Le encantaba desarmar cosas. Hizo un curso municipal de electricidad y empezó a trabajar con su tío. Ahora estudia Mantenimiento Industrial de noche.</p>
+          <div class="leccion">No hay oficios «de varones» ni carreras «de mujeres».</div>
+        </div>
+        <div class="historia">
+          <h3>Sofía, 22 años</h3>
+          <span class="ruta-tag">Ruta media</span>
+          <p>Trabajaba en un kiosco a la mañana y cursaba Desarrollo de Software en un instituto público a la tarde. Tardó un año más de lo previsto. Hoy trabaja como programadora.</p>
+          <div class="leccion">Estudiar trabajando cuesta más, pero se puede.</div>
+        </div>
+        <div class="historia">
+          <h3>Carla, 24 años</h3>
+          <span class="ruta-tag">Ruta larga</span>
+          <p>Estudió Enfermería en la UNT con la Beca Progresar y trabajando de noche. Tardó 6 años en vez de 5. Hoy trabaja en un hospital público.</p>
+          <div class="leccion">Tardar más no es fracasar: lo que importa es llegar.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>¿Empezamos?</h2>
+      <ul>
+        <li>Conocer lo que te gusta y lo que hacés bien</li>
+        <li>Pensar tu situación real, sin juzgarte</li>
+        <li>Encontrar opciones gratuitas que se ajusten a tu vida</li>
+        <li>Llevarte un plan con fechas y primeros pasos</li>
+      </ul>
+      <p class="nota">Unos 20 minutos · Podés hacerlo en partes</p>
+      <button class="btn" id="btnComenzar">Comenzar mi exploración</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, onAuthStateChanged, isCurrentUserAdmin } from '/prueba_filo/firebase.js';
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const enlace = (url, texto) => (/^https:\/\//.test(url || '') ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(texto)}</a>` : '');
+
+    async function main_presentacion_vocacional() {
+      try {
+        const res = await fetch('opciones.json', { cache: 'no-cache' });
+        const datos = await res.json();
+        $('rutas').innerHTML = `<div class="rutas">${datos.rutas.map((r) => `
+          <div class="ruta">
+            <h3 style="margin-top:0">${esc(r.nombre)}</h3>
+            <div class="dur">${esc(r.duracion)} · ${esc(r.resultado)}</div>
+            <p class="nota" style="margin-bottom:0">Ideal si:</p>
+            <ul>${r.ideal.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+            ${r.opciones.map((o) => `
+              <details class="inst">
+                <summary>${esc(o.nombre)}</summary>
+                <dl>
+                  <dt>Qué</dt><dd>${esc(o.que)}</dd>
+                  <dt>Duración</dt><dd>${esc(o.duracion)}</dd>
+                  <dt>Costo</dt><dd>${esc(o.costo)}</dd>
+                  <dt>Dónde</dt><dd>${esc(o.donde)}</dd>
+                  <dt>Contacto</dt><dd>${esc(o.contacto)}</dd>
+                  <dt>Inscripción</dt><dd>${esc(o.inscripcion)}</dd>
+                  ${o.fuente ? `<dt>Fuente</dt><dd>${enlace(o.fuente, 'ver la fuente')}</dd>` : ''}
+                </dl>
+              </details>`).join('')}
+            <p class="nota">${esc(r.nota)}</p>
+          </div>`).join('')}</div>`;
+        $('becas').innerHTML = `<h3>Becas para estudiar</h3>${datos.becas.map((b) => `
+          <details class="inst"><summary>${esc(b.nombre)}</summary>
+            <dl><dt>Qué</dt><dd>${esc(b.que)}</dd><dt>Requisitos</dt><dd>${esc(b.requisitos)}</dd>
+            <dt>Inscripción</dt><dd>${esc(b.inscripcion)}</dd>${b.fuente ? `<dt>Fuente</dt><dd>${enlace(b.fuente, 'ver la fuente')}</dd>` : ''}</dl>
+          </details>`).join('')}
+          ${datos.consejos?.length ? `<h3>Consejos</h3><ul>${datos.consejos.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}`;
+        const [a, m, d] = String(datos.actualizado || '').split('-');
+        $('avisoDatos').textContent = `${datos.aviso} Datos revisados el ${d}/${m}/${a}.`;
+      } catch (e) {
+        console.error(e);
+        $('rutas').innerHTML = '<p class="nota">No se pudieron cargar las opciones. Probá recargar la página.</p>';
+      }
+    }
+
+    $('btnComenzar').addEventListener('click', () => { location.href = '../../dialogo/chat_vocacional.html'; });
+    onAuthStateChanged(auth, async (u) => { if (u && await isCurrentUserAdmin()) $('btnDocente').hidden = false; });
+    main_presentacion_vocacional();
+  </script>
 </body>
 </html>

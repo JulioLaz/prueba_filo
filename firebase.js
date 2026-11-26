@@ -4,7 +4,10 @@
  * perfiles de usuario (users), registro de sesiones (sesiones) y
  * guardado de progreso por tema/actividad (progreso_temas).
  *
- * Versión: v1.4.0 (2026-10-26)
+ * Versión: v1.5.0 (2026-11-26)
+ *   - metadata.planVocacional (ficha «Mi plan» de la orientación vocacional) se guarda
+ *     SIEMPRE en el campo planVocacional (la última ficha, aunque no mejore el puntaje)
+ * v1.4.0 (2026-10-26)
  *   - saveProgress acepta metadata (antes se descartaba) y acumula
  *     foundConcepts (conceptos encontrados en la caza) entre intentos
  * v1.3.0 (2026-10-20)
@@ -303,6 +306,12 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
       progressData.foundConcepts = [...new Set([...(existingData.foundConcepts || []), ...metadata.foundConceptsList])];
     }
     
+    // Ficha «Mi plan» (orientación vocacional): se guarda siempre la última
+    const { planVocacional, ...metadataSinPlan } = metadata;
+    if (planVocacional && typeof planVocacional === 'object') {
+      progressData.planVocacional = planVocacional;
+    }
+
     // Score, bestScore y status: solo si mejora el récord
     if (improved) {
       Object.assign(progressData, {
@@ -310,7 +319,7 @@ async function saveProgressToFirebase({ uid, moduleId, lessonId = null, status =
         score: newScore,
         bestScore: newScore,
         metadata: {
-          ...metadata,
+          ...metadataSinPlan,
           scoreDifference: newScore - previousScore,
           updatedReason: 'better_score'
         }

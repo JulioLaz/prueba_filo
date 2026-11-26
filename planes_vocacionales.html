@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+  planes_vocacionales.html — vista docente de las fichas «Mi plan» de la Orientación Vocacional.
+
+  Lista, por alumna/o, la última ficha guardada (progreso_temas, moduleId
+  orientacion_vocacional, campo planVocacional): curso, fecha, perfil de intereses del
+  autotest y opciones elegidas. Al tocar una fila se ve la ficha completa.
+  - Solo para el admin (las reglas de Firestore no dejan leer progreso ajeno).
+  - La conversación NO se guarda en Firebase: solo la ficha final.
+
+  Versión: v1.0.0 (2026-11-26)
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planes vocacionales</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <style>
+    :root { --bg:#0b1220; --card:#111827; --card2:#161f33; --line:#273250; --text:#e5e7eb; --muted:#9ca3af; --violeta:#805ad5; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height:1.5; }
+    .wrap { max-width:1000px; margin:0 auto; padding:16px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    h1 { margin:0; font-size:1.35rem; }
+    .sub { color:var(--muted); font-size:.92rem; }
+    .btn, select, input { appearance:none; background-color:rgba(128,90,213,.14); border:1px solid rgba(167,139,250,.55); color:#ddd6fe; padding:.45rem .8rem; border-radius:6px; font-weight:600; font-size:.9rem; font-family:inherit; text-decoration:none; }
+    .btn { cursor:pointer; }
+    .btn-primary { background-color:#805ad5; border-color:#805ad5; color:#fff; }
+    select option { background:#111827; }
+    .filtros { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+    .resumen { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px; margin-bottom:14px; }
+    .dato { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 12px; }
+    .dato b { display:block; font-size:1.3rem; }
+    .dato span { color:var(--muted); font-size:.85rem; }
+    .fila { background:var(--card); border:1px solid var(--line); border-radius:10px; margin:8px 0; }
+    .fila > button { all:unset; display:grid; grid-template-columns:1.3fr .5fr .6fr 1fr 2fr; gap:10px; width:100%; box-sizing:border-box; padding:10px 12px; cursor:pointer; align-items:center; }
+    .fila > button:hover { background:var(--card2); }
+    .nota { color:var(--muted); font-size:.85rem; }
+    .detalle { display:none; border-top:1px solid var(--line); padding:12px; }
+    .fila.abierta .detalle { display:block; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .chips span { font-size:.82rem; padding:3px 9px; border-radius:999px; background:var(--card2); border:1px solid var(--line); }
+    .opcion { background:var(--card2); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin:6px 0; }
+    h3 { font-size:.95rem; color:#d6c8ff; margin:12px 0 4px; }
+    .aviso { color:#fcd34d; }
+    @media (max-width:700px) { .fila > button { grid-template-columns:1fr 1fr; } .fila .opc-col { grid-column:1/-1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Planes vocacionales</h1>
+        <div class="sub" id="subtitulo">Cargando…</div>
+      </div>
+      <a class="btn" href="themes/orientacion_vocacional/content.html">Volver a la orientación</a>
+    </header>
+    <div class="filtros">
+      <select id="selCurso"><option value="">Todos los cursos</option></select>
+      <input id="buscar" placeholder="Buscar por nombre">
+    </div>
+    <div class="resumen" id="resumen"></div>
+    <div id="contenido"></div>
+  </div>
+
+  <script type="module">
+    import { auth, db, collection, query, where, getDocs, onAuthStateChanged, isCurrentUserAdmin } from '/prueba_filo/firebase.js';
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const AREAS = { R: 'Hacer', I: 'Investigar', A: 'Crear', S: 'Ayudar', E: 'Emprender', C: 'Organizar' };
+    const RUTAS = { rapida: 'Ruta rápida', media: 'Ruta media', larga: 'Ruta larga' };
+    let planes = [];
+
+    const perfilTop = (p) => Object.entries(p || {}).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t, v]) => `${AREAS[t] || t} ${v}%`).join(', ');
+    const chips = (xs) => (xs?.length ? `<div class="chips">${xs.map((x) => `<span>${esc(x)}</span>`).join('')}</div>` : '<span class="nota">—</span>');
+
+    function filtrados() {
+      const curso = $('selCurso').value;
+      const texto = $('buscar').value.trim().toLowerCase();
+      return planes.filter((p) => (!curso || p.alumno?.curso === curso) && (!texto || (p.alumno?.nombre || '').toLowerCase().includes(texto)))
+        .sort((a, b) => (a.alumno?.curso || '').localeCompare(b.alumno?.curso || '') || (a.alumno?.nombre || '').localeCompare(b.alumno?.nombre || ''));
+    }
+
+    function pintar() {
+      const lista = filtrados();
+      const rutas = { rapida: 0, media: 0, larga: 0 };
+      lista.forEach((p) => { const r = p.opciones?.[0]?.ruta; if (rutas[r] !== undefined) rutas[r]++; });
+      $('resumen').innerHTML = `
+        <div class="dato"><b>${lista.length}</b><span>fichas</span></div>
+        ${Object.entries(rutas).map(([r, n]) => `<div class="dato"><b>${n}</b><span>${RUTAS[r]} (1.ª opción)</span></div>`).join('')}`;
+      $('contenido').innerHTML = lista.length ? lista.map((p, i) => `
+        <div class="fila" data-i="${i}">
+          <button>
+            <b>${esc(p.alumno?.nombre || '(sin nombre)')}</b>
+            <span>${esc(p.alumno?.curso || '')}</span>
+            <span class="nota">${esc(p.fecha || '')}</span>
+            <span class="nota">${esc(perfilTop(p.perfil))}</span>
+            <span class="opc-col">${esc((p.opciones || []).map((o) => o.titulo).join(' · ') || 'Sin opciones (ficha de respaldo)')}</span>
+          </button>
+          <div class="detalle">
+            <p>${esc(p.resumen)}</p>
+            <h3>Intereses</h3>${chips(p.intereses)}
+            <h3>Fortalezas</h3>${chips(p.fortalezas)}
+            <h3>Valores</h3>${chips(p.valores)}
+            ${p.opciones?.length ? `<h3>Opciones</h3>${p.opciones.map((o, k) => `<div class="opcion"><b>${k + 1}. ${esc(o.titulo)}</b> <span class="nota">${esc(RUTAS[o.ruta] || '')} · ${esc(o.institucion)} · ${esc(o.duracion)}</span><br>${esc(o.porque)}<br><span class="nota">Primer paso: ${esc(o.primerPaso)}</span></div>`).join('')}` : ''}
+            ${p.sintesis?.length ? `<h3>Síntesis del orientador</h3>${p.sintesis.map((t) => `<p>${esc(t)}</p>`).join('')}` : ''}
+            ${p.pasos?.length ? `<h3>Próximos pasos</h3><ul>${p.pasos.map((x) => `<li><b>${esc(x.cuando)}:</b> ${esc(x.que)}</li>`).join('')}</ul>` : ''}
+            ${p.becas?.length ? `<h3>Becas</h3>${chips(p.becas)}` : ''}
+          </div>
+        </div>`).join('') : '<p class="nota">Todavía no hay fichas con estos filtros.</p>';
+    }
+
+    $('contenido').addEventListener('click', (e) => {
+      const b = e.target.closest('.fila > button');
+      if (b) b.parentElement.classList.toggle('abierta');
+    });
+    $('selCurso').addEventListener('change', pintar);
+    $('buscar').addEventListener('input', pintar);
+
+    async function main_planes_vocacionales() {
+      try {
+        const snap = await getDocs(query(collection(db, 'progreso_temas'), where('moduleId', '==', 'orientacion_vocacional')));
+        planes = snap.docs.map((d) => d.data()).filter((d) => d.planVocacional?.resumen).map((d) => ({ uid: d.uid, ...d.planVocacional }));
+      } catch (e) {
+        console.error(e);
+        $('subtitulo').textContent = 'No se pudieron leer las fichas';
+        $('contenido').innerHTML = `<p class="aviso">${esc(e.message)}</p>`;
+        return;
+      }
+      const cursos = [...new Set(planes.map((p) => p.alumno?.curso).filter(Boolean))].sort();
+      $('selCurso').innerHTML = '<option value="">Todos los cursos</option>' + cursos.map((c) => `<option>${esc(c)}</option>`).join('');
+      $('subtitulo').textContent = 'Última ficha «Mi plan» de cada estudiante · tocá una fila para verla completa';
+      pintar();
+    }
+
+    let iniciado = false;
+    onAuthStateChanged(auth, async (user) => {
+      if (iniciado) return;
+      if (!user || !(await isCurrentUserAdmin())) {
+        $('subtitulo').textContent = 'Solo el docente puede ver esta página';
+        $('contenido').innerHTML = '<p class="aviso">Iniciá sesión con la cuenta docente.</p>';
+        return;
+      }
+      iniciado = true;
+      main_planes_vocacionales();
+    });
+  </script>
+</body>
+</html>

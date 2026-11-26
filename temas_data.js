@@ -453,5 +453,7 @@ const TOPICS = {
     // (actividadesRequeridas) debe tener la misma lista.
     // explorar, ordenar, simultaneo y termometro son las actividades de linea.html.
     const ACTIVIDADES_TEMA = {
-      linea_tiempo: ['material', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz']
+      linea_tiempo: ['material', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz'],
+      // 2026-11-26: la orientación vocacional tiene una sola actividad (autotest + diálogo + plan)
+      orientacion_vocacional: ['dialogo']
     };

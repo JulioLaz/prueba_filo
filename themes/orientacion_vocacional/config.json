@@ -6,21 +6,25 @@
     "icon": "🎓",
     "gradient": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     "difficulty": "DIALOGO",
-    "description": "Descubrí tu vocación a través de un diálogo reflexivo. Explorá opciones educativas gratuitas en Tucumán: oficios, tecnicaturas y carreras universitarias."
+    "description": "Descubrí tu vocación con un autotest, un diálogo reflexivo de 10 mensajes y tu plan personal con opciones gratuitas de Tucumán: oficios, tecnicaturas y carreras universitarias."
   },
   "activities": {
     "dialogo": {
       "enabled": true,
       "intercambios": 10,
-      "minCaracteres": 30,
+      "minCaracteres": 20,
       "timeEstimate": 20,
       "filosofoId": "orientador_vocacional",
-      "chatUrl": "/prueba_filo/dialogo/chat.html"
+      "chatUrl": "/prueba_filo/dialogo/chat_vocacional.html",
+      "autotest": 12,
+      "plan": true
     }
   },
   "files": {
     "content": "themes/orientacion_vocacional/content.html",
-    "dialogo": "dialogo/chat.html"
+    "dialogo": "dialogo/chat_vocacional.html",
+    "opciones": "themes/orientacion_vocacional/opciones.json",
+    "docente": "planes_vocacionales.html"
   },
   "prerequisites": [],
   "color": "#667eea",
@@ -32,5 +36,6 @@
       "icono": "🎓",
       "descripcion": "Completó la exploración vocacional filosófica"
     }
-  }
+  },
+  "version": "v2.0 (2026-11-26)"
 }

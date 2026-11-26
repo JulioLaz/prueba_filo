@@ -10,6 +10,7 @@
 // 2026-11-24: Presocráticos y Sócrates completos (13 preguntas cada uno)
 // 2026-11-26: tema nuevo, primero de la Unidad I: «Línea del tiempo: ¿progresa la humanidad?»
 //   (linea_tiempo, actividades propias en ACTIVIDADES_TEMA). «Ramas clásicas» queda oculto (comentado).
+// 2026-11-26: Orientación Vocacional v2.0: nueva descripción (autotest, diálogo y plan)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -494,7 +495,7 @@ const AVAILABLE_THEMES = // --- UNIDAD I: ¿QUÉ ES FILOSOFÍA? ---
     {
         id: 'orientacion_vocacional',
         title: 'Orientación Vocacional Filosófica',
-        description: 'Descubrí tu vocación a través de un diálogo reflexivo. Explorá opciones educativas gratuitas en Tucumán: oficios, tecnicaturas y carreras universitarias.',
+        description: 'Descubrí tu vocación con un autotest, un diálogo reflexivo y tu plan personal con opciones gratuitas de Tucumán: oficios, tecnicaturas y carreras universitarias.',  // v2.0 (2026-11-26)
         icon: '🎓',
         gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         difficulty: 'DIALOGO',

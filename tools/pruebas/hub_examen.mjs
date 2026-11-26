@@ -7,7 +7,8 @@
  *  - nota 10: sello completo; el botón abre dialogo/examen.html con el tema.
  *
  * Uso:  node tools/pruebas/hub_examen.mjs <tema>
- * Versión: v1.0.0 (2026-11-19)
+ * Versión: v1.1.0 (2026-11-26) — temas con actividades propias (ACTIVIDADES_TEMA, p. ej. linea_tiempo)
+ * v1.0.0 (2026-11-19)
  */
 import { abrirNavegador, servirRepo, controles, temaDeArgs, BASE, SALIDA } from './comun.mjs';
 
@@ -30,7 +31,8 @@ async function main_hub_examen() {
       titulo: document.getElementById('examenTitulo').innerText, cls: [...c.classList].join(' '),
       sello: c.querySelector('.sello-actividad')?.textContent || '', ex: window.examenDelTema() };
   }, fb);
-  const todo = (p) => Object.fromEntries(['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'].map((k) => [k, { percentage: p }]));
+  const acts = await page.evaluate((t) => (typeof ACTIVIDADES_TEMA !== 'undefined' && ACTIVIDADES_TEMA[t]) || ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'], T);
+  const todo = (p) => Object.fromEntries(acts.map((k) => [k, { percentage: p }]));
 
   let s = await estado({});
   check('sin avance: tarjeta visible y bloqueada', s.visible && s.cls.includes('examen-bloqueado') && s.st.includes('60%'), `${s.titulo} | ${s.st}`);
