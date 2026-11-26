@@ -10,6 +10,13 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.7 (2026-11-26): orientación vocacional renovada: el chat manda el contexto (número de
+ *   intercambio, edad, autotest RIASEC) y la función arma la fase, la extensión y el banco de
+ *   opciones de Tucumán (themes/orientacion_vocacional/opciones.json desde Pages, sin deploy);
+ *   modo "plan": devuelve la ficha «Mi plan» en JSON. Modelos revisados: sin los Gemini 2.x
+ *   (dados de baja en 2026), con gemini-3.8-flash y gemini-3.1-flash-lite; a los Gemini 3.x no
+ *   se les manda temperature (Google recomienda dejar la de fábrica) y tienen más tokens porque
+ *   «piensan» antes de responder; OpenRouter suma openrouter/free (elige un modelo gratis).
  * V8.6 (2026-11-26): nombres de las actividades de la línea de tiempo en el aviso de lo que falta
  *   (solo texto; el examen ya aceptaba cualquier actividad de actividadesRequeridas).
  * V8.5 (2026-11-24): modelos saturados (503/429/500): espera y otra vuelta, hasta 3;
@@ -65,15 +72,15 @@ const OPENROUTER_KEY = defineSecret("OPENROUTER_KEY");
 // 🤖 MODELOS DE IA (en orden de preferencia — editar acá cuando cambien)
 // ═══════════════════════════════════════════════════════════════
 // Gemini: los alias *-latest apuntan siempre a la versión vigente.
+// V8.7 (2026-11-26): flash-lite-latest → 3.5 Flash-Lite y flash-latest → 3.8 Flash; los 2.x
+// fueron dados de baja en 2026 y se quitaron. Si alguno deja de existir, falla al instante
+// (404) y se pasa al siguiente.
 const MODELOS_GEMINI = [
   "gemini-flash-lite-latest",
   "gemini-3.5-flash-lite",
   "gemini-flash-latest",
-  // Respaldos (V8.5): cuando uno está saturado (503) otro suele responder; si alguno
-  // ya no existe, falla al instante (404) y se pasa al siguiente.
-  "gemini-2.5-flash-lite",
-  "gemini-2.5-flash",
-  "gemini-2.0-flash",
+  "gemini-3.8-flash",
+  "gemini-3.1-flash-lite",
 ];
 // OpenRouter: los modelos ":free" cambian seguido; ver la lista con
 // GET https://openrouter.ai/api/v1/models y actualizar si hace falta.
@@ -81,8 +88,10 @@ const MODELOS_OPENROUTER = [
   "google/gemma-4-31b-it:free",
   "google/gemma-4-26b-a4b-it:free",
   "nvidia/nemotron-3.5-super-vl:free",
+  "openrouter/free",   // V8.7: enrutador de OpenRouter que elige un modelo gratis disponible
 ];
 const MAX_MENSAJES_HISTORIAL = 20;   // contexto que se envía a la IA
+const MAX_MENSAJES_VOCACIONAL = 26;  // V8.7: el orientador necesita los 10 intercambios completos
 const TIMEOUT_MODELO_MS = 20000;     // si un modelo tarda más, se pasa al siguiente
 const LIMITE_TOTAL_MS = 45000;       // la función tiene 60 s: después de 45 s deja de probar
 const MAX_TOKENS_RESPUESTA = 1024;   // margen para modelos que "piensan" antes de responder
@@ -350,110 +359,48 @@ ${REGLAS_COMUNES}
 `,
 
   // ─────────────────────────────────────────────────────────────
-  // 🎓 ORIENTADOR VOCACIONAL (mantener como estaba, es excelente)
+  // 🎓 ORIENTADOR VOCACIONAL (V8.7: sin REGLAS_COMUNES; la fase, el autotest y el banco
+  // de opciones de Tucumán se agregan en cada pedido: ver promptOrientador())
   // ─────────────────────────────────────────────────────────────
-  orientador_vocacional: `Eres un Orientador Vocacional Filosófico especializado en Tucumán, Argentina. Tu misión es guiar a estudiantes de 16-18 años de 6to año secundario, muchos de ellos de recursos limitados, a descubrir su vocación mediante el autoconocimiento profundo. Conocés perfectamente las opciones educativas GRATUITAS y accesibles de Tucumán, desde oficios cortos hasta carreras universitarias.
+  orientador_vocacional: `Sos un Orientador Vocacional con mirada filosófica, de Tucumán, Argentina. Acompañás a estudiantes de 16 a 18 años de 6.º año de la secundaria, muchas de familias con pocos recursos, a descubrir su vocación por el autoconocimiento y a armar un plan REAL con opciones gratuitas de Tucumán.
 
-**CONTEXTO CRÍTICO:**
-- Tus estudiantes buscan progreso económico y profesional
-- La mayoría son de recursos escasos y probablemente TENDRÁN QUE TRABAJAR mientras estudian
-- Algunos necesitan generar ingresos INMEDIATAMENTE (oficios cortos)
-- **VALIDACIÓN:** Trabajar Y estudiar NO es un fracaso, es una ESTRATEGIA inteligente
-- Muchos de tus mejores ejemplos (Lucas, Carla, Diego) lo lograron trabajando
-- Tu rol es EMPODERAR, no juzgar. Hay caminos para TODAS las situaciones.
+**CONTEXTO:**
+- Muchas tendrán que trabajar mientras estudian, o necesitan ingresos pronto. Trabajar y estudiar NO es un fracaso: es una estrategia.
+- Tu rol es empoderar, no juzgar. Hay caminos para todas las situaciones, y se puede cambiar de ruta después.
+- No asumas el género de quien te escribe: usá formas neutras ("¿qué te gustaría?", "quienes estudian...") o las que la persona use para sí misma. Cuando des ejemplos de profesiones, mostrá que cualquier persona puede elegir cualquier camino (una electricista, un enfermero, una programadora).
 
-**TONO Y ENFOQUE:**
-- **Realista pero esperanzador:** "Va a ser duro, pero SE PUEDE"
-- **Sin lástima ni condescendencia:** Tratá al estudiante como un igual que enfrenta desafíos
-- **Validación constante:** "Está bien si tenés que trabajar", "No importa si tardás más"
-- **Proyección temporal:** Usa fechas REALES según su edad (si la conocés)
-- **Honestidad:** No vendas cuentos de hadas, mostrá la realidad pero con esperanza
+**TONO:**
+- Realista y esperanzador: "va a costar, pero se puede".
+- Sin lástima ni condescendencia; trato de igual a igual, cálido, con voseo (vos, podés, tenés).
+- Honesto: si una opción tiene arancel, cupos o requisitos, decilo.
 
-**METODOLOGÍA DE 4 FASES (10 intercambios):**
+**CÓMO CONVERSÁS:**
+- UNA sola pregunta por respuesta, clara y concreta (nunca listas de preguntas).
+- Primero reflejá en una frase lo que la persona dijo (para que se sienta escuchada), después aportá algo y cerrá con la pregunta.
+- Usá lo que ya contó y el resultado de su autotest; no repitas preguntas ya respondidas.
+- Si la respuesta es muy corta o "no sé", ayudá con 2 o 3 ejemplos concretos para elegir.
+- Las preguntas sobre la situación económica o familiar se hacen con tacto y se puede no responderlas: "si querés contarme...".
 
-**FASE I - EXPLORACIÓN DE PASIONES Y CONTEXTO (Intercambios 1-3):**
-- Pregunta qué actividades lo apasionan naturalmente
-- **CRÍTICO:** Indaga sobre su situación económica de forma NATURAL y empática:
-  → "¿Tu familia necesita que trabajes?" (directo, sin rodeos)
-  → "¿Podés dedicarte full-time a estudiar o tendrías que combinar con trabajo?"
-  → "¿Necesitás empezar a generar ingresos rápido?"
-- Identifica si prefiere: crear, analizar, ayudar, construir, liderar, organizar
-- **VALIDA su contexto:** Si necesita trabajar, decí: "Perfecto, hay opciones para vos"
+**FILOSOFÍA (en la fase de valores, breve y en lenguaje simple, como mucho una idea por respuesta):**
+- Aristóteles: la felicidad (eudaimonía) es desplegar lo mejor de uno; la vocación se construye con práctica, como un hábito.
+- Sartre: "estamos condenados a ser libres": no elegir también es elegir. Distinguí la situación real (que limita) de la excusa (que paraliza).
+- Byung-Chul Han: cuidado con elegir solo por rendimiento, éxito o likes; también importa el sentido.
 
-**FASE II - APTITUDES Y POSIBILIDADES (Intercambios 4-5):**
-- Explora logros y fortalezas naturales
-- Pregunta sobre materias que le gustan/destacan
-- Identifica patrones RIASEC silenciosamente
-- **CONECTA aptitudes con opciones realistas:** "Si te gustan las manos, hay oficios rápidos"
+**CUIDADO:**
+- Si la persona cuenta algo que indique que está en riesgo o muy angustiada, dejá de lado la orientación: respondé con calma y empatía, animala a hablar hoy con una persona adulta de confianza o con el equipo de la escuela y, si hay una emergencia, a llamar al 911 o al 107.
+- Nunca inventes instituciones, direcciones, teléfonos, fechas ni precios: usá solo los del BANCO DE OPCIONES. Si no sabés un dato, decí dónde averiguarlo.
 
-**FASE III - VALORES, PROPÓSITO Y REALIDAD (Intercambios 6-8):**
-- Pregunta filosófica: "¿Qué es para vos una vida bien vivida?"
-- Explora impacto que quiere dejar
-- **CRÍTICO:** Plantea las 3 rutas con FECHAS REALES si conocés su edad:
-  → Ruta Rápida: "En [AÑO próximo] ya estarías trabajando (a los [EDAD+1])"
-  → Ruta Media: "En [AÑO+3] serías profesional (a los [EDAD+3])"
-  → Ruta Larga: "En [AÑO+6] tendrías título universitario (a los [EDAD+6])"
-- **Valida todas las rutas:** "No hay una mejor, hay la que SE AJUSTA a tu vida AHORA"
-- **Si tiene que trabajar:** "Muchos cursan de noche y trabajan de día. Carla lo hizo y hoy es jefa de enfermería"
-
-**FASE IV - SÍNTESIS Y RECOMENDACIONES CONCRETAS (Intercambios 9-10):**
-- Resume patrones detectados
-- **Presenta 2-3 opciones específicas con LÍNEA DE TIEMPO PERSONALIZADA**
-- **Menciona instituciones ESPECÍFICAS** con datos de contacto
-- **Frases de empoderamiento:**
-  → "El que estudia trabajando vale el doble"
-  → "No importa si tardás 1 año más. Importa que LLEGUES"
-  → "Tu esfuerzo de hoy es tu libertad de mañana"
-- Última pregunta: "De estas opciones, ¿cuál sentís que se ajusta más a tu vida AHORA? (no a la ideal, a la real)"
-
-**BANCO DE CONOCIMIENTO - TUCUMÁN:**
-
-**NIVEL 1 - OFICIOS RÁPIDOS GRATUITOS (3-6 meses):**
-💡 Ideal si familia necesita plata YA
-
-<strong>Escuela de Educación Profesional (EEP-UNT)</strong>
-📍 25 de Mayo 265, 1º piso, San Miguel de Tucumán
-📱 WhatsApp: 381-5353513
-💰 GRATUITO + Certificación UNT
-Cursos: Refrigeración (6m), Electricidad (4m), Soldadura (6m), Peluquería (3m), Panadería (4m)
-✅ Empezás a trabajar en 6 meses
-
-**NIVEL 2 - TECNICATURAS SUPERIORES (3 años, gratuitas):**
-💡 Ideal si podés trabajar medio día
-
-<strong>IES Alfredo Coviello</strong> - Desarrollo de Software
-<strong>CENT N°74</strong> - Enfermería, Laboratorio, Diagnóstico
-<strong>ISET</strong> - Automatización, Robótica, Gestión Ambiental
-<strong>Profesorados</strong> - Matemática, Lengua, Historia, etc.
-
-**NIVEL 3 - CARRERAS UNIVERSITARIAS UNT (5-6 años):**
-💡 Ideal si tenés apoyo familiar
-
-Medicina, Ingenierías, Derecho, Contador, Psicología, Arquitectura
-
-**MODELO RIASEC (INTERNO):**
-- **R (Realista):** oficios técnicos, ingenierías
-- **I (Investigador):** laboratorio, medicina, ciencias
-- **A (Artístico):** peluquería, comunicación, artes
-- **S (Social):** enfermería, profesorados, psicología
-- **E (Emprendedor):** negocios propios, administración
-- **C (Convencional):** administración, contaduría
-
-**REGLAS:**
-1. **Extensión:** 60-120 palabras
-2. **Tono:** Cálido, realista, empoderador (vos/podés)
-3. **HTML:** <strong> para instituciones, carreras, fechas
-4. **Emojis:** 💡 🎯 📚 💰 ✅ ⚠️ 🚀
-5. **Siempre:** Opciones gratuitas primero, validar si tiene que trabajar
+**FORMATO:**
+- HTML simple: <strong> para instituciones, carreras y fechas; <br> para separar. Sin markdown (nada de **).
+- Emojis con moderación (máximo 3): 💡 🎯 📚 💰 ✅ ⚠️ 🚀
+- Respetá la EXTENSIÓN que indica la fase actual.
 
 **PROHIBIDO:**
-- "No te preocupes", "todo va a estar bien"
-- Opciones caras sin alternativas gratuitas
-- Genéricos sin instituciones tucumanas específicas
-- Juzgar por elegir oficio vs universidad
-- Lenguaje académico excesivo
-
-${REGLAS_COMUNES}
+- "No te preocupes", "todo va a estar bien".
+- Opciones caras sin una alternativa gratuita.
+- Recomendaciones genéricas sin instituciones de Tucumán.
+- Juzgar la elección de un oficio frente a la universidad.
+- Lenguaje académico sin explicar.
 `,
 // ─────────────────────────────────────────────────────────────
 // 🌐 BYUNG-CHUL HAN - Sociedad del Cansancio
@@ -525,10 +472,10 @@ function validarDatos(data) {
  * último mensaje del alumno (el chat ya lo manda en el historial), sin roles
  * repetidos seguidos y empezando siempre por el alumno.
  */
-function armarConversacion(historial, mensaje) {
+function armarConversacion(historial, mensaje, maxMensajes = MAX_MENSAJES_HISTORIAL) {
   const turnos = historial
     .filter((m) => m && typeof m.content === "string" && m.content.trim())
-    .slice(-MAX_MENSAJES_HISTORIAL)
+    .slice(-maxMensajes)
     .map((m) => ({
       rol: m.role === "assistant" ? "assistant" : "user",
       texto: m.content.replace(/<[^>]+>/g, "").slice(0, 2000),
@@ -568,11 +515,16 @@ function errorModelo(motivo, status) {
 }
 
 // opciones: {maxTokens, temperature, json, timeoutMs}
+// V8.7: los Gemini 3.x (y los alias *-latest, que apuntan a ellos) «piensan» antes de
+// responder y ese pensamiento consume tokens de salida: se les da al menos 2048. Google
+// recomienda no cambiarles la temperatura (con menos de 1.0 pueden repetirse).
+const esGemini3 = (modelo) => /^gemini-(3|flash-latest|flash-lite-latest)/.test(modelo);
+
 async function llamarGemini(modelo, clave, sistema, conversacion, opciones = {}) {
-  const generationConfig = {
-    maxOutputTokens: opciones.maxTokens || MAX_TOKENS_RESPUESTA,
-    temperature: opciones.temperature ?? 0.7,
-  };
+  const pedidos = opciones.maxTokens || MAX_TOKENS_RESPUESTA;
+  const generationConfig = esGemini3(modelo) ?
+    {maxOutputTokens: Math.max(pedidos, 2048)} :
+    {maxOutputTokens: pedidos, temperature: opciones.temperature ?? 0.7};
   if (opciones.json) generationConfig.responseMimeType = "application/json";
   const res = await fetchConTimeout(
     `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${clave}`,
@@ -701,6 +653,177 @@ async function llamarIA({sistema, conversacion, claveGemini, claveOpenRouter, op
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 🎓 ORIENTACIÓN VOCACIONAL (V8.7)
+// ═══════════════════════════════════════════════════════════════
+// El chat (dialogo/chat_vocacional.html) manda data.contexto = {intercambio, total, edad,
+// anio, perfil:[{tipo, pct}]} y, al final, data.modo = "plan". El banco de opciones se lee de
+// GitHub Pages (se actualiza con git, sin deploy).
+
+const URL_OPCIONES_VOCACIONAL = "https://juliolaz.github.io/prueba_filo/themes/orientacion_vocacional/opciones.json";
+const OPCIONES_VOCACIONAL_RESPALDO = `- Escuela de Educación Profesional de la UNT: cursos de oficios gratuitos (Instagram @educacionprofesionalunt).
+- Institutos de Educación Superior de la provincia: tecnicaturas y profesorados gratuitos (Enfermería, Desarrollo de Software, Análisis Clínicos, profesorados).
+- UNT y UTN Tucumán: carreras de grado gratuitas (preinscripción por SIU Guaraní).
+- Becas Progresar (Nación): ayuda mensual para estudiar, inscripción online.`;
+let cacheOpcionesVocacional = {hasta: 0, texto: ""};
+
+const RIASEC = {
+  R: "Realista (hacer con las manos, técnica, aire libre)",
+  I: "Investigador (entender, analizar, ciencia)",
+  A: "Artístico (crear, diseñar, expresarse)",
+  S: "Social (ayudar, enseñar, cuidar)",
+  E: "Emprendedor (organizar, liderar, vender)",
+  C: "Convencional (ordenar, planificar, números)",
+};
+
+const FASES_VOCACIONAL = [
+  {
+    hasta: 3, nombre: "FASE I · Pasiones y contexto", extension: "60 a 110 palabras",
+    guia: "Explorá qué actividades le apasionan, en qué se le pasa el tiempo volando y qué materias le gustaron. " +
+      "En el mensaje 3, con tacto y dejando claro que puede no responder, preguntá por su situación: si puede " +
+      "dedicarse a estudiar o necesitaría trabajar, y si vive en la capital o en el interior (importa para las sedes).",
+  },
+  {
+    hasta: 5, nombre: "FASE II · Aptitudes y fortalezas", extension: "60 a 110 palabras",
+    guia: "Explorá logros, fortalezas y lo que otras personas le dicen que hace bien, y también lo que le cuesta. " +
+      "Conectá sus respuestas con el perfil del autotest y con tipos de opciones (sin recomendar todavía).",
+  },
+  {
+    hasta: 8, nombre: "FASE III · Valores, propósito y rutas", extension: "80 a 140 palabras",
+    guia: "Mensaje 6: preguntá qué sería para esa persona una vida bien vivida, con UNA idea filosófica breve. " +
+      "Mensaje 7: qué problema del mundo o de su barrio le gustaría ayudar a resolver. Mensaje 8: presentá las tres " +
+      "rutas (rápida, media, larga) con años reales calculados desde el año actual (y la edad si la sabés) y preguntá " +
+      "cuál se ajusta a su vida HOY (no a la ideal).",
+  },
+  {
+    hasta: 9, nombre: "FASE IV · Síntesis y opciones concretas", extension: "150 a 230 palabras",
+    guia: "Resumí en 2 frases los patrones que detectaste (intereses, fortalezas, valores, situación). Proponé 2 o 3 " +
+      "opciones CONCRETAS del BANCO DE OPCIONES (institución, duración, costo y cuándo se inscribe), con una línea de " +
+      "tiempo personalizada. Si su situación lo pide, mencioná una beca. Preguntá cuál le resuena más y por qué.",
+  },
+  {
+    hasta: 99, nombre: "CIERRE · Primer paso", extension: "120 a 200 palabras",
+    guia: "Es tu ÚLTIMA respuesta: NO hagas preguntas. Confirmá la opción que eligió (o las dos mejores si dudó), " +
+      "proponé un primer paso concreto para esta semana y las fechas de inscripción del BANCO, cerrá con una frase " +
+      "de aliento sin clichés y avisá que a continuación se arma su ficha «Mi plan» para guardar o imprimir.",
+  },
+];
+
+function textoOpcionesDesdeJson(j) {
+  const lineas = [`(Datos verificados al ${j.actualizado || "?"}. ${j.aviso || ""})`];
+  (j.rutas || []).forEach((r) => {
+    lineas.push(`\n${String(r.nombre || "").toUpperCase()} (${r.duracion}): ${r.resultado}.`);
+    (r.opciones || []).forEach((o) => {
+      lineas.push(`- ${o.nombre}: ${o.que}. Duración: ${o.duracion}. Costo: ${o.costo}. Dónde: ${o.donde}. ` +
+        `Contacto: ${o.contacto}. Inscripción: ${o.inscripcion}.`);
+    });
+  });
+  if (j.becas?.length) {
+    lineas.push("\nBECAS:");
+    j.becas.forEach((b) => lineas.push(`- ${b.nombre}: ${b.que}. Requisitos: ${b.requisitos}. Inscripción: ${b.inscripcion}.`));
+  }
+  return lineas.join("\n").slice(0, 9000);
+}
+
+/** Banco de opciones de Tucumán (opciones.json en Pages), con caché de 30 minutos. */
+async function textoOpcionesVocacional() {
+  if (cacheOpcionesVocacional.hasta > Date.now()) return cacheOpcionesVocacional.texto;
+  try {
+    const res = await fetchConTimeout(`${URL_OPCIONES_VOCACIONAL}?t=${Date.now()}`, {}, 6000);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const texto = textoOpcionesDesdeJson(await res.json());
+    cacheOpcionesVocacional = {hasta: Date.now() + 30 * 60000, texto};
+    return texto;
+  } catch (error) {
+    logger.warn(`⚠️ No se pudo leer opciones.json: ${error.message}; se usa el respaldo`);
+    return OPCIONES_VOCACIONAL_RESPALDO;
+  }
+}
+
+/** Limpia el contexto que manda el chat (nunca se confía en tipos ni rangos). */
+function contextoVocacional(c) {
+  const ent = (v, min, max) => (Number.isInteger(v) && v >= min && v <= max ? v : null);
+  const ctx = (c && typeof c === "object") ? c : {};
+  const perfil = Array.isArray(ctx.perfil) ? ctx.perfil
+    .filter((p) => p && RIASEC[p.tipo] && ent(p.pct, 0, 100) !== null)
+    .slice(0, 6) : [];
+  return {
+    intercambio: ent(ctx.intercambio, 1, 30),
+    total: ent(ctx.total, 1, 30) || 10,
+    edad: ent(ctx.edad, 12, 40),
+    anio: ent(ctx.anio, 2024, 2100) || new Date().getFullYear(),
+    perfil,
+  };
+}
+
+const textoPerfil = (perfil) => perfil.length ?
+  perfil.map((p) => `${RIASEC[p.tipo]} ${p.pct}%`).join("; ") :
+  "sin autotest";
+
+function promptOrientador(base, ctx, banco) {
+  const n = ctx.intercambio;
+  const fase = n ? (n >= ctx.total ? FASES_VOCACIONAL[4] : FASES_VOCACIONAL.find((f) => n <= f.hasta)) : null;
+  return `${base}
+**BANCO DE OPCIONES DE TUCUMÁN (usá SOLO estos datos para instituciones, contactos y fechas):**
+${banco}
+
+**SITUACIÓN DEL DIÁLOGO:**
+- Año actual: ${ctx.anio}.${ctx.edad ? ` Edad: ${ctx.edad} años.` : ""}
+- Autotest de intereses (RIASEC, de mayor a menor): ${textoPerfil(ctx.perfil)}.
+${fase ? `- Estás respondiendo el mensaje ${n} de ${ctx.total} de la persona.
+- ${fase.nombre}: ${fase.guia}
+- EXTENSIÓN de esta respuesta: ${fase.extension}.` : "- EXTENSIÓN: 60 a 120 palabras."}
+`;
+}
+
+function promptPlanVocacional(base, ctx, banco) {
+  return `${base}
+**BANCO DE OPCIONES DE TUCUMÁN (usá SOLO estos datos):**
+${banco}
+
+**TAREA:** la conversación terminó. Leela completa y armá la ficha «Mi plan» de la persona.
+Año actual: ${ctx.anio}.${ctx.edad ? ` Edad: ${ctx.edad} años.` : ""} Autotest RIASEC: ${textoPerfil(ctx.perfil)}.
+
+Respondé SOLO con un objeto JSON válido (sin markdown ni texto alrededor), con esta forma exacta:
+{"resumen": "2 o 3 oraciones, hablándole de vos, sobre quién es: intereses, fortalezas y lo que valora",
+ "intereses": ["3 a 5 frases cortas"],
+ "fortalezas": ["3 a 5 frases cortas"],
+ "valores": ["2 a 4 frases cortas"],
+ "opciones": [{"titulo": "carrera u oficio", "institucion": "nombre del BANCO", "ruta": "rapida|media|larga",
+   "duracion": "...", "porque": "1 o 2 oraciones: por qué encaja con lo que contó", "primerPaso": "acción concreta"}],
+ "pasos": [{"cuando": "fecha o momento concreto (por ejemplo: esta semana, diciembre ${ctx.anio})", "que": "acción"}],
+ "becas": ["beca del BANCO que le sirva, si corresponde"],
+ "pregunta": "una pregunta filosófica breve para que siga pensando su vocación"}
+
+Reglas: 2 o 3 opciones, ordenadas de la que más encaja a la que menos, todas del BANCO; 3 a 5 pasos;
+texto simple sin HTML ni emojis; voseo; sin asumir género; NO incluyas datos de la situación
+económica, familiar ni personal sensible (la ficha la puede ver su docente).`;
+}
+
+function validarPlanVocacional(texto) {
+  try {
+    const limpio = texto.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "").trim();
+    const p = JSON.parse(limpio.slice(limpio.indexOf("{"), limpio.lastIndexOf("}") + 1));
+    const cad = (v, max = 400) => (typeof v === "string" ? v.replace(/<[^>]+>/g, "").trim().slice(0, max) : "");
+    const lista = (v, max = 6) => (Array.isArray(v) ? v.map((x) => cad(x, 200)).filter(Boolean).slice(0, max) : []);
+    const opciones = (Array.isArray(p.opciones) ? p.opciones : []).slice(0, 3).map((o) => ({
+      titulo: cad(o?.titulo, 120), institucion: cad(o?.institucion, 160),
+      ruta: ["rapida", "media", "larga"].includes(o?.ruta) ? o.ruta : "",
+      duracion: cad(o?.duracion, 80), porque: cad(o?.porque), primerPaso: cad(o?.primerPaso, 250),
+    })).filter((o) => o.titulo);
+    if (!cad(p.resumen) || !opciones.length) return null;
+    return {
+      resumen: cad(p.resumen, 600), intereses: lista(p.intereses), fortalezas: lista(p.fortalezas),
+      valores: lista(p.valores), opciones,
+      pasos: (Array.isArray(p.pasos) ? p.pasos : []).slice(0, 6)
+        .map((x) => ({cuando: cad(x?.cuando, 80), que: cad(x?.que, 250)})).filter((x) => x.que),
+      becas: lista(p.becas, 3), pregunta: cad(p.pregunta, 250),
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 🚀 CLOUD FUNCTION PRINCIPAL
 // ═══════════════════════════════════════════════════════════════
 
@@ -750,16 +873,35 @@ exports.chatFilosofo = onCall(
         throw new HttpsError("internal", "Configuración del servidor incompleta");
       }
 
-      // 4. CONVERSACIÓN
-      const conversacion = armarConversacion(data.historial || [], data.mensaje);
+      // 4. CONVERSACIÓN (V8.7: el orientador vocacional suma fase, autotest y banco de Tucumán)
+      const vocacional = data.filosofo === "orientador_vocacional";
+      const esPlan = vocacional && data.modo === "plan";
+      const conversacion = armarConversacion(data.historial || [], data.mensaje,
+        vocacional ? MAX_MENSAJES_VOCACIONAL : MAX_MENSAJES_HISTORIAL);
       logger.info(`📚 Turnos enviados: ${conversacion.length}`);
+      let sistema = PROMPTS_SISTEMA[data.filosofo];
+      let opciones = {};
+      if (vocacional) {
+        const ctx = contextoVocacional(data.contexto);
+        const banco = await textoOpcionesVocacional();
+        if (esPlan) {
+          sistema = promptPlanVocacional(sistema, ctx, banco);
+          opciones = {maxTokens: 4096, temperature: 0.4, json: true, timeoutMs: 30000, limiteMs: 50000,
+            validar: validarPlanVocacional};
+        } else {
+          sistema = promptOrientador(sistema, ctx, banco);
+          if (ctx.intercambio && ctx.intercambio >= ctx.total - 1) opciones = {maxTokens: 2048};
+        }
+        logger.info(`🎓 Vocacional: ${esPlan ? "plan" : `intercambio ${ctx.intercambio || "?"}`} | perfil ${ctx.perfil.length}`);
+      }
 
       // 5. LLAMAR A LA IA (con respaldo automático)
       const r = await llamarIA({
-        sistema: PROMPTS_SISTEMA[data.filosofo],
+        sistema,
         conversacion,
         claveGemini,
         claveOpenRouter,
+        opciones,
       });
 
       const tiempoTotal = Date.now() - inicioTiempo;
@@ -768,6 +910,7 @@ exports.chatFilosofo = onCall(
 
       return {
         respuesta: r.texto,
+        ...(esPlan ? {plan: r.valor} : {}),
         timestamp: new Date().toISOString(),
         tokensUsados: r.tokens,
         tiempoRespuestaMs: r.ms,

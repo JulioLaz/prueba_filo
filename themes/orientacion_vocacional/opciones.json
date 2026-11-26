@@ -1,0 +1,182 @@
+{
+  "_resena": "Opciones educativas gratuitas o de bajo costo en Tucumán para la Orientación Vocacional. Lo leen la presentación (content.html), el chat (dialogo/chat_vocacional.html) y la Cloud Function del orientador (desde GitHub Pages, sin deploy). Actualizar cada año: fechas, contactos y fuentes.",
+  "version": "v1.0 (2026-11-26)",
+  "actualizado": "2026-11-26",
+  "aviso": "Las fechas y los requisitos cambian cada año: confirmá siempre en el sitio oficial antes de inscribirte.",
+  "rutas": [
+    {
+      "id": "rapida",
+      "nombre": "Ruta rápida",
+      "duracion": "3 a 12 meses",
+      "resultado": "Un oficio con certificado para empezar a trabajar pronto",
+      "ideal": [
+        "Necesitás generar ingresos pronto",
+        "Te gusta trabajar con las manos o con la gente",
+        "Querés probar algo antes de una carrera larga"
+      ],
+      "nota": "Podés trabajar de esto y, más adelante, estudiar algo más largo.",
+      "opciones": [
+        {
+          "nombre": "Escuela de Educación Profesional (UNT) - programa «Aprendé un oficio»",
+          "que": "Más de 30 cursos de oficios: electricidad, refrigeración, soldadura, peluquería, panadería y otros",
+          "duracion": "3 a 6 meses según el curso",
+          "costo": "Gratuito",
+          "donde": "25 de Mayo 265, 1.º piso, San Miguel de Tucumán (lunes a viernes de 9 a 12). También en los Centros de Extensión de la UNT de Tafí Viejo, Bella Vista, Aguilares y otros",
+          "contacto": "Instagram @educacionprofesionalunt · secretariaextension.unt.edu.ar",
+          "inscripcion": "En el ciclo anterior la inscripción fue en septiembre: seguí su Instagram para la próxima",
+          "fuente": "https://secretariaextension.unt.edu.ar/aprende-un-oficio-en-la-unt/"
+        },
+        {
+          "nombre": "Formación Profesional del Gobierno de Tucumán (Subsecretaría de Empleo)",
+          "que": "Cursos de oficios gratuitos para mayores de 18 años",
+          "duracion": "Cursos cortos",
+          "costo": "Gratuito",
+          "donde": "Laprida 55, San Miguel de Tucumán (lunes a viernes de 8 a 13), con DNI",
+          "contacto": "(381) 422-8408 / 422-8420",
+          "inscripcion": "Presencial durante el año, según los cupos",
+          "fuente": "https://guiadetramites.tucuman.gob.ar/tramite/11676/formacion-profesional.html"
+        },
+        {
+          "nombre": "Cursos de oficios de la Municipalidad de San Miguel de Tucumán",
+          "que": "Electricidad, soldadura, carpintería y otros, para mayores de 18 años",
+          "duracion": "Cursos cortos, turnos mañana y tarde",
+          "costo": "Gratuito",
+          "donde": "Dirección de Empleo y Emprendimientos, Av. Juan B. Justo 951 (8:30 a 12:30), con DNI, celular y correo electrónico",
+          "contacto": "Dirección de Empleo y Emprendimientos de la Municipalidad",
+          "inscripcion": "Hubo inscripciones en marzo y en octubre de 2026",
+          "fuente": "https://tucuman24.com/nota/225321/nuevas-oportunidades-para-aprender-oficios-como-inscribirse-en-los-cursos-gratuitos-que-ofrece-el-municipio-2.html"
+        },
+        {
+          "nombre": "Cursos cortos de la UTN Tucumán",
+          "que": "Electricidad, herrería, motos, aire acondicionado, reparación de celulares y otros",
+          "duracion": "Semanas o pocos meses",
+          "costo": "Arancelados (consultá el precio y si hay becas)",
+          "donde": "UTN Facultad Regional Tucumán",
+          "contacto": "frt.utn.edu.ar",
+          "inscripcion": "Durante todo el año, según el curso",
+          "fuente": "https://www.contextotucuman.com/nota/424924/electricidad-herreria-motos-aire-acondicionado-celulares-y-otros-cursos-cortos-en-la-utn-tucuman-cuanto-cuestan-y-como-inscribirse.html"
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "nombre": "Ruta media",
+      "duracion": "2 a 3 años",
+      "resultado": "Un título de técnica/o superior o de profesorado",
+      "ideal": [
+        "Podés trabajar medio día y estudiar",
+        "Querés un título con salida laboral",
+        "Te gusta la idea de enseñar, cuidar la salud o la tecnología"
+      ],
+      "nota": "Muchas carreras se cursan de tarde o de noche: se puede trabajar y estudiar.",
+      "opciones": [
+        {
+          "nombre": "Institutos de Educación Superior de la provincia (Ministerio de Educación)",
+          "que": "45 tecnicaturas y profesorados gratuitos en 126 institutos: Enfermería, Radiología, Esterilización, Farmacia, Análisis Clínicos, Gastronomía, Computación y Redes, Desarrollo de Software y profesorados de todas las materias",
+          "duracion": "3 a 4 años",
+          "costo": "Gratuito",
+          "donde": "Institutos en toda la provincia (por ejemplo, el IES Alfredo Coviello en la capital y el Instituto Superior de Tafí Viejo)",
+          "contacto": "Dirección de Educación Superior: des-tuc.infd.edu.ar · educaciontuc.gov.ar",
+          "inscripcion": "Suele ser entre noviembre y marzo: consultá en cada instituto",
+          "fuente": "https://www.lagaceta.com.ar/nota/1155749/sociedad/gobierno-tucuman-ofrece-45-profesorados-tecnicaturas.html"
+        },
+        {
+          "nombre": "Programador Universitario (UNT, Facultad de Ciencias Exactas y Tecnología)",
+          "que": "Programación y desarrollo de software",
+          "duracion": "3 años",
+          "costo": "Gratuito",
+          "donde": "Facultad de Ciencias Exactas y Tecnología (FACET), UNT",
+          "contacto": "facet.unt.edu.ar",
+          "inscripcion": "Preinscripción por SIU Guaraní, normalmente entre noviembre y febrero",
+          "fuente": "https://www.contextotucuman.com/nota/332285/las-carreras-universitarias-cortas-con-salida-laboral-cuales-se-pueden-estudiar-en-tucuman.html"
+        },
+        {
+          "nombre": "Tecnicaturas de ciclo corto de la UTN Tucumán",
+          "que": "Programación (2 años), Mecatrónica (2 años), Logística (2 años y medio) y Mantenimiento Industrial (2 años); también en comunas del interior",
+          "duracion": "2 a 2 años y medio",
+          "costo": "Consultá: algunas tecnicaturas de la UTN tienen arancel",
+          "donde": "UTN Facultad Regional Tucumán y sedes del interior",
+          "contacto": "cicloscortos.frt.utn.edu.ar",
+          "inscripcion": "Consultá el calendario en el sitio de ciclos cortos",
+          "fuente": "https://www.lagaceta.com.ar/nota/1142766/sociedad/utn-interior-carreras-cortas-podes-estudiar-2026-cuanto-duran.html"
+        },
+        {
+          "nombre": "Tecnicaturas en diseño de la UNT",
+          "que": "Diseño de Animación Multimedia, Cerámica, Joyería",
+          "duracion": "2 a 3 años",
+          "costo": "Gratuito",
+          "donde": "UNT",
+          "contacto": "unt.edu.ar",
+          "inscripcion": "Preinscripción por SIU Guaraní",
+          "fuente": "https://www.lagaceta.com.ar/nota/1124840/sociedad/para-estudiar-desde-este-ano-nuevas-carreras-universitarias-tucuman-argentina.html"
+        }
+      ]
+    },
+    {
+      "id": "larga",
+      "nombre": "Ruta larga",
+      "duracion": "4 a 6 años",
+      "resultado": "Un título universitario de grado",
+      "ideal": [
+        "Tenés apoyo para dedicarle más tiempo al estudio",
+        "Podés trabajar part-time o en verano",
+        "Te atrae una profesión universitaria"
+      ],
+      "nota": "Si trabajás, podés tardar uno o dos años más: lo que importa es llegar.",
+      "opciones": [
+        {
+          "nombre": "Universidad Nacional de Tucumán (UNT)",
+          "que": "Medicina, Enfermería, Psicología, Derecho, Contador, Ingenierías, Arquitectura, Educación Física, Letras, Historia, Filosofía y muchas más. Sedes en la capital, Aguilares, Monteros y Yerba Buena",
+          "duracion": "4 a 6 años",
+          "costo": "Gratuito",
+          "donde": "San Miguel de Tucumán y sedes del interior",
+          "contacto": "unt.edu.ar · guarani.unt.edu.ar",
+          "inscripcion": "Cada facultad tiene su calendario. Ingreso 2027: Filosofía y Letras del 18/11 al 18/12/2026 y del 1/2 al 13/3/2027 (sin examen de ingreso); Educación Física del 6/11 al 10/12/2026; Derecho del 10 al 27/11/2026; Medicina y Económicas abrieron su curso de ingreso en septiembre",
+          "fuente": "https://filo.unt.edu.ar/ingreso/"
+        },
+        {
+          "nombre": "Licenciatura en Enfermería (Escuela Universitaria de Enfermería, UNT)",
+          "que": "Enfermería universitaria; también la Tecnicatura en Estadísticas de Salud",
+          "duracion": "5 años (con título intermedio)",
+          "costo": "Gratuito",
+          "donde": "Capital (General Paz 884) y Aguilares",
+          "contacto": "eue.unt.edu.ar · (0381) 410-7221",
+          "inscripcion": "La preinscripción del ingreso 2026 empezó el 1 de diciembre de 2025: para 2027 se espera en diciembre de 2026",
+          "fuente": "https://medios.unt.edu.ar/2025/12/05/la-escuela-de-enfermeria-inicia-la-admision-2026/"
+        },
+        {
+          "nombre": "UTN Facultad Regional Tucumán - Ingenierías",
+          "que": "Ingenierías (por ejemplo, Sistemas de Información, Civil, Electrónica, Eléctrica, Mecánica, Química e Industrial): consultá la oferta vigente",
+          "duracion": "5 años",
+          "costo": "Gratuito (carreras de grado)",
+          "donde": "UTN Facultad Regional Tucumán, San Miguel de Tucumán",
+          "contacto": "frt.utn.edu.ar",
+          "inscripcion": "Seminario de ingreso: consultá el calendario 2027 en el sitio de la facultad",
+          "fuente": "https://frt.utn.edu.ar"
+        }
+      ]
+    }
+  ],
+  "becas": [
+    {
+      "nombre": "Becas Progresar (Nación)",
+      "que": "Ayuda mensual para estudiar: líneas Superior (terciario y universidad), Enfermería y Formación Profesional. En 2026 fueron $35.000 por mes",
+      "requisitos": "Tener entre 16 y 24 años (más en algunos casos), DNI, ingresos familiares de hasta 3 salarios mínimos, usuario de Mi Argentina y CUIL",
+      "inscripcion": "En 2026 hubo dos convocatorias para nivel superior (abril y agosto-septiembre); quien se anota en la primera cobra hasta 12 cuotas. Es online y gratuita",
+      "fuente": "https://www.iprofesional.com/management/451174-becas-progresar-el-gobierno-oficializo-nuevos-montos-y-requisitos-2026"
+    },
+    {
+      "nombre": "Becas de la UNT (Programa Juan B. Terán) y comedor universitario",
+      "que": "Ayuda económica, comedor y otros apoyos para estudiantes de la UNT",
+      "requisitos": "Ser estudiante de la UNT; se evalúa la situación socioeconómica",
+      "inscripcion": "Secretaría de Asuntos Estudiantiles, General Paz 826, tel. (0381) 420-1589",
+      "fuente": "https://www.unt.edu.ar/wp-content/uploads/2026/08/PROYECTO-3-26-Becas-de-Apoyo-Economico.pdf"
+    }
+  ],
+  "consejos": [
+    "Anotá en el celular las fechas de preinscripción: muchas son entre noviembre y marzo.",
+    "Para casi todo vas a necesitar DNI, constancia de título secundario en trámite y un correo electrónico.",
+    "Si no te alcanza la plata, la ruta rápida y una beca pueden ser el primer paso, no el último.",
+    "Preguntá en cada institución si hay cursado de noche o a distancia."
+  ]
+}
