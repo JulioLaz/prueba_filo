@@ -148,6 +148,14 @@ const TOPICS = {
 };
 
     const VIDEO_CONFIG = {
+      linea_tiempo: { // https://youtube.com/shorts/8m1OOYHsdsk — Short vertical hecho con NotebookLM (2026-11-27)
+        youtubeId: '8m1OOYHsdsk',
+        startTime: 0,
+        endTime: 83,
+        title: '¿Progresa la humanidad o solo nuestra tecnología?',
+        duration: '1:23',
+        type: 'short'   // video vertical: el hub lo muestra en 9:16
+      },
       antropologia_aristoteles: { // https://www.youtube.com/watch?v=jgEC-kr73XQ (FILOSOFÍA: APRENDE Y APRUEBA); arranca después del saludo
         youtubeId: 'jgEC-kr73XQ',
         startTime: 23,
@@ -453,7 +461,7 @@ const TOPICS = {
     // (actividadesRequeridas) debe tener la misma lista.
     // explorar, ordenar, simultaneo y termometro son las actividades de linea.html.
     const ACTIVIDADES_TEMA = {
-      linea_tiempo: ['material', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz'],
+      linea_tiempo: ['material', 'video', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz'],  // 2026-11-27: + video (Short)
       // 2026-11-26: la orientación vocacional tiene una sola actividad (autotest + diálogo + plan)
       orientacion_vocacional: ['dialogo']
     };

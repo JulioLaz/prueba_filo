@@ -10,6 +10,7 @@
   "minimoPorActividad": 60,
   "actividadesRequeridas": [
     "material",
+    "video",
     "explorar",
     "ordenar",
     "simultaneo",

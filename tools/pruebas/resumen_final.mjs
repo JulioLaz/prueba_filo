@@ -9,7 +9,8 @@
  * Guarda captura y PDF en tools/pruebas/salida/.
  *
  * Uso:  node tools/pruebas/resumen_final.mjs <tema>
- * Versión: v1.0.0 (2026-11-19)
+ * Versión: v1.1.0 (2026-11-27) — usa las actividadesRequeridas del banco (temas con actividades propias)
+ * v1.0.0 (2026-11-19)
  */
 import fs from 'fs';
 import path from 'path';
@@ -51,7 +52,7 @@ async function main_resumen_final() {
     return { page, errores, ...r };
   };
   const P = (act, sc) => ({ uid: 'alu1', moduleId: T, lessonId: act, score: sc, bestScore: sc });
-  const acts = ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'];
+  const acts = banco.actividadesRequeridas || ['quiz', 'caza', 'video', 'cruci', 'material', 'mapa'];
 
   let r = await abrir(acts.map((a, i) => P(a, i < 3 ? 100 : 40)));
   check(`actividades en 40%: ${N} ejes tapados y dice qué falta`, r.ejes === N && r.tapados === N && r.ejemplos === 0 && r.copiarDeshabilitado && r.avance.includes('Te falta'), r.avance.split('\n')[0]);

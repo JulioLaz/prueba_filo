@@ -1,4 +1,6 @@
 <!-- tema.html — hub del tema: tarjetas de actividades, material, video + ejercicio (cloze) y examen.
+     v2.3 (2026-11-27): videos verticales (VIDEO_CONFIG type 'short', p. ej. linea_tiempo): el video se ve en 9:16
+       al costado del ejercicio en compu y arriba, más chico, en el celular.
      v2.2 (2026-11-26): textos de las tarjetas del cuestionario y la caza sin «undefined/undefined» ni «0/0»:
        muestran «Sin avances» si no hay datos o el % si solo hay porcentaje (el puntaje no cambia).
      v2.1 (2026-11-26): actividades por tema (ACTIVIDADES_TEMA) y tarjetas de la línea de tiempo
@@ -1101,6 +1103,17 @@ function openVideoModal() {
         .video-only .video-section { flex: 1 1 100%; border-right: none; }
         .video-only .video-container-wrapper { width: min(100%, calc((90vh - 110px) * 16 / 9)); }
 
+        /* Videos verticales (VIDEO_CONFIG type: 'short', v2.3): 9:16 al costado del ejercicio */
+        .sheet.horizontal-layout.short-video { width: min(1000px, 95vw) !important; max-width: none; }
+        .short-video .video-cloze-container .video-section { flex: 0 0 min(45%, calc((90vh - 150px) * 9 / 16)); }
+        .short-video .video-cloze-container .video-container-wrapper { width: 100%; }
+        .short-video .video-only .video-container-wrapper { width: min(100%, calc((90vh - 150px) * 9 / 16)); }
+        .short-video .video-cloze-container .video-container-wrapper #videoContainer {
+          padding-bottom: 177.78%; max-width: none; box-shadow: none; border-radius: 0;
+        }
+        .short-video .video-cloze-container .cloze-section { flex: 1 1 auto; }
+        .short-video .video-only .video-section { flex: 1 1 100%; }
+
         .cloze-header {
           padding: 14px 20px 12px;
           border-bottom: 1px solid #223059;
@@ -1133,6 +1146,9 @@ function openVideoModal() {
           }
           .video-cloze-container .cloze-section { flex: 1 1 auto; }
           .video-only .video-section { flex: 0 0 auto; border-bottom: none; }
+          .short-video .video-cloze-container .video-section { flex: 0 0 auto; width: 100%; }
+          .short-video .video-cloze-container .video-container-wrapper { width: min(100%, calc(42vh * 9 / 16)); }
+          .short-video .video-only .video-container-wrapper { width: min(100%, calc((90vh - 150px) * 9 / 16)); }
           .cloze-header { padding: 10px 16px 8px; }
           .cloze-header h3 { font-size: 16px; margin: 0 0 4px; }
           .cloze-header p { font-size: 13px; }

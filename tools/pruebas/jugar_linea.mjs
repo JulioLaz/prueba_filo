@@ -1,7 +1,7 @@
 /*
  * tools/pruebas/jugar_linea.mjs — prueba el tema con línea de tiempo (por defecto linea_tiempo).
  *
- *  - Hub: muestra solo las tarjetas del tema (ACTIVIDADES_TEMA), 6 segmentos y el examen;
+ *  - Hub: muestra solo las tarjetas del tema (ACTIVIDADES_TEMA), 7 segmentos y el examen;
  *    con 90% en esas actividades el examen queda habilitado.
  *  - Explorar: abrir hitos guarda el % (lessonId explorar); escala real con un punto por hito
  *    y zoom; retoma los hitos ya leídos guardados en Firebase.
@@ -11,7 +11,8 @@
  *  - Sin errores JS.
  *
  * Uso:  node tools/pruebas/jugar_linea.mjs [tema]
- * Versión: v1.0.0 (2026-11-26)
+ * Versión: v1.1.0 (2026-11-27) — el tema suma el video (Short vertical): 8 tarjetas y 7 segmentos
+ * v1.0.0 (2026-11-26)
  */
 import { abrirNavegador, servirRepo, controles, BASE, SALIDA, STUB_FIREBASE } from './comun.mjs';
 
@@ -40,10 +41,10 @@ async function main_jugar_linea() {
     visibles: [...document.querySelectorAll('.grid .card')].filter((c) => getComputedStyle(c).display !== 'none').map((c) => c.querySelector('.card-icon').innerText.trim()),
     segmentos: [...document.querySelectorAll('#segments .seg')].map((s) => s.dataset.type),
   }));
-  check('hub: tarjetas del tema (material, 4 de la línea, cuestionario y examen)', hub.visibles.length === 7 && !hub.visibles.some((v) => /Caza|Crucigrama|Mapa|Video/.test(v)), hub.visibles.join(' | '));
-  check('hub: 6 segmentos en la barra', hub.segmentos.join(',') === 'mat,explorar,ordenar,simultaneo,termometro,quiz', hub.segmentos.join(','));
+  check('hub: tarjetas del tema (material, video, 4 de la línea, cuestionario y examen)', hub.visibles.length === 8 && !hub.visibles.some((v) => /Caza|Crucigrama|Mapa/.test(v)), hub.visibles.join(' | '));
+  check('hub: 7 segmentos en la barra', hub.segmentos.join(',') === 'mat,video,explorar,ordenar,simultaneo,termometro,quiz', hub.segmentos.join(','));
   const ex = await page.evaluate(() => {
-    window.__progresoFirebase = Object.fromEntries(['material', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz'].map((k) => [k, { percentage: 90 }]));
+    window.__progresoFirebase = Object.fromEntries(['material', 'video', 'explorar', 'ordenar', 'simultaneo', 'termometro', 'quiz'].map((k) => [k, { percentage: 90 }]));
     renderProgressUI();
     return { st: document.getElementById('statusExamen').innerText, titulo: document.getElementById('examenTitulo').innerText, pct: document.getElementById('progressPct').innerText };
   });
