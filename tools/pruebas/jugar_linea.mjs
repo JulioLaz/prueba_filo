@@ -3,23 +3,53 @@
  *
  *  - Hub: muestra solo las tarjetas del tema (ACTIVIDADES_TEMA), 7 segmentos y el examen;
  *    con 90% en esas actividades el examen queda habilitado.
- *  - Explorar: abrir hitos guarda el % (lessonId explorar); escala real con un punto por hito
- *    y zoom; retoma los hitos ya leídos guardados en Firebase.
+ *  - Explorar: abrir y cerrar un hito NO lo marca; leerlo en voz alta (reconocimiento de voz
+ *    simulado) lo marca y guarda el % (lessonId explorar); sin reconocimiento de voz, aviso y
+ *    botón deshabilitado; escala real con un punto por hito y zoom; retoma solo los hitos
+ *    leídos en voz alta (prefijo "voz:") guardados en Firebase.
  *  - Ordenar: juega las 8 rondas ordenando bien → 100%.
  *  - Simultáneos: responde las 10 bien → 100%.
- *  - Termómetro: juzga todos los pasos y elige las conclusiones bien fundadas → 100%.
+ *  - Termómetro: la ventana de un hito se abre sin pedir lectura; juzga todos los pasos y
+ *    elige las conclusiones bien fundadas → 100%.
  *  - Sin errores JS.
  *
  * Uso:  node tools/pruebas/jugar_linea.mjs [tema]
- * Versión: v1.1.0 (2026-11-27) — el tema suma el video (Short vertical): 8 tarjetas y 7 segmentos
+ * Versión: v1.2.0 (2026-11-27) — explorar: lectura en voz alta de cada ventana
+ * v1.1.0 (2026-11-27) — el tema suma el video (Short vertical): 8 tarjetas y 7 segmentos
  * v1.0.0 (2026-11-26)
  */
 import { abrirNavegador, servirRepo, controles, BASE, SALIDA, STUB_FIREBASE } from './comun.mjs';
 
 const T = process.argv[2] || 'linea_tiempo';
 
-async function abrir(b, url, opciones = {}, viewport = { width: 420, height: 900 }) {
+// Reconocimiento de voz simulado: al empezar, "lee" el texto de la ventana en tandas, a un ritmo
+// por debajo del límite de velocidad del lector (4 palabras por segundo).
+const VOZ_SIMULADA = () => {
+  window.SpeechRecognition = class {
+    start() {
+      this.parado = false;
+      setTimeout(() => {
+        this.onstart?.();
+        const palabras = document.getElementById('textoHito').innerText.split(/\s+/).filter(Boolean);
+        const t0 = Date.now(); let i = 0;
+        const tanda = () => {
+          if (this.parado || i >= palabras.length) return;
+          const n = Math.max(1, Math.floor(3 * (Date.now() - t0) / 1000) - 1);
+          const r = [{ transcript: palabras.slice(i, i + n).join(' ') }]; r.isFinal = true; i += n;
+          this.onresult?.({ resultIndex: 0, results: [r] });
+          setTimeout(tanda, 120);
+        };
+        setTimeout(tanda, 900);
+      }, 30);
+    }
+    stop() { this.parado = true; setTimeout(() => this.onend?.(), 10); }
+  };
+};
+const SIN_VOZ = () => { delete window.webkitSpeechRecognition; window.SpeechRecognition = undefined; window.webkitSpeechRecognition = undefined; };
+
+async function abrir(b, url, opciones = {}, viewport = { width: 420, height: 900 }, init = null) {
   const page = await b.newPage({ viewport });
+  if (init) await page.addInitScript(init);
   const errores = [];
   page.on('pageerror', (e) => errores.push(e.message));
   page.on('dialog', (d) => d.dismiss());
@@ -56,16 +86,36 @@ async function main_jugar_linea() {
   await page.close();
 
   // ---------- Explorar ----------
-  ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=explorar`));
+  ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=explorar`, {}, undefined, VOZ_SIMULADA));
   const total = await page.evaluate(() => window.LINEA_HITOS.length);
-  for (let k = 0; k < 3; k++) {
+  // Abrir y cerrar sin leer: no cuenta
+  await page.locator('.hito').nth(0).click();
+  await page.waitForTimeout(200);
+  const ventana = await page.evaluate(() => ({ lectura: !!document.querySelector('#detalle .lectura #textoHito'), boton: document.querySelector('#detalle .mic-button')?.innerText }));
+  check('explorar: la ventana pide leer en voz alta', ventana.lectura && ventana.boton === 'Leer en voz alta', JSON.stringify(ventana));
+  await page.click('#cerrarDetalle');
+  await page.waitForTimeout(200);
+  check('explorar: abrir y cerrar sin leer no marca ni guarda', (await saves(page, 'explorar')).length === 0 && (await page.locator('.hito.leido').count()) === 0, `${(await saves(page, 'explorar')).join(',')}`);
+  // Leer en voz alta 2 hitos
+  for (let k = 0; k < 2; k++) {
     await page.locator('.hito').nth(k * 5).click();
     await page.waitForTimeout(200);
+    await page.click('#detalle .mic-button');
+    await page.waitForFunction(() => document.querySelector('#detalle .mic-button')?.classList.contains('completed'), null, { timeout: 30000 });
+    if (k === 0) await page.screenshot({ path: `${SALIDA}/linea_lectura_voz.png`, fullPage: true });
+    await page.waitForTimeout(700);
     await page.click('#cerrarDetalle');
     await page.waitForTimeout(200);
   }
-  const pctEsperado = Math.round((3 / total) * 100);
-  check('explorar: abrir 3 hitos guarda su %', (await saves(page, 'explorar')).at(-1) === pctEsperado, `${(await saves(page, 'explorar')).join(',')} (esperado ${pctEsperado})`);
+  const pctEsperado = Math.round((2 / total) * 100);
+  const ultimo = await page.evaluate(() => (window.__saves || []).filter((s) => s.lessonId === 'explorar').at(-1));
+  check('explorar: leer 2 hitos en voz alta los marca y guarda su %', ultimo?.score === pctEsperado && (await page.locator('.hito.leido').count()) === 2, `${(await saves(page, 'explorar')).join(',')} (esperado ${pctEsperado})`);
+  check('explorar: se guardan con el prefijo "voz:"', (ultimo?.metadata?.foundConceptsList || []).length === 2 && ultimo.metadata.foundConceptsList.every((x) => x.startsWith('voz:')), JSON.stringify(ultimo?.metadata?.foundConceptsList));
+  await page.locator('.hito').nth(0).click();
+  await page.waitForTimeout(200);
+  const releer = await page.evaluate(() => ({ lectura: !!document.querySelector('#detalle .lectura'), aviso: document.querySelector('#detalle .ya-leido')?.innerText }));
+  check('explorar: un hito ya leído se abre sin pedir lectura', !releer.lectura && /Ya leíste/.test(releer.aviso || ''), JSON.stringify(releer));
+  await page.click('#cerrarDetalle');
   await page.click('[data-vista="escala"]');
   await page.waitForTimeout(300);
   const puntos = await page.locator('.dot').count();
@@ -77,14 +127,27 @@ async function main_jugar_linea() {
   check('explorar: el zoom "últimos 200 años" muestra menos puntos', puntosZoom > 0 && puntosZoom < total, `${puntosZoom}`);
   check('explorar: sin errores JS', errores.length === 0, JSON.stringify(errores.slice(0, 3)));
   const leidosIds = await page.evaluate(() => window.LINEA_HITOS.slice(0, 10).map((h) => h.id));
+  const viejos = await page.evaluate(() => window.LINEA_HITOS.slice(20, 25).map((h) => h.id));   // marcados antes, sin voz
   await page.close();
 
-  // Retomar desde Firebase (otro dispositivo)
+  // Retomar desde Firebase (otro dispositivo): cuentan solo los leídos en voz alta ("voz:")
+  const guardados = [...leidosIds.map((id) => 'voz:' + id), ...leidosIds.slice(0, 5).map((id) => id + '_x'), 'abc'];
   const stub = STUB_FIREBASE.replace('export async function getDoc(){ return { exists:()=>false, data:()=>({}) }; }',
-    `export async function getDoc(){ return { exists:()=>true, data:()=>({ foundConcepts: ${JSON.stringify(leidosIds)} }) }; }`);
+    `export async function getDoc(){ return { exists:()=>true, data:()=>({ foundConcepts: ${JSON.stringify([...guardados, ...viejos])} }) }; }`);
   ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=explorar`, { firebaseJs: stub }));
   const txt = await page.locator('#progresoTxt').innerText();
-  check('explorar: retoma los 10 hitos leídos guardados en Firebase', txt.startsWith(`Leíste 10 de ${total}`) && (await page.locator('.hito.leido').count()) === 10, txt);
+  check('explorar: retoma solo los 10 hitos leídos en voz alta (ignora los marcados antes)', txt.startsWith(`Leíste 10 de ${total}`) && (await page.locator('.hito.leido').count()) === 10, txt);
+  await page.close();
+
+  // Sin reconocimiento de voz (Firefox, apps): aviso y no se puede marcar
+  ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=explorar`, {}, undefined, SIN_VOZ));
+  await page.locator('.hito').nth(0).click();
+  await page.waitForTimeout(200);
+  const sinVoz = await page.evaluate(() => ({ deshab: document.querySelector('#detalle .mic-button')?.disabled, aviso: document.querySelector('#detalle .reading-error')?.innerText || '' }));
+  check('explorar: sin reconocimiento de voz, botón deshabilitado y aviso de usar Chrome o Edge', sinVoz.deshab === true && /Chrome/.test(sinVoz.aviso), JSON.stringify(sinVoz));
+  await page.screenshot({ path: `${SALIDA}/linea_sin_voz.png`, fullPage: true });
+  await page.click('#cerrarDetalle');
+  check('explorar sin voz: no guarda y sin errores JS', (await saves(page, 'explorar')).length === 0 && errores.length === 0, JSON.stringify(errores.slice(0, 3)));
   await page.close();
 
   // ---------- Ordenar ----------
@@ -130,7 +193,13 @@ async function main_jugar_linea() {
   await page.close();
 
   // ---------- Termómetro ----------
-  ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=termometro`));
+  ({ page, errores } = await abrir(b, `linea.html?tema=${T}&modo=termometro`, {}, undefined, VOZ_SIMULADA));
+  await page.locator('[data-ver]').first().click();
+  await page.waitForTimeout(200);
+  const vt = await page.evaluate(() => ({ abierta: document.getElementById('fondoDetalle').classList.contains('abierto'), lectura: !!document.querySelector('#detalle .lectura, #detalle .mic-button') }));
+  check('termómetro: la ventana del hito se abre sin pedir lectura', vt.abierta && !vt.lectura, JSON.stringify(vt));
+  await page.click('#cerrarDetalle');
+  await page.waitForTimeout(150);
   const cfg = await page.evaluate(() => ({ correctas: window.LINEA_TERMOMETRO.ejes.map((e) => e.correcta), final: window.LINEA_TERMOMETRO.final.correcta }));
   for (let e = 0; e < cfg.correctas.length; e++) {
     for (let p = 0; p < 3; p++) { await page.click(`[data-paso="${p}"][data-val="${[1, 0, -1][p]}"]`); await page.waitForTimeout(60); }

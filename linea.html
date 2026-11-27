@@ -3,7 +3,9 @@
   linea.html — actividades de la línea de tiempo (?tema=<id>&modo=explorar|ordenar|simultaneo|termometro).
   Datos: themes/<id>/hitos.js (y termometro.js). Motor: js/linea-tiempo.js (guarda en Firebase
   con lessonId = modo).
-  Versión: v1.0 (2026-11-26)
+  Versión: v1.1 (2026-11-27) — en «Explorar», la ventana del hito se lee en voz alta para contar
+    como leída (js/readaloud-system.js); en el termómetro se abre sin lectura.
+  v1.0 (2026-11-26)
 -->
 <html lang="es">
 <head>
@@ -82,6 +84,28 @@
     .detalle h3{font-size:15px;margin:14px 0 4px;color:#d6c8ff}
     .figuras{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
     .figuras span{font-size:12px;padding:3px 8px;border-radius:999px;background:var(--panel2);border:1px solid var(--line)}
+    /* Lectura en voz alta de la ventana (solo en Explorar) */
+    .lectura{margin-top:4px}
+    .lectura .readaloud-container{border-radius:12px;padding:2px 10px;transition:background .3s}
+    .lectura .readaloud-container.reading-active{background:rgba(128,90,213,.08)}
+    .rl-word{transition:color .2s, background .2s;border-radius:4px}
+    .rl-word.rl-pending{color:var(--ink)}
+    .rl-word.rl-current{background:rgba(255,193,7,.25)}
+    .rl-word.rl-done{color:#86efac}
+    .lectura .reading-progress{display:flex;align-items:center;gap:10px;margin:12px 0 8px}
+    .lectura .progress-bar-reading{flex:1;height:8px;background:#0a1020;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+    .lectura .progress-fill-reading{height:100%;width:0;background:linear-gradient(90deg,#6b7cff,var(--violeta));transition:width .4s}
+    .lectura .progress-text-reading{font-size:13px;color:var(--muted);min-width:70px;text-align:right}
+    .lectura .reading-controls{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .lectura .mic-button{min-width:200px}
+    .lectura .mic-button.listening{background:#6b46c1;box-shadow:0 0 0 4px rgba(128,90,213,.3)}
+    .lectura .mic-button.completed{background:var(--ok);cursor:default}
+    .lectura .mic-button.completed:disabled{opacity:1}
+    .lectura .reading-status{font-size:13px;color:var(--muted);text-align:center}
+    .lectura .reading-status.completed{color:var(--ok);font-weight:600}
+    .reading-error{margin-top:8px;padding:10px 12px;border-radius:10px;background:rgba(239,68,68,.1);border:1px solid var(--bad);font-size:14px}
+    .reading-error-pasos{margin:6px 0 0;padding-left:20px}
+    .ya-leido{margin-top:12px;padding:8px 12px;border-radius:10px;border:1px solid var(--ok);background:rgba(16,185,129,.08);color:#86efac;font-size:14px}
     .cargando{color:var(--muted);padding:40px;text-align:center}
     @media (max-width:560px){ h1{font-size:18px} .wrap{padding:12px} }
   </style>
@@ -102,6 +126,7 @@
     <div class="detalle" id="detalle" role="dialog" aria-modal="true"></div>
   </div>
 
+  <script src="js/readaloud-system.js"></script>
   <script type="module" src="js/linea-tiempo.js"></script>
 </body>
 </html>

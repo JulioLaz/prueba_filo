@@ -3,7 +3,10 @@
  *
  * Modos (?modo=), cada uno guarda su % en Firebase con lessonId = modo:
  *  - explorar:   hitos por épocas o a escala real (con zoom y "reloj de la humanidad").
- *                % = hitos leídos ÷ total. Los leídos se guardan (foundConcepts) y se retoman.
+ *                Cada ventana se lee EN VOZ ALTA (js/readaloud-system.js, 80% de las palabras):
+ *                recién ahí el hito cuenta como leído. % = hitos leídos ÷ total. Los leídos se
+ *                guardan en foundConcepts con el prefijo "voz:" (lo anterior a la lectura en voz
+ *                alta no cuenta) y se retoman. En el termómetro la ventana se abre sin lectura.
  *  - ordenar:    8 rondas de 5 hitos para poner en orden cronológico, de lo lejano a lo cercano.
  *                % = posiciones correctas ÷ 40.
  *  - simultaneo: 10 preguntas «¿qué pasaba al mismo tiempo?» (±50 años, otro eje).
@@ -13,7 +16,8 @@
  *                % = 40 × pasos juzgados ÷ 15 + 60 × conclusiones bien fundadas ÷ 6.
  * Datos: themes/<tema>/hitos.js (LINEA_HITOS, LINEA_EJES, LINEA_ERAS) y termometro.js.
  * Firestore guarda el mejor puntaje: un intento peor no lo baja.
- * Versión: v1.0 (2026-11-26)
+ * Versión: v1.1 (2026-11-27) — explorar: la ventana se lee en voz alta para contar como leída
+ * v1.0 (2026-11-26)
  */
 import { saveProgress, auth, db, doc, getDoc, onAuthStateChanged } from '/prueba_filo/firebase.js';
 
@@ -25,7 +29,7 @@ const AHORA = 2025;
 const app = document.getElementById('app');
 
 const TITULOS = {
-  explorar: ['Explorar la línea', 'Abrí cada hito y leé qué cambió. Probá la vista a escala real.'],
+  explorar: ['Explorar la línea', 'Abrí cada hito y leelo en voz alta para que cuente. Probá la vista a escala real.'],
   ordenar: ['Ordenar en el tiempo', 'Poné los hitos del más antiguo (arriba) al más reciente (abajo).'],
   simultaneo: ['¿Qué pasaba al mismo tiempo?', 'Encontrá qué hechos fueron contemporáneos.'],
   termometro: ['Termómetro del progreso', '¿La humanidad avanzó, retrocedió o siguió igual? Depende del eje.'],
@@ -70,20 +74,71 @@ const usuario = () => auth.currentUser ? Promise.resolve(auth.currentUser) : new
 // ---------- detalle de un hito ----------
 const fondo = document.getElementById('fondoDetalle');
 const detalle = document.getElementById('detalle');
-function abrirDetalle(h, alCerrar) {
-  detalle.style.borderTopColor = colorEje(h.axis);
-  detalle.innerHTML = `
-    <div class="meta">${esc(h.year)} · ${esc(h.era)} · <b style="color:${colorEje(h.axis)}">${esc(EJES[h.axis]?.nombre || h.axis)}</b></div>
+let lectorActivo = null;   // lectura en voz alta en curso (se detiene al cerrar la ventana)
+
+/** Lector en voz alta del texto de la ventana (mismo motor que el material, textos sin emojis). */
+function crearLector(el, alLeer) {
+  class LectorHito extends window.ReadAloudParagraph {
+    onListeningStart() { super.onListeningStart(); this.statusEl.textContent = 'Escuchando: leé todo el texto en voz alta, sin apuro'; }
+    onListeningStop() {
+      super.onListeningStop();
+      this.micButton.querySelector('.mic-text').textContent = 'Seguir leyendo';
+      this.statusEl.textContent = 'Tocá el botón para seguir desde donde ibas';
+    }
+    onComplete() {
+      super.onComplete();
+      this.micButton.querySelector('.mic-text').textContent = 'Lectura completa';
+      this.micButton.disabled = true;
+      this.statusEl.textContent = 'Hito leído: ya cuenta en tu avance.';
+    }
+  }
+  return new LectorHito(el, { ...window.ReadAloudDefaults, soundsPath: 'sound/', onComplete: alLeer });
+}
+
+/**
+ * Abre la ventana de un hito.
+ * lectura (solo Explorar): { leido, alLeer } → si no está leído, el texto se lee en voz alta y
+ * al completarlo se llama alLeer(). Sin lectura (termómetro), la ventana solo se muestra.
+ */
+function abrirDetalle(h, alCerrar, lectura = null) {
+  const pideLectura = lectura && !lectura.leido;
+  const texto = `
     <h2>${esc(h.title)}</h2>
-    ${h.clave ? `<div class="meta">${esc(h.clave)}</div>` : ''}
     <p><b>${esc(h.intro)}</b></p>
     <p>${esc(h.desc)}</p>
     <h3>Mirada filosófica</h3>
-    <p>${esc(h.philosophy)}</p>
+    <p>${esc(h.philosophy)}</p>`;
+  const conVoz = !!window.ReadAloudParagraph;
+  detalle.style.borderTopColor = colorEje(h.axis);
+  detalle.innerHTML = `
+    <div class="meta">${esc(h.year)} · ${esc(h.era)} · <b style="color:${colorEje(h.axis)}">${esc(EJES[h.axis]?.nombre || h.axis)}</b></div>
+    ${h.clave ? `<div class="meta">${esc(h.clave)}</div>` : ''}
+    ${pideLectura ? `
+    <div class="reading-area lectura">
+      <div class="readaloud-container"><div class="readaloud" id="textoHito">${texto}</div></div>
+      <div class="reading-progress">
+        <div class="progress-bar-reading"><div class="progress-fill-reading"></div></div>
+        <span class="progress-text-reading">0% leído</span>
+      </div>
+      <div class="reading-controls">
+        <button class="btn mic-button" type="button" ${conVoz ? '' : 'disabled'}><span class="mic-text">${conVoz ? 'Leer en voz alta' : 'Lectura en voz alta no disponible'}</span></button>
+        <div class="reading-status">${conVoz ? 'Para que el hito cuente como leído, leé en voz alta todo el texto.' : ''}</div>
+        ${conVoz ? '' : `<div class="reading-error"><strong>Para que el hito cuente como leído hay que leerlo en voz alta, y este navegador no reconoce la voz.</strong>
+          <ul class="reading-error-pasos"><li>Abrí la actividad en Google Chrome o Microsoft Edge, en una compu o un celular Android con micrófono.</li>
+          <li>Si entraste desde WhatsApp o Instagram, abrí el link en Chrome.</li></ul></div>`}
+      </div>
+    </div>` : texto}
+    ${lectura?.leido ? '<div class="ya-leido">Ya leíste este hito en voz alta.</div>' : ''}
     <div class="figuras">${(h.figures || []).map((f) => `<span>${esc(f)}</span>`).join('')}</div>
     <p style="text-align:right;margin:14px 0 0"><button class="btn" id="cerrarDetalle">Cerrar</button></p>`;
   fondo.classList.add('abierto');
-  const cerrar = () => { fondo.classList.remove('abierto'); alCerrar?.(); };
+  lectorActivo = pideLectura && conVoz ? crearLector(document.getElementById('textoHito'), lectura.alLeer) : null;
+  const cerrar = () => {
+    if (lectorActivo?.isListening) lectorActivo.stopListening();
+    lectorActivo = null;
+    fondo.classList.remove('abierto');
+    alCerrar?.();
+  };
   document.getElementById('cerrarDetalle').onclick = cerrar;
   fondo.onclick = (e) => { if (e.target === fondo) cerrar(); };
 }
@@ -92,14 +147,17 @@ function abrirDetalle(h, alCerrar) {
 // EXPLORAR
 // =====================================================================
 async function explorar() {
+  // Hitos leídos en voz alta (v1.1). En Firebase van con el prefijo "voz:": lo marcado antes,
+  // solo con abrir la ventana, no cuenta.
+  const VOZ = 'voz:';
   let leidos = new Set();
-  try { leidos = new Set(JSON.parse(sessionStorage.getItem(claveSesion + '.leidos') || '[]')); } catch {}
+  try { leidos = new Set(JSON.parse(sessionStorage.getItem(claveSesion + '.leidosVoz') || '[]')); } catch {}
   // Retomar: hitos ya leídos guardados en Firebase (otro día u otro dispositivo)
   try {
     const u = await usuario();
     if (u) {
       const snap = await getDoc(doc(db, 'progreso_temas', `${u.uid}_${TEMA}_explorar`));
-      if (snap.exists()) (snap.data().foundConcepts || []).forEach((id) => leidos.add(id));
+      if (snap.exists()) (snap.data().foundConcepts || []).forEach((id) => { if (String(id).startsWith(VOZ)) leidos.add(id.slice(VOZ.length)); });
     }
   } catch (e) { console.warn('No se pudo leer lo ya explorado:', e); }
   const ids = new Set(H.map((h) => h.id));
@@ -117,8 +175,8 @@ async function explorar() {
   const marcarLeido = (h) => {
     if (leidos.has(h.id)) return;
     leidos.add(h.id);
-    sessionStorage.setItem(claveSesion + '.leidos', JSON.stringify([...leidos]));
-    guardar(pct(), { leidos: leidos.size, total: H.length, foundConceptsList: [...leidos] });
+    sessionStorage.setItem(claveSesion + '.leidosVoz', JSON.stringify([...leidos]));
+    guardar(pct(), { leidos: leidos.size, total: H.length, lectura: 'voz', foundConceptsList: [...leidos].map((id) => VOZ + id) });
   };
 
   function pintar() {
@@ -147,7 +205,7 @@ async function explorar() {
     if (vista === 'epocas') pintarEpocas(cont, visibles); else pintarEscala(cont, visibles);
   }
 
-  function abrir(h) { marcarLeido(h); abrirDetalle(h, pintar); }
+  function abrir(h) { abrirDetalle(h, pintar, { leido: leidos.has(h.id), alLeer: () => marcarLeido(h) }); }
 
   function pintarEpocas(cont, visibles) {
     cont.innerHTML = ERAS.map((era) => {

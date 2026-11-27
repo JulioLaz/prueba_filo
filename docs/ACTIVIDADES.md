@@ -136,11 +136,11 @@ Un tema puede tener **actividades propias** en lugar de las de siempre: se lista
 
 - **Página y motor:** `linea.html?tema=<id>&modo=<actividad>` con `js/linea-tiempo.js` (módulo; guarda con `saveProgress`, `lessonId` = modo).
 - **Datos:** `themes/<id>/hitos.js`: `LINEA_EJES` (5 ejes con color), `LINEA_ERAS` (épocas en orden) y `LINEA_HITOS` (id, year, sort, clave, era, axis, title, intro, desc, philosophy, figures). `sort` es el año para ordenar; en los filósofos, el de su obra clave (Kant 1781), y `clave` dice qué pasó ese año. La época sale de `sort`. `themes/<id>/termometro.js`: `LINEA_TERMOMETRO` (por eje: 4 hitos, pregunta, 3 opciones, correcta y porqué; y la pregunta final).
-- **Explorar (`explorar`):** hitos por épocas o a escala real (zoom 12.000 años / desde la escritura / 1000 / 200 años) y el reloj de la humanidad. % = hitos leídos ÷ total; los leídos se guardan en `foundConcepts` y se retoman en otro dispositivo.
+- **Explorar (`explorar`):** hitos por épocas o a escala real (zoom 12.000 años / desde la escritura / 1000 / 200 años) y el reloj de la humanidad. Cada ventana se lee **en voz alta** (desde 2026-11-27: mismo lector que el material, `ReadAloudParagraph` de `js/readaloud-system.js`, 80% de las palabras y control de velocidad); recién ahí el hito cuenta como leído. Abrir y cerrar no cuenta. Sin reconocimiento de voz (Firefox, apps, algunos iPhone) la ventana avisa que hay que usar Chrome o Edge con micrófono. % = hitos leídos ÷ total; los leídos se guardan en `foundConcepts` con el prefijo `voz:` (lo marcado antes sin leer no cuenta) y se retoman en otro dispositivo. En el Termómetro la misma ventana se abre sin pedir lectura.
 - **Ordenar (`ordenar`):** 8 rondas de 5 hitos, de lo lejano a lo cercano (distancia mínima entre hitos de 600 a 12 años). % = posiciones correctas ÷ 40.
 - **Al mismo tiempo (`simultaneo`):** 10 preguntas: dado un hito, elegir el de otro eje con menos de 50 años de diferencia (los otros tres están a 250 años o más). % = aciertos ÷ 10.
 - **Termómetro (`termometro`):** por eje, juzgar 3 pasos (avanzó / siguió igual / retrocedió; sin respuesta correcta, dibuja el gráfico del alumno) y elegir la conclusión mejor fundada; al final, ¿progresa la humanidad? % = 40 × pasos ÷ 15 + 60 × conclusiones bien fundadas ÷ 6.
-- **Pruebas:** `verificar_tema.js linea_tiempo` (hitos, termómetro, examen) y `jugar_linea.mjs` (hub, las 4 actividades jugadas al 100% y retomar Explorar).
+- **Pruebas:** `verificar_tema.js linea_tiempo` (hitos, termómetro, examen) y `jugar_linea.mjs` (hub, las 4 actividades jugadas al 100%, lectura en voz alta simulada en Explorar y retomar).
 
 ## 10. Orientación Vocacional Filosófica — `themes/orientacion_vocacional/` (tarjeta «Diálogos»)
 

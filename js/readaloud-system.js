@@ -696,7 +696,9 @@
 // })();
 
 /* readaloud-system.js - Sistema Modular de Lectura en Voz Alta
- * Versión: 1.2 (2026-11-24) - cada error del micrófono muestra qué hacer (navegador, permiso,
+ * Versión: 1.3 (2026-11-27) - expone ReadAloudParagraph y ReadAloudDefaults para
+ *   usar la lectura en voz alta fuera del material (ventanas de «Explorar la línea»).
+ * Versión anterior: 1.2 (2026-11-24) - cada error del micrófono muestra qué hacer (navegador, permiso,
  *   micrófono ocupado, internet, voz baja, lectura rápida) y, si el navegador no tiene
  *   reconocimiento de voz, un aviso con los pasos (detecta WhatsApp/Instagram/iPhone).
  * Versión anterior: 1.1 - CÁLCULO DE SECCIONES CORREGIDO
@@ -1471,6 +1473,8 @@
 
     // Exponer API global
     window.ReadAloudSystemModular = ReadAloudSystemModular;
+    window.ReadAloudParagraph = ReadAloudParagraph;   // v1.3: lectura de un bloque suelto
+    window.ReadAloudDefaults = DEFAULT_CONFIG;
 
     // Auto-inicializar si existe configuración global
     if (window.ReadAloudSystemConfig) {
