@@ -9,12 +9,14 @@
  *    leídos en voz alta (prefijo "voz:") guardados en Firebase.
  *  - Ordenar: juega las 8 rondas ordenando bien → 100%.
  *  - Simultáneos: responde las 10 bien → 100%.
- *  - Termómetro: la ventana de un hito se abre sin pedir lectura; juzga todos los pasos y
+ *  - Termómetro: la ventana de un hito se abre sin pedir lectura; gráfico con saldo, área
+ *    verde/roja y flechas; resumen con 5 gráficos; juzga todos los pasos y
  *    elige las conclusiones bien fundadas → 100%.
  *  - Sin errores JS.
  *
  * Uso:  node tools/pruebas/jugar_linea.mjs [tema]
- * Versión: v1.2.0 (2026-11-27) — explorar: lectura en voz alta de cada ventana
+ * Versión: v1.3.0 (2026-11-27) — termómetro: gráfico de saldo (área, flechas, saldo)
+ * v1.2.0 (2026-11-27) — explorar: lectura en voz alta de cada ventana
  * v1.1.0 (2026-11-27) — el tema suma el video (Short vertical): 8 tarjetas y 7 segmentos
  * v1.0.0 (2026-11-26)
  */
@@ -205,10 +207,18 @@ async function main_jugar_linea() {
     for (let p = 0; p < 3; p++) { await page.click(`[data-paso="${p}"][data-val="${[1, 0, -1][p]}"]`); await page.waitForTimeout(60); }
     await page.click(`[data-op="${cfg.correctas[e]}"]`);
     await page.waitForTimeout(100);
-    if (e === 0) await page.screenshot({ path: `${SALIDA}/linea_termometro.png`, fullPage: true });
+    if (e === 0) {
+      await page.waitForTimeout(600);
+      const g = await page.evaluate(() => ({ saldo: document.querySelector('#conclusion .saldo')?.innerText.replace(/\s+/g, ' '), areas: document.querySelectorAll('#termoEje polygon').length, flechas: [...document.querySelectorAll('#termoEje text')].map((t) => t.textContent).slice(0, 3).join('') }));
+      check('termómetro: gráfico con saldo, área verde/roja y flechas (▲ = ▼)', g.saldo === '0 Igual' && g.areas === 2 && g.flechas === '▲=▼', JSON.stringify(g));
+      await page.screenshot({ path: `${SALIDA}/linea_termometro.png`, fullPage: true });
+    }
     await page.click('#seguir');
     await page.waitForTimeout(100);
   }
+  await page.waitForTimeout(600);
+  const finales = await page.evaluate(() => ({ graficos: document.querySelectorAll('[data-termo] svg').length, saldos: document.querySelectorAll('.saldo-mini').length }));
+  check('termómetro: resumen con los 5 gráficos y sus saldos', finales.graficos === 5 && finales.saldos === 5, JSON.stringify(finales));
   await page.click(`[data-op="${cfg.final}"]`);
   await page.waitForTimeout(100);
   await page.click('#seguir');

@@ -3,7 +3,8 @@
   linea.html — actividades de la línea de tiempo (?tema=<id>&modo=explorar|ordenar|simultaneo|termometro).
   Datos: themes/<id>/hitos.js (y termometro.js). Motor: js/linea-tiempo.js (guarda en Firebase
   con lessonId = modo).
-  Versión: v1.1 (2026-11-27) — en «Explorar», la ventana del hito se lee en voz alta para contar
+  Versión: v1.2 (2026-11-27) — termómetro: gráfico de saldo con área verde/roja, flechas, años y saldo.
+  v1.1 (2026-11-27) — en «Explorar», la ventana del hito se lee en voz alta para contar
     como leída (js/readaloud-system.js); en el termómetro se abre sin lectura.
   v1.0 (2026-11-26)
 -->
@@ -74,7 +75,22 @@
     .paso{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
     .graficos{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
     .grafico{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:8px}
-    .grafico h4{margin:0 0 4px;font-size:14px}
+    .grafico h4{margin:0 0 4px;font-size:14px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+    /* Gráfico del termómetro: saldo con área verde/roja */
+    .termo-fila{display:flex;align-items:center;gap:12px;margin-top:6px}
+    .termo{flex:1;min-width:0}
+    .saldo{flex:0 0 auto;min-width:92px;text-align:center;border-radius:12px;padding:8px 6px;border:2px solid var(--line);background:var(--panel2)}
+    .saldo b{display:block;font-size:30px;line-height:1.1}
+    .saldo span{font-size:13px;font-weight:600}
+    .saldo.pos,.saldo-mini.pos{border-color:var(--ok);color:#34d399}
+    .saldo.neg,.saldo-mini.neg{border-color:var(--bad);color:#f87171}
+    .saldo.cero,.saldo-mini.cero{color:#cbd5e1}
+    .saldo.pend,.saldo-mini.pend{color:var(--muted)}
+    .saldo-mini{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+    .leyenda-termo{font-size:13px;color:var(--muted);margin:6px 0 0}
+    .leyenda-termo .pos{color:#34d399;font-weight:600}
+    .leyenda-termo .neg{color:#f87171;font-weight:600}
+    @media (max-width:560px){ .saldo{min-width:76px} .saldo b{font-size:24px} }
     /* Detalle de un hito */
     .fondo{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:50;padding:16px;overflow:auto}
     .fondo.abierto{display:block}

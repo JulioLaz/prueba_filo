@@ -14,9 +14,12 @@
  *  - termometro: por eje, juzgar 3 pasos (avanzó / igual / retrocedió) y elegir la conclusión
  *                mejor fundada; al final, ¿progresa la humanidad?
  *                % = 40 × pasos juzgados ÷ 15 + 60 × conclusiones bien fundadas ÷ 6.
+ *                Gráfico (v1.2): saldo acumulado con área verde (mejor que al inicio) o roja
+ *                (peor), flecha por paso, año de cada hito, saldo grande y animación.
  * Datos: themes/<tema>/hitos.js (LINEA_HITOS, LINEA_EJES, LINEA_ERAS) y termometro.js.
  * Firestore guarda el mejor puntaje: un intento peor no lo baja.
- * Versión: v1.1 (2026-11-27) — explorar: la ventana se lee en voz alta para contar como leída
+ * Versión: v1.2 (2026-11-27) — termómetro: gráfico con área verde/roja, flechas, años, saldo y animación
+ * v1.1 (2026-11-27) — explorar: la ventana se lee en voz alta para contar como leída
  * v1.0 (2026-11-26)
  */
 import { saveProgress, auth, db, doc, getDoc, onAuthStateChanged } from '/prueba_filo/firebase.js';
@@ -431,18 +434,66 @@ function termometro() {
   };
   const guardarAvance = () => guardar(puntaje(), { juicios, conclusiones: bien });
 
-  function grafico(vals, color, ancho = 260, alto = 90) {
-    const pts = [0];
-    vals.forEach((v) => pts.push(pts.at(-1) + (v ?? 0)));
-    const max = Math.max(3, ...pts.map(Math.abs));
-    const x = (i) => 12 + (i * (ancho - 24)) / (pts.length - 1);
-    const y = (v) => alto / 2 - (v / max) * (alto / 2 - 10);
-    return `<svg viewBox="0 0 ${ancho} ${alto}" width="100%" role="img" aria-label="Gráfico del eje">
-      <line x1="0" y1="${alto / 2}" x2="${ancho}" y2="${alto / 2}" stroke="#2a3666" stroke-dasharray="4"/>
-      <polyline fill="none" stroke="${color}" stroke-width="3" points="${pts.map((v, i) => `${x(i)},${y(v)}`).join(' ')}"/>
-      ${pts.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${color}"/>`).join('')}
-      <text x="4" y="12" fill="#9fb0d8" font-size="10">mejor</text><text x="4" y="${alto - 4}" fill="#9fb0d8" font-size="10">peor</text></svg>`;
+  // ---------- Gráfico del termómetro (v1.2) ----------
+  // Saldo acumulado: arranca en 0 (punto de partida) y cada paso suma +1 / 0 / -1.
+  // Área verde = mejor que al inicio; roja = peor. Flecha por paso, año de cada hito y animación.
+  const VERDE = '#10b981', ROJO = '#ef4444', GRIS = '#9fb0d8';
+  const ultimo = [];         // últimos puntos dibujados de cada eje (para animar el cambio)
+  let idTermo = 0;
+  const puntosDe = (vals) => { const p = [0]; vals.forEach((v) => p.push(p.at(-1) + (v ?? 0))); return p; };
+  const anioCorto = (h) => (h.sort < 0 ? `${Math.abs(h.sort).toLocaleString('es-AR')} a.C.` : String(h.sort));
+  const completo = (vals) => vals.every((v) => v !== null);
+  const saldoDe = (vals) => vals.reduce((a, v) => a + (v ?? 0), 0);
+  const nombreSaldo = (n) => (n > 0 ? 'Avanzó' : n < 0 ? 'Retrocedió' : 'Igual');
+  const claseSaldo = (vals) => (!completo(vals) ? 'pend' : saldoDe(vals) > 0 ? 'pos' : saldoDe(vals) < 0 ? 'neg' : 'cero');
+
+  function svgTermo(pts, vals, hs, uid, ancho = 320, alto = 180) {
+    const mL = 18, mR = 18, arriba = 24, abajo = alto - 28;
+    const y0 = (arriba + abajo) / 2, esc1 = (abajo - arriba) / 2 / 3;
+    const x = (i) => mL + (i * (ancho - mL - mR)) / (pts.length - 1);
+    const y = (v) => y0 - Math.max(-3, Math.min(3, v)) * esc1;
+    const linea = pts.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+    const area = `${x(0)},${y0} ${linea} ${x(pts.length - 1)},${y0}`;
+    const flechas = vals.map((v, j) => {
+      const xm = (x(j) + x(j + 1)) / 2, ym = (y(pts[j]) + y(pts[j + 1])) / 2;
+      const [g, c] = v === 1 ? ['▲', VERDE] : v === -1 ? ['▼', ROJO] : v === 0 ? ['=', GRIS] : ['?', GRIS];
+      return `<text x="${xm.toFixed(1)}" y="${(ym - 9).toFixed(1)}" text-anchor="middle" font-size="15" font-weight="700" fill="${c}">${g}</text>`;
+    }).join('');
+    const anios = hs.map((h, i) => `<text x="${x(i).toFixed(1)}" y="${alto - 8}" text-anchor="${i === 0 ? 'start' : i === hs.length - 1 ? 'end' : 'middle'}" font-size="11" fill="${GRIS}">${esc(anioCorto(h))}</text>`).join('');
+    const etiqueta = completo(vals) ? `Saldo ${saldoDe(vals)}: ${nombreSaldo(saldoDe(vals)).toLowerCase()}` : 'Faltan pasos por juzgar';
+    return `<svg viewBox="0 0 ${ancho} ${alto}" width="100%" role="img" aria-label="${etiqueta}">
+      <defs><clipPath id="${uid}a"><rect x="0" y="0" width="${ancho}" height="${y0}"/></clipPath>
+        <clipPath id="${uid}b"><rect x="0" y="${y0}" width="${ancho}" height="${alto - y0}"/></clipPath></defs>
+      <polygon points="${area}" fill="${VERDE}" fill-opacity=".35" clip-path="url(#${uid}a)"/>
+      <polygon points="${area}" fill="${ROJO}" fill-opacity=".35" clip-path="url(#${uid}b)"/>
+      <line x1="${mL - 6}" y1="${y0}" x2="${ancho - mR + 6}" y2="${y0}" stroke="${GRIS}" stroke-opacity=".6" stroke-dasharray="4"/>
+      <polyline fill="none" stroke="#eaf0ff" stroke-width="2.5" stroke-linejoin="round" points="${linea}"/>
+      ${pts.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="${i === 0 ? 3.5 : 4.5}" fill="#eaf0ff"/>`).join('')}
+      ${flechas}${anios}</svg>`;
   }
+
+  /** Dibuja el gráfico en `cont`; si cambió, el punto se desliza desde `desde` (animación). */
+  function dibujarTermo(cont, vals, hs, desde = null) {
+    const uid = `termo${++idTermo}`;
+    const hasta = puntosDe(vals);
+    const ini = desde && desde.length === hasta.length ? desde : hasta;
+    if (ini.every((v, i) => v === hasta[i])) { cont.innerHTML = svgTermo(hasta, vals, hs, uid); return; }
+    const t0 = performance.now(), dur = 450;
+    const cuadro = (t) => {
+      const k = Math.min(1, (t - t0) / dur), suave = 1 - Math.pow(1 - k, 3);
+      cont.innerHTML = svgTermo(hasta.map((v, i) => ini[i] + (v - ini[i]) * suave), vals, hs, uid);
+      if (k < 1 && cont.isConnected) requestAnimationFrame(cuadro);
+    };
+    requestAnimationFrame(cuadro);
+  }
+
+  const saldoHTML = (vals, mini = false) => {
+    const n = saldoDe(vals);
+    const txt = completo(vals) ? [`${n > 0 ? '+' : ''}${n}`, nombreSaldo(n)] : ['?', 'Falta juzgar'];
+    return mini ? `<span class="saldo-mini ${claseSaldo(vals)}">${txt[0]} ${txt[1]}</span>`
+      : `<div class="saldo ${claseSaldo(vals)}"><b>${txt[0]}</b><span>${txt[1]}</span></div>`;
+  };
+  const LEYENDA = '<p class="leyenda-termo">La línea punteada es el punto de partida. <span class="pos">Verde</span>: mejor que al inicio. <span class="neg">Rojo</span>: peor que al inicio.</p>';
 
   function pintarEje() {
     const cfg = T.ejes[e];
@@ -468,9 +519,12 @@ function termometro() {
       }).join('')}
       <div class="panel" id="conclusion">
         <b>Tu termómetro de ${esc(EJES[cfg.eje].nombre.toLowerCase())}</b>
-        ${grafico(juicios[e], color)}
+        <div class="termo-fila"><div class="termo" id="termoEje"></div>${saldoHTML(juicios[e])}</div>
+        ${LEYENDA}
         ${listos ? pintarPregunta(cfg, e) : '<p style="color:var(--muted);margin:4px 0 0">Juzgá los tres pasos para ver la pregunta de cierre del eje.</p>'}
       </div>`;
+    dibujarTermo(document.getElementById('termoEje'), juicios[e], hs, ultimo[e]);
+    ultimo[e] = puntosDe(juicios[e]);
     app.querySelectorAll('[data-ver]').forEach((a) => a.onclick = (ev) => { ev.preventDefault(); abrirDetalle(porId(a.dataset.ver)); });
     app.querySelectorAll('[data-paso]').forEach((b) => b.onclick = () => {
       juicios[e][+b.dataset.paso] = +b.dataset.val; guardarAvance(); pintarEje();
@@ -502,9 +556,16 @@ function termometro() {
     const k = T.ejes.length;
     app.innerHTML = `
       <div class="panel"><b>Tus cinco termómetros</b>
-        <div class="graficos" style="margin-top:8px">${T.ejes.map((cfg, j) => `<div class="grafico"><h4 style="color:${colorEje(cfg.eje)}">${esc(EJES[cfg.eje].nombre)}</h4>${grafico(juicios[j], colorEje(cfg.eje), 200, 80)}</div>`).join('')}</div>
+        <div class="graficos" style="margin-top:8px">${T.ejes.map((cfg, j) => `<div class="grafico"><h4><span style="color:${colorEje(cfg.eje)}">${esc(EJES[cfg.eje].nombre)}</span>${saldoHTML(juicios[j], true)}</h4><div class="termo" data-termo="${j}"></div></div>`).join('')}</div>
+        ${LEYENDA}
       </div>
       <div class="panel">${pintarPregunta(T.final, k)}</div>`;
+    // Los cinco gráficos se "llenan" desde el punto de partida la primera vez
+    app.querySelectorAll('[data-termo]').forEach((c) => {
+      const j = +c.dataset.termo;
+      dibujarTermo(c, juicios[j], T.ejes[j].hitos.map(porId), ultimo[T.ejes.length + j] || puntosDe(juicios[j]).map(() => 0));
+      ultimo[T.ejes.length + j] = puntosDe(juicios[j]);
+    });
     conectarPregunta(T.final, k, resultado);
   }
 
