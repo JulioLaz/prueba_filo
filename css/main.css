@@ -1331,3 +1331,10 @@ body::before {
   }
   }/* Llegó al 80% pero falta aprobar el examen oral (js/progreso-tarjetas.js) */
 .sello-tema.pendiente { background: rgba(128, 90, 213, 0.85); color: #fff; box-shadow: 0 2px 12px rgba(128, 90, 213, 0.45); }
+
+/* Última tarjeta abierta: al volver al inicio, la página baja hasta ella y la resalta (2026-11-27) */
+.theme-card.tema-reciente {
+    outline: 3px solid #805ad5;
+    outline-offset: 3px;
+    transition: outline-color .4s;
+}

@@ -16,7 +16,7 @@ Tres capas:
 
 | Página | Quién la usa | Qué hace |
 |---|---|---|
-| `index.html` | todos | Login y registro, tarjetas de temas con filtros por unidad, panel del admin. Tarjetas: `js/main.js` (`AVAILABLE_THEMES`); su pie con avance real y sellos: `js/progreso-tarjetas.js`. |
+| `index.html` | todos | Login y registro, tarjetas de temas con filtros por unidad (el último filtro elegido y el último tema abierto se recuerdan en el dispositivo: `localStorage` `filosofia.inicio.filtro` y `filosofia.inicio.ultimoTema`; al volver, la página baja hasta esa tarjeta), panel del admin. Tarjetas: `js/main.js` (`AVAILABLE_THEMES`); su pie con avance real y sellos: `js/progreso-tarjetas.js`. |
 | `tema.html?tema=<id>` | alumno | **Hub del tema**: una tarjeta por actividad con su %, barra de avance del tema, sellos «Aprobado/Completo», tarjeta del examen. Abre cada actividad con `?tema=<id>&theme=<id>`. El material se abre en un panel (iframe) y el video + cloze en un modal dentro del hub. |
 | `themes/<id>/content.html` | alumno | Material de lectura (lectura en voz alta + verificación por sección). |
 | `quiz.html` | alumno | Cuestionario (`js/quiz-engine.js` carga `themes/<id>/quiz.js`). |

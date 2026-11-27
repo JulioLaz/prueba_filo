@@ -11,6 +11,8 @@
 // 2026-11-26: tema nuevo, primero de la Unidad I: «Línea del tiempo: ¿progresa la humanidad?»
 //   (linea_tiempo, actividades propias en ACTIVIDADES_TEMA). «Ramas clásicas» queda oculto (comentado).
 // 2026-11-26: Orientación Vocacional v2.0: nueva descripción (autotest, diálogo y plan)
+// 2026-11-27: el inicio recuerda el último filtro elegido (Unidad 1, 2, 3...) en el dispositivo
+//   y, al volver, baja hasta la tarjeta del último tema abierto (localStorage, ver «MEMORIA»)
 // ========================================
 // ⏱️ Tiempo inicio: ${new Date().toLocaleTimeString()}
 
@@ -790,6 +792,7 @@ function createThemeCard(theme) {
     if (isUnlocked) {
     card.addEventListener('click', () => {
         console.log(`🎯 Navegando al tema: ${theme.id}`);
+        recordar(CLAVE_ULTIMO_TEMA, theme.id);
 
         const isProyecto = theme.difficulty === 'PROYECTO_TRIMESTRAL';
         const isGame     = theme.difficulty === 'GAME';
@@ -847,6 +850,35 @@ function renderThemes(themes = AVAILABLE_THEMES) {
 
 let currentFilter = 'all';
 let currentSearch = '';
+
+// ---------- MEMORIA del inicio (2026-11-27) ----------
+// Último filtro elegido y último tema abierto, en este dispositivo (sobreviven a otro día).
+const CLAVE_FILTRO = 'filosofia.inicio.filtro';
+const CLAVE_ULTIMO_TEMA = 'filosofia.inicio.ultimoTema';
+const recordar = (clave, valor) => { try { localStorage.setItem(clave, valor); } catch {} };
+const recuperar = (clave) => { try { return localStorage.getItem(clave); } catch { return null; } };
+
+/** Activa el filtro guardado (si su botón existe). */
+function restaurarFiltro() {
+    const guardado = recuperar(CLAVE_FILTRO);
+    const boton = guardado && [...filterButtons].find(b => b.dataset.filter === guardado);
+    if (!boton) return;
+    filterButtons.forEach(b => b.classList.remove('active'));
+    boton.classList.add('active');
+    currentFilter = guardado;
+}
+
+/** Baja hasta la tarjeta del último tema abierto (si está a la vista con el filtro actual). */
+function irAlUltimoTema() {
+    const id = recuperar(CLAVE_ULTIMO_TEMA);
+    const card = id && [...themesGrid.querySelectorAll('.theme-card, [data-theme-id]')].find(c => c.dataset.themeId === id);
+    if (!card) return;
+    setTimeout(() => {
+        card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        card.classList.add('tema-reciente');
+        setTimeout(() => card.classList.remove('tema-reciente'), 2500);
+    }, 400);
+}
 
 /**
  * Filtra los temas según criterios activos
@@ -917,6 +949,7 @@ function setupEventListeners() {
             e.target.classList.add('active');
             
             currentFilter = e.target.dataset.filter;
+            recordar(CLAVE_FILTRO, currentFilter);
             console.log(`🏷️ Filtro activo: ${currentFilter}`);
             updateThemeDisplay();
         });
@@ -986,8 +1019,10 @@ function initializeApp() {
     // Actualizar estadísticas
     updateGlobalStats();
     
-    // Renderizar temas iniciales
-    renderThemes();
+    // Renderizar temas iniciales, con el último filtro elegido, y volver a la última tarjeta
+    restaurarFiltro();
+    updateThemeDisplay();
+    irAlUltimoTema();
     
     // Animación de entrada
     document.body.classList.add('fade-in');

@@ -5,12 +5,15 @@
  * Carga index.html con Firebase falso (alumno con sesión) y revisa:
  *  - que cada tarjeta de las unidades muestre la línea «🕰️ época · banderas lugar»;
  *  - que las banderas carguen (img/banderas/*.svg);
- *  - que no haya errores de JavaScript.
+ *  - que no haya errores de JavaScript;
+ *  - memoria del inicio: elegir «Unidad 1», abrir un tema y volver → sigue en Unidad 1 y la
+ *    página baja hasta la tarjeta del tema abierto.
  * Guarda una captura en tools/pruebas/salida/inicio.png.
  *
  *   node tools/pruebas/ver_inicio.mjs
  *
- * Versión: v1.0.0 (2026-11-25)
+ * Versión: v1.1.0 (2026-11-27) — memoria del filtro y del último tema
+ * v1.0.0 (2026-11-25)
  */
 import path from 'path';
 import { abrirNavegador, servirRepo, controles, BASE, SALIDA } from './comun.mjs';
@@ -44,6 +47,28 @@ async function main_ver_inicio() {
   console.log('Ejemplos:', datos.lineas.slice(0, 4));
 
   await page.screenshot({ path: path.join(SALIDA, 'inicio.png'), fullPage: false });
+
+  // Memoria del inicio: Unidad 1 → abrir un tema → volver
+  await page.click('.filter-btn[data-filter="UNIDAD_I"]');
+  await page.waitForTimeout(500);
+  const ultimoU1 = await page.evaluate(() => [...document.querySelectorAll('.theme-card')].at(-1).dataset.themeId);
+  await Promise.all([page.waitForURL(/tema\.html|themes\//), page.locator(`.theme-card[data-theme-id="${ultimoU1}"]`).click()]);
+  await page.goto(`${BASE}/index.html`);
+  await page.waitForTimeout(2500);
+  const vuelta = await page.evaluate(() => ({
+    activo: document.querySelector('.filter-btn.active')?.dataset.filter,
+    soloU1: AVAILABLE_THEMES.filter((t) => t.difficulty === 'UNIDAD_I').length === document.querySelectorAll('.theme-card').length,
+    scroll: Math.round(window.scrollY),
+  }));
+  const visible = await page.locator(`.theme-card[data-theme-id="${ultimoU1}"]`).isVisible() &&
+    await page.evaluate((id) => { const r = document.querySelector(`.theme-card[data-theme-id="${id}"]`).getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }, ultimoU1);
+  check('al volver sigue en «Unidad 1» y muestra solo sus temas', vuelta.activo === 'UNIDAD_I' && vuelta.soloU1, JSON.stringify(vuelta));
+  check(`al volver baja hasta la tarjeta del último tema (${ultimoU1})`, visible && vuelta.scroll > 0, `scroll ${vuelta.scroll}`);
+  await page.screenshot({ path: path.join(SALIDA, 'inicio_vuelta.png'), fullPage: false });
+  await page.click('.filter-btn[data-filter="all"]');
+  await page.goto(`${BASE}/index.html`);
+  await page.waitForTimeout(1500);
+  check('«Todo» también se recuerda', await page.evaluate(() => document.querySelector('.filter-btn.active')?.dataset.filter) === 'all');
   await nav.close();
   process.exit(fin());
 }
