@@ -16,7 +16,7 @@ Tres capas:
 
 | Página | Quién la usa | Qué hace |
 |---|---|---|
-| `index.html` | todos | Login y registro, tarjetas de temas con filtros por unidad (el último filtro elegido y el último tema abierto se recuerdan en el dispositivo: `localStorage` `filosofia.inicio.filtro` y `filosofia.inicio.ultimoTema`; al volver, la página baja hasta esa tarjeta), panel del admin. Tarjetas: `js/main.js` (`AVAILABLE_THEMES`); su pie con avance real y sellos: `js/progreso-tarjetas.js`. |
+| `index.html` | todos | Login y registro, tarjetas de temas con filtros por unidad (el último filtro elegido y el último tema abierto se recuerdan en el dispositivo: `localStorage` `filosofia.inicio.filtro` y `filosofia.inicio.ultimoTema`; al volver, la página baja hasta esa tarjeta), panel del admin (tarjeta «Progreso de alumnos»: selector múltiple de temas —todos, una unidad o temas sueltos— y de alumnos, temas con su unidad «I - …» en el orden de `AVAILABLE_THEMES`, id de Firebase de cada alumno con clic para copiarlo). Tarjetas: `js/main.js` (`AVAILABLE_THEMES`); su pie con avance real y sellos: `js/progreso-tarjetas.js`. |
 | `tema.html?tema=<id>` | alumno | **Hub del tema**: una tarjeta por actividad con su %, barra de avance del tema, sellos «Aprobado/Completo», tarjeta del examen. Abre cada actividad con `?tema=<id>&theme=<id>`. El material se abre en un panel (iframe) y el video + cloze en un modal dentro del hub. |
 | `themes/<id>/content.html` | alumno | Material de lectura (lectura en voz alta + verificación por sección). |
 | `quiz.html` | alumno | Cuestionario (`js/quiz-engine.js` carga `themes/<id>/quiz.js`). |
@@ -45,7 +45,7 @@ Tres capas:
 | `temas_data.js` → `ACTIVIDADES_TEMA` | Temas con actividades propias (hoy `linea_tiempo`: material, explorar, ordenar, simultaneo, termometro, quiz). Si un tema no está, tiene las de siempre. `examen.json` → `actividadesRequeridas` debe coincidir. Ver `docs/ACTIVIDADES.md` §9. | hub, `progreso-tarjetas.js`, `verificar_tema.js` |
 | `themes/<id>/config.json` | Metadatos del tema (cantidad de secciones, preguntas, niveles, nodos; tiempos estimados). Debe coincidir con los archivos reales (`tools/pruebas/verificar_tema.js` lo controla). | hub (información) |
 | `themes/<id>/examen.json` | Banco del examen oral y del resumen final. | Cloud Function (desde Pages), `resumen_tema.html` |
-| `index.html` → `formatThemeName` | Nombre legible del tema en el panel del admin. | `index.html` |
+| `index.html` → `formatThemeName` | Nombre legible del tema en el panel del admin (`nombreConUnidad` le antepone la unidad: «I - Línea del tiempo»). | `index.html` |
 
 ## 4. Firebase
 

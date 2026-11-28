@@ -1338,3 +1338,31 @@ body::before {
     outline-offset: 3px;
     transition: outline-color .4s;
 }
+
+/* Tarjeta «Progreso de alumnos» (admin): selectores múltiples de temas y alumnos — 2026-11-28 */
+.admin-multi { position: relative; flex: 1; min-width: 180px; }
+.admin-multi > summary {
+  list-style: none; cursor: pointer; background: rgba(255, 255, 255, 0.2); color: white;
+  padding: 8px 12px; border-radius: 8px; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.admin-multi > summary::-webkit-details-marker { display: none; }
+.admin-multi > summary::after { content: ' ▾'; opacity: 0.8; }
+.admin-multi[open] > summary::after { content: ' ▴'; }
+.admin-multi[open] { flex-basis: 100%; }   /* se abre debajo, a todo el ancho (la tarjeta tiene overflow hidden) */
+.admin-multi-lista {
+  margin-top: 4px; max-height: 340px; overflow-y: auto; background: #2c3e50; color: white; border-radius: 8px;
+  padding: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.admin-multi-lista label { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.admin-multi-lista label:hover { background: rgba(255, 255, 255, 0.1); }
+.admin-multi-lista input[type="checkbox"] { accent-color: #805ad5; }
+.admin-multi-todos { font-weight: 700; border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 4px; }
+.admin-multi-grupo { font-weight: 700; margin-top: 6px; color: #d6bcfa; }
+.admin-multi-grupo ~ .admin-multi-item { padding-left: 22px; }
+.admin-multi-extra { opacity: 0.7; font-size: 11px; }
+.admin-multi-buscar { width: 100%; box-sizing: border-box; padding: 6px 8px; margin-bottom: 6px; border-radius: 6px; border: none; font-size: 13px; }
+.admin-multi-vacio { margin: 4px; opacity: 0.8; font-size: 13px; }
+.admin-id {
+  margin-top: 2px; padding: 1px 6px; border: none; border-radius: 6px; cursor: pointer;
+  background: #805ad5; color: white; font-size: 8px; font-family: monospace;
+}
