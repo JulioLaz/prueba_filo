@@ -789,7 +789,9 @@ console.log("✨ Sistema de autenticación ampliado inicializado correctamente")
  * Tarjeta «Progreso de alumnos» del inicio (solo admin).
  * Lee users (role student) y progreso_temas y arma una tabla alumno × tema/actividad.
  *
- * Versión: v2.1.0 (2026-11-28) — borrar alumnos (Cloud Function adminBorrarAlumnos): botón «Borrar»
+ * Versión: v2.2.0 (2026-11-28) — la tabla muestra todos los temas de las unidades (antes solo los que
+ *   ya tenían progreso de algún alumno), cada uno con sus actividades oficiales
+ * v2.1.0 (2026-11-28) — borrar alumnos (Cloud Function adminBorrarAlumnos): botón «Borrar»
  *   en cada fila (cuentas repetidas) y «Fin del ciclo lectivo» (respaldo CSV y borrado de un curso o
  *   de todos). Pide escribir BORRAR. Nunca borra la cuenta del docente.
  * v2.0.0 (2026-11-28)
@@ -949,11 +951,22 @@ function calculateGeneralThemeProgress(studentId, theme, activities) {
   return Math.round(total / activities.length);
 }
 
+// Actividades oficiales de un tema (igual que js/progreso-tarjetas.js y el hub)
+function actividadesOficiales(tema) {
+  if (typeof ACTIVIDADES_TEMA !== 'undefined' && ACTIVIDADES_TEMA[tema]) return ACTIVIDADES_TEMA[tema];
+  const conVideo = typeof VIDEO_CONFIG !== 'undefined' && VIDEO_CONFIG[tema];
+  return ['material', 'caza', 'mapa', 'cruci', 'quiz', ...(conVideo ? ['video'] : [])];
+}
+
+// Temas de la tabla: TODOS los de las unidades (aunque nadie haya empezado) con sus actividades
+// oficiales, más los demás temas de la app (diálogos, taller…) que ya tienen progreso.
+// No se muestran los registros de temas que ya no están en la app.
 function analyzeAdminThemeStructure(progressData) {
   adminThemeStructure.clear();
+  TEMAS_APP.filter((t) => ROMANOS[t.difficulty]).forEach((t) => adminThemeStructure.set(t.id, new Set(actividadesOficiales(t.id))));
   progressData.forEach(({ moduleId, lessonId }) => {
-    if (!moduleId) return;
-    if (!adminThemeStructure.has(moduleId)) adminThemeStructure.set(moduleId, new Set());
+    if (!moduleId || !infoTema(moduleId)) return;
+    if (!adminThemeStructure.has(moduleId)) adminThemeStructure.set(moduleId, new Set((typeof ACTIVIDADES_TEMA !== 'undefined' && ACTIVIDADES_TEMA[moduleId]) || []));
     if (lessonId) adminThemeStructure.get(moduleId).add(lessonId);
   });
   for (const [theme, acts] of adminThemeStructure) adminThemeStructure.set(theme, ordenarActividades(theme, [...acts]));

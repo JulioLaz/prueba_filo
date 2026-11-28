@@ -3,8 +3,9 @@
  *
  * Carga index.html con Firebase falso (sesión de admin, 3 alumnos y progreso en temas de las
  * tres unidades) y revisa:
- *  - nombres de los temas con su unidad («I - Línea del tiempo») y en el orden de la app;
- *  - actividades de la línea de tiempo en el orden de ACTIVIDADES_TEMA;
+ *  - todos los temas de las unidades (aunque nadie los haya empezado) con su unidad («I - Línea del
+ *    tiempo») y en el orden de la app; sin temas que ya no existen;
+ *  - actividades oficiales de cada tema (ACTIVIDADES_TEMA o las de siempre, con video si tiene);
  *  - selector de temas: elegir solo la Unidad II, y luego un solo tema;
  *  - selector de alumnos: todos por defecto, buscar y dejar uno solo;
  *  - id de cada alumno visible en la tabla;
@@ -14,7 +15,8 @@
  *
  *   node tools/pruebas/ver_admin_progreso.mjs
  *
- * Versión: v1.1.0 (2026-11-28) — borrar alumnos y fin del ciclo lectivo
+ * Versión: v1.2.0 (2026-11-28) — todos los temas de las unidades y sus actividades oficiales
+ * v1.1.0 (2026-11-28) — borrar alumnos y fin del ciclo lectivo
  * v1.0.0 (2026-11-28)
  */
 import fs from 'fs';
@@ -35,6 +37,7 @@ const PROGRESO = [
   { uid: 'b8NcE4yH6', moduleId: 'marx_alienacion', lessonId: 'quiz', score: 80 },
   { uid: 'b8NcE4yH6', moduleId: 'origen', lessonId: 'caza', score: 60 },
   { uid: 'b8NcE4yH6', moduleId: 'dialogo_aristoteles', lessonId: 'dialogo', score: 60 },
+  { uid: 'b8NcE4yH6', moduleId: 'etica_de_aristoteles', lessonId: 'quiz', score: 60 },   // tema que ya no existe
 ];
 
 const FIREBASE_ADMIN = `export const app={}; export const auth={currentUser:{uid:'admin'}}; export const db={};
@@ -70,12 +73,23 @@ async function main_ver_admin_progreso() {
 
   const cabecera = () => page.$$eval('#adminTableHeaders th', (ths) => ths.map((t) => t.textContent.replace(/\s+/g, ' ').trim()));
   const temas = (await cabecera()).filter((t) => /GENERAL$/.test(t)).map((t) => t.replace(/ GENERAL$/, ''));
-  check('temas con su unidad y en el orden de la app', JSON.stringify(temas) === JSON.stringify(
-    ['I - Línea del tiempo', 'I - Origen de la Filosofía', 'II - Marx: Trabajo y Alienación', 'II - Jean-Paul Sartre',
-      'III - Ética de Aristóteles', 'Diálogo con Aristoteles']), JSON.stringify(temas));
+  // Todos los temas de las unidades (aunque nadie los haya empezado), en el orden de la app
+  const unidades = await page.evaluate(() => AVAILABLE_THEMES.filter((t) => /^UNIDAD_/.test(t.difficulty))
+    .map((t) => ({ id: t.id, r: { UNIDAD_I: 'I', UNIDAD_II: 'II', UNIDAD_III: 'III' }[t.difficulty] })));
+  const prefijos = temas.slice(0, unidades.length).map((t) => t.split(' - ')[0]);
+  check('todos los temas de las unidades, con su unidad y en el orden de la app',
+    temas.length === unidades.length + 1 && JSON.stringify(prefijos) === JSON.stringify(unidades.map((u) => u.r)) &&
+    temas[0] === 'I - Línea del tiempo' && temas.includes('II - Jean-Paul Sartre') && temas.includes('III - Ética de Aristóteles'),
+    `${temas.length} temas: ${JSON.stringify(temas)}`);
+  check('después de las unidades, los diálogos con progreso; sin temas que ya no existen',
+    temas.at(-1) === 'Diálogo con Aristoteles' && !temas.some((t) => /Etica De Aristoteles/i.test(t)));
   const cab = await cabecera();
   const i = cab.indexOf('I - Línea del tiempo GENERAL');
-  check('actividades de la línea en el orden del hub', JSON.stringify(cab.slice(i + 1, i + 4)) === '["MATERIAL","EXPLORAR","TERMOMETRO"]', JSON.stringify(cab.slice(i + 1, i + 4)));
+  check('actividades oficiales de la línea, en el orden del hub', JSON.stringify(cab.slice(i + 1, i + 8)) ===
+    '["MATERIAL","VIDEO","EXPLORAR","ORDENAR","SIMULTANEO","TERMOMETRO","QUIZ"]', JSON.stringify(cab.slice(i + 1, i + 8)));
+  const j = cab.indexOf('II - Descartes: el Sujeto y el Dualismo GENERAL');
+  // Descartes tiene video (VIDEO_CONFIG)
+  check('un tema sin progreso igual muestra sus actividades', j > 0 && JSON.stringify(cab.slice(j + 1, j + 7)) === '["MATERIAL","VIDEO","CAZA","MAPA","CRUCI","QUIZ"]', JSON.stringify(cab.slice(j + 1, j + 7)));
   check('todos los alumnos por defecto', (await page.$$('#adminTableBody tr')).length === 3 && (await page.textContent('#adminAlumnosResumen')) === 'Alumnos: todos');
   const ids = await page.$$eval('#adminTableBody .admin-id', (b) => b.map((x) => x.textContent));
   check('cada alumno muestra su id', JSON.stringify(ids) === '["id b8NcE4","id k3PzA9","id Tq7rW2"]', JSON.stringify(ids));
@@ -85,9 +99,11 @@ async function main_ver_admin_progreso() {
   await page.uncheck('#adminTemasLista input[data-todos]');
   await page.check('#adminTemasLista input[data-grupo="UNIDAD_II"]');
   const soloU2 = (await cabecera()).filter((t) => /GENERAL$/.test(t));
-  check('elegir solo la Unidad II', soloU2.length === 2 && soloU2.every((t) => t.startsWith('II - ')) && (await page.textContent('#adminTemasResumen')) === 'Temas: Unidad II', `${JSON.stringify(soloU2)} / ${await page.textContent('#adminTemasResumen')}`);
+  const nU2 = unidades.filter((u) => u.r === 'II').length;
+  check(`elegir solo la Unidad II (${nU2} temas)`, soloU2.length === nU2 && soloU2.every((t) => t.startsWith('II - ')) && (await page.textContent('#adminTemasResumen')) === 'Temas: Unidad II', `${JSON.stringify(soloU2)} / ${await page.textContent('#adminTemasResumen')}`);
   // Un solo tema
-  await page.uncheck('#adminTemasLista input[data-tema="marx_alienacion"]');
+  await page.uncheck('#adminTemasLista input[data-grupo="UNIDAD_II"]');
+  await page.check('#adminTemasLista input[data-tema="sartre"]');
   check('elegir un solo tema', (await page.textContent('#adminTemasResumen')) === 'Tema: II - Jean-Paul Sartre');
   await page.check('#adminTemasLista input[data-todos]');
   await page.click('#adminTemasResumen');
