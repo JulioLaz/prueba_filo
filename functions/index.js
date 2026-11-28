@@ -10,6 +10,9 @@
  * prueba el siguiente. Si ninguno responde, devuelve "unavailable" (el chat
  * avisa al alumno; ya no hay respuestas simuladas).
  *
+ * V8.8 (2026-11-28): adminBorrarAlumnos: el docente borra desde el panel la cuenta y todos los
+ *   datos de alumnos (cuentas repetidas o fin del ciclo lectivo); la lógica está en alumnos.js,
+ *   que también usa tools/limpieza/limpiar_progreso.cjs.
  * V8.7 (2026-11-26): orientación vocacional renovada: el chat manda el contexto (número de
  *   intercambio, edad, autotest RIASEC) y la función arma la fase, la extensión y el banco de
  *   opciones de Tucumán (themes/orientacion_vocacional/opciones.json desde Pages, sin deploy);
@@ -61,6 +64,8 @@ const logger = require("firebase-functions/logger");
 const {defineSecret} = require("firebase-functions/params");
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore, FieldValue} = require("firebase-admin/firestore");
+const {getAuth} = require("firebase-admin/auth");
+const {borrarAlumno, UID_VALIDO} = require("./alumnos");
 
 initializeApp();
 const db = getFirestore();
@@ -1608,6 +1613,44 @@ exports.examenCorregir = onCall({...OPCIONES_EXAMEN, timeoutSeconds: 300}, async
 function resultadoPublico(r) {
   return {nota: r.nota, aprobado: r.aprobado, puntos: r.puntos, maximo: r.maximo, devolucion: r.devolucion, porPregunta: r.porPregunta || []};
 }
+
+// ═══════════════════════════════════════════════════════════════
+// 🗑️ BORRAR ALUMNOS (solo el docente): cuentas repetidas y fin del ciclo lectivo
+// ═══════════════════════════════════════════════════════════════
+
+const MAX_BORRAR_POR_LLAMADA = 50;   // el panel manda los alumnos de a 50
+
+/**
+ * Borra la cuenta de ingreso y todos los datos de cada alumno de data.uids (ver alumnos.js).
+ * Nunca borra al docente ni perfiles que no sean "student". Devuelve {borrados, errores}.
+ */
+exports.adminBorrarAlumnos = onCall({region: "southamerica-east1", cors: true, memory: "256MiB", timeoutSeconds: 300}, async (request) => {
+  try {
+    if (!esAdmin(request.auth)) throw new HttpsError("permission-denied", "Solo el docente puede borrar alumnos.");
+    const uids = request.data?.uids;
+    if (!Array.isArray(uids) || !uids.length || uids.length > MAX_BORRAR_POR_LLAMADA ||
+        uids.some((u) => typeof u !== "string" || !UID_VALIDO.test(u))) {
+      throw new HttpsError("invalid-argument", "Lista de alumnos inválida");
+    }
+    const borrados = [];
+    const errores = [];
+    for (const uid of new Set(uids)) {
+      if (uid === request.auth.uid) {
+        errores.push({uid, motivo: "es tu propia cuenta"});
+        continue;
+      }
+      try {
+        borrados.push(await borrarAlumno(db, getAuth(), uid));
+      } catch (e) {
+        errores.push({uid, motivo: e.message});
+      }
+    }
+    logger.info(`🗑️ El docente borró ${borrados.length} alumnos (${errores.length} con error)`);
+    return {borrados, errores};
+  } catch (error) {
+    relanzar(error, "adminBorrarAlumnos");
+  }
+});
 
 // ═══════════════════════════════════════════════════════════════
 // 🔧 HEALTH CHECK

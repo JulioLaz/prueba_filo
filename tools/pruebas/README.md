@@ -73,9 +73,10 @@ node tools/pruebas/jugar_mapa.mjs <tema>
 # si el tema tiene examen:
 node tools/pruebas/hub_examen.mjs <tema>
 node tools/pruebas/resumen_final.mjs <tema>
-node tools/pruebas/ver_admin_progreso.mjs     # inicio, tarjeta del admin «Progreso de alumnos»: unidad y orden de los temas, selectores de temas y alumnos, id visible
+node tools/pruebas/ver_admin_progreso.mjs     # inicio, tarjeta del admin «Progreso de alumnos»: unidad y orden de los temas, selectores de temas y alumnos, id visible, borrar un alumno y fin del ciclo lectivo (función simulada)
 node tools/pruebas/ver_inicio.mjs              # inicio: línea de época y lugar con banderas en cada tarjeta; recuerda el filtro (Unidad 1) y vuelve a la última tarjeta
 node tools/pruebas/examen_funciones.cjs <tema>    # con el emulador corriendo
+node tools/pruebas/borrar_alumnos.cjs            # con el emulador corriendo: adminBorrarAlumnos, respaldo CSV y limpiar_progreso.cjs --borrar-alumno / --fin-de-ciclo
 ```
 
 ## Lo que NO prueban (hay que mirarlo a mano)

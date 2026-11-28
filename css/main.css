@@ -1366,3 +1366,20 @@ body::before {
   margin-top: 2px; padding: 1px 6px; border: none; border-radius: 6px; cursor: pointer;
   background: #805ad5; color: white; font-size: 8px; font-family: monospace;
 }
+/* Borrar alumnos y fin del ciclo lectivo (admin) — 2026-11-28 */
+.admin-borrar {
+  margin: 2px 0 0 4px; padding: 1px 6px; border: none; border-radius: 6px; cursor: pointer;
+  background: #805ad5; color: white; font-size: 8px;
+}
+.admin-btn-violeta {
+  background: #805ad5; color: white; border: none; padding: 8px 14px; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.admin-btn-violeta:hover { background: #6b46c1; }
+.admin-btn-violeta:disabled { opacity: 0.6; cursor: wait; }
+.admin-mensaje { background: rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; font-size: 14px; }
+.admin-fin-ciclo { background: rgba(0, 0, 0, 0.15); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; }
+.admin-fin-ciclo > summary { cursor: pointer; font-weight: 600; }
+.admin-fin-ciclo p { font-size: 13px; opacity: 0.9; margin: 8px 0; }
+.admin-fin-fila { display: flex; gap: 8px; flex-wrap: wrap; }
+.admin-fin-fila .admin-select { flex: 1 1 200px; }

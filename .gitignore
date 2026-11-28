@@ -11,3 +11,6 @@
 *firebase-adminsdk*.json
 # Reportes y backups con datos personales de alumnos
 reportes_alumnos/
+
+# Respaldos de notas de alumnos (datos personales): no se suben
+tools/limpieza/respaldos/

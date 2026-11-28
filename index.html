@@ -290,6 +290,17 @@
   </div>
 
   <div id="adminError" class="admin-error" style="display: none;"></div>
+  <div id="adminMensaje" class="admin-mensaje" role="status" style="display: none;"></div>
+
+  <details id="adminFinCiclo" class="admin-fin-ciclo" style="display: none;">
+    <summary>Fin del ciclo lectivo: borrar alumnos de un curso</summary>
+    <p>Primero se descarga el respaldo de notas (CSV para Excel) y después se borran la cuenta y todos los datos de los alumnos elegidos. No se puede deshacer.</p>
+    <div class="admin-fin-fila">
+      <select id="adminCursoSelect" class="admin-select"></select>
+      <button type="button" id="adminRespaldoBtn" class="admin-btn-violeta">Descargar respaldo</button>
+      <button type="button" id="adminBorrarCursoBtn" class="admin-btn-violeta">Borrar alumnos del curso</button>
+    </div>
+  </details>
 
   <div class="admin-actions" style="display: none;">
     <button id="adminOpenFullBtn" class="admin-btn-primary">📈 Dashboard Completo</button>
@@ -778,7 +789,10 @@ console.log("✨ Sistema de autenticación ampliado inicializado correctamente")
  * Tarjeta «Progreso de alumnos» del inicio (solo admin).
  * Lee users (role student) y progreso_temas y arma una tabla alumno × tema/actividad.
  *
- * Versión: v2.0.0 (2026-11-28)
+ * Versión: v2.1.0 (2026-11-28) — borrar alumnos (Cloud Function adminBorrarAlumnos): botón «Borrar»
+ *   en cada fila (cuentas repetidas) y «Fin del ciclo lectivo» (respaldo CSV y borrado de un curso o
+ *   de todos). Pide escribir BORRAR. Nunca borra la cuenta del docente.
+ * v2.0.0 (2026-11-28)
  *  - nombre de cada tema con su unidad («I - Línea del tiempo») y orden de la app (AVAILABLE_THEMES);
  *    actividades en el orden del hub (ACTIVIDADES_TEMA o material, video, caza, mapa, cruci, quiz)
  *  - selector múltiple de temas (todos, una unidad entera o temas sueltos)
@@ -786,7 +800,8 @@ console.log("✨ Sistema de autenticación ampliado inicializado correctamente")
  *  - id de Firebase de cada alumno (clic para copiarlo) y último ingreso, para detectar cuentas repetidas
  * v1.x — tabla con selector de un solo tema
  */
-import { isCurrentUserAdmin, db } from "/prueba_filo/firebase.js";
+import { isCurrentUserAdmin, db, app } from "/prueba_filo/firebase.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
@@ -815,6 +830,13 @@ const temasLista = $id('adminTemasLista');
 const temasResumen = $id('adminTemasResumen');
 const alumnosLista = $id('adminAlumnosLista');
 const alumnosResumen = $id('adminAlumnosResumen');
+const adminMensaje = $id('adminMensaje');
+const finCiclo = $id('adminFinCiclo');
+const cursoSelect = $id('adminCursoSelect');
+const respaldoBtn = $id('adminRespaldoBtn');
+const borrarCursoBtn = $id('adminBorrarCursoBtn');
+const fnBorrarAlumnos = httpsCallable(getFunctions(app, 'southamerica-east1'), 'adminBorrarAlumnos', { timeout: 310000 });
+const LOTE_BORRADO = 50;
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -940,10 +962,11 @@ function analyzeAdminThemeStructure(progressData) {
 // ========================================
 // Selector múltiple de temas
 // ========================================
-function pintarSelectorTemas() {
+function pintarSelectorTemas(conservar = false) {
   const todos = ordenarTemas([...adminThemeStructure.keys()]);
+  const antes = new Set(temasElegidos);
   temasElegidos.clear();
-  todos.forEach((t) => temasElegidos.add(t));
+  todos.forEach((t) => { if (!conservar || antes.has(t)) temasElegidos.add(t); });
   let html = `<label class="admin-multi-todos"><input type="checkbox" data-todos checked> Todos los temas</label>`;
   GRUPOS.forEach((g) => {
     const deGrupo = todos.filter((t) => grupoDe(t) === g.id);
@@ -995,9 +1018,10 @@ temasLista?.addEventListener('change', (e) => {
 // ========================================
 // Selector múltiple de alumnos
 // ========================================
-function pintarSelectorAlumnos() {
+function pintarSelectorAlumnos(conservar = false) {
+  const antes = new Set(alumnosElegidos);
   alumnosElegidos.clear();
-  adminStudentsData.forEach((s) => alumnosElegidos.add(s.id));
+  adminStudentsData.forEach((s) => { if (!conservar || antes.has(s.id)) alumnosElegidos.add(s.id); });
   alumnosLista.innerHTML =
     `<input type="search" class="admin-multi-buscar" placeholder="Buscar alumno, curso o id" data-buscar>` +
     `<label class="admin-multi-todos"><input type="checkbox" data-todos checked> Todos los alumnos</label>` +
@@ -1082,7 +1106,8 @@ function generateAdminMiniTable() {
     studentCell.innerHTML = `
       <div style="font-weight: 600; font-size: 10px; line-height: 1.1;">${esc((student.nombres || '').split(' ')[0])} ${esc((student.apellidos || '').split(' ')[0])}</div>
       <div style="font-size: 8px; opacity: 0.7;">${esc(student.curso || '')}</div>
-      <button type="button" class="admin-id" data-id="${esc(student.id)}">id ${esc(idCorto(student.id))}</button>`;
+      <button type="button" class="admin-id" data-id="${esc(student.id)}">id ${esc(idCorto(student.id))}</button>
+      <button type="button" class="admin-borrar" data-borrar="${esc(student.id)}">Borrar</button>`;
     studentCell.title = `${nombreAlumno(student)}\nid: ${student.id}\nAlta: ${fechaCorta(student.createdAt)}\nÚltimo ingreso: ${fechaCorta(student.lastLogin)}\nRegistros de progreso: ${adminProgressData.filter((p) => p.uid === student.id).length}`;
     Object.assign(studentCell.style, { position: 'sticky', left: '0', background: 'rgba(102,126,234,0.95)', zIndex: '5', minWidth: '110px' });
     row.appendChild(studentCell);
@@ -1120,12 +1145,131 @@ function generateAdminMiniTable() {
 
 // Copiar el id completo de un alumno
 adminTableBody?.addEventListener('click', async (e) => {
+  const borrar = e.target.closest('.admin-borrar');
+  if (borrar) { borrarUnAlumno(borrar.dataset.borrar); return; }
   const b = e.target.closest('.admin-id');
   if (!b) return;
   try { await navigator.clipboard.writeText(b.dataset.id); } catch { /* sin portapapeles: queda en el title */ }
   const antes = b.textContent;
   b.textContent = 'copiado';
   setTimeout(() => { b.textContent = antes; }, 1200);
+});
+
+// ========================================
+// Borrar alumnos (cuentas repetidas y fin del ciclo lectivo)
+// ========================================
+function mostrarMensaje(texto) {
+  adminMensaje.textContent = texto;
+  adminMensaje.style.display = texto ? 'block' : 'none';
+}
+
+const celdaCSV = (v) => { const t = String(v ?? ''); return /[;"\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t; };
+
+// Mismo formato que functions/alumnos.js (respaldoCSV): una fila por alumno, tema y actividad
+function respaldoCSV(alumnos) {
+  const filas = [['id', 'apellidos', 'nombres', 'curso', 'email', 'tema', 'actividad', 'mejor_puntaje', 'intentos', 'minutos']];
+  alumnos.forEach((a) => {
+    const suyos = adminProgressData.filter((p) => p.uid === a.id)
+      .sort((x, y) => `${x.moduleId}${x.lessonId}`.localeCompare(`${y.moduleId}${y.lessonId}`));
+    const base = [a.id, a.apellidos, a.nombres, a.curso, a.email];
+    if (!suyos.length) filas.push([...base, '', '', '', '', '']);
+    suyos.forEach((p) => filas.push([...base, p.moduleId, p.lessonId,
+      Math.max(Number(p.bestScore) || 0, Number(p.score) || 0), p.attempts ?? '', Math.round((Number(p.timeSpentSeconds) || 0) / 60)]));
+  });
+  return '\uFEFF' + filas.map((f) => f.map(celdaCSV).join(';')).join('\r\n') + '\r\n';
+}
+
+function descargarRespaldo(alumnos, etiqueta) {
+  const nombre = `respaldo_${new Date().toISOString().slice(0, 10)}_${etiqueta.normalize('NFD').replace(/[^A-Za-z0-9]/g, '') || 'alumnos'}.csv`;
+  const url = URL.createObjectURL(new Blob([respaldoCSV(alumnos)], { type: 'text/csv;charset=utf-8' }));
+  const a = Object.assign(document.createElement('a'), { href: url, download: nombre });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  return nombre;
+}
+
+// Llama a la función de a LOTE_BORRADO alumnos y saca de la tabla a los borrados
+async function borrarEnServidor(uids) {
+  const borrados = [];
+  const errores = [];
+  for (let i = 0; i < uids.length; i += LOTE_BORRADO) {
+    mostrarMensaje(`Borrando… ${Math.min(i + LOTE_BORRADO, uids.length)} de ${uids.length}`);
+    const { data } = await fnBorrarAlumnos({ uids: uids.slice(i, i + LOTE_BORRADO) });
+    borrados.push(...(data?.borrados || []));
+    errores.push(...(data?.errores || []));
+  }
+  const fuera = new Set(borrados.map((b) => b.uid));
+  adminStudentsData = adminStudentsData.filter((s) => !fuera.has(s.id));
+  adminProgressData = adminProgressData.filter((p) => !fuera.has(p.uid));
+  analyzeAdminThemeStructure(adminProgressData);
+  pintarSelectorTemas(true);
+  pintarSelectorAlumnos(true);
+  pintarCursos();
+  generateAdminMiniTable();
+  return { borrados, errores };
+}
+
+const textoErrores = (errores) => errores.length
+  ? ` No se pudieron borrar ${errores.length}: ${errores.map((e) => `${idCorto(e.uid)} (${e.motivo})`).join(', ')}.` : '';
+
+async function borrarUnAlumno(uid) {
+  const s = adminStudentsData.find((x) => x.id === uid);
+  if (!s) return;
+  const registros = adminProgressData.filter((p) => p.uid === uid).length;
+  const ok = confirm(`Borrar a ${nombreAlumno(s)} (${s.curso || 'sin curso'})\nid: ${uid}\nÚltimo ingreso: ${fechaCorta(s.lastLogin)}\nRegistros de progreso: ${registros}\n\nSe borran su cuenta y todos sus datos. No se puede deshacer.`);
+  if (!ok) return;
+  if ((prompt('Para confirmar, escribí BORRAR') || '').trim().toUpperCase() !== 'BORRAR') { mostrarMensaje('Cancelado: no se borró nada.'); return; }
+  try {
+    const { borrados, errores } = await borrarEnServidor([uid]);
+    mostrarMensaje(borrados.length ? `Se borró a ${nombreAlumno(s)}.` + textoErrores(errores) : 'No se borró.' + textoErrores(errores));
+  } catch (err) {
+    console.error('Error borrando alumno:', err);
+    mostrarMensaje(`No se pudo borrar: ${err.message}`);
+  }
+}
+
+// Cursos de los alumnos cargados, con la cantidad
+function pintarCursos() {
+  const porCurso = new Map();
+  adminStudentsData.forEach((s) => { const c = s.curso || '(sin curso)'; porCurso.set(c, (porCurso.get(c) || 0) + 1); });
+  const previo = cursoSelect.value;
+  cursoSelect.innerHTML = [...porCurso.keys()].sort().map((c) => `<option value="${esc(c)}">${esc(c)} (${porCurso.get(c)} alumnos)</option>`).join('') +
+    `<option value="__todos">Todos los cursos (${adminStudentsData.length} alumnos)</option>`;
+  if ([...cursoSelect.options].some((o) => o.value === previo)) cursoSelect.value = previo;
+  finCiclo.style.display = 'block';
+}
+
+const alumnosDelCurso = () => (cursoSelect.value === '__todos'
+  ? adminStudentsData : adminStudentsData.filter((s) => (s.curso || '(sin curso)') === cursoSelect.value));
+const nombreCurso = () => (cursoSelect.value === '__todos' ? 'todos los cursos' : cursoSelect.value);
+
+respaldoBtn?.addEventListener('click', () => {
+  const lista = alumnosDelCurso();
+  if (!lista.length) return;
+  mostrarMensaje(`Respaldo descargado: ${descargarRespaldo(lista, nombreCurso())} (${lista.length} alumnos).`);
+});
+
+borrarCursoBtn?.addEventListener('click', async () => {
+  const lista = alumnosDelCurso();
+  const curso = nombreCurso();   // se guarda antes: al borrar, la lista de cursos se vuelve a armar
+  if (!lista.length) return;
+  const archivo = descargarRespaldo(lista, curso);
+  const ok = confirm(`Se descargó el respaldo de notas (${archivo}).\n\nBorrar ${lista.length} alumnos de ${curso}: sus cuentas y todos sus datos. No se puede deshacer.`);
+  if (!ok) { mostrarMensaje('Cancelado: no se borró nada (el respaldo quedó descargado).'); return; }
+  if ((prompt(`Para confirmar el borrado de ${lista.length} alumnos, escribí BORRAR`) || '').trim().toUpperCase() !== 'BORRAR') {
+    mostrarMensaje('Cancelado: no se borró nada (el respaldo quedó descargado).');
+    return;
+  }
+  borrarCursoBtn.disabled = true;
+  try {
+    const { borrados, errores } = await borrarEnServidor(lista.map((s) => s.id));
+    mostrarMensaje(`Listo: se borraron ${borrados.length} de ${lista.length} alumnos de ${curso}.` + textoErrores(errores));
+  } catch (err) {
+    console.error('Error borrando curso:', err);
+    mostrarMensaje(`Se cortó el borrado: ${err.message}. Tocá «Cargar» para ver cómo quedó.`);
+  } finally {
+    borrarCursoBtn.disabled = false;
+  }
 });
 
 // ========================================
@@ -1147,6 +1291,8 @@ async function loadAdminData() {
     analyzeAdminThemeStructure(adminProgressData);
     pintarSelectorTemas();
     pintarSelectorAlumnos();
+    pintarCursos();
+    mostrarMensaje('');
     generateAdminMiniTable();
     window.DEBUG_ADMIN = { students: adminStudentsData, progress: adminProgressData, themes: adminThemeStructure };
   } catch (error) {
